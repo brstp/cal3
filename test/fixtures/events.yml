@@ -1,0 +1,27 @@
+one:
+  subject: MyString
+  intro: MyString
+  description: MyText
+  start_time: 2010-11-04 16:59:14
+  stop_time: 2010-11-04 16:59:14
+  street: MyString
+  zip: MyString
+  city: MyString
+  loc_descr: MyString
+  lat: 1.5
+  lng: 1.5
+  municipality_id: 1
+
+two:
+  subject: MyString
+  intro: MyString
+  description: MyText
+  start_time: 2010-11-04 16:59:14
+  stop_time: 2010-11-04 16:59:14
+  street: MyString
+  zip: MyString
+  city: MyString
+  loc_descr: MyString
+  lat: 1.5
+  lng: 1.5
+  municipality_id: 1

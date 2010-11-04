@@ -1,0 +1,56 @@
+<% title "Event" %>
+
+<p>
+  <strong>Subject:</strong>
+  <%= @event.subject %>
+</p>
+<p>
+  <strong>Intro:</strong>
+  <%= @event.intro %>
+</p>
+<p>
+  <strong>Description:</strong>
+  <%= @event.description %>
+</p>
+<p>
+  <strong>Start Time:</strong>
+  <%= @event.start_time %>
+</p>
+<p>
+  <strong>Stop Time:</strong>
+  <%= @event.stop_time %>
+</p>
+<p>
+  <strong>Street:</strong>
+  <%= @event.street %>
+</p>
+<p>
+  <strong>Zip:</strong>
+  <%= @event.zip %>
+</p>
+<p>
+  <strong>City:</strong>
+  <%= @event.city %>
+</p>
+<p>
+  <strong>Loc Descr:</strong>
+  <%= @event.loc_descr %>
+</p>
+<p>
+  <strong>Lat:</strong>
+  <%= @event.lat %>
+</p>
+<p>
+  <strong>Lng:</strong>
+  <%= @event.lng %>
+</p>
+<p>
+  <strong>Municipality:</strong>
+  <%= @event.municipality_id %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_event_path(@event) %> |
+  <%= link_to "Destroy", @event, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", events_path %>
+</p>

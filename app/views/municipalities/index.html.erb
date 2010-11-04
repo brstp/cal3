@@ -1,0 +1,17 @@
+<% title "Municipalities" %>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+  <% for municipality in @municipalities %>
+    <tr>
+      <td><%= municipality.name %></td>
+      <td><%= link_to "Show", municipality %></td>
+      <td><%= link_to "Edit", edit_municipality_path(municipality) %></td>
+      <td><%= link_to "Destroy", municipality, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Municipality", new_municipality_path %></p>

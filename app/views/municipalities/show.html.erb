@@ -1,0 +1,12 @@
+<% title "Municipality" %>
+
+<p>
+  <strong>Name:</strong>
+  <%= @municipality.name %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_municipality_path(@municipality) %> |
+  <%= link_to "Destroy", @municipality, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", municipalities_path %>
+</p>
