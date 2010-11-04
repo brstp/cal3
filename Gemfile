@@ -37,3 +37,4 @@ gem 'formtastic'
 gem "validation_reflection"
 gem 'nifty-generators'
 gem 'validates_timeliness'
+gem "mocha", :group => :test
