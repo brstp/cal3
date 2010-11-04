@@ -1,9 +1,8 @@
 # Set the default text field size when input is a string. Default is 50.
-Formtastic::SemanticFormBuilder.default_text_field_size = 30
+# Formtastic::SemanticFormBuilder.default_text_field_size = 50
 
 # Set the default text area height when input is a text. Default is 20.
-Formtastic::SemanticFormBuilder.default_text_area_height = 10
-
+# Formtastic::SemanticFormBuilder.default_text_area_height = 10
 # Should all fields be considered "required" by default?
 # Rails 2 only, ignored by Rails 3 because it will never fall back to this default.
 # Defaults to true.
@@ -43,12 +42,12 @@ Formtastic::SemanticFormBuilder.default_text_area_height = 10
 # errors messages. Sometimes you want the hints to be rendered first than
 # the input, in the following order: hints, input and errors. You can
 # customize it doing just as below:
-Formtastic::SemanticFormBuilder.inline_order = [:errors, :input, :hints]
+#Formtastic::SemanticFormBuilder.inline_order = [:errors, :input, :hints]
 
 # Specifies if labels/hints for input fields automatically be looked up using I18n.
 # Default value: false. Overridden for specific fields by setting value to true,
 # i.e. :label => true, or :hint => true (or opposite depending on initialized value)
-# Formtastic::SemanticFormBuilder.i18n_lookups_by_default = false
+Formtastic::SemanticFormBuilder.i18n_lookups_by_default = true
 
 # You can add custom inputs or override parts of Formtastic by subclassing SemanticFormBuilder and
 # specifying that class here.  Defaults to SemanticFormBuilder.
