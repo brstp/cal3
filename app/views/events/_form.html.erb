@@ -1,52 +1,20 @@
-<%= form_for @event do |f| %>
+<%= semantic_form_for @event do |f| %>
   <%= f.error_messages %>
-  <p>
-    <%= f.label :subject %><br />
-    <%= f.text_field :subject %>
-  </p>
-  <p>
-    <%= f.label :intro %><br />
-    <%= f.text_field :intro %>
-  </p>
-  <p>
-    <%= f.label :description %><br />
-    <%= f.text_field :description %>
-  </p>
-  <p>
-    <%= f.label :start_time %><br />
-    <%= f.datetime_select :start_time %>
-  </p>
-  <p>
-    <%= f.label :stop_time %><br />
-    <%= f.datetime_select :stop_time %>
-  </p>
-  <p>
-    <%= f.label :street %><br />
-    <%= f.text_field :street %>
-  </p>
-  <p>
-    <%= f.label :zip %><br />
-    <%= f.text_field :zip %>
-  </p>
-  <p>
-    <%= f.label :city %><br />
-    <%= f.text_field :city %>
-  </p>
-  <p>
-    <%= f.label :loc_descr %><br />
-    <%= f.text_field :loc_descr %>
-  </p>
-  <p>
-    <%= f.label :lat %><br />
-    <%= f.text_field :lat %>
-  </p>
-  <p>
-    <%= f.label :lng %><br />
-    <%= f.text_field :lng %>
-  </p>
-  <p>
-    <%= f.label :municipality_id %><br />
-    <%= f.text_field :municipality_id %>
-  </p>
+  <% f.inputs do %>
+      <%= f.input :subject %>
+      <%= f.input :intro %>
+      <%= f.input :municipality %>
+      <%= f.input :description %>
+      <%= f.input :start_time %>
+      <%= f.input :stop_time %>
+      <%= f.input :street %>
+      <%= f.input :zip %>
+      <%= f.input :city %>
+      <%= f.input :loc_descr %>
+      <%= f.input :lat %>
+      <%= f.input :lng %>
+
+ </p>
   <p><%= f.submit %></p>
+  <% end %>
 <% end %>
