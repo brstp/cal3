@@ -215,7 +215,7 @@
         start_time: "start_time"
         stop_time: "stop_time"
       municipality: 
-        name: "Namnet på kommunen (inklusive kommun eller stad)"
+        name: "Namnet på kommunen (en del kommuner heter \"stad\")"
     actions:
       event:
         create: "Skapa %{model}"
