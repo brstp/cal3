@@ -28,3 +28,8 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 # group :development, :test do
 #   gem 'webrat'
 # end
+
+gem 'formtastic'
+gem "validation_reflection"
+gem 'nifty-generators'
+gem 'validates_timeliness'
