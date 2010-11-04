@@ -29,6 +29,11 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 #   gem 'webrat'
 # end
 
+
+
+
+# Specific for this project.
+
 gem 'formtastic'
 gem "validation_reflection"
 gem 'nifty-generators'
