@@ -5,6 +5,7 @@
 #   * Henrik Nyh (henrik@nyh.se)
 
 "sv-SE":
+
   number:
     # Used in number_with_delimiter()
     # These are also the defaults for 'currency', 'percentage', 'precision', and 'human'
@@ -152,14 +153,20 @@
       # For example,
       #   user: "Dude"
       # will translate User model name to "Dude"
-
+    models:
+      municipality: "kommun"
     # Translate model attribute names. Used in Model.human_attribute_name(attribute).
     #attributes:
       # For example,
       #   user:
       #     login: "Handle"
       # will translate User attribute "login" as "Handle"
+    attributes:
+      municipality:
+        name: "kommunnamn"
 
+      
+      
   date:
     formats:
       # Use the strftime parameters for formats.
@@ -195,6 +202,9 @@
     select:
       # default value for :prompt => true in FormOptionsHelper
       prompt: "Välj"
+
+  app:
+    back_to_list: "Tillbaka till listan"
       
 #Formtastic      
   formtastic:
@@ -225,3 +235,8 @@
         create: "Skapa %{model}"
         update: "Spara %{model}"
         dummie: "Dummy"      
+  
+  municipality:
+    new:
+      title: "Ny kommun"
+    
