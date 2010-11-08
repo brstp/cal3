@@ -218,6 +218,7 @@
     show: "zzzVisa %{model}"
     edit: "Ändra"
     are_you_sure: "Vill du radera"
+    destroy: "Ta bort"
       
       
   errors:
@@ -230,6 +231,18 @@
       on_or_before: "måste vara %{restriction} eller tidigare"
       after: "måste vara senare än %{restriction}"
       on_or_after: "måste vara %{restriction} eller senare"
+
+  flash:
+    actions:
+      create:
+        notice: "z %{resource_name} was successfully created."
+      update:
+        notice: "z %{resource_name} was successfully updated."
+      destroy:
+        notice: "z %{resource_name} was successfully destroyed."
+        alert: "z %{resource_name} could not be destroyed."
+
+
       
 #Formtastic      
   formtastic:
@@ -293,16 +306,16 @@
       list: "Till kommunlistan (strunta i ändringar)"
     show:
       list: "Till kommunlistan"
-      destroy: "Ta bort"
+      destroy: "zzzzTa bort"
     index:
       title: "Kommuner"
-      edit: "Ändra"
-      destroy: "Ta bort"
+      edit: "zÄndra"
+      destroy: "zzzzTa bort"
       new: "Skapa ny kommun"
 
   municipalities:
     index:
-      title: "Alla kommuner"      
+      title: "Alla kommuner"
 
   event:
     new:
@@ -312,3 +325,10 @@
       title: "Ändra evenemanget"
       show: "Visa evenemanget (strunta i ändringar)"
       list: "Till evenemangslistan (strunta i ändringar)"
+    index:
+      title: "Evenemang"
+      destroy: "zzzz Ta bort"
+      new: "Skapa nytt evenemang"
+    show:
+      list: "Till evenemangslistan"
+      destroy: "zzzz Ta bort"
