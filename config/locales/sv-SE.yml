@@ -127,7 +127,7 @@
         too_long: "är för lång (maximum är %{count} tecken)"
         too_short: "är för kort (minimum är %{count} tecken)"
         wrong_length: "har fel längd (ska vara %{count} tecken)"
-        taken: "har redan tagits"
+        taken: "används redan"
         not_a_number: "är inte ett nummer"
         greater_than: "måste vara större än %{count}"
         greater_than_or_equal_to: "måste vara större än eller lika med %{count}"
@@ -212,10 +212,12 @@
       # default value for :prompt => true in FormOptionsHelper
       prompt: "Välj"
 
-
+    
   app:
     back_to_list: "Tillbaka till listan"
-    show: "Visa %{model}"
+    show: "zzzVisa %{model}"
+    edit: "Ändra"
+    are_you_sure: "Vill du radera"
       
       
   errors:
@@ -231,6 +233,13 @@
       
 #Formtastic      
   formtastic:
+    "yes": 'Ja'
+    "no": 'Nej'
+    create: 'Skapa'
+    save: 'Spara'
+    submit: 'Skicka'
+    required: 'Obligatorisk' 
+    update: 'zUppdatera'
     labels:
       event:
         subject: "Rubrik"
@@ -269,22 +278,37 @@
       event:
         create: "Skapa %{model}"
         update: "Spara %{model}"
-        dummie: "Dummy"
       municipality:
         create: "Skapa %{model}"
-        update: "Spara %{model}"
-        dummie: "Dummy"      
+        update: "Spara"
+#End formtastic
   
+
   municipality:
     new:
       title: "Ny kommun"
+      list: "Till kommunlistan (strunta i ändringar)"
     edit:
-      title: "Redigera kommunen"
+      show: "Visa kommunen (strunta i ändringar)"
+      list: "Till kommunlistan (strunta i ändringar)"
+    show:
+      list: "Till kommunlistan"
+      destroy: "Ta bort"
+    index:
+      title: "Kommuner"
+      edit: "Ändra"
+      destroy: "Ta bort"
+      new: "Skapa ny kommun"
+
+  municipalities:
+    index:
+      title: "Alla kommuner"      
+
   event:
     new:
       title: "Nytt evenemang"
-      list: "Tillbaka till evenemangslistan (strunta i ändringar)"
+      list: "Till evenemangslistan (strunta i ändringar)"
     edit:
-      title: "Redigera evenemanget"
+      title: "Ändra evenemanget"
       show: "Visa evenemanget (strunta i ändringar)"
-      list: "Tillbaka till evenemangslistan (strunta i ändringar)"
+      list: "Till evenemangslistan (strunta i ändringar)"

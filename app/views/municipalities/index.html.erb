@@ -1,17 +1,13 @@
-<% title "Municipalities" %>
+<% title t('municipalities.index.title') %>
 
 <table>
-  <tr>
-    <th>Name</th>
-  </tr>
-  <% for municipality in @municipalities %>
+   <% for municipality in @municipalities %>
     <tr>
-      <td><%= municipality.name %></td>
-      <td><%= link_to "Show", municipality %></td>
-      <td><%= link_to "Edit", edit_municipality_path(municipality) %></td>
-      <td><%= link_to "Destroy", municipality, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%= link_to municipality.name, municipality %></td>
+      <td><%= link_to t('municipality.index.edit'), edit_municipality_path(municipality) %></td>
+      <td><%= link_to t('municipality.index.destroy'), municipality, :confirm => t('app.are_you_sure') + ' ' + municipality.name + '?', :method => :delete %></td>
     </tr>
   <% end %>
 </table>
 
-<p><%= link_to "New Municipality", new_municipality_path %></p>
+<p><%= link_to t('municipality.index.new'), new_municipality_path %></p>

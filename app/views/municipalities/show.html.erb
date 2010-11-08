@@ -1,12 +1,12 @@
-<% title "Municipality" %>
+<% title @municipality.name %>
 
 <p>
-  <strong>Name:</strong>
+  <strong><%= t 'formtastic.labels.municipality.name' %>: </strong>
   <%= @municipality.name %>
 </p>
 
 <p>
-  <%= link_to "Edit", edit_municipality_path(@municipality) %> |
-  <%= link_to "Destroy", @municipality, :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "View All", municipalities_path %>
+  <%= link_to t('app.edit'), edit_municipality_path(@municipality) %> |
+  <%= link_to t('municipality.show.destroy'), @municipality, :confirm => t('app.are_you_sure') + ' ' +@municipality.name + '?', :method => :delete %> |
+  <%= link_to t('municipality.show.list'), municipalities_path %>
 </p>

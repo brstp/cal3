@@ -1,10 +1,7 @@
-<% title "Event" %>
+<% title @event.subject %>
 
 <p>
   <%= @event.municipality.name %>
-</p>
-<p>
-  <strong><%= @event.subject %></strong>
 </p>
 <p>
   <%= @event.intro %>
@@ -14,12 +11,8 @@
   <%= @event.description %>
 </p>
 <p>
-  <strong>Start Time:</strong>
-  <%= @event.start_time %>
-</p>
-<p>
-  <strong>Stop Time:</strong>
-  <%= @event.stop_time %>
+  <strong>N&auml;r:</strong>
+  <%= @event.start_time %> - <%= @event.stop_time %>
 </p>
 <p>
   <strong>Street:</strong>

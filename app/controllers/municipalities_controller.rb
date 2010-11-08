@@ -1,6 +1,6 @@
 class MunicipalitiesController < ApplicationController
   def index
-    @municipalities = Municipality.all
+    @municipalities = Municipality.all(:order => 'name ASC')
   end
   
   def show

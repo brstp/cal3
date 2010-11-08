@@ -1,8 +1,8 @@
-<% title t 'municipality.edit.title' %>
+<% title(t('app.edit') + ' ' +@municipality.name) %>
 
 <%= render 'form' %>
 
 <p>
-  <%= link_to "Show", @municipality %> |
-  <%= link_to "View All", municipalities_path %>
+  <%= link_to t('municipality.edit.show'), @municipality %> |
+  <%= link_to t('municipality.edit.list'), municipalities_path %>
 </p>
