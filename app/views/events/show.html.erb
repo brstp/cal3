@@ -1,11 +1,12 @@
 <% title "Event" %>
 
 <p>
-  <strong>Subject:</strong>
-  <%= @event.subject %>
+  <%= @event.municipality.name %>
 </p>
 <p>
-  <strong>Intro:</strong>
+  <strong><%= @event.subject %></strong>
+</p>
+<p>
   <%= @event.intro %>
 </p>
 <p>
@@ -44,10 +45,7 @@
   <strong>Lng:</strong>
   <%= @event.lng %>
 </p>
-<p>
-  <strong>Municipality:</strong>
-  <%= @event.municipality_id %>
-</p>
+
 
 <p>
   <%= link_to "Edit", edit_event_path(@event) %> |

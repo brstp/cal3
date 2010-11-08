@@ -13,7 +13,7 @@
       # Sets the separator between the units, for more precision (e.g. 1.0 / 2.0 == 0.5)
       separator: ","
       # Delimits thousands (e.g. 1,000,000 is a million) (always in groups of three)
-      delimiter: " "
+      delimiter: "."
       # Number of decimals after the separator (the number 1 with a precision of 2 gives: 1.00)
       precision: 2
 
@@ -89,6 +89,11 @@
       minute: "Minut"
       second: "Sekund"
 
+  error_messages:
+    helper:
+      invalid_fields: "Invalid Fieldz"
+      correct_the_following_errors_and_try_again: "Correct the following errorz and try again."
+      
   activemodel:
     errors:
       template:
@@ -155,6 +160,7 @@
       # will translate User model name to "Dude"
     models:
       municipality: "kommun"
+      event: "evenemang"
     # Translate model attribute names. Used in Model.human_attribute_name(attribute).
     #attributes:
       # For example,
@@ -187,7 +193,10 @@
 
   time:
     formats:
-      default: "%a, %e %b %Y %H:%M:%S %z"
+      #default: "%a, %e %b %Y %H:%M:%S %z"
+      #short: "%e %b %H:%M"
+      #long: "%e %B %Y %H:%M"
+      default: "%a, %e %b %Y %H:%M"
       short: "%e %b %H:%M"
       long: "%e %B %Y %H:%M"
     am: ""
@@ -203,8 +212,22 @@
       # default value for :prompt => true in FormOptionsHelper
       prompt: "Välj"
 
+
   app:
     back_to_list: "Tillbaka till listan"
+    show: "Visa %{model}"
+      
+      
+  errors:
+    messages:
+      invalid_date: "ser inte ut som ett datum"
+      invalid_time: "ser inte ut som ett klockslag"
+      invalid_datetime: "ser inte ut som datum och klockslag"
+      is_at: "måste vara %{restriction}"
+      before: "måste vara tidigare än %{restriction}"
+      on_or_before: "måste vara %{restriction} eller tidigare"
+      after: "måste vara senare än %{restriction}"
+      on_or_after: "måste vara %{restriction} eller senare"
       
 #Formtastic      
   formtastic:
@@ -215,17 +238,33 @@
         description: "Beskrivning"
         start_time: "Börjar"
         stop_time: "Slutar"
+        street: "Gatuadress"
+        zip: "Postnummer"
+        city: "Postort"
+        loc_descr: "Vägbeskrivning"
+        lat: "Latitud"
+        lng: "Longitud"
+        municipality: "municipality"
       municipality:
         name: "Kommunnamn"
+
     hints:
       event:
-        subject: "Välj en rubrik för evenemanget. Använd 10-40 tecken."
+        subject: "Använd 10-40 tecken."
         intro: "Skriv en jättekort sammanfattning på max 100 tecken."
         description: "Ge en komplett beskrivning av evenemanget."
-        start_time: "start_time"
-        stop_time: "stop_time"
+        start_time: "_start_time"
+        stop_time: "_stop_time"
+        street: ""
+        zip: ""
+        city: ""
+        loc_descr: ""
+        lat: "I decimalformat"
+        lng: "I decimalformat"
+        municipality: "Den kommun där evenemanget sker."
       municipality: 
         name: "Namnet på kommunen (en del kommuner heter \"stad\")"
+        
     actions:
       event:
         create: "Skapa %{model}"
@@ -239,4 +278,13 @@
   municipality:
     new:
       title: "Ny kommun"
-    
+    edit:
+      title: "Redigera kommunen"
+  event:
+    new:
+      title: "Nytt evenemang"
+      list: "Tillbaka till evenemangslistan (strunta i ändringar)"
+    edit:
+      title: "Redigera evenemanget"
+      show: "Visa evenemanget (strunta i ändringar)"
+      list: "Tillbaka till evenemangslistan (strunta i ändringar)"

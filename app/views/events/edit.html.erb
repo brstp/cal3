@@ -1,8 +1,8 @@
-<% title "Edit Event" %>
+<% title t 'event.edit.title' %>
 
 <%= render 'form' %>
 
 <p>
-  <%= link_to "Show", @event %> |
-  <%= link_to "View All", events_path %>
+  <%= link_to t('event.edit.show'), @event %> |
+  <%= link_to t('event.edit.list'), events_path %>
 </p>
