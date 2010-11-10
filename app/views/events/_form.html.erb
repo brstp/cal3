@@ -2,9 +2,9 @@
   <%= f.error_messages %>
   <% f.inputs do %>
       <%= f.input :subject %>
-      <%= f.input :intro %>
+      <%= f.input :intro, :input_html => {:size => 50} %>
       <%= f.input :municipality %>
-      <%= f.input :description %>
+      <%= f.input :description, :input_html => {:rows => 8, :cols => 48} %>
       <%= f.input :start_time %>
       <%= f.input :stop_time %>
       <%= f.input :street %>

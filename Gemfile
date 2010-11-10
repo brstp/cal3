@@ -33,7 +33,7 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 
 
 # Specific for this project. Do we need to add version numbers?
-gem 'formtastic'
+gem 'formtastic', '~> 1.1.0'
 gem "validation_reflection"
 gem 'nifty-generators'
 gem 'validates_timeliness'
