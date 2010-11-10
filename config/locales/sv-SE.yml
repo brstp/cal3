@@ -266,7 +266,7 @@
         loc_descr: "Vägbeskrivning"
         lat: "Latitud"
         lng: "Longitud"
-        municipality: "municipality"
+        municipality: "Kommun"
       municipality:
         name: "Kommunnamn"
 
@@ -280,7 +280,7 @@
         street: ""
         zip: ""
         city: ""
-        loc_descr: ""
+        loc_descr: "Om det inte räcker med gatuadress, beskriv platsen där evenemanget hålls. T.ex: \"I norra delen av stadsparken.\""
         lat: "I decimalformat"
         lng: "I decimalformat"
         municipality: "Den kommun där evenemanget sker."

@@ -42,6 +42,6 @@
 
 <p>
   <%= link_to t('app.edit'), edit_event_path(@event) %> |
-  <%= link_to t('event.show.destroy'), @event, :confirm => t('app.are_you_sure') + ' ' +@event.subject + '?', :method => :delete %> |
+  <%= link_to t('app.destroy'), @event, :confirm => t('app.are_you_sure') + ' ' +@event.subject + '?', :method => :delete %> |
   <%= link_to t('event.show.list'), events_path %>
 </p>
