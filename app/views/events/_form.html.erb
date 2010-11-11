@@ -1,11 +1,12 @@
 <%= semantic_form_for @event do |f| %>
   <%= f.error_messages %>
-  <% f.inputs do %>
+  <%= f.inputs do %>
       <%= f.input :subject %>
       <%= f.input :intro, :input_html => {:size => 50} %>
-      <%= f.input :municipality %>
+      <%= f.input :municipality, :required => true %>
       <%= f.input :description, :input_html => {:rows => 8, :cols => 48} %>
-      <%= f.input :start_time %>
+      <%= f.input :start_date %>
+      <%= f.input :start_clock %>
       <%= f.input :stop_time %>
       <%= f.input :street %>
       <%= f.input :zip %>
