@@ -9,6 +9,10 @@ class Event < ActiveRecord::Base
   validates_length_of :intro, :in => 0..90
   validates_numericality_of :lat, :allow_nil => true
   validates_numericality_of :lng, :allow_nil => true
+
+  #validates_time :start_time, :allow_nil => false
+  #validates_date :start_date, :allow_nil => false
+  
   #validates_datetime :start_datetime, :allow_nil => false
   #validates_datetime :stop_datetime, :allow_nil => false
   #validates_datetime :stop_datetime, :after => :start_datetime
