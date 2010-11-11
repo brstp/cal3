@@ -12,7 +12,7 @@ class Event < ActiveRecord::Base
   validates_datetime :start_time, :allow_nil => false
   validates_datetime :stop_time, :allow_nil => false
   validates_datetime :stop_time, :after => :start_time
-  #validates_datetime :start_date, :allow_nil => false
+  #validates_datetime :start_datetime, :allow_nil => false
 
   
  # validate :datetime_format_and_existence_is_valid  
