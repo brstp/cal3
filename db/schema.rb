@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(:version => 20101111125057) do
     t.string   "subject"
     t.string   "intro"
     t.text     "description"
-    t.datetime "start_datetimetime"
+    t.datetime "start_datetime"
     t.datetime "stop_datetime"
     t.string   "street"
     t.string   "zip"
