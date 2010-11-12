@@ -18,11 +18,9 @@ class Event < ActiveRecord::Base
   #validates_datetime :start_datetime, :allow_nil => false
 
   validate :validates_start_time
+  validate :validates_start_date
   
   before_save :merge_start_datetime    
-
-  #http://stackoverflow.com/questions/1467904/how-do-ruby-on-rails-multi-parameter-attributes-really-work-datetime-select
- 
 
  
 
@@ -37,18 +35,6 @@ class Event < ActiveRecord::Base
   @start_time = time_str.strip
  end
 
- 
- #def start_date
- # if @start_date then
- #   @start_date
- # else
- #   if @start_datetime then
- #     @start_datetime.datetime.strftime "%Y-%m-%d"
- #   else
- #     Time.now.strftime "%Y-%m-%d"
- #   end
- # end
- #end
 
   def start_date
     if(self.start_datetime) then self.start_datetime.strftime "%Y-%m-%d"
@@ -65,9 +51,19 @@ class Event < ActiveRecord::Base
     begin
       DateTime.parse(@start_time) 
     rescue
-      errors.add(:start_time, 'zz must be in HH:MM format')
+      errors.add(:start_time, I18n.t('errors.messages.invalid_time'))
     end
   end
+
+  def validates_start_date
+    begin
+      DateTime.parse(@start_date) 
+    rescue
+      errors.add(:start_date, I18n.t('errors.messages.invalid_date'))
+    end
+  end
+  
+
   
   def merge_start_datetime
     self.start_datetime = DateTime.parse(@start_date + " " + @start_time) if errors.empty?
