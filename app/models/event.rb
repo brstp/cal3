@@ -9,7 +9,6 @@ class Event < ActiveRecord::Base
   validates_length_of :intro, :in => 0..90
   validates_numericality_of :lat, :allow_nil => true
   validates_numericality_of :lng, :allow_nil => true
-
   #validates_time :start_time, :allow_nil => false
   #validates_date :start_date, :allow_nil => false
   
@@ -18,6 +17,7 @@ class Event < ActiveRecord::Base
   #validates_datetime :stop_datetime, :after => :start_datetime
   #validates_datetime :start_datetime, :allow_nil => false
 
+  validate :validates_start_time
   
   before_save :merge_start_datetime    
 
@@ -25,18 +25,7 @@ class Event < ActiveRecord::Base
  
 
  
-# def start_time
-#  if @start_time then
-#    @start_time
-#  else
-#    if @start_datetime then
-#      @start_datetime.datetime.strftime "%H:%M"
-#    else
-#      Time.now.strftime "%H:%M"
-#    end
-#  end
-# end
- 
+
   def start_time
     if(self.start_datetime) then self.start_datetime.strftime "%H:%M"
     else @start_time ||= "19:00" #default
@@ -68,14 +57,23 @@ class Event < ActiveRecord::Base
   end
  
  
- def start_date=(date_str)
-  @start_date = date_str.strip
- end
- 
-def merge_start_datetime
-  self.start_datetime = DateTime.parse(@start_date + " " + @start_time)
-end
+  def start_date=(date_str)
+    @start_date = date_str.strip
+  end
+
+  def validates_start_time
+    begin
+      DateTime.parse(@start_time) 
+    rescue
+      errors.add(:start_time, 'zz must be in HH:MM format')
+    end
+  end
+  
+  def merge_start_datetime
+    self.start_datetime = DateTime.parse(@start_date + " " + @start_time) if errors.empty?
+  end
 
 
 
 end
+
