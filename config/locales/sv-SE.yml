@@ -327,7 +327,10 @@
         update: "Spara"
 #End formtastic
   
-
+  municipalities:
+    index:
+      title: "Alla kommuner"
+      
   municipality:
     new:
       title: "Ny kommun"
@@ -341,11 +344,8 @@
     index:
       title: "Kommuner"
       new: "Skapa ny kommun"
-   
+  
 
-  municipalities:
-    index:
-      title: "Alla kommuner"
   events:
     index:
       title: "Evenemang"

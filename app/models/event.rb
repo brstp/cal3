@@ -13,6 +13,7 @@ class Event < ActiveRecord::Base
   validates_numericality_of :lng, :allow_nil => true
   validate :validates_start_time, :validates_start_date, :validates_stop_time, :validates_stop_date, :validates_start_stop
   
+ 
   def municipality_short
     municipality.name.gsub(/kommun/, '').gsub(/stad/, '')
   end
