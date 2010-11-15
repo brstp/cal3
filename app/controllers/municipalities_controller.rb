@@ -14,7 +14,7 @@ class MunicipalitiesController < ApplicationController
   def create
     @municipality = Municipality.new(params[:municipality])
     if @municipality.save
-      flash[:notice] = "Successfully created municipality."
+      flash[:notice] = t 'flash.actions.create.notice'
       redirect_to @municipality
     else
       render :action => 'new'
@@ -28,7 +28,7 @@ class MunicipalitiesController < ApplicationController
   def update
     @municipality = Municipality.find(params[:id])
     if @municipality.update_attributes(params[:municipality])
-      flash[:notice] = "Successfully updated municipality."
+      flash[:notice] = t('flash.actions.update.notice')
       redirect_to @municipality
     else
       render :action => 'edit'
@@ -38,7 +38,7 @@ class MunicipalitiesController < ApplicationController
   def destroy
     @municipality = Municipality.find(params[:id])
     @municipality.destroy
-    flash[:notice] = "Successfully destroyed municipality."
+    flash[:notice] = t 'flash.actions.destroy.notice'
     redirect_to municipalities_url
   end
 end
