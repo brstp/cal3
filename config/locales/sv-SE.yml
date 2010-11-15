@@ -89,10 +89,6 @@
       minute: "Minut"
       second: "Sekund"
 
-  invalid_fields: "Invalid Fieldz"
-  error_messages:
-    invalid_fields: "Invalid Fieldz"  
-
   error_messages:
     helper:
       invalid_fields: "Invalid Fieldz"
@@ -240,7 +236,9 @@
     edit: "Ändra"
     are_you_sure: "Vill du radera"
     destroy: "Ta bort"
-      
+    sitename: "kalendern"  
+    destroyed: "Raderat %{resource_name}."
+    
       
   error:
     messages:
@@ -265,15 +263,7 @@
       after: "måste vara senare än %{restriction}"
       on_or_after: "måste vara %{restriction} eller senare"
 
-  flash:
-    actions:
-      create:
-        notice: "z %{resource_name} was successfully created."
-      update:
-        notice: "z %{resource_name} was successfully updated."
-      destroy:
-        notice: "z %{resource_name} was successfully destroyed."
-        alert: "z %{resource_name} could not be destroyed."
+  
 
   validates_timeliness:
     error_value_formats:
@@ -345,19 +335,20 @@
     edit:
       show: "Visa kommunen (strunta i ändringar)"
       list: "Till kommunlistan (strunta i ändringar)"
+
     show:
       list: "Till kommunlistan"
-      destroy: "zzzzTa bort"
     index:
       title: "Kommuner"
-      edit: "zÄndra"
-      destroy: "zzzzTa bort"
       new: "Skapa ny kommun"
+   
 
   municipalities:
     index:
       title: "Alla kommuner"
-
+  events:
+    index:
+      title: "Evenemang"
   event:
     new:
       title: "Nytt evenemang"
@@ -368,8 +359,23 @@
       list: "Till evenemangslistan (strunta i ändringar)"
     index:
       title: "Evenemang"
-      destroy: "zzzz Ta bort"
       new: "Skapa nytt evenemang"
     show:
       list: "Till evenemangslistan"
-      destroy: "zzzz Ta bort"
+
+
+      
+  flash:
+    actions:
+      update: 
+        notice: "Ändrat"
+      create:
+        notice: "Skapat"
+      destroy:
+        notice: "Tagit bort"
+        alert: "Kunde inte ta bort"
+      
+      
+      
+      
+      
