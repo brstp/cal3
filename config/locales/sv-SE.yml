@@ -89,6 +89,10 @@
       minute: "Minut"
       second: "Sekund"
 
+  invalid_fields: "Invalid Fieldz"
+  error_messages:
+    invalid_fields: "Invalid Fieldz"  
+
   error_messages:
     helper:
       invalid_fields: "Invalid Fieldz"
@@ -107,11 +111,11 @@
     errors:
       # model.errors.full_messages format.
       format: "%{attribute} %{message}"
-      
+    errors:
       template:
         header:
-          one:    "Ett fel förhindrade denna %{model} från att sparas"
-          other:  "%{count} fel förhindrade denna %{model} från att sparas"
+          one: "Ett fel förhindrade denna %{model} från att sparas"
+          other: "%{count} fel förhindrade denna %{model} från att sparas"
         body: "Det var problem med följande fält:"
       
       # The values :model, :attribute and :value are always available for interpolation
@@ -170,6 +174,23 @@
     attributes:
       municipality:
         name: "kommunnamn"
+      event:
+        subject: "Rubrik"
+        intro: "Sammanfattning"
+        description: "Beskrivning"
+        start_date: "Startdatum"
+        start_time: "Börjar klockan"
+        stop_date: "Slutdatum"
+        stop_time: "Slutar klockan"
+        street: "Gatuadress"
+        zip: "Postnummer"
+        city: "Postort"
+        loc_descr: "Vägbeskrivning"
+        lat: "Latitud"
+        lng: "Longitud"
+        municipality: "Kommun"
+        municipality_id: "Kommun"
+        
 
       
       
