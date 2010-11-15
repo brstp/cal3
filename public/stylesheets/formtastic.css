@@ -48,9 +48,13 @@ form.formtastic fieldset > ol > li.error { }
 
 /* LABELS
 --------------------------------------------------------------------------------------------------*/
-form.formtastic fieldset > ol > li label { display:block; width:25%; float:left; padding-top:.2em; }
+
+form.formtastic fieldset > ol > li label { display:block; width:25%; float:left;
+ padding-top:.2em; } 
 form.formtastic fieldset > ol > li > li label { line-height:100%; padding-top:0; }
 form.formtastic fieldset > ol > li > li label input { line-height:100%; vertical-align:middle; margin-top:-0.1em;}
+
+
 
 
 /* NESTED FIELDSETS AND LEGENDS (radio, check boxes and date/time inputs use nested fieldsets)
@@ -72,7 +76,7 @@ form.formtastic fieldset > ol > li p.inline-hints { color:#666; margin:0.5em 0 0
 --------------------------------------------------------------------------------------------------*/
 form.formtastic fieldset > ol > li p.inline-errors { color:#cc0000; margin:0.5em 0 0 25%; }
 form.formtastic fieldset > ol > li ul.errors { color:#cc0000; margin:0.5em 0 0 25%; list-style:square; }
-form.formtastic fieldset > ol > li ul.errors li { padding:0; border:none; display:list-item; }
+form.formtastic fieldset > ol > li ul.errors li { padding:0; border:0; display:list-item; }
 
 
 /* STRING & NUMERIC OVERRIDES
