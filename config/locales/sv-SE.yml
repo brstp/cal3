@@ -221,6 +221,18 @@
     destroy: "Ta bort"
       
       
+  error:
+    messages:
+      invalid_date: "ser inte ut som ett datum"
+      invalid_time: "ser inte ut som ett klockslag"
+      invalid_datetime: "ser inte ut som datum och klockslag"
+      is_at: "måste vara %{restriction}"
+      before: "måste vara tidigare än %{restriction}"
+      on_or_before: "måste vara %{restriction} eller tidigare"
+      after: "måste vara senare än %{restriction}"
+      on_or_after: "måste vara %{restriction} eller senare"
+
+
   errors:
     messages:
       invalid_date: "ser inte ut som ett datum"
@@ -242,7 +254,11 @@
         notice: "z %{resource_name} was successfully destroyed."
         alert: "z %{resource_name} could not be destroyed."
 
-
+  validates_timeliness:
+    error_value_formats:
+      date: '%Y-%m-%d'
+      time: '%H:%M'
+      datetime: '%Y-%m-%d %H:%M'
       
 #Formtastic      
   formtastic:
@@ -258,8 +274,10 @@
         subject: "Rubrik"
         intro: "Sammanfattning"
         description: "Beskrivning"
-        start_datetime: "Börjar"
-        stop_datetime: "Slutar"
+        start_date: "Startdatum"
+        start_time: "Börjar klockan"
+        stop_date: "Slutdatum"
+        stop_time: "Slutar klockan"
         street: "Gatuadress"
         zip: "Postnummer"
         city: "Postort"
@@ -275,8 +293,10 @@
         subject: "Använd 10-40 tecken."
         intro: "Skriv en jättekort sammanfattning på max 100 tecken."
         description: "Ge en komplett beskrivning av evenemanget."
-        start_datetime: "_start_time"
-        stop_datetime: "_stop_time"
+        start_date: "Exempel: 2009-02-21"
+        start_time: "Exempel: 14:30"
+        stop_date: "Exempel: 2009-02-21"
+        stop_time: "Exempel: 15:30"
         street: ""
         zip: ""
         city: ""

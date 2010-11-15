@@ -1,28 +1,19 @@
 class Event < ActiveRecord::Base
 
-   belongs_to :municipality
+  belongs_to :municipality
 
-  attr_accessible :subject, :intro, :description, :stop_datetime, :street, :zip, :city, :loc_descr, :lat, :lng, :municipality_id, :start_date, :start_time
+  before_save :merge_start_datetime, :merge_stop_datetime
 
-  validates_presence_of :subject, :description, :municipality_id, :start_date, :start_time
+  attr_accessible :subject, :intro, :description, :street, :zip, :city, :loc_descr, :lat, :lng, :municipality_id, :start_date, :start_time, :stop_date, :stop_time
+
+  validates_presence_of :subject, :description, :municipality_id, :start_date, :start_time, :stop_date, :stop_time
   validates_length_of :subject, :in => 10..40
   validates_length_of :intro, :in => 0..90
   validates_numericality_of :lat, :allow_nil => true
   validates_numericality_of :lng, :allow_nil => true
-  #validates_time :start_time, :allow_nil => false
-  #validates_date :start_date, :allow_nil => false
+  validate :validates_start_time, :validates_start_date, :validates_stop_time, :validates_stop_date, :validates_start_stop
   
-  #validates_datetime :start_datetime, :allow_nil => false
-  #validates_datetime :stop_datetime, :allow_nil => false
-  #validates_datetime :stop_datetime, :after => :start_datetime
-  #validates_datetime :start_datetime, :allow_nil => false
 
-  validate :validates_start_time
-  validate :validates_start_date
-  
-  before_save :merge_start_datetime    
-
- 
 
   def start_time
     if(self.start_datetime) then self.start_datetime.strftime "%H:%M"
@@ -30,18 +21,15 @@ class Event < ActiveRecord::Base
     end
   end
 
- 
- def start_time=(time_str)
-  @start_time = time_str.strip
- end
-
+  def start_time=(time_str)
+    @start_time = time_str.strip
+  end
 
   def start_date
     if(self.start_datetime) then self.start_datetime.strftime "%Y-%m-%d"
     else @start_date  ||= (Time.now + 2.days).strftime "%Y-%m-%d" #default
     end
   end
- 
  
   def start_date=(date_str)
     @start_date = date_str.strip
@@ -62,14 +50,61 @@ class Event < ActiveRecord::Base
       errors.add(:start_date, I18n.t('errors.messages.invalid_date'))
     end
   end
-  
-
-  
+    
   def merge_start_datetime
     self.start_datetime = DateTime.parse(@start_date + " " + @start_time) if errors.empty?
   end
+  
+  
 
+  def stop_time
+    if(self.stop_datetime) then self.stop_datetime.strftime "%H:%M"
+    else @stop_time ||= "19:00" #default
+    end
+  end
+  
+  def stop_time=(time_str2)
+    @stop_time = time_str2.strip
+  end
 
+  def stop_date
+    if(self.stop_datetime) then self.stop_datetime.strftime "%Y-%m-%d"
+    else @stop_date  ||= (Time.now + 2.days).strftime "%Y-%m-%d" #default
+    end
+  end
+ 
+  def stop_date=(date_str2)
+    @stop_date = date_str2.strip
+  end
+
+  def validates_stop_time
+    begin
+      DateTime.parse(@stop_time) 
+    rescue
+      errors.add(:stop_time, I18n.t('errors.messages.invalid_time'))
+    end
+  end
+
+  def validates_stop_date
+    begin
+      DateTime.parse(@stop_date) 
+    rescue
+      errors.add(:stop_date, I18n.t('errors.messages.invalid_date'))
+    end
+  end
+  
+  def merge_stop_datetime
+    self.stop_datetime = DateTime.parse(@stop_date + " " + @stop_time) if errors.empty?
+  end
+
+  def validates_start_stop
+    if @start_date > @stop_date
+      errors.add(:stop_date, I18n.t('error.messages.on_or_after', :restriction => @start_date))
+    else
+      if @start_date == @stop_date and @start_time > @stop_time
+        errors.add(:stop_time, I18n.t('error.messages.on_or_after', :restriction => @start_time))
+        end
+    end
+  end
 
 end
-

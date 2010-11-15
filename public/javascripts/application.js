@@ -11,5 +11,6 @@ $.datepicker.setDefaults({
 //   buttonText: 'Calendar' 
 });
 
-$("#event_start_date").datepicker();
+ $("#event_start_date").datepicker();
+ $("#event_stop_date").datepicker();
 });
