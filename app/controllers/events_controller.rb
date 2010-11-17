@@ -3,10 +3,6 @@ class EventsController < ApplicationController
     @events = Event.all(:order => 'start_datetime ASC')
   end
   
-  def upcoming
-    @events = Event.all(:order => 'start_date_time ASC')
-  end
-  
   def show
     @event = Event.find(params[:id])
   end
