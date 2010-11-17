@@ -3,33 +3,29 @@
 <p>
   <%= @event.municipality.name %>
 </p>
+
 <p>
   <%= @event.intro %>
 </p>
 <p>
-  <strong>Description:</strong>
+  <strong>N&auml;r:</strong><br/ >
+  <%= @event.duration %>
+</p>
+<p>
+  <strong>Beskrivning:</strong> <br />
   <%= @event.description %>
 </p>
+
 <p>
-  <strong>N&auml;r:</strong>
-  <%= @event.start_datetime %> - <%= @event.stop_datetime %>
+  <strong>Adress:</strong><br />
+  <%= @event.street %><br /> 
+  <%= @event.zip%>&nbsp;&nbsp;<%= @event.city %>
 </p>
 <p>
-  <strong>Street:</strong>
-  <%= @event.street %>
-</p>
-<p>
-  <strong>Zip:</strong>
-  <%= @event.zip %>
-</p>
-<p>
-  <strong>City:</strong>
-  <%= @event.city %>
-</p>
-<p>
-  <strong>Loc Descr:</strong>
+  <strong>Vägbeskrivning:</strong><br />
   <%= @event.loc_descr %>
 </p>
+<!--
 <p>
   <strong>Lat:</strong>
   <%= @event.lat %>
@@ -38,7 +34,7 @@
   <strong>Lng:</strong>
   <%= @event.lng %>
 </p>
-
+-->
 
 <p>
   <%= link_to t('app.edit'), edit_event_path(@event) %> |
