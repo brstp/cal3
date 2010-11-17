@@ -1,4 +1,4 @@
-require 'test_helper'
+#require 'test_helper'
 
 class MunicipalitiesControllerTest < ActionController::TestCase
   def test_index
@@ -51,4 +51,6 @@ class MunicipalitiesControllerTest < ActionController::TestCase
     assert_redirected_to municipalities_url
     assert !Municipality.exists?(municipality.id)
   end
+
+
 end
