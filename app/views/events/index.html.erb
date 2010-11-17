@@ -17,8 +17,9 @@
       <td><%= event.intro %></td>
       <td><%= event.start_time %></td>
       <td><%= event.municipality_short %></td>
+      <td><%= event.organizer %>
     </tr>
   <% end %>
 </table>
 
-<p><%= link_to "New Event", new_event_path %></p>
+<p><%= link_to t('.new'), new_event_path %></p>

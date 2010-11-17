@@ -301,6 +301,7 @@
         lat: "Latitud"
         lng: "Longitud"
         municipality: "Kommun"
+        organizer: "Arrangör"
       municipality:
         name: "Kommunnamn"
       organizer:
@@ -344,6 +345,8 @@
   municipalities:
     index:
       title: "Alla kommuner"
+    show:
+      upcoming: "Kommande evenemang i kommunen"
       
   municipality:
     new:
@@ -367,6 +370,7 @@
       name: "Namn"
       description: "Beskrivning"
       website: "Hemsida"
+      upcoming: "Kommande evenemang"
       
   organizer:
     new:
@@ -385,6 +389,7 @@
   events:
     index:
       title: "Evenemang"
+      new: "Skapa nytt evenemang"
   event:
     new:
       title: "Nytt evenemang"

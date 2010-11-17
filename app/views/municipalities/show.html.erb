@@ -4,6 +4,15 @@
   <strong><%= t 'formtastic.labels.municipality.name' %>: </strong>
   <%= @municipality.name %>
 </p>
+<p>
+  <strong><%= t '.upcoming' %>:</strong>
+</p>
+  
+<ul>  
+  <% for event in @municipality.events %>  
+  <li><%= link_to event.subject + ' | ' + event.start_date + ' | ' + event.start_time + ' | ' + event.organizer.name, event %></li>  
+  <% end %>  
+</ul> 
 
 <p>
   <%= link_to t('app.edit'), edit_municipality_path(@municipality) %> |

@@ -16,6 +16,8 @@
       <% end %>
       <%= content_tag :h1, yield(:title) if show_title? %>
       <%= yield %>
+      <hr>
+      <p>  <%= link_to t('event.show.list'), events_path %> | <%= link_to t('organizer.show.list'), organizers_path %> | <%= link_to t('municipality.show.list'), municipalities_path %></p>
     </div>
   </body>
 </html>

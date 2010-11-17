@@ -3,8 +3,8 @@
   <%= f.inputs do %>
       <%= f.input :subject %>
       <%= f.input :intro, :input_html => {:size => 50} %>
-      <%= f.input :municipality, :required => true, :collection => Municipality.find(:all, :order => "name ASC")%>
       <%= f.input :organizer, :required => true, :collection => Organizer.find(:all, :order => "name ASC")%>
+      <%= f.input :municipality, :required => true, :collection => Municipality.find(:all, :order => "name ASC")%>
       <%= f.input :description, :input_html => {:rows => 8, :cols => 48} %>
       <%= f.input :start_date %>
       <%= f.input :start_time %>
@@ -17,7 +17,7 @@
       <%= f.input :lat %>
       <%= f.input :lng %>
 
-  <p><%= f.buttons %></p>
+  <p><%= f.buttons %></p> 
     
   <% end %>
 <% end %>
