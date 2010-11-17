@@ -10,14 +10,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101117094837) do
+ActiveRecord::Schema.define(:version => 20101117101548) do
 
   create_table "events", :force => true do |t|
     t.string   "subject"
     t.string   "intro"
     t.text     "description"
-    t.datetime "start_time"
-    t.datetime "stop_time"
+    t.datetime "start_datetime"
+    t.datetime "stop_datetime"
     t.string   "street"
     t.string   "zip"
     t.string   "city"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(:version => 20101117094837) do
     t.integer  "municipality_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "organizer_id"
   end
 
   create_table "municipalities", :force => true do |t|
@@ -53,5 +54,7 @@ ActiveRecord::Schema.define(:version => 20101117094837) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+end
 
 end

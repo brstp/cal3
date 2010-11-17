@@ -5,7 +5,7 @@
     <tr>
       <td><%= link_to municipality.name, municipality %></td>
       <td><%= link_to t('app.edit'), edit_municipality_path(municipality) %></td>
-      <td><%= link_to t('app.destroy'), municipality, :confirm => t('app.are_you_sure') + ' ' + municipality.name + '?', :method => :delete %></td>
+      <td><%= link_to t('app.destroy'), @municipality, :confirm => t('app.are_you_sure') + ' ' + municipality.name + '?', :method => :destroy %></td>
     </tr>
   <% end %>
 </table>

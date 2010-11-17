@@ -1,0 +1,27 @@
+<% title @organizer.name %>
+<p>
+  <strong><%=t '.description' =%>:</strong>
+  <%= @organizer.description %>
+</p>
+<p>
+  <strong><%=t '.website' =%>:</strong>
+  <%= @organizer.website %>
+</p>
+
+
+<p>
+  <strong><%= t '.upcoming' %>:</strong>
+</p>
+  
+<ul>  
+  <% for event in @organizer.events %>  
+  <li><%= link_to event.subject + ' | ' + event.start_date + ' | ' + event.start_time + ' | ' + event.municipality_short, event %></li>  
+  <% end %>  
+</ul>  
+
+<p>&nbsp;</p>
+<p>
+  <%= link_to t('app.edit'), edit_organizer_path(@organizer) %> |
+  <%= link_to t('app.destroy'), @organizer, :confirm => t('app.are_you_sure') + ' ' +@organizer.name + '?', :method => :delete %> |
+  <%= link_to t('organizer.show.list'), organizers_path %>
+</p>

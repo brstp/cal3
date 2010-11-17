@@ -107,11 +107,11 @@
     errors:
       # model.errors.full_messages format.
       format: "%{attribute} %{message}"
-      
+    errors:
       template:
         header:
-          one:    "Ett fel förhindrade denna %{model} från att sparas"
-          other:  "%{count} fel förhindrade denna %{model} från att sparas"
+          one: "Ett fel förhindrade denna %{model} från att sparas"
+          other: "%{count} fel förhindrade denna %{model} från att sparas"
         body: "Det var problem med följande fält:"
       
       # The values :model, :attribute and :value are always available for interpolation
@@ -161,6 +161,7 @@
     models:
       municipality: "kommun"
       event: "evenemang"
+      organizer: arrangör
     # Translate model attribute names. Used in Model.human_attribute_name(attribute).
     #attributes:
       # For example,
@@ -170,6 +171,27 @@
     attributes:
       municipality:
         name: "kommunnamn"
+      event:
+        subject: "Rubrik"
+        intro: "Sammanfattning"
+        description: "Beskrivning"
+        start_date: "Startdatum"
+        start_time: "Börjar klockan"
+        stop_date: "Slutdatum"
+        stop_time: "Slutar klockan"
+        street: "Gatuadress"
+        zip: "Postnummer"
+        city: "Postort"
+        loc_descr: "Vägbeskrivning"
+        lat: "Latitud"
+        lng: "Longitud"
+        municipality: "Kommun"
+        municipality_id: "Kommun"
+      organizer:
+        name: "Namn"
+        description: "Beskrivning"
+        website: "Hemsida"
+        
 
       
       
@@ -219,8 +241,22 @@
     edit: "Ändra"
     are_you_sure: "Vill du radera"
     destroy: "Ta bort"
+    sitename: "kalendern"  
+    destroyed: "Raderat %{resource_name}."
+    
       
-      
+  error:
+    messages:
+      invalid_date: "ser inte ut som ett datum"
+      invalid_time: "ser inte ut som ett klockslag"
+      invalid_datetime: "ser inte ut som datum och klockslag"
+      is_at: "måste vara %{restriction}"
+      before: "måste vara tidigare än %{restriction}"
+      on_or_before: "måste vara %{restriction} eller tidigare"
+      after: "måste vara senare än %{restriction}"
+      on_or_after: "måste vara %{restriction} eller senare"
+
+
   errors:
     messages:
       invalid_date: "ser inte ut som ett datum"
@@ -232,17 +268,13 @@
       after: "måste vara senare än %{restriction}"
       on_or_after: "måste vara %{restriction} eller senare"
 
-  flash:
-    actions:
-      create:
-        notice: "z %{resource_name} was successfully created."
-      update:
-        notice: "z %{resource_name} was successfully updated."
-      destroy:
-        notice: "z %{resource_name} was successfully destroyed."
-        alert: "z %{resource_name} could not be destroyed."
+  
 
-
+  validates_timeliness:
+    error_value_formats:
+      date: '%Y-%m-%d'
+      time: '%H:%M'
+      datetime: '%Y-%m-%d %H:%M'
       
 #Formtastic      
   formtastic:
@@ -258,8 +290,10 @@
         subject: "Rubrik"
         intro: "Sammanfattning"
         description: "Beskrivning"
-        start_time: "Börjar"
-        stop_time: "Slutar"
+        start_date: "Startdatum"
+        start_time: "Börjar klockan"
+        stop_date: "Slutdatum"
+        stop_time: "Slutar klockan"
         street: "Gatuadress"
         zip: "Postnummer"
         city: "Postort"
@@ -267,16 +301,23 @@
         lat: "Latitud"
         lng: "Longitud"
         municipality: "Kommun"
+        organizer: "Arrangör"
       municipality:
         name: "Kommunnamn"
+      organizer:
+        name: "Namn"
+        description: "Beskrivning"
+        website: "Hemsida"
 
     hints:
       event:
         subject: "Använd 10-40 tecken."
         intro: "Skriv en jättekort sammanfattning på max 100 tecken."
         description: "Ge en komplett beskrivning av evenemanget."
-        start_time: "_start_time"
-        stop_time: "_stop_time"
+        start_date: "Exempel: 2009-02-21"
+        start_time: "Exempel: 14:30"
+        stop_date: "Exempel: 2009-02-21"
+        stop_time: "Exempel: 15:30"
         street: ""
         zip: ""
         city: ""
@@ -286,17 +327,27 @@
         municipality: "Den kommun där evenemanget sker."
       municipality: 
         name: "Namnet på kommunen (en del kommuner heter \"stad\")"
-        
+      organizer:
+        name: "Namnet på föreningen, företaget eller dig som arrangerar."
+        description: ""
+        website: "Länk till arrangörens hemsida."        
     actions:
-      event:
-        create: "Skapa %{model}"
-        update: "Spara %{model}"
-      municipality:
-        create: "Skapa %{model}"
-        update: "Spara"
+      # event:
+        # create: "Skapa %{model}"
+        # update: "Spara %{model}"
+      # municipality:
+        # create: "Skapa %{model}"
+        # update: "Spara"
+      create: "Skapa %{model}"
+      update: "Spara"
 #End formtastic
   
-
+  municipalities:
+    index:
+      title: "Alla kommuner"
+    show:
+      upcoming: "Kommande evenemang i kommunen"
+      
   municipality:
     new:
       title: "Ny kommun"
@@ -306,17 +357,39 @@
       list: "Till kommunlistan (strunta i ändringar)"
     show:
       list: "Till kommunlistan"
-      destroy: "zzzzTa bort"
     index:
       title: "Kommuner"
-      edit: "zÄndra"
-      destroy: "zzzzTa bort"
       new: "Skapa ny kommun"
-
-  municipalities:
+  
+  
+  organizers:
     index:
-      title: "Alla kommuner"
+      title: "Alla arrangörer"
+      new: "Skapa ny arrangör"
+    show:
+      name: "Namn"
+      description: "Beskrivning"
+      website: "Hemsida"
+      upcoming: "Kommande evenemang"
+      
+  organizer:
+    new:
+      title: "Ny arrangör"
+      list: "Till arrangörslistan (strunta i ändringar)"
+    edit:
+      show: "Visa arrangören (strunta i ändringar)"
+      list: "Till arrangörslistan (strunta i ändringar)"
+    show:
+      list: "Till arrangörslistan"
+    index:
+      title: "Arrangörer"
+      new: "Skapa ny arrangör"
+  
 
+  events:
+    index:
+      title: "Evenemang"
+      new: "Skapa nytt evenemang"
   event:
     new:
       title: "Nytt evenemang"
@@ -327,8 +400,19 @@
       list: "Till evenemangslistan (strunta i ändringar)"
     index:
       title: "Evenemang"
-      destroy: "zzzz Ta bort"
       new: "Skapa nytt evenemang"
     show:
       list: "Till evenemangslistan"
-      destroy: "zzzz Ta bort"
+
+
+      
+  flash:
+    actions:
+      update: 
+        notice: "Ändrat"
+      create:
+        notice: "Skapat"
+      destroy:
+        notice: "Tagit bort"
+        alert: "Kunde inte ta bort"
+      
