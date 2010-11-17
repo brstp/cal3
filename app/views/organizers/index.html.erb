@@ -1,0 +1,12 @@
+<% title t('organizers.index.title') %>
+
+<table>
+  <% for organizer in @organizers %>
+    <tr>
+      <td><%= link_to organizer.name, organizer %></td>
+      <td><%= organizer.website %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to t('.new'), new_organizer_path %></p>

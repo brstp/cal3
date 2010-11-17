@@ -1,4 +1,6 @@
 Cal3::Application.routes.draw do
+  resources :organizers
+
   resources :events
 
   resources :municipalities

@@ -1,12 +1,13 @@
 class Event < ActiveRecord::Base
 
   belongs_to :municipality
+  belongs_to :organizer
 
   before_save :merge_start_datetime, :merge_stop_datetime
 
-  attr_accessible :subject, :intro, :description, :street, :zip, :city, :loc_descr, :lat, :lng, :municipality_id, :start_date, :start_time, :stop_date, :stop_time
+  attr_accessible :subject, :intro, :description, :street, :zip, :city, :loc_descr, :lat, :lng, :municipality_id, :start_date, :start_time, :stop_date, :stop_time, :organizer_id
 
-  validates_presence_of :subject, :description, :municipality_id, :start_date, :start_time, :stop_date, :stop_time
+  validates_presence_of :subject, :description, :municipality_id, :start_date, :start_time, :stop_date, :stop_time, :organizer_id
   validates_length_of :subject, :in => 10..40
   validates_length_of :intro, :in => 0..90
   validates_numericality_of :lat, :allow_nil => true

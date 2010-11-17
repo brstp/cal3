@@ -161,6 +161,7 @@
     models:
       municipality: "kommun"
       event: "evenemang"
+      organizer: arrangör
     # Translate model attribute names. Used in Model.human_attribute_name(attribute).
     #attributes:
       # For example,
@@ -186,6 +187,10 @@
         lng: "Longitud"
         municipality: "Kommun"
         municipality_id: "Kommun"
+      organizer:
+        name: "Namn"
+        description: "Beskrivning"
+        website: "Hemsida"
         
 
       
@@ -298,6 +303,10 @@
         municipality: "Kommun"
       municipality:
         name: "Kommunnamn"
+      organizer:
+        name: "Namn"
+        description: "Beskrivning"
+        website: "Hemsida"
 
     hints:
       event:
@@ -317,14 +326,19 @@
         municipality: "Den kommun där evenemanget sker."
       municipality: 
         name: "Namnet på kommunen (en del kommuner heter \"stad\")"
-        
+      organizer:
+        name: "Namnet på föreningen, företaget eller dig som arrangerar."
+        description: ""
+        website: "Länk till arrangörens hemsida."        
     actions:
-      event:
-        create: "Skapa %{model}"
-        update: "Spara %{model}"
-      municipality:
-        create: "Skapa %{model}"
-        update: "Spara"
+      # event:
+        # create: "Skapa %{model}"
+        # update: "Spara %{model}"
+      # municipality:
+        # create: "Skapa %{model}"
+        # update: "Spara"
+      create: "Skapa %{model}"
+      update: "Spara"
 #End formtastic
   
   municipalities:
@@ -338,12 +352,34 @@
     edit:
       show: "Visa kommunen (strunta i ändringar)"
       list: "Till kommunlistan (strunta i ändringar)"
-
     show:
       list: "Till kommunlistan"
     index:
       title: "Kommuner"
       new: "Skapa ny kommun"
+  
+  
+  organizers:
+    index:
+      title: "Alla arrangörer"
+      new: "Skapa ny arrangör"
+    show:
+      name: "Namn"
+      description: "Beskrivning"
+      website: "Hemsida"
+      
+  organizer:
+    new:
+      title: "Ny arrangör"
+      list: "Till arrangörslistan (strunta i ändringar)"
+    edit:
+      show: "Visa arrangören (strunta i ändringar)"
+      list: "Till arrangörslistan (strunta i ändringar)"
+    show:
+      list: "Till arrangörslistan"
+    index:
+      title: "Arrangörer"
+      new: "Skapa ny arrangör"
   
 
   events:
@@ -374,8 +410,4 @@
       destroy:
         notice: "Tagit bort"
         alert: "Kunde inte ta bort"
-      
-      
-      
-      
       

@@ -1,0 +1,8 @@
+<% title(t('app.edit') + ' ' +@organizer.name) %>
+
+<%= render 'form' %>
+
+<p>
+  <%= link_to t('organizer.edit.show'), @organizer %> |
+  <%= link_to t('organizer.edit.list'), organizers_path %>
+</p>

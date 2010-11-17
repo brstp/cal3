@@ -1,14 +1,18 @@
 <% title @event.subject %>
 
 <p>
-  <%= @event.municipality.name %>
+  <%= link_to @event.municipality.name, @event.municipality %>
+</p>
+
+<p>  <strong>Arrangör:</strong><br/ >
+  <%= link_to @event.organizer.name, @event.organizer %>
 </p>
 
 <p>
   <%= @event.intro %>
 </p>
 <p>
-  <strong>N&auml;r:</strong><br/ >
+  <strong>När:</strong><br/ >
   <%= @event.duration %>
 </p>
 <p>
