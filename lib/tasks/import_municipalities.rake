@@ -4,11 +4,11 @@ namespace :import do
     file = File.open(File.expand_path('../../../db/import/municipalities.csv', __FILE__))
     file.each do |line|
       attrs = line.split(",")
-      #"admin_id","short_name","parent_admin_id","name"
+      #"admin_no","short_name","parent_admin_no","name"
       p = Municipality.find_or_initialize_by_id(attrs[0])
-      p.admin_id = attrs[0]
+      p.admin_no = attrs[0]
       p.short_name = attrs[1]
-      p.parent_admin_id = attrs[2]
+      p.parent_admin_no = attrs[2]
       p.name = attrs[3]
       p.save!
     end

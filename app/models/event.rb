@@ -25,7 +25,7 @@ class Event < ActiveRecord::Base
   end
  
   def municipality_short
-    municipality.name.gsub(/kommun/, '').gsub(/stad/, '')
+    municipality.short_name
   end
 
   def start_time

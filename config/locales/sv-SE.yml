@@ -307,6 +307,9 @@
         organizer: "Arrangör"
       municipality:
         name: "Kommunnamn"
+        short_name: "Kort kommunnamn"
+        admin_no: "SCB-kod"
+        parent_admin_no: "SCB-kod en nivå upp"
       organizer:
         name: "Namn"
         description: "Beskrivning"
@@ -327,7 +330,7 @@
         loc_descr: "Om det inte räcker med gatuadress, beskriv platsen där evenemanget hålls. T.ex: \"I norra delen av stadsparken.\""
         lat: "I decimalformat"
         lng: "I decimalformat"
-        municipality: "Den kommun där evenemanget sker."
+        municipality: "Där evenemanget sker. Markera och skriv första bokstaven i kommunnamnet för att snabbt hitta kommunen."
       municipality: 
         name: "Namnet på kommunen (en del kommuner heter \"stad\")"
       organizer:

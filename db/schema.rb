@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101118091951) do
+ActiveRecord::Schema.define(:version => 20101118120745) do
 
   create_table "events", :force => true do |t|
     t.string   "subject"
@@ -30,23 +30,37 @@ ActiveRecord::Schema.define(:version => 20101118091951) do
     t.integer  "organizer_id"
   end
 
+  create_table "memberships", :force => true do |t|
+    t.integer  "organizer_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "municipalities", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "admin_id"
+    t.string   "admin_no"
     t.string   "short_name"
-    t.string   "parent_admin_id"
+    t.string   "parent_admin_no"
   end
 
-  add_index "municipalities", ["admin_id"], :name => "index_municipalities_on_admin_id", :unique => true
+  add_index "municipalities", ["admin_no"], :name => "index_municipalities_on_admin_no", :unique => true
   add_index "municipalities", ["id"], :name => "index_municipalities_on_id", :unique => true
-  add_index "municipalities", ["parent_admin_id"], :name => "index_municipalities_on_parent_admin_id"
+  add_index "municipalities", ["parent_admin_no"], :name => "index_municipalities_on_parent_admin_no"
 
   create_table "organizers", :force => true do |t|
     t.string   "name"
     t.text     "description"
     t.string   "website"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "organizers_users", :force => true do |t|
+    t.integer  "organizer_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
