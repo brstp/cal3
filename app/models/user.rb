@@ -13,4 +13,8 @@ class User < ActiveRecord::Base
   def name
     @email
   end
+  
+  def name= (name_str)
+    @email = name_str
+  end
 end
