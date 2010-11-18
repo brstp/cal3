@@ -1,4 +1,6 @@
 Cal3::Application.routes.draw do
+  resources :users
+
   resources :organizers
 
   devise_for :users
