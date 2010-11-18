@@ -4,7 +4,7 @@ class Organizer < ActiveRecord::Base
   has_many :memberships
   has_many :users, :through => :memberships
   
-  attr_accessible :name, :description, :website
+  attr_accessible :name, :description, :website, :user_ids
   
   validates_presence_of :name, :description
   validates_length_of :name, :in => 8..40

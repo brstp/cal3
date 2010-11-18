@@ -314,6 +314,7 @@
         name: "Namn"
         description: "Beskrivning"
         website: "Hemsida"
+        users: "Medlemmar"
 
     hints:
       event:
