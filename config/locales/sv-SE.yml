@@ -267,6 +267,9 @@
       on_or_before: "måste vara %{restriction} eller tidigare"
       after: "måste vara senare än %{restriction}"
       on_or_after: "måste vara %{restriction} eller senare"
+      not_found: "hittades inte"
+      already_confirmed: "är redan bekräftad"
+      not_locked: "är inte låst"
 
   
 
@@ -415,4 +418,37 @@
       destroy:
         notice: "Tagit bort"
         alert: "Kunde inte ta bort"
-      
+
+
+  devise:
+    failure:
+      unauthenticated: 'Du måste logga in eller skapa ett konto innan du kan fortsätta.'
+      unconfirmed: 'Du måste bekräfta ditt konto innan du kan fortsätta.'
+      locked: 'Ditt konto är låst.'
+      invalid: 'Ogiltig epost eller lösenord.'
+      invalid_token: 'Ogiltig token för autentisering.'
+      timeout: 'Din session är inte längre giltig, vänligen logga in igen för att fortsätta.'
+      inactive: 'Ditt konto har inte aktiverats ännu.'
+    sessions:
+      signed_in: 'Inloggning genomfördes.'
+      signed_out: 'Utloggning genomfördes.'
+    passwords:
+      send_instructions: 'Du kommer få epost med instruktioner om hur du kan återställa ditt lösenord inom några minuter.'
+      updated: 'Ditt lösenord har uppdaterats. Du är nu inloggad.'
+    confirmations:
+      send_instructions: 'Du kommer att få epost med instruktioner om hur du kan bekräfta ditt konto inom några minuter.'
+      confirmed: 'Ditt konto har bekräftats. Du är nu inloggad.'
+    registrations:
+      signed_up: 'Ett nytt konto har skapats. En bekräftelse har skickats till din epost.'
+      updated: 'Ditt konto har uppdaterats.'
+      destroyed: 'Hej då! Ditt konto har avregistrerats. Vi hoppas få se dig snart igen.'
+    unlocks:
+      send_instructions: 'Du kommer få epost med instruktioner om hur du kan låsa upp ditt konto inom några minuter.'
+      unlocked: 'Ditt konto har låsts upp. Du är nu inloggad.'
+    mailer:
+      confirmation_instructions:
+        subject: 'Instruktioner om bekräftning av konto'
+      reset_password_instructions:
+        subject: 'Instrukionter om återställning av lösenord'
+      unlock_instructions:
+        subject: 'Instruktioner om upplåsning av konto'      
