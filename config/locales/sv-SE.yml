@@ -191,6 +191,10 @@
         name: "Namn"
         description: "Beskrivning"
         website: "Hemsida"
+      user:
+        first_name: "Förnamn"
+        last_name: "Efternamn"
+        email: "Mejladress"
         
 
       
@@ -348,7 +352,13 @@
       create: "Skapa %{model}"
       update: "Spara"
 #End formtastic
-  
+  users:
+    show:
+      list: "Till användarlistan"
+      first_name: "Förnamn"
+      last_name: "Efternamn"
+      email: "Mejladress"
+      
   municipalities:
     index:
       title: "Alla kommuner"

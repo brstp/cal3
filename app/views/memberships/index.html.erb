@@ -1,0 +1,21 @@
+<% title "Memberships" %>
+
+<table>
+  <tr>
+    <th>Organizer</th>
+    <th>User</th>
+    <th>Is Personal</th>
+  </tr>
+  <% for membership in @memberships %>
+    <tr>
+      <td><%= membership.organizer_id %></td>
+      <td><%= membership.user_id %></td>
+      <td><%= membership.is_personal %></td>
+      <td><%= link_to "Show", membership %></td>
+      <td><%= link_to "Edit", edit_membership_path(membership) %></td>
+      <td><%= link_to "Destroy", membership, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Membership", new_membership_path %></p>

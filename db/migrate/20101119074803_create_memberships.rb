@@ -3,7 +3,7 @@ class CreateMemberships < ActiveRecord::Migration
     create_table :memberships do |t|
       t.integer :organizer_id
       t.integer :user_id
-
+      t.boolean :is_personal
       t.timestamps
     end
   end

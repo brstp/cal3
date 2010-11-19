@@ -1,16 +1,16 @@
-<% title "User" %>
+<% title( @user.first_name + ' ' + @user.last_name) %>
 
 <p>
-  <strong>Name:</strong>
-  <%= @user.name %>
+  <strong><%= t('.first_name')%>:</strong>
+  <%= @user.first_name %>
 </p>
 <p>
-  <strong>Email:</strong>
+  <strong><%= t('.last_name')%>:</strong>
+  <%= @user.last_name %>
+</p>
+<p>
+  <strong><%= t('.email')%>:</strong>
   <%= @user.email %>
-</p>
-<p>
-  <strong>Organizers:</strong>
-  <%= @user.organizers_id %>
 </p>
 
 <p>

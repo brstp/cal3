@@ -1,16 +1,16 @@
-<%= form_for @user do |f| %>
+<%= semantic_form_for @user do |f| %>
   <%= f.error_messages %>
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </p>
-  <p>
-    <%= f.label :organizers_id %><br />
-    <%= f.text_field :organizers_id %>
-  </p>
-  <p><%= f.submit %></p>
+  <%= f.inputs do %>
+    <p>
+      <%= f.input :first_name %>
+    </p>
+    <p>
+      <%= f.input :last_name %>
+    </p>
+    <p>
+      <%= f.input :email %>
+    </p>
+    <p><%= f.buttons %></p>
+  <% end %>
 <% end %>
+

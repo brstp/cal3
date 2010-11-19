@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101118132106) do
+ActiveRecord::Schema.define(:version => 20101119083926) do
 
   create_table "events", :force => true do |t|
     t.string   "subject"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(:version => 20101118132106) do
   create_table "memberships", :force => true do |t|
     t.integer  "organizer_id"
     t.integer  "user_id"
+    t.boolean  "is_personal"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -58,15 +59,8 @@ ActiveRecord::Schema.define(:version => 20101118132106) do
     t.datetime "updated_at"
   end
 
-  create_table "organizers_users", :force => true do |t|
-    t.integer  "organizer_id"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "users", :force => true do |t|
-    t.string   "email",                               :default => "", :null => false
+    t.string   "email"
     t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
     t.string   "password_salt",                       :default => "", :null => false
     t.string   "reset_password_token"
@@ -77,9 +71,17 @@ ActiveRecord::Schema.define(:version => 20101118132106) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.integer  "failed_attempts",                     :default => 0
+    t.string   "unlock_token"
+    t.datetime "locked_at"
+    t.string   "authentication_token"
+    t.string   "first_name"
+    t.string   "last_name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
