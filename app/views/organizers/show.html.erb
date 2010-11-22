@@ -1,4 +1,4 @@
-<% title @organizer.name %>
+﻿<% title @organizer.name %>
 <p>
   <strong><%=t '.description' =%>:</strong>
   <%= @organizer.description %>
@@ -8,10 +8,20 @@
   <%= @organizer.website %>
 </p>
 
+<p>
+  <strong><%= t '.members' %>:</strong>
+</p>
+<ul>  
+  <% for user in @organizer.users %>  
+  <li><%= link_to user.name,  user %></li>  
+  <% end %>  
+</ul>  
+
 
 <p>
   <strong><%= t '.upcoming' %>:</strong>
 </p>
+
   
 <ul>  
   <% for event in @organizer.events %>  
@@ -19,6 +29,9 @@
   <% end %>  
 </ul>  
 
+<p>
+  Om medlem, lägg upp nytt evenemang...
+</p>
 <p>&nbsp;</p>
 <p>
   <%= link_to t('app.edit'), edit_organizer_path(@organizer) %> |

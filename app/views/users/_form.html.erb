@@ -1,15 +1,10 @@
 <%= semantic_form_for @user do |f| %>
   <%= f.error_messages %>
   <%= f.inputs do %>
-    <p>
-      <%= f.input :first_name %>
-    </p>
-    <p>
-      <%= f.input :last_name %>
-    </p>
-    <p>
-      <%= f.input :email %>
-    </p>
+    <%= f.input :first_name %>
+    <%= f.input :last_name %>
+    <%= f.input :email %>
+    <%= f.input :organizers %>
     <p><%= f.buttons %></p>
   <% end %>
 <% end %>

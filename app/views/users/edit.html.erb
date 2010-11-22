@@ -1,8 +1,8 @@
-<% title "Edit User" %>
+<% title t '.title' %>
 
 <%= render 'form' %>
 
 <p>
-  <%= link_to "Show", @user %> |
-  <%= link_to "View All", users_path %>
+  <%= link_to t('.show'), @user %> |
+  <%= link_to t('.list'), users_path %>
 </p>

@@ -1,21 +1,20 @@
-<% title "Users" %>
+<% title t('.title') %>
 
 <table>
   <tr>
-    <th>Firstname</th>
-    <th>Lastname</th>
-    <th>Email</th>
+    <th><%= User.human_attribute_name('first_name') %></th>
+    <th><%= User.human_attribute_name('last_name') %></th>
+    <th><%= User.human_attribute_name('email') %></th>
   </tr>
   <% for user in @users %>
     <tr>
-      <td><%= user.first_name %></td>
+      <td><%= link_to user.first_name, user %></td>
       <td><%= user.last_name %></td>
       <td><%= user.email %></td>
-      <td><%= link_to "Show", user %></td>
-      <td><%= link_to "Edit", edit_user_path(user) %></td>
-      <td><%= link_to "Destroy", user, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%= link_to t('app.edit'), edit_user_path(user) %></td>
+      <td><%= link_to t('app.destroy'), user, :confirm => t('app.are_you_sure') + ' ' + user.name + '?', :method => :destroy %></td>
     </tr>
   <% end %>
 </table>
 
-<p><%= link_to "New User", new_user_path %></p>
+<p><%= link_to t('.new'), new_user_path %></p>

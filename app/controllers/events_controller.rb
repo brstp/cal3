@@ -1,6 +1,10 @@
 class EventsController < ApplicationController
   def index
     @events = Event.all(:order => 'start_datetime ASC')
+    respond_to do |format|
+      format.html
+      format.rss
+    end
   end
   
   def show

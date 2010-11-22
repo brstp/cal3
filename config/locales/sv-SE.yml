@@ -1,8 +1,4 @@
 # Swedish translation.
-# By Johan Lundström (johanlunds@gmail.com) with parts taken from http://github.com/daniel/swe_rails.
-# With contributions by:
-#   * Sven Dahlstrand (sven.dahlstrand@gmail.com)
-#   * Henrik Nyh (henrik@nyh.se)
 
 "sv-SE":
 
@@ -352,12 +348,24 @@
       create: "Skapa %{model}"
       update: "Spara"
 #End formtastic
+
   users:
     show:
       list: "Till användarlistan"
       first_name: "Förnamn"
       last_name: "Efternamn"
       email: "Mejladress"
+      organizers: "Medlem i arrangörer"
+    edit:
+      list: "Till användarlistan (strunta i ändringar)"
+      show: "Visa användaren (strunta i ändringar)"
+      title: "Ändra på användare"
+    new:
+      title: "Ny användare" 
+      list: "Till användarlistan (strunta i ändringar)"
+    index:
+      new: "Skapa ny användare"
+      title: "Användare"
       
   municipalities:
     index:
@@ -388,6 +396,7 @@
       description: "Beskrivning"
       website: "Hemsida"
       upcoming: "Kommande evenemang"
+      members: "Medlemmar"
       
   organizer:
     new:
@@ -407,14 +416,15 @@
     index:
       title: "Evenemang"
       new: "Skapa nytt evenemang"
+    edit:
+      title: "Ändra evenemanget"
+      show: "Visa evenemanget (strunta i ändringar)"
+      list: "Till evenemangslistan (strunta i ändringar)"  
   event:
     new:
       title: "Nytt evenemang"
       list: "Till evenemangslistan (strunta i ändringar)"
-    edit:
-      title: "Ändra evenemanget"
-      show: "Visa evenemanget (strunta i ändringar)"
-      list: "Till evenemangslistan (strunta i ändringar)"
+    
     index:
       title: "Evenemang"
       new: "Skapa nytt evenemang"
