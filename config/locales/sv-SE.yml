@@ -318,7 +318,7 @@
 
     hints:
       event:
-        subject: "Använd 10-40 tecken."
+        subject: "Använd 7-40 tecken."
         intro: "Skriv en jättekort sammanfattning på max 100 tecken."
         description: "Ge en komplett beskrivning av evenemanget."
         start_date: "Exempel: 2009-02-21"
@@ -416,6 +416,7 @@
     index:
       title: "Evenemang"
       new: "Skapa nytt evenemang"
+      subscribe_rss: "Prenumerera på alla evenemang"
     edit:
       title: "Ändra evenemanget"
       show: "Visa evenemanget (strunta i ändringar)"

@@ -8,7 +8,7 @@ xml.rss :version => "2.0" do
       @events.each do |event|
         xml.item do
           xml.title event.subject
-          xml.description event.intro
+          xml.description event.intro + '<br>' + event.description
           xml.link event_path(event, :format => :rss)
           xml.guid event_url(event, :format => :html)
         end
