@@ -1,12 +1,13 @@
-<% title @event.subject %>
+<% title (@event.subject + " | " + @event.organizer.name) %>
 
 <p>
-  <%= link_to @event.municipality.name, @event.municipality %>
+  <%= t('app.arranged_by') %>: <%= link_to @event.organizer.name, @event.organizer %>  <%= t('app.in_municipality') %> <%= link_to @event.municipality.name, @event.municipality %>
 </p>
 
-<p>  <strong>Arrangör:</strong><br/ >
-  <%= link_to @event.organizer.name, @event.organizer %>
-</p>
+<h1>
+  <%= @event.subject %>
+</h1>
+
 
 <p>
   <%= @event.intro %>
@@ -43,5 +44,5 @@
 <p>
   <%= link_to t('app.edit'), edit_event_path(@event) %> |
   <%= link_to t('app.destroy'), @event, :confirm => t('app.are_you_sure') + ' ' +@event.subject + '?', :method => :delete %> |
-  <%= link_to t('event.show.list'), events_path %>
+  <%= link_to t('.list'), events_path %>
 </p>

@@ -22,13 +22,17 @@
   <strong><%= t '.upcoming' %>:</strong>
 </p>
 
-  
-<ul>  
+<table>
   <% for event in @organizer.events %>  
-  <li><%= link_to event.subject + ' | ' + event.start_date + ' | ' + event.start_time + ' | ' + event.municipality_short, event %></li>  
-  <% end %>  
-</ul>  
-
+    <tr>
+      <td> <%= event.start_date %> </td>
+      <td><strong><%= link_to event.subject, event %></strong></td> 
+      <td> <%= event.intro %> </td> 
+      <td> <%= event.start_time %> </td>
+      <td> <%= link_to event.municipality_short, event.municipality %></td> 
+    </tr>
+  <% end %>   
+</table>
 <p>
   Om medlem, lägg upp nytt evenemang...
 </p>

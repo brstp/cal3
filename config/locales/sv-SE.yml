@@ -243,6 +243,8 @@
     destroy: "Ta bort"
     sitename: "kalendern"  
     destroyed: "Raderat %{resource_name}."
+    arranged_by: "Arrangeras av"
+    in_municipality: "i"
     
       
   error:
@@ -421,6 +423,9 @@
       title: "Ändra evenemanget"
       show: "Visa evenemanget (strunta i ändringar)"
       list: "Till evenemangslistan (strunta i ändringar)"  
+    show: 
+      list: "Till evenemangslistan"
+  
   event:
     new:
       title: "Nytt evenemang"
@@ -429,8 +434,7 @@
     index:
       title: "Evenemang"
       new: "Skapa nytt evenemang"
-    show:
-      list: "Till evenemangslistan"
+      
 
 
       
