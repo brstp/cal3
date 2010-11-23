@@ -24,11 +24,18 @@
   <strong><%= t '.upcoming' %>:</strong>
 </p>
   
-<ul>  
+
+<table>
   <% for event in @municipality.events %>  
-  <li><%= link_to event.subject + ' | ' + event.start_date + ' | ' + event.start_time + ' | ' + event.organizer.name, event %></li>  
-  <% end %>  
-</ul> 
+    <tr>
+      <td> <%= event.start_date %> </td>
+      <td><strong><%= link_to event.subject, event %></strong></td> 
+      <td> <%= event.intro %> </td> 
+      <td> <%= event.start_time %> </td>
+      <td> <%= link_to event.organizer.name, event.organizer %></td> 
+    </tr>
+  <% end %>   
+</table>
 
 <p>
   <%= link_to t('app.edit'), edit_municipality_path(@municipality) %> |
