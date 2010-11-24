@@ -12,8 +12,20 @@
   validates_presence_of :email
 
   def name
-    self.first_name + ' ' + self.last_name + ' <' + self.email + '>'
-   
+    output_str=""
+    if self.first_name
+      output_str += self.first_name
+    end
+    if self.last_name
+      output_str += " " + self.last_name
+    end
+    if self.email
+      output_str += " " + self.email
+    end
+  
+    
+    #self.first_name + ' ' + self.last_name + ' <' + self.email + '>'
+    output_str.strip
   end
   
   # def name= (name_str)

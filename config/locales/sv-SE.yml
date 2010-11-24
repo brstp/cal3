@@ -157,7 +157,9 @@
     models:
       municipality: "kommun"
       event: "evenemang"
-      organizer: arrangör
+      organizer: "arrangör"
+      user: "användare"
+      
     # Translate model attribute names. Used in Model.human_attribute_name(attribute).
     #attributes:
       # For example,
@@ -191,6 +193,7 @@
         first_name: "Förnamn"
         last_name: "Efternamn"
         email: "Mejladress"
+        organizers: "Arrangörer"
         
 
       
@@ -399,6 +402,7 @@
       website: "Hemsida"
       upcoming: "Kommande evenemang"
       members: "Medlemmar"
+      show: "Visa"
       
   organizer:
     new:

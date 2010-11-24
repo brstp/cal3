@@ -5,17 +5,32 @@
 </p>
 <p>
   <strong><%=t '.website' =%>:</strong>
-  <%= @organizer.website %>
+  <%= link_to @organizer.website, @organizer.website %>
 </p>
 
 <p>
   <strong><%= t '.members' %>:</strong>
 </p>
-<ul>  
-  <% for user in @organizer.users %>  
-  <li><%= link_to user.name,  user %></li>  
-  <% end %>  
-</ul>  
+
+<table>
+  <tr>
+    <th></th>
+    <th><%= User.human_attribute_name('first_name') %></th>
+    <th><%= User.human_attribute_name('last_name') %></th>
+    <th><%= User.human_attribute_name('email') %></th>    
+  </tr>    
+
+<% for user in @organizer.users %>
+  <tr>
+    <td><%= link_to t('.show'), user %></td>
+    <td><%= user.first_name %></td>  
+    <td><%= user.last_name %></td>  
+    <td><%= user.email %></td>  
+  </tr>
+<% end %> 
+  
+  
+</table>
 
 
 <p>
@@ -33,9 +48,7 @@
     </tr>
   <% end %>   
 </table>
-<p>
-  Om medlem, lägg upp nytt evenemang...
-</p>
+
 <p>&nbsp;</p>
 <p>
   <%= link_to t('app.edit'), edit_organizer_path(@organizer) %> |

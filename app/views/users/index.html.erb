@@ -2,17 +2,20 @@
 
 <table>
   <tr>
+    <th></th>
     <th><%= User.human_attribute_name('first_name') %></th>
     <th><%= User.human_attribute_name('last_name') %></th>
     <th><%= User.human_attribute_name('email') %></th>
+    <th></th>
   </tr>
   <% for user in @users %>
     <tr>
-      <td><%= link_to user.first_name, user %></td>
+      <td><%= link_to "Visa", user %></td>
+      <td><%= user.first_name %></td>
       <td><%= user.last_name %></td>
       <td><%= user.email %></td>
       <td><%= link_to t('app.edit'), edit_user_path(user) %></td>
-      <td><%= link_to t('app.destroy'), user, :confirm => t('app.are_you_sure') + ' ' + user.name + '?', :method => :destroy %></td>
+
     </tr>
   <% end %>
 </table>
