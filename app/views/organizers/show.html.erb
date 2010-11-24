@@ -9,6 +9,22 @@
 </p>
 
 <p>
+  <strong><%= t '.upcoming' %>:</strong>
+</p>
+
+<table>
+  <% for event in @organizer.upcoming_events %>  
+    <tr>
+      <td> <%= event.start_date %> </td>
+      <td><strong><%= link_to event.subject, event %></strong></td> 
+      <td> <%= event.intro %> </td> 
+      <td> <%= event.start_time %> </td>
+      <td> <%= link_to event.municipality_short, event.municipality %></td> 
+    </tr>
+  <% end %>   
+</table>
+
+<p>
   <strong><%= t '.members' %>:</strong>
 </p>
 
@@ -33,21 +49,7 @@
 </table>
 
 
-<p>
-  <strong><%= t '.upcoming' %>:</strong>
-</p>
 
-<table>
-  <% for event in @organizer.events %>  
-    <tr>
-      <td> <%= event.start_date %> </td>
-      <td><strong><%= link_to event.subject, event %></strong></td> 
-      <td> <%= event.intro %> </td> 
-      <td> <%= event.start_time %> </td>
-      <td> <%= link_to event.municipality_short, event.municipality %></td> 
-    </tr>
-  <% end %>   
-</table>
 
 <p>&nbsp;</p>
 <p>

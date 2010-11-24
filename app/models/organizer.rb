@@ -7,10 +7,27 @@ class Organizer < ActiveRecord::Base
   attr_accessible :name, :description, :website, :user_ids
   
   validates_presence_of :name, :description
-  validates_length_of :name, :in => 8..40
+  validates_length_of :name, :in => 5..40
+  validate :validates_website
   
   
-  def my_events
-    Event.where(:organizer_id => @id).all
+  def upcoming_events
+    self.events.all
   end
+
+
+  
+  def validates_website
+
+    return 0 if self.website.blank?
+    
+    if self.website.match(URI::regexp(%w(http https))).nil?
+      errors.add(:website, I18n.t('errors.messages.invalid_url'))
+    end
+  
+  end
+  
 end
+
+
+

@@ -275,6 +275,7 @@
       not_found: "hittades inte"
       already_confirmed: "är redan bekräftad"
       not_locked: "är inte låst"
+      invalid_url: "ser inte ut att vara en korrekt länk till en webbsida"
 
   
 
@@ -342,7 +343,7 @@
       organizer:
         name: "Namnet på föreningen, företaget eller dig som arrangerar."
         description: ""
-        website: "Länk till arrangörens hemsida."        
+        website: "Länk till arrangörens hemsida. Exempel: http://www.abc.se"        
     actions:
       # event:
         # create: "Skapa %{model}"
