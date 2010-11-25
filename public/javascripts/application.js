@@ -7,10 +7,12 @@ $.datepicker.setDefaults({
    showWeek: true,
 //   showOn: 'both',
 //   buttonImageOnly: false,
- //  buttonImage: 'calendar.gif',
+//   buttonImage: 'calendar.gif',
 //   buttonText: 'Calendar' 
 });
 
  $("#event_start_date").datepicker();
  $("#event_stop_date").datepicker();
 });
+
+

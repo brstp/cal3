@@ -11,8 +11,9 @@ class Organizer < ActiveRecord::Base
   validate :validates_website
   
   
+  
   def upcoming_events
-    self.events.all
+    self.events.find(:all, :conditions => ["stop_datetime >= '#{Time.now}'"], :order => "start_datetime ASC")   
   end
 
 

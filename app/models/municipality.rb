@@ -6,7 +6,7 @@ class Municipality < ActiveRecord::Base
   validates_uniqueness_of :name, :short_name, :admin_no
   
   def upcoming_events
-    #self.events.find :all 
-    self.events.find :all 
+    self.events.find(:all, :conditions => ["stop_datetime >= '#{Time.now}'"], :order => "start_datetime ASC")   
   end
+
 end
