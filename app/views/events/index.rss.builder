@@ -4,7 +4,7 @@ xml.rss :version => "2.0" do
     xml.title "Kalendern"
     xml.description "Allt som hender"
     xml.link "http://127.0.0.1:3000/"
-    for event in @events.find(:all, :conditions => ["stop_datetime >= '#{Time.now}'"], :order => "start_datetime ASC")
+    for event in @events
       @events.each do |event|
         xml.item do
           xml.title event.subject
@@ -17,3 +17,4 @@ xml.rss :version => "2.0" do
   end
 end
 
+#   for event in @events.find(:all, :conditions => ["stop_datetime >= '#{Time.now}'"], :order => "start_datetime ASC")
