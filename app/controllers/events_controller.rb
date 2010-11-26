@@ -1,4 +1,7 @@
 class EventsController < ApplicationController
+
+before_filter :authenticate_user!, :except => [:show, :index]
+
   def index
     @events = Event.all(:order => 'start_datetime ASC')
     respond_to do |format|

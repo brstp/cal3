@@ -1,6 +1,5 @@
 class MunicipalitiesController < ApplicationController
-  before_filter :authenticate_user!
-  #, :except => [:show, :index]
+  before_filter :authenticate_user!, :except => [:show, :index]
   
   def index
     @municipalities = Municipality.all(:order => 'name ASC')
