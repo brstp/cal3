@@ -1,6 +1,8 @@
-class EventsController < ApplicationController
+﻿class EventsController < ApplicationController
 
 before_filter :authenticate_user!, :except => [:show, :index]
+before_filter :authorized?, :except => [:show, :index]
+before_filter :authorized_for_this_event?, :except => [:show, :index, :new, :create]
 
   def index
     @events = Event.all(:order => 'start_datetime ASC')
@@ -48,4 +50,27 @@ before_filter :authenticate_user!, :except => [:show, :index]
     flash[:notice] = t 'flash.actions.destroy.notice'
     redirect_to events_url
   end
+  
+  protected
+  
+  def authorized?
+    unless current_user
+      flash[:alert] = t 'flash.actions.not_authenticated'
+      redirect_to :action => :back      
+    else
+      if !current_user.organizers and !current_user.is_admin?
+        flash[:alert] = t 'flash.actions.not_member'
+        redirect_to :back
+      end
+    end
+  end
+  
+  def authorized_for_this_event? 
+    @event = Event.find(params[:id])
+    if (!current_user.organizers.include? @event.organizer and !current_user.is_admin?)
+      flash[:alert] = t 'flash.actions.not_member_here'
+        redirect_to :back
+    end
+  end
+  
 end

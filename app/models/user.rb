@@ -20,15 +20,13 @@
       output_str += " " + self.last_name
     end
     if self.email
-      output_str += " " + self.email
+      output_str += " <" + self.email + ">"
     end
-  
-    
-    #self.first_name + ' ' + self.last_name + ' <' + self.email + '>'
     output_str.strip
   end
   
-  # def name= (name_str)
-    # @first_name = name_str
-  # end
+  def is_admin?
+    is_admin
+  end
+  
 end

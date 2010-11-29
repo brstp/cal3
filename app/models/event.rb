@@ -89,6 +89,11 @@ class Event < ActiveRecord::Base
     @stop_date = date_str2.strip
   end
 
+
+
+
+protected
+ 
   def validates_stop_time
     begin
       DateTime.parse(@stop_time) 

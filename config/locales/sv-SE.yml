@@ -424,6 +424,7 @@
       title: "Evenemang"
       new: "Skapa nytt evenemang"
       subscribe_rss: "Prenumerera på alla evenemang"
+      new_organizer: "Skapa ny arrangör"
     edit:
       title: "Ändra evenemanget"
       show: "Visa evenemanget (strunta i ändringar)"
@@ -452,6 +453,10 @@
       destroy:
         notice: "Tagit bort"
         alert: "Kunde inte ta bort"
+      not_member: "Du har inte behörighet. Du måste vara medlem hos en arrangör."
+      not_member_here: "Du har inte behörighet. Du måste vara medlem hos arrangören."
+      not_authenticated: "Något har gått fel. Du behöver logga in."
+      
 
 
   devise:
