@@ -17,7 +17,7 @@ before_filter :authenticate_user!, :except => [:show, :index]
   def create
     @organizer = Organizer.new(params[:organizer])
     if @organizer.save
-      flash[:notice] = "Successfully created organizer."
+      flash[:notice] = t 'flash.actions.create.notice'
       redirect_to @organizer
     else
       render :action => 'new'
@@ -31,7 +31,7 @@ before_filter :authenticate_user!, :except => [:show, :index]
   def update
     @organizer = Organizer.find(params[:id])
     if @organizer.update_attributes(params[:organizer])
-      flash[:notice] = "Successfully updated organizer."
+      flash[:notice] = t 'flash.actions.update.notice'
       redirect_to @organizer
     else
       render :action => 'edit'
@@ -41,7 +41,7 @@ before_filter :authenticate_user!, :except => [:show, :index]
   def destroy
     @organizer = Organizer.find(params[:id])
     @organizer.destroy
-    flash[:notice] = "Successfully destroyed organizer."
+    flash[:notice] = t 'flash.actions.destroy.notice'
     redirect_to organizers_url
   end
 end

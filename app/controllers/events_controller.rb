@@ -37,7 +37,7 @@ before_filter :authorized_for_this_event?, :except => [:show, :index, :new, :cre
   def update
     @event = Event.find(params[:id])
     if @event.update_attributes(params[:event])
-      flash[:notice] = t('flash.actions.update.notice')
+      flash[:notice] = t 'flash.actions.update.notice'
       redirect_to @event
     else
       render :action => 'edit'
