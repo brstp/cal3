@@ -37,8 +37,13 @@
   <% end %>   
 </table>
 
+<% if current_user %>
+  <% if current_user.is_admin? %>
 <p>
   <%= link_to t('app.edit'), edit_municipality_path(@municipality) %> |
-  <%= link_to t('app.destroy'), @municipality, :confirm => t('app.are_you_sure') + ' ' +@municipality.name + '?', :method => :delete %> |
-  <%= link_to t('municipality.show.list'), municipalities_path %>
+  <%= link_to t('app.destroy'), @municipality, :confirm => t('app.are_you_sure') + ' ' +@municipality.name + '?', :method => :delete %> 
+  
 </p>
+
+<% end %>
+<% end %>

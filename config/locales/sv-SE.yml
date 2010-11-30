@@ -362,6 +362,7 @@
       last_name: "Efternamn"
       email: "Mejladress"
       organizers: "Medlem i arrangörer"
+      is_admin: "Är systemadministratör"
     edit:
       list: "Till användarlistan (strunta i ändringar)"
       show: "Visa användaren (strunta i ändringar)"
@@ -453,9 +454,10 @@
       destroy:
         notice: "Tagit bort"
         alert: "Kunde inte ta bort"
-      not_member: "Du har inte behörighet. Du måste vara medlem hos en arrangör."
-      not_member_here: "Du har inte behörighet. Du måste vara medlem hos arrangören."
+      not_member: "Du har inte behörighet. Du är inte medlem hos den här arrangören (eller någon annan)"
+      not_member_here: "Du har inte behörighet. Du måste vara medlem hos den här arrangören."
       not_authenticated: "Något har gått fel. Du behöver logga in."
+      not_admin: "Du har inte behörighet. Du måste ha administratörsrättigheter."
       
 
 

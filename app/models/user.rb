@@ -7,7 +7,7 @@
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :organizer_ids
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :organizer_ids, :is_admin
   
   validates_presence_of :email
 
@@ -27,6 +27,14 @@
   
   def is_admin?
     is_admin
+  end
+  
+  def authorized? organizer
+    if organizers.include? organizer or is_admin?
+      true
+    else
+      false
+    end
   end
   
 end

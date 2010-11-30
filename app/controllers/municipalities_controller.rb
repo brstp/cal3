@@ -1,5 +1,6 @@
 class MunicipalitiesController < ApplicationController
   before_filter :authenticate_user!, :except => [:show, :index]
+  before_filter :authorized?, :except => [:show, :index]
   
   def index
     @municipalities = Municipality.all(:order => 'name ASC')
@@ -43,4 +44,22 @@ class MunicipalitiesController < ApplicationController
     flash[:notice] = t 'flash.actions.destroy.notice'
     redirect_to municipalities_url
   end
+
+
+protected
+
+  def authorized?
+    if !current_user
+      flash[:alert] = t 'flash.actions.not_authenticated'
+      redirect_to :back
+    else
+      if !current_user.is_admin
+        flash[:alert] = t 'flash.actions.not_admin'
+        redirect_to :back  
+      else
+        # Do stuff...
+      end
+    end
+  end
+  
 end

@@ -9,4 +9,6 @@
   <% end %>
 </table>
 
-<p><%= link_to t('.new'), new_organizer_path %></p>
+<% if current_user %>
+  <p><%= link_to t('.new'), new_organizer_path %></p>
+<% end %>

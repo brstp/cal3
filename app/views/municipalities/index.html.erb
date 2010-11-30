@@ -4,10 +4,19 @@
    <% for municipality in @municipalities %>
     <tr>
       <td><%= link_to municipality.name, municipality %></td>
+      <% if current_user %>
+        <% if current_user.is_admin? %>
       <td><%= link_to t('app.edit'), edit_municipality_path(municipality) %></td>
       <td><%= link_to t('app.destroy'), @municipality, :confirm => t('app.are_you_sure') + ' ' + municipality.name + '?', :method => :destroy %></td>
+
+      <% end %>
+      <% end %>
     </tr>
   <% end %>
 </table>
 
+<% if current_user %>
+<% if current_user.is_admin? %>
 <p><%= link_to t('municipality.index.new'), new_municipality_path %></p>
+<% end %>
+<% end %>

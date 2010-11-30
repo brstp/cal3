@@ -2,7 +2,7 @@
 
 before_filter :authenticate_user!, :except => [:show, :index]
 before_filter :authorized?, :except => [:show, :index]
-before_filter :authorized_for_this_event?, :except => [:show, :index, :new, :create]
+before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
 
   def index
     @events = Event.all(:order => 'start_datetime ASC')
@@ -54,18 +54,19 @@ before_filter :authorized_for_this_event?, :except => [:show, :index, :new, :cre
   protected
   
   def authorized?
+    logger.info "+++ In EventsController.authorized? +++"
     unless current_user
       flash[:alert] = t 'flash.actions.not_authenticated'
       redirect_to :action => :back      
     else
-      if !current_user.organizers and !current_user.is_admin?
+      if current_user.organizers.empty? and !current_user.is_admin?
         flash[:alert] = t 'flash.actions.not_member'
         redirect_to :back
       end
     end
   end
   
-  def authorized_for_this_event? 
+  def authorized_for_this? 
     @event = Event.find(params[:id])
     if (!current_user.organizers.include? @event.organizer and !current_user.is_admin?)
       flash[:alert] = t 'flash.actions.not_member_here'

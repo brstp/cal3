@@ -1,7 +1,7 @@
 ﻿<% title @organizer.name %>
 <p>
   <strong><%=t '.description' =%>:</strong>
-  <%= @organizer.description %>
+  <%= simple_format @organizer.description %>
 </p>
 <p>
   <strong><%=t '.website' =%>:</strong>
@@ -23,6 +23,11 @@
     </tr>
   <% end %>   
 </table>
+
+
+
+<% if current_user %>
+  <% if current_user.authorized? @organizer %>
 
 <p>
   <strong><%= t '.members' %>:</strong>
@@ -50,12 +55,19 @@
   
 </table>
 
-
+  <% end %>
+<% end %>
 
 
 <p>&nbsp;</p>
+
+<% if current_user %>
+  <% if current_user.authorized? @organizer %>
+  
 <p>
-  <%= link_to t('app.edit'), edit_organizer_path(@organizer) %> |
-  <%= link_to t('app.destroy'), @organizer, :confirm => t('app.are_you_sure') + ' ' +@organizer.name + '?', :method => :delete %> |
-  <%= link_to t('organizer.show.list'), organizers_path %>
+  <%= link_to t('app.edit') + " "+ @organizer.name, edit_organizer_path(@organizer) %> |
+  <%= link_to t('app.destroy') + " "+ @organizer.name, @organizer, :confirm => t('app.are_you_sure') + ' ' +@organizer.name + '?', :method => :delete %> 
 </p>
+
+<%end%>
+<%end%>
