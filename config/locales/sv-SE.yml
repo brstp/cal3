@@ -402,6 +402,7 @@
     index:
       title: "Alla arrangörer"
       new: "Skapa ny arrangör"
+      no_of_events_per_organizer: "inplanerat evenemang"
     show:
       name: "Namn"
       description: "Beskrivning"
@@ -440,6 +441,7 @@
     show: 
       list: "Till evenemangslistan"
       no_of_events_per_municipality: "inplanerade evenemang i kommunen"
+      no_of_events_per_organizer: "inplanerat evenemang"
   
   event:
     new:
