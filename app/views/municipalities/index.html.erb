@@ -3,7 +3,11 @@
 <table>
    <% for municipality in @municipalities %>
     <tr>
-      <td><%= link_to municipality.name, municipality %></td>
+      <td><%= link_to municipality.name, municipality %>
+          <abbr title="<%= municipality.number_of_upcoming_events %> <%= t '.no_of_events_per_municipality' %>">
+            (<%= municipality.number_of_upcoming_events %>)
+          </abbr>
+      </td>
       <% if current_user %>
         <% if current_user.is_admin? %>
       <td><%= link_to t('app.edit'), edit_municipality_path(municipality) %></td>

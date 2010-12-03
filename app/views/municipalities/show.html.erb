@@ -32,7 +32,11 @@
       <td><strong><%= link_to event.subject, event %></strong></td> 
       <td> <%= event.intro %> </td> 
       <td> <%= event.start_time %> </td>
-      <td> <%= link_to event.organizer.name, event.organizer %></td> 
+      <td> <%= link_to event.organizer.name, event.organizer %>
+              <abbr title="<%= event.organizer.number_of_upcoming_events %> <%= t '.no_of_events_per_organizer' %>">
+            (<%= event.organizer.number_of_upcoming_events %>)
+        </abbr>
+      </td> 
     </tr>
   <% end %>   
 </table>
