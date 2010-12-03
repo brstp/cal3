@@ -9,4 +9,7 @@ class Municipality < ActiveRecord::Base
     self.events.find(:all, :conditions => ["stop_datetime >= '#{Time.now}'"], :order => "start_datetime ASC")   
   end
 
+  def number_of_upcoming_events
+    self.events.find(:all, :conditions => ["stop_datetime >= '#{Time.now}'"]).count
+  end
 end
