@@ -20,7 +20,7 @@
       <td> <%= event.intro %> </td> 
       <td> <%= event.start_time %> </td>
       <td> <%= link_to event.municipality_short, event.municipality %>
-        <abbr title="<%= event.municipality.number_of_upcoming_events %> <%= t '.no_of_events' %>">
+        <abbr title="<%= event.municipality.number_of_upcoming_events %> <%= t '.no_of_events_per_municipality' %>">
             (<%= event.municipality.number_of_upcoming_events %>)
         </abbr>
       </td> 

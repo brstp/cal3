@@ -321,12 +321,15 @@
         description: "Beskrivning"
         website: "Hemsida"
         users: "Medlemmar"
+      user:
+        is_admin: "Systemadministratör"
 
     hints:
       event:
         subject: "Använd 7-40 tecken."
         intro: "Skriv en jättekort sammanfattning på max 100 tecken."
         description: "Ge en komplett beskrivning av evenemanget."
+        organizer_no_change_allowed: "Kan inte ändras på ett evenemang som redan är publicerat. Om du ändå vill ändra så får du radera evenemanget och skapa ett nytt."
         start_date: "Exempel: 2009-02-21"
         start_time: "Exempel: 14:30"
         stop_date: "Exempel: 2009-02-21"
@@ -402,6 +405,7 @@
     index:
       title: "Alla arrangörer"
       new: "Skapa ny arrangör"
+      no_of_events_per_organizer: "inplanerat evenemang"
     show:
       name: "Namn"
       description: "Beskrivning"
@@ -440,6 +444,7 @@
     show: 
       list: "Till evenemangslistan"
       no_of_events_per_municipality: "inplanerade evenemang i kommunen"
+      no_of_events_per_organizer: "inplanerat evenemang"
   
   event:
     new:

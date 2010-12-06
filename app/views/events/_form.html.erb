@@ -1,9 +1,18 @@
-<%= semantic_form_for @event do |f| %>
+﻿<%= semantic_form_for @event do |f| %>
   <%= f.error_messages %>
   <%= f.inputs do %>
       <%= f.input :subject %>
       <%= f.input :intro, :input_html => {:size => 50} %>
-      <%= f.input :organizer, :required => true, :collection => current_user.organizers %>
+      <% if @event.new_record? %> 
+        <%= f.input :organizer, :required => true, :collection => current_user.organizers %>
+      <% else %>
+        <li class="select required" id="event_organizer_input">
+        <label for="event_organizer_id"><%= t 'formtastic.labels.event.organizer'%><abbr title="<%= t 'formtastic.required'%>">*</abbr></label>
+        <%= @event.organizer.name %>
+        <p class="inline-hints">
+        <%= t 'formtastic.hints.event.organizer_no_change_allowed' %>
+        </li>        
+      <% end %>
       <%= f.input :municipality, :required => true, :collection => Municipality.find(:all, :order => "name ASC")%>
       <%= f.input :description, :input_html => {:rows => 8, :cols => 48} %>
       <%= f.input :start_date %>

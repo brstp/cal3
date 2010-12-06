@@ -1,8 +1,10 @@
 <% title (@event.subject + " | " + @event.organizer.name) %>
 
 <p>
-  <%= t('app.arranged_by') %>: <%= link_to @event.organizer.name, @event.organizer %>  <%= t('app.in_municipality') %> <%= link_to @event.municipality.name, @event.municipality %>
-  <abbr title="<%= @event.municipality.number_of_upcoming_events %> <%= t '.no_of_events' %>">
+  <%= t('app.arranged_by') %>: <%= link_to @event.organizer.name, @event.organizer %> <abbr title="<%= @event.organizer.number_of_upcoming_events %><%= t '.no_of_events_per_organizer' %>">
+            (<%= @event.organizer.number_of_upcoming_events %>)
+        </abbr> <%= t('app.in_municipality') %> <%= link_to @event.municipality.name, @event.municipality %>
+  <abbr title="<%= @event.municipality.number_of_upcoming_events %>&nbsp;<%= t '.no_of_events_per_municipality' %>">
             (<%= @event.municipality.number_of_upcoming_events %>)
         </abbr>
 </p>

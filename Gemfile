@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.1'
+gem 'rails', '3.0.3'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -41,3 +41,5 @@ gem 'validates_timeliness'
 gem "mocha", :group => :test
 gem 'sunspot_rails', '1.2.rc4'
 gem 'nokogiri', '1.5.0.beta.2'
+gem 'jquery-rails'
+
