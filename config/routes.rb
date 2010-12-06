@@ -13,6 +13,9 @@ Cal3::Application.routes.draw do
 
   resources :municipalities
   
+  #resources :events do
+  #  get 'search', :on => :collection
+  #end
 
 
   # The priority is based upon order of creation:

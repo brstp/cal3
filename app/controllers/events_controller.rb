@@ -4,6 +4,13 @@ before_filter :authenticate_user!, :except => [:show, :index]
 before_filter :authorized?, :except => [:show, :index]
 before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
 
+  def search
+    @search = Event.search do
+      keywords(params[:q])
+    end
+  end
+
+
   def index
     @events = Event.all(:order => 'start_datetime ASC')
     respond_to do |format|

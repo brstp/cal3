@@ -15,6 +15,12 @@ class Event < ActiveRecord::Base
   validate :validates_start_time, :validates_start_date, :validates_stop_time, :validates_stop_date, :validates_start_stop
   
 
+  searchable do
+    text :subject, :default_boost => 2
+    text :description
+  end
+
+
   def duration
     duration = start_datetime.strftime('%A %d %B %Y kl. %H:%M') + " - " 
     if @start_date != @stop_date
