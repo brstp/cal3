@@ -7,10 +7,10 @@
         <%= f.input :organizer, :required => true, :collection => current_user.organizers %>
       <% else %>
         <li class="select required" id="event_organizer_input">
-        <label for="event_organizer_id"><%= t 'formtastic.labels.event.organizer'%><abbr title="Obligatorisk">*</abbr></label>
+        <label for="event_organizer_id"><%= t 'formtastic.labels.event.organizer'%><abbr title="<%= t 'formtastic.required'%>">*</abbr></label>
         <%= @event.organizer.name %>
         <p class="inline-hints">
-        <%= t 'formtastic.hints.event.organizer_no_change_allowed'%>
+        <%= t 'formtastic.hints.event.organizer_no_change_allowed' %>
         </li>        
       <% end %>
       <%= f.input :municipality, :required => true, :collection => Municipality.find(:all, :order => "name ASC")%>

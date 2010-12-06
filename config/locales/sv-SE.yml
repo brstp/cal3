@@ -321,6 +321,8 @@
         description: "Beskrivning"
         website: "Hemsida"
         users: "Medlemmar"
+      user:
+        is_admin: "Systemadministratör"
 
     hints:
       event:
