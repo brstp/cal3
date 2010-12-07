@@ -1,7 +1,7 @@
 class Organizer < ActiveRecord::Base
   has_many :events
   
-  has_many :memberships
+  has_many :memberships, :dependent => :destroy
   has_many :users, :through => :memberships
   
   attr_accessible :name, :description, :website, :user_ids
