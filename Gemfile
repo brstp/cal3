@@ -31,9 +31,7 @@ gem 'devise'
 # end
 
 
-
-
-# Specific for this project. Do we need to add version numbers?
+gem 'devise'
 gem 'formtastic', '~> 1.1.0'
 gem "validation_reflection"
 gem 'nifty-generators'
@@ -42,4 +40,5 @@ gem "mocha", :group => :test
 gem 'sunspot_rails', '1.2.rc4'
 gem 'nokogiri', ">= 1.4.4.1", "<=1.5.0.beta.2" 
 gem 'jquery-rails'
+
 
