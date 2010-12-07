@@ -5,3 +5,5 @@ tmp/**/*
 .~lock.organizers.csv#
 .*~lock.*#
 solr/data
+sunspot-solr.pid
+log
