@@ -65,7 +65,7 @@ protected
   
   def authorized_for_this? 
     @organizer = Organizer.find(params[:id])
-    unless current_user.organizers.include? @organizer
+    if !current_user.organizers.include? @organizer and !current_user.is_admin?
       flash[:alert] = t 'flash.actions.not_member_here'
         redirect_to :back
     end
