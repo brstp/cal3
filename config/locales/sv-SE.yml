@@ -248,6 +248,7 @@
     destroyed: "Raderat %{resource_name}."
     arranged_by: "Arrangeras av"
     in_municipality: "i"
+    clock: "klockan"
     
       
   error:
@@ -472,7 +473,9 @@
       not_authenticated: "Något har gått fel. Du behöver logga in."
       not_admin: "Du har inte behörighet. Du måste ha administratörsrättigheter."
       
-
+  rss:
+    title: "Kalendern"
+    description: "Allt som händer - där det händer"
 
   devise:
     failure:
@@ -506,3 +509,4 @@
         subject: 'Instrukionter om återställning av lösenord'
       unlock_instructions:
         subject: 'Instruktioner om upplåsning av konto'      
+        
