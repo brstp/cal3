@@ -10,11 +10,17 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
   
   def show
     @organizer = Organizer.find(params[:id])
+    respond_to do |format|
+      format.html # show.html.erb
+      format.rss  
+    end
   end
+  
   
   def new
     @organizer = Organizer.new
   end
+  
   
   def create
     @organizer = Organizer.new(params[:organizer])

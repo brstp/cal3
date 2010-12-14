@@ -54,6 +54,7 @@ GEM
     mocha (0.9.10)
       rake
     nifty-generators (0.4.2)
+    nokogiri (1.4.4.1-x86-mingw32)
     polyglot (0.3.1)
     pr_geohash (1.0.0)
     rack (1.2.1)
@@ -106,6 +107,7 @@ DEPENDENCIES
   jquery-rails
   mocha
   nifty-generators
+  nokogiri (= 1.4.4.1)
   rails (= 3.0.3)
   sqlite3-ruby
   sunspot_rails (= 1.2.rc4)

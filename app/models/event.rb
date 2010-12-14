@@ -20,6 +20,9 @@ class Event < ActiveRecord::Base
 #    text :description
 #  end
 
+  def upcoming_events
+    self.find(:all, :conditions => ["stop_datetime >= '#{Time.now}'"], :order => "start_datetime ASC")  
+  end
 
   def duration
     duration = start_datetime.strftime('%A %d %B %Y ') + I18n.t('app.clock') + start_datetime.strftime(' %H:%M') + " - " 

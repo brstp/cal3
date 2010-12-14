@@ -244,11 +244,16 @@
     edit: "Ändra"
     are_you_sure: "Vill du radera"
     destroy: "Ta bort"
-    sitename: "kalendern"  
+    sitename: "kalendern"  #remove this...
+    site_name: "kalendern"  
     destroyed: "Raderat %{resource_name}."
     arranged_by: "Arrangeras av"
     in_municipality: "i"
     clock: "klockan"
+    s: "s"
+    at: "på"
+    events_in: "Evenemang i"
+    
     
       
   error:
@@ -385,6 +390,10 @@
     show:
       upcoming: "Kommande evenemang i kommunen"
       no_of_events_per_organizer: " inplanerat evenemang"
+      subscribe_rss: "Prenumerera på evenemang i"
+      rss_alt: "Prenumerera på RSS-flöde för evenemang i"
+      rss_title: "Evenemang som sker i"
+      rss_description: "Alla evenemang i kommunen. I Kalendern. Du kan också annonsera dina evenemang på http://127.0.0.1"
       
       
       
@@ -415,6 +424,11 @@
       members: "Medlemmar"
       show: "Visa"
       no_of_events_per_municipality: "inplanerade evenemang i kommunen"
+      subscribe_rss: "Prenumerera på"
+      organizers_event: "evenemang"
+      rss_alt: "Prenumerera på RSS-flöde med evenemang hos" 
+      rss_title: "evenemang i Kalendern"
+      rss_description: "Alla evenemang för arrangören. I Kalendern. Du kan också annonsera dina evenemang på http://127.0.0.1"
       
   organizer:
     new:
@@ -438,6 +452,8 @@
       new_organizer: "Skapa ny arrangör"
       no_of_events_per_municipality: "inplanerade evenemang i kommunen"
       no_of_events_per_organizer: "inplanerat evenemang"
+      rss_alt: "Prenumerera på RSS-flöde med alla evenemang." 
+      rss_title: "Alla evenemang på Kalendern"
     edit:
       title: "Ändra evenemanget"
       show: "Visa evenemanget (strunta i ändringar)"
@@ -475,7 +491,7 @@
       
   rss:
     title: "Kalendern"
-    description: "Allt som händer - där det händer"
+    description: "Allt som händer - där det händer. Du kan själv annonsera dina evenemang på Kalendern."
 
   devise:
     failure:

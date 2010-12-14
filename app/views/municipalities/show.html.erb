@@ -1,5 +1,9 @@
 <% title @municipality.name %>
 
+<% content_for :head do %>  
+  <%= auto_discovery_link_tag( :rss, municipality_url(:format => 'rss') , {:title => t('app.events_in') + ' ' + @municipality.name + t('app.at') + ' ' +  t('app.site_name')}) %>
+<% end %> 
+
 <p>
   <strong><%= t 'formtastic.labels.municipality.name' %>: </strong>
   <%= @municipality.name %>
@@ -41,6 +45,13 @@
   <% end %>   
 </table>
 
+<p>
+<%= link_to t('.subscribe_rss') + ' ' + @municipality.name, :format => :rss, :only_path => false %>  
+<%= link_to image_tag("rss_icon.gif", :alt => t('.rss_alt') + ' ' + @municipality.name), :format => :rss, :only_path => false %>
+</p>
+
+<p>
+</p>
 <% if current_user %>
   <% if current_user.is_admin? %>
 <p>

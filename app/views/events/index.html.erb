@@ -1,9 +1,10 @@
 ﻿<% title t('.title') %>
 
 <% content_for :head do %>  
-  <%# Fix this row, set up rss url and title somehere %>
-  <%= auto_discovery_link_tag(:rss, "http://127.0.0.1:3000/events.rss", {:title => "Kalendern RSS"}) %>
+  <%= auto_discovery_link_tag( :rss, events_url(:format => 'rss') , {:title => t('.rss_title') }) %>
 <% end %> 
+
+
 
 <table>
   <% for event in @events %>
@@ -21,10 +22,13 @@
    </tr>
   <% end %>
 </table>
+
 <p>
-<%= link_to t('.subscribe_rss'), "/events.rss" %>  
-<%= link_to image_tag("rss_icon.gif"), "/events.rss" %>
+<%= link_to t('.subscribe_rss'), :format => :rss, :only_path => false %>  
+<%= link_to image_tag("rss_icon.gif", :alt => t('.rss_alt')), :format => :rss, :only_path => false %>
 </p>
+
+
 
 <% if current_user%>
   <p><%= link_to t('.new_organizer'), new_organizer_path %>
