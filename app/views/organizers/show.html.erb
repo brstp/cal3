@@ -76,6 +76,12 @@
 <%= link_to t('.subscribe_rss') + ' ' + @organizer.name + t('app.s') + ' ' + t('.organizers_event'), :format => :rss, :only_path => false %>  
 <%= link_to image_tag("rss_icon.gif", :alt => t('.rss_alt') + ' ' + @organizer.name), :format => :rss, :only_path => false %>
 </p>
+
+
+<p>
+<%= t('.share_as_iframe') %><br />
+<code><%= h '<iframe src="' + organizer_url(:format => :ihtml) + '"  frameborder="1" ></iframe>' %></code>
+</p>
 <p>&nbsp;</p>
 <% if current_user %>
   <% if current_user.authorized? @organizer %>

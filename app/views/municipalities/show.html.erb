@@ -51,6 +51,11 @@
 </p>
 
 <p>
+<%= t('.share_as_iframe') %><br />
+<code><%= h '<iframe src="' + municipality_url(:format => :ihtml) + '"  frameborder="1" ></iframe>' %></code>
+</p>
+
+<p>
 </p>
 <% if current_user %>
   <% if current_user.is_admin? %>

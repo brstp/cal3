@@ -1,0 +1,16 @@
+<p>
+  <%= link_to "Evenemang i " + @municipality.name + " på Kalendern:", municipality_path, :target => "_top" %>
+</p>
+
+<ul>
+  <% for event in @municipality.upcoming_events %>
+    <li>
+    <%= link_to event.subject, event, :target => "_top" %><br /> 
+    <%= event.start_date + ' ' + event.start_time %> <br />
+    <%= event.intro %>
+    </li>
+  <% end %>   
+</ul>
+<p>
+<%= link_to t('.more_events'), events_path, :target => "_top" %>
+</p>

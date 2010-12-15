@@ -8,6 +8,11 @@ class MunicipalitiesController < ApplicationController
   
   def show
     @municipality = Municipality.find(params[:id])
+      respond_to do |format|
+        format.html # show.html.erb
+        format.ihtml
+        format.rss  
+      end
   end
   
   def new
