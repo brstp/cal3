@@ -1,0 +1,32 @@
+<%= semantic_form_for @mail_message do |f| %>
+  <%= f.error_messages %>
+  <%= f.inputs  do %>
+    <%= f.input :to_name, :as => :string %>
+    <%= f.input :mail_message, :as => :text %>
+    
+    <%= f.input :from_email %>
+    <%= f.input :from_first_name %>
+    <%= f.input :from_last_name %>
+    <%= f.input :from_phone %>
+    
+    <p><%= f.buttons %></p>
+    <p>
+    IP-adress: <%= @mail_message.ip %><br />
+    User agent (typ av webbläsare): <%= @mail_message.user_agent %><br />
+    Referer (sida som du kom i från): <%= @mail_message.referer %><br />
+    Evenemangsannons: <%= @mail_message.event_id %><br />
+    </p>
+    <p>
+    <%= f.input :to_email %>
+    </p>
+    <p>
+    En kopia på det här mejlet kommer att skickas till dig.
+    </p>
+  <% end %>
+<% end %>
+
+
+
+
+        
+        

@@ -10,6 +10,7 @@
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :organizer_ids, :is_admin
   
   validates_presence_of :email
+  validates :email, :email => true
 
   def name
     output_str=""

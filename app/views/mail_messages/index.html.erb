@@ -1,0 +1,33 @@
+<h1>Listing mail_messages</h1>
+
+<table>
+  <tr>
+    <th>From email</th>
+    <th>To email</th>
+    <th>Event</th>
+    <th>Ip</th>
+    <th>User agent</th>
+    <th>Referer</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @mail_messages.each do |mail_message| %>
+  <tr>
+    <td><%= mail_message.from_email %></td>
+    <td><%= mail_message.to_email %></td>
+    <td><%= mail_message.event_id %></td>
+    <td><%= mail_message.ip %></td>
+    <td><%= mail_message.user_agent %></td>
+    <td><%= mail_message.referer %></td>
+    <td><%= link_to 'Show', mail_message %></td>
+    <td><%= link_to 'Edit', edit_mail_message_path(mail_message) %></td>
+    <td><%= link_to 'Destroy', mail_message, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Mail message', new_mail_message_path %>

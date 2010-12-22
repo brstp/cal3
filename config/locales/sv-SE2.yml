@@ -1,4 +1,4 @@
-# Swedish translation.
+﻿# Swedish translation.
 
 "sv-SE":
 
@@ -159,7 +159,6 @@
       event: "evenemang"
       organizer: "arrangör"
       user: "användare"
-      mail: "mejl"
       
     # Translate model attribute names. Used in Model.human_attribute_name(attribute).
     #attributes:
@@ -186,10 +185,10 @@
         lng: "Longitud"
         municipality: "Kommun"
         municipality_id: "Kommun"
-        email: "Mejladress"
+        email: "Mejladress för frågor"
         email_name: "Namn för mejladressen"
-        phone_number: "Telefonnummer"
-        phone_name: "Namn för telefonnummer"
+        phone_number: "Telefonnummer för frågor"
+        phone_name: "Namn för telefonnumret"
       organizer:
         name: "Namn"
         description: "Beskrivning"
@@ -200,16 +199,8 @@
         email: "Mejladress"
         organizers: "Arrangörer"
       mail_message:
-        to_name: "Till"
-        mail_message: "Meddelande"
-        from_email: "Din mejladress"
-        from_first_name: "Ditt förnamn"
-        from_last_name: "Ditt efternamn"
-        to_email: "Mottagarmejladress"
-        ip: "Din dators IP-adress"
-        referer: "Webbsidan som förde dig hit"
-        user_agent: "Webbläsarmodell"
-        from_phone: "Ditt telefonnummer"
+        mail_message: "Ditt meddelande"
+        
 
       
       
@@ -296,12 +287,7 @@
       not_found: "hittades inte"
       already_confirmed: "är redan bekräftad"
       not_locked: "är inte låst"
-      invalid_email: "ser inte ut att vara en korrekt mejladress."
       invalid_url: "ser inte ut att vara en korrekt länk till en webbsida"
-      invalid_phone_number: "ser inte ut som ett korrekt telefonnummer. Använd siffror, mellanslag och bindestreck om du vill. Du får använda plustecken för internationella telefonnummer. Glöm inte riktnummer."
-      name_but_no_phone: "måste anges om du anger ett namn (eller ta bort namnet)."
-      phone_but_no_name: "måste anges om du anger ett telefonnummer."
-      
 
   
 
@@ -349,6 +335,10 @@
         users: "Medlemmar"
       user:
         is_admin: "Systemadministratör"
+      mail_message:
+        from_email: "Din mejladress"
+        ip: "Din dators IP-adress"
+        
 
     hints:
       event:
@@ -366,17 +356,19 @@
         loc_descr: "Om det inte räcker med gatuadress, beskriv platsen där evenemanget hålls. T.ex: \"I norra delen av stadsparken.\""
         lat: "I decimalformat"
         lng: "I decimalformat"
-        municipality: "Där evenemanget sker. Markera menyn och skriv första bokstaven i kommunnamnet för att snabbt hitta kommunen."
-        email: "Om någon vill nå dig som arrangerar, vilken mejladress tar du emot frågor på? Mejlet skickas från ett kontaktformulär där din mejladress inte visas."
-        email_name: "Vem går mejlet till? Namnet visas istället för mejladress i kontaktformuläret. T.ex. \"Veera Virtanen\" eller \"Föreningskansliet\"."
-        phone_number: "Om någon vill nå dig som arrangerar, vilket telefonnummer tar du emot frågor på?"
-        phone_name: "Vem går telefonnumret till? T.ex. \"Åke Svensson\" eller \"Föreningskansliet\"."
+        municipality: "Där evenemanget sker. Markera och skriv första bokstaven i kommunnamnet för att snabbt hitta kommunen."
+        email: "Om någon vill nå dig som arrangerar. Mejladressen visas inte i evenemangsannonsen. Mejlen skickas från ett kontaktformulär."
+        email_name: "Vem går mejladressen till? Visas istället för mejladressen. T.ex. \"Åsa Johansson\" eller \"kansliet\"."
+        phone_number:
+        phone_name: "Vem svarar i telefonen? T.ex. \"Åsa Johansson\" eller \"kansliet\"."
       municipality: 
         name: "Namnet på kommunen (en del kommuner heter \"stad\")"
       organizer:
         name: "Namnet på föreningen, företaget eller dig som arrangerar."
         description: ""
-        website: "Länk till arrangörens hemsida. Exempel: http://www.abc.se"        
+        website: "Länk till arrangörens hemsida. Exempel: http://www.abc.se"       
+      mail_message:
+        ip: "nisse"
     actions:
       # event:
         # create: "Skapa %{model}"
@@ -384,10 +376,10 @@
       # municipality:
         # create: "Skapa %{model}"
         # update: "Spara"
+      mail_message:
+        create: "Skicka meddelandet"
       create: "Skapa %{model}"
       update: "Spara"
-      mail_message:
-        create: "Skicka mejl"
 #End formtastic
 
   users:

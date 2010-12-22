@@ -38,9 +38,9 @@ gem 'nifty-generators'
 gem 'validates_timeliness'
 gem "mocha", :group => :test
 gem 'sunspot_rails', '1.2.rc4'
-gem 'nokogiri', "1.4.4.1"
+#gem 'nokogiri', "1.4.4.1"
 #gem 'nokogiri, '1.5.0.beta.2'
 gem 'jquery-rails'
-
+gem 'mail_form'
 
 

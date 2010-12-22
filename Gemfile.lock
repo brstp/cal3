@@ -50,11 +50,11 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    mail_form (1.3.0)
     mime-types (1.16)
     mocha (0.9.10)
       rake
     nifty-generators (0.4.2)
-    nokogiri (1.4.4.1-x86-mingw32)
     polyglot (0.3.1)
     pr_geohash (1.0.0)
     rack (1.2.1)
@@ -91,10 +91,10 @@ GEM
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     tzinfo (0.3.23)
-    validates_timeliness (3.0.2)
+    validates_timeliness (3.0.3)
       timeliness (~> 0.3.2)
     validation_reflection (1.0.0)
-    warden (1.0.2)
+    warden (1.0.3)
       rack (>= 1.0.0)
 
 PLATFORMS
@@ -105,9 +105,9 @@ DEPENDENCIES
   devise
   formtastic (~> 1.1.0)
   jquery-rails
+  mail_form
   mocha
   nifty-generators
-  nokogiri (= 1.4.4.1)
   rails (= 3.0.3)
   sqlite3-ruby
   sunspot_rails (= 1.2.rc4)

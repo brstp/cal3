@@ -27,6 +27,19 @@
 </p>
 
 <p>
+  <strong>Har du frågor? Vill du kontakta arrangören?</strong><br />
+  Mejla till <%= @event.email_name %>.<br />
+  <% if @event.phone_number? %>
+    Ring 
+    <% if @event.phone_name? %>
+      <%= @event.phone_name %> 
+    <% end %>
+    på telefon: <%= @event.phone_number %>.
+    <br />
+  <% end %>
+</p>
+
+<p>
   <strong>Adress:</strong><br />
   <%= @event.street %><br /> 
   <%= @event.zip%>&nbsp;&nbsp;<%= @event.city %>

@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  from_email: MyString
+  to_email: MyString
+  event_id: 1
+  ip: MyString
+  user_agent: MyString
+  referer: MyString
+
+two:
+  from_email: MyString
+  to_email: MyString
+  event_id: 1
+  ip: MyString
+  user_agent: MyString
+  referer: MyString

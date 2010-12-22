@@ -1,4 +1,6 @@
 Cal3::Application.routes.draw do
+  resources :mail_messages
+
   devise_for :users
 
   resources :users
