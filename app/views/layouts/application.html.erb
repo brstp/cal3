@@ -15,10 +15,10 @@
     <div id="container">
       <div id="user_nav">
 	    <% if user_signed_in? %>
-	      Signed in as <%= current_user.email %>. Not you?
-	      <%= link_to "Sign out", destroy_user_session_path %>
+	      <%= t 'devise.sessions.not_you' %> <%= link_to I18n.t('devise.sessions.sign_out'), destroy_user_session_path %>
 	    <% else %>
-	      <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "Sign in", new_user_session_path %>
+	      <%= link_to I18n.t('devise.sessions.sign_up'), new_user_registration_path %> <%= I18n.t('app.or') %> 
+        <%=link_to I18n.t('devise.sessions.sign_in'), new_user_session_path %>
 	    <% end %>
 	  </div>
     <h1><%= link_to "Kalendern", "/" %></h1>
