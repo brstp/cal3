@@ -1,32 +1,55 @@
 <%= semantic_form_for @mail_message do |f| %>
   <%= f.error_messages %>
   <%= f.inputs  do %>
-    <%= f.input :to_name, :as => :string %>
-    <%= f.input :mail_message, :as => :text %>
+    <%= f.input :to_name, :as => :hidden %>
+    <li class="string optional" ><label><%= MailMessage.human_attribute_name :to_name  %></label><%= @mail_message.to_name %></li>
+    <%= f.input :mail_body , :as => :text , :input_html => {:rows => 8, :cols => 48}%>
     
-    <%= f.input :from_email %>
-    <%= f.input :from_first_name %>
-    <%= f.input :from_last_name %>
-    <%= f.input :from_phone %>
+    <% if @mail_message.from_email.blank? %> 
+      <%= f.input :from_email %>     
+    <% else %>
+      <%= f.input :from_email, :as => :hidden %>
+      <li class="string required" >
+        <label>
+          <%= MailMessage.human_attribute_name :from_email %>
+        </label><%= @mail_message.from_email %> 
+        <%= t 'devise.sessions.not_you' %> 
+        <%= link_to I18n.t('devise.sessions.sign_out'), destroy_user_session_path %>
+      </li>
+    <% end %>
     
+  <% if @mail_message.from_first_name.blank? %> 
+      <%= f.input :from_first_name %>     
+  <% else %>
+      <%= f.input :from_first_name, :as => :hidden %>
+      <li class="string required" ><label><%= MailMessage.human_attribute_name :from_first_name %></label><%= @mail_message.from_first_name %> (Fel? Ändra eller logga ut)</li>
+  <% end %>
+
+      <%= f.input :from_last_name %>     
+
+      <%= f.input :from_phone %>     
+       
     <p><%= f.buttons %></p>
     <p>
-    IP-adress: <%= @mail_message.ip %><br />
-    User agent (typ av webbläsare): <%= @mail_message.user_agent %><br />
-    Referer (sida som du kom i från): <%= @mail_message.referer %><br />
-    Evenemangsannons: <%= @mail_message.event_id %><br />
+      <%= t '.self_copy'%> 
     </p>
     <p>
+      <%= t '.disclaimer'%> 
+    </p>
+    <p>
+    
+    <%= f.input :ip, :as => :hidden %>
+    <li class="string optional" ><label><%= MailMessage.human_attribute_name :ip  %></label><%= @mail_message.ip %></li>
+    <%= f.input :user_agent, :as => :hidden %>
+    <li class="string optional" ><label><%= MailMessage.human_attribute_name :user_agent %></label><%= @mail_message.user_agent %></li>
+    <%= f.input :referer, :as => :hidden %>
+    <li class="string optional" ><label><%= MailMessage.human_attribute_name :referer %></label><%= @mail_message.referer %></li>
+    <%= f.input :event_id, :as => :hidden %>
+    <li class="string optional" ><label><%= MailMessage.human_attribute_name :event_id %></label><%= @mail_message.event_id %></li>
+
+
+
     <%= f.input :to_email %>
-    </p>
-    <p>
-    En kopia på det här mejlet kommer att skickas till dig.
-    </p>
   <% end %>
 <% end %>
 
-
-
-
-        
-        

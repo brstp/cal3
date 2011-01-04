@@ -28,7 +28,6 @@
 
 <p>
   <strong>Har du frågor? Vill du kontakta arrangören?</strong><br />
-  Mejla till <%= @event.email_name %>.<br />
   <% if @event.phone_number? %>
     Ring 
     <% if @event.phone_name? %>
@@ -37,6 +36,7 @@
     på telefon: <%= @event.phone_number %>.
     <br />
   <% end %>
+  Mejla till <%= @event.email_name %>.<br />
 </p>
 
 <p>

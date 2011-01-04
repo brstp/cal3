@@ -1,0 +1,33 @@
+﻿Hej! 
+Det här mejlet kommer från någon som använt kontaktformuläret på Kalendern, http://www.123.wq
+
+Från: <%= @mail_message.try(:from_first_name) + ' ' + @mail_message.try(:from_last_name) + ' <' + @mail_message.from_email + '>' %>
+ 
+<%= if @mail_message.from_phone.blank? %>
+Telefon: <%= @mail_message.from_phone.blank %>
+<% else %>
+Ville inte lämna något telefonnummer.
+<% end %>
+--------------------------------------------
+
+<%= @mail_message.mail_body %>
+
+--------------------------------------------
+
+Du får det här mejlet för att den person som skrivit in evenemangsannonsen angett din mejladress som kontaktinformation.
+
+Evenemangsannonsen finns på [http://kalendern.se/ekero-ik/tjurrusning-00123]
+
+Avsändaren känner inte till din mejladress förrän du svarar på det här mejlet. Vi kan inte veta om avsändarens kontaktinformation är korrekt. Om avsändaren missbrukar möjligheten att skicka mejl eller gör något olagligt, skicka vidare hela det här mejlet till abuse@kalendern.se.
+
+--------------------------------------------
+Allt som händer - överallt på Kalendern. Locka deltagare till dina evenemang också. http://www.123.wq
+
+--------------------------------------------
+Mejlet (<%= @mail_message.id %>) skickades <%= @mail_message.created_at %> från en dator med IP-adress <%= @mail_message.ip %>. Den som skickade mejlet har en webbläsare av typ (user agent): <%= @mail_message.user_agent %>. Evenemangsannonsen har id <%= @mail_message.mail_body %>
+
+--------------------------------------------
+
+Allt som händer - överallt på Kalendern. Locka deltagare till dina evenemang också. http://www.123.wq
+
+--------------------------------------------

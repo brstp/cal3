@@ -1,6 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <b>Created at:</b>
+  <%= @mail_message.created_at %>
+</p>
+
+<p>
   <b>From email:</b>
   <%= @mail_message.from_email %>
 </p>
@@ -31,5 +36,4 @@
 </p>
 
 
-<%= link_to 'Edit', edit_mail_message_path(@mail_message) %> |
 <%= link_to 'Back', mail_messages_path %>
