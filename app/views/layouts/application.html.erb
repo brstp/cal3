@@ -15,7 +15,7 @@
     <div id="container">
       <div id="user_nav">
 	    <% if user_signed_in? %>
-	      <%= t 'devise.sessions.not_you' %> <%= link_to I18n.t('devise.sessions.sign_out'), destroy_user_session_path %>
+	      <%= t 'devise.sessions.signed_in_as' %> <%= current_user.email %>. <%= t 'devise.sessions.not_you' %> <%= link_to I18n.t('devise.sessions.sign_out'), destroy_user_session_path %>
 	    <% else %>
 	      <%= link_to I18n.t('devise.sessions.sign_up'), new_user_registration_path %> <%= I18n.t('app.or') %> 
         <%=link_to I18n.t('devise.sessions.sign_in'), new_user_session_path %>
