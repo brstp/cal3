@@ -9,8 +9,6 @@ Cal3::Application.routes.draw do
 
   resources :organizers
 
-  devise_for :users
-
   resources :events
 
   resources :municipalities
