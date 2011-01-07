@@ -1,26 +1,19 @@
 ﻿class EventMailer < ActionMailer::Base
-  # default :from => "Kalendern <no-reply@lumano.se>"
-  # default :subject => "Ang. titel på evenemanget i kalendern"
-  # default :to => "Stefan Pettersson <stefan.pettersson@lumano.se>"
-  
-  # def registration_confirmation(user)
-    # @user = user
-    # attachments["rails.png"] = File.read("#{Rails.root}/public/images/rails.png")
-    # mail(:to => "#{user.name} <#{user.email}>", :subject => "Registered")
-  # end
   
   def contact_event(mail_message)
     @mail_message = mail_message
-    mail(   :from => 'Kalendern <no-reply@lumano.se>',
+    mail(   :from => "#{mail_message.from_name} <#{mail_message.from_email}>",
             :to => "#{mail_message.to_name} <#{mail_message.to_email}>", 
-            :subject => "Ang. annonstitel" )
-#    mail
+            :subject => "Angående evenemang: #{Event.find(mail_message.event_id).subject}" )
   end
   
-  # def set_request_vars(env)
-    # request.user_ip, request.user_agent, request.referrer =
-    # env['REMOTE_ADDR'], env['HTTP_USER_AGENT'], env['HTTP_REFERER']
-  # end
+  def copy_event_sender(mail_message)
+    @mail_message = mail_message
+    mail(   :from => I18n.t('app.no_reply_name') + '<' + I18n.t('app.no_reply_email')+ '>',
+            :to => "#{mail_message.from_name} <#{mail_message.from_email}>", 
+            :subject => "Kopia evenemang: #{Event.find(mail_message.event_id).subject}" )
+  end  
   
+    
 end
 

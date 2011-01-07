@@ -87,7 +87,8 @@
       <%= f.input :from_first_name %>     
   <% else %>
       <%= f.input :from_first_name, :as => :hidden %>
-      <li class="string required" ><label><%= MailMessage.human_attribute_name :from_first_name %></label><%= @mail_message.from_first_name %> (Fel? Ändra eller logga ut)</li>
+      <li class="string required" ><label><%= MailMessage.human_attribute_name :from_first_name %></label><%= @mail_message.from_first_name %> <%= t 'devise.sessions.not_you' %> 
+        <%= link_to I18n.t('devise.sessions.sign_out'), destroy_user_session_path %>
   <% end %>
 
       <%= f.input :from_last_name %>     

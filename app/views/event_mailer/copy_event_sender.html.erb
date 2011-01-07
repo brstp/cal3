@@ -2,9 +2,10 @@
 Hej!
 </p> 
 <p>
-Det här mejlet kommer från någon som använt kontaktformuläret på Kalendern, [TODO länk här].
+Här kommer din kopia på mejlet som du skickade med kontaktformulätet på Kalendern, [TODO länk här].
 </p>
 <p>
+Till: <%= @mail_message.to_name %><br />
 Från: <%= @mail_message.from_name + ' <' + @mail_message.from_email%>><br />
 <% if @mail_message.from_phone.blank? %>
 Avsändaren ville inte lämna något telefonnummer.

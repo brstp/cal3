@@ -270,6 +270,8 @@
     at: "på"
     events_in: "Evenemang i"
     or: 'eller'
+    no_reply_email: "svara-inte--no-reply@mumin.nu"
+    no_reply_name: "Kalendern. Svara inte."
     
     
       
