@@ -199,6 +199,7 @@
         last_name: "Efternamn"
         email: "Mejladress"
         organizers: "Arrangörer"
+        is_admin: "Systemadministratör"
       mail_message:
         to_name: "Till"
         mail_body: "Meddelande"
@@ -256,7 +257,6 @@
     
   app:
     back_to_list: "Tillbaka till listan"
-    show: "zzzVisa %{model}"
     edit: "Ändra"
     are_you_sure: "Vill du radera"
     destroy: "Ta bort"
@@ -273,8 +273,6 @@
     no_reply_email: "svara-inte--no-reply@mumin.nu"
     no_reply_name: "Kalendern. Svara inte."
     
-    
-      
   error:
     messages:
       invalid_date: "ser inte ut som ett datum"
@@ -319,6 +317,8 @@
   formtastic:
     "yes": 'Ja'
     "no": 'Nej'
+    yes: "Ja"
+    no: "Nej"
     create: 'Skapa'
     save: 'Spara'
     submit: 'Skicka'
@@ -381,6 +381,8 @@
         phone_name: "Vem går telefonnumret till? T.ex. \"Åke Svensson\" eller \"Föreningskansliet\"."
       municipality: 
         name: "Namnet på kommunen (en del kommuner heter \"stad\")"
+      user:
+        email_no_change_allowed: "Mejladressen kan inte ändras." #TODO Rutin för att ändra mejladress
       organizer:
         name: "Namnet på föreningen, företaget eller dig som arrangerar."
         description: ""
@@ -529,6 +531,7 @@
       not_member_here: "Du har inte behörighet. Du måste vara medlem hos den här arrangören."
       not_authenticated: "Något har gått fel. Du behöver logga in."
       not_admin: "Du har inte behörighet. Du måste ha administratörsrättigheter."
+      not_you: "Du har inte behörighet att se eller ändra någon annans uppgifter."
       
   rss:
     title: "Kalendern"

@@ -61,7 +61,6 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
   protected
   
   def authorized?
-    logger.info "+++ In EventsController.authorized? +++"
     unless current_user
       flash[:alert] = t 'flash.actions.not_authenticated'
       redirect_to :action => :back      
