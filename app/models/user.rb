@@ -8,7 +8,7 @@
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :organizer_ids, :is_admin
-  
+
   validates_presence_of :email
   validates :email, :email => true
 
@@ -25,11 +25,11 @@
     end
     output_str.strip
   end
-  
+
   def is_admin?
     is_admin
   end
-  
+
   def authorized? organizer
     if organizers.include? organizer or is_admin?
       true
@@ -37,5 +37,5 @@
       false
     end
   end
-  
+
 end
