@@ -76,3 +76,10 @@ a {
 .error_messages ul {
   margin: 0;
 }
+
+#mail_message {
+  background-color: #DDD;
+  padding: 20px 20px;
+  margin: 20px 0;
+}
+

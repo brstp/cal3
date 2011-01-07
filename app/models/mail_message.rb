@@ -1,7 +1,7 @@
 class MailMessage < ActiveRecord::Base
   validates_presence_of :from_first_name, :mail_body, :from_email
   
-  attr_accessible :from_email, :to_email, :ip, :user_agent, :referer, :event_id, :mail_body, :from_first_name, :from_last_name, :to_name, :from_phone
+  attr_accessible :from_email, :to_email, :ip, :user_agent, :referer, :event_id, :mail_body, :from_first_name, :from_last_name, :to_name, :from_phone, :ip_hidden, :user_agent_hidden, :referer_hidden
   
   validates :from_phone, :phone => true
   validates :from_email, :email => true
@@ -52,6 +52,5 @@ class MailMessage < ActiveRecord::Base
   def from_phone= phone_str
     @from_phone = phone_str
   end
-  
   
 end

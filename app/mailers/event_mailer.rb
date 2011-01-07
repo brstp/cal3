@@ -1,7 +1,7 @@
 ﻿class EventMailer < ActionMailer::Base
-  default :from => "Kalendern <no-reply@lumano.se>"
-  default :subject => "Ang. titel på evenemanget i kalendern"
-  default :to => "Stefan Pettersson <stefan.pettersson@lumano.se>"
+  # default :from => "Kalendern <no-reply@lumano.se>"
+  # default :subject => "Ang. titel på evenemanget i kalendern"
+  # default :to => "Stefan Pettersson <stefan.pettersson@lumano.se>"
   
   # def registration_confirmation(user)
     # @user = user
@@ -11,8 +11,10 @@
   
   def contact_event(mail_message)
     @mail_message = mail_message
-#    mail(:to => "#{mail_message.to_name} <#{mail_message.to_email}>", :subject => "Ang. annonstitel")
-    mail
+    mail(   :from => 'Kalendern <no-reply@lumano.se>',
+            :to => "#{mail_message.to_name} <#{mail_message.to_email}>", 
+            :subject => "Ang. annonstitel" )
+#    mail
   end
   
   # def set_request_vars(env)

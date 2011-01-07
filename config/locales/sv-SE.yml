@@ -355,6 +355,8 @@
         is_admin: "Systemadministratör"
 
     hints:
+      mail_message:
+        from_phone: "Inklusive riktnummer."
       event:
         subject: "Använd 7-40 tecken."
         intro: "Skriv en jättekort sammanfattning på max 100 tecken."
@@ -373,7 +375,7 @@
         municipality: "Där evenemanget sker. Markera menyn och skriv första bokstaven i kommunnamnet för att snabbt hitta kommunen."
         email: "Om någon vill nå dig som arrangerar, vilken mejladress tar du emot frågor på? Mejlet skickas från ett kontaktformulär där din mejladress inte visas."
         email_name: "Vem går mejlet till? Namnet visas istället för mejladress i kontaktformuläret. T.ex. \"Veera Virtanen\" eller \"Föreningskansliet\"."
-        phone_number: "Om någon vill nå dig som arrangerar, vilket telefonnummer tar du emot frågor på?"
+        phone_number: "Om någon vill nå dig som arrangerar, vilket telefonnummer tar du emot frågor på? Komplett telefonnummer inklusive riktnummer."
         phone_name: "Vem går telefonnumret till? T.ex. \"Åke Svensson\" eller \"Föreningskansliet\"."
       municipality: 
         name: "Namnet på kommunen (en del kommuner heter \"stad\")"
