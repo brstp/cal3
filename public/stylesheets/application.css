@@ -83,3 +83,15 @@ a {
   margin: 20px 0;
 }
 
+.button_to {
+  display: inline-block;
+}
+
+.user_list {
+  background-color: #eee;
+}
+
+.user {
+  display: inline-block;
+  width: 400px;
+}

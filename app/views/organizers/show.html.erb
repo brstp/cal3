@@ -40,36 +40,40 @@
 
 <% if current_user %>
   <% if current_user.authorized? @organizer %>
+  <p>
+    <strong><%= t '.members' %>:</strong>
+  </p>
+  <ol class = "user_list">
+    <% for user in @organizer.users %>
+      <li><div class = "user">
+      <%= link_to user.name , user %></div>
+      <% unless user == current_user %>
+        <%= button_to I18n.t('organizers.show.unmember') , membership_path(Membership.find(:first, :conditions => ["organizer_id = ? and user_id = ?", @organizer.id, user.id])), :confirm => I18n.t('organizers.show.sure_unmember') + user.name, :method => :delete %> 
+      <% end %>
+      </li>
+    <% end %> 
+  </ol>
+
+<hr />
 
 <p>
-  <strong><%= t '.members' %>:</strong>
+  <strong><%= t '.all_registered_users' %>:</strong>
 </p>
 
-<table>
-  <tr>
-    <th></th>
-    <th><%= User.human_attribute_name('first_name') %></th>
-    <th><%= User.human_attribute_name('last_name') %></th>
-    <th><%= User.human_attribute_name('email') %></th>  
-    <th></th>
-  </tr>    
-
-<% for user in @organizer.users %>
-  <tr>
-    <td><%= link_to t('.show'), user %></td>
-    <td><%= user.first_name %></td>  
-    <td><%= user.last_name %></td>  
-    <td><%= user.email %></td>  
-    <td><%= link_to "ta bort medlemsskap" %></td>
-  </tr>
-<% end %> 
-  
-  
-</table>
-
+<ol class = "user_list">
+<% @users = User.all %>
+  <% for user in @users %>
+    <li><div class = "user">
+      <%= link_to user.name , user %> </div>
+      <%= button_to I18n.t('organizers.show.make_member') , memberships_path(:user_id => user.id, :organizer_id => @organizer) %>
+    </li>  
   <% end %>
+</ol>
+
+<% end %>
 <% end %>
 
+<hr />
 
    
 <p>
@@ -87,8 +91,11 @@
   <% if current_user.authorized? @organizer %>
   
 <p>
-  <%= link_to t('app.edit') + " "+ @organizer.name, edit_organizer_path(@organizer) %> |
-  <%= link_to t('app.destroy') + " "+ @organizer.name, @organizer, :confirm => t('app.are_you_sure') + ' ' +@organizer.name + '?', :method => :delete %> 
+  <%= link_to t('app.edit') + " "+ @organizer.name + t('app.s') + ' ' + t('app.page'), edit_organizer_path(@organizer) %> 
+
+  <% if current_user.try :is_admin %>
+  | <%= link_to t('app.destroy') + " "+ @organizer.name, @organizer, :confirm => t('app.are_you_sure') + ' ' +@organizer.name + '?', :method => :delete %> 
+  <% end %>
 </p>
 
 <%end%>
