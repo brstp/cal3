@@ -111,5 +111,6 @@ DEPENDENCIES
   rails (= 3.0.3)
   sqlite3-ruby
   sunspot_rails (= 1.2.rc4)
+  timeliness
   validates_timeliness
   validation_reflection

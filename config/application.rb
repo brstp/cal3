@@ -41,6 +41,9 @@ module Cal3
     config.filter_parameters += [:password]
     
     config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+    
+    # Use timeliness gem for parsing dates and times
+    config.use_plugin_parser = true
 
   end
 end
