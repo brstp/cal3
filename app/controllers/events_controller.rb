@@ -25,8 +25,11 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
   
   def new
     @event = Event.new
+    @event.email = current_user.email
+    @event.email_name = (current_user.first_name + " " + current_user.last_name).strip
+    @event.phone_name = (current_user.first_name + " " + current_user.last_name).strip
   end
-  
+
   def create
     @event = Event.new(params[:event])
     if @event.save
