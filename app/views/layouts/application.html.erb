@@ -16,6 +16,7 @@
       <div id="user_nav">
 	    <% if user_signed_in? %>
 	      <%= t 'devise.sessions.signed_in_as' %> <%= current_user.email %>. <%= t 'devise.sessions.not_you' %> <%= link_to I18n.t('devise.sessions.sign_out'), destroy_user_session_path %>
+        <%= link_to (t 'devise.sessions.change_settings'), edit_user_path(current_user) %> 
 	    <% else %>
 	      <%= link_to I18n.t('devise.sessions.sign_up'), new_user_registration_path %> <%= I18n.t('app.or') %> 
         <%=link_to I18n.t('devise.sessions.sign_in'), new_user_session_path %>
@@ -28,6 +29,7 @@
       <% end %>
       <%= content_tag :h1, yield(:title) if show_title? %>
       <hr>
+
       <%= yield %>
       <hr>
       <p>  <%= link_to t('events.show.list'), events_path %> | <%= link_to t('organizer.show.list'), organizers_path %> | <%= link_to t('municipality.show.list'), municipalities_path %> | <%= link_to t('users.show.list'), users_path %></p>

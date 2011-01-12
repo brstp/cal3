@@ -200,6 +200,14 @@
         email: "Mejladress"
         organizers: "Arrangörer"
         is_admin: "Systemadministratör"
+        password: "Lösenord"
+        remember_me: "Kom ihåg mig mellan besöken"
+        password_confirmation: "Upprepa lösenordet"
+        current_password: "Nuvarande lösenord"
+        new_password: "Nytt lösenord"
+        confirmation_token: "Speciell länk för att bekräfta användarkontot"
+        reset_password_token: "Speciell länk för att sätta nytt lösenord"
+        unlock_token: "Speciell länk för att låsa upp stängt användarkonto"
       mail_message:
         to_name: "Till"
         mail_body: "Meddelande"
@@ -384,7 +392,9 @@
       municipality: 
         name: "Namnet på kommunen (en del kommuner heter \"stad\")"
       user:
-        email_no_change_allowed: "Mejladressen kan inte ändras." #TODO Rutin för att ändra mejladress
+        email_no_change_allowed: "Mejladressen kan inte ändras."
+        new_password: "(du behöver bara fylla i om du vill byta lösenord)"
+        current_password: "Fyll i lösenordet om du ska byta lösenord eller mejladress"
       organizer:
         name: "Namnet på föreningen, företaget eller dig som arrangerar."
         description: ""
@@ -412,8 +422,9 @@
       is_admin: "Är systemadministratör"
     edit:
       list: "Till användarlistan (strunta i ändringar)"
-      show: "Visa användaren (strunta i ändringar)"
-      title: "Ändra på användare"
+      show: "Strunta i ändringar"
+      title: "Ändra på mitt användarkonto"
+      change_password: 'Ändra mitt lösenord eller mejladress'
     new:
       title: "Ny användare" 
       list: "Till användarlistan (strunta i ändringar)"
@@ -554,36 +565,53 @@
       unauthenticated: 'Du måste logga in eller skapa ett konto innan du kan fortsätta.'
       unconfirmed: 'Du måste bekräfta ditt konto innan du kan fortsätta.'
       locked: 'Ditt konto är låst.'
-      invalid: 'Ogiltig epost eller lösenord.'
-      invalid_token: 'Ogiltig token för autentisering.'
+      invalid: 'Fel mejladress eller lösenord.'
+      invalid_token: 'Ogiltig token för autentisering.' #TODO
       timeout: 'Din session är inte längre giltig, vänligen logga in igen för att fortsätta.'
       inactive: 'Ditt konto har inte aktiverats ännu.'
     sessions:
-      signed_in: 'Inloggning genomfördes.'
-      signed_out: 'Utloggning genomfördes.'
-      sign_in: 'Logga in'
-      sign_out: 'Logga ut'
+      signed_in: 'Nu är du inloggad.'
+      signed_out: 'Nu är du utloggad.'
+      sign_in: 'logga in'
+      sign_out: 'Logga ut.'
       sign_up: 'Registrera dig'
       not_you: 'Inte du?'
+      change_settings: 'Ditt konto/byt lösenord'
+      change_password: 'Byt lösenord'
       signed_in_as: 'Inloggad som'
+      forgot_password: 'Glömt ditt lösenord?'
+      not_received_confirmation: "Har inte fått mejlet med länken för att bekräfta kontot?"
+      not_received_unlock: "Har inte fått mejlet med länken för att låsa upp kontot?"
+      
     passwords:
-      send_instructions: 'Du kommer få epost med instruktioner om hur du kan återställa ditt lösenord inom några minuter.'
+      send_instructions: 'Du kommer få ett mejl med instruktioner om hur du kan återställa ditt lösenord inom någon minut.'
       updated: 'Ditt lösenord har uppdaterats. Du är nu inloggad.'
+      forgot_your_password: "Har du glömt ditt lösenord?"
+      mail_me: "Mejla mig"
     confirmations:
-      send_instructions: 'Du kommer att få epost med instruktioner om hur du kan bekräfta ditt konto inom några minuter.'
+      send_instructions: 'Du kommer att få ett mejl med instruktioner om hur du kan bekräfta ditt konto inom någon minut.'
       confirmed: 'Ditt konto har bekräftats. Du är nu inloggad.'
+      new:
+        resend_confirmation_instructions: 'Skicka mejl igen med länk för att bekräfta att det är ditt användarkonto.'
+        resend: 'Mejla mig'
     registrations:
-      signed_up: 'Ett nytt konto har skapats. En bekräftelse har skickats till din epost.'
+      signed_up: 'Ett nytt konto har skapats. En bekräftelse har skickats med mejl.'
       updated: 'Ditt konto har uppdaterats.'
       destroyed: 'Hej då! Ditt konto har avregistrerats. Vi hoppas få se dig snart igen.'
+      edit:
+        change_password_or_email: 'Ändra lösenord eller mejladress.'
+        submit: "Ändra"
+        back: "Tillbaka till ditt konto"
+        
     unlocks:
       send_instructions: 'Du kommer få epost med instruktioner om hur du kan låsa upp ditt konto inom några minuter.'
       unlocked: 'Ditt konto har låsts upp. Du är nu inloggad.'
+      
     mailer:
       confirmation_instructions:
-        subject: 'Instruktioner om bekräftning av konto'
+        subject: 'Bekräfta ditt användarkonto på Kalendern'
       reset_password_instructions:
-        subject: 'Instrukionter om återställning av lösenord'
+        subject: 'Ändring av lösenord på Kalendern'
       unlock_instructions:
-        subject: 'Instruktioner om upplåsning av konto'      
+        subject: 'Lås upp dit användarkonto på Kalendern'      
         

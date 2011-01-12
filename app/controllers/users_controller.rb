@@ -57,7 +57,7 @@ protected
     else
       unless current_user.is_admin?
         flash[:alert] = t 'flash.actions.not_admin'
-        redirect_to :back
+        redirect_to :root #TODO if refer set --> :back
       end
     end
   end
