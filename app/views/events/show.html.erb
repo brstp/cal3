@@ -67,7 +67,7 @@
   <%= f.error_messages %>
   <%= f.inputs  do %>
     <%= f.input :to_name, :as => :hidden %>
-    <li class="string optional" ><label><%= MailMessage.human_attribute_name :to_name  %></label><%= @mail_message.to_name %></li>
+    <li class="string optional" ><label><%= MailMessage.human_attribute_name :to_name  %></label><%= image_tag avatar_url(@event) %> <%= @mail_message.to_name %></li>
     <%= f.input :mail_body , :as => :text , :input_html => {:rows => 8, :cols => 48}%>
     
     <% if @mail_message.from_email.blank? %> 
