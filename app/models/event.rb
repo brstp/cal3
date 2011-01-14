@@ -8,6 +8,8 @@ class Event < ActiveRecord::Base
   belongs_to :organizer
 
   before_save :merge_start_datetime, :merge_stop_datetime
+  after_validation :fetch_coordinates
+
 
   attr_accessible :subject, :intro, :description, :street, :zip, :city, :loc_descr, :lat, :lng, :municipality_id, :start_date, :start_time, :stop_date, :stop_time, :organizer_id,   :phone_number, :phone_name, :email, :email_name
 
@@ -22,110 +24,114 @@ class Event < ActiveRecord::Base
   validates :email, :email => true
   # validates_presence_of :phone_name, :unless => :blank_phone_number
 
+  geocoded_by :street, :latitude => :lat, :longitude => :lng
 
 #  searchable do
 #    string :subject
 #    text :description
 #  end
 
-
+  def location
+    output_str = street + ', ' + city + ', ' + municipality.name + ', Sverige'
+    output_str
+  end
 
   def upcoming_events
-    self.find(:all, :conditions => ["stop_datetime >= '#{Time.now}'"], :order => "start_datetime ASC")  
+    self.find(:all, :conditions => ["stop_datetime >= '#{Time.now}'"], :order => "start_datetime ASC")
   end
-  
+
   def municipality_short
     municipality.short_name
   end
 
   def duration
     # TODO if not same day, better wording of end time, depending of length
-    duration = I18n.localize(start_datetime, :format => :longest) + " - " 
+    duration = I18n.localize(start_datetime, :format => :longest) + " - "
     if @start_date != @stop_date
       duration += I18n.localize(stop_datetime, :format => :longest)
     end
     duration += I18n.localize(stop_datetime, :format => :time)
   end
- 
+
 
   def start_date=(date_str)
     @start_date = date_str.strip
   end
-  
+
   def start_time=(time_str)
     @start_time = time_str.strip
   end
-  
+
   def stop_date=(date_str)
     @stop_date = date_str.strip
   end
 
   def stop_time=(time_str)
     @stop_time = time_str.strip
-  end 
-  
+  end
+
 
   def start_date
-    if(self.start_datetime) then 
-      I18n.localize(self.start_datetime, :format => :date) 
-    else 
+    if(self.start_datetime) then
+      I18n.localize(self.start_datetime, :format => :date)
+    else
       @start_date  ||= I18n.localize((Time.now + 2.days), :format => :date) #default
     end
-  end  
+  end
 
    def stop_date
-    if(self.stop_datetime) then 
-      I18n.localize(self.stop_datetime, :format => :date) 
-    else 
+    if(self.stop_datetime) then
+      I18n.localize(self.stop_datetime, :format => :date)
+    else
       @stop_date  ||= I18n.localize((Time.now + 2.days), :format => :date)
     end
   end
-  
+
   def start_time
-    if(self.start_datetime) then 
-      I18n.localize(self.start_datetime, :format => :time) 
-    else 
+    if(self.start_datetime) then
+      I18n.localize(self.start_datetime, :format => :time)
+    else
       @start_time ||= "19.00" #default
     end
   end
 
-  
+
   def stop_time
-    if(self.stop_datetime) then 
+    if(self.stop_datetime) then
       I18n.localize(self.stop_datetime, :format => :time)
-    else 
+    else
       @stop_time ||= "19.00" #default
     end
   end
- 
+
 
 protected
- 
-  def merge_start_datetime 
+
+  def merge_start_datetime
     self.start_datetime = Timeliness.parse(@start_date + " " + @start_time) if errors.empty?
   end
-  
-  def merge_stop_datetime 
+
+  def merge_stop_datetime
     self.stop_datetime = Timeliness.parse(@stop_date + " " + @stop_time) if errors.empty?
   end
 
   def validates_start_time
-    errors.add(:start_time, I18n.t('errors.messages.invalid_time')) unless Timeliness.parse(@start_time) 
+    errors.add(:start_time, I18n.t('errors.messages.invalid_time')) unless Timeliness.parse(@start_time)
   end
 
   def validates_start_date
-    errors.add(:start_date, I18n.t('errors.messages.invalid_date')) unless Timeliness.parse(@start_date) 
+    errors.add(:start_date, I18n.t('errors.messages.invalid_date')) unless Timeliness.parse(@start_date)
   end
-    
- 
+
+
   def validates_stop_time
-    errors.add(:stop_time, I18n.t('errors.messages.invalid_time')) unless Timeliness.parse(@stop_time) 
+    errors.add(:stop_time, I18n.t('errors.messages.invalid_time')) unless Timeliness.parse(@stop_time)
   end
 
   def validates_stop_date
-      errors.add(:stop_date, I18n.t('errors.messages.invalid_date')) unless Timeliness.parse(@stop_date) 
+      errors.add(:stop_date, I18n.t('errors.messages.invalid_date')) unless Timeliness.parse(@stop_date)
   end
-  
+
 
   def validates_start_stop
     if errors.empty?

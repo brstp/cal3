@@ -20,5 +20,19 @@ module LayoutHelper
     content_for(:head) { javascript_include_tag(*args) }
   end
   
+  def map_marker(lat, lng)
+   str = raw '<script type="text/javascript">'
+   str += raw "$(document).ready(function() { $('#map_canvas').googleMaps({ latitude: #{lat}, longitude: #{lng}, depth: 10, markers: { latitude: #{lat}, longitude: #{lng}, draggable:false } }); });"
+   str += raw '</script>' 
+   str
+  end
+ 
+ def map_marker_dragable(lat, lng)
+   str = raw '<script type="text/javascript">'
+   str += raw "$(document).ready(function() { $('#map_canvas').googleMaps({ latitude: #{lat}, longitude: #{lng}, depth: 10, markers: { latitude: #{lat}, longitude: #{lng}, draggable: true } }); });"
+   str += raw '</script>' 
+   str
+  end
+  
   
 end

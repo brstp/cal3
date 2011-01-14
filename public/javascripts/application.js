@@ -1,6 +1,8 @@
 ﻿// Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 
+
+
 $(function() {
 $.datepicker.setDefaults({
    maxDate: '+2y',
@@ -8,7 +10,7 @@ $.datepicker.setDefaults({
 //   showOn: 'both',
 //   buttonImageOnly: false,
 //   buttonImage: 'calendar.gif',
-//   buttonText: 'Calendar' 
+//   buttonText: 'Calendar'
 });
 
  $("#event_start_date").datepicker();
@@ -27,23 +29,10 @@ function toggle() {
 		ele.style.display = "block";
 		text.innerHTML = "Ta bort mejlformuläret";
 	}
-} 
- 
+}
 
-// $('.panel').hide();
-// $(document).ready(function(){
-	// $('.collapseDiv').collapser({
-		// target: 'next',
-		// effect: 'slide',
-		// changeText: 1,
-		// expandHtml: 'Mejla evenemangets kontaktperson',
-		// collapseHtml: 'Ta bort mejlformuläret',
-		// expandClass: 'expand',
-		// collapseClass:'collapse'
-	// }, function(){
-	// $('.panel').slideUp();
-// });
-// });
+
+
 
 
 // Sets the form focus to the first element found in forms[0] that

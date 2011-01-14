@@ -70,6 +70,7 @@ GEM
       activesupport (= 3.0.3)
       bundler (~> 1.0)
       railties (= 3.0.3)
+    rails-geocoder (0.9.5)
     railties (3.0.3)
       actionpack (= 3.0.3)
       activesupport (= 3.0.3)
@@ -109,6 +110,7 @@ DEPENDENCIES
   mocha
   nifty-generators
   rails (= 3.0.3)
+  rails-geocoder
   sqlite3-ruby
   sunspot_rails (= 1.2.rc4)
   timeliness

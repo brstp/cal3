@@ -30,10 +30,21 @@
       <%= f.input :zip %>
       <%= f.input :city %>
       <%= f.input :loc_descr %>
+<!--
       <%= f.input :lat %>
       <%= f.input :lng %>
-
+-->
   <p><%= f.buttons %></p> 
-    
+  
+  <div class = "show_map" >
+  <div id="map_canvas" style="width: 100%; height: 100%">
+  </div>
+</div>
+    Longitude: <span id="Longitud"></span>
+    Latitude: <span id="Latitud"></span>
+
+ 
+  
   <% end %>
 <% end %>
+<%= map_marker_dragable(@event.lat, @event.lng) %>

@@ -95,3 +95,8 @@ a {
   display: inline-block;
   width: 400px;
 }
+
+.show_map {
+  width: 300px; 
+  height: 300px
+}
