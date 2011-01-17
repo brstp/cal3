@@ -26,8 +26,9 @@ module LayoutHelper
    str += raw '</script>' 
    str
   end
- 
- def map_marker_dragable(lat, lng)
+
+#TODO remove or rewrite. Not used  
+ def map_marker_draggable(lat, lng)
    str = raw '<script type="text/javascript">'
    str += raw "$(document).ready(function() { $('#map_canvas').googleMaps({ latitude: #{lat}, longitude: #{lng}, depth: 10, markers: { latitude: #{lat}, longitude: #{lng}, draggable: true } }); });"
    str += raw '</script>' 

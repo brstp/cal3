@@ -1,4 +1,4 @@
-class Event < ActiveRecord::Base
+﻿class Event < ActiveRecord::Base
 
   #TODO: Move default start/stop dates/times to inializers
   #TODO: Check if use of 'self' is ok
@@ -8,7 +8,7 @@ class Event < ActiveRecord::Base
   belongs_to :organizer
 
   before_save :merge_start_datetime, :merge_stop_datetime
-  after_validation :fetch_coordinates
+  after_validation :consider_fetch
 
 
   attr_accessible :subject, :intro, :description, :street, :zip, :city, :loc_descr, :lat, :lng, :municipality_id, :start_date, :start_time, :stop_date, :stop_time, :organizer_id,   :phone_number, :phone_name, :email, :email_name
@@ -31,6 +31,37 @@ class Event < ActiveRecord::Base
 #    text :description
 #  end
 
+  def consider_fetch
+    if lat == nil or lng == nil
+    fetch_coordinates
+    end
+  end
+
+  #TODO A generic degree to Sdd°mm,mmm converter.
+  def degrees_to_degrees_minutes degrees_float
+    degrees = degrees_float.to_i
+    minutes = ((degrees_float - degrees).abs * 60 * 1000).to_i/1000.0
+    return degrees.to_s + '°' + minutes.to_s + '\''
+  end
+  
+  def lat_lng
+    pos_str = ''
+    if lat >= 0 
+      pos_str += 'N '
+    else
+      pos_str += 'S '
+    end
+    pos_str += degrees_to_degrees_minutes(lat) 
+    pos_str += ' '
+    if lng >= 0 
+      pos_str += 'O '
+    else
+      pos_str += 'V '
+    end
+    pos_str += degrees_to_degrees_minutes(lng)
+    pos_str
+  end
+  
   def location
     output_str = street + ', ' + city + ', ' + municipality.name + ', Sverige'
     output_str
