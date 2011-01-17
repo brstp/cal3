@@ -4,8 +4,7 @@
     <%= f.input :name %>
     <%= f.input :description %>
     <%= f.input :website %>
-    <input id="organizer_user_ids_" name="organizer[user_ids][]" type="hidden" value="" />
-    <%= f.input :users %>
+    <%= f.input :users, :as => :hidden %>
   <% end %>
  
  
