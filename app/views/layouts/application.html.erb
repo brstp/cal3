@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8"> 
@@ -39,10 +39,10 @@
 	<div id="topbar">
 		
 		<div id="nav" class="grid_11 alpha">
-			<ul id="pagenav" class="menu"><li id="menu-item-34" class="menu-item menu-item-type-custom menu-item-34"><a href="http://www.foreningskalendern.se/">Startsidan</a></li>
-<li id="menu-item-37" class="menu-item menu-item-type-custom menu-item-37"><a href="http://www.foreningskalendern.se/add">Lägg in evenemang</a></li>
-<li id="menu-item-35" class="menu-item menu-item-type-custom menu-item-35"><a href="http://www.kalendern.se/municipalities">Alla kommuner</a></li>
-<li id="menu-item-36" class="menu-item menu-item-type-custom menu-item-36"><a href="http://www.foreningskalendern.se/organizers">Alla arrangörer</a></li>
+			<ul id="pagenav" class="menu"><li id="menu-item-34" class="menu-item menu-item-type-custom menu-item-34"><a href="/">Startsidan</a></li>
+<li id="menu-item-37" class="menu-item menu-item-type-custom menu-item-37"><a href="/not-yet-implemented/">Lägg in evenemang</a></li>
+<li id="menu-item-35" class="menu-item menu-item-type-custom menu-item-35"><a href="/municipalities">Alla kommuner</a></li>
+<li id="menu-item-36" class="menu-item menu-item-type-custom menu-item-36"><a href="/organizers">Alla arrangörer</a></li>
 <li id="menu-item-23" class="menu-item menu-item-type-custom menu-item-home menu-item-23"><a href="http://info.foreningskalendern.se/">Om kalendern</a></li>
 </ul>		</div><!-- /nav -->
 		
@@ -90,9 +90,7 @@
       <% flash.each do |name, msg| %>
         <%= content_tag :div, msg, :id => "flash_#{name}" %>
       <% end %>
-      <%= content_tag :h1, yield(:title) if show_title? %>
-      <hr>
-
+            
       <%= yield %>
 			
 			</div><!-- /post -->
@@ -102,7 +100,6 @@
 				
     
 
-<!-- You can start editing here. -->
 
 <div id="comments2">
 
@@ -137,27 +134,18 @@
           
           
 					<div id="calendar-nav" class="box">
+          <span class="heading">Snabblänkar:</span>
                 <ul>
-                  <li><%= link_to t('events.show.list'), events_path %></li>
-                  <li><%= link_to t('organizer.show.list'), organizers_path %></li>
-                  <li><%= link_to t('municipality.show.list'), municipalities_path %></li>
-                  <li><%= link_to t('users.show.list'), users_path %></li>
+                  <li><%= link_to t('nav.events'), events_path %></li>
+                  <li><%= link_to t('nav.organizers'), organizers_path %></li>
+                  <li><%= link_to t('nav.municipalities'), municipalities_path %></li>
+                  <li><%= link_to t('nav.users'), users_path %></li>
                 </ul>
 										
 					</div><!-- /post-meta -->
 					
 								
-					<div id="related" class="box">
-			
-					<span class="heading">Relaterade artiklar</span>
-				
-						
-			
-					</div><!-- /related -->
-					
-										
-									
-				
+		
 				
 				
 			<div id="ads" class="box">
@@ -180,7 +168,143 @@
 			
 			</div><!-- /ads -->
 
+					<div id="related" class="box">
 			
+					<span class="heading">Fakta från Wikipedia</span>
+				
+        
+<table class="infobox geography" style="width: 256px; padding: 0; font-size: 89%;">
+<tr class="mergedtoprow" title="Objektets namn (lokalt namn)">
+<td colspan="2" style="text-align: center; font-weight: bold; font-size: 1.25em; background-color: #ffdead;">Ekerö kommun</td>
+</tr>
+<tr class="mergedbottomrow" title="Kategori">
+<td colspan="2" style="text-align: center; background-color: #ffdead;"><a href="/wiki/Kommun" title="Kommun">Kommun</a></td>
+</tr>
+<tr>
+<td colspan="2">
+<table style="width: 100%; background: none; align=center; border: none; padding: 0; margin: 0">
+
+<tr class="mergedrow">
+<td style="width:100%; text-align: center; vertical-align: bottom;">
+<div style="padding-top: 0.4em"><a href="/wiki/Fil:Eker%C3%B6_vapen.svg" class="image"><img alt="Ekerö vapen.svg" src="http://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Eker%C3%B6_vapen.svg/90px-Eker%C3%B6_vapen.svg.png" width="90" height="109" /></a></div>
+<div style="padding-top: 0.4em"><span title=""><a href="/w/index.php?title=Eker%C3%B6_kommunvapen&amp;action=edit&amp;redlink=1" class="new" title="Ekerö kommunvapen [inte skriven än]">Ekerö kommunvapen</a></span></div>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr class="mergedtoprow" title="Land / länder där objektet ligger">
+<th style="white-space: nowrap; text-align: left;">Land</th>
+<td><span style="white-space: nowrap"><a href="/wiki/Fil:Flag_of_Sweden.svg" class="image" title="Sverige"><img alt="Sverige" src="http://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Flag_of_Sweden.svg/22px-Flag_of_Sweden.svg.png" width="22" height="14" class="thumbborder" /></a>&#160;<a href="/wiki/Sverige" title="Sverige">Sverige</a></span></td>
+</tr>
+<tr class="mergedrow" title="Delstat / delstater där objektet ligger">
+
+<th style="white-space: nowrap; text-align: left;"><a href="/wiki/Sveriges_l%C3%A4n" title="Sveriges län">Län</a></th>
+<td><span style="white-space: nowrap"><a href="/wiki/Stockholms_l%C3%A4n" title="Stockholms län">Stockholms län</a></span></td>
+</tr>
+<tr class="mergedrow" title="Region / regioner där objektet ligger">
+<th style="white-space: nowrap; text-align: left;"><a href="/wiki/Landskap_i_Sverige" title="Landskap i Sverige">Landskap</a></th>
+<td><span style="white-space: nowrap"><a href="/wiki/Uppland" title="Uppland">Uppland</a></span></td>
+</tr>
+<tr class="mergedrow" title="Distrikt där objektet ligger">
+<th style="white-space: nowrap; text-align: left;"><a href="/wiki/Domsaga" title="Domsaga">Domsaga</a></th>
+<td><span style="white-space: nowrap"><a href="/wiki/Solna_tingsr%C3%A4tt" title="Solna tingsrätt">Solna domsaga</a></span></td>
+</tr>
+
+<tr class="mergedrow" style="height: 0.2em;">
+<td colspan="2"></td>
+</tr>
+<tr class="mergedtoprow" title="Huvudstad">
+<th style="white-space: nowrap; text-align: left;"><a href="/wiki/Centralort" title="Centralort">Centralort</a></th>
+<td><a href="/wiki/Eker%C3%B6" title="Ekerö">Ekerö</a></td>
+</tr>
+<tr class="mergedrow" style="height: 0.2em;">
+<td colspan="2"></td>
+</tr>
+<tr class="mergedtoprow" title="Area">
+<th style="white-space: nowrap; text-align: left;"><a href="/wiki/Areal" title="Areal" class="mw-redirect">Areal</a></th>
+<td>387&#160;<a href="/wiki/Kvadratkilometer" title="Kvadratkilometer">km²</a> <i>(jan 2010)<sup id="cite_ref-Statmallen_Sverige_Areal_totalt_0-0" class="reference"><a href="#cite_note-Statmallen_Sverige_Areal_totalt-0">[1]</a></sup><br />
+
+<a href="/wiki/Lista_%C3%B6ver_Sveriges_kommuner" title="Lista över Sveriges kommuner">219:e</a> största (av 290)</i></td>
+</tr>
+<tr class="mergedrow" title="Landarea">
+<td style="white-space: nowrap; text-align: left;">&#160;-&#160;land</td>
+<td>216&#160;<a href="/wiki/Kvadratkilometer" title="Kvadratkilometer">km²</a></td>
+</tr>
+<tr class="mergedrow" title="Vattenarea">
+<td style="white-space: nowrap; text-align: left;">&#160;-&#160;vatten</td>
+
+<td>170&#160;<a href="/wiki/Kvadratkilometer" title="Kvadratkilometer">km²</a></td>
+</tr>
+<tr class="mergedrow" title="Area för storstadsområdet (med förorter)">
+<td style="white-space: nowrap; text-align: left;">&#160;-&#160;storstadsområde</td>
+<td>6&#160;519&#160;<a href="/wiki/Kvadratkilometer" title="Kvadratkilometer">km²</a> <i>(juni 2010)<br /></i></td>
+</tr>
+<tr class="mergedrow" style="height: 0.2em;">
+<td colspan="2"></td>
+
+</tr>
+<tr class="mergedtoprow" title="Total folkmängd, inom ortens administrativa gränser">
+<th style="white-space: nowrap; text-align: left;"><a href="/wiki/Folkm%C3%A4ngd" title="Folkmängd">Folkmängd</a></th>
+<td>25&#160;347&#160;(sept. 2010) <i><sup id="cite_ref-Statmallen_Befolkning_i_Sveriges_kommuner_1-0" class="reference"><a href="#cite_note-Statmallen_Befolkning_i_Sveriges_kommuner-1">[2]</a></sup><br />
+<a href="/wiki/Lista_%C3%B6ver_Sveriges_kommuner" title="Lista över Sveriges kommuner">101:a</a> största (av 290)</i></td>
+</tr>
+<tr class="mergedrow" title="Hela storstadsområdets folkmängd, inklusive förorter">
+<td style="white-space: nowrap; text-align: left;">&#160;-&#160;storstadsområde</td>
+
+<td>2&#160;046&#160;103&#160;(sept. 2010<sup id="cite_ref-Statmallen_Befolkning_i_Sveriges_kommuner_1-1" class="reference"><a href="#cite_note-Statmallen_Befolkning_i_Sveriges_kommuner-1">[2]</a></sup>) <i><br />
+del av <a href="/wiki/Stor-Stockholm" title="Stor-Stockholm" class="mw-redirect">Stor-Stockholm</a></i></td>
+</tr>
+<tr class="mergedrow" title="Befolkningstäthet">
+<th style="white-space: nowrap; text-align: left;"><a href="/wiki/Befolkningst%C3%A4thet" title="Befolkningstäthet">Befolkningstäthet</a></th>
+<td>117,14&#160;invånare/<a href="/wiki/Kvadratkilometer" title="Kvadratkilometer">km²</a> <i><sup id="cite_ref-Statmallen_Befolkning_i_Sveriges_kommuner_1-2" class="reference"><a href="#cite_note-Statmallen_Befolkning_i_Sveriges_kommuner-1">[2]</a></sup><sup id="cite_ref-Statmallen_Sverige_Areal_totalt_0-1" class="reference"><a href="#cite_note-Statmallen_Sverige_Areal_totalt-0">[1]</a></sup><br />
+
+<a href="/wiki/Lista_%C3%B6ver_Sveriges_kommuner" title="Lista över Sveriges kommuner">45:e</a> högsta (av 290)</i></td>
+</tr>
+<tr class="mergedrow" title="Befolkningstäthet, storstadsområde inklusive förorter">
+<td style="white-space: nowrap; text-align: left;">&#160;-&#160;storstadsområde</td>
+<td>314&#160;invånare/<a href="/wiki/Kvadratkilometer" title="Kvadratkilometer">km²</a></td>
+</tr>
+<tr class="mergedrow" style="height: 0.2em;">
+<td colspan="2"></td>
+</tr>
+
+<tr class="mergedtoprow" title="Fritt fält utan beskrivning">
+<th style="white-space: nowrap; text-align: left;"><a href="/wiki/Kommunkod" title="Kommunkod">Kommunkod</a></th>
+<td>0125</td>
+</tr>
+<tr class="mergedrow" style="height: 0.2em;">
+<td colspan="2"></td>
+</tr>
+<tr>
+<td colspan="2">
+<div style="width: 256px; margin-left: auto; margin-right: auto;">
+<div style="position: relative;">
+<div style="position: relative;">
+<div class="center">
+<div class="floatnone"><a href="/wiki/Fil:Eker%C3%B6_Municipality_in_Stockholm_County.png" class="image"><img alt="Ekerö Municipality in Stockholm County.png" src="http://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Eker%C3%B6_Municipality_in_Stockholm_County.png/256px-Eker%C3%B6_Municipality_in_Stockholm_County.png" width="256" height="348" /></a></div>
+</div>
+
+</div>
+</div>
+</div>
+</td>
+</tr>
+<tr title="Officiell eller betydande webbplats">
+<td colspan="2" style="text-align: center;"><b>Webbplats:</b> <a href="http://www.ekero.se/" class="external text" rel="nofollow">www.ekero.se</a></td>
+</tr>
+<tr class="mergedrow" style="height: 0.2em;">
+<td colspan="2"></td>
+</tr>
+<tr title="Fotnoter">
+<td colspan="2" style="text-align: center;">Befolkningstäthet beräknas enbart på landareal.</td>
+
+</tr>
+</table>
+
+						
+			
+					</div><!-- /related -->			
 					
 			
 			<div class="clear"></div>

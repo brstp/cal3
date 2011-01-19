@@ -5,20 +5,19 @@
   <%= auto_discovery_link_tag( :rss, organizer_url(:format => 'rss') , {:title => @organizer.name + t('app.s') + ' ' + t('.organizers_event') + ' ' + t('app.at') + ' ' +  t('app.site_name')}) %>
 <% end %> 
 
-  
-  
 <p>
-  <strong><%=t '.description' =%>:</strong>
   <%= simple_format @organizer.description %>
 </p>
+
+<% unless @organizer.website.blank? %>
 <p>
   <strong><%=t '.website' =%>:</strong>
   <%= link_to @organizer.website, @organizer.website %>
 </p>
+<% end %>
 
-<p>
-  <strong><%= t '.upcoming' %>:</strong>
-</p>
+
+<h3><%= t '.upcoming' %>:</h3>
 
 <table>
   <% for event in @organizer.upcoming_events %>  
@@ -40,8 +39,9 @@
 
 <% if current_user %>
   <% if current_user.authorized? @organizer %>
+  <div class = "authorized">
   <p>
-    <strong><%= t '.members' %>:</strong>
+    <h3><%= t '.members' %>:</h3>
   </p>
   <ol class = "user_list">
     <% for user in @organizer.users %>
@@ -54,10 +54,9 @@
     <% end %> 
   </ol>
 
-<hr />
 
 <p>
-  <strong><%= t '.all_registered_users' %>:</strong>
+  <h3><%= t '.all_registered_users' %>:</h3>
 </p>
 
 <ol class = "user_list">
@@ -69,11 +68,10 @@
     </li>  
   <% end %>
 </ol>
-
+  </div> <!-- authorized -->
 <% end %>
 <% end %>
 
-<hr />
 
    
 <p>
@@ -86,17 +84,19 @@
 <%= t('.share_as_iframe') %><br />
 <code><%= h '<iframe src="' + organizer_url(:format => :ihtml) + '"  frameborder="1" ></iframe>' %></code>
 </p>
-<p>&nbsp;</p>
+
 <% if current_user %>
   <% if current_user.authorized? @organizer %>
+  <div class = "authorized">
   
-<p>
-  <%= link_to t('app.edit') + " "+ @organizer.name + t('app.s') + ' ' + t('app.page'), edit_organizer_path(@organizer) %> 
+<ul>
+  <li><%= link_to t('app.edit') + " "+ @organizer.name + t('app.s') + ' ' + t('app.page'), edit_organizer_path(@organizer) %></li>
 
   <% if current_user.try :is_admin %>
-  | <%= link_to t('app.destroy') + " "+ @organizer.name, @organizer, :confirm => t('app.are_you_sure') + ' ' +@organizer.name + '?', :method => :delete %> 
+  <li><%= link_to t('app.destroy') + " "+ @organizer.name, @organizer, :confirm => t('app.are_you_sure') + ' ' +@organizer.name + '?', :method => :delete %></li>
   <% end %>
 </p>
-
+</ul>
+</div> <!-- authorized -->
 <%end%>
 <%end%>

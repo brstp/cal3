@@ -59,7 +59,12 @@
 }
 
 .user_list {
-  background-color: #eee;
+  background-color: #d4d0c8;
+}
+
+.authorized {
+  background-color: #d4d0c8;
+  padding: 5px 10px;
 }
 
 .user {
@@ -68,7 +73,7 @@
 }
 
 .show_map {
-  width: 300px; 
+  width: 100%; 
   height: 300px
 }
 

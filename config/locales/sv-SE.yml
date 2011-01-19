@@ -284,6 +284,12 @@
     page: "sida"
     lat_lng: "Latitud/longitud"
     
+  nav:
+    events: "Alla evenemang"
+    organizers: "Alla arrangör"
+    municipalities: "Alla kommuner"
+    users: "Alla användare"
+    
   error:
     messages:
       invalid_date: "ser inte ut som ett datum"
