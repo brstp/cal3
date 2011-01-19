@@ -1,0 +1,294 @@
+/*--------------------*/
+/*>>>>> Setup and Reset <<<<<*/
+/*--------------------*/
+
+body  {
+	color: #000;
+	background-color: #fff;
+}
+
+h1, h2, h3, h4, h5, h6  {
+	color: #000;
+}
+
+h1 a:link, h1 a:visited,
+h2 a:link, h2 a:visited,
+h3 a:link, h3 a:visited,
+h4 a:link, h4 a:visited,
+h5 a:link, h5 a:visited,
+h6 a:link, h6 a:visited  {
+	color: #000;
+}
+
+/*--------------------*/
+/*>>>>> Navigation <<<<<*/
+/*--------------------*/
+
+a:link, a:visited  {
+	color: #00649e;
+}
+
+#pagenav li a:link, #pagenav li a:visited  {
+	color: #000;
+}
+
+#pagenav li a:hover, #pagenav li.current_page_item a  {
+	background-color: #e1e1e1;
+}
+
+#pagenav li.rss  {
+	background: url(rss.gif) no-repeat left center;
+}
+
+/* Style drop down list */
+
+#pagenav li ul {
+	background: #D8D8D8;
+}
+
+#pagenav li ul li {
+	border-bottom: 1px solid #ccc;
+}
+
+#pagenav li ul li a {
+	color: #23262A !important;
+}
+
+/*--------------------*/
+/*>>>>> Layout <<<<<*/
+/*--------------------*/
+
+#topbar  {
+	border-bottom: 3px solid #e1e1e1;
+}
+
+#search label  {
+	color: #000;
+}
+
+#search input  {
+	background-color: #f5f5f5;
+	border: 1px solid #e1e1e1;
+	color: #000;
+}
+
+#header  {
+	border-bottom: 1px solid #e1e1e1;
+}
+
+#about img  {
+	border: 3px solid #e1e1e1;
+}
+
+#about a.more:link, #about a.more:visited  {
+	color: #d10000;
+}
+
+#featured  {
+	border-top: 2px solid #e1e1e1;
+	border-bottom: 2px solid #e1e1e1;
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+
+#featured #article .meta  {
+	border-left: 1px solid #906e90;
+}
+
+#featured #article .thumb img  {
+	border: 5px solid #ddd;
+}
+
+#featured #full_article .image img  {
+	border: 5px solid #e1e1e1;
+}
+
+#twitter p  {
+	background-color: #ddd;
+}
+
+#twitter a#follow  {
+	background: url(twitterbg.png) no-repeat left top;
+}
+
+#home_content  {
+	border-top: 1px solid #e1e1e1;
+	background: url(maincontentbg.jpg) repeat-y top left;
+}
+
+#single_content  {
+	margin-top: 2px;
+	border-top: 2px solid #e1e1e1;
+	background: url(singlecontentbg.jpg) repeat-y top left;
+}
+
+#left .box  {
+	border-bottom: 1px solid #e1e1e1;
+}
+
+#left_single  {
+}
+
+#middle .box  {
+	border-bottom: 1px solid #e1e1e1;
+}
+
+#right .box  {
+	border-bottom: 1px solid #e1e1e1;
+}
+
+.box ul li  {
+	border-bottom: 1px solid #e1e1e1;
+}
+
+#more_posts .item.left  {
+	border-right: 1px solid #e1e1e1;
+}
+
+#more_posts .item p img, .post .thumbnail  {
+	border: 1px solid #dadada;
+}
+
+#ad  {
+	border-bottom: 1px solid #e1e1e1;
+}
+
+.lifestream_meta, .lifestream_meta a {
+	color: #AAAAAA;
+}
+
+#popular ul li  {
+	border-bottom: 1px solid #e1e1e1;
+}
+
+#recent_comments ul li  {
+	border-bottom: 1px solid #e1e1e1;
+}
+
+#recent_comments ul li a:link, #recent_comments ul li a:visited  {
+	color: #000;
+}
+
+#recent_comments ul li a .author  {
+	font-family: Georgia,Times,Serif;
+	font-style: italic;
+	font-weight: bold;
+	color: #00649e;
+}
+
+#related ul li a:link, #related ul li a:visited  {
+	color: #000;
+	border-bottom: 1px solid #e1e1e1;
+}
+
+#video .video_container  {
+	background-color: #dadada;
+}
+
+#video .player  {
+	border: 3px solid #fff;
+}
+
+#video h3.playing a:link, #video h3.playing a:visited  {
+	color: #6a6a6a;
+}
+
+#ads .adblock  {
+	background-color: #dadada;
+}
+
+#cats_archives #cats  {
+	border-right: 1px solid #e1e1e1;
+}
+
+#cats_archives ul li  {
+	border-bottom: 1px solid #e1e1e1;
+}
+
+#subscribe ul  {
+	background-color: #dadada;
+	border-bottom: 1px solid #e1e1e1;
+	border-top: 1px solid #e1e1e1;
+}
+
+#subscribe ul li  {
+	background: url(rss.gif) no-repeat left center;
+}
+
+#footer  {
+	border-top: 3px solid #e1e1e1;
+}
+
+#footer ul li.rss  {
+	background: url(rss_small.gif) no-repeat left center;
+}
+
+#footer ul li a:link, #footer ul li a:visited  {
+	color: #000;
+}
+
+/*--------------------*/
+/*>>>>> Post Styles <<<<<*/
+/*--------------------*/
+
+.post  {
+	padding: 0 10px;
+	border-bottom: 1px solid #e1e1e1;
+}
+
+/*--------------------*/
+/*>>>>> Comments Styles <<<<<*/
+/*--------------------*/
+
+#comments span.heading  {
+	border-bottom: 1px solid #e1e1e1;
+}
+
+#comments ol  {
+	border-bottom: 1px solid #e1e1e1;
+}
+
+#comments ol li  {
+	border-bottom: 1px solid #e1e1e1;
+}
+
+#comments ol li .gravatar img  {
+	border: 2px solid #dadada;
+}
+
+#commentform .textarea textarea  {
+	color: #000;
+	background-color: #d5d5d5;
+}
+
+#commentform .details input.txt  {
+	color: #000;
+	background-color: #d5d5d5;
+}
+
+#commentform .details input#submit  {
+	border-color: #d5d5d5;
+	background-color: #e1e1e1;
+}
+
+div.wp-pagenavi  {
+	border-top: 1px solid #e1e1e1;
+}
+
+.wp-pagenavi span.current  {
+	background-color: #e1e1e1;
+}
+
+.entry blockquote  {
+	color: #666;
+}
+
+.entry img  {
+	border: 1px solid #333;
+}
+
+
+
+
+
+

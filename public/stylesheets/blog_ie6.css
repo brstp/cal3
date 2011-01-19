@@ -1,0 +1,27 @@
+#search label  {
+	display: inline-block;
+	margin-top: -20px;
+}
+
+#featured  {
+	padding: 0 0px 20px 10px;
+	width: 950px;
+}
+
+#featured #full_article  {
+	width: 950px;
+}
+
+#right .box  {
+	padding: 10px;
+	width: 280px;
+}
+
+#cats_archives  {
+	float: left;
+	padding: 10px!important;
+}
+
+#subscribe ul  {
+	padding: 10px 3px;
+}

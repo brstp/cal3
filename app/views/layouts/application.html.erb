@@ -1,28 +1,91 @@
 ﻿<!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8"> 
     <title><%= (content_for?(:title) ? yield(:title) : "") + ' | ' + t('app.sitename') %></title>
-    <%= stylesheet_link_tag 'application', 'formtastic', 'formtastic_changes' %>
-    <%= javascript_include_tag  %>
-    <%= stylesheet_link_tag  "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.4/themes/smoothness/jquery-ui.css" %>
-    <%= javascript_include_tag "jquery.js", "jquery-ui.js", "jquery.rails.js", "jquery.ui.datepicker-sv.js", "jquery.googlemaps1.01.js", "http://maps.google.com/maps?file=api&v=3&sensor=false", "application" %>
-    <%= favicon_link_tag %>
-    <%= csrf_meta_tag %>
-    <%= yield(:head) %>
-  </head>
-  <body>
-    
-    <div id="container">
-      <div id="user_nav">
-	    <% if user_signed_in? %>
-	      <%= t 'devise.sessions.signed_in_as' %> <%= current_user.email %>. <%= t 'devise.sessions.not_you' %> <%= link_to I18n.t('devise.sessions.sign_out'), destroy_user_session_path %>
-        <%= link_to (t 'devise.sessions.change_settings'), edit_user_path(current_user) %> 
-	    <% else %>
-	      <%= link_to I18n.t('devise.sessions.sign_up'), new_user_registration_path %> <%= I18n.t('app.or') %> 
-        <%=link_to I18n.t('devise.sessions.sign_in'), new_user_session_path %>
-	    <% end %>
-	  </div>
-    <h1><%= link_to "Kalendern", "/" %></h1>
+  <%= stylesheet_link_tag 'application_mini' %>
+  <%= stylesheet_link_tag "blog_style" %>
+  <%= stylesheet_link_tag "blog_css_reset", :media => :all %>
+  <%= stylesheet_link_tag "blog_css_960", :media => :all %>
+  <%= stylesheet_link_tag "blog_style" %>
+	
+	<!--[if IE 7]>
+		<link rel="stylesheet" type="text/css" media="all" href="/public/stylesheets/blog_ie7.css" />
+	<![endif]-->
+
+	<!--[if IE 6]>
+		<link rel="stylesheet" type="text/css" media="all" href="/public/stylesheets/blog_ie6.css" />
+		<script type="text/javascript" src="/public/stylesheets/blog/includes/js/pngfix.js"></script>
+		<script type="text/javascript" src="http://info.foreningskalendern.se/wp-content/themes/bloggingstream/includes/js/menu.js"></script>
+	<![endif]-->
+  
+  <%= stylesheet_link_tag "blog_styles_default", :media => :all %>
+  <%= stylesheet_link_tag "blog_custom", :media => :all %>
+
+  <meta name='robots' content='noindex,nofollow' />
+  
+  <%= javascript_include_tag  %>
+  <%= stylesheet_link_tag  "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.4/themes/smoothness/jquery-ui.css" %>
+  <%= javascript_include_tag "jquery.js", "jquery-ui.js", "jquery.rails.js", "jquery.ui.datepicker-sv.js", "jquery.googlemaps1.01.js", "http://maps.google.com/maps?file=api&v=3&sensor=false", "application" %>
+  <%= favicon_link_tag %>
+  <%= csrf_meta_tag %>
+  <%= yield(:head) %>
+  
+</head>
+
+<body class="single single-post custom unknown">
+
+<div id="container" class="container_16">
+	<div id="topbar">
+		
+		<div id="nav" class="grid_11 alpha">
+			<ul id="pagenav" class="menu"><li id="menu-item-34" class="menu-item menu-item-type-custom menu-item-34"><a href="http://www.foreningskalendern.se/">Startsidan</a></li>
+<li id="menu-item-37" class="menu-item menu-item-type-custom menu-item-37"><a href="http://www.foreningskalendern.se/add">Lägg in evenemang</a></li>
+<li id="menu-item-35" class="menu-item menu-item-type-custom menu-item-35"><a href="http://www.kalendern.se/municipalities">Alla kommuner</a></li>
+<li id="menu-item-36" class="menu-item menu-item-type-custom menu-item-36"><a href="http://www.foreningskalendern.se/organizers">Alla arrangörer</a></li>
+<li id="menu-item-23" class="menu-item menu-item-type-custom menu-item-home menu-item-23"><a href="http://info.foreningskalendern.se/">Om kalendern</a></li>
+</ul>		</div><!-- /nav -->
+		
+		<div id="search">
+		
+			<form method="get" id="searchform" action="http://info.foreningskalendern.se/" class="search-form">
+			
+				<label>Sök</label>	<input type="text" value="Sök" name="s" id="s" class="field" onfocus="if (this.value == 'Sök') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Sök';}" />
+			
+			</form>
+		
+		</div><!-- /search -->
+	
+	</div><!-- /topbar -->
+	
+	<div id="header">
+	
+		<div id="logo">
+		
+			<h1><a href="http://info.foreningskalendern.se" title="Föreningskalendern">Föreningskalendern</a></h1>
+			<h2>Allt som händer &#8211; innan det är försent</h2>
+			
+			<a href="http://info.foreningskalendern.se" title="Föreningskalendern"><img class="logo" src="http://www.lumano.se/img/lumano.gif" alt="Föreningskalendern" /></a>
+			
+		</div><!-- /logo -->
+		
+		<div id="header_ad">
+
+		
+		<a href="http://www.unicef.se/stod-oss"><img src="http://www.unicef.se/images/468x120/akamp-alla-barn-bla-468-120.jpg" width="468" height="60" alt="advert" /></a>
+		
+		
+		
+</div>	
+	</div><!-- /header -->
+
+<div id="single_content">
+	
+		<div id="left_single">
+		
+						
+			<div class="post">
+
 	  
       <% flash.each do |name, msg| %>
         <%= content_tag :div, msg, :id => "flash_#{name}" %>
@@ -31,8 +94,116 @@
       <hr>
 
       <%= yield %>
-      <hr>
-      <p>  <%= link_to t('events.show.list'), events_path %> | <%= link_to t('organizer.show.list'), organizers_path %> | <%= link_to t('municipality.show.list'), municipalities_path %> | <%= link_to t('users.show.list'), users_path %></p>
-    </div>
-  </body>
+			
+			</div><!-- /post -->
+			
+						
+			<div id="comments">
+				
+    
+
+<!-- You can start editing here. -->
+
+<div id="comments2">
+
+	
+
+</div> <!-- /#comments_wrap -->
+
+
+<div id="respond">
+
+</div><!-- /#respond -->
+
+    	
+			</div><!-- /comments -->
+			
+		</div><!-- /left_single -->
+
+				<div id="right">
+				
+								
+					  <div id="user_nav" class="box">
+            <p>
+              <% if user_signed_in? %>
+                <%= t 'devise.sessions.signed_in_as' %> <%= current_user.email %>.<br /> <%= t 'devise.sessions.not_you' %> <%= link_to I18n.t('devise.sessions.sign_out'), destroy_user_session_path %><br />
+                <%= link_to (t 'devise.sessions.change_settings'), edit_user_path(current_user) %> 
+              <% else %>
+                <%= link_to I18n.t('devise.sessions.sign_up'), new_user_registration_path %> <%= I18n.t('app.or') %> 
+                <%=link_to I18n.t('devise.sessions.sign_in'), new_user_session_path %>
+              <% end %>
+              </p>
+          </div> <!-- user_nav -->
+          
+          
+					<div id="calendar-nav" class="box">
+                <ul>
+                  <li><%= link_to t('events.show.list'), events_path %></li>
+                  <li><%= link_to t('organizer.show.list'), organizers_path %></li>
+                  <li><%= link_to t('municipality.show.list'), municipalities_path %></li>
+                  <li><%= link_to t('users.show.list'), users_path %></li>
+                </ul>
+										
+					</div><!-- /post-meta -->
+					
+								
+					<div id="related" class="box">
+			
+					<span class="heading">Relaterade artiklar</span>
+				
+						
+			
+					</div><!-- /related -->
+					
+										
+									
+				
+				
+				
+			<div id="ads" class="box">
+			
+				<span class="heading">Annons</span>
+				
+				<div class="adblock">
+
+									
+
+					<a href="http://www.woothemes.com" title="Stöd vår sponsor"><img src="http://www.woothemes.com/ads/125x125b.jpg" alt="Sponsor" /></a>
+
+									
+
+					<a href="http://www.woothemes.com" title="Stöd vår sponsor"><img src="http://www.woothemes.com/ads/125x125b.jpg" alt="Sponsor" /></a>
+
+										
+
+				</div><!-- /adblock -->
+			
+			</div><!-- /ads -->
+
+			
+					
+			
+			<div class="clear"></div>
+					
+		</div><!-- /right -->
+
+	</div><!-- /single_content -->
+	
+	<div class="clear"></div>	
+
+	<div id="footer">
+		
+		<ul>
+			<li class=""><a href="http://info.foreningskalendern.se" title="Föreningskalendern"><span class="left"></span>Om kalendern<span class="right"></span></a></li>
+			<li class="page_item page-item-6"><a href="http://info.foreningskalendern.se/kundtjanst-kontakt/" title="Kundtjänst &amp; kontakt">Kundtjänst &#038; kontakt</a></li>
+		</ul>
+		
+		
+	</div><!-- /footer -->
+
+</div><!-- /container -->
+
+
+
+</body>
 </html>
