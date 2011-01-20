@@ -44,5 +44,6 @@ gem 'jquery-rails'
 gem 'mail_form'
 gem 'timeliness'
 gem "rails-geocoder", :require => "geocoder"
+gem 'meta-tags', :require => 'meta_tags'
 
 

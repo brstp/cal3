@@ -51,6 +51,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mail_form (1.3.0)
+    meta-tags (1.2.3)
     mime-types (1.16)
     mocha (0.9.10)
       rake
@@ -107,6 +108,7 @@ DEPENDENCIES
   formtastic (~> 1.1.0)
   jquery-rails
   mail_form
+  meta-tags
   mocha
   nifty-generators
   rails (= 3.0.3)

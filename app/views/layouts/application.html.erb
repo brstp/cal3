@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8"> 
-    <title><%= (content_for?(:title) ? yield(:title) : "") + ' | ' + t('app.sitename') %></title>
+  <meta charset="UTF-8"> 
+  <%= display_meta_tags :site => t('app.site_name'), :reverse => true %>
+  <%= stylesheet_link_tag 'formtastic' %>
+  <%= stylesheet_link_tag 'formtastic_changes' %>
   <%= stylesheet_link_tag 'application_mini' %>
   <%= stylesheet_link_tag "blog_style" %>
   <%= stylesheet_link_tag "blog_css_reset", :media => :all %>
@@ -47,13 +49,13 @@
 </ul>		</div><!-- /nav -->
 		
 		<div id="search">
-		
+		<!--
 			<form method="get" id="searchform" action="http://info.foreningskalendern.se/" class="search-form">
 			
 				<label>Sök</label>	<input type="text" value="Sök" name="s" id="s" class="field" onfocus="if (this.value == 'Sök') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Sök';}" />
 			
 			</form>
-		
+		-->
 		</div><!-- /search -->
 	
 	</div><!-- /topbar -->
@@ -123,7 +125,8 @@
 					  <div id="user_nav" class="box">
             <p>
               <% if user_signed_in? %>
-                <%= t 'devise.sessions.signed_in_as' %> <%= current_user.email %>.<br /> <%= t 'devise.sessions.not_you' %> <%= link_to I18n.t('devise.sessions.sign_out'), destroy_user_session_path %><br />
+                <strong>
+                <%= t 'devise.sessions.signed_in_as' %> <%= current_user.email %>.</strong><br /> <%= t 'devise.sessions.not_you' %> <%= link_to I18n.t('devise.sessions.sign_out'), destroy_user_session_path %><br />
                 <%= link_to (t 'devise.sessions.change_settings'), edit_user_path(current_user) %> 
               <% else %>
                 <%= link_to I18n.t('devise.sessions.sign_up'), new_user_registration_path %> <%= I18n.t('app.or') %> 
@@ -139,7 +142,13 @@
                   <li><%= link_to t('nav.events'), events_path %></li>
                   <li><%= link_to t('nav.organizers'), organizers_path %></li>
                   <li><%= link_to t('nav.municipalities'), municipalities_path %></li>
-                  <li><%= link_to t('nav.users'), users_path %></li>
+                  <% if current_user %>
+                    <% if current_user.is_admin? %>
+                      <div class = "authorized" >
+                      <li><%= link_to t('nav.users'), users_path %></li>
+                      </div>
+                    <%end%>
+                  <%end%>
                 </ul>
 										
 					</div><!-- /post-meta -->

@@ -3,14 +3,14 @@
 # to do so you may need to add this line to your ApplicationController
 #   helper :layout
 module LayoutHelper
-  def title(page_title, show_title = true)
-    content_for(:title) { h(page_title.to_s) }
-    @show_title = show_title
-  end
+  # def title(page_title, show_title = true)
+    # content_for(:title) { h(page_title.to_s) }
+    # @show_title = show_title
+  # end
 
-  def show_title?
-    @show_title
-  end
+  # def show_title?
+    # @show_title
+  # end
 
   def stylesheet(*args)
     content_for(:head) { stylesheet_link_tag(*args) }
@@ -35,5 +35,13 @@ module LayoutHelper
    str
   end
   
+  
+  def arranged_by event
+    raw (t('app.arranged_by') + ': ' + link_to( (event.organizer.name+ ' (' + event.organizer.number_of_upcoming_events.to_s + ')'), event.organizer) ) 
+  end
+  
+  def arranged_in event
+    raw (t('app.in_municipality') + ' ' + link_to( (event.municipality.name + ' (' + event.municipality.number_of_upcoming_events.to_s + ')'), event.municipality ))
+  end
   
 end
