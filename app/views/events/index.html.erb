@@ -4,7 +4,41 @@
   <%= auto_discovery_link_tag( :rss, events_url(:format => 'rss') , {:title => t('.rss_title') }) %>
 <% end %> 
 
-
+    <table class="calendar">
+      <caption>Kalender för månad - år </caption>
+      <thead>
+        <tr>
+          <th class="day_box">Dag</th>
+          <th class="month_box">Vad händer?</th>
+        </tr>
+      </thead>
+    <% for event in @events %>
+      <tr>
+        <th class="day_box">
+          <span class="day_of_month">
+            <span class="<%= l(event.start_datetime, :format => :day_of_week) %>">
+              <abbr class="day" title="<%= l(event.start_datetime, :format => :date) %>">
+                <%= l(event.start_datetime, :format => :day_of_month) %>
+              </abbr>
+            </span>
+          </span>
+          <br />
+          <span class="day_of_week">
+            <%= l(event.start_datetime, :format => :day_of_week) %>
+          </span>
+        </th>
+        <td>
+          <ol class="events_with_time">
+            <li class="event"><%= link_to raw("<strong>" + event.subject + '</strong> ' + content_tag(:abbr,  l(event.start_datetime, :format => :clock), :title => "#{l(event.start_datetime, :format => :machine)}") + ', ' + event.municipality_short) , event, :title => t('app.organizer') + ": " + event.organizer.name + ". " + t('app.summary') +": " + event.intro %></li>
+          </ol>
+          <ul class="events_without_time">
+            <li class="event">Fullmåne</li> 
+          </ul>
+        </td>
+      </tr>
+     <% end %>
+    </table>
+    
 
 <table>
   <% for event in @events %>

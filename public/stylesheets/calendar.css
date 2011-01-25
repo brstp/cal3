@@ -1,0 +1,95 @@
+
+table.calendar abbr {
+  border: none;
+}
+
+table.calendar {
+	border-width: 1px;
+	border-spacing: 2px;
+  margin-top: 1em;
+  margin-right: 1em;
+  margin-bottom: 1em;
+	border-style: outset;
+	border-color: green;
+	border-collapse: collapse;
+	background-color: f7f7f7;
+  width: 100%;
+}
+
+table.calendar th {
+	border-width: 1px;
+	padding: 0.3em;
+	border-style: solid;
+	border-color: green;
+	background-color: #f7f7f7;
+	font: bold 14px Arial, Helvetica, sans-serif;
+	text-align: left;
+}
+
+table.calendar td {
+	border-width: 1px;
+	padding: 3px;
+	border-style: solid;
+	border-color: #080;
+	background-color: #f7f7f7;
+}
+
+.calendar thead {
+  /* visibility: hidden; */
+  font-size: 200%;
+  text-align: center;
+  font-weight: bold;
+}
+
+table.calendar td.month_box {
+	font-size: 200%;
+  text-align: center;
+  font-weight: bold;
+}
+
+
+.day_box {
+  vertical-align: top;
+  text-align: center;
+  max-width: 1em;
+}
+
+.day_of_month {
+  color: #000;
+  font-size: 200%;
+}  
+
+.onsdag {
+  color: #c00;
+
+}
+.holiday {
+  color: #c00;
+}
+
+.day_of_week {
+	font: normal 70% Arial, Helvetica, sans-serif;
+} 
+
+.events_with_time {
+  color: #000;
+  list-style-type: none;
+}
+
+.events_without_time {
+  color: #000;
+  list-style-type: none;
+
+}
+
+.event {
+}
+
+.calendar a {
+  background-color: lightyellow;
+  text-decoration: none;
+}
+
+.calendar a:hover{
+  background-color: white;
+}
