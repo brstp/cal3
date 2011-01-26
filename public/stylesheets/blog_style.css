@@ -247,8 +247,14 @@ a:hover  {
 
 #header_ad  {
 	float: right;
-	margin: 35px 10px 0 0;
+	margin: 5px 5px 0 0;
 }
+
+#bottom_ad  {
+	float: left;
+	margin: 10px;
+}
+
 
 #about a.more:link, #about a.more:visited  {
 }

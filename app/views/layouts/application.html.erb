@@ -75,7 +75,7 @@
 		<div id="header_ad">
 
 		
-		<a href="http://www.unicef.se/stod-oss"><img src="http://www.unicef.se/images/468x120/akamp-alla-barn-bla-468-120.jpg" width="468" height="60" alt="advert" /></a>
+		<a href="http://www.unicef.se/stod-oss"><img src="http://www.unicef.se/images/468x120/akamp-alla-barn-bla-468-120.jpg" width="468" height="120" alt="advert" /></a>
 		
 		
 		
@@ -99,24 +99,9 @@
 			</div><!-- /post -->
 			
 						
-			<div id="comments">
-				
-    
-
-
-<div id="comments2">
-
-	
-
-</div> <!-- /#comments_wrap -->
-
-
-<div id="respond">
-
-</div><!-- /#respond -->
-
-    	
-			</div><!-- /comments -->
+      		<div id="bottom_ad">
+		<a href="http://www.unicef.se/stod-oss"><img src="http://www.unicef.se/images/468x120/akamp-alla-barn-bla-468-120.jpg" width="468" height="120" alt="advert" /></a>
+          </div>	<!-- /bottom_ad -->
 			
 		</div><!-- /left_single -->
 
@@ -139,18 +124,21 @@
           
 					<div id="calendar-nav" class="box">
           <span class="heading">Snabblänkar:</span>
-                <ul>
-                  <li><%= link_to t('nav.events'), events_path %></li>
-                  <li><%= link_to t('nav.organizers'), organizers_path %></li>
-                  <li><%= link_to t('nav.municipalities'), municipalities_path %></li>
-                  <% if current_user %>
-                    <% if current_user.is_admin? %>
-                      <div class = "authorized" >
-                      <li><%= link_to t('nav.users'), users_path %></li>
-                      </div>
-                    <%end%>
+            <ul>
+              <li><%= link_to t('nav.events'), events_path %></li>
+              <li><%= link_to t('nav.organizers'), organizers_path %></li>
+              <li><%= link_to t('nav.municipalities'), municipalities_path %></li>
+              <% if current_user %> <li><%= link_to t('nav.new_organizer'), new_organizer_path %></li>
+              <% unless current_user.organizers.empty? and !current_user.is_admin? %>
+<li><%= link_to t('nav.new_event'), new_event_path %></li>
+              <% end %>
+                <% if current_user.is_admin? %>
+                  <li class = "authorized"><%= link_to t('nav.users'), users_path %></li>
                   <%end%>
-                </ul>
+                  <li><%= link_to t('nav.subscribe_rss'), "/events.rss" %>  
+<%= link_to image_tag("rss_icon.gif", :alt => t('nav.rss_alt')), "/event.rss" %></li>                  
+              <%end%>
+            </ul>
 										
 					</div><!-- /post-meta -->
 					

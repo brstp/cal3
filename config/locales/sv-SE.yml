@@ -248,10 +248,10 @@
       long: "%e %B %Y %H.%M"                    # 3 december 2011 13.25
       longest: "%A %e %B %Y klockan %H.%M"      # tisdag 3 december 2011 klockan 13.25 
       time: "%H.%M"                             # 13.45
-      clock: "Kl. %H.%M"                    # Kl. 13.45
+      clock: "Kl. %H.%M"                        # Kl. 13.45
       date: "%Y-%m-%d"                          # 2011-05-24
       day: "%e %b"                              #
-      day_of_month: "%d"
+      day_of_month: "%e"
       month_and_year: "%B %Y"
       day_of_week: "%A"
       machine: "%Y-%m-%dT%H:%M:00%z"
@@ -293,9 +293,13 @@
     
   nav:
     events: "Alla evenemang"
-    organizers: "Alla arrangör"
+    organizers: "Alla arrangörer"
     municipalities: "Alla kommuner"
     users: "Alla användare"
+    new_organizer: "Lägg upp en ny arrangör"
+    new_event: "Lägg upp ny evenemangsannons"
+    subscribe_rss: "Prenumera på flöde med alla evenemangsannonser"
+    rss_alt: ""
     
   error:
     messages:
@@ -518,6 +522,8 @@
   events:
     index:
       title: "Evenemang"
+      page_title: "Alla evenemang. Evenemangskalender för alla arrangörer."
+      meta_description: "Använd föreningskalendern för att hitta kul saker att göra. Annonsera dina evenemang. För föreningar."
       new: "Skapa nytt evenemang"
       subscribe_rss: "Prenumerera på alla evenemang"
       new_organizer: "Skapa ny arrangör"
