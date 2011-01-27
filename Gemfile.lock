@@ -50,11 +50,16 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    mail_form (1.3.0)
+    meta-tags (1.2.3)
     mime-types (1.16)
     mocha (0.9.10)
       rake
     nifty-generators (0.4.2)
+<<<<<<< HEAD
     nokogiri (1.5.0.beta.2)
+=======
+>>>>>>> ee49b4622e0fbd852def588b1847a6e788e17203
     polyglot (0.3.1)
     pr_geohash (1.0.0)
     rack (1.2.1)
@@ -70,6 +75,7 @@ GEM
       activesupport (= 3.0.3)
       bundler (~> 1.0)
       railties (= 3.0.3)
+    rails-geocoder (0.9.5)
     railties (3.0.3)
       actionpack (= 3.0.3)
       activesupport (= 3.0.3)
@@ -91,10 +97,10 @@ GEM
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     tzinfo (0.3.23)
-    validates_timeliness (3.0.2)
+    validates_timeliness (3.0.3)
       timeliness (~> 0.3.2)
     validation_reflection (1.0.0)
-    warden (1.0.2)
+    warden (1.0.3)
       rack (>= 1.0.0)
 
 PLATFORMS
@@ -105,11 +111,18 @@ DEPENDENCIES
   devise
   formtastic (~> 1.1.0)
   jquery-rails
+  mail_form
+  meta-tags
   mocha
   nifty-generators
+<<<<<<< HEAD
   nokogiri (= 1.5.0.beta.2)
+=======
+>>>>>>> ee49b4622e0fbd852def588b1847a6e788e17203
   rails (= 3.0.3)
+  rails-geocoder
   sqlite3-ruby
   sunspot_rails (= 1.2.rc4)
+  timeliness
   validates_timeliness
   validation_reflection

@@ -1,5 +1,7 @@
-// Place your application-specific JavaScript functions and classes here
+﻿// Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
+
+
 
 $(function() {
 $.datepicker.setDefaults({
@@ -8,12 +10,30 @@ $.datepicker.setDefaults({
 //   showOn: 'both',
 //   buttonImageOnly: false,
 //   buttonImage: 'calendar.gif',
-//   buttonText: 'Calendar' 
+//   buttonText: 'Calendar'
 });
 
  $("#event_start_date").datepicker();
  $("#event_stop_date").datepicker();
 });
+
+
+function toggle() {
+	var ele = document.getElementById("toggleText");
+	var text = document.getElementById("displayText");
+	if(ele.style.display == "block") {
+    		ele.style.display = "none";
+		text.innerHTML = "Mejla till evenemangets kontaktperson";
+  	}
+	else {
+		ele.style.display = "block";
+		text.innerHTML = "Ta bort mejlformuläret";
+	}
+}
+
+
+
+
 
 // Sets the form focus to the first element found in forms[0] that
 // is a textfield or text area

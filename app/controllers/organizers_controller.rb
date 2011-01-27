@@ -12,6 +12,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
     @organizer = Organizer.find(params[:id])
     respond_to do |format|
       format.html # show.html.erb
+      format.ihtml
       format.rss  
     end
   end

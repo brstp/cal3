@@ -3,6 +3,7 @@
 <table>
   <tr>
     <th></th>
+    <th></th>
     <th><%= User.human_attribute_name('first_name') %></th>
     <th><%= User.human_attribute_name('last_name') %></th>
     <th><%= User.human_attribute_name('email') %></th>
@@ -10,6 +11,7 @@
   </tr>
   <% for user in @users %>
     <tr>
+      <td><%= image_tag avatar_url(user) %></td>
       <td><%= link_to "Visa", user %></td>
       <td><%= user.first_name %></td>
       <td><%= user.last_name %></td>

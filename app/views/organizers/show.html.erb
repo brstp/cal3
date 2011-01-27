@@ -1,24 +1,24 @@
-﻿<% title @organizer.name %>
+﻿<% set_meta_tags :title => @organizer.name %>
 
+<h1><%= @organizer.name %></h1>
 
 <% content_for :head do %>  
   <%= auto_discovery_link_tag( :rss, organizer_url(:format => 'rss') , {:title => @organizer.name + t('app.s') + ' ' + t('.organizers_event') + ' ' + t('app.at') + ' ' +  t('app.site_name')}) %>
 <% end %> 
 
-  
-  
 <p>
-  <strong><%=t '.description' =%>:</strong>
   <%= simple_format @organizer.description %>
 </p>
+
+<% unless @organizer.website.blank? %>
 <p>
   <strong><%=t '.website' =%>:</strong>
   <%= link_to @organizer.website, @organizer.website %>
 </p>
+<% end %>
 
-<p>
-  <strong><%= t '.upcoming' %>:</strong>
-</p>
+
+<h3><%= t '.upcoming' %>:</h3>
 
 <table>
   <% for event in @organizer.upcoming_events %>  
@@ -40,34 +40,37 @@
 
 <% if current_user %>
   <% if current_user.authorized? @organizer %>
+  <div class = "authorized">
+  <p>
+    <h3><%= t '.members' %>:</h3>
+  </p>
+  <ol class = "user_list">
+    <% for user in @organizer.users %>
+      <li><div class = "user">
+      <%= link_to user.name , user %></div>
+      <% unless user == current_user %>
+        <%= button_to I18n.t('organizers.show.unmember') , membership_path(Membership.find(:first, :conditions => ["organizer_id = ? and user_id = ?", @organizer.id, user.id])), :confirm => I18n.t('organizers.show.sure_unmember') + user.name, :method => :delete %> 
+      <% end %>
+      </li>
+    <% end %> 
+  </ol>
+
 
 <p>
-  <strong><%= t '.members' %>:</strong>
+  <h3><%= t '.all_registered_users' %>:</h3>
 </p>
 
-<table>
-  <tr>
-    <th></th>
-    <th><%= User.human_attribute_name('first_name') %></th>
-    <th><%= User.human_attribute_name('last_name') %></th>
-    <th><%= User.human_attribute_name('email') %></th>  
-    <th></th>
-  </tr>    
-
-<% for user in @organizer.users %>
-  <tr>
-    <td><%= link_to t('.show'), user %></td>
-    <td><%= user.first_name %></td>  
-    <td><%= user.last_name %></td>  
-    <td><%= user.email %></td>  
-    <td><%= link_to "ta bort medlemsskap" %></td>
-  </tr>
-<% end %> 
-  
-  
-</table>
-
+<ol class = "user_list">
+<% @users = User.all %>
+  <% for user in @users %>
+    <li><div class = "user">
+      <%= link_to user.name , user %> </div>
+      <%= button_to I18n.t('organizers.show.make_member') , memberships_path(:user_id => user.id, :organizer_id => @organizer) %>
+    </li>  
   <% end %>
+</ol>
+  </div> <!-- authorized -->
+<% end %>
 <% end %>
 
 
@@ -76,14 +79,23 @@
 <%= link_to t('.subscribe_rss') + ' ' + @organizer.name + t('app.s') + ' ' + t('.organizers_event'), :format => :rss, :only_path => false %>  
 <%= link_to image_tag("rss_icon.gif", :alt => t('.rss_alt') + ' ' + @organizer.name), :format => :rss, :only_path => false %>
 </p>
-<p>&nbsp;</p>
+
+
+<p>
+<%= t('.share_as_iframe') %><br />
+<code><%= h '<iframe src="' + organizer_url(:format => :ihtml) + '"  frameborder="1" ></iframe>' %></code>
+</p>
+
 <% if current_user %>
   <% if current_user.authorized? @organizer %>
   
-<p>
-  <%= link_to t('app.edit') + " "+ @organizer.name, edit_organizer_path(@organizer) %> |
-  <%= link_to t('app.destroy') + " "+ @organizer.name, @organizer, :confirm => t('app.are_you_sure') + ' ' +@organizer.name + '?', :method => :delete %> 
-</p>
+<ul class = "authorized">
+  <li><%= link_to t('app.edit') + " "+ @organizer.name + t('app.s') + ' ' + t('app.page'), edit_organizer_path(@organizer) %></li>
 
+  <% if current_user.try :is_admin %>
+  <li><%= link_to t('app.destroy') + " "+ @organizer.name+ t('app.s') + ' ' + t('app.page'), @organizer, :confirm => t('app.are_you_sure') + ' ' +@organizer.name + '?', :method => :delete %></li>
+  <% end %>
+</p>
+</ul>
 <%end%>
 <%end%>

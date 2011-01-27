@@ -1,5 +1,15 @@
-<p>Welcome <%= @resource.email %>!</p>
+<p>Hej 
+<% if @resource.first_name then %>  
+<%= @resource.first_name %>
+<% else %> 
+<%= @resource.email %>
+<% end %>
+!</p>
 
-<p>You can confirm your account through the link below:</p>
+<p>Välkommen till Kalendern</p>
+<p>Bekräfta ditt nya användarkonto på Kalender.</p>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>
+<p><%= link_to 'Bekräfta användarkontot', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>
+
+<p>Om du inte skapat ett användarkonto på Kalendern så kan du slänga det här mejlet. Någon angav antagligen din mejladress av misstag.
+</p>

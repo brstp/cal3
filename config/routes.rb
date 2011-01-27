@@ -1,4 +1,7 @@
 Cal3::Application.routes.draw do
+
+  resources :mail_messages
+
   devise_for :users
 
   resources :users
@@ -7,12 +10,10 @@ Cal3::Application.routes.draw do
 
   resources :organizers
 
-  devise_for :users
-
   resources :events
 
   resources :municipalities
-  
+
   #resources :events do
   #  get 'search', :on => :collection
   #end

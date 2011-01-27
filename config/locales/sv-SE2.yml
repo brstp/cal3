@@ -1,0 +1,550 @@
+﻿# Swedish translation.
+
+"sv-SE":
+
+  number:
+    # Used in number_with_delimiter()
+    # These are also the defaults for 'currency', 'percentage', 'precision', and 'human'
+    format:
+      # Sets the separator between the units, for more precision (e.g. 1.0 / 2.0 == 0.5)
+      separator: ","
+      # Delimits thousands (e.g. 1,000,000 is a million) (always in groups of three)
+      delimiter: "."
+      # Number of decimals after the separator (the number 1 with a precision of 2 gives: 1.00)
+      precision: 2
+
+    # Used in number_to_currency()
+    currency:
+      format:
+        # Where is the currency sign? %u is the currency unit, %n the number (default: $5.00)
+        format: "%n %u"
+        unit: "kr"
+
+    # Used in number_to_human_size()
+    human:
+      format:
+        # These three are to override number.format and are optional
+        # separator:
+        # delimiter: ""
+        precision: 1
+      storage_units:
+        # Storage units output formatting.
+        # %u is the storage unit, %n is the number (default: 2 MB)
+        format: "%n %u"
+        units:
+          byte:
+            one:   "Byte"
+            other: "Bytes"
+          kb: "KB"
+          mb: "MB"
+          gb: "GB"
+          tb: "TB"
+
+  # Used in distance_of_time_in_words(), distance_of_time_in_words_to_now(), time_ago_in_words()
+  datetime:
+    distance_in_words:
+      half_a_minute: "en halv minut"
+      less_than_x_seconds:
+        one:   "mindre än en sekund"
+        other: "mindre än %{count} sekunder"
+      x_seconds:
+        one:   "en sekund"
+        other: "%{count} sekunder"
+      less_than_x_minutes:
+        one:   "mindre än en minut"
+        other: "mindre än %{count} minuter"
+      x_minutes:
+        one:   "en minut"
+        other: "%{count} minuter"
+      about_x_hours:
+        one:   "ungefär en timme"
+        other: "ungefär %{count} timmar"
+      x_days:
+        one:   "en dag"
+        other: "%{count} dagar"
+      about_x_months:
+        one:   "ungefär en månad"
+        other: "ungefär %{count} månader"
+      x_months:
+        one:   "en månad"
+        other: "%{count} månader"
+      about_x_years:
+        one:   "ungefär ett år"
+        other: "ungefär %{count} år"
+      over_x_years:
+        one:   "mer än ett år"
+        other: "mer än %{count} år"
+      almost_x_years:
+        one:   "nästan ett år"
+        other: "nästan %{count} år"
+    prompts:
+      year:   "År"
+      month:  "Månad"
+      day:    "Dag"
+      hour:   "Timme"
+      minute: "Minut"
+      second: "Sekund"
+
+  error_messages:
+    helper:
+      invalid_fields: "Invalid Fieldz"
+      correct_the_following_errors_and_try_again: "Correct the following errorz and try again."
+      
+  activemodel:
+    errors:
+      template:
+        header:
+          one:   "Ett fel förhindrade denna %{model} från att sparas"
+          other: "%{count} fel förhindrade denna %{model} från att sparas"
+        # The variable :count is also available
+        body: "Det var problem med följande fält:"
+
+  activerecord:
+    errors:
+      # model.errors.full_messages format.
+      format: "%{attribute} %{message}"
+    errors:
+      template:
+        header:
+          one: "Ett fel förhindrade denna %{model} från att sparas"
+          other: "%{count} fel förhindrade denna %{model} från att sparas"
+        body: "Det var problem med följande fält:"
+      
+      # The values :model, :attribute and :value are always available for interpolation
+      # The value :count is available when applicable. Can be used for pluralization.
+      messages:
+        inclusion: "finns inte i listan"
+        exclusion: "är reserverat"
+        invalid: "är ogiltigt"
+        confirmation: "stämmer inte överens"
+        accepted: "måste vara accepterad"
+        empty: "får ej vara tom"
+        blank: "måste anges"
+        too_long: "är för lång (maximum är %{count} tecken)"
+        too_short: "är för kort (minimum är %{count} tecken)"
+        wrong_length: "har fel längd (ska vara %{count} tecken)"
+        taken: "används redan"
+        not_a_number: "är inte ett nummer"
+        greater_than: "måste vara större än %{count}"
+        greater_than_or_equal_to: "måste vara större än eller lika med %{count}"
+        equal_to: "måste vara samma som"
+        less_than: "måste vara mindre än %{count}"
+        less_than_or_equal_to: "måste vara mindre än eller lika med %{count}"
+        odd: "måste vara udda"
+        even: "måste vara jämnt"
+        record_invalid: "Ett fel uppstod: %{errors}"
+        # Append your own errors here or at the model/attributes scope.
+
+      # You can define own errors for models or model attributes.
+      # The values :model, :attribute and :value are always available for interpolation.
+      #
+      # For example,
+      #   models:
+      #     user:
+      #       blank: "This is a custom blank message for %{model}: %{attribute}"
+      #       attributes:
+      #         login:
+      #           blank: "This is a custom blank message for User login"
+      # Will define custom blank validation message for User model and
+      # custom blank validation message for login attribute of User model.
+      # models:
+
+    # Translate model names. Used in Model.human_name().
+    #models:
+      # For example,
+      #   user: "Dude"
+      # will translate User model name to "Dude"
+    models:
+      municipality: "kommun"
+      event: "evenemang"
+      organizer: "arrangör"
+      user: "användare"
+      
+    # Translate model attribute names. Used in Model.human_attribute_name(attribute).
+    #attributes:
+      # For example,
+      #   user:
+      #     login: "Handle"
+      # will translate User attribute "login" as "Handle"
+    attributes:
+      municipality:
+        name: "kommunnamn"
+      event:
+        subject: "Rubrik"
+        intro: "Sammanfattning"
+        description: "Beskrivning"
+        start_date: "Startdatum"
+        start_time: "Börjar klockan"
+        stop_date: "Slutdatum"
+        stop_time: "Slutar klockan"
+        street: "Gatuadress"
+        zip: "Postnummer"
+        city: "Postort"
+        loc_descr: "Vägbeskrivning"
+        lat: "Latitud"
+        lng: "Longitud"
+        municipality: "Kommun"
+        municipality_id: "Kommun"
+        email: "Mejladress för frågor"
+        email_name: "Namn för mejladressen"
+        phone_number: "Telefonnummer för frågor"
+        phone_name: "Namn för telefonnumret"
+      organizer:
+        name: "Namn"
+        description: "Beskrivning"
+        website: "Hemsida"
+      user:
+        first_name: "Förnamn"
+        last_name: "Efternamn"
+        email: "Mejladress"
+        organizers: "Arrangörer"
+      mail_message:
+        mail_message: "Ditt meddelande"
+        
+
+      
+      
+  date:
+    formats:
+      # Use the strftime parameters for formats.
+      # When no format has been given, it uses default.
+      # You can provide other formats here if you like!
+      default: "%Y-%m-%d"
+      short: "%e %b"
+      long: "%e %B %Y"
+
+    day_names: [söndag, måndag, tisdag, onsdag, torsdag, fredag, lördag]
+    abbr_day_names: [sön, mån, tis, ons, tor, fre, lör]
+
+    # Don't forget the nil at the beginning; there's no such thing as a 0th month
+    month_names: [~, januari, februari, mars, april, maj, juni, juli, augusti, september, oktober, november, december]
+    abbr_month_names: [~, jan, feb, mar, apr, maj, jun, jul, aug, sep, okt, nov, dec]
+    # Used in date_select and datime_select.
+    order: [ :day, :month, :year ]
+
+  time:
+    formats:
+      #default: "%a, %e %b %Y %H:%M:%S %z"
+      #short: "%e %b %H:%M"
+      #long: "%e %B %Y %H:%M"
+      default: "%a, %e %b %Y %H:%M"
+      short: "%e %b %H:%M"
+      long: "%e %B %Y %H:%M"
+    am: ""
+    pm: ""
+
+# Used in array.to_sentence.
+  support:
+    array:
+      words_connector: ", "
+      two_words_connector: " och "
+      last_word_connector: " och "
+    select:
+      # default value for :prompt => true in FormOptionsHelper
+      prompt: "Välj"
+
+    
+  app:
+    back_to_list: "Tillbaka till listan"
+    show: "zzzVisa %{model}"
+    edit: "Ändra"
+    are_you_sure: "Vill du radera"
+    destroy: "Ta bort"
+    sitename: "kalendern"  #remove this...
+    site_name: "kalendern"  
+    destroyed: "Raderat %{resource_name}."
+    arranged_by: "Arrangeras av"
+    in_municipality: "i"
+    clock: "klockan"
+    s: "s"
+    at: "på"
+    events_in: "Evenemang i"
+    
+    
+      
+  error:
+    messages:
+      invalid_date: "ser inte ut som ett datum"
+      invalid_time: "ser inte ut som ett klockslag"
+      invalid_datetime: "ser inte ut som datum och klockslag"
+      is_at: "måste vara %{restriction}"
+      before: "måste vara tidigare än %{restriction}"
+      on_or_before: "måste vara %{restriction} eller tidigare"
+      after: "måste vara senare än %{restriction}"
+      on_or_after: "måste vara %{restriction} eller senare"
+
+
+  errors:
+    messages:
+      invalid_date: "ser inte ut som ett datum"
+      invalid_time: "ser inte ut som ett klockslag"
+      invalid_datetime: "ser inte ut som datum och klockslag"
+      is_at: "måste vara %{restriction}"
+      before: "måste vara tidigare än %{restriction}"
+      on_or_before: "måste vara %{restriction} eller tidigare"
+      after: "måste vara senare än %{restriction}"
+      on_or_after: "måste vara %{restriction} eller senare"
+      not_found: "hittades inte"
+      already_confirmed: "är redan bekräftad"
+      not_locked: "är inte låst"
+      invalid_url: "ser inte ut att vara en korrekt länk till en webbsida"
+
+  
+
+  validates_timeliness:
+    error_value_formats:
+      date: '%Y-%m-%d'
+      time: '%H:%M'
+      datetime: '%Y-%m-%d %H:%M'
+      
+#Formtastic      
+  formtastic:
+    "yes": 'Ja'
+    "no": 'Nej'
+    create: 'Skapa'
+    save: 'Spara'
+    submit: 'Skicka'
+    required: 'Obligatorisk' 
+    update: 'zUppdatera'
+    labels:
+      event:
+        subject: "Rubrik"
+        intro: "Sammanfattning"
+        description: "Beskrivning"
+        start_date: "Startdatum"
+        start_time: "Börjar klockan"
+        stop_date: "Slutdatum"
+        stop_time: "Slutar klockan"
+        street: "Gatuadress"
+        zip: "Postnummer"
+        city: "Postort"
+        loc_descr: "Vägbeskrivning"
+        lat: "Latitud"
+        lng: "Longitud"
+        municipality: "Kommun"
+        organizer: "Arrangör"
+      municipality:
+        name: "Kommunnamn"
+        short_name: "Kort kommunnamn"
+        admin_no: "SCB-kod"
+        parent_admin_no: "SCB-kod en nivå upp"
+      organizer:
+        name: "Namn"
+        description: "Beskrivning"
+        website: "Hemsida"
+        users: "Medlemmar"
+      user:
+        is_admin: "Systemadministratör"
+      mail_message:
+        from_email: "Din mejladress"
+        ip: "Din dators IP-adress"
+        
+
+    hints:
+      event:
+        subject: "Använd 7-40 tecken."
+        intro: "Skriv en jättekort sammanfattning på max 100 tecken."
+        description: "Ge en komplett beskrivning av evenemanget."
+        organizer_no_change_allowed: "Kan inte ändras på ett evenemang som redan är publicerat. Om du ändå vill ändra så får du radera evenemanget och skapa ett nytt."
+        start_date: "Exempel: 2009-02-21"
+        start_time: "Exempel: 14:30"
+        stop_date: "Exempel: 2009-02-21"
+        stop_time: "Exempel: 15:30"
+        street: ""
+        zip: ""
+        city: ""
+        loc_descr: "Om det inte räcker med gatuadress, beskriv platsen där evenemanget hålls. T.ex: \"I norra delen av stadsparken.\""
+        lat: "I decimalformat"
+        lng: "I decimalformat"
+        municipality: "Där evenemanget sker. Markera och skriv första bokstaven i kommunnamnet för att snabbt hitta kommunen."
+        email: "Om någon vill nå dig som arrangerar. Mejladressen visas inte i evenemangsannonsen. Mejlen skickas från ett kontaktformulär."
+        email_name: "Vem går mejladressen till? Visas istället för mejladressen. T.ex. \"Åsa Johansson\" eller \"kansliet\"."
+        phone_number:
+        phone_name: "Vem svarar i telefonen? T.ex. \"Åsa Johansson\" eller \"kansliet\"."
+      municipality: 
+        name: "Namnet på kommunen (en del kommuner heter \"stad\")"
+      organizer:
+        name: "Namnet på föreningen, företaget eller dig som arrangerar."
+        description: ""
+        website: "Länk till arrangörens hemsida. Exempel: http://www.abc.se"       
+      mail_message:
+        ip: "nisse"
+    actions:
+      # event:
+        # create: "Skapa %{model}"
+        # update: "Spara %{model}"
+      # municipality:
+        # create: "Skapa %{model}"
+        # update: "Spara"
+      mail_message:
+        create: "Skicka meddelandet"
+      create: "Skapa %{model}"
+      update: "Spara"
+#End formtastic
+
+  users:
+    show:
+      list: "Till användarlistan"
+      first_name: "Förnamn"
+      last_name: "Efternamn"
+      email: "Mejladress"
+      organizers: "Medlem i arrangörer"
+      is_admin: "Är systemadministratör"
+    edit:
+      list: "Till användarlistan (strunta i ändringar)"
+      show: "Visa användaren (strunta i ändringar)"
+      title: "Ändra på användare"
+    new:
+      title: "Ny användare" 
+      list: "Till användarlistan (strunta i ändringar)"
+    index:
+      new: "Skapa ny användare"
+      title: "Användare"
+      
+  municipalities:
+    index:
+      title: "Alla kommuner"
+      no_of_events_per_municipality: "inplanerade evenemang i kommunen"
+    show:
+      upcoming: "Kommande evenemang i kommunen"
+      no_of_events_per_organizer: " inplanerat evenemang"
+      subscribe_rss: "Prenumerera på evenemang i"
+      rss_alt: "Prenumerera på RSS-flöde för evenemang i"
+      rss_title: "Evenemang som sker i"
+      rss_description: "Alla evenemang i kommunen. I Kalendern. Du kan också annonsera dina evenemang på http://127.0.0.1"
+      more_events: "Hitta fler evenemang och annonsera."
+      share_as_iframe: "Vill du ha evenemangen i kommunen på din hemsida? Kopiera och klistra in i din mall eller htmlfil: "
+      
+      
+      
+  municipality:
+    new:
+      title: "Ny kommun"
+      list: "Till kommunlistan (strunta i ändringar)"
+    edit:
+      show: "Visa kommunen (strunta i ändringar)"
+      list: "Till kommunlistan (strunta i ändringar)"
+    show:
+      list: "Till kommunlistan"
+    index:
+      title: "Kommuner"
+      new: "Skapa ny kommun"
+  
+  
+  organizers:
+    index:
+      title: "Alla arrangörer"
+      new: "Skapa ny arrangör"
+      no_of_events_per_organizer: "inplanerat evenemang"
+    show:
+      name: "Namn"
+      description: "Beskrivning"
+      website: "Hemsida"
+      upcoming: "Kommande evenemang"
+      members: "Medlemmar"
+      show: "Visa"
+      no_of_events_per_municipality: "inplanerade evenemang i kommunen"
+      subscribe_rss: "Prenumerera på"
+      organizers_event: "evenemang"
+      rss_alt: "Prenumerera på RSS-flöde med evenemang hos" 
+      rss_title: "evenemang i Kalendern"
+      rss_description: "Alla evenemang för arrangören. I Kalendern. Du kan också annonsera dina evenemang på http://127.0.0.1"
+      more_events: "Hitta fler evenemang och annonsera."
+      share_as_iframe: "Vill du ha evenemangen på din hemsida? Kopiera och klistra in i din mall eller htmlfil: "
+      
+  organizer:
+    new:
+      title: "Ny arrangör"
+      list: "Till arrangörslistan (strunta i ändringar)"
+    edit:
+      show: "Visa arrangören (strunta i ändringar)"
+      list: "Till arrangörslistan (strunta i ändringar)"
+    show:
+      list: "Till arrangörslistan"
+    index:
+      title: "Arrangörer"
+      new: "Skapa ny arrangör"
+  
+
+  events:
+    index:
+      title: "Evenemang"
+      new: "Skapa nytt evenemang"
+      subscribe_rss: "Prenumerera på alla evenemang"
+      new_organizer: "Skapa ny arrangör"
+      no_of_events_per_municipality: "inplanerade evenemang i kommunen"
+      no_of_events_per_organizer: "inplanerat evenemang"
+      rss_alt: "Prenumerera på RSS-flöde med alla evenemang." 
+      rss_title: "Alla evenemang på Kalendern"
+    edit:
+      title: "Ändra evenemanget"
+      show: "Visa evenemanget (strunta i ändringar)"
+      list: "Till evenemangslistan (strunta i ändringar)"  
+    show: 
+      list: "Till evenemangslistan"
+      no_of_events_per_municipality: "inplanerade evenemang i kommunen"
+      no_of_events_per_organizer: "inplanerat evenemang"
+  
+  event:
+    new:
+      title: "Nytt evenemang"
+      list: "Till evenemangslistan (strunta i ändringar)"
+    
+    index:
+      title: "Evenemang"
+      new: "Skapa nytt evenemang"
+      
+
+
+      
+  flash:
+    actions:
+      update: 
+        notice: "Ändrat"
+      create:
+        notice: "Skapat"
+      destroy:
+        notice: "Tagit bort"
+        alert: "Kunde inte ta bort"
+      not_member: "Du har inte behörighet. Du är inte medlem hos den här arrangören (eller någon annan)"
+      not_member_here: "Du har inte behörighet. Du måste vara medlem hos den här arrangören."
+      not_authenticated: "Något har gått fel. Du behöver logga in."
+      not_admin: "Du har inte behörighet. Du måste ha administratörsrättigheter."
+      
+  rss:
+    title: "Kalendern"
+    description: "Allt som händer - där det händer. Du kan själv annonsera dina evenemang på Kalendern."
+
+  devise:
+    failure:
+      unauthenticated: 'Du måste logga in eller skapa ett konto innan du kan fortsätta.'
+      unconfirmed: 'Du måste bekräfta ditt konto innan du kan fortsätta.'
+      locked: 'Ditt konto är låst.'
+      invalid: 'Ogiltig epost eller lösenord.'
+      invalid_token: 'Ogiltig token för autentisering.'
+      timeout: 'Din session är inte längre giltig, vänligen logga in igen för att fortsätta.'
+      inactive: 'Ditt konto har inte aktiverats ännu.'
+    sessions:
+      signed_in: 'Inloggning genomfördes.'
+      signed_out: 'Utloggning genomfördes.'
+    passwords:
+      send_instructions: 'Du kommer få epost med instruktioner om hur du kan återställa ditt lösenord inom några minuter.'
+      updated: 'Ditt lösenord har uppdaterats. Du är nu inloggad.'
+    confirmations:
+      send_instructions: 'Du kommer att få epost med instruktioner om hur du kan bekräfta ditt konto inom några minuter.'
+      confirmed: 'Ditt konto har bekräftats. Du är nu inloggad.'
+    registrations:
+      signed_up: 'Ett nytt konto har skapats. En bekräftelse har skickats till din epost.'
+      updated: 'Ditt konto har uppdaterats.'
+      destroyed: 'Hej då! Ditt konto har avregistrerats. Vi hoppas få se dig snart igen.'
+    unlocks:
+      send_instructions: 'Du kommer få epost med instruktioner om hur du kan låsa upp ditt konto inom några minuter.'
+      unlocked: 'Ditt konto har låsts upp. Du är nu inloggad.'
+    mailer:
+      confirmation_instructions:
+        subject: 'Instruktioner om bekräftning av konto'
+      reset_password_instructions:
+        subject: 'Instrukionter om återställning av lösenord'
+      unlock_instructions:
+        subject: 'Instruktioner om upplåsning av konto'      
+        

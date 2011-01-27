@@ -2,13 +2,15 @@
 
 <% content_for :head do %>  
   <%= auto_discovery_link_tag( :rss, municipality_url(:format => 'rss') , {:title => t('app.events_in') + ' ' + @municipality.name + t('app.at') + ' ' +  t('app.site_name')}) %>
+  <%= %>
 <% end %> 
 
-<p>
-  <strong><%= t 'formtastic.labels.municipality.name' %>: </strong>
-  <%= @municipality.name %>
-</p>
+<h1><%= @municipality.name %></h1>
 
+
+<% if current_user %>
+  <% if current_user.is_admin? %>
+  <div class = "authorized">
 <p>
   <strong><%= t 'formtastic.labels.municipality.admin_no' %>: </strong>
   <%= @municipality.admin_no %>
@@ -24,9 +26,11 @@
   <%= @municipality.short_name %>
 </p>
 
-<p>
-  <strong><%= t '.upcoming' %>:</strong>
-</p>
+</div> <!-- authorized -->
+<% end %>
+<% end %>
+
+<h3><%= t '.upcoming' %>:</h3>
   
 
 <table>
@@ -51,14 +55,20 @@
 </p>
 
 <p>
+<%= t('.share_as_iframe') %><br />
+<code><%= h '<iframe src="' + municipality_url(:format => :ihtml) + '"  frameborder="1" ></iframe>' %></code>
+</p>
+
+<p>
 </p>
 <% if current_user %>
   <% if current_user.is_admin? %>
-<p>
-  <%= link_to t('app.edit'), edit_municipality_path(@municipality) %> |
-  <%= link_to t('app.destroy'), @municipality, :confirm => t('app.are_you_sure') + ' ' +@municipality.name + '?', :method => :delete %> 
-  
-</p>
+  <div class = "authorized">
+    <ul>
+    <li><%= link_to t('app.edit'), edit_municipality_path(@municipality) %></li>
+    <li><%= link_to t('app.destroy'), @municipality, :confirm => t('app.are_you_sure') + ' ' +@municipality.name + '?', :method => :delete %></li>
+    </ul>
+  </div> <!-- authorized -->
 
 <% end %>
 <% end %>

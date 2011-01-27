@@ -1,5 +1,7 @@
 <% title @user.name %>
 
+
+
 <p>
   <strong><%= t('.first_name')%>:</strong>
   <%= @user.first_name %>
@@ -8,6 +10,7 @@
   <strong><%= t('.last_name')%>:</strong>
   <%= @user.last_name %>
 </p>
+<%= image_tag avatar_url(@user) %>
 <p>
   <strong><%= t('.email')%>:</strong>
   <%= @user.email %>
