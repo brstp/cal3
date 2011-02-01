@@ -55,63 +55,90 @@ module LayoutHelper
                 Time.now.beginning_of_day, Time.now.end_of_day + 2.months ).
                 order('start_datetime ASC').limit 200 
          
+
+    current_month = events.first.start_datetime.beginning_of_month
+    current_day = events.first.start_datetime.beginning_of_day
+    
     cal << %(
           <table class="calendar">
             <caption>Evenemangskalender för #{l(events.first.start_datetime, :format => :month_and_year)}</caption>
             )
-    current_month = events.first.start_datetime.beginning_of_month
-    current_day = events.first.start_datetime.beginning_of_day - 1.day
+    
+    cal <<  %(
+            <tr>
+              <th class="day_box">
+                <span class="day_of_month">
+                  <span class="#{l(events.first.start_datetime, :format => :day_of_week).gsub("ö", "o").gsub("å", "a")}">
+                    <abbr class="day" title="#{l(events.first.start_datetime, :format => :date) }">
+                      #{ l(events.first.start_datetime, :format => :day_of_month) }
+                    </abbr>
+                  </span>
+                </span>
+                <br />
+                <span class="day_of_week">
+                 #{l(events.first.start_datetime, :format => :day_of_week)}
+                </span>
+              </th>
+              <td>
+                <ol class="events_with_time">
+              )
     
     for event in events
-      cal << %(<!--  debug -->)
-      logger.info "%%%%%%%%%%%%%%%%%%%%%%%%current_day" + current_day.to_s
-      logger.info "%%%%%%%%%%%%%%%%%%%%%%%%event" + event.start_datetime.beginning_of_day.to_s
-      
-      if event.start_datetime.beginning_of_month > current_month
-        cal << %(</table>)
-        cal << %(
-              <table class="calendar">
-                <caption>Evenemangskalender för #{l(event.start_datetime, :format => :month_and_year)}</caption>
-                )   
-                
-        current_month = event.start_datetime.beginning_of_month
-      end
-      
-      if event.start_datetime.beginning_of_day > current_day
-      cal <<  %(
-              <tr>
-                <th class="day_box">
-                  <span class="day_of_month">
-                    <span class="#{l(event.start_datetime, :format => :day_of_week).gsub("ö", "o").gsub("å", "a")}">
-                      <abbr class="day" title="#{l(event.start_datetime, :format => :date) }">
-                        #{ l(event.start_datetime, :format => :day_of_month) }
-                      </abbr>
-                    </span>
-                  </span>
-                  <br />
-                  <span class="day_of_week">
-                   #{l(event.start_datetime, :format => :day_of_week)}
-                  </span>
-                </th>
-                <td>
-                  <ol class="events_with_time">
-                )
-      end
-
       cal << %(
-              <li class="event">
-              #{ link_to raw("<strong>" + event.subject + '</strong> ' + content_tag(:abbr,  l(event.start_datetime, :format => :clock), :title => "#{l(event.start_datetime, :format => :machine)}") + ', ' + event.municipality_short) , event, :title => t('app.organizer') + ": " + event.organizer.name + ". " + t('app.summary') +": " + event.intro }
-              </li>)
-      
-      if event.start_datetime.beginning_of_day > current_day # and not another on same day...
-        cal << %(</ol>
-            </td>
-          </tr>)
-        current_day = event.start_datetime.beginning_of_day
-      end  
-     
-    
+        <!-- event.start_datetime.beginning_of_day: #{event.start_datetime.beginning_of_day.to_s} -->
+        <!-- current_day: #{current_day} -->
+              )
+              
+      if event.start_datetime.beginning_of_day == current_day
+        cal << %(
+                  <li class="event">
+                    #{ link_to raw("<strong>" + event.subject + '</strong> ' + content_tag(:abbr,  l(event.start_datetime, :format => :clock), :title => "#{l(event.start_datetime, :format => :machine)}") + ', ' + event.municipality_short) , event, :title => t('app.organizer') + ": " + event.organizer.name + ". " + t('app.summary') +": " + event.intro }
+                  </li>
+              )
+      else  
+        cal << %(
+                </ol>
+              </td>
+            </tr>)
+       if event.start_datetime.beginning_of_month > current_month.beginning_of_month
+          cal << %(</table>)
+          cal << %(
+                <table class="calendar">
+                  <caption>Evenemangskalender för #{l(event.start_datetime, :format => :month_and_year)}</caption>
+                  )                   
+        end 
+      cal <<  %(
+            <tr>
+              <th class="day_box">
+                <span class="day_of_month">
+                  <span class="#{l(event.start_datetime, :format => :day_of_week).gsub("ö", "o").gsub("å", "a")}">
+                    <abbr class="day" title="#{l(event.start_datetime, :format => :date) }">
+                      #{ l(event.start_datetime, :format => :day_of_month) }
+                    </abbr>
+                  </span>
+                </span>
+                <br />
+                <span class="day_of_week">
+                 #{l(event.start_datetime, :format => :day_of_week)}
+                </span>
+              </th>
+              <td>
+                <ol class="events_with_time">
+              )
+        cal << %(
+                  <li class="event">
+                    #{ link_to raw("<strong>" + event.subject + '</strong> ' + content_tag(:abbr,  l(event.start_datetime, :format => :clock), :title => "#{l(event.start_datetime, :format => :machine)}") + ', ' + event.municipality_short) , event, :title => t('app.organizer') + ": " + event.organizer.name + ". " + t('app.summary') +": " + event.intro }
+                  </li>
+              ) 
+      end
+      current_day = event.start_datetime.beginning_of_day    
+      current_month = event.start_datetime.beginning_of_month
     end 
+    cal << %(
+                </ol>
+              </td>
+            </tr>
+            )
     cal << %(</table>)
 
     raw cal

@@ -35,7 +35,6 @@ table.calendar abbr {
 
 table.calendar th {
 	border-width: 1px;
-	padding: 0.3em;
 	border-style: solid;
 	border-color: green;
 	background-color: #f7f7f7;
@@ -68,7 +67,8 @@ table.calendar td.month_box {
 .day_box {
   vertical-align: top;
   text-align: center;
-  max-width: 1.2em;
+  max-width: 0.8em;
+  padding: 0.1em;
 }
 
 .day_of_month {
