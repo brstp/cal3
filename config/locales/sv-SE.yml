@@ -244,7 +244,8 @@
   time:
     formats:
       default: "%Y-%m-%d %H.%M"                 # 2011-05-27 13.25
-      short: "%e %b %H.%M"                      # 3 dec 2011 13.25
+      short: "%e %b %H.%M"                      # 3 dec 13.25
+      shorty: "%e %b"                           # 3 dec 
       long: "%e %B %Y %H.%M"                    # 3 december 2011 13.25
       longest: "%A %e %B %Y klockan %H.%M"      # tisdag 3 december 2011 klockan 13.25 
       time: "%H.%M"                             # 13.45
@@ -455,7 +456,7 @@
       title: "Alla kommuner"
       no_of_events_per_municipality: "inplanerade evenemang i kommunen"
     show:
-      upcoming: "Kommande evenemang i kommunen"
+      upcoming: "Kommande evenemang i"
       no_of_events_per_organizer: " inplanerat evenemang"
       subscribe_rss: "Prenumerera på evenemang i"
       rss_alt: "Prenumerera på RSS-flöde för evenemang i"
@@ -463,6 +464,8 @@
       rss_description: "Alla evenemang i kommunen. I Föreningskalendern. Du kan också annonsera dina evenemang på http://127.0.0.1"
       more_events: "Hitta fler evenemang och annonsera."
       share_as_iframe: "Vill du ha evenemangen i kommunen på din hemsida? Kopiera och klistra in i din mall eller htmlfil: "
+      meta_description: "Hitta alla evenemang i"
+      meta_description2: "och annonsera dina egna arrangemang så att de syns här."
       
       
       
@@ -482,7 +485,8 @@
   
   organizers:
     index:
-      title: "Alla arrangörer"
+      title: "Alla arrangörer och deras evenemang"
+      meta_description: "Hitta arrangörer till olika evenemang i Sverige. Du kan annonsera dina arrangemang också." 
       new: "Skapa ny arrangör"
       no_of_events_per_organizer: "inplanerat evenemang"
     show:
@@ -504,7 +508,9 @@
       unmember: "Ta bort medlemskap"
       all_registered_users: "Alla registerade användare i Föreningskalendern"
       sure_unmember: "Är du säker på att du vill ta bort medlemskapet för "
-      
+      title: "s kommande evenemang."
+      meta_description: "Kolla in "
+      meta_description2: "s alla evenemang. Du kan också annonsera dina arrangemang så att de syns här."
   organizer:
     new:
       title: "Ny arrangör"

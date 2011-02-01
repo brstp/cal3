@@ -1,14 +1,34 @@
-<% title t('organizers.index.title') %>
+<% set_meta_tags :title => t('.title'),
+                   :description => t('.meta_description') %>
 
-<table>
-  <% for organizer in @organizers %>
+
+<h1>Alla arrangörer i Föreningskalendern. </h1>
+<p>
+Om du inte registrerat ett användarkonto, gör det och logga in för att skapa dina egna evenemangsannonser.                   
+</p>
+
+<table class = "general">
+  <caption>Inplanerade evenemang för alla arrangörer</caption>
+  <thead>
     <tr>
-      <td><%= link_to organizer.name, organizer %> <abbr title="<%= organizer.number_of_upcoming_events %>&nbsp;<%= t '.no_of_events_per_organizer' %>">
-            (<%= organizer.number_of_upcoming_events %>)
-        </abbr></td>
-      <td><%= organizer.website %></td>
+      <th>Arrangör</th>
+      <th class = "number_column">Inplanerade<br />evenemang</th>
+      <th>Nästa evenemang</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% for organizer in @organizers %>
+    <tr class = "<%= cycle("even", "odd") %>">
+      <td><%= link_to organizer.name, organizer %></td>
+      <td class = number_column><%= organizer.number_of_upcoming_events %></td>
+      <td>
+        <% unless organizer.next_event.nil?%>
+      <%= link_to(l(organizer.next_event.start_datetime, :format => :shorty) + ', ' +organizer.next_event.subject + ' (' + organizer.next_event.municipality.short_name + ')', organizer.next_event, :title => organizer.next_event.try(:intro)) %>
+      <% end %>
+      </td>
     </tr>
   <% end %>
+  </tbody>
 </table>
 
 <% if current_user %>

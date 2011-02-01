@@ -1,23 +1,37 @@
-<% title t('municipalities.index.title') %>
+<% set_meta_tags :title => t('.title'),
+                   :description => t('.meta_description') %>
 
-<table>
-   <% for municipality in @municipalities %>
+<h1>Alla Sveriges kommuner</h1>
+<p>
+Kolla in vad som händer i din kommun.
+</p>
+
+
+<table class = "general">
+  <caption>Alla Sveriges kommuner</caption>
+  <thead>
     <tr>
-      <td><%= link_to municipality.name, municipality %>
-          <abbr title="<%= municipality.number_of_upcoming_events %> <%= t '.no_of_events_per_municipality' %>">
-            (<%= municipality.number_of_upcoming_events %>)
-          </abbr>
+      <th>Kommun</th>
+      <th class = "number_column">Inplanerade<br />evenemang</th>
+      <th>Nästa evenemang</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% for municipality in @municipalities %>
+    <tr class = "<%= cycle("even", "odd") %>">
+      <td><%= link_to municipality.name, municipality %></td>
+      <td class = number_column><%= municipality.number_of_upcoming_events %></td>
+      <td>
+        <% unless municipality.next_event.nil?%>
+      <%= link_to(l(municipality.next_event.start_datetime, :format => :shorty) + ', ' +municipality.next_event.subject + ' (' + municipality.next_event.organizer.name + ')', municipality.next_event, :title => municipality.next_event.try(:intro)) %>
+      <% end %>
       </td>
-      <% if current_user %>
-        <% if current_user.is_admin? %>
-      <td><%= link_to t('app.edit'), edit_municipality_path(municipality) %></td>
-      <td><%= link_to t('app.destroy'), @municipality, :confirm => t('app.are_you_sure') + ' ' + municipality.name + '?', :method => :destroy %></td>
-
-      <% end %>
-      <% end %>
     </tr>
   <% end %>
+  </tbody>
 </table>
+
+
 
 <% if current_user %>
 <% if current_user.is_admin? %>

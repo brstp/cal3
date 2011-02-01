@@ -1,13 +1,33 @@
-<% title @municipality.name %>
+<% set_meta_tags :title => t('.upcoming') + ' ' + @municipality.name,
+                   :description => t('.meta_description') + ' ' + @municipality.name + ' ' +  t('.meta_description2')%>
 
 <% content_for :head do %>  
   <%= auto_discovery_link_tag( :rss, municipality_url(:format => 'rss') , {:title => t('app.events_in') + ' ' + @municipality.name + t('app.at') + ' ' +  t('app.site_name')}) %>
   <%= %>
 <% end %> 
 
-<h1><%= @municipality.name %></h1>
+
+<h1><%= t('.upcoming') + ' ' + @municipality.name %></h1>
 
 
+
+<% if @municipality.upcoming_events.blank? %>  
+  <p>Just nu finns det inte några evenemang inplanerade i <%= @municipality.name %>. </p>
+<% else %>
+  <%= calendar @municipality.upcoming_events %>
+<% end %>
+
+<p>
+<%= link_to t('.subscribe_rss') + ' ' + @municipality.name, :format => :rss, :only_path => false %>  
+<%= link_to image_tag("rss_icon.gif", :alt => t('.rss_alt') + ' ' + @municipality.name), :format => :rss, :only_path => false %>
+</p>
+
+<p>
+<%= t('.share_as_iframe') %><br />
+<code><%= h '<iframe src="' + municipality_url(:format => :ihtml) + '"  frameborder="1" ></iframe>' %></code>
+</p>
+
+<p>
 <% if current_user %>
   <% if current_user.is_admin? %>
   <div class = "authorized">
@@ -30,36 +50,6 @@
 <% end %>
 <% end %>
 
-<h3><%= t '.upcoming' %>:</h3>
-  
-
-<table>
-  <% for event in @municipality.upcoming_events %>  
-    <tr>
-      <td> <%= event.start_date %> </td>
-      <td><strong><%= link_to event.subject, event %></strong></td> 
-      <td> <%= event.intro %> </td> 
-      <td> <%= event.start_time %> </td>
-      <td> <%= link_to event.organizer.name, event.organizer %>
-              <abbr title="<%= event.organizer.number_of_upcoming_events %> <%= t '.no_of_events_per_organizer' %>">
-            (<%= event.organizer.number_of_upcoming_events %>)
-        </abbr>
-      </td> 
-    </tr>
-  <% end %>   
-</table>
-
-<p>
-<%= link_to t('.subscribe_rss') + ' ' + @municipality.name, :format => :rss, :only_path => false %>  
-<%= link_to image_tag("rss_icon.gif", :alt => t('.rss_alt') + ' ' + @municipality.name), :format => :rss, :only_path => false %>
-</p>
-
-<p>
-<%= t('.share_as_iframe') %><br />
-<code><%= h '<iframe src="' + municipality_url(:format => :ihtml) + '"  frameborder="1" ></iframe>' %></code>
-</p>
-
-<p>
 </p>
 <% if current_user %>
   <% if current_user.is_admin? %>

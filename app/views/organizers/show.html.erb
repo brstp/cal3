@@ -1,4 +1,5 @@
-﻿<% set_meta_tags :title => @organizer.name %>
+﻿<% set_meta_tags :title => @organizer.name + t('.title'),
+                   :description => t('.meta_description') + ' ' + @organizer.name + ' ' +  t('.meta_description2')%>
 
 <h1><%= @organizer.name %></h1>
 
@@ -18,23 +19,13 @@
 <% end %>
 
 
-<h3><%= t '.upcoming' %>:</h3>
+<h3><%= t '.upcoming' %></h3>
 
-<table>
-  <% for event in @organizer.upcoming_events %>  
-    <tr>
-      <td> <%= event.start_date %> </td>
-      <td><strong><%= link_to event.subject, event %></strong></td> 
-      <td> <%= event.intro %> </td> 
-      <td> <%= event.start_time %> </td>
-      <td> <%= link_to event.municipality_short, event.municipality %>
-        <abbr title="<%= event.municipality.number_of_upcoming_events %> <%= t '.no_of_events_per_municipality' %>">
-            (<%= event.municipality.number_of_upcoming_events %>)
-        </abbr>
-      </td> 
-    </tr>
-  <% end %>   
-</table>
+<% if @organizer.upcoming_events.blank? %>  
+  <p>Just nu verkar <%= @organizer.name %> inte ha några evenemang inplanerade. </p>
+<% else %>
+  <%= calendar @organizer.upcoming_events %>
+<% end %>
 
 
 

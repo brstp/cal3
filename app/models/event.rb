@@ -67,8 +67,11 @@
     output_str
   end
 
-  def upcoming_events
-    self.find(:all, :conditions => ["stop_datetime >= '#{Time.now}'"], :order => "start_datetime ASC")
+  def upcoming_events 
+    # self.find(:all, :conditions => ["stop_datetime >= '#{Time.now}'"], :order => "start_datetime ASC")
+    Event.where("stop_datetime >= ? AND start_datetime <= ?", 
+                Time.now.beginning_of_day, Time.now.end_of_day + 2.months ).
+                order('start_datetime ASC').limit 200 
   end
 
   def municipality_short

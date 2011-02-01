@@ -83,3 +83,43 @@
     height: 400px;
 }
  
+table.general {
+	border-width: 1px;
+	border-spacing: 2px;
+  margin-top: 1em;
+  margin-right: 1em;
+  margin-bottom: 1em;
+	background-color: f7f7f7;
+  width: 100%;
+  text-align: left;
+}
+
+
+table.general caption {
+  visibility: hidden; 
+}
+
+table.general th {
+	border-width: 1px;
+  padding: 0.1em;
+  padding-left: 1em;
+  padding-right: 1em;
+	background-color: #f7f7f7;
+	font: 14px Arial, Helvetica, sans-serif;
+}
+
+table.general td {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+table.general tr.odd {
+	background-color: #f7f7f7;
+}
+table.general tr.even {
+	background-color: white;
+}
+
+.number_column {
+  text-align: right;
+  }

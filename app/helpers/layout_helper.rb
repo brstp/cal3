@@ -46,15 +46,15 @@ module LayoutHelper
   end
   
   
-  def calendar
-    #TODO period in initialize
+  def calendar events = nil
+    #TODO time period in initialize
     #TODO limit in initializer
     cal = ""
-    
+    if events.nil?
     events = Event.where("stop_datetime >= ? AND start_datetime <= ?", 
                 Time.now.beginning_of_day, Time.now.end_of_day + 2.months ).
                 order('start_datetime ASC').limit 200 
-         
+    end     
 
     current_month = events.first.start_datetime.beginning_of_month
     current_day = events.first.start_datetime.beginning_of_day

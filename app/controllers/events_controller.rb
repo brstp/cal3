@@ -12,7 +12,10 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
 
 
   def index
-    @events = Event.all(:order => 'start_datetime ASC')
+    # @events = Event.all(:order => 'start_datetime ASC')
+    @events = Event.where("stop_datetime >= ? AND start_datetime <= ?", 
+                Time.now.beginning_of_day, Time.now.end_of_day + 2.months ).
+                order('start_datetime ASC').limit 200
     respond_to do |format|
       format.html
       format.rss

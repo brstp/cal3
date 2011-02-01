@@ -5,7 +5,7 @@ before_filter :authorized?, :except => [:show, :index]
 before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
 
   def index
-    @organizers = Organizer.all
+    @organizers = Organizer.all(:order => 'name ASC')
   end
   
   def show
