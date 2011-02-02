@@ -7,9 +7,13 @@
 
     <h1>Allt som händer innan det är försent.</h1>
     
-   <%= calendar @events%>
+   
     
-    
+<% if @events.blank? %>  
+  <p>Just nu verkar hottar vi inte några inplanerade evenemang. </p>
+<% else %>
+  <%= calendar @events%>
+<% end %> 
 
 <p>
 <%= link_to t('.subscribe_rss'), "/events.rss" %>  
