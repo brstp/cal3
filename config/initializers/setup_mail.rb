@@ -1,12 +1,14 @@
-﻿ActionMailer::Base.smtp_settings = {
-  :address              => "smtp.gmail.com",
-  :port                 => 587,
-  :domain               => "mumin.nu",
-  :user_name            => "b.r.stefan.pettersson",
-  :password             => "norrviken",
-  :authentication       => "plain",
-  :enable_starttls_auto => true
-}
+﻿
+
+# ActionMailer::Base.smtp_settings = {
+  # :address              => "smtp.gmail.com",
+  # :port                 => 587,
+  # :domain               => "mumin.nu",
+  # :user_name            => "b.r.stefan.pettersson",
+  # :password             => "norrviken",
+  # :authentication       => "plain",
+  # :enable_starttls_auto => true
+# }
 
 # ActionMailer::Base.smtp_settings = {
   # :address              => "192.168.0.1",
