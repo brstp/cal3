@@ -62,6 +62,8 @@ GEM
     mime-types (1.16)
     mocha (0.9.10)
       rake
+    mysql (2.8.1)
+    mysql (2.8.1-x86-mingw32)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-sftp (2.0.5)
@@ -125,6 +127,7 @@ DEPENDENCIES
   mail_form
   meta-tags
   mocha
+  mysql
   nifty-generators
   rails (= 3.0.3)
   rails-geocoder
