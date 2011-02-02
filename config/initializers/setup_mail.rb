@@ -26,5 +26,5 @@ class DevelopmentMailInterceptor
 end
 
 ActionMailer::Base.default_url_options[:host] = "127.0.0.1:3000"
-#ActionMailer::Base.register_interceptor(DevelopmentMailInterceptor) if Rails.env.development?
+ActionMailer::Base.register_interceptor(DevelopmentMailInterceptor) #if Rails.env.development?
 
