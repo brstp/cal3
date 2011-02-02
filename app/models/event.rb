@@ -41,7 +41,7 @@ class Event < ActiveRecord::Base
   def degrees_to_degrees_minutes degrees_float
     degrees = degrees_float.to_i
     minutes = ((degrees_float - degrees).abs * 60 * 1000).to_i/1000.0
-    return degrees.to_s + '°' + minutes.to_s + '\''
+    return degrees.to_s + 'o' + minutes.to_s + '\''
   end
   
   def lat_lng
