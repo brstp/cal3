@@ -20,13 +20,13 @@
   # :enable_starttls_auto => true
 # }
 
-class DevelopmentMailInterceptor
-  def self.delivering_email(message)
-    message.subject = "#{message.to} #{message.subject}"
-    message.to = "stefan.pettersson@lumano.se"
-  end
-end
+# class DevelopmentMailInterceptor
+  # def self.delivering_email(message)
+    # message.subject = "#{message.to} #{message.subject}"
+    # message.to = "stefan.pettersson@lumano.se"
+  # end
+# end
 
-ActionMailer::Base.default_url_options[:host] = "127.0.0.1:3000"
-ActionMailer::Base.register_interceptor(DevelopmentMailInterceptor) #if Rails.env.development?
+# ActionMailer::Base.default_url_options[:host] = "127.0.0.1:3000"
+# ActionMailer::Base.register_interceptor(DevelopmentMailInterceptor) #if Rails.env.development?
 
