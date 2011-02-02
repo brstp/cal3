@@ -1,4 +1,4 @@
-﻿class EventMailer < ActionMailer::Base
+class EventMailer < ActionMailer::Base
   
   def contact_event(mail_message)
     @mail_message = mail_message

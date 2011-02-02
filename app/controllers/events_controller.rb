@@ -1,4 +1,4 @@
-﻿class EventsController < ApplicationController
+class EventsController < ApplicationController
 
 before_filter :authenticate_user!, :except => [:show, :index]
 before_filter :authorized?, :except => [:show, :index]
