@@ -29,7 +29,8 @@
   
   <%= javascript_include_tag  %>
   <%= stylesheet_link_tag  "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.4/themes/smoothness/jquery-ui.css" %>
-  <%= javascript_include_tag "jquery.js", "jquery-ui.js", "jquery.rails.js", "jquery.ui.datepicker-sv.js", "jquery.googlemaps1.01.js", "http://maps.google.com/maps?file=api&v=3&sensor=false", "application" %>
+  <%= javascript_include_tag "jquery.js", "jquery-ui.js", "jquery.rails.js", "jquery.ui.datepicker-sv.js", "jquery.googlemaps1.01.js", "application" %>
+  <script src="http://maps.google.com/maps?file=api&v=3&sensor=false" type="text/javascript"></script>
   <%= favicon_link_tag %>
   <%= csrf_meta_tag %>
   <%= yield(:head) %>
