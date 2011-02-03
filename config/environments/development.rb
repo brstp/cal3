@@ -23,14 +23,14 @@ Cal3::Application.configure do
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
   
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.default_url_options = { :host => '127.0.0.1:3000' }
   config.action_mailer.delivery_method = :smtp
 config.action_mailer.smtp_settings = {
   :address              => "smtp.gmail.com",
   :port                 => 587,
   :domain               => 'mumin.nu',
-  :user_name            => 'b.r.stefan.pettersson',
-  :password             => 'norrviken',
+  :user_name            => 'kalender.dev@gmail.com.',
+  :password             => '309kagge',
   :authentication       => 'plain',
   :enable_starttls_auto => true  }
 end

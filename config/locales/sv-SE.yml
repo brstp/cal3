@@ -291,6 +291,10 @@
     lat_lng: "Latitud/longitud"
     organizer: "Arrangör"
     summary: "Sammanfattning"
+  
+  mail:
+    mail.cc_event: "Kopia evenemang"
+    mail.to_event: "Om evenemang"
     
   nav:
     events: "Alla evenemang"
