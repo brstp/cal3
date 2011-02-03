@@ -296,6 +296,9 @@
     mail.cc_event: "Kopia evenemang"
     mail.to_event: "Om evenemang"
     
+  map:
+    drag_me: "Du kan flytta kartnålen genom att dra den med musen."
+    
   nav:
     events: "Alla evenemang"
     organizers: "Alla arrangörer"
@@ -552,6 +555,8 @@
       edit: "Redigera den här evenemangsannonsen."
       destroy: "Radera den här evenemangsannonsen."
       ok_to_keep: "Den får ligga kvar även efter att evenemanget hållits."
+    form:
+      closest_address: "Närmsta adress som vi känner till"
   
   event:
     new:
