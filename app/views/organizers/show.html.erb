@@ -22,11 +22,14 @@
 <h3><%= t '.upcoming' %></h3>
 
 <% if @organizer.upcoming_events.blank? %>  
-  <p>Just nu verkar <%= @organizer.name %> inte ha några evenemang inplanerade. </p>
+  <p>Just nu verkar <%= @organizer.name %> inte ha några evenemang inplanerade. 
+  <% unless !current_user.organizers.include? @organizer and !current_user.is_admin? %>
+    <%= link_to t('nav.new_event'), new_event_path %>.
+  <% end %>
+  </p>
 <% else %>
   <%= calendar @organizer.upcoming_events %>
 <% end %>
-
 
 
 <% if current_user %>
