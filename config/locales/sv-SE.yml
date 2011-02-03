@@ -417,7 +417,7 @@
       organizer:
         name: "Namnet på föreningen, företaget eller dig som arrangerar."
         description: ""
-        website: "Länk till arrangörens hemsida. Exempel: http://www.abc.se"        
+        website: "Länk till arrangörens hemsida. Exempel: http://www.abc.se (jo, det där http:// eller https:// i början ska vara med)."        
     actions:
       # event:
         # create: "Skapa %{model}"
@@ -573,6 +573,7 @@
         added_membership: "Okej, lagt till medlemskap."
         couldnt_save_membership: "Något gick fel. Vi kan tyvärr inte göra personen till medlem i arrangören."
         membership_exists_already: "Personen är redan medlem i arrangören."
+        organizer_and_membership: "Okej, skapat en sida för arrangören och lagt till dig som behörig medlem."
       destroy:
         notice: "Tagit bort"
         alert: "Kunde inte ta bort"
