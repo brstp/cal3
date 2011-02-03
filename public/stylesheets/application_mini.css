@@ -120,6 +120,31 @@ table.general tr.even {
 	background-color: white;
 }
 
+.general a {
+  /*background-color: lightyellow;*/
+  text-decoration: none;
+  color: blue;
+}
+
+.general a:link{
+  color: blue;
+}
+
+.general a:active{
+  background-color: white;
+  color: red;
+  font-weight: bold;
+}
+
+.general a:hover{
+  background-color: white;
+  color: red;
+}
+
+.general a:visited{
+  color: purple;
+}
+
 .number_column {
   text-align: right;
   }
