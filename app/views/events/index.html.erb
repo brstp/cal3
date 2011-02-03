@@ -16,9 +16,9 @@
 <% end %> 
 
 <p>
-<%= link_to t('.subscribe_rss'), "/events.rss" %>  
-<%= link_to image_tag("rss_icon.gif", :alt => t('.rss_alt')), "/event.rss" %>
-</p>
 
+<%= link_to(t('.subscribe_rss'), events_url(:only_path => false, :format => :rss) )  %>
+<%= link_to image_tag("rss_icon.gif", :alt => t('.rss_alt')), events_url(:only_path => false, :format => :rss) %>
+</p>
 
 

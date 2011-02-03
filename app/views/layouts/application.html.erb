@@ -127,18 +127,18 @@
 					<div id="calendar-nav" class="box">
           <span class="heading">Snabblänkar:</span>
             <ul>
-              <li><%= link_to t('nav.events'), events_path %></li>
-              <li><%= link_to t('nav.organizers'), organizers_path %></li>
-              <li><%= link_to t('nav.municipalities'), municipalities_path %></li>
-              <% if current_user %> <li><%= link_to t('nav.new_organizer'), new_organizer_path %></li>
+              <li><%= link_to t('.events'), events_path %></li>
+              <li><%= link_to t('.organizers'), organizers_path %></li>
+              <li><%= link_to t('.municipalities'), municipalities_path %></li>
+              <% if current_user %> <li><%= link_to t('.new_organizer'), new_organizer_path %></li>
               <% unless current_user.organizers.empty? and !current_user.is_admin? %>
-<li><%= link_to t('nav.new_event'), new_event_path %></li>
+<li><%= link_to t('.new_event'), new_event_path %></li>
               <% end %>
                 <% if current_user.is_admin? %>
                   <li class = "authorized"><%= link_to t('nav.users'), users_path %></li>
                   <%end%>
-                  <li><%= link_to t('nav.subscribe_rss'), "/events.rss" %>  
-<%= link_to image_tag("rss_icon.gif", :alt => t('nav.rss_alt')), "/event.rss" %></li>                  
+                  <li><%= link_to(t('.subscribe_rss'), events_url(:only_path => false, :format => :rss) )  %>  
+<%= link_to image_tag("rss_icon.gif", :alt => t('.rss_alt')), events_url(:only_path => false, :format => :rss) %></li>                  
               <%end%>
             </ul>
 										

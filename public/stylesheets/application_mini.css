@@ -124,6 +124,7 @@ table.general tr.even {
   /*background-color: lightyellow;*/
   text-decoration: none;
   color: blue;
+  font-weight: normal;
 }
 
 .general a:link{

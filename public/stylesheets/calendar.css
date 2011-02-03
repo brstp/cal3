@@ -103,13 +103,24 @@ table.calendar td.month_box {
 }
 
 .calendar a {
-  /*background-color: lightyellow;*/
   text-decoration: none;
+  font-weight: normal;
+}
+
+.calendar a:link{
   color: blue;
+}
+
+.calendar a:active{
+  background-color: white;
+  color: red;
+  font-weight: bold;
 }
 
 .calendar a:hover{
   background-color: white;
+  color: red;
+  text-decoration: underline;
 }
 
 .calendar a:visited{

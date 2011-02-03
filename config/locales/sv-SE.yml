@@ -299,16 +299,6 @@
   map:
     drag_me: "Du kan flytta kartnålen genom att dra den med musen."
     
-  nav:
-    events: "Alla evenemang"
-    organizers: "Alla arrangörer"
-    municipalities: "Alla kommuner"
-    users: "Alla användare"
-    new_organizer: "Lägg upp en ny arrangör"
-    new_event: "Lägg upp ny evenemangsannons"
-    subscribe_rss: "Prenumera på flöde med alla evenemangsannonser"
-    rss_alt: ""
-    
   error:
     messages:
       invalid_date: "ser inte ut som ett datum"
@@ -438,6 +428,17 @@
         create: "Skicka mejl"
 #End formtastic
 
+  layouts:
+    application:
+      events: "Alla evenemang"
+      organizers: "Alla arrangörer"
+      municipalities: "Alla kommuner"
+      users: "Alla användare"
+      new_organizer: "Lägg upp en ny arrangör"
+      new_event: "Lägg upp ny evenemangsannons"
+      subscribe_rss: "Prenumera på flöde med alla evenemangsannonser"
+      rss_alt: "Prenumerera på RSS-flöde med alla evenemang."
+      
   users:
     show:
       list: "Till användarlistan"
