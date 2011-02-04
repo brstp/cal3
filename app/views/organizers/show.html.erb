@@ -24,7 +24,7 @@
 <% if @organizer.upcoming_events.blank? %>  
   <p>Just nu verkar <%= @organizer.name %> inte ha några evenemang inplanerade. 
   <% unless !current_user.organizers.include? @organizer and !current_user.is_admin? %>
-    <%= link_to t('nav.new_event'), new_event_path %>.
+    <%= link_to t('.new_event'), new_event_path %>.
   <% end %>
   </p>
 <% else %>

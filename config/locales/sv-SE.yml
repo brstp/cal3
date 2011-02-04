@@ -519,6 +519,7 @@
       title: "s kommande evenemang."
       meta_description: "Kolla in "
       meta_description2: "s alla evenemang. Du kan också annonsera dina arrangemang så att de syns här."
+      new_event: "Vill du lägga in den första?"
   organizer:
     new:
       title: "Ny arrangör"
