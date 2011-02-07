@@ -43,7 +43,7 @@ gem 'mail_form'
 gem 'timeliness'
 gem "rails-geocoder", :require => "geocoder"
 gem 'meta-tags', :require => 'meta_tags'
-gem 'mysql2'
+#gem 'mysql2'
 
 group :development, :test do
   gem 'sqlite3-ruby', :require => 'sqlite3'
