@@ -4,12 +4,14 @@ class Organizer < ActiveRecord::Base
   has_many :memberships, :dependent => :destroy
   has_many :users, :through => :memberships
   
-  attr_accessible :name, :description, :website, :user_ids
+  attr_accessible :name, :description, :website, :user_ids, :logotype, :photo, :intro
   
   validates_presence_of :name, :description
   validates_length_of :name, :in => 5..40
   validate :validates_website
   
+  has_attached_file :logotype, :default_url => "/images/no-organizer-logotype.png", :styles => {:large => "300x225", :small => "100x75"}
+  has_attached_file :photo, :default_url => "/images/no-organizer-photo.png", :styles => {:medium => "400x300", :small => "100x75"}
   
   
   def upcoming_events

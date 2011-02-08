@@ -1,6 +1,10 @@
 <% set_meta_tags :title => @event.subject,
                    :description => @event.intro %>
 
+<% content_for :right_column_facts do %>  
+  <%= organizer_facts @event.organizer %>
+<% end %>                   
+                   
 <p><strong><%= @event.duration.capitalize %></strong></p>
 <h1><%= @event.subject %></h1>
 <p>

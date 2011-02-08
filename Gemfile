@@ -38,17 +38,19 @@ gem "mocha", :group => :test
 gem 'sunspot_rails', '1.2.rc4'
 #gem 'nokogiri', "1.4.4.1"
 #gem 'nokogiri, '1.5.0.beta.2'
+gem 'nokogiri'
 gem 'jquery-rails'
 gem 'mail_form'
 gem 'timeliness'
 gem "rails-geocoder", :require => "geocoder"
 gem 'meta-tags', :require => 'meta_tags'
-#gem 'mysql2'
+gem "paperclip"
+# gem 'sanitize'
 
 group :development, :test do
   gem 'sqlite3-ruby', :require => 'sqlite3'
 end
 
 group :production do
-  gem 'mysql2'
+  gem 'mysql'
 end

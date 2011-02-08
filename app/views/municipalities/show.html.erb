@@ -6,13 +6,16 @@
   <%= %>
 <% end %> 
 
+<% content_for :right_column_facts do %>  
+  <%= municipality_facts @municipality %>
+<% end %>
 
 <h1><%= t('.upcoming') + ' ' + @municipality.name %></h1>
 
 
 
 <% if @municipality.upcoming_events.blank? %>  
-  <p>Just nu finns det inte några evenemang inplanerade i <%= @municipality.name %>. </p>
+  <p>Just nu finns det inte några evenemang inplanerade i <%= @municipality.name %>.</p>
 <% else %>
   <%= calendar @municipality.upcoming_events %>
 <% end %>
@@ -27,7 +30,10 @@
 <code><%= h '<iframe src="' + municipality_url(:format => :ihtml) + '"  frameborder="1" ></iframe>' %></code>
 </p>
 
-<p>
+
+
+
+
 <% if current_user %>
   <% if current_user.is_admin? %>
   <div class = "authorized">
@@ -46,11 +52,16 @@
   <%= @municipality.short_name %>
 </p>
 
+<p>
+  <strong>Wikipediasida:</strong>
+  <%= @municipality.wikipedia_page %>
+</p>
+
 </div> <!-- authorized -->
 <% end %>
 <% end %>
 
-</p>
+
 <% if current_user %>
   <% if current_user.is_admin? %>
   <div class = "authorized">

@@ -21,6 +21,37 @@ module LayoutHelper
     content_for(:head) { javascript_include_tag(*args) }
   end
   
+  def municipality_facts municipality
+    unless municipality.facts.blank?
+      str =%(
+          <div id="municipality_facts" class="box">
+           <span class="heading">Snabbfakta om #{municipality.name}</span>
+            #{auto_link( (sanitize municipality.facts, :tags => %w(table div tbody th tr td img br ), :attributes => %w(class id src alt colspan)), :urls, :rel => :nofollow )}
+            <p class = "wikipedia-source"> 
+            Faktatext från #{link_to("Wikipedia", "http://sv.wikipedia.org/wiki/Portal:Huvudsida", :rel => :nofollow)}.
+            Rättigheter enligt #{link_to("CC BY-SA 3.0", "http://creativecommons.org/licenses/by-sa/3.0/deed.sv", :rel => :nofollow)}. Faktabilder från #{link_to "Wikimedia", "http://commons.wikimedia.org/wiki/Main_Page", :rel => :nofollow}. Rättigheter: #{link_to("CC BY-SA 2.5", "http://creativecommons.org/licenses/by-sa/2.5/deed.sv", :rel => :nofollow)}. Senast hämtad: #{I18n.localize(municipality.facts_last_updated, :format => :default)}</p>
+            </div>
+          )
+      raw str
+    end
+  end
+  
+  def organizer_facts organizer
+    str =%(
+          <div id="municipality_facts" class="box">
+          <span class="heading">Fakta om arrangören </span>
+          #{image_tag organizer.logotype.url(:small)}
+          <h4>#{organizer.name}</h4>
+          <p>
+          #{organizer.intro}
+          </p>
+          
+          Kalendertabell här
+          </div>
+          )
+    raw str
+  end
+  
   def map_marker(event)
    str = %(
         <script type="text/javascript">
@@ -119,6 +150,30 @@ google.maps.event.addDomListener(window, 'load', initialize);
     raw (t('app.in_municipality') + ' ' + link_to( (event.municipality.name + ' (' + event.municipality.number_of_upcoming_events.to_s + ')'), event.municipality ))
   end
   
+  def mini_calendar events = nil
+    if events.nil?
+      events = Event.where("stop_datetime >= ? AND start_datetime <= ?", 
+                  Time.now.beginning_of_day, Time.now.end_of_day + 2.months ).
+                  order('start_datetime ASC').limit 200 
+    end
+    cal = ""
+    cal << %(
+            <table>
+            )
+    for event in events
+    cal << %(
+              <tr>
+                <td>Datum</td>
+                <td>Subject</td>
+                <td>Kommun</td>
+              </tr>
+            )
+    end
+    cal << %(
+            </table>
+            )
+    raw cal
+  end
   
   def calendar events = nil
     #TODO time period in initialize

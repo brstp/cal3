@@ -62,7 +62,7 @@ GEM
     mime-types (1.16)
     mocha (0.9.11)
       rake
-    mysql2 (0.2.6-x86-mingw32)
+    mysql (2.8.1-x86-mingw32)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-sftp (2.0.5)
@@ -71,6 +71,10 @@ GEM
     net-ssh-gateway (1.0.1)
       net-ssh (>= 1.99.1)
     nifty-generators (0.4.4)
+    nokogiri (1.4.4.1-x86-mingw32)
+    paperclip (2.3.8)
+      activerecord
+      activesupport
     polyglot (0.3.1)
     pr_geohash (1.0.0)
     rack (1.2.1)
@@ -126,8 +130,10 @@ DEPENDENCIES
   mail_form
   meta-tags
   mocha
-  mysql2
+  mysql
   nifty-generators
+  nokogiri
+  paperclip
   rails (= 3.0.3)
   rails-geocoder
   sqlite3-ruby

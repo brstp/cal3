@@ -148,4 +148,8 @@ table.general tr.even {
 
 .number_column {
   text-align: right;
-  }
+}
+  
+.wikipedia-source {
+  font-size: 80%;
+}

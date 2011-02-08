@@ -1,7 +1,24 @@
 <% set_meta_tags :title => @organizer.name + t('.title'),
                    :description => t('.meta_description') + ' ' + @organizer.name + ' ' +  t('.meta_description2')%>
 
+<% content_for :right_column_facts do %>
+  <div class="box">
+  <span class="heading">Fakta från Wikipedia</span>
+  <p>
+  Kommunfakta
+  </p>
+  </div>
+<% end %>
+
+                   
+                   
+<%= image_tag @organizer.logotype.url(:small) %>
 <h1><%= @organizer.name %></h1>
+<p>
+<h3><%= @organizer.intro %></h3>
+</p>
+<%= image_tag @organizer.photo.url(:medium) %>
+
 
 <% content_for :head do %>  
   <%= auto_discovery_link_tag( :rss, organizer_url(:format => 'rss') , {:title => @organizer.name + t('app.s') + ' ' + t('.organizers_event') + ' ' + t('app.at') + ' ' +  t('app.site_name')}) %>
@@ -85,7 +102,6 @@
   
 <ul class = "authorized">
   <li><%= link_to t('app.edit') + " "+ @organizer.name + t('app.s') + ' ' + t('app.page'), edit_organizer_path(@organizer) %></li>
-
   <% if current_user.try :is_admin %>
   <li><%= link_to t('app.destroy') + " "+ @organizer.name+ t('app.s') + ' ' + t('app.page'), @organizer, :confirm => t('app.are_you_sure') + ' ' +@organizer.name + '?', :method => :delete %></li>
   <% end %>
