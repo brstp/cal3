@@ -29,6 +29,16 @@
 </p>
 <% end %>
 
+<p>
+  <strong><%=t '.contact' %>:</strong>
+  <% unless @organizer.phone.blank? %>
+    <br /><%= @organizer.phone%>
+  <% end %>
+  <% unless @organizer.email.blank? %>
+  <br /><%= @organizer.email %>
+  <% end %>
+</p>
+
 
 <h3><%= t '.upcoming' %></h3>
 
