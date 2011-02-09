@@ -54,6 +54,13 @@
   display: none;
 }
 
+.municipality_name {
+  font-size: 150%;
+  font-weight: bold;
+  text-align: center;
+  background-color: #e0e0e0;
+}
+
 .infobox .mergedrow td div {
   text-align: center;
   padding-bottom: 1em;

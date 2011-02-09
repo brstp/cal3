@@ -82,11 +82,57 @@
     width: 100%;
     height: 400px;
 }
+
+table.tiny-calendar {
+  font-size: 89%;
+  border: none;
+  margin-top: 1em;
+  margin-bottom: 1 em;
+	background-color: f7f7f7;
+  width: 100%;
+  text-align: left;
+}
+
+table.tiny-calendar td {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+table.tiny-calendar tr.odd {
+	background-color: #f7f7f7;
+}
+table.tiny-calendar tr.even {
+	background-color: white;
+}
+
+.tiny-calendar a {
+  /*background-color: lightyellow;*/
+  text-decoration: none;
+  color: blue;
+  font-weight: normal;
+}
+
+.tiny-calendar a:link{
+  color: blue;
+}
+
+.tiny-calendar a:active{
+  background-color: white;
+  color: red;
+}
+
+.tiny-calendar a:hover{
+  background-color: white;
+  color: red;
+}
+
+.tiny-calendar a:visited{
+  color: purple;
+}
  
 table.general {
 	border-width: 1px;
 	border-spacing: 2px;
-  margin-top: 1em;
   margin-right: 1em;
   margin-bottom: 1em;
 	background-color: f7f7f7;

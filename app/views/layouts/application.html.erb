@@ -138,7 +138,7 @@
 <li><%= link_to t('.new_event'), new_event_path %></li>
               <% end %>
                 <% if current_user.is_admin? %>
-                  <li class = "authorized"><%= link_to t('nav.users'), users_path %></li>
+                  <li class = "authorized"><%= link_to t('.users'), users_path %></li>
                   <%end%>
                   <li><%= link_to(t('.subscribe_rss'), events_url(:only_path => false, :format => :rss) )  %>  
 <%= link_to image_tag("rss_icon.gif", :alt => t('.rss_alt')), events_url(:only_path => false, :format => :rss) %></li>                  

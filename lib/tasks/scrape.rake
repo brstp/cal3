@@ -1,27 +1,75 @@
 namespace :scrape do
   require 'nokogiri'
   require 'open-uri' 
+  include ActionView::Helpers::SanitizeHelper
+  include ActionView::Helpers::TextHelper
+  include ActionView::Helpers::TagHelper
+
+  desc "Playing around when developing scraper"
+  task :dev => :environment do 
+    municipality = Municipality.find_or_create_by_admin_no "1488"
+        doc = Nokogiri::HTML(open(municipality.wikipedia_page))
+        municipality.facts = auto_link(sanitize( doc.at_css(".geography").
+                to_s.gsub(/<div.*kommunvapen.*<\/div>/, "").
+                to_s.gsub(/<div.*stadsvapen.*<\/div>/, "").
+                gsub(/\[.*\]/, ""), 
+                  :tags => %w(table div tbody th tr td img br ), 
+                  :attributes => %w(class id src alt colspan)), 
+                    :urls, :rel => :no_follow).
+                gsub(/<img.*Portal.*/,"").
+                gsub(/<td colspan="2">.*\ stad<\/td>/, "").
+                gsub(/<td colspan="2">.*\ kommun<\/td>/, "<td class = 'municipality_name' colspan = '2'>#{municipality.name}</td>").
+                gsub(/<td colspan="2">Kommun<\/td>/, "")
+        municipality.facts_last_updated = Time.now
+        municipality.save!
+        puts "Fetched #{municipality.name}"
+    
+  end
+
   
   desc "Scrape municipality facts from Wikipedia."
-  task :municipality_facts => :environment do 
+  task :initial_facts => :environment do 
+    Municipality.all.each do |municipality|
+      if municipality.facts.blank?
+        doc = Nokogiri::HTML(open(municipality.wikipedia_page))
+        municipality.facts = auto_link(sanitize( doc.at_css(".geography").
+                to_s.gsub(/<div.*kommunvapen.*<\/div>/, "").
+                to_s.gsub(/<div.*stadsvapen.*<\/div>/, "").
+                gsub(/\[.*\]/, ""), 
+                  :tags => %w(table div tbody th tr td img br ), 
+                  :attributes => %w(class id src alt colspan)), 
+                    :urls, :rel => :no_follow).
+                gsub(/<img.*Portal.*/,"").
+                gsub(/<td colspan="2">.*\ stad<\/td>/, "").
+                gsub(/<td colspan="2">.*\ kommun<\/td>/, "<td class = 'municipality_name' colspan = '2'>#{municipality.name}</td>").
+                gsub(/<td colspan="2">Kommun<\/td>/, "")
+        municipality.facts_last_updated = Time.now
+        municipality.save!
+        puts "Fetched #{municipality.name}"
+      end
+    end
+  end
+
+  desc "Scrape municipality facts from Wikipedia."
+  task :update_facts => :environment do 
     Municipality.all.each do |municipality|
       doc = Nokogiri::HTML(open(municipality.wikipedia_page))
-      municipality.facts = doc.at_css(".geography").
-              to_s.gsub(/<div.*kommunvapen.*<\/div>/, "").
-              gsub(/\[.*\]/, "")
+      municipality.facts = auto_link(sanitize( doc.at_css(".geography").
+                to_s.gsub(/<div.*kommunvapen.*<\/div>/, "").
+                to_s.gsub(/<div.*stadsvapen.*<\/div>/, "").
+                gsub(/\[.*\]/, ""), 
+                  :tags => %w(table div tbody th tr td img br ), 
+                  :attributes => %w(class id src alt colspan)), 
+                    :urls, :rel => :no_follow).
+                gsub(/<img.*Portal.*/,"").
+                gsub(/<td colspan="2">.*\ stad<\/td>/, "").
+                gsub(/<td colspan="2">.*\ kommun<\/td>/, "<td class = 'municipality_name' colspan = '2'>#{municipality.name}</td>").
+                gsub(/<td colspan="2">Kommun<\/td>/, "")
       municipality.facts_last_updated = Time.now
       municipality.save!
       puts "Fetched #{municipality.name}"
     end
-    #url = "http://sv.wikipedia.org/wiki/Oskarshamns_kommun"
-    #doc = Nokogiri::HTML(open(url))
-    #m = Municipality.find_by_admin_no("0882") #Oskarshamn
-    #m.facts = doc.at_css(".geography").to_s.gsub(/<div.*kommunvapen.*<\/div>/, "").gsub(/\[.*\]/, "")
-    #TODO Timestamp      
-    #m.save!
-    #puts "Fetched " + m.short_name + "."
-  end
-  
+  end  
   
   desc "Scrape list of all municipalities fom Wikipedia"
   task :municipalities => :environment do

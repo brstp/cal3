@@ -15,7 +15,7 @@
   <h3><%= @event.intro %></h3>
 <% end %>
 
-<p><%= simple_format @event.description %></p>
+<%= simple_format @event.description %>
 
 <p>
   <strong>Har du frågor? Vill du kontakta arrangören?</strong><br />
@@ -83,14 +83,14 @@
 
       <%= f.input :from_phone %>     
        
-    <p><%= f.buttons %></p>
-    <p>
+    <%= f.buttons %>
+    
       <%= t 'mail_messages.form.self_copy'%> 
-    </p>
-    <p>
+    
+    
       <%= t 'mail_messages.form.disclaimer'%> 
-    </p>
-    <p>
+    
+    
     
     <%= f.input :ip, :as => :hidden %>
     <li class="string optional" ><label><%= MailMessage.human_attribute_name :ip  %></label><%= @mail_message.ip %></li>

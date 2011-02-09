@@ -26,9 +26,9 @@ module LayoutHelper
       str =%(
           <div id="municipality_facts" class="box">
            <span class="heading">Snabbfakta om #{municipality.name}</span>
-            #{auto_link( (sanitize municipality.facts, :tags => %w(table div tbody th tr td img br ), :attributes => %w(class id src alt colspan)), :urls, :rel => :nofollow )}
+            #{municipality.facts}
             <p class = "wikipedia-source"> 
-            Faktatext från #{link_to("Wikipedia", "http://sv.wikipedia.org/wiki/Portal:Huvudsida", :rel => :nofollow)}.
+            Faktatext från #{link_to("Wikipedia", municipality.wikipedia_page, :rel => :nofollow)}.
             Rättigheter enligt #{link_to("CC BY-SA 3.0", "http://creativecommons.org/licenses/by-sa/3.0/deed.sv", :rel => :nofollow)}. Faktabilder från #{link_to "Wikimedia", "http://commons.wikimedia.org/wiki/Main_Page", :rel => :nofollow}. Rättigheter: #{link_to("CC BY-SA 2.5", "http://creativecommons.org/licenses/by-sa/2.5/deed.sv", :rel => :nofollow)}. Senast hämtad: #{I18n.localize(municipality.facts_last_updated, :format => :default)}</p>
             </div>
           )
@@ -41,12 +41,10 @@ module LayoutHelper
           <div id="municipality_facts" class="box">
           <span class="heading">Fakta om arrangören </span>
           #{image_tag organizer.logotype.url(:small)}
-          <h4>#{organizer.name}</h4>
+          <h4>#{link_to(organizer.name, organizer)}</h4>
           <p>
           #{organizer.intro}
-          </p>
-          
-          Kalendertabell här
+          #{mini_calendar organizer.events}
           </div>
           )
     raw str
@@ -149,27 +147,41 @@ google.maps.event.addDomListener(window, 'load', initialize);
   def arranged_in event
     raw (t('app.in_municipality') + ' ' + link_to( (event.municipality.name + ' (' + event.municipality.number_of_upcoming_events.to_s + ')'), event.municipality ))
   end
-  
-  def mini_calendar events = nil
+ 
+ 
+ 
+  def mini_calendar events = nil, more_events = events_url, max_no = 10
+  #TODO time limits and no of events in initializer (and align)
     if events.nil?
       events = Event.where("stop_datetime >= ? AND start_datetime <= ?", 
-                  Time.now.beginning_of_day, Time.now.end_of_day + 2.months ).
-                  order('start_datetime ASC').limit 200 
+                  Time.now.beginning_of_day, Time.now.end_of_day + 12.months ).
+                  order('start_datetime ASC')
     end
+    many_events = ""
+    if events.count > max_no
+      many_events = link_to(t('app.there_are') + ' ' + events.count.to_s + ' ' + t('app.events_in_total'), more_events) 
+    end
+    
     cal = ""
     cal << %(
-            <table>
+            <table class = "tiny-calendar">
+              <caption>#{t('app.planned_events')}</caption>
             )
-    for event in events
+    
+    for event in events.limit max_no 
     cal << %(
-              <tr>
-                <td>Datum</td>
-                <td>Subject</td>
-                <td>Kommun</td>
+              <tr class = "#{cycle("odd", "even")}">
+                <td>#{link_to( event.subject, event, :title => t('app.arranged_by') + ' ' + event.organizer.name + ' ' + t('app.in_municipality') + ' ' + event.municipality.name + '. ' + event.try( :intro))}</td>
+                <td><abbr class="day" title="#{l(event.start_datetime, :format => :machine) }">
+                      #{ l(event.start_datetime, :format => :mini) }
+                    </abbr></td>
               </tr>
             )
     end
+   
     cal << %(
+            <tr class = "#{cycle("odd", "even")}">
+            <td colspan = "2">#{many_events}&nbsp;</td></tr>
             </table>
             )
     raw cal
