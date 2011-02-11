@@ -1,6 +1,18 @@
-﻿<% set_meta_tags :title => @organizer.name %>
+<% set_meta_tags :title => @organizer.name + t('.title'),
+                   :description => t('.meta_description') + ' ' + @organizer.name + ' ' +  t('.meta_description2')%>
 
+<% content_for :right_column_facts do %>
+<% end %>
+
+                   
+                   
+<%= image_tag @organizer.logotype.url(:small) %>
 <h1><%= @organizer.name %></h1>
+<p>
+<h3><%= @organizer.intro %></h3>
+</p>
+<%= image_tag @organizer.photo.url(:medium) %>
+
 
 <% content_for :head do %>  
   <%= auto_discovery_link_tag( :rss, organizer_url(:format => 'rss') , {:title => @organizer.name + t('app.s') + ' ' + t('.organizers_event') + ' ' + t('app.at') + ' ' +  t('app.site_name')}) %>
@@ -17,25 +29,28 @@
 </p>
 <% end %>
 
+<p>
+  <strong><%=t '.contact' %>:</strong>
+  <% unless @organizer.phone.blank? %>
+    <br /><%= @organizer.phone%>
+  <% end %>
+  <% unless @organizer.email.blank? %>
+  <br /><%= @organizer.email %>
+  <% end %>
+</p>
 
-<h3><%= t '.upcoming' %>:</h3>
 
-<table>
-  <% for event in @organizer.upcoming_events %>  
-    <tr>
-      <td> <%= event.start_date %> </td>
-      <td><strong><%= link_to event.subject, event %></strong></td> 
-      <td> <%= event.intro %> </td> 
-      <td> <%= event.start_time %> </td>
-      <td> <%= link_to event.municipality_short, event.municipality %>
-        <abbr title="<%= event.municipality.number_of_upcoming_events %> <%= t '.no_of_events_per_municipality' %>">
-            (<%= event.municipality.number_of_upcoming_events %>)
-        </abbr>
-      </td> 
-    </tr>
-  <% end %>   
-</table>
+<h3><%= t '.upcoming' %></h3>
 
+<% if @organizer.upcoming_events.blank? %>  
+  <p>Just nu verkar <%= @organizer.name %> inte ha några evenemang inplanerade. 
+  <% unless !current_user.organizers.include? @organizer and !current_user.is_admin? %>
+    <%= link_to t('.new_event'), new_event_path %>.
+  <% end %>
+  </p>
+<% else %>
+  <%= calendar @organizer.upcoming_events %>
+<% end %>
 
 
 <% if current_user %>
@@ -91,7 +106,6 @@
   
 <ul class = "authorized">
   <li><%= link_to t('app.edit') + " "+ @organizer.name + t('app.s') + ' ' + t('app.page'), edit_organizer_path(@organizer) %></li>
-
   <% if current_user.try :is_admin %>
   <li><%= link_to t('app.destroy') + " "+ @organizer.name+ t('app.s') + ' ' + t('app.page'), @organizer, :confirm => t('app.are_you_sure') + ' ' +@organizer.name + '?', :method => :delete %></li>
   <% end %>

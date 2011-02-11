@@ -1,4 +1,4 @@
-﻿class EventsController < ApplicationController
+class EventsController < ApplicationController
 
 before_filter :authenticate_user!, :except => [:show, :index]
 before_filter :authorized?, :except => [:show, :index]
@@ -12,7 +12,10 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
 
 
   def index
-    @events = Event.all(:order => 'start_datetime ASC')
+    # @events = Event.all(:order => 'start_datetime ASC')
+    @events = Event.where("stop_datetime >= ? AND start_datetime <= ?", 
+                Time.now.beginning_of_day, Time.now.end_of_day + 2.months ).
+                order('start_datetime ASC').limit 200
     respond_to do |format|
       format.html
       format.rss
@@ -26,8 +29,15 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
   def new
     @event = Event.new
     @event.email = current_user.email
-    @event.email_name = (current_user.first_name + " " + current_user.last_name).strip
-    @event.phone_name = (current_user.first_name + " " + current_user.last_name).strip
+    @event.email_name = ''
+    unless (current_user.first_name.blank?) 
+      @event.email_name += current_user.first_name + " " 
+    end
+    unless (current_user.last_name.blank?) 
+      @event.email_name += current_user.last_name 
+    end
+    @event.email_name.strip!
+    @event.phone_name = @event.email_name
   end
 
   def create

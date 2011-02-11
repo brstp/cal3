@@ -1,4 +1,4 @@
-﻿class MailMessagesController < ApplicationController
+class MailMessagesController < ApplicationController
 before_filter :authenticate_user!, :except => [:new, :create]
 before_filter :authorized?, :except => [:new, :create]
   

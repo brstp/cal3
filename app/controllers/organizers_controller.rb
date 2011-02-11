@@ -1,11 +1,11 @@
 class OrganizersController < ApplicationController
 
 before_filter :authenticate_user!, :except => [:show, :index]
-before_filter :authorized?, :except => [:show, :index]
+before_filter :authorized?, :except => [:show, :index, :new, :create]
 before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
 
   def index
-    @organizers = Organizer.all
+    @organizers = Organizer.all(:order => 'name ASC')
   end
   
   def show
@@ -27,6 +27,13 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
     @organizer = Organizer.new(params[:organizer])
     if @organizer.save
       flash[:notice] = t 'flash.actions.create.notice'
+      
+      @membership = @organizer.memberships.build(:user_id => current_user.id )
+      if @membership.save
+        flash[:notice] = I18n.t 'flash.actions.create.organizer_and_membership'
+      else
+        flash[:alert] = I18n.t 'flash.actions.create.couldnt_save_membership'
+      end
       redirect_to @organizer
     else
       render :action => 'new'

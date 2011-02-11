@@ -1,6 +1,10 @@
-﻿<% set_meta_tags :title => @event.subject,
+<% set_meta_tags :title => @event.subject,
                    :description => @event.intro %>
 
+<% content_for :right_column_facts do %>  
+  <%= organizer_facts @event.organizer %>
+<% end %>                   
+                   
 <p><strong><%= @event.duration.capitalize %></strong></p>
 <h1><%= @event.subject %></h1>
 <p>
@@ -11,7 +15,9 @@
   <h3><%= @event.intro %></h3>
 <% end %>
 
-<p><%= simple_format @event.description %></p>
+<%= simple_format @event.description %>
+<%= @event.category %>
+
 
 <p>
   <strong>Har du frågor? Vill du kontakta arrangören?</strong><br />
@@ -79,14 +85,14 @@
 
       <%= f.input :from_phone %>     
        
-    <p><%= f.buttons %></p>
-    <p>
+    <%= f.buttons %>
+    
       <%= t 'mail_messages.form.self_copy'%> 
-    </p>
-    <p>
+    
+    
       <%= t 'mail_messages.form.disclaimer'%> 
-    </p>
-    <p>
+    
+    
     
     <%= f.input :ip, :as => :hidden %>
     <li class="string optional" ><label><%= MailMessage.human_attribute_name :ip  %></label><%= @mail_message.ip %></li>
@@ -117,14 +123,10 @@
 <% end %>
 
 <% unless @event.lat.nil? || @event.lng.nil?%>
-<div class = "show_map" >
-  <div id="map_canvas" style="width: 100%; height: 100%">
-  </div>
-</div>
-
+  <div id="mapCanvas"></div>
 <p>
   <strong><%= I18n.t 'app.lat_lng' %>:</strong>
-  <%= @event.lat_lng %>
+  <%= raw @event.lat_lng %>
 </p>
 <% end %>
 
@@ -137,8 +139,9 @@
 <ul class = "authorized">
   <li><%= link_to t('.edit'), edit_event_path(@event) %></li>
   <li><%= link_to t('.destroy'), @event, :confirm => t('app.are_you_sure') + ' ' +@event.subject + '?', :method => :delete %> <%= t'.ok_to_keep' %></li>
-<ul>
+</ul>
 <%end%>
 <%end%>
 
-<%= map_marker @event.lat, @event.lng %>
+<%= map_marker @event %>
+ 

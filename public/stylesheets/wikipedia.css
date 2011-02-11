@@ -1,0 +1,67 @@
+
+.infobox {
+   font-size: 89%;
+   border: 1px solid #ccc;
+   background-color: #f9f9f9;
+   color: black;
+   
+}
+.infobox td,
+.infobox th {
+   vertical-align: top;
+   padding:0 .2em;
+}
+.infobox caption { font-size: larger; }
+.infobox.bordered { border-collapse: collapse; }
+.infobox.bordered td,
+.infobox.bordered th { border: 1px solid #aaa; }
+
+.infobox.bordered .borderless td,
+.infobox.bordered .borderless th { border: 0; }
+
+/* Stilmallar för avgränsade infoboxar med sammansatta rader */
+.infobox.bordered .mergedtoprow td,
+.infobox.bordered .mergedtoprow th {
+   border: 0;
+   border-top: 1px solid #aaa;
+   border-right: 1px solid #aaa;
+}
+
+.infobox.bordered .mergedrow td,
+.infobox.bordered .mergedrow th {
+   border: 0;
+   border-right: 1px solid #aaa;
+}
+
+.infobox tr th {
+  text-align: left;
+}
+
+
+.floatnone img, 
+.infobox table img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto; 
+    padding-top: 1em;
+}
+.infobox  table  {
+  width: 100%;
+}
+
+/* texten kommun (org.typ) */
+.infobox .mergedbottomrow td {
+  display: none;
+}
+
+.municipality_name {
+  font-size: 150%;
+  font-weight: bold;
+  text-align: center;
+  background-color: #e0e0e0;
+}
+
+.infobox .mergedrow td div {
+  text-align: center;
+  padding-bottom: 1em;
+}

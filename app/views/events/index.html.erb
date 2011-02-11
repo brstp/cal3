@@ -1,4 +1,4 @@
-﻿<% set_meta_tags :title => t('.page_title'),
+<% set_meta_tags :title => t('.page_title'),
                    :description => t('.meta_description') %>
 
 <% content_for :head do %>  
@@ -7,14 +7,18 @@
 
     <h1>Allt som händer innan det är försent.</h1>
     
-   <%= calendar %>
+   
     
-    
+<% if @events.blank? %>  
+  <p>Just nu hittar vi inte några inplanerade evenemang. </p>
+<% else %>
+  <%= calendar @events%>
+<% end %> 
 
 <p>
-<%= link_to t('.subscribe_rss'), "/events.rss" %>  
-<%= link_to image_tag("rss_icon.gif", :alt => t('.rss_alt')), "/event.rss" %>
-</p>
 
+<%= link_to(t('.subscribe_rss'), events_url(:only_path => false, :format => :rss) )  %>
+<%= link_to image_tag("rss_icon.gif", :alt => t('.rss_alt')), events_url(:only_path => false, :format => :rss) %>
+</p>
 
 

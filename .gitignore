@@ -7,3 +7,4 @@ tmp/**/*
 solr/data
 sunspot-solr.pid
 log
+public/system

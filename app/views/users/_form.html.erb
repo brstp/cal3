@@ -1,30 +1,30 @@
-﻿<%= semantic_form_for @user do |f| %>
+<%= semantic_form_for @user do |f| %>
   <%= f.error_messages %>
   <%= f.inputs do %>
     <%= f.input :first_name %>
     <%= f.input :last_name %>
-    
+
     <li class="select required" id="user_email_input">
         <label for="user_email"><%= User.human_attribute_name :email%><abbr title="<%= t 'formtastic.required'%>">*</abbr></label>
         <%= @user.email %>
         <p class="inline-hints">
         <%= t 'formtastic.hints.user.email_no_change_allowed' %>
         </p>
-    </li>        
+    </li>
 
     <li class="string optional">
       <label for="user_organizers"><%= User.human_attribute_name :organizers%></label>
-      <% for organizer in @user.organizers %>  
-        <%= link_to organizer.name,  organizer %> 
-      <% end %>  
+      <% for organizer in @user.organizers %>
+        <%= link_to organizer.name,  organizer %>
+      <% end %>
     </li>
-    
-    <% if @user.is_admin? %> 
+
+    <% if @user.is_admin? %>
       <li class="string optional">
       <label for="user_is_admin"><%= User.human_attribute_name :is_admin %></label>
       Ja.
     </li>
-    <% end %>  
+    <% end %>
     <%= f.buttons %>
   <% end %>
 <% end %>

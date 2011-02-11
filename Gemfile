@@ -5,14 +5,12 @@ gem 'rails', '3.0.3'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3-ruby', :require => 'sqlite3'
-gem 'devise'
 
 # Use unicorn as the web server
 # gem 'unicorn'
 
 # Deploy with Capistrano
-# gem 'capistrano'
+gem 'capistrano'
 
 # To use debugger
 # gem 'ruby-debug'
@@ -42,9 +40,20 @@ gem 'sunspot_rails', '1.2.rc4'
 #gem 'nokogiri', "1.5.0.beta.2"
 gem 'jquery-rails'
 #gem 'nokogiri, '1.5.0.beta.2'
+gem 'nokogiri'
 gem 'jquery-rails'
 gem 'mail_form'
 gem 'timeliness'
 gem "rails-geocoder", :require => "geocoder"
 gem 'meta-tags', :require => 'meta_tags'
+gem "paperclip"
+gem "ancestry"
+
+group :development, :test do
+  gem 'sqlite3-ruby', :require => 'sqlite3'
+end
+
+group :production do
+  gem 'mysql'
+end
 

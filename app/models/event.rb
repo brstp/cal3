@@ -1,4 +1,4 @@
-﻿class Event < ActiveRecord::Base
+class Event < ActiveRecord::Base
 
   #TODO: Move default start/stop dates/times to inializers
   #TODO: Check if use of 'self' is ok
@@ -6,12 +6,13 @@
 
   belongs_to :municipality
   belongs_to :organizer
+  belongs_to :category
 
   before_save :merge_start_datetime, :merge_stop_datetime
   after_validation :consider_fetch
 
 
-  attr_accessible :subject, :intro, :description, :street, :zip, :city, :loc_descr, :lat, :lng, :municipality_id, :start_date, :start_time, :stop_date, :stop_time, :organizer_id,   :phone_number, :phone_name, :email, :email_name
+  attr_accessible :subject, :intro, :description, :street, :zip, :city, :loc_descr, :lat, :lng, :municipality_id, :start_date, :start_time, :stop_date, :stop_time, :organizer_id,   :phone_number, :phone_name, :email, :email_name, :category_id
 
 
   validates_presence_of :subject, :description, :municipality_id, :start_date, :start_time, :stop_date, :stop_time, :organizer_id, :email, :email_name
@@ -41,7 +42,7 @@
   def degrees_to_degrees_minutes degrees_float
     degrees = degrees_float.to_i
     minutes = ((degrees_float - degrees).abs * 60 * 1000).to_i/1000.0
-    return degrees.to_s + '°' + minutes.to_s + '\''
+    degrees.to_s + '&deg;' + minutes.to_s + '\''
   end
   
   def lat_lng
@@ -67,8 +68,11 @@
     output_str
   end
 
-  def upcoming_events
-    self.find(:all, :conditions => ["stop_datetime >= '#{Time.now}'"], :order => "start_datetime ASC")
+  def upcoming_events 
+    # self.find(:all, :conditions => ["stop_datetime >= '#{Time.now}'"], :order => "start_datetime ASC")
+    Event.where("stop_datetime >= ? AND start_datetime <= ?", 
+                Time.now.beginning_of_day, Time.now.end_of_day + 2.months ).
+                order('start_datetime ASC').limit 200 
   end
 
   def municipality_short

@@ -10,7 +10,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101221095530) do
+ActiveRecord::Schema.define(:version => 20110210134815) do
+
+  create_table "categories", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "ancestry"
+  end
+
+  add_index "categories", ["ancestry"], :name => "index_categories_on_ancestry"
 
   create_table "events", :force => true do |t|
     t.string   "subject"
@@ -33,6 +43,7 @@ ActiveRecord::Schema.define(:version => 20101221095530) do
     t.string   "email"
     t.string   "email_name"
     t.integer  "event_id"
+    t.integer  "category_id"
   end
 
   create_table "mail_messages", :force => true do |t|
@@ -61,6 +72,9 @@ ActiveRecord::Schema.define(:version => 20101221095530) do
     t.string   "admin_no"
     t.string   "short_name"
     t.string   "parent_admin_no"
+    t.text     "facts"
+    t.string   "wikipedia_page"
+    t.datetime "facts_last_updated"
   end
 
   add_index "municipalities", ["admin_no"], :name => "index_municipalities_on_admin_no", :unique => true
@@ -73,6 +87,17 @@ ActiveRecord::Schema.define(:version => 20101221095530) do
     t.string   "website"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "logotype_file_name"
+    t.string   "logotype_content_type"
+    t.integer  "logotype_file_size"
+    t.datetime "logotype_updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.string   "intro"
+    t.string   "email"
+    t.string   "phone"
   end
 
   create_table "users", :force => true do |t|

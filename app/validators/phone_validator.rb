@@ -1,4 +1,4 @@
-﻿class PhoneValidator < ActiveModel::EachValidator
+class PhoneValidator < ActiveModel::EachValidator
   def validate_each(record,attribute,value)
     return true if value.blank?
     n_digits = value.scan(/[0-9]/).size

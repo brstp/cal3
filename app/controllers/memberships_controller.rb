@@ -11,7 +11,6 @@ before_filter :authorized_to_destroy?, :except => [:create]
       flash[:alert] = I18n.t 'flash.actions.create.membership_exists_already'
       redirect_to :back      
     else
-      logger.info "--------------" + organizer_id
       @organizer = Organizer.find( organizer_id )
       @membership = @organizer.memberships.build(:user_id => user_id )
       if @membership.save

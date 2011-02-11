@@ -1,4 +1,4 @@
-﻿class User < ActiveRecord::Base
+class User < ActiveRecord::Base
   has_many :memberships, :dependent => :destroy
   has_many :organizers, :through => :memberships
   # Include default devise modules. Others available are:

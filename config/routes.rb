@@ -1,5 +1,7 @@
 Cal3::Application.routes.draw do
 
+  resources :categories
+
   resources :mail_messages
 
   devise_for :users
