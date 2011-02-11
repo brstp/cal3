@@ -10,7 +10,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110209134233) do
+ActiveRecord::Schema.define(:version => 20110210134815) do
+
+  create_table "categories", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "ancestry"
+  end
+
+  add_index "categories", ["ancestry"], :name => "index_categories_on_ancestry"
 
   create_table "events", :force => true do |t|
     t.string   "subject"
@@ -33,6 +43,7 @@ ActiveRecord::Schema.define(:version => 20110209134233) do
     t.string   "email"
     t.string   "email_name"
     t.integer  "event_id"
+    t.integer  "category_id"
   end
 
   create_table "mail_messages", :force => true do |t|

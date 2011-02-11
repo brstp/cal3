@@ -1,0 +1,31 @@
+<h1>Listing categories</h1>
+
+<table class = "general">
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Mamma</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @categories.each do |category| %>
+  <tr class = "<%= cycle("even", "odd") %>">
+    <td><%= category.prefix + category.name %></td>
+    <td><%= category.description %></td>
+    <td><%= category.parent.try :name %></td>
+    <td><%= link_to 'Show', category %></td>
+    <td><%= link_to 'Edit', edit_category_path(category) %></td>
+    <td><%= link_to 'Destroy', category, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+
+<%= Category.first.root.climb %>
+
+
+<%= link_to 'New Category', new_category_path %>

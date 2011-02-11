@@ -160,6 +160,7 @@
       organizer: "arrangör"
       user: "användare"
       mail: "mejl"
+      category: "ämneskategori"
       
     # Translate model attribute names. Used in Model.human_attribute_name(attribute).
     #attributes:
@@ -168,6 +169,10 @@
       #     login: "Handle"
       # will translate User attribute "login" as "Handle"
     attributes:
+      categories:
+        name: "namn"
+        description: "Beskrivning"
+        ancestry: "Tillhör kategori"
       municipality:
         name: "kommunnamn"
       event:
@@ -445,10 +450,20 @@
       organizers: "Alla arrangörer"
       municipalities: "Alla kommuner"
       users: "Alla användare"
+      categories: "Alla kategorier"
       new_organizer: "Lägg upp en ny arrangör"
       new_event: "Lägg upp ny evenemangsannons"
       subscribe_rss: "Prenumera på flöde med alla evenemangsannonser"
       rss_alt: "Prenumerera på RSS-flöde med alla evenemang."
+      
+  categories:
+    new:
+      list: "Till kategorilistan (strunta i ändringar)"
+      title: "Skapa ny kategori"
+    edit:
+      title: "Ändra kategori"
+      list: "Till kategorilistan (strunta i ändringar)"
+      show: "Strunta i ändringar"
       
   users:
     show:

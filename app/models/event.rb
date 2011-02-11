@@ -6,12 +6,13 @@ class Event < ActiveRecord::Base
 
   belongs_to :municipality
   belongs_to :organizer
+  belongs_to :category
 
   before_save :merge_start_datetime, :merge_stop_datetime
   after_validation :consider_fetch
 
 
-  attr_accessible :subject, :intro, :description, :street, :zip, :city, :loc_descr, :lat, :lng, :municipality_id, :start_date, :start_time, :stop_date, :stop_time, :organizer_id,   :phone_number, :phone_name, :email, :email_name
+  attr_accessible :subject, :intro, :description, :street, :zip, :city, :loc_descr, :lat, :lng, :municipality_id, :start_date, :start_time, :stop_date, :stop_time, :organizer_id,   :phone_number, :phone_name, :email, :email_name, :category_id
 
 
   validates_presence_of :subject, :description, :municipality_id, :start_date, :start_time, :stop_date, :stop_time, :organizer_id, :email, :email_name
