@@ -16,7 +16,7 @@
 <% end %>
 
 <%= simple_format @event.description %>
-<%= @event.category %>
+<strong><%= t('app.category')%>:</strong> <%= @event.category.try :name %>
 
 
 <p>

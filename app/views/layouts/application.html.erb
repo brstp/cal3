@@ -116,8 +116,8 @@
 					  <div id="user_nav" class="box">
             <p>
               <% if user_signed_in? %>
-                <strong>
-                <%= t 'devise.sessions.signed_in_as' %> <%= current_user.email %>.</strong><br /> <%= t 'devise.sessions.not_you' %> <%= link_to I18n.t('devise.sessions.sign_out'), destroy_user_session_path %><br />
+                <%= image_tag avatar_url(current_user), :class => :logged_in_avatar %>
+                <%= current_user.email %><br /><%= t 'devise.sessions.not_you' %> <%= link_to I18n.t('devise.sessions.sign_out'), destroy_user_session_path %> 
                 <%= link_to (t 'devise.sessions.change_settings'), edit_user_path(current_user) %> 
               <% else %>
                 <%= link_to I18n.t('devise.sessions.sign_up'), new_user_registration_path %> <%= I18n.t('app.or') %> 

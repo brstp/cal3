@@ -304,6 +304,7 @@
     there_are: "Det finns"
     events_in_total: "evenemang. Alla fick inte plats här. Vill du kolla?"
     planned_events: "Planerade evenemang"
+    category: "Kategori"
   
   mail:
     mail.cc_event: "Kopia evenemang"

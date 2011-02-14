@@ -199,3 +199,7 @@ table.general tr.even {
 .wikipedia-source {
   font-size: 80%;
 }
+
+.logged_in_avatar {
+  vertical-align: text-top;
+}

@@ -16,36 +16,49 @@ class Category < ActiveRecord::Base
     str 
   end
 
-  def name # Fortsätt här. Byt namn internt på name (kanske) och låt name vara wrapper...
-    str = ""
-    self.depth.times {
-      str += "_"
-    }
-    str 
+  # def name # Fortsätt här. Byt namn internt på name (kanske) och låt name vara wrapper...
+    # str = ''
+    # self.depth.times {
+      # str += "_"
+    # }
+    # str 
+  # end
+  
+  def select_category
+    Category.all
   end
 
-  def self.tree
-  node = Category.first.root
- 
-  node.climb
-  
+  def tree
+    node = Category.first.root
+    node.climb
   end
   
-  def climb
-    html = ""
-    html << self.prefix + self.name + '<br />'
+  # def climb
+    # html = ""
+    # html << self.prefix + self.name + '<br />'
     # logger.info "----- in #{self.name} ----"
     # logger.info self.prefix + self.name
-    if self.has_children?
+    # if self.has_children?
     # logger.info "----- has #{self.children.count.to_s} ----"
+      # for child in self.children
+        # html << child.climb
+      # end
+    # end
+    
+    # raw html
+  # end
+  
+  
+  def climb
+    out = []
+    out << self.try(:name)
+    if self.has_children?
       for child in self.children
-        html << child.climb
+        out << child.climb
       end
     end
-    
-    raw html
+    out
   end
-  
 
 end
 
