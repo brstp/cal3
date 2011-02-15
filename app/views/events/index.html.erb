@@ -7,7 +7,41 @@
 
     <h1>Allt som händer innan det är försent.</h1>
     
-   
+
+<hr />
+
+<%= form_tag({:action => 'index'}, :method => 'get' ) do %>
+<%= text_field_tag :q, params[:q] %> 
+<%= submit_tag 'Search' %>
+<%end%>
+
+
+
+<% unless @events.blank? %>
+<table border = "1">
+  <tr>
+    <td>Subject</td>
+    <td>Intro</td>
+    <td>Description</td>
+    <td>Category</td>
+    <td>Organizer</td>
+    <td>Municipality</td>
+  </tr>
+  <% for event in @events%>
+  <tr>
+    <td><%=event.subject%></td>
+    <td><%=event.intro%></td>
+    <td><%=event.description%></td>
+    <td><%=event.category.try :name%></td>
+    <td><%=event.organizer.name%></td>
+    <td><%=event.municipality.name%></td>
+  </tr>
+  <% end %>
+
+</table>
+<%end%>
+<hr />
+
     
 <% if @events.blank? %>  
   <p>Just nu hittar vi inte några inplanerade evenemang. </p>

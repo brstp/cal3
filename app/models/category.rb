@@ -1,12 +1,22 @@
 class Category < ActiveRecord::Base
   include ActionView::Helpers::RawOutputHelper
   validates_presence_of :name
+  validates_uniqueness_of :name
   has_many :events
   has_many :categories
   
   attr_accessible :name, :description, :ancestry
   
   has_ancestry
+  
+  searchable :auto_index => true, :auto_remove => true do
+    text :name
+    text :description
+  end
+  
+  def to_s
+    self.name
+  end
   
   def prefix
     str = ""

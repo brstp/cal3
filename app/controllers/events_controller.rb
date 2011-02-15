@@ -3,24 +3,25 @@ class EventsController < ApplicationController
 before_filter :authenticate_user!, :except => [:show, :index]
 before_filter :authorized?, :except => [:show, :index]
 before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
-
-  def search
-    @search = Event.search do
-      keywords(params[:q])
-    end
-  end
-
-
+ 
+ 
   def index
-    # @events = Event.all(:order => 'start_datetime ASC')
-    @events = Event.where("stop_datetime >= ? AND start_datetime <= ?", 
-                Time.now.beginning_of_day, Time.now.end_of_day + 2.months ).
+    @events = if params[:q].blank? 
+      Event.where("stop_datetime >= ? AND start_datetime <= ?", 
+                Time.now.beginning_of_day, Time.now.end_of_day + 22.months ).
                 order('start_datetime ASC').limit 200
+    else
+      Event.solr_search do |s|
+        s.keywords params[:q]
+      end
+    end
     respond_to do |format|
       format.html
       format.rss
     end
+  
   end
+  
   
   def show
     @event = Event.find(params[:id])
@@ -70,6 +71,8 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
     flash[:notice] = t 'flash.actions.destroy.notice'
     redirect_to events_url
   end
+  
+
   
   protected
   

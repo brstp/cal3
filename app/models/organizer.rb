@@ -15,6 +15,11 @@ class Organizer < ActiveRecord::Base
   has_attached_file :logotype, :default_url => "/images/no-organizer-logotype.png", :styles => {:large => "300x225", :small => "100x75"}
   has_attached_file :photo, :default_url => "/images/no-organizer-photo.png", :styles => {:medium => "400x300", :small => "100x75"}
   
+  searchable :auto_index => true, :auto_remove => true do
+    text :name
+    text :intro
+    text :description
+  end
   
   def upcoming_events
     self.events.find(:all, :conditions => ["stop_datetime >= '#{Time.now}'"], :order => "start_datetime ASC")   

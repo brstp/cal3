@@ -5,6 +5,10 @@ class Municipality < ActiveRecord::Base
   validates_length_of :name, :in => 5..40
   validates_uniqueness_of :name, :short_name, :admin_no
   
+  searchable :auto_index => true, :auto_remove => true do
+    text :name
+  end
+  
   def upcoming_events
     self.events.find(:all, :conditions => ["stop_datetime >= '#{Time.now}'"], :order => "start_datetime ASC")   
   end

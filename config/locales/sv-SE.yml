@@ -195,6 +195,7 @@
         email_name: "Namn för mejladressen"
         phone_number: "Telefonnummer"
         phone_name: "Namn för telefonnummer"
+        category: "Ämneskategori"
       organizer:
         name: "Namn"
         description: "Beskrivning"

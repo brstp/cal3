@@ -15,7 +15,7 @@ class Event < ActiveRecord::Base
   attr_accessible :subject, :intro, :description, :street, :zip, :city, :loc_descr, :lat, :lng, :municipality_id, :start_date, :start_time, :stop_date, :stop_time, :organizer_id,   :phone_number, :phone_name, :email, :email_name, :category_id
 
 
-  validates_presence_of :subject, :description, :municipality_id, :start_date, :start_time, :stop_date, :stop_time, :organizer_id, :email, :email_name
+  validates_presence_of :subject, :description, :municipality_id, :start_date, :start_time, :stop_date, :stop_time, :organizer_id, :email, :email_name, :category_id
   validates_length_of :subject, :in => 7..40
   validates_length_of :intro, :in => 0..90
   validates_numericality_of :lat, :allow_nil => true
@@ -27,10 +27,14 @@ class Event < ActiveRecord::Base
 
   geocoded_by :street, :latitude => :lat, :longitude => :lng
 
-#  searchable do
-#    string :subject
-#    text :description
-#  end
+  searchable :auto_index => true, :auto_remove => true do
+    text :subject, :boost => 3.0
+    text :intro, :boost => 2.0
+    text :description
+    integer :category_id, :references => ::Category
+    # integer :municipality_id, :references => ::Municipality
+    # integer :organizer_id, :references => ::Organizer
+  end
 
   def consider_fetch
     if lat == nil or lng == nil
