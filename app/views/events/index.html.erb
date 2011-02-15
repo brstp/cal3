@@ -10,11 +10,16 @@
 
 <hr />
 
-<%= form_tag({:action => 'index'}, :method => 'get' ) do %>
-<%= text_field_tag :q, params[:q] %> 
-<%= submit_tag 'Search' %>
-<%end%>
 
+Facets:        
+<% if !@facet_rows.blank? && @facet_rows.size > 0 %>
+<ul>
+<% for row in @facet_rows %>
+<li><%= link_to( "#{row.instance} (#{row.count})", events_path( :q => params[:q], :category_id => row.instance ) ) %></li>
+<% end %>
+
+</ul>
+<% end %>
 
 
 <% unless @events.blank? %>
@@ -29,7 +34,7 @@
   </tr>
   <% for event in @events%>
   <tr>
-    <td><%=event.subject%></td>
+    <td><%=link_to event.subject, event%></td>
     <td><%=event.intro%></td>
     <td><%=event.description%></td>
     <td><%=event.category.try :name%></td>

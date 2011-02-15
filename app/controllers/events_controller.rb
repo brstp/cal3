@@ -11,13 +11,24 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
                 Time.now.beginning_of_day, Time.now.end_of_day + 22.months ).
                 order('start_datetime ASC').limit 200
     else
-      Event.solr_search do |s|
+      result = Event.solr_search do |s|
         s.keywords params[:q]
+        unless params[:category_id].blank?
+          s.with( :category_id ).equal_to( params[:category_id].to_i )
+        else
+          s.facet :category_id
+        end
       end
+      if result.facet( :category_id )
+        @facet_rows = result.facet(:category_id).rows
+      end
+      result
     end
+    
     respond_to do |format|
       format.html
       format.rss
+      
     end
   
   end

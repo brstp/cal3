@@ -457,6 +457,7 @@
       new_event: "Lägg upp ny evenemangsannons"
       subscribe_rss: "Prenumera på flöde med alla evenemangsannonser"
       rss_alt: "Prenumerera på RSS-flöde med alla evenemang."
+      add_change_avatar: "Bilden kommer från Gravatar. Ändra eller lägg till bild av dig själv."
       
   categories:
     new:
