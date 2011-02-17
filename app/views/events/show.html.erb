@@ -1,10 +1,13 @@
 <% set_meta_tags :title => @event.subject,
                    :description => @event.intro %>
 
-               
-                  
-
+<% open_graph_properties  @event.subject,
+                          '' , 
+                          event_path(:only_path => false) 
+                          %>
+                          
 <% content_for :right_column_facts do %>  
+  <%= page_counter @event.counter%>
   <%= organizer_facts @event.organizer %>
 <% end %>       
 
@@ -16,6 +19,7 @@
 <% end %>
 <%= facebook_like event_path(:only_path => false) %>
 <p><strong><%= @event.duration.capitalize %></strong></p>
+
 
 
 

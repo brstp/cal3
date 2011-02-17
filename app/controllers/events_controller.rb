@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+include ActiveRecord::CounterCache
 
 before_filter :authenticate_user!, :except => [:show, :index]
 before_filter :authorized?, :except => [:show, :index]
@@ -34,8 +35,10 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
   
   
   def show
+    Event.increment_counter :counter, params[:id]
     @event = Event.find(params[:id])
   end
+  
   
   def new
     @event = Event.new

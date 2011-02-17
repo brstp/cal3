@@ -21,6 +21,15 @@ module LayoutHelper
     content_for(:head) { javascript_include_tag(*args) }
   end
   
+  def page_counter counter
+    str = %(
+            <div class = "box">
+            <span class="heading">#{t('.page_viewed')}:</span>
+            <span class = "counter">#{"%06.0f" % counter }</span>
+            </div> 
+          )
+    raw str
+  end
   
   def facebook_like(page_url, ref="default")
     str = %(
@@ -38,11 +47,12 @@ module LayoutHelper
     <meta property="og:title" content="#{title}" />
     <meta property="og:type" content="activity" />
     <meta property="og:url" content="#{url}" />
-    <meta property="og:image" content="#{img}" />
     <meta property="og:site_name" content="#{t('app.site_name')}" />
     <meta property="fb:admins" content="1083707575" /> 
     )
-    
+    unless img.blank?
+      str << %(<meta property="og:image" content="#{img}" />)
+    end
     content_for(:head) {
     raw str 
     }

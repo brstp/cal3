@@ -211,3 +211,14 @@ table.general tr.even {
   border-color: red;
   border-style: solid;
 }
+
+
+.counter {
+  font-size: 2em;
+  font: Verdana;
+  background-color: black;
+  color: lightgrey;
+  padding: 0.2em;
+  padding-left: 0.7em;
+  letter-spacing: 0.5em;
+}

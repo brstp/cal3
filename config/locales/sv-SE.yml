@@ -587,6 +587,7 @@
       edit: "Redigera den här evenemangsannonsen."
       destroy: "Radera den här evenemangsannonsen."
       ok_to_keep: "Den får ligga kvar även efter att evenemanget hållits."
+      page_viewed: "Sidan visad"
     form:
       closest_address: "Närmsta adress som vi känner till"
   
