@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110210134815) do
+ActiveRecord::Schema.define(:version => 20110216105615) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(:version => 20110210134815) do
     t.string   "email_name"
     t.integer  "event_id"
     t.integer  "category_id"
+    t.integer  "counter",         :default => 0
   end
 
   create_table "mail_messages", :force => true do |t|
