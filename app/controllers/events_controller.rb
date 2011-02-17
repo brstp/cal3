@@ -28,7 +28,6 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
     respond_to do |format|
       format.html
       format.rss
-      
     end
   
   end

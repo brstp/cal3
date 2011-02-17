@@ -203,3 +203,11 @@ table.general tr.even {
 .logged_in_avatar {
   vertical-align: text-top;
 }
+
+.event_in_past {
+  background-color: #ccc;
+  padding: 1em;
+  border-width: 2px;
+  border-color: red;
+  border-style: solid;
+}

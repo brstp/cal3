@@ -570,7 +570,7 @@
       page_title: "Alla evenemang. Evenemangskalender för alla arrangörer."
       meta_description: "Använd föreningskalendern för att hitta kul saker att göra. Annonsera dina evenemang. För föreningar."
       new: "Skapa nytt evenemang"
-      subscribe_rss: "Prenumerera på alla evenemang"
+      subscribe_rss: "Prenumerera på alla evenemang som matchar den här sökningen."
       new_organizer: "Skapa ny arrangör"
       no_of_events_per_municipality: "inplanerade evenemang i kommunen"
       no_of_events_per_organizer: "inplanerat evenemang"

@@ -1,14 +1,27 @@
 <% set_meta_tags :title => @event.subject,
                    :description => @event.intro %>
 
+               
+                  
+
 <% content_for :right_column_facts do %>  
   <%= organizer_facts @event.organizer %>
-<% end %>                   
-                   
+<% end %>       
+
+<% if @event.stop_datetime > Time.now %>
+  <div class = "event_in_future"> 
+<% else %>           
+  <div class = "event_in_past"> 
+  <h1>Det här evenemanget har redan varit.</h1>
+<% end %>
+<%= facebook_like event_path(:only_path => false) %>
 <p><strong><%= @event.duration.capitalize %></strong></p>
+
+
+
 <h1><%= @event.subject %></h1>
 <p>
- <%= arranged_by @event%> <%= arranged_in @event%> 
+ <%= arranged_by @event%> <%= arranged_in @event %> 
 </p>
 
 <% unless @event.intro.blank? %> 
@@ -144,4 +157,5 @@
 <%end%>
 
 <%= map_marker @event %>
+</div> 
  

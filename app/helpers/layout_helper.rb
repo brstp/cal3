@@ -21,6 +21,34 @@ module LayoutHelper
     content_for(:head) { javascript_include_tag(*args) }
   end
   
+  
+  def facebook_like(page_url, ref="default")
+    str = %(
+    <iframe src="http://www.facebook.com/plugins/like.php?href=#{page_url}&amp;layout=standard&amp;show_faces=false&amp;width=450&amp;action=recommend&amp;colorscheme=light&amp;height=35&amp;locale=sv_SE&amp;ref=#{ref}" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:35px;" allowTransparency="true"></iframe>
+    )
+    
+    raw str
+  end
+  
+  def open_graph_properties title="", img="", url=""
+    #TODO FB Admin in settings
+    #TODO img per event (or generic img for the calendar)
+    #     
+    str = %(
+    <meta property="og:title" content="#{title}" />
+    <meta property="og:type" content="activity" />
+    <meta property="og:url" content="#{url}" />
+    <meta property="og:image" content="#{img}" />
+    <meta property="og:site_name" content="#{t('app.site_name')}" />
+    <meta property="fb:admins" content="1083707575" /> 
+    )
+    
+    content_for(:head) {
+    raw str 
+    }
+
+  end
+  
   def municipality_facts municipality
     unless municipality.facts.blank?
       str =%(
@@ -39,7 +67,7 @@ module LayoutHelper
   def organizer_facts organizer
     str =%(
           <div id="municipality_facts" class="box">
-          <span class="heading">Fakta om arrangören </span>
+          <span class="heading">Fakta om arrangören: </span>
           #{image_tag organizer.logotype.url(:small)}
           <h4>#{link_to(organizer.name, organizer)}</h4>
           <p>

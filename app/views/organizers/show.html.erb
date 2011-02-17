@@ -1,12 +1,20 @@
 <% set_meta_tags :title => @organizer.name + t('.title'),
                    :description => t('.meta_description') + ' ' + @organizer.name + ' ' +  t('.meta_description2')%>
 
+<% content_for :head do %>  
+  <%= auto_discovery_link_tag( :rss, organizer_url(:format => 'rss') , {:title => @organizer.name + t('app.s') + ' ' + t('.organizers_event') + ' ' + t('app.at') + ' ' +  t('app.site_name')}) %>
+<% end %>                     
+                   
 <% content_for :right_column_facts do %>
 <% end %>
 
-                   
+<%= open_graph_properties @organizer.name, request.protocol + request.host_with_port + @organizer.logotype.url(:large), organizer_path(@organizer, :only_path => false)  %>
+
+
                    
 <%= image_tag @organizer.logotype.url(:small) %>
+<%= facebook_like organizer_path(:only_path => false) %>
+
 <h1><%= @organizer.name %></h1>
 <p>
 <h3><%= @organizer.intro %></h3>
@@ -14,9 +22,7 @@
 <%= image_tag @organizer.photo.url(:medium) %>
 
 
-<% content_for :head do %>  
-  <%= auto_discovery_link_tag( :rss, organizer_url(:format => 'rss') , {:title => @organizer.name + t('app.s') + ' ' + t('.organizers_event') + ' ' + t('app.at') + ' ' +  t('app.site_name')}) %>
-<% end %> 
+ 
 
 <p>
   <%= simple_format @organizer.description %>

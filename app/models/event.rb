@@ -12,7 +12,7 @@ class Event < ActiveRecord::Base
   after_validation :consider_fetch
 
 
-  attr_accessible :subject, :intro, :description, :street, :zip, :city, :loc_descr, :lat, :lng, :municipality_id, :start_date, :start_time, :stop_date, :stop_time, :organizer_id,   :phone_number, :phone_name, :email, :email_name, :category_id
+  attr_accessible :subject, :intro, :description, :street, :zip, :city, :loc_descr, :lat, :lng, :municipality_id, :start_date, :start_time, :stop_date, :stop_time, :organizer_id, :phone_number, :phone_name, :email, :email_name, :category_id
 
 
   validates_presence_of :subject, :description, :municipality_id, :start_date, :start_time, :stop_date, :stop_time, :organizer_id, :email, :email_name, :category_id
@@ -31,9 +31,20 @@ class Event < ActiveRecord::Base
     text :subject, :boost => 3.0
     text :intro, :boost => 2.0
     text :description
+    text :street
+    text :city
+    text :loc_descr
+    text :phone_name
+    text :email_name
+    text :category
+    text :organizer
+    text :municipality
+    # text :category_names do
+      # categories.map { |category| category.name}
+    # end
     integer :category_id, :references => ::Category
     # integer :municipality_id, :references => ::Municipality
-    # integer :organizer_id, :references => ::Organizer
+    integer :organizer_id, :references => ::Organizer
   end
 
   def consider_fetch

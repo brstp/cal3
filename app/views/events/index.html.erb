@@ -11,6 +11,12 @@
 <hr />
 
 
+<%= form_tag({:action => 'index'}, :method => 'get' ) do %>
+<%= search_field_tag :q, params[:q] %> 
+<%= submit_tag 'Search' %>
+<% end %>
+
+
 Facets:        
 <% if !@facet_rows.blank? && @facet_rows.size > 0 %>
 <ul>
@@ -56,8 +62,6 @@ Facets:
 
 <p>
 
-<%= link_to(t('.subscribe_rss'), events_url(:only_path => false, :format => :rss) )  %>
-<%= link_to image_tag("rss_icon.gif", :alt => t('.rss_alt')), events_url(:only_path => false, :format => :rss) %>
+<%= link_to(t('.subscribe_rss'), events_url(:only_path => false, :format => :rss, :q => params[:q], :category_id => params[:category_id], :municipality_id => params[:municipality_id], :organizer_id => params[:organizer_id]) )  %>
+<%= link_to image_tag("rss_icon.gif", :alt => t('.rss_alt')), events_url(:only_path => false, :format => :rss, :q => params[:q], :category_id => params[:category_id], :municipality_id => params[:municipality_id], :organizer_id => params[:organizer_id]) %>
 </p>
-
-

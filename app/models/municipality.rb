@@ -9,6 +9,10 @@ class Municipality < ActiveRecord::Base
     text :name
   end
   
+  def to_s
+    self.name
+  end
+  
   def upcoming_events
     self.events.find(:all, :conditions => ["stop_datetime >= '#{Time.now}'"], :order => "start_datetime ASC")   
   end
