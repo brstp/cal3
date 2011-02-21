@@ -504,8 +504,7 @@
       share_as_iframe: "Vill du ha evenemangen i kommunen på din hemsida? Kopiera och klistra in i din mall eller htmlfil: "
       meta_description: "Hitta alla evenemang i"
       meta_description2: "och annonsera dina egna arrangemang så att de syns här."
-      
-      
+      download_ics: "Spara evenemangen i kommunen i kalendern på din dator."
       
   municipality:
     new:
@@ -551,6 +550,8 @@
       meta_description2: "s alla evenemang. Du kan också annonsera dina arrangemang så att de syns här."
       new_event: "Vill du lägga in det första?"
       contact: "Kontaktinfo"
+      download_ics: "Spara arrangörens alla evenemang i kalendern på din dator."
+
   organizer:
     new:
       title: "Ny arrangör"

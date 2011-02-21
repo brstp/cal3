@@ -12,6 +12,7 @@ class MunicipalitiesController < ApplicationController
         format.html # show.html.erb
         format.ihtml
         format.rss  
+        format.ics
       end
   end
   

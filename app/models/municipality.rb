@@ -13,6 +13,16 @@ class Municipality < ActiveRecord::Base
     self.name
   end
   
+  def ical
+    c = Icalendar::Calendar.new
+    #TODO Better way to point out url with helper (uid/url)
+    for event in self.events.find(:all, :conditions => ["stop_datetime >= '#{Time.now}'"], :order => "start_datetime ASC") 
+      c.add event.ical_single_event
+    end
+    c.publish
+    c.to_ical
+  end
+  
   def upcoming_events
     self.events.find(:all, :conditions => ["stop_datetime >= '#{Time.now}'"], :order => "start_datetime ASC")   
   end
