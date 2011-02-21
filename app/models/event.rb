@@ -84,7 +84,24 @@ class Event < ActiveRecord::Base
     c.publish
     c.to_ical
   end
-
+  
+  def ical_single_event
+    e = Icalendar::Event.new
+    #TODO Better way to point out url with helper (uid/url)
+    e.uid = "http://www.foreningskalendern.se/event/#{self.id}"    
+    e.dtstart = I18n.localize(self.start_datetime, :format => :icalendar)
+    e.dtend = I18n.localize(self.stop_datetime, :format => :icalendar)    
+    e.summary = self.subject
+    e.description = self.description
+    e.created = I18n.localize(self.created_at, :format => :icalendar)   
+    e.url = e.uid    
+    #TODO: url to organizer page...
+    e.organizer = self.organizer.name
+    e.location = self.location
+    e.geo = "#{self.lat.to_s};#{self.lng.to_s}"
+    e.last_modified = I18n.localize(self.updated_at, :format => :icalendar)
+    e
+  end
 
     
   def consider_fetch

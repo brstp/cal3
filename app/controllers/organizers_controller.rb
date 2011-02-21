@@ -14,6 +14,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
       format.html # show.html.erb
       format.ihtml
       format.rss  
+      format.ics
     end
   end
   
