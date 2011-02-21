@@ -46,6 +46,8 @@ gem "rails-geocoder", :require => "geocoder"
 gem 'meta-tags', :require => 'meta_tags'
 gem "paperclip"
 gem "ancestry"
+#gem "ri_cal"
+gem 'icalendar'
 
 group :development, :test do
   gem 'sqlite3-ruby', :require => 'sqlite3'

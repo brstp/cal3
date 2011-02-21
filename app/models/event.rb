@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
-
+  
   #TODO: Move default start/stop dates/times to inializers
   #TODO: Check if use of 'self' is ok
   #TODO: Use validates_time, validates_date
@@ -47,6 +47,46 @@ class Event < ActiveRecord::Base
     integer :organizer_id, :references => ::Organizer
   end
 
+  def location
+    str = ""
+    unless self.loc_descr.blank? 
+      str += self.loc_descr + "\n"
+    end
+    unless self.street.blank? 
+      str += self.street + "\n"
+    end
+    unless self.zip.blank? 
+      str += self.zip + " "
+    end
+    unless self.city.blank? 
+      str += self.city
+    end
+    str
+  end
+  
+  def ical
+    e = Icalendar::Event.new
+    c = Icalendar::Calendar.new
+    #TODO Better way to point out url with helper (uid/url)
+    e.uid = "http://www.foreningskalendern.se/event/#{self.id}"    
+    e.dtstart = I18n.localize(self.start_datetime, :format => :icalendar)
+    e.dtend = I18n.localize(self.stop_datetime, :format => :icalendar)    
+    e.summary = self.subject
+    e.description = self.description
+    e.created = I18n.localize(self.created_at, :format => :icalendar)   
+    e.url = e.uid    
+    #TODO: url to organizer page...
+    e.organizer = self.organizer.name
+    e.location = self.location
+    e.geo = "#{self.lat.to_s};#{self.lng.to_s}"
+    e.last_modified = I18n.localize(self.updated_at, :format => :icalendar)
+    c.add e
+    c.publish
+    c.to_ical
+  end
+
+
+    
   def consider_fetch
     if lat == nil or lng == nil
     fetch_coordinates

@@ -267,6 +267,7 @@
       month_and_year: "%B %Y"
       day_of_week: "%A"
       machine: "%Y-%m-%dT%H:%M:00%z"
+      icalendar: "%Y%m%dT%H%M00"
     am: ""
     pm: ""
 
@@ -588,6 +589,7 @@
       destroy: "Radera den här evenemangsannonsen."
       ok_to_keep: "Den får ligga kvar även efter att evenemanget hållits."
       page_viewed: "Sidan visad"
+      download_ics: "Spara evenemanget i kalendern på din dator."
     form:
       closest_address: "Närmsta adress som vi känner till"
   
