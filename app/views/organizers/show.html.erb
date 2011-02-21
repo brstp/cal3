@@ -100,6 +100,9 @@
 <%= link_to t('.subscribe_rss') + ' ' + @organizer.name + t('app.s') + ' ' + t('.organizers_event'), :format => :rss, :only_path => false %>  
 <%= link_to image_tag("rss_icon.gif", :alt => t('.rss_alt') + ' ' + @organizer.name), :format => :rss, :only_path => false %>
 </p>
+<p>
+<%= link_to(t('.download_ics'), organizer_url(:only_path => false, :format => :ics ))  %>
+</p>
 
 
 <p>
