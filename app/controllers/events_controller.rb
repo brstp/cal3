@@ -7,24 +7,48 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
  
  
   def index
-    @events = if params[:q].blank? 
-      Event.where("stop_datetime >= ? AND start_datetime <= ?", 
-                Time.now.beginning_of_day, Time.now.end_of_day + 22.months ).
-                order('start_datetime ASC').limit 200
-    else
-      result = Event.solr_search do |s|
-        s.keywords params[:q]
-        unless params[:category_id].blank?
-          s.with( :category_id ).equal_to( params[:category_id].to_i )
-        else
-          s.facet :category_id
-        end
+
+    result = Event.solr_search do |s|
+      
+      s.keywords params[:q]
+      s.facet :category_id, :organizer_id, :municipality_id
+      s.order_by(:start_datetime, :asc)
+
+      
+      unless params[:category_id].blank?
+        s.with( :category_id ).equal_to( params[:category_id].to_i )
+      # else
+        # s.facet :category_id
       end
-      if result.facet( :category_id )
-        @facet_rows = result.facet(:category_id).rows
+      
+      unless params[:organizer_id].blank?
+        s.with( :organizer_id ).equal_to( params[:organizer_id].to_i )
+      # else
+        # s.facet :organizer_id
       end
-      result
+
+      unless params[:municipality_id].blank?
+        s.with( :municipality_id ).equal_to( params[:municipality_id].to_i )
+      # else
+        # s.facet :municipality_id
+      end
+      
     end
+    
+    if result.facet( :category_id )
+      @category_facet_rows = result.facet(:category_id).rows
+    end
+    
+    if result.facet( :organizer_id )
+      @organizer_facet_rows = result.facet(:organizer_id).rows
+    end    
+    
+    if result.facet( :municipality_id )
+      @municipality_facet_rows = result.facet(:municipality_id).rows
+    end
+
+    
+    @events = result
     
     respond_to do |format|
       format.html

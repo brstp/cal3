@@ -222,3 +222,18 @@ table.general tr.even {
   padding-left: 0.7em;
   letter-spacing: 0.5em;
 }
+
+.facet-1 {
+	display: block;
+	font: bold 11px Rockwell,Georgia,serif;
+	text-transform: uppercase;
+	margin: 10px 0 0 0;
+}
+
+.facet-2 {
+  margin: 0 0 0 0;
+}
+
+#facet li {
+  border-bottom-style: none;
+}

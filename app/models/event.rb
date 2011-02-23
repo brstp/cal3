@@ -12,7 +12,7 @@ class Event < ActiveRecord::Base
   after_validation :consider_fetch
 
 
-  attr_accessible :subject, :intro, :description, :street, :zip, :city, :loc_descr, :lat, :lng, :municipality_id, :start_date, :start_time, :stop_date, :stop_time, :organizer_id, :phone_number, :phone_name, :email, :email_name, :category_id, :counter
+  attr_accessible :subject, :intro, :description, :street, :zip, :city, :loc_descr, :lat, :lng, :municipality_id, :start_date, :start_time, :stop_date, :stop_time, :organizer_id, :phone_number, :phone_name, :email, :email_name, :category_id, :counter, :start_datetime, :stop_datetime
 
 
   validates_presence_of :subject, :description, :municipality_id, :start_date, :start_time, :stop_date, :stop_time, :organizer_id, :email, :email_name, :category_id
@@ -39,11 +39,12 @@ class Event < ActiveRecord::Base
     text :category
     text :organizer
     text :municipality
+    time :start_datetime
     # text :category_names do
       # categories.map { |category| category.name}
     # end
     integer :category_id, :references => ::Category
-    # integer :municipality_id, :references => ::Municipality
+    integer :municipality_id, :references => ::Municipality
     integer :organizer_id, :references => ::Organizer
   end
 
@@ -61,7 +62,7 @@ class Event < ActiveRecord::Base
     unless self.city.blank? 
       str += self.city
     end
-    str
+    str.strip
   end
   
   def ical

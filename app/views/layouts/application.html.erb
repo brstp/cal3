@@ -47,11 +47,10 @@
 	<div id="topbar">
 		
 		<div id="nav" class="grid_11 alpha">
-			<ul id="pagenav" class="menu"><li id="menu-item-34" class="menu-item menu-item-type-custom menu-item-34"><a href="/">Startsidan</a></li>
+			<ul id="pagenav" class="menu"><li id="menu-item-34" class="menu-item menu-item-type-custom menu-item-34"><a href="/">Startsidan/Alla evenemang</a></li>
 <li id="menu-item-37" class="menu-item menu-item-type-custom menu-item-37"><a href="/not-yet-implemented/">Lägg in evenemang</a></li>
 <li id="menu-item-35" class="menu-item menu-item-type-custom menu-item-35"><a href="/municipalities">Alla kommuner</a></li>
 <li id="menu-item-36" class="menu-item menu-item-type-custom menu-item-36"><a href="/organizers">Alla arrangörer</a></li>
-<li id="menu-item-23" class="menu-item menu-item-type-custom menu-item-home menu-item-23"><a href="http://info.foreningskalendern.se/">Om kalendern</a></li>
 </ul>		</div><!-- /nav -->
 		
 		<div id="search">
@@ -62,9 +61,9 @@
 			
 			</form>
 		-->
-    <%= form_tag({:action => 'index'}, :method => 'get' ) do %>
-      <%= text_field_tag :q, params[:q] %> 
-    <%end%>
+    <%# form_tag({:action => 'index'}, :method => 'get' ) do %>
+      <%# text_field_tag :q, params[:q], :id => :q2 %> 
+    <%#end%>
 		</div><!-- /search -->
 	
 	</div><!-- /topbar -->
@@ -128,6 +127,7 @@
               </p>
           </div> <!-- user_nav -->
           
+          <%= content_for :right_column_facet %>
           
 					<div id="calendar-nav" class="box">
           <span class="heading">Snabblänkar:</span>

@@ -578,6 +578,13 @@
       no_of_events_per_organizer: "inplanerat evenemang"
       rss_alt: "Prenumerera på RSS-flöde med alla evenemang." 
       rss_title: "Alla evenemang i Föreningskalendern"
+      show_all_facets: "Visa alla"
+      categories: "I ämneskategori"
+      organizers: "Av arrangör"
+      municipalities: "I kommun"
+      search: "Sök"
+      seek_event: "Sök evenemang"
+      reset_search: "Rensa sökningen och visa alla evenemang."
     edit:
       title: "Ändra evenemanget"
       show: "Visa evenemanget (strunta i ändringar)"

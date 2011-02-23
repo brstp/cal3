@@ -6,59 +6,27 @@
 <% end %> 
 
     <h1>Allt som händer innan det är försent.</h1>
-    
 
-<hr />
-
-
-<%= form_tag({:action => 'index'}, :method => 'get' ) do %>
-<%= search_field_tag :q, params[:q] %> 
-<%= submit_tag 'Search' %>
-<% end %>
-
-
-Facets:        
-<% if !@facet_rows.blank? && @facet_rows.size > 0 %>
-<ul>
-<% for row in @facet_rows %>
-<li><%= link_to( "#{row.instance} (#{row.count})", events_path( :q => params[:q], :category_id => row.instance ) ) %></li>
-<% end %>
-
-</ul>
-<% end %>
-
-
-<% unless @events.blank? %>
-<table border = "1">
-  <tr>
-    <td>Subject</td>
-    <td>Intro</td>
-    <td>Description</td>
-    <td>Category</td>
-    <td>Organizer</td>
-    <td>Municipality</td>
-  </tr>
-  <% for event in @events%>
-  <tr>
-    <td><%=link_to event.subject, event%></td>
-    <td><%=event.intro%></td>
-    <td><%=event.description%></td>
-    <td><%=event.category.try :name%></td>
-    <td><%=event.organizer.name%></td>
-    <td><%=event.municipality.name%></td>
-  </tr>
+<% content_for :right_column_facet do %>
+  <div class = "box" id="facet">
+  <span class="heading"><%= t '.seek_event' %>:</span>
+  <%= form_tag({:action => 'index'}, :method => 'get' ) do %>
+    <%= search_field_tag :q, params[:q] %>
+    <%= submit_tag t('.search') %>
   <% end %>
-
-</table>
-<%end%>
-<hr />
-
+  <%= facet_search %>
+<% end %>
+    
     
 <% if @events.blank? %>  
   <p>Just nu hittar vi inte några inplanerade evenemang. </p>
 <% else %>
   <%= calendar @events%>
 <% end %> 
+
+
+
+
 
 <p>
 
