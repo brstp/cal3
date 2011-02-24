@@ -40,12 +40,25 @@ class Event < ActiveRecord::Base
     text :organizer
     text :municipality
     time :start_datetime
+    # start_date trie
+    # lat/lng trie
+    # 
     # text :category_names do
       # categories.map { |category| category.name}
     # end
     integer :category_id, :references => ::Category
     integer :municipality_id, :references => ::Municipality
     integer :organizer_id, :references => ::Organizer
+    
+    string :date_facet, :multiple => true do
+      if self.start_datetime < Time.now+30.day 
+        "next_30_days"
+      end
+      if self.start_datetime < Time.now+10.day 
+        "next_10_days"
+      end
+    end
+    
   end
 
   def location

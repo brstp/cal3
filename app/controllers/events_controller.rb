@@ -13,24 +13,20 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
       s.keywords params[:q]
       s.facet :category_id, :organizer_id, :municipality_id
       s.order_by(:start_datetime, :asc)
+      # TODO Sök nära mig. # s.near([40,5, -72.3], :distance => 5, :sort => true)
+
 
       
       unless params[:category_id].blank?
         s.with( :category_id ).equal_to( params[:category_id].to_i )
-      # else
-        # s.facet :category_id
       end
       
       unless params[:organizer_id].blank?
         s.with( :organizer_id ).equal_to( params[:organizer_id].to_i )
-      # else
-        # s.facet :organizer_id
       end
 
       unless params[:municipality_id].blank?
         s.with( :municipality_id ).equal_to( params[:municipality_id].to_i )
-      # else
-        # s.facet :municipality_id
       end
       
     end
