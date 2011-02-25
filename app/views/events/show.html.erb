@@ -19,21 +19,20 @@
 <% end %>
 <%= facebook_like event_path(:only_path => false) %>
 <p><strong><%= @event.duration.capitalize %></strong></p>
-
-
-
-
 <h1><%= @event.subject %></h1>
 <p>
- <%= arranged_by @event%> <%= arranged_in @event %> 
+ <%= arranged_by @event%><br />
+ <%= arranged_in @event %><br />
+ <%= in_category @event %>
 </p>
+
 
 <% unless @event.intro.blank? %> 
   <h3><%= @event.intro %></h3>
 <% end %>
 
 <%= simple_format @event.description %>
-<strong><%= t('app.category')%>:</strong> <%= @event.category.try :name %>
+
 
 
 <p>

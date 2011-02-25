@@ -237,3 +237,45 @@ table.general tr.even {
 #facet li {
   border-bottom-style: none;
 }
+
+#user_account_box {
+  height: 68px;
+  width: 300px;
+  float: right;
+}
+#user_account {
+  font-size: 80%;
+  margin-top: 10px;
+  margin-right: 0;
+  margin-bottom: 0;
+  margin-left: 10px;
+}
+#user_avatar {
+  float: left;
+  margin: 0 5px 5px 0
+  }
+  
+#user_form {
+  font-size: 80%;
+  margin: 10px 0 10px 10px;
+  float: right;
+}
+
+#user_form  label{
+}
+
+#user_form input {
+  font-size: 1em;
+  margin: 2px 0 2px 0;
+}
+
+#user_password{
+}
+
+#user_submit{
+  float: right;
+}
+
+#forgot_password {
+ margin-left: 5px;
+}

@@ -458,7 +458,11 @@
       new_event: "Lägg upp ny evenemangsannons"
       subscribe_rss: "Prenumera på flöde med alla evenemangsannonser"
       rss_alt: "Prenumerera på RSS-flöde med alla evenemang."
-      add_change_avatar: "Bilden kommer från Gravatar. Ändra eller lägg till bild av dig själv."
+      email: "Mejladress:"
+      password: "Lösenord:"
+      remember_me: "Logga in automatiskt"
+      sign_in: "Logga in"
+      forgot_password: "Glömt lösenord?"
       
   categories:
     new:
@@ -598,6 +602,7 @@
       ok_to_keep: "Den får ligga kvar även efter att evenemanget hållits."
       page_viewed: "Sidan visad"
       download_ics: "Spara evenemanget i kalendern på din dator."
+      category: "i ämneskategorin"
     form:
       closest_address: "Närmsta adress som vi känner till"
   

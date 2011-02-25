@@ -326,14 +326,17 @@ google.maps.event.addDomListener(window, 'load', initialize);
   
   
   def arranged_by event
-    raw (t('app.arranged_by') + ': ' + link_to( (event.organizer.name+ ' (' + event.organizer.number_of_upcoming_events.to_s + ')'), event.organizer) ) 
+    raw ( link_to( (t('app.arranged_by') + ': ' + event.organizer.name+ ' (' + event.organizer.number_of_upcoming_events.to_s + ')'), event.organizer, :title => event.organizer.description) ) 
   end
   
   def arranged_in event
-    raw (t('app.in_municipality') + ' ' + link_to( (event.municipality.name + ' (' + event.municipality.number_of_upcoming_events.to_s + ')'), event.municipality ))
+    raw ( link_to( t('app.in_municipality') + ' ' + (event.municipality.name + ' (' + event.municipality.number_of_upcoming_events.to_s + ')'), event.municipality ))
   end
- 
- 
+  
+  def in_category event
+    raw (link_to (t '.category') + ': ' + event.category.name + ' (' + event.category.number_of_upcoming_events.to_s + ')', (events_path :category_id => event.category.id)) 
+  end
+
  
   def mini_calendar events = nil, more_events = events_url, max_no = 10
   #TODO time limits and no of events in initializer (and align)

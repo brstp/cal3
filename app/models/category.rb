@@ -18,6 +18,10 @@ class Category < ActiveRecord::Base
     self.name
   end
   
+  def number_of_upcoming_events
+    self.events.find(:all, :conditions => ["stop_datetime >= '#{Time.now}'"]).count
+  end
+  
   def prefix
     str = ""
     self.depth.times {
