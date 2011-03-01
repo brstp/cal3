@@ -1,22 +1,38 @@
 <% set_meta_tags :title => @event.subject,
                    :description => @event.intro %>
 
+<% open_graph_properties  @event.subject,
+                          '' , 
+                          event_path(:only_path => false) 
+                          %>
+                          
 <% content_for :right_column_facts do %>  
+  <%= page_counter @event.counter%>
   <%= organizer_facts @event.organizer %>
-<% end %>                   
-                   
+<% end %>       
+
+<% if @event.stop_datetime > Time.now %>
+  <div class = "event_in_future"> 
+<% else %>           
+  <div class = "event_in_past"> 
+  <h1>Det här evenemanget har redan varit.</h1>
+<% end %>
+<%= facebook_like event_path(:only_path => false) %>
 <p><strong><%= @event.duration.capitalize %></strong></p>
 <h1><%= @event.subject %></h1>
 <p>
- <%= arranged_by @event%> <%= arranged_in @event%> 
+ <%= arranged_by @event%><br />
+ <%= arranged_in @event %><br />
+ <%= in_category @event %>
 </p>
+
 
 <% unless @event.intro.blank? %> 
   <h3><%= @event.intro %></h3>
 <% end %>
 
 <%= simple_format @event.description %>
-<%= @event.category %>
+
 
 
 <p>
@@ -130,7 +146,7 @@
 </p>
 <% end %>
 
-
+<%= link_to(t('.download_ics'), event_url(:only_path => false, :format => :ics ))  %>
 
 
 <% if current_user %>
@@ -144,4 +160,5 @@
 <%end%>
 
 <%= map_marker @event %>
+</div> 
  

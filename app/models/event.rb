@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
-
+  
   #TODO: Move default start/stop dates/times to inializers
   #TODO: Check if use of 'self' is ok
   #TODO: Use validates_time, validates_date
@@ -12,10 +12,10 @@ class Event < ActiveRecord::Base
   after_validation :consider_fetch
 
 
-  attr_accessible :subject, :intro, :description, :street, :zip, :city, :loc_descr, :lat, :lng, :municipality_id, :start_date, :start_time, :stop_date, :stop_time, :organizer_id,   :phone_number, :phone_name, :email, :email_name, :category_id
+  attr_accessible :subject, :intro, :description, :street, :zip, :city, :loc_descr, :lat, :lng, :municipality_id, :start_date, :start_time, :stop_date, :stop_time, :organizer_id, :phone_number, :phone_name, :email, :email_name, :category_id, :counter, :start_datetime, :stop_datetime
 
 
-  validates_presence_of :subject, :description, :municipality_id, :start_date, :start_time, :stop_date, :stop_time, :organizer_id, :email, :email_name
+  validates_presence_of :subject, :description, :municipality_id, :start_date, :start_time, :stop_date, :stop_time, :organizer_id, :email, :email_name, :category_id
   validates_length_of :subject, :in => 7..40
   validates_length_of :intro, :in => 0..90
   validates_numericality_of :lat, :allow_nil => true
@@ -27,11 +27,97 @@ class Event < ActiveRecord::Base
 
   geocoded_by :street, :latitude => :lat, :longitude => :lng
 
-#  searchable do
-#    string :subject
-#    text :description
-#  end
+  searchable :auto_index => true, :auto_remove => true do
+    text :subject, :boost => 3.0
+    text :intro, :boost => 2.0
+    text :description
+    text :street
+    text :city
+    text :loc_descr
+    text :phone_name
+    text :email_name
+    text :category
+    text :organizer
+    text :municipality
+    time :start_datetime
+    # start_date trie
+    # lat/lng trie
+    # 
+    # text :category_names do
+      # categories.map { |category| category.name}
+    # end
+    integer :category_id, :references => ::Category
+    integer :municipality_id, :references => ::Municipality
+    integer :organizer_id, :references => ::Organizer
+    
+    string :date_facet, :multiple => true do
+      if self.start_datetime < Time.now+30.day 
+        "next_30_days"
+      end
+      if self.start_datetime < Time.now+10.day 
+        "next_10_days"
+      end
+    end
+    
+  end
 
+  def location
+    str = ""
+    unless self.loc_descr.blank? 
+      str += self.loc_descr + "\n"
+    end
+    unless self.street.blank? 
+      str += self.street + "\n"
+    end
+    unless self.zip.blank? 
+      str += self.zip + " "
+    end
+    unless self.city.blank? 
+      str += self.city
+    end
+    str.strip
+  end
+  
+  def ical
+    e = Icalendar::Event.new
+    c = Icalendar::Calendar.new
+    #TODO Better way to point out url with helper (uid/url)
+    e.uid = "http://www.foreningskalendern.se/event/#{self.id}"    
+    e.dtstart = I18n.localize(self.start_datetime, :format => :icalendar)
+    e.dtend = I18n.localize(self.stop_datetime, :format => :icalendar)    
+    e.summary = self.subject
+    e.description = self.description
+    e.created = I18n.localize(self.created_at, :format => :icalendar)   
+    e.url = e.uid    
+    #TODO: url to organizer page...
+    e.organizer = self.organizer.name
+    e.location = self.location
+    e.geo = "#{self.lat.to_s};#{self.lng.to_s}"
+    e.last_modified = I18n.localize(self.updated_at, :format => :icalendar)
+    c.add e
+    c.publish
+    c.to_ical
+  end
+  
+  def ical_single_event
+    e = Icalendar::Event.new
+    #TODO Better way to point out url with helper (uid/url)
+    e.uid = "http://www.foreningskalendern.se/event/#{self.id}"    
+    e.dtstart = I18n.localize(self.start_datetime, :format => :icalendar)
+    e.dtend = I18n.localize(self.stop_datetime, :format => :icalendar)    
+    e.summary = self.subject
+    e.description = self.description
+    e.created = I18n.localize(self.created_at, :format => :icalendar)   
+    e.url = e.uid    
+    #TODO: url to organizer page...
+    e.organizer = self.organizer.name
+    e.location = self.location
+    e.geo = "#{self.lat.to_s};#{self.lng.to_s}"
+    e.last_modified = I18n.localize(self.updated_at, :format => :icalendar)
+    e
+  end
+
+    
   def consider_fetch
     if lat == nil or lng == nil
     fetch_coordinates

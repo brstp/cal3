@@ -1,30 +1,68 @@
 class EventsController < ApplicationController
+include ActiveRecord::CounterCache
 
 before_filter :authenticate_user!, :except => [:show, :index]
 before_filter :authorized?, :except => [:show, :index]
 before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
-
-  def search
-    @search = Event.search do
-      keywords(params[:q])
-    end
-  end
-
-
+ 
+ 
   def index
-    # @events = Event.all(:order => 'start_datetime ASC')
-    @events = Event.where("stop_datetime >= ? AND start_datetime <= ?", 
-                Time.now.beginning_of_day, Time.now.end_of_day + 2.months ).
-                order('start_datetime ASC').limit 200
+
+    result = Event.solr_search do |s|
+      
+      s.keywords params[:q]
+      s.facet :category_id, :organizer_id, :municipality_id
+      s.order_by(:start_datetime, :asc)
+      # TODO Sök nära mig. # s.near([40,5, -72.3], :distance => 5, :sort => true)
+
+
+      
+      unless params[:category_id].blank?
+        s.with( :category_id ).equal_to( params[:category_id].to_i )
+      end
+      
+      unless params[:organizer_id].blank?
+        s.with( :organizer_id ).equal_to( params[:organizer_id].to_i )
+      end
+
+      unless params[:municipality_id].blank?
+        s.with( :municipality_id ).equal_to( params[:municipality_id].to_i )
+      end
+      
+    end
+    
+    if result.facet( :category_id )
+      @category_facet_rows = result.facet(:category_id).rows
+    end
+    
+    if result.facet( :organizer_id )
+      @organizer_facet_rows = result.facet(:organizer_id).rows
+    end    
+    
+    if result.facet( :municipality_id )
+      @municipality_facet_rows = result.facet(:municipality_id).rows
+    end
+
+    
+    @events = result
+    
     respond_to do |format|
       format.html
       format.rss
     end
+  
   end
   
+  
   def show
+    Event.increment_counter :counter, params[:id]
     @event = Event.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.ics
+    end
   end
+  
   
   def new
     @event = Event.new
@@ -70,6 +108,8 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
     flash[:notice] = t 'flash.actions.destroy.notice'
     redirect_to events_url
   end
+  
+
   
   protected
   

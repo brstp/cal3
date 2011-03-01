@@ -6,11 +6,10 @@
   <%= stylesheet_link_tag 'formtastic' %>
   <%= stylesheet_link_tag 'formtastic_changes' %>
   <%= stylesheet_link_tag 'application_mini' %>
-  <%= stylesheet_link_tag "blog_style" %>
+
   <%= stylesheet_link_tag "blog_css_reset", :media => :all %>
   <%= stylesheet_link_tag "blog_css_960", :media => :all %>
   <%= stylesheet_link_tag "blog_style" %>
-
 
 	<!--[if IE 7]>
 		<link rel="stylesheet" type="text/css" media="all" href="/public/stylesheets/blog_ie7.css" />
@@ -47,22 +46,32 @@
 	<div id="topbar">
 		
 		<div id="nav" class="grid_11 alpha">
-			<ul id="pagenav" class="menu"><li id="menu-item-34" class="menu-item menu-item-type-custom menu-item-34"><a href="/">Startsidan</a></li>
+			<ul id="pagenav" class="menu"><li id="menu-item-34" class="menu-item menu-item-type-custom menu-item-34"><a href="/">Startsidan/Alla evenemang</a></li>
 <li id="menu-item-37" class="menu-item menu-item-type-custom menu-item-37"><a href="/not-yet-implemented/">Lägg in evenemang</a></li>
 <li id="menu-item-35" class="menu-item menu-item-type-custom menu-item-35"><a href="/municipalities">Alla kommuner</a></li>
 <li id="menu-item-36" class="menu-item menu-item-type-custom menu-item-36"><a href="/organizers">Alla arrangörer</a></li>
-<li id="menu-item-23" class="menu-item menu-item-type-custom menu-item-home menu-item-23"><a href="http://info.foreningskalendern.se/">Om kalendern</a></li>
 </ul>		</div><!-- /nav -->
-		
-		<div id="search">
-		<!--
-			<form method="get" id="searchform" action="http://info.foreningskalendern.se/" class="search-form">
-			
-				<label>Sök</label>	<input type="text" value="Sök" name="s" id="s" class="field" onfocus="if (this.value == 'Sök') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Sök';}" />
-			
-			</form>
-		-->
-		</div><!-- /search -->
+    <div id = "user_account_box">
+		<% if user_signed_in? %>
+      <div id="user_account">
+      <%= image_tag avatar_url(current_user), :id => :user_avatar %>
+      <%= current_user.email %><br /><%= t 'devise.sessions.not_you' %> <%= link_to I18n.t('devise.sessions.sign_out'), destroy_user_session_path %><br />
+      <%= link_to (t 'devise.sessions.change_settings'), edit_user_path(current_user) %>
+      </div><!-- /user_account -->
+    <% else %>
+      <div id="user_form">
+
+      <%= form_for(:user, :as => :post, :url => "/users/sign_in" ) do |f| %>
+        <%= f.label :email, t('.email') %> <%= f.text_field :email, :size => "22" %>
+        <%= f.label :password, t('.password') %> <%= f.password_field :password, :size => "10" %>
+        <br />
+        <%= f.check_box :remember_me %> <%= f.label :remember_me, t('.remember_me') %>
+        <span id = "forgot_password"><%= link_to( t('.forgot_password'), "/users/password/new")%></span>
+        <%= f.submit t '.sign_in' %>
+      <% end %>
+      </div><!-- /user_form -->
+    <% end %>
+    </div> <!-- /user_account_box -->
 	
 	</div><!-- /topbar -->
 	
@@ -72,8 +81,7 @@
 		
 			<h1><a href="http://info.foreningskalendern.se" title="Föreningskalendern">Föreningskalendern</a></h1>
 			<h2>Allt som händer &#8211; innan det är försent</h2>
-			
-			<a href="http://info.foreningskalendern.se" title="Föreningskalendern"><img class="logo" src="http://www.lumano.se/img/lumano.gif" alt="Föreningskalendern" /></a>
+			<%= link_to((image_tag 'logotyp.png', :alt => "Föreningskalenderns logotyp", :title => "Föreningskalendern - allt som händer innan det är för sent."), :root, :title => "Föreningskalendern - allt som händer innan det är för sent." ) %>
 			
 		</div><!-- /logo -->
 		
@@ -116,9 +124,7 @@
 					  <div id="user_nav" class="box">
             <p>
               <% if user_signed_in? %>
-                <strong>
-                <%= t 'devise.sessions.signed_in_as' %> <%= current_user.email %>.</strong><br /> <%= t 'devise.sessions.not_you' %> <%= link_to I18n.t('devise.sessions.sign_out'), destroy_user_session_path %><br />
-                <%= link_to (t 'devise.sessions.change_settings'), edit_user_path(current_user) %> 
+         
               <% else %>
                 <%= link_to I18n.t('devise.sessions.sign_up'), new_user_registration_path %> <%= I18n.t('app.or') %> 
                 <%=link_to I18n.t('devise.sessions.sign_in'), new_user_session_path %>
@@ -126,13 +132,11 @@
               </p>
           </div> <!-- user_nav -->
           
+          <%= content_for :right_column_facet %>
           
 					<div id="calendar-nav" class="box">
           <span class="heading">Snabblänkar:</span>
             <ul>
-              <li><%= link_to t('.events'), events_path %></li>
-              <li><%= link_to t('.organizers'), organizers_path %></li>
-              <li><%= link_to t('.municipalities'), municipalities_path %></li>
               <% if current_user %> <li><%= link_to t('.new_organizer'), new_organizer_path %></li>
               <% unless current_user.organizers.empty? and !current_user.is_admin? %>
 <li><%= link_to t('.new_event'), new_event_path %></li>
@@ -154,7 +158,7 @@
 				
 			<div id="ads" class="box">
 			
-				<span class="heading">Annons</span>
+				<span class="heading">Annons:</span>
 				
 				<div class="adblock">
 
@@ -172,6 +176,7 @@
 			
 			</div><!-- /ads -->
 
+      
       <%= content_for :right_column_facts %>
 					
 			

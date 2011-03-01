@@ -195,6 +195,7 @@
         email_name: "Namn för mejladressen"
         phone_number: "Telefonnummer"
         phone_name: "Namn för telefonnummer"
+        category: "Ämneskategori"
       organizer:
         name: "Namn"
         description: "Beskrivning"
@@ -266,6 +267,7 @@
       month_and_year: "%B %Y"
       day_of_week: "%A"
       machine: "%Y-%m-%dT%H:%M:00%z"
+      icalendar: "%Y%m%dT%H%M00"
     am: ""
     pm: ""
 
@@ -304,6 +306,7 @@
     there_are: "Det finns"
     events_in_total: "evenemang. Alla fick inte plats här. Vill du kolla?"
     planned_events: "Planerade evenemang"
+    category: "Kategori"
   
   mail:
     mail.cc_event: "Kopia evenemang"
@@ -455,6 +458,11 @@
       new_event: "Lägg upp ny evenemangsannons"
       subscribe_rss: "Prenumera på flöde med alla evenemangsannonser"
       rss_alt: "Prenumerera på RSS-flöde med alla evenemang."
+      email: "Mejladress:"
+      password: "Lösenord:"
+      remember_me: "Logga in automatiskt"
+      sign_in: "Logga in"
+      forgot_password: "Glömt lösenord?"
       
   categories:
     new:
@@ -500,8 +508,7 @@
       share_as_iframe: "Vill du ha evenemangen i kommunen på din hemsida? Kopiera och klistra in i din mall eller htmlfil: "
       meta_description: "Hitta alla evenemang i"
       meta_description2: "och annonsera dina egna arrangemang så att de syns här."
-      
-      
+      download_ics: "Spara evenemangen i kommunen i kalendern på din dator."
       
   municipality:
     new:
@@ -547,6 +554,8 @@
       meta_description2: "s alla evenemang. Du kan också annonsera dina arrangemang så att de syns här."
       new_event: "Vill du lägga in det första?"
       contact: "Kontaktinfo"
+      download_ics: "Spara arrangörens alla evenemang i kalendern på din dator."
+
   organizer:
     new:
       title: "Ny arrangör"
@@ -567,12 +576,19 @@
       page_title: "Alla evenemang. Evenemangskalender för alla arrangörer."
       meta_description: "Använd föreningskalendern för att hitta kul saker att göra. Annonsera dina evenemang. För föreningar."
       new: "Skapa nytt evenemang"
-      subscribe_rss: "Prenumerera på alla evenemang"
+      subscribe_rss: "Prenumerera på alla evenemang som matchar den här sökningen."
       new_organizer: "Skapa ny arrangör"
       no_of_events_per_municipality: "inplanerade evenemang i kommunen"
       no_of_events_per_organizer: "inplanerat evenemang"
       rss_alt: "Prenumerera på RSS-flöde med alla evenemang." 
       rss_title: "Alla evenemang i Föreningskalendern"
+      show_all_facets: "Visa alla"
+      categories: "I ämneskategori"
+      organizers: "Av arrangör"
+      municipalities: "I kommun"
+      search: "Sök"
+      seek_event: "Sök evenemang"
+      reset_search: "Rensa sökningen och visa alla evenemang."
     edit:
       title: "Ändra evenemanget"
       show: "Visa evenemanget (strunta i ändringar)"
@@ -584,6 +600,9 @@
       edit: "Redigera den här evenemangsannonsen."
       destroy: "Radera den här evenemangsannonsen."
       ok_to_keep: "Den får ligga kvar även efter att evenemanget hållits."
+      page_viewed: "Sidan visad"
+      download_ics: "Spara evenemanget i kalendern på din dator."
+      category: "i ämneskategorin"
     form:
       closest_address: "Närmsta adress som vi känner till"
   

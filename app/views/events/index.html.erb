@@ -6,8 +6,17 @@
 <% end %> 
 
     <h1>Allt som händer innan det är försent.</h1>
+
+<% content_for :right_column_facet do %>
+  <div class = "box" id="facet">
+  <span class="heading"><%= t '.seek_event' %>:</span>
+  <%= form_tag({:action => 'index'}, :method => 'get' ) do %>
+    <%= search_field_tag :q, params[:q] %>
+    <%= submit_tag t('.search') %>
+  <% end %>
+  <%= facet_search %>
+<% end %>
     
-   
     
 <% if @events.blank? %>  
   <p>Just nu hittar vi inte några inplanerade evenemang. </p>
@@ -15,10 +24,12 @@
   <%= calendar @events%>
 <% end %> 
 
+
+
+
+
 <p>
 
-<%= link_to(t('.subscribe_rss'), events_url(:only_path => false, :format => :rss) )  %>
-<%= link_to image_tag("rss_icon.gif", :alt => t('.rss_alt')), events_url(:only_path => false, :format => :rss) %>
+<%= link_to(t('.subscribe_rss'), events_url(:only_path => false, :format => :rss, :q => params[:q], :category_id => params[:category_id], :municipality_id => params[:municipality_id], :organizer_id => params[:organizer_id]) )  %>
+<%= link_to image_tag("rss_icon.gif", :alt => t('.rss_alt')), events_url(:only_path => false, :format => :rss, :q => params[:q], :category_id => params[:category_id], :municipality_id => params[:municipality_id], :organizer_id => params[:organizer_id]) %>
 </p>
-
-

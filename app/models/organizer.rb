@@ -1,6 +1,6 @@
 class Organizer < ActiveRecord::Base
+  include ActionView::Helpers::UrlHelper
   has_many :events
-  
   has_many :memberships, :dependent => :destroy
   has_many :users, :through => :memberships
   
@@ -12,9 +12,28 @@ class Organizer < ActiveRecord::Base
   validates :phone, :phone => true
   validates :email, :email => true
   
-  has_attached_file :logotype, :default_url => "/images/no-organizer-logotype.png", :styles => {:large => "300x225", :small => "100x75"}
+  has_attached_file :logotype, :default_url => "/images/no-organizer-logotype.png", :styles => {:large => "400x300", :medium => "300x225", :small => "100x75"}
   has_attached_file :photo, :default_url => "/images/no-organizer-photo.png", :styles => {:medium => "400x300", :small => "100x75"}
   
+  searchable :auto_index => true, :auto_remove => true do
+    text :name
+    text :intro
+    text :description
+  end
+  
+  def to_s
+    self.name
+  end
+  
+  def ical
+    c = Icalendar::Calendar.new
+    #TODO Better way to point out url with helper (uid/url)
+    for event in self.events.find(:all, :conditions => ["stop_datetime >= '#{Time.now}'"], :order => "start_datetime ASC") 
+      c.add event.ical_single_event
+    end
+    c.publish
+    c.to_ical
+  end
   
   def upcoming_events
     self.events.find(:all, :conditions => ["stop_datetime >= '#{Time.now}'"], :order => "start_datetime ASC")   
@@ -27,8 +46,8 @@ class Organizer < ActiveRecord::Base
   def next_event
     self.events.find(:all, :conditions => ["start_datetime >= '#{Time.now}'"], :order => "start_datetime ASC" ).first
   end
-
   
+    
   def validates_website
 
     return 0 if self.website.blank?

@@ -21,9 +21,194 @@ module LayoutHelper
     content_for(:head) { javascript_include_tag(*args) }
   end
   
+  def facet_search
+    str = ""
+    
+    str << %(   
+        #{link_to t('.reset_search') }
+        <ul>
+            )
+    str << %(<li class = "facet-1">#{t'.categories'}</li>)
+    str << facet_category( @category_facet_rows )
+    str << %(<li class = "facet-1">#{t'.organizers'}</li>)
+    str << facet_organizer( @organizer_facet_rows )
+    str << %(<li class = "facet-1">#{t'.municipalities'}</li>)
+    str << facet_municipality( @municipality_facet_rows )
+    str << %(
+            </ul>
+          </div>)
+      
+    raw str
+  
+  end
+  
+  
+  def facet_category facet_rows 
+    str = ""
+      unless facet_rows.blank? 
+      str << %(
+            <li class = "facet-2">
+              <ul>
+              )
+      for row in facet_rows 
+      str << %(
+                <li>
+                  #{link_to( row.instance.to_s + " (" + row.count.to_s +  ")", 
+                              events_path(  :q => params[:q], 
+                                            :category_id => row.instance,
+                                            :organizer_id => params[:organizer_id],
+                                            :municipality_id => params[:municipality_id]
+                                          ) ) }
+                </li>
+              )
+      end
+      unless params[:category_id].blank?
+      str << %(
+                <li class = "facet-2">
+                  <strong>
+                  #{link_to( t('.show_all_facets'), 
+                              events_path(  :q => params[:q], 
+                                            :category_id => nil,
+                                            :organizer_id => params[:organizer_id],
+                                            :municipality_id => params[:municipality_id]
+                                          ) ) }
+                  </strong>                        
+                </li>
+              )
+      end
+      str << %(
+              </ul>
+            </li>
+              )
+    end
+    raw str
+  end
+  
+  def facet_organizer facet_rows 
+    str = ""
+      unless facet_rows.blank? 
+      str << %(
+            <li class = "facet-2">
+              <ul>
+              )
+      for row in facet_rows 
+      str << %(
+                <li>
+                  #{link_to( row.instance.to_s + " (" + row.count.to_s +  ")", 
+                              events_path(  :q => params[:q], 
+                                            :category_id => params[:category_id],
+                                            :organizer_id => row.instance,
+                                            :municipality_id => params[:municipality_id]
+                                          ) ) }
+                </li>
+              )
+      end
+      unless params[:organizer_id].blank?
+      str << %(
+                <li class = "facet-2">
+                  <strong>
+                  #{link_to( t('.show_all_facets'), 
+                              events_path(  :q => params[:q], 
+                                            :category_id => params[:category_id],
+                                            :organizer_id => nil,
+                                            :municipality_id => params[:municipality_id]
+                                          ) ) }
+                  </strong>                        
+                </li>
+              )
+      end
+      str << %(
+              </ul>
+            </li>
+              )
+    end
+    raw str
+  end
+  
+  def facet_municipality facet_rows 
+    str = ""
+      unless facet_rows.blank? 
+      str << %(
+            <li class = "facet-2">
+              <ul>
+              )
+      for row in facet_rows 
+      str << %(
+                <li>
+                  #{link_to( row.instance.to_s + " (" + row.count.to_s +  ")", 
+                              events_path(  :q => params[:q], 
+                                            :category_id => params[:category_id],
+                                            :organizer_id => params[:organizer_id],
+                                            :municipality_id => row.instance
+                                          ) ) }
+                </li>
+              )
+      end
+      unless params[:municipality_id].blank?
+      str << %(
+                <li class = "facet-2">
+                  <strong>
+                  #{link_to( t('.show_all_facets'), 
+                              events_path(  :q => params[:q], 
+                                            :category_id => params[:category_id],
+                                            :organizer_id => params[:organizer_id],
+                                            :municipality_id => nil
+                                          ) ) }
+                  </strong>                        
+                </li>
+              )
+      end
+      str << %(
+              </ul>
+            </li>
+              )
+    end
+    raw str
+  end
+  
+  
+  def page_counter counter
+    str = %(
+            <div class = "box">
+            <span class="heading">#{t('.page_viewed')}:</span>
+            <span class = "counter">#{"%06.0f" % counter }</span>
+            </div> 
+          )
+
+    raw str
+  end
+  
+  def facebook_like(page_url, ref="default")
+    str = %(
+    <iframe src="http://www.facebook.com/plugins/like.php?href=#{page_url}&amp;layout=standard&amp;show_faces=false&amp;width=450&amp;action=recommend&amp;colorscheme=light&amp;height=35&amp;locale=sv_SE&amp;ref=#{ref}" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:35px;" allowTransparency="true"></iframe>
+    )
+    
+    raw str
+  end
+  
+  def open_graph_properties title="", img="", url=""
+    #TODO FB Admin in settings
+    #TODO img per event (or generic img for the calendar)
+    #     
+    str = %(
+    <meta property="og:title" content="#{title}" />
+    <meta property="og:type" content="activity" />
+    <meta property="og:url" content="#{url}" />
+    <meta property="og:site_name" content="#{t('app.site_name')}" />
+    <meta property="fb:admins" content="1083707575" /> 
+    )
+    unless img.blank?
+      str << %(<meta property="og:image" content="#{img}" />)
+    end
+    content_for(:head) {
+    raw str 
+    }
+
+  end
+  
   def municipality_facts municipality
     unless municipality.facts.blank?
-      str =%(
+      str = %(
           <div id="municipality_facts" class="box">
            <span class="heading">Snabbfakta om #{municipality.name}</span>
             #{municipality.facts}
@@ -39,7 +224,7 @@ module LayoutHelper
   def organizer_facts organizer
     str =%(
           <div id="municipality_facts" class="box">
-          <span class="heading">Fakta om arrangören </span>
+          <span class="heading">Fakta om arrangören: </span>
           #{image_tag organizer.logotype.url(:small)}
           <h4>#{link_to(organizer.name, organizer)}</h4>
           <p>
@@ -141,14 +326,17 @@ google.maps.event.addDomListener(window, 'load', initialize);
   
   
   def arranged_by event
-    raw (t('app.arranged_by') + ': ' + link_to( (event.organizer.name+ ' (' + event.organizer.number_of_upcoming_events.to_s + ')'), event.organizer) ) 
+    raw ( link_to( (t('app.arranged_by') + ': ' + event.organizer.name+ ' (' + event.organizer.number_of_upcoming_events.to_s + ')'), event.organizer, :title => event.organizer.description) ) 
   end
   
   def arranged_in event
-    raw (t('app.in_municipality') + ' ' + link_to( (event.municipality.name + ' (' + event.municipality.number_of_upcoming_events.to_s + ')'), event.municipality ))
+    raw ( link_to( t('app.in_municipality') + ' ' + (event.municipality.name + ' (' + event.municipality.number_of_upcoming_events.to_s + ')'), event.municipality ))
   end
- 
- 
+  
+  def in_category event
+    raw (link_to (t '.category') + ': ' + event.category.name + ' (' + event.category.number_of_upcoming_events.to_s + ')', (events_path :category_id => event.category.id)) 
+  end
+
  
   def mini_calendar events = nil, more_events = events_url, max_no = 10
   #TODO time limits and no of events in initializer (and align)
@@ -202,7 +390,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
     
     cal << %(
           <table class="calendar">
-            <caption>Evenemangskalender för #{l(events.first.start_datetime, :format => :month_and_year)}</caption>
+            <caption>#{l(events.first.start_datetime, :format => :month_and_year).capitalize}</caption>
             )
     
     cal <<  %(
@@ -233,7 +421,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
       if event.start_datetime.beginning_of_day == current_day
         cal << %(
                   <li class="event">
-                    #{ link_to raw("<strong>" + event.subject + '</strong> ' + content_tag(:abbr,  l(event.start_datetime, :format => :clock), :title => "#{l(event.start_datetime, :format => :machine)}") + ', ' + event.municipality_short) , event, :title => t('app.organizer') + ": " + event.organizer.name + ". " + t('app.summary') +": " + event.intro }
+                    #{ link_to raw("<strong>" + event.subject + '</strong> ' + ' (' + event.category.try( :name) + ') ' + content_tag(:abbr,  l(event.start_datetime, :format => :clock), :title => "#{l(event.start_datetime, :format => :machine)}") + ', ' + event.municipality_short ) , event, :title => t('app.organizer') + ": " + event.organizer.name + ". " + t('app.summary') +": " + event.intro } 
                   </li>
               )
       else  
@@ -245,7 +433,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
           cal << %(</table>)
           cal << %(
                 <table class="calendar">
-                  <caption>Evenemangskalender för #{l(event.start_datetime, :format => :month_and_year)}</caption>
+                  <caption>#{l(event.start_datetime, :format => :month_and_year).capitalize}</caption>
                   )                   
         end 
       cal <<  %(
@@ -268,7 +456,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
               )
         cal << %(
                   <li class="event">
-                    #{ link_to raw("<strong>" + event.subject + '</strong> ' + content_tag(:abbr,  l(event.start_datetime, :format => :clock), :title => "#{l(event.start_datetime, :format => :machine)}") + ', ' + event.municipality_short) , event, :title => t('app.organizer') + ": " + event.organizer.name + ". " + t('app.summary') +": " + event.intro }
+                    #{ link_to raw("<strong>" + event.subject + '</strong> ' + ' (' + event.category.try( :name) + ') ' + content_tag(:abbr,  l(event.start_datetime, :format => :clock), :title => "#{l(event.start_datetime, :format => :machine)}") + ', ' + event.municipality_short ) , event, :title => t('app.organizer') + ": " + event.organizer.name + ". " + t('app.summary') +": " + event.intro } 
                   </li>
               ) 
       end

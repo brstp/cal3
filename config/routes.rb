@@ -16,6 +16,8 @@ Cal3::Application.routes.draw do
 
   resources :municipalities
 
+
+  
   #resources :events do
   #  get 'search', :on => :collection
   #end
