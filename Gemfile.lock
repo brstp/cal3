@@ -121,6 +121,7 @@ GEM
     validation_reflection (1.0.0)
     warden (1.0.3)
       rack (>= 1.0.0)
+    yaml_db (0.2.0)
 
 PLATFORMS
   x86-mingw32
@@ -146,3 +147,4 @@ DEPENDENCIES
   timeliness
   validates_timeliness
   validation_reflection
+  yaml_db

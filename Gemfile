@@ -48,6 +48,7 @@ gem "paperclip"
 gem "ancestry"
 #gem "ri_cal"
 gem 'icalendar'
+gem 'yaml_db'
 
 group :development, :test do
   gem 'sqlite3-ruby', :require => 'sqlite3'
