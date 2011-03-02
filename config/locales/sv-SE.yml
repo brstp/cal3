@@ -308,6 +308,29 @@
     planned_events: "Planerade evenemang"
     category: "Kategori"
   
+  when_facet:
+    this_month: "den här månaden"
+    next_month: "nästa månad"
+    third_month: "nästnästa månad"
+    today: "idag"
+    tomorrow: "i morgon"
+    this_weekend: "på lördag-söndag"
+    next_weekend: "nästa lördag-söndag"
+    summer_holiday:
+    christmas_holiday:
+    christmas_days:
+    midsummer:
+    walpurgis_night: "valborgsmässoafton"
+    this_week: "den här veckan"
+    next_week: "nästa vecka"
+    sport_holiday1:
+    sport_holiday2:
+    sport_holiday3:
+    easter_holiday1:
+    easter_holiday2:
+    past: "tidigare, genomförda"
+    future: "idag och framåt"
+    
   mail:
     mail.cc_event: "Kopia evenemang"
     mail.to_event: "Om evenemang"
@@ -583,6 +606,7 @@
       rss_alt: "Prenumerera på RSS-flöde med alla evenemang." 
       rss_title: "Alla evenemang i Föreningskalendern"
       show_all_facets: "Visa alla"
+      when: "Händer när"
       categories: "I ämneskategori"
       organizers: "Av arrangör"
       municipalities: "I kommun"

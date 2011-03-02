@@ -8,5 +8,6 @@ module ApplicationHelper
   def category_tree
     Category.all.first.subtree.all 
   end
+  
 
 end
