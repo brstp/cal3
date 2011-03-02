@@ -37,6 +37,8 @@ gem 'validates_timeliness'
 gem "mocha", :group => :test
 gem 'sunspot_rails' #, '1.2.rc4'
 #gem 'nokogiri', "1.4.4.1"
+#gem 'nokogiri', "1.5.0.beta.2"
+gem 'jquery-rails'
 #gem 'nokogiri, '1.5.0.beta.2'
 gem 'nokogiri'
 gem 'jquery-rails'
@@ -46,7 +48,7 @@ gem "rails-geocoder", :require => "geocoder"
 gem 'meta-tags', :require => 'meta_tags'
 gem "paperclip"
 gem "ancestry"
-#gem "ri_cal"
+gem "mechanize"
 gem 'icalendar'
 gem 'yaml_db'
 
@@ -54,6 +56,7 @@ group :development, :test do
   gem 'sqlite3-ruby', :require => 'sqlite3'
 end
 
-group :production do
-  gem 'mysql'
-end
+#group :production do
+#  gem 'mysql'
+#end
+

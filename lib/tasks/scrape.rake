@@ -1,6 +1,7 @@
 namespace :scrape do
   require 'nokogiri'
   require 'open-uri' 
+  #require 'mechanize'
   include ActionView::Helpers::SanitizeHelper
   include ActionView::Helpers::TextHelper
   include ActionView::Helpers::TagHelper
