@@ -65,6 +65,7 @@
 .authorized {
   background-color: #d4d0c8;
   padding: 2px 5px;
+  margin: 5px;
 }
 
 .user {
@@ -278,4 +279,33 @@ table.general tr.even {
 
 #forgot_password {
  margin-left: 5px;
+}
+
+.image_box {
+  float: right;
+  margin-left: 10px;
+}
+
+.image_2{
+}
+
+.image_2a {
+  float: left;
+  margin-top: 3px;
+}
+
+.image_2b {
+  float: right;
+  margin-top: 3px;
+}
+
+.event_left {
+}
+
+.event_contact {
+  clear: both;
+}
+
+.organizer_user {
+  margin: 0 20px 10px 0;
 }

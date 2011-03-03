@@ -2,7 +2,7 @@
                    :description => @event.intro %>
 
 <% open_graph_properties  @event.subject,
-                          '' , 
+                          request.protocol + request.host_with_port + @event.image1.url( :large), 
                           event_path(:only_path => false) 
                           %>
                           
@@ -17,7 +17,31 @@
   <div class = "event_in_past"> 
   <h1>Det här evenemanget har redan varit.</h1>
 <% end %>
+
+
+<% if current_user %>
+  <% if current_user.authorized? @event.organizer %>
+  <%= button_to("ändra annonsen", edit_event_path(@event), :method => :get, :class => :organizer_user) %>
+  <%= button_to("ta bort annonsen ", @event, :confirm => t('app.are_you_sure') + ' ' +@event.subject + '?', :method => :delete )%>
+  <%end%>
+<%end%>
+
+
 <%= facebook_like event_path(:only_path => false) %>
+<div class = "event_left">
+
+<div class = "image_box">
+  <%= image_tag @event.image1.url :medium %>
+  <div class = "image_2">
+    <div class = "image_2a">
+      <%= image_tag @event.image2.url :small %>
+    </div>
+    <div class = "image_2b">
+      <%= image_tag @event.image3.url :small %>
+    </div>
+  </div>
+</div>
+
 <p><strong><%= @event.duration.capitalize %></strong></p>
 <h1><%= @event.subject %></h1>
 <p>
@@ -33,12 +57,29 @@
 
 <%= simple_format @event.description %>
 
+<p>
+  <strong>Adress:</strong><br />
+  <%= @event.street %><br />
+  <%= (@event.zip + ' ' + @event.city).strip %>
+</p>
 
+<% unless @event.loc_descr.blank? %>
+<p>
+  <strong><%= Event.human_attribute_name :loc_descr %>:</strong><br />
+  <%= @event.loc_descr %>
+</p>
+<% end %>
+<p>
+<%= link_to(t('.download_ics'), event_url(:only_path => false, :format => :ics ))  %>
+</p>
+</div>
+
+<div class = "event_contact">
 
 <p>
-  <strong>Har du frågor? Vill du kontakta arrangören?</strong><br />
+  <strong><%= t('.want_contact')%></strong><br />
   <% if @event.phone_number? %>
-    Ring 
+    <%= t('.call')%>
     <% if @event.phone_name? %>
       <%= @event.phone_name %> 
     <% end %>
@@ -46,8 +87,7 @@
   <% end %>
 </p>
 
-
-<a id="displayText" href="javascript:toggle();">Mejla till evenemangets kontaktperson</a><br />
+<a id="displayText" href="javascript:toggle();"><%= t('.email_contact')%></a><br />
 <noscript>
   <p>
   Error message to the system owner: Form should degrade gracefully if no javascipt. TODO.
@@ -124,19 +164,7 @@
 </div>
 
 <%= image_tag avatar_url(@event) %>
-
-<p>
-  <strong>Adress:</strong><br />
-  <%= @event.street %><br />
-  <%= (@event.zip + ' ' + @event.city).strip %>
-</p>
-
-<% unless @event.loc_descr.blank? %>
-<p>
-  <strong><%= Event.human_attribute_name :loc_descr %>:</strong><br />
-  <%= @event.loc_descr %>
-</p>
-<% end %>
+</div>
 
 <% unless @event.lat.nil? || @event.lng.nil?%>
   <div id="mapCanvas"></div>
@@ -146,18 +174,6 @@
 </p>
 <% end %>
 
-<%= link_to(t('.download_ics'), event_url(:only_path => false, :format => :ics ))  %>
-
-
-<% if current_user %>
-  <% if current_user.authorized? @event.organizer %>
-  
-<ul class = "authorized">
-  <li><%= link_to t('.edit'), edit_event_path(@event) %></li>
-  <li><%= link_to t('.destroy'), @event, :confirm => t('app.are_you_sure') + ' ' +@event.subject + '?', :method => :delete %> <%= t'.ok_to_keep' %></li>
-</ul>
-<%end%>
-<%end%>
 
 <%= map_marker @event %>
 </div> 

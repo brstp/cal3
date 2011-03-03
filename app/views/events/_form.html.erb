@@ -1,4 +1,4 @@
-<%= semantic_form_for @event do |f| %>
+<%= semantic_form_for @event, :html => {:multipart => true} do |f| %>
   <%= f.error_messages %>
   <%= f.inputs do %>
       <%= f.input :subject %>
@@ -27,6 +27,10 @@
       <%= f.input :phone_number %>
       <%= f.input :phone_name %>
       <hr />
+      <%= f.input :image1 %>
+      <%= f.input :image2 %>
+      <%= f.input :image3 %>
+      <hr />
       <%= f.input :street %>
       <%= f.input :zip %>
       <%= f.input :city %>
@@ -34,7 +38,7 @@
 
       <%= f.input :lat %>
       <%= f.input :lng %>
-
+      
       <p><%= f.buttons %></p> 
 
     <div id="infoPanel">

@@ -378,7 +378,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
   
   
   def arranged_by event
-    raw ( link_to( (t('app.arranged_by') + ': ' + event.organizer.name+ ' (' + event.organizer.number_of_upcoming_events.to_s + ')'), event.organizer, :title => event.organizer.description) ) 
+    raw ( link_to( (t('app.arranged_by') + ' ' + event.organizer.name+ ' (' + event.organizer.number_of_upcoming_events.to_s + ')'), event.organizer, :title => event.organizer.intro) ) 
   end
   
   def arranged_in event

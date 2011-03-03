@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110216105615) do
+ActiveRecord::Schema.define(:version => 20110303090820) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -44,7 +44,19 @@ ActiveRecord::Schema.define(:version => 20110216105615) do
     t.string   "email_name"
     t.integer  "event_id"
     t.integer  "category_id"
-    t.integer  "counter",         :default => 0
+    t.integer  "counter",             :default => 0
+    t.string   "image1_file_name"
+    t.string   "image1_content_type"
+    t.integer  "image1_file_size"
+    t.datetime "image1_updated_at"
+    t.string   "image2_file_name"
+    t.string   "image2_content_type"
+    t.integer  "image2_file_size"
+    t.datetime "image2_updated_at"
+    t.string   "image3_file_name"
+    t.string   "image3_content_type"
+    t.integer  "image3_file_size"
+    t.datetime "image3_updated_at"
   end
 
   create_table "mail_messages", :force => true do |t|

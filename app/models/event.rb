@@ -12,7 +12,7 @@ class Event < ActiveRecord::Base
   after_validation :consider_fetch
 
 
-  attr_accessible :subject, :intro, :description, :street, :zip, :city, :loc_descr, :lat, :lng, :municipality_id, :start_date, :start_time, :stop_date, :stop_time, :organizer_id, :phone_number, :phone_name, :email, :email_name, :category_id, :counter, :start_datetime, :stop_datetime
+  attr_accessible :subject, :intro, :description, :street, :zip, :city, :loc_descr, :lat, :lng, :municipality_id, :start_date, :start_time, :stop_date, :stop_time, :organizer_id, :phone_number, :phone_name, :email, :email_name, :category_id, :counter, :start_datetime, :stop_datetime, :image1, :image2, :image3
 
 
   validates_presence_of :subject, :description, :municipality_id, :start_date, :start_time, :stop_date, :stop_time, :organizer_id, :email, :email_name, :category_id
@@ -45,6 +45,26 @@ class Event < ActiveRecord::Base
     integer :municipality_id, :references => ::Municipality
     integer :organizer_id, :references => ::Organizer    
   end
+  
+  has_attached_file :image1, 
+      :default_url => "/images/blue-yellow-landscape.jpg", 
+      :styles => {:large => "800x600#", 
+                  :medium => "360x240#", 
+                  :small => "176x117#", 
+                  :thumb => "40x30#"}
+  has_attached_file :image2, 
+      :default_url => "/images/lighthouse.jpg", 
+      :styles => {:large => "800x600#", 
+                  :medium => "360x240#", 
+                  :small => "176x117#", 
+                  :thumb => "40x30#"}
+  has_attached_file :image3, 
+      :default_url => "/images/winter-lake-church.jpg",
+      :styles => {:large => "800x600#", 
+                  :medium => "360x240#", 
+                  :small => "176x117#", 
+                  :thumb => "40x30#"}
+  
 
   # def coordinates
     # Sunspot::Util::Coordinates.new(self.lat,self.lng)
@@ -113,8 +133,8 @@ class Event < ActiveRecord::Base
 
     
   def consider_fetch
-    if lat == nil or lng == nil
-    fetch_coordinates
+    if self.lat.blank? or self.lng.blank?
+    fetch_coordinates unless (self.city.blank? and self.zip.blank? and self.street.blank?)
     end
   end
 

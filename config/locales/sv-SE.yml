@@ -196,8 +196,12 @@
         phone_number: "Telefonnummer"
         phone_name: "Namn för telefonnummer"
         category: "Ämneskategori"
+        image1: "Bild"
+        image2: "En bild till"
+        image3: "En tredje bild"
       organizer:
         name: "Namn"
+        intro: "Sammanfattning"
         description: "Beskrivning"
         website: "Hemsida"
         logotype: "Logotyp"
@@ -444,6 +448,9 @@
         email_name: "Vem går mejlet till? Namnet visas istället för mejladress i kontaktformuläret. T.ex. \"Veera Virtanen\" eller \"Föreningskansliet\"."
         phone_number: "Om någon vill nå dig som arrangerar, vilket telefonnummer tar du emot frågor på? Komplett telefonnummer inklusive riktnummer."
         phone_name: "Vem går telefonnumret till? T.ex. \"Åke Svensson\" eller \"Föreningskansliet\"."
+        image1: "En bild som visas i evenemangsannonsen. Bör vara minst 600 pixel bred. Bilden skalas och beskärs så att den passar utrymmet. Den här bilden är den som visas störst i annonsen."
+        image2: "Ytterligare bild."
+        image3: "Ytterligare bild."
       municipality: 
         name: "Namnet på kommunen (en del kommuner heter \"stad\")"
       user:
@@ -627,6 +634,9 @@
       page_viewed: "Sidan visad"
       download_ics: "Spara evenemanget i kalendern på din dator."
       category: "i ämneskategorin"
+      want_contact: "Har du frågor? Vill du kontakta arrangören?"
+      email_contact: "Mejla evenemangets kontaktperson"
+      call: "Ring"
     form:
       closest_address: "Närmsta adress som vi känner till"
   
