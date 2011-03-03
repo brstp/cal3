@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+  #TODO Move flash messages to I18n
   before_filter :authenticate_user!
   before_filter :authorized_for_this?, :except => [:index, :new, :create, :destroy]
   before_filter :authorized_admin?, :except => [:show, :update, :edit]
@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
-      flash[:notice] = "Successfully created user."
+      flash[:notice] = "Användarkontot skapat."
       redirect_to @user
     else
       render :action => 'new'
@@ -33,7 +33,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
-      flash[:notice] = "Successfully updated user."
+      flash[:notice] = "Uppdaterat användarkontot."
       redirect_to @user
     else
       render :action => 'edit'
@@ -43,7 +43,7 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    flash[:notice] = "Successfully destroyed user."
+    flash[:notice] = "Användarkontot raderat."
     redirect_to users_url
   end
 

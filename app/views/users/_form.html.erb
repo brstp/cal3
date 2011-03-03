@@ -22,7 +22,6 @@
     <% if @user.is_admin? %>
       <li class="string optional">
       <label for="user_is_admin"><%= User.human_attribute_name :is_admin %></label>
-      Ja.
     </li>
     <% end %>
     <%= f.buttons %>

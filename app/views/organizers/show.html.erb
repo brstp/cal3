@@ -8,7 +8,10 @@
 <% content_for :right_column_facts do %>
 <% end %>
 
-<%= open_graph_properties @organizer.name, request.protocol + request.host_with_port + @organizer.logotype.url(:large), organizer_path(@organizer, :only_path => false)  %>
+<%= open_graph_properties @organizer.name, 
+                          request.protocol + request.host_with_port + @organizer.logotype.url(:large), 
+                          organizer_path(@organizer, 
+                          :only_path => false)  %>
 
 
                    
