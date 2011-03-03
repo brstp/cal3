@@ -2,39 +2,35 @@ GEM
   remote: http://rubygems.org/
   specs:
     abstract (1.0.0)
-    actionmailer (3.0.3)
-      actionpack (= 3.0.3)
-      mail (~> 2.2.9)
-    actionpack (3.0.3)
-      activemodel (= 3.0.3)
-      activesupport (= 3.0.3)
+    actionmailer (3.0.5)
+      actionpack (= 3.0.5)
+      mail (~> 2.2.15)
+    actionpack (3.0.5)
+      activemodel (= 3.0.5)
+      activesupport (= 3.0.5)
       builder (~> 2.1.2)
       erubis (~> 2.6.6)
       i18n (~> 0.4)
       rack (~> 1.2.1)
       rack-mount (~> 0.6.13)
-      rack-test (~> 0.5.6)
+      rack-test (~> 0.5.7)
       tzinfo (~> 0.3.23)
-    activemodel (3.0.3)
-      activesupport (= 3.0.3)
+    activemodel (3.0.5)
+      activesupport (= 3.0.5)
       builder (~> 2.1.2)
       i18n (~> 0.4)
-    activerecord (3.0.3)
-      activemodel (= 3.0.3)
-      activesupport (= 3.0.3)
+    activerecord (3.0.5)
+      activemodel (= 3.0.5)
+      activesupport (= 3.0.5)
       arel (~> 2.0.2)
       tzinfo (~> 0.3.23)
-    activeresource (3.0.3)
-      activemodel (= 3.0.3)
-      activesupport (= 3.0.3)
-    activesupport (3.0.3)
+    activeresource (3.0.5)
+      activemodel (= 3.0.5)
+      activesupport (= 3.0.5)
+    activesupport (3.0.5)
     ancestry (1.2.3)
       activerecord (>= 2.2.2)
-    arel (2.0.8)
-<<<<<<< HEAD
-    bcrypt-ruby (2.1.4)
-=======
->>>>>>> 8c6d4ea217f535080a534f0d81a7ca801fde0538
+    arel (2.0.9)
     bcrypt-ruby (2.1.4-x86-mingw32)
     builder (2.1.2)
     capistrano (2.5.19)
@@ -65,32 +61,18 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mail_form (1.3.0)
-    mechanize (1.0.0)
-      nokogiri (>= 1.2.1)
     meta-tags (1.2.3)
     mime-types (1.16)
-<<<<<<< HEAD
-    mocha (0.9.11)
-      rake
-=======
     mocha (0.9.12)
-    mysql (2.8.1-x86-mingw32)
->>>>>>> 8c6d4ea217f535080a534f0d81a7ca801fde0538
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-sftp (2.0.5)
       net-ssh (>= 2.0.9)
-    net-ssh (2.1.0)
+    net-ssh (2.1.3)
     net-ssh-gateway (1.0.1)
       net-ssh (>= 1.99.1)
-<<<<<<< HEAD
-    nifty-generators (0.4.4)
-    nokogiri (1.4.4)
-    nokogiri (1.4.4-x86-mingw32)
-=======
     nifty-generators (0.4.5)
     nokogiri (1.4.4.1-x86-mingw32)
->>>>>>> 8c6d4ea217f535080a534f0d81a7ca801fde0538
     paperclip (2.3.8)
       activerecord
       activesupport
@@ -101,24 +83,23 @@ GEM
       rack (>= 1.0.0)
     rack-test (0.5.7)
       rack (>= 1.0)
-    rails (3.0.3)
-      actionmailer (= 3.0.3)
-      actionpack (= 3.0.3)
-      activerecord (= 3.0.3)
-      activeresource (= 3.0.3)
-      activesupport (= 3.0.3)
+    rails (3.0.5)
+      actionmailer (= 3.0.5)
+      actionpack (= 3.0.5)
+      activerecord (= 3.0.5)
+      activeresource (= 3.0.5)
+      activesupport (= 3.0.5)
       bundler (~> 1.0)
-      railties (= 3.0.3)
+      railties (= 3.0.5)
     rails-geocoder (0.9.8)
-    railties (3.0.3)
-      actionpack (= 3.0.3)
-      activesupport (= 3.0.3)
+    railties (3.0.5)
+      actionpack (= 3.0.5)
+      activesupport (= 3.0.5)
       rake (>= 0.8.7)
       thor (~> 0.14.4)
     rake (0.8.7)
     rsolr (0.12.1)
       builder (>= 2.1.2)
-    sqlite3 (1.3.3)
     sqlite3 (1.3.3-x86-mingw32)
     sqlite3-ruby (1.3.3)
       sqlite3 (>= 1.3.3)
@@ -142,7 +123,6 @@ GEM
     yaml_db (0.2.0)
 
 PLATFORMS
-  ruby
   x86-mingw32
 
 DEPENDENCIES
@@ -153,13 +133,12 @@ DEPENDENCIES
   icalendar
   jquery-rails
   mail_form
-  mechanize
   meta-tags
   mocha
   nifty-generators
-  nokogiri
+  nokogiri (= 1.4.4.1)
   paperclip
-  rails (= 3.0.3)
+  rails (= 3.0.5)
   rails-geocoder
   sqlite3-ruby
   sunspot_rails

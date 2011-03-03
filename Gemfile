@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.3'
+gem 'rails', '3.0.5'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -36,11 +36,11 @@ gem 'nifty-generators'
 gem 'validates_timeliness'
 gem "mocha", :group => :test
 gem 'sunspot_rails' #, '1.2.rc4'
-#gem 'nokogiri', "1.4.4.1"
-#gem 'nokogiri', "1.5.0.beta.2"
+gem 'nokogiri', "1.4.4.1"
+#gem 'nokogiri', "1.5.0.beta.4"
 gem 'jquery-rails'
 #gem 'nokogiri, '1.5.0.beta.2'
-gem 'nokogiri'
+#gem 'nokogiri'
 gem 'jquery-rails'
 gem 'mail_form'
 gem 'timeliness'
@@ -48,7 +48,7 @@ gem "rails-geocoder", :require => "geocoder"
 gem 'meta-tags', :require => 'meta_tags'
 gem "paperclip"
 gem "ancestry"
-gem "mechanize"
+#gem "mechanize"
 gem 'icalendar'
 gem 'yaml_db'
 
