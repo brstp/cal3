@@ -281,7 +281,7 @@ module LayoutHelper
           <h4>#{link_to(organizer.name, organizer)}</h4>
           <p>
           #{organizer.intro}
-          #{mini_calendar organizer.events}
+          #{mini_calendar organizer.events.order("start_datetime ASC")}
           </div>
           )
     raw str
