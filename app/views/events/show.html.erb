@@ -21,8 +21,8 @@
 
 <% if current_user %>
   <% if current_user.authorized? @event.organizer %>
-  <%= button_to("ändra annonsen", edit_event_path(@event), :method => :get, :class => :organizer_user) %>
-  <%= button_to("ta bort annonsen ", @event, :confirm => t('app.are_you_sure') + ' ' +@event.subject + '?', :method => :delete )%>
+  <%= button_to(t('.edit'), edit_event_path(@event), :method => :get, :class => :organizer_user) %>
+  <%= button_to(t('.destroy'), @event, :confirm => t('app.are_you_sure') + ' ' +@event.subject + '?', :method => :delete )%>
   <%end%>
 <%end%>
 
