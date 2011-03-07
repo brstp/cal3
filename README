@@ -1,1 +1,12 @@
 Welcome to Rails 3 rewrite of calendar.
+
+bundle install
+bundle update
+rake db:migrate
+rake db:data:load       # Ladda exempeldata
+rake sunspot:solr:run   # Starta sök
+rake sunspot:reindex    # Indexera om
+rake scrape:municipalities
+rake scrape:municipalities
+rake scrape:municipalities
+

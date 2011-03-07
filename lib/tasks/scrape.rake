@@ -54,6 +54,7 @@ namespace :scrape do
   desc "Scrape municipality facts from Wikipedia."
   task :update_facts => :environment do 
     Municipality.all.each do |municipality|
+      puts "Fetching #{municipality.name}"
       doc = Nokogiri::HTML(open(municipality.wikipedia_page))
       municipality.facts = auto_link(sanitize( doc.at_css(".geography").
                 to_s.gsub(/<div.*kommunvapen.*<\/div>/, "").
@@ -68,7 +69,7 @@ namespace :scrape do
                 gsub(/<td colspan="2">Kommun<\/td>/, "")
       municipality.facts_last_updated = Time.now
       municipality.save!
-      puts "Fetched #{municipality.name}"
+      
     end
   end  
   
