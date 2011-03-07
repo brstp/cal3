@@ -31,7 +31,7 @@ module LayoutHelper
     str << %(<li class = "facet-1">#{t'.when'}</li>)
     str << facet_when( @start_facet_rows )
     str << %(<li class = "facet-1">#{t'.categories'}</li>)
-    str << facet_category( @category_facet_rows )
+    str << (facet_category( @category_facet_rows ))
     str << %(<li class = "facet-1">#{t'.organizers'}</li>)
     str << facet_organizer( @organizer_facet_rows )
     str << %(<li class = "facet-1">#{t'.municipalities'}</li>)

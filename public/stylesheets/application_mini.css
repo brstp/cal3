@@ -309,3 +309,8 @@ table.general tr.even {
 .organizer_user {
   margin: 0 20px 10px 0;
 }
+
+#category_mum_input ol li label {
+  padding-top: 0;
+  margin: 0;
+}

@@ -41,6 +41,7 @@ class CategoriesController < ApplicationController
   # POST /categories.xml
   def create
     @category = Category.new(params[:category])
+    logger.info "Category#create ************************************"
 
     respond_to do |format|
       if @category.save
@@ -52,6 +53,8 @@ class CategoriesController < ApplicationController
       end
     end
   end
+  
+
 
   # PUT /categories/1
   # PUT /categories/1.xml

@@ -3,7 +3,10 @@
   <%= f.inputs do %>  
     <%= f.input :name %>
     <%= f.input :description %>
-    <%= f.input :ancestry, :collection => Category.all %>
+    <%= @category.ancestry %>
+    <br />
+    <%= @category.mum %>
+    <%= f.input :mum, :as => :radio, :collection => Category.all %>
 
     <%= f.buttons %>
   <% end %>

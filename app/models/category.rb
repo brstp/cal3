@@ -5,14 +5,27 @@ class Category < ActiveRecord::Base
   has_many :events
   has_many :categories
   
-  attr_accessible :name, :description, :ancestry
+  attr_accessible :name, :description, :ancestry, :mum
   
   has_ancestry
+  
+  # before_save :connect_to_parent
   
   searchable :auto_index => true, :auto_remove => true do
     text :name
     text :description
   end
+  
+  def mum
+    self.parent.object_id
+  end
+  
+  def mum= category_id
+    unless category_id.blank?
+      self.parent = Category.find(category_id)
+    end
+  end
+  
   
   def to_s
     self.name
@@ -38,7 +51,7 @@ class Category < ActiveRecord::Base
     # str 
   # end
   
-  def select_category
+  def select_category  
     Category.all
   end
 
