@@ -27,7 +27,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
       result = Event.search do 
       
       keywords params[:q]
-      facet :category_id, :organizer_id, :municipality_id
+      facet :category_facet_id, :organizer_id, :municipality_id
       facet :start do
         row "today" do
           with :start, today..(today + 1.day)
@@ -111,8 +111,8 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
         end
       end
       
-      unless params[:category_id].blank?
-        with( :category_id ).equal_to( params[:category_id].to_i )
+      unless params[:category_facet_id].blank?
+        with( :category_facet_id ).equal_to( params[:category_facet_id].to_i )
       end      
       
       unless params[:organizer_id].blank?
@@ -129,8 +129,8 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
       @start_facet_rows = result.facet(:start).rows
     end
      
-    if result.facet( :category_id )
-      @category_facet_rows = result.facet(:category_id).rows
+    if result.facet( :category_facet_id )
+      @category_facet_rows = result.facet(:category_facet_id).rows
     end
     
     if result.facet( :organizer_id )

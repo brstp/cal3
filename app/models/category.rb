@@ -27,6 +27,17 @@ class Category < ActiveRecord::Base
   end
   
   
+  def and_mum
+    category = self
+    out_str = ""
+    while category.depth > 0
+      out_str = category.name + " > " + out_str 
+      category = category.parent
+    end    
+    out_str.to(out_str.length - 4)
+  end
+  
+  
   def to_s
     self.name
   end

@@ -58,7 +58,7 @@ module LayoutHelper
                   #{link_to( t('when_facet.' + row.value.to_s).capitalize + " (" + row.count.to_s +  ")", 
                               events_path(  :q => params[:q], 
                                             :start => row.value,
-                                            :category_id => params[:category_id],
+                                            :category_facet_id => params[:category_facet_id],
                                             :organizer_id => params[:organizer_id],
                                             :municipality_id => params[:municipality_id]
                                           ) ) }
@@ -72,7 +72,7 @@ module LayoutHelper
                   #{link_to( t('.show_all_facets'), 
                               events_path(  :q => params[:q], 
                                             :start => nil,
-                                            :category_id => params[:category_id],
+                                            :category_facet_id => params[:category_facet_id],
                                             :organizer_id => params[:organizer_id],
                                             :municipality_id => params[:municipality_id]
                                           ) ) }
@@ -97,26 +97,29 @@ module LayoutHelper
               <ul>
               )
       for row in facet_rows 
+      logger.info "****************************************"
+      logger.info row
+      logger.info row.instance.to_s
       str << %(
                 <li>
-                  #{link_to( row.instance.to_s + " (" + row.count.to_s +  ")", 
+                  #{link_to( row.instance.and_mum.capitalize + " (" + row.count.to_s +  ")", 
                               events_path(  :q => params[:q], 
                                             :start => params[:start],
-                                            :category_id => row.instance,
+                                            :category_facet_id => row.instance,
                                             :organizer_id => params[:organizer_id],
                                             :municipality_id => params[:municipality_id]
                                           ) ) }
                 </li>
               )
       end
-      unless params[:category_id].blank?
+      unless params[:category_facet_id].blank?
       str << %(
                 <li class = "facet-2">
                   <strong>
                   #{link_to( t('.show_all_facets'), 
                               events_path(  :q => params[:q], 
                                             :start => params[:start],
-                                            :category_id => nil,
+                                            :category_facet_id => nil,
                                             :organizer_id => params[:organizer_id],
                                             :municipality_id => params[:municipality_id]
                                           ) ) }
@@ -145,7 +148,7 @@ module LayoutHelper
                   #{link_to( row.instance.to_s + " (" + row.count.to_s +  ")", 
                               events_path(  :q => params[:q], 
                                             :start => params[:start],
-                                            :category_id => params[:category_id],
+                                            :category_facet_id => params[:category_facet_id],
                                             :organizer_id => row.instance,
                                             :municipality_id => params[:municipality_id]
                                           ) ) }
@@ -159,7 +162,7 @@ module LayoutHelper
                   #{link_to( t('.show_all_facets'), 
                               events_path(  :q => params[:q], 
                                             :start => params[:start],
-                                            :category_id => params[:category_id],
+                                            :category_facet_id => params[:category_facet_id],
                                             :organizer_id => nil,
                                             :municipality_id => params[:municipality_id]
                                           ) ) }
@@ -188,7 +191,7 @@ module LayoutHelper
                   #{link_to( row.instance.to_s + " (" + row.count.to_s +  ")", 
                               events_path(  :q => params[:q], 
                                             :start => params[:start],
-                                            :category_id => params[:category_id],
+                                            :category_facet_id => params[:category_facet_id],
                                             :organizer_id => params[:organizer_id],
                                             :municipality_id => row.instance
                                           ) ) }
@@ -202,7 +205,7 @@ module LayoutHelper
                   #{link_to( t('.show_all_facets'), 
                               events_path(  :q => params[:q], 
                                             :start => params[:start],
-                                            :category_id => params[:category_id],
+                                            :category_facet_id => params[:category_facet_id],
                                             :organizer_id => params[:organizer_id],
                                             :municipality_id => nil
                                           ) ) }
@@ -378,15 +381,23 @@ google.maps.event.addDomListener(window, 'load', initialize);
   
   
   def arranged_by event
-    raw ( link_to( (t('app.arranged_by') + ' ' + event.organizer.name+ ' (' + event.organizer.number_of_upcoming_events.to_s + ')'), event.organizer, :title => event.organizer.intro) ) 
+    raw ( t('app.arranged_by') + ' ' + link_to( (event.organizer.name+ ' (' + event.organizer.number_of_upcoming_events.to_s + ')'), event.organizer, :title => event.organizer.intro) ) 
   end
   
   def arranged_in event
-    raw ( link_to( t('app.in_municipality') + ' ' + (event.municipality.name + ' (' + event.municipality.number_of_upcoming_events.to_s + ')'), event.municipality ))
+    raw ( t('app.in_municipality') + ' ' + link_to(  (event.municipality.name + ' (' + event.municipality.number_of_upcoming_events.to_s + ')'), event.municipality ))
   end
   
   def in_category event
-    raw (link_to (t '.category') + ': ' + event.category.name + ' (' + event.category.number_of_upcoming_events.to_s + ')', (events_path :category_id => event.category.id)) 
+    category = event.category
+    
+    while category.depth > 0
+      str = (link_to category.name + ' (' + category.number_of_upcoming_events.to_s + ')', (events_path :category_facet_id => category.id)) + " > " + str
+      category = category.parent
+    end
+    str = (t '.category') + ': ' + str
+    str = str.to(str.length - 7)
+    raw str
   end
 
  
