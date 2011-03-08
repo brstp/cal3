@@ -3,8 +3,7 @@
   <%= f.inputs do %>  
     <%= f.input :name %>
     <%= f.input :description %>
-    <%= f.input :mum, :as => :radio, :collection => Category.all %>
-
+    <%= f.input :mum, :collection => Category.all %>
     <%= f.buttons %>
   <% end %>
 <% end %>
