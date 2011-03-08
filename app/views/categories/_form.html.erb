@@ -3,9 +3,6 @@
   <%= f.inputs do %>  
     <%= f.input :name %>
     <%= f.input :description %>
-    <%= @category.ancestry %>
-    <br />
-    <%= @category.mum %>
     <%= f.input :mum, :as => :radio, :collection => Category.all %>
 
     <%= f.buttons %>

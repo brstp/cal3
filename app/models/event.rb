@@ -54,13 +54,13 @@ class Event < ActiveRecord::Base
                   :small => "176x117#", 
                   :thumb => "40x30#"}
   has_attached_file :image2, 
-      :default_url => "/images/lighthouse.jpg", 
+      :default_url => "/images/anslagstavla-butik.jpg", 
       :styles => {:large => "800x600#", 
                   :medium => "360x240#", 
                   :small => "176x117#", 
                   :thumb => "40x30#"}
   has_attached_file :image3, 
-      :default_url => "/images/winter-lake-church.jpg",
+      :default_url => "/images/anslagstavla-vinter.jpg",
       :styles => {:large => "800x600#", 
                   :medium => "360x240#", 
                   :small => "176x117#", 

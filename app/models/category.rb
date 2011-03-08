@@ -9,8 +9,6 @@ class Category < ActiveRecord::Base
   
   has_ancestry
   
-  # before_save :connect_to_parent
-  
   searchable :auto_index => true, :auto_remove => true do
     text :name
     text :description
@@ -53,50 +51,40 @@ class Category < ActiveRecord::Base
     }
     str 
   end
-
-  # def name # Fortsätt här. Byt namn internt på name (kanske) och låt name vara wrapper...
-    # str = ''
-    # self.depth.times {
-      # str += "_"
-    # }
-    # str 
-  # end
-  
-  def select_category  
-    Category.all
-  end
-
-  def tree
-    node = Category.first.root
-    node.climb
-  end
-  
-  # def climb
-    # html = ""
-    # html << self.prefix + self.name + '<br />'
-    # logger.info "----- in #{self.name} ----"
-    # logger.info self.prefix + self.name
-    # if self.has_children?
-    # logger.info "----- has #{self.children.count.to_s} ----"
-      # for child in self.children
-        # html << child.climb
-      # end
-    # end
-    
-    # raw html
-  # end
   
   
-  def climb
-    out = []
-    out << self.try(:name)
-    if self.has_children?
-      for child in self.children
-        out << child.climb
-      end
+  def climb selected = nil
+    out = ""
+    if self.depth > 0
+      checked = (self.id == selected) ? "checked='checked'" : ""
+      out << "<li>\n"
+      out << "<label title = '#{self.description}'><input #{checked} id='event_category_id_#{self.id}' name='event[category_id]' value='#{self.id}' type='radio'>#{self.name} <span class = 'category_description'> #{self.description}</span></label>\n"
+      out << "</li>\n"
     end
-    out
+    if self.has_children?
+      out << "<li>\n<ol class ='category-level-#{self.depth+1}'>\n"
+      for child in self.children.order('name ASC')
+        out << child.climb(selected)
+      end
+      out << "</ol>\n</li>\n"
+    end
+    raw out
   end
+  
+
+  def tree_to_list
+    out = "<li>" + self.try(:name) + "</li>"
+    if self.has_children?
+      out += "<ol>"
+      for child in self.children.order('name ASC')
+        out += child.tree_to_list.to_s
+      end
+      out += "</ol>"
+      raw out
+    end
+  
+  end
+  
 
 end
 

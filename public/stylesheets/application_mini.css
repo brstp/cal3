@@ -314,3 +314,37 @@ table.general tr.even {
   padding-top: 0;
   margin: 0;
 }
+.category-level-0 {
+  color: red;
+ 
+}
+
+.category-level-1 {
+  color: green;
+}
+
+.category-level-1 li {
+  font-weight: bold;
+}
+
+.category-level-2 {
+  color: blue;
+}
+
+.category-level-3 {
+  color: purple;
+}
+
+.category-level-2 li {
+  font-weight: normal;
+}
+
+.category-level-3 li {
+  font-style: italic;
+}
+
+.category_description{
+  font-style: italic;
+  color: grey;
+  font-weight: normal;
+}

@@ -413,6 +413,7 @@
         lng: "Longitud"
         municipality: "Kommun"
         organizer: "Arrangör"
+        category: "Ämneskategori*"
       municipality:
         name: "Kommunnamn"
         short_name: "Kort kommunnamn"
@@ -454,6 +455,7 @@
         image1: "En bild som visas i evenemangsannonsen. Bör vara minst 600 pixel bred. Bilden skalas och beskärs så att den passar utrymmet. Den här bilden är den som visas störst i annonsen."
         image2: "Ytterligare bild."
         image3: "Ytterligare bild."
+        category: "Vad handlar evenemanget om? Vilket ämne? Försök ange en så specifik kategori som möjligt."
       municipality: 
         name: "Namnet på kommunen (en del kommuner heter \"stad\")"
       user:

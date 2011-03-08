@@ -21,6 +21,21 @@ module LayoutHelper
     content_for(:head) { javascript_include_tag(*args) }
   end
   
+  def select_category_tree selected_category = nil
+    raw %(
+    <li class="radio required" id="event_category_input">
+    <fieldset>
+    <legend class="label">
+    <label>#{t('formtastic.labels.event.category')}</label>
+    </legend>
+    <ol class = "category-level-0">
+    #{Category.all.first.root.climb selected_category}
+    </ol>
+    </fieldset>
+    <p class="inline-hints">#{t('formtastic.hints.event.category')}</p></li>
+        )
+  end
+  
   def facet_search
     str = ""
     

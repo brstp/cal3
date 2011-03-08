@@ -14,7 +14,7 @@
         </li>        
       <% end %>
       <%= f.input :municipality, :required => true, :collection => Municipality.find(:all, :order => "name ASC")%>
-      <%= f.input :category, :required => true, :as=> :radio, :collection => category_tree%>
+      <%= select_category_tree @event.category_id %>
       <%= f.input :description, :input_html => {:rows => 8, :cols => 48} %>
       <hr />
       <%= f.input :start_date %>
