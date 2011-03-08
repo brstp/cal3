@@ -1,0 +1,33 @@
+<%= @user.name %> för arrangören <%= link_to @event.organizer.name, organizer_url(@event.organizer)%> i Föreningskalendern. Du får det här mejlet för kännedom eftersom du har arrangörsbehörighet i <%= link_to @event.organizer.name, organizer_url(@event.organizer)%>.
+</p>
+<p>
+Här är en kortversion av evenemangsannonsen:
+</p>
+<hr />
+
+<p><strong><%= @event.duration.capitalize %></strong></p>
+<h1><%= @event.subject %></h1>
+
+
+<% unless @event.intro.blank? %> 
+  <h3><%= @event.intro %></h3>
+<% end %>
+
+<%= simple_format @event.description %>
+
+<hr />
+
+<p>
+Den kompletta evenemangsannonsen finns på:  <%= event_url(@event)%>
+</p>
+<p>
+Du kan inte svara på det här mejlet. Om du undrar något kan du vända dig i första hand till den av dina arrangörskompisar <%= @user.name %> som la upp evenemangsannonsen, i andra hand vår kundtjänst. TODO Kontaktinfo här.
+</p>
+<p>Sidan för arrangören <%= @event.organizer.name %> finns på: <%= organizer_url(@event.organizer)%> 
+</p>
+<p>
+Hälsningar från...
+</p>
+<p>
+TODOTextbaserad reklam för kalendern här.
+</p>

@@ -15,7 +15,7 @@ Cal3::Application.configure do
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
@@ -29,8 +29,8 @@ config.action_mailer.smtp_settings = {
   :address              => "smtp.gmail.com",
   :port                 => 587,
   :domain               => 'mumin.nu',
-  :user_name            => 'kalender.dev@gmail.com.',
-  :password             => '309kagge',
+  :user_name            => 'b.r.stefan.pettersson',
+  :password             => 'norrviken',
   :authentication       => 'plain',
   :enable_starttls_auto => true  }
 end

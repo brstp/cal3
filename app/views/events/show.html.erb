@@ -15,7 +15,7 @@
   <div class = "event_in_future"> 
 <% else %>           
   <div class = "event_in_past"> 
-  <h1>Det här evenemanget har redan varit.</h1>
+  <h1><%= t('.in_past')%></h1>
 <% end %>
 
 
@@ -58,7 +58,7 @@
 <%= simple_format @event.description %>
 
 <p>
-  <strong>Adress:</strong><br />
+  <strong><%= t('.address')%>:</strong><br />
   <%= @event.street %><br />
   <%= (@event.zip + ' ' + @event.city).strip %>
 </p>

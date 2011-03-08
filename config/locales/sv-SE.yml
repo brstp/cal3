@@ -336,8 +336,10 @@
     future: "idag och framåt"
     
   mail:
-    mail.cc_event: "Kopia evenemang"
-    mail.to_event: "Om evenemang"
+    cc_event: "Kopia evenemang"
+    to_event: "Om evenemang"
+    new_event: "Nytt evenemang"
+    changed_event: "Ändrat evenemang"
     
   map:
     drag_me: "Du kan flytta kartnålen genom att dra den med musen."
@@ -642,6 +644,8 @@
       want_contact: "Har du frågor? Vill du kontakta arrangören?"
       email_contact: "Mejla evenemangets kontaktperson"
       call: "Ring"
+      in_past: "Det här evenemanget har redan varit."
+      address: "Adress"
     form:
       closest_address: "Närmsta adress som vi känner till"
   
@@ -665,7 +669,7 @@
         notice: "Ändrat"
       create:
         notice: "Skapat"
-        sent: "Ditt mejl har skickats evenemangets kontaktperson. Vi mejlar en kopia till dig."
+        sent: "Ditt mejl har skickats till evenemangets kontaktperson. Vi mejlar en kopia till dig."
         added_membership: "Okej, lagt till medlemskap."
         couldnt_save_membership: "Något gick fel. Vi kan tyvärr inte göra personen till medlem i arrangören."
         membership_exists_already: "Personen är redan medlem i arrangören."

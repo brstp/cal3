@@ -178,6 +178,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
   def create
     @event = Event.new(params[:event])
     if @event.save
+      OrganizerMailer.new_event_confirmation(@event, current_user).deliver
       flash[:notice] = t 'flash.actions.create.notice'
       redirect_to @event
     else
@@ -192,6 +193,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
   def update
     @event = Event.find(params[:id])
     if @event.update_attributes(params[:event])
+      OrganizerMailer.changed_event_confirmation(@event, current_user).deliver
       flash[:notice] = t 'flash.actions.update.notice'
       redirect_to @event
     else
