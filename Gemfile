@@ -56,7 +56,7 @@ group :development, :test do
   gem 'sqlite3-ruby', :require => 'sqlite3'
 end
 
-#group :production do
+group :production do
   gem 'mysql2'
-#end
+end
 
