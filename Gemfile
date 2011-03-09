@@ -37,7 +37,7 @@ gem 'validates_timeliness'
 gem "mocha", :group => :test
 gem 'sunspot_rails' #, '1.2.rc4'
 
-gem 'jquery-rails'
+#gem 'jquery-rails'
 gem 'mail_form'
 gem 'timeliness'
 gem "geocoder"
