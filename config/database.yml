@@ -15,17 +15,11 @@ test:
   pool: 5
   timeout: 5000
 
-# production:
-  # adapter: mysql2
-  # database: cal3_production
-  # username: cal3
-  # password: joppe
-  # host: 192.168.0.1
-  # pool: 5
-  # timeout: 5000
-  
-  production:
-    adapter: sqlite3
-    database: db/production.sqlite3
-    pool: 5
-    timeout: 5000
+production:
+  adapter: mysql2
+  database: cal3_production
+  username: cal3
+  password: joppe
+  host: 192.168.0.1
+  pool: 5
+  timeout: 5000
