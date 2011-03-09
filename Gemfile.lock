@@ -64,7 +64,6 @@ GEM
     meta-tags (1.2.3)
     mime-types (1.16)
     mocha (0.9.12)
-    mysql (2.8.1-x86-mingw32)
     mysql2 (0.2.6-x86-mingw32)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
@@ -136,7 +135,6 @@ DEPENDENCIES
   mail_form
   meta-tags
   mocha
-  mysql
   mysql2
   nifty-generators
   nokogiri (= 1.4.4.1)
