@@ -49,6 +49,8 @@ GEM
       actionpack (>= 2.3.0)
       activesupport (>= 2.3.0)
       i18n (>= 0.4.0)
+    geocoder (0.9.9)
+      json (>= 1.0.0)
     highline (1.6.1)
     i18n (0.5.0)
     icalendar (1.1.5)
@@ -93,8 +95,6 @@ GEM
       activesupport (= 3.0.5)
       bundler (~> 1.0)
       railties (= 3.0.5)
-    rails-geocoder (0.9.9)
-      json (>= 1.0.0)
     railties (3.0.5)
       actionpack (= 3.0.5)
       activesupport (= 3.0.5)
@@ -133,6 +133,7 @@ DEPENDENCIES
   capistrano
   devise
   formtastic (~> 1.1.0)
+  geocoder
   icalendar
   jquery-rails
   mail_form
@@ -143,7 +144,6 @@ DEPENDENCIES
   nokogiri (= 1.4.4.1)
   paperclip
   rails (= 3.0.5)
-  rails-geocoder
   sqlite3-ruby
   sunspot_rails
   timeliness

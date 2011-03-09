@@ -36,16 +36,17 @@ gem 'nifty-generators'
 gem 'validates_timeliness'
 gem "mocha", :group => :test
 gem 'sunspot_rails' #, '1.2.rc4'
-gem 'nokogiri', "1.4.4.1"
+
 gem 'jquery-rails'
 gem 'mail_form'
 gem 'timeliness'
-gem "rails-geocoder", :require => "geocoder"
+gem "geocoder"
 gem 'meta-tags', :require => 'meta_tags'
 gem "paperclip"
 gem "ancestry"
 gem 'icalendar'
 gem 'yaml_db'
+gem 'nokogiri', "1.4.4.1"
 
 group :development, :test do
   gem 'sqlite3-ruby', :require => 'sqlite3'
