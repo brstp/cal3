@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class UsersController < ApplicationController
   #TODO Move flash messages to I18n
   before_filter :authenticate_user!
