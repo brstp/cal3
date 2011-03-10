@@ -44,8 +44,8 @@ gem "geocoder"
 gem 'meta-tags', :require => 'meta_tags'
 gem "paperclip"
 gem "ancestry"
-gem 'icalendar'
 gem 'yaml_db'
+gem 'icalendar'
 #gem 'nokogiri', "1.4.4.1"
 gem 'nokogiri', '1.5.0.beta.3'
 
