@@ -405,7 +405,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
   
   def in_category event
     category = event.category
-    
+    str = ""
     while category.depth > 0
       str = (link_to category.name + ' (' + category.number_of_upcoming_events.to_s + ')', (events_path :category_facet_id => category.id)) + " > " + str
       category = category.parent
