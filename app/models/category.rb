@@ -9,10 +9,10 @@ class Category < ActiveRecord::Base
   
   has_ancestry
   
-  searchable :auto_index => true, :auto_remove => true do
-    text :name
-    text :description
-  end
+  #searchable :auto_index => true, :auto_remove => true do
+  #  text :name
+  #  text :description
+  #end
   
   def mum
     self.parent.object_id

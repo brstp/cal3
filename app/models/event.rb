@@ -27,25 +27,25 @@ class Event < ActiveRecord::Base
 
   geocoded_by :street, :latitude => :lat, :longitude => :lng
 
-  searchable :auto_index => true, :auto_remove => true do
-    text :subject, :boost => 3.0
-    text :intro, :boost => 2.0
-    text :description
-    text :street
-    text :city
-    text :loc_descr
-    text :phone_name
-    text :email_name
-    text :category
-    text :organizer
-    text :municipality
-    time :start_datetime
-    time :start, :trie => true, :using => :start_datetime
-    integer :category_id, :references => ::Category
-    integer :category_facet_id, :multiple => true, :references => ::Category
-    integer :municipality_id, :references => ::Municipality
-    integer :organizer_id, :references => ::Organizer    
-  end
+ # searchable :auto_index => true, :auto_remove => true do
+ #   text :subject, :boost => 3.0
+ #   text :intro, :boost => 2.0
+ #   text :description
+ #   text :street
+ #   text :city
+ #   text :loc_descr
+ #   text :phone_name
+ #   text :email_name
+ #   text :category
+ #   text :organizer
+ #   text :municipality
+ #   time :start_datetime
+ #   time :start, :trie => true, :using => :start_datetime
+ #   integer :category_id, :references => ::Category
+ #   integer :category_facet_id, :multiple => true, :references => ::Category
+ #   integer :municipality_id, :references => ::Municipality
+ #   integer :organizer_id, :references => ::Organizer    
+ # end
   
   has_attached_file :image1, 
       :default_url => "/images/blue-yellow-landscape.jpg", 
