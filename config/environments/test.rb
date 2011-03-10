@@ -32,4 +32,15 @@ Cal3::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
-end
+  
+  config.action_mailer.default_url_options = { :host => '127.0.0.1:3000' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address              => "smtp.gmail.com",
+    :port                 => 587,
+    :domain               => 'mumin.nu',
+    :user_name            => 'b.r.stefan.pettersson',
+    :password             => 'norrviken',
+    :authentication       => 'plain',
+    :enable_starttls_auto => true  }
+  end
