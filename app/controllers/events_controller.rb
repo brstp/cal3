@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class EventsController < ApplicationController
 include ActiveRecord::CounterCache
 
