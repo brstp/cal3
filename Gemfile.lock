@@ -145,7 +145,7 @@ DEPENDENCIES
   mocha
   mysql
   nifty-generators
-  nokogiri (= 1.4.4.1)
+  nokogiri
   paperclip
   rails (= 3.0.5)
   sqlite3-ruby
