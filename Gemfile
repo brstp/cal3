@@ -48,6 +48,7 @@ gem 'yaml_db'
 gem 'icalendar'
 #gem 'nokogiri', "1.4.4.1"
 gem 'nokogiri', '1.5.0.beta.3'
+gem 'heroku'
 
 gem 'sqlite3-ruby', :require => 'sqlite3'
 group :development, :test do
@@ -57,4 +58,3 @@ end
 group :production do
   #gem 'mysql'
 end
-
