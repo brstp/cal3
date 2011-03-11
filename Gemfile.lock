@@ -53,7 +53,7 @@ GEM
     geocoder (0.9.10)
     heroku (1.18.3)
       launchy (~> 0.3.2)
-      rest-client (>= 1.4.0, < 1.7.0)
+      rest-client (< 1.7.0, >= 1.4.0)
     highline (1.6.1)
     i18n (0.5.0)
     icalendar (1.1.6)
