@@ -153,7 +153,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
   end
   
   def index
-    @event = Event.all(:order => 'start_datetime ASC')
+    @events = Event.all(:order => 'start_datetime ASC')
   end
   
   def show
