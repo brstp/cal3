@@ -47,7 +47,7 @@ gem "ancestry"
 gem 'yaml_db'
 #gem 'nokogiri', "1.4.4.1"
 gem 'icalendar'
-gem 'nokogiri', '1.5.0.beta.3'
+gem 'nokogiri'
 gem 'heroku'
 
 gem 'sqlite3-ruby', :require => 'sqlite3'
