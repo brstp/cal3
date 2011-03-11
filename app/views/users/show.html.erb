@@ -15,10 +15,12 @@
   <strong><%= t('.email')%>:</strong>
   <%= @user.email %>
 </p>
+<% if current_user.is_admin? %>
 <p>
   <strong><%= t('.is_admin')%>:</strong>
   <%= @user.is_admin %>
 </p>
+<% end %>
 <p>
   <strong><%= t '.organizers' %>:</strong>
 </p>

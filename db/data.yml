@@ -34775,6 +34775,18 @@ events:
   - event_id
   - category_id
   - counter
+  - image1_file_name
+  - image1_content_type
+  - image1_file_size
+  - image1_updated_at
+  - image2_file_name
+  - image2_content_type
+  - image2_file_size
+  - image2_updated_at
+  - image3_file_name
+  - image3_content_type
+  - image3_file_size
+  - image3_updated_at
   records: 
   - - 1
     - "H\xC3\xB6gl\xC3\xA4sning"
@@ -34787,18 +34799,30 @@ events:
     - Bollmora
     - ""
     - 59.242589
-    - 18.2330636
+    - 18.233063600000037
     - 138
     - 2010-11-19 13:35:54.582000
-    - 2011-02-15 13:18:29.904000
+    - 2011-03-07 10:34:41.626936
     - 1
     - ""
     - ""
     - stefan.pettersson@lumano.se
     - Stefan Pettersson
     - 
-    - 13
-    - 8
+    - 40
+    - 10
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
   - - 2
     - "\xC3\x85lagille"
     - "Vi tjuvfiskar lite \xC3\xA5l, kokar den och \xC3\xA4ter gott."
@@ -34813,25 +34837,37 @@ events:
     - "EKER\xC3\x96"
     - Vid kanalen.
     - 59.277214
-    - 17.7054878
+    - 17.705487800000014
     - 125
     - 2010-11-23 12:59:05.402000
-    - 2011-02-15 13:19:05.182000
+    - 2011-03-07 10:35:07.623936
     - 1
     - 0123-400 12
     - Nisse
     - nisse@lumano.se
     - "Nisse H\xC3\xB6gaffel"
     - 
-    - 12
-    - 0
+    - 27
+    - 2
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
   - - 3
     - "S\xC3\xA4ckl\xC3\xB6pning"
     - "Klassisk s\xC3\xA4ckl\xC3\xB6pningst\xC3\xA4vling fr\xC3\xA5n Kungsberga till Tr\xC3\xA4kvista."
     - "Ta med egen s\xC3\xA4ck.\r\n\
       Har du ingen fritid?"
-    - 2011-03-01 13:14:00.000000
-    - 2011-03-01 15:16:00.000000
+    - 2011-03-15 13:14:00.000000
+    - 2011-03-15 15:16:00.000000
     - Brommaplan
     - ""
     - ""
@@ -34840,15 +34876,27 @@ events:
     - 
     - 180
     - 2010-11-23 16:06:40.154000
-    - 2011-02-15 13:27:56.710000
+    - 2011-03-08 10:23:36.776000
     - 4
     - 0123-456 78
     - "Nisse H\xC3\xB6gaffel"
     - stefan@lumano.se
     - "Stefan H\xC3\xB6gaffel"
     - 
-    - 13
-    - 32
+    - 25
+    - 40
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
   - - 4
     - "F\xC3\xA5gelutst\xC3\xA4llning"
     - Kvitter
@@ -34863,15 +34911,27 @@ events:
     - 17.705487800000014
     - 125
     - 2011-01-11 08:21:30.879383
-    - 2011-02-23 12:25:58.799000
+    - 2011-03-08 10:43:55.479000
     - 5
     - ""
     - ""
     - stefan@lumano.se
     - Stefan
     - 
-    - 16
-    - 2
+    - 26
+    - 43
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
   - - 5
     - "Sn\xC3\xB6bollskrig"
     - ""
@@ -34886,15 +34946,27 @@ events:
     - 17.8091498
     - 125
     - 2011-01-13 12:51:49.153983
-    - 2011-02-16 07:42:40.846800
+    - 2011-03-07 10:33:36.458936
     - 1
     - "118118"
     - Stefan Pettersson
     - stefan.pettersson@lumano.se
     - Stefan Pettersson
     - 
-    - 16
-    - 1
+    - 46
+    - 11
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
   - - 6
     - "Vinterbad i Tappstr\xC3\xB6mskanalen"
     - "Nyb\xC3\xB6rjar- och veteransimmare fj\xC3\xA4rilssimmar 300 meter."
@@ -34903,8 +34975,8 @@ events:
       Simkunnigheten var ju inte d\xC3\xA5 vad den \xC3\xA4r nu. S\xC3\xA5 traditionen dog s\xC3\xA5 att s\xC3\xA4ga ut.\r\n\
       \r\n\
       Anm\xC3\xA4l dig genom att skicka ett meddelande i formul\xC3\xA4ret h\xC3\xA4r nere. Ber\xC3\xA4tta hur m\xC3\xA5nga som kommer."
-    - 2011-03-01 12:00:00.000000
-    - 2011-03-01 12:15:00.000000
+    - 2011-03-15 12:00:00.000000
+    - 2011-03-15 12:15:00.000000
     - "Tegelbruksv\xC3\xA4gen 13"
     - ""
     - "Eker\xC3\xB6"
@@ -34913,21 +34985,41 @@ events:
     - 17.821579978759814
     - 125
     - 2011-01-13 14:12:42.966983
-    - 2011-02-17 07:57:10.044800
+    - 2011-03-08 10:23:03.368000
     - 6
     - 0123-456 78
     - Stefan Pettersson
     - stefan.pettersson@lumano.se
     - Stefan Pettersson
     - 
-    - 13
-    - 95
+    - 46
+    - 119
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
   - - 7
     - Kottplockning
     - "Grankottar, tallkottar, alkottar. Men inte l\xC3\xB6nn\xC3\xA4sor."
-    - Ta med en hink och en hunk.
-    - 2011-03-07 19:00:00.000000
-    - 2011-03-07 19:00:00.000000
+    - "Kottarna plockas f\xC3\xB6r hand, med hj\xC3\xA4lp av skylift. Vi rensar kottarna, torkar dem och l\xC3\xA5ter sedan fr\xC3\xB6na eftermogna inomhus. \r\n\
+      \r\n\
+      D\xC3\xA4refter \xC3\xA4r det dags att f\xC3\xA5 fram fr\xC3\xB6na. Det kallas kl\xC3\xA4ngning och kottarna behandlas med v\xC3\xA4rme f\xC3\xB6r att \xC3\xB6ppna sig och sl\xC3\xA4ppa ifr\xC3\xA5n sig sina fr\xC3\xB6n. Fr\xC3\xB6na sorteras sedan efter storlek.\r\n\
+      En bra tallkotte kan i snitt ge 15-20 fr\xC3\xB6n medan en bra grankotte i snitt ger 20-30 fr\xC3\xB6n.\r\n\
+      \r\n\
+      Kottarna plockas f\xC3\xB6r hand, med hj\xC3\xA4lp av skylift. Vi rensar kottarna, torkar dem och l\xC3\xA5ter sedan fr\xC3\xB6na eftermogna inomhus. \r\n\
+      \r\n\
+      D\xC3\xA4refter \xC3\xA4r det dags att f\xC3\xA5 fram fr\xC3\xB6na. Det kallas kl\xC3\xA4ngning och kottarna behandlas med v\xC3\xA4rme f\xC3\xB6r att \xC3\xB6ppna sig och sl\xC3\xA4ppa ifr\xC3\xA5n sig sina fr\xC3\xB6n. Fr\xC3\xB6na sorteras sedan efter storlek.\r\n\
+      En bra tallkotte kan i snitt ge 15-20 fr\xC3\xB6n medan en bra grankotte i snitt ger 20-30 fr\xC3\xB6n."
+    - 2011-03-21 19:00:00.000000
+    - 2011-03-21 19:00:00.000000
     - Hornsgatan 180
     - ""
     - ""
@@ -34936,15 +35028,27 @@ events:
     - 18.032411300000035
     - 180
     - 2011-01-17 12:14:56.456026
-    - 2011-02-23 12:24:52.070000
+    - 2011-03-08 10:50:44.487000
     - 1
     - ""
     - ""
     - stefan.pettersson@lumano.se
     - Stefan Pettersson
     - 
-    - 13
-    - 2
+    - 46
+    - 23
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
   - - 8
     - "Badpremi\xC3\xA4r"
     - "Nu \xC3\xA4r det sommar..."
@@ -34956,24 +35060,36 @@ events:
     - "Eker\xC3\xB6"
     - Lurudden, nere vid badet.
     - 59.27271225777728
-    - 17.715092388391124
+    - 17.7150923883911
     - 125
     - 2011-02-03 10:36:15.722000
-    - 2011-02-15 13:25:35.600000
+    - 2011-03-07 10:34:00.834936
     - 10
     - ""
     - ""
     - stp@lumano.se
     - Stefan Pettersson
     - 
-    - 13
-    - 8
+    - 44
+    - 10
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
   - - 9
     - "Pudelutst\xC3\xA4llning"
     - Alla sorters pudlar
     - "Vi samlas och borstar hundarna och st\xC3\xA4ller ut..."
-    - 2011-02-28 16:00:00.000000
-    - 2011-02-28 17:00:00.000000
+    - 2011-03-28 16:00:00.000000
+    - 2011-03-28 17:00:00.000000
     - "Morellv\xC3\xA4gen 5"
     - "17963"
     - Stenhamra
@@ -34982,15 +35098,902 @@ events:
     - 17.703342502001988
     - 125
     - 2011-02-04 08:53:54.662397
-    - 2011-02-28 12:18:53.424400
+    - 2011-03-07 10:47:45.516936
     - 11
     - ""
     - ""
     - kansliet@lumano.se
     - Klubbkansliet
     - 
-    - 13
-    - 33
+    - 26
+    - 37
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+  - - 10
+    - "F\xC3\xA5gelsk\xC3\xA5dning "
+    - "Vi spanar efter finkar "
+    - "Gillar du f\xC3\xA5glar? Vi med. \r\n"
+    - 2011-03-09 12:00:00.000000
+    - 2011-03-09 17:00:00.000000
+    - "Nibbla g\xC3\xA5rd"
+    - ""
+    - "EKER\xC3\x96"
+    - ""
+    - 59.2858024
+    - 17.724364100000003
+    - 125
+    - 2011-03-03 10:02:38.604000
+    - 2011-03-07 10:32:34.220936
+    - 5
+    - ""
+    - ""
+    - stefan.pettersson@lumano.se
+    - Stefan Pettersson
+    - 
+    - 46
+    - 112
+    - DSC_2737.jpg
+    - image/jpeg
+    - 3994933
+    - 2011-03-03 12:16:37.617000
+    - DSC_3884.jpg
+    - image/jpeg
+    - 2531770
+    - 2011-03-03 12:16:43.834000
+    - DSC_9388.jpg
+    - image/jpeg
+    - 3756825
+    - 2011-03-03 12:16:47.910000
+  - - 12
+    - "P\xC3\xA5skkonsert"
+    - "En rapsodi i p\xC3\xA5skmusik"
+    - En massa musik.
+    - 2011-03-26 19:00:00.000000
+    - 2011-03-26 19:00:00.000000
+    - ""
+    - ""
+    - ""
+    - ""
+    - 
+    - 
+    - 125
+    - 2011-03-08 13:48:21.905000
+    - 2011-03-08 13:48:21.905000
+    - 1
+    - ""
+    - ""
+    - stefan.pettersson@lumano.se
+    - Stefan Pettersson
+    - 
+    - 36
+    - 0
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+  - - 13
+    - "P\xC3\xA5skkonsert"
+    - "En rapsodi i p\xC3\xA5skmusik"
+    - En massa musik.
+    - 2011-03-26 19:00:00.000000
+    - 2011-03-26 19:00:00.000000
+    - ""
+    - ""
+    - ""
+    - ""
+    - 
+    - 
+    - 125
+    - 2011-03-08 13:49:20.721000
+    - 2011-03-08 13:49:20.721000
+    - 1
+    - ""
+    - ""
+    - stefan.pettersson@lumano.se
+    - Stefan Pettersson
+    - 
+    - 36
+    - 0
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+  - - 14
+    - "P\xC3\xA5skkonsert"
+    - "En rapsodi i p\xC3\xA5skmusik"
+    - En massa musik.
+    - 2011-03-26 19:00:00.000000
+    - 2011-03-26 19:00:00.000000
+    - ""
+    - ""
+    - ""
+    - ""
+    - 
+    - 
+    - 125
+    - 2011-03-08 13:50:43.609000
+    - 2011-03-08 13:50:43.609000
+    - 1
+    - ""
+    - ""
+    - stefan.pettersson@lumano.se
+    - Stefan Pettersson
+    - 
+    - 36
+    - 0
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+  - - 15
+    - "P\xC3\xA5skkonsert"
+    - "En rapsodi i p\xC3\xA5skmusik"
+    - En massa musik.
+    - 2011-03-26 19:00:00.000000
+    - 2011-03-26 19:00:00.000000
+    - ""
+    - ""
+    - ""
+    - ""
+    - 
+    - 
+    - 125
+    - 2011-03-08 13:51:07.557000
+    - 2011-03-08 13:51:07.557000
+    - 1
+    - ""
+    - ""
+    - stefan.pettersson@lumano.se
+    - Stefan Pettersson
+    - 
+    - 36
+    - 1
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+  - - 16
+    - Pingstkonsert
+    - En rapsodi i pingstmusik
+    - En massa musik.
+    - 2011-03-26 19:00:00.000000
+    - 2011-03-26 19:00:00.000000
+    - ""
+    - ""
+    - ""
+    - ""
+    - 
+    - 
+    - 125
+    - 2011-03-08 13:54:25.425000
+    - 2011-03-08 13:54:25.425000
+    - 1
+    - ""
+    - ""
+    - stefan.pettersson@lumano.se
+    - Stefan Pettersson
+    - 
+    - 36
+    - 0
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+  - - 17
+    - Pingstkonsert
+    - En rapsodi i pingstmusik
+    - En massa musik.
+    - 2011-03-26 19:00:00.000000
+    - 2011-03-26 19:00:00.000000
+    - ""
+    - ""
+    - ""
+    - ""
+    - 
+    - 
+    - 125
+    - 2011-03-08 13:56:20.511000
+    - 2011-03-08 13:56:20.511000
+    - 1
+    - ""
+    - ""
+    - stefan.pettersson@lumano.se
+    - Stefan Pettersson
+    - 
+    - 36
+    - 0
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+  - - 18
+    - Pingstkonsert
+    - En rapsodi i pingstmusik
+    - En massa musik.
+    - 2011-03-26 19:00:00.000000
+    - 2011-03-26 19:00:00.000000
+    - ""
+    - ""
+    - ""
+    - ""
+    - 
+    - 
+    - 125
+    - 2011-03-08 13:56:55.902000
+    - 2011-03-08 13:56:55.902000
+    - 1
+    - ""
+    - ""
+    - stefan.pettersson@lumano.se
+    - Stefan Pettersson
+    - 
+    - 36
+    - 2
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+  - - 19
+    - Midsommarkonsert
+    - En rapsodi i midsommarmusik
+    - En massa musik.
+    - 2011-03-26 19:00:00.000000
+    - 2011-03-26 19:00:00.000000
+    - ""
+    - ""
+    - ""
+    - ""
+    - 
+    - 
+    - 125
+    - 2011-03-08 14:14:08.831000
+    - 2011-03-08 14:14:08.831000
+    - 1
+    - ""
+    - ""
+    - stefan.pettersson@lumano.se
+    - Stefan Pettersson
+    - 
+    - 36
+    - 1
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+  - - 20
+    - Allhelgonakonsert
+    - En rapsodi i allhelgonamusik
+    - En massa musik.
+    - 2011-03-26 19:00:00.000000
+    - 2011-03-26 19:00:00.000000
+    - ""
+    - ""
+    - ""
+    - ""
+    - 
+    - 
+    - 125
+    - 2011-03-08 14:18:56.105000
+    - 2011-03-08 14:18:56.105000
+    - 1
+    - ""
+    - ""
+    - stefan.pettersson@lumano.se
+    - Stefan Pettersson
+    - 
+    - 36
+    - 1
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+  - - 21
+    - Julkonsert
+    - En rapsodi i julmusik
+    - En massa musik.
+    - 2011-03-26 19:00:00.000000
+    - 2011-03-26 19:00:00.000000
+    - ""
+    - ""
+    - ""
+    - ""
+    - 
+    - 
+    - 125
+    - 2011-03-08 14:40:01.636000
+    - 2011-03-08 14:40:01.636000
+    - 1
+    - ""
+    - ""
+    - stefan.pettersson@lumano.se
+    - Stefan Pettersson
+    - 
+    - 36
+    - 0
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+  - - 22
+    - Julkonsert
+    - En rapsodi i julmusik
+    - En massa musik.
+    - 2011-03-26 19:00:00.000000
+    - 2011-03-26 19:00:00.000000
+    - ""
+    - ""
+    - ""
+    - ""
+    - 
+    - 
+    - 125
+    - 2011-03-08 14:41:01.141000
+    - 2011-03-08 14:41:01.141000
+    - 1
+    - ""
+    - ""
+    - stefan.pettersson@lumano.se
+    - Stefan Pettersson
+    - 
+    - 36
+    - 1
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+  - - 23
+    - Julkonsert
+    - En rapsodi i julmusik
+    - En massa musik.
+    - 2011-03-26 19:00:00.000000
+    - 2011-03-26 19:00:00.000000
+    - ""
+    - ""
+    - ""
+    - ""
+    - 
+    - 
+    - 125
+    - 2011-03-08 14:48:18.821000
+    - 2011-03-08 14:48:18.821000
+    - 1
+    - ""
+    - ""
+    - stefan.pettersson@lumano.se
+    - Stefan Pettersson
+    - 
+    - 36
+    - 1
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+  - - 24
+    - Julkonsert
+    - En rapsodi i julmusik
+    - En massa musik.
+    - 2011-03-26 19:00:00.000000
+    - 2011-03-26 19:00:00.000000
+    - ""
+    - ""
+    - ""
+    - ""
+    - 
+    - 
+    - 125
+    - 2011-03-08 14:48:48.921000
+    - 2011-03-08 14:48:48.921000
+    - 1
+    - ""
+    - ""
+    - stefan.pettersson@lumano.se
+    - Stefan Pettersson
+    - 
+    - 36
+    - 1
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+  - - 25
+    - Julkonsert
+    - En rapsodi i julmusik
+    - En massa musik.
+    - 2011-03-26 19:00:00.000000
+    - 2011-03-26 19:00:00.000000
+    - ""
+    - ""
+    - ""
+    - ""
+    - 
+    - 
+    - 125
+    - 2011-03-08 14:51:44.560000
+    - 2011-03-08 14:51:44.560000
+    - 1
+    - ""
+    - ""
+    - stefan.pettersson@lumano.se
+    - Stefan Pettersson
+    - 
+    - 36
+    - 1
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+  - - 26
+    - Julkonsert
+    - En rapsodi i julmusik
+    - En massa musik.
+    - 2011-03-26 19:00:00.000000
+    - 2011-03-26 19:00:00.000000
+    - ""
+    - ""
+    - ""
+    - ""
+    - 
+    - 
+    - 125
+    - 2011-03-08 14:52:29.671000
+    - 2011-03-08 14:52:29.671000
+    - 1
+    - ""
+    - ""
+    - stefan.pettersson@lumano.se
+    - Stefan Pettersson
+    - 
+    - 36
+    - 0
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+  - - 27
+    - Julkonsert
+    - En rapsodi i julmusik
+    - En massa musik.
+    - 2011-03-26 19:00:00.000000
+    - 2011-03-26 19:00:00.000000
+    - ""
+    - ""
+    - ""
+    - ""
+    - 
+    - 
+    - 125
+    - 2011-03-08 14:52:49.795000
+    - 2011-03-08 14:52:49.795000
+    - 1
+    - ""
+    - ""
+    - stefan.pettersson@lumano.se
+    - Stefan Pettersson
+    - 
+    - 36
+    - 1
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+  - - 28
+    - Julkonsert
+    - En rapsodi i julmusik
+    - En massa musik.
+    - 2011-03-26 19:00:00.000000
+    - 2011-03-26 19:00:00.000000
+    - ""
+    - ""
+    - ""
+    - ""
+    - 
+    - 
+    - 125
+    - 2011-03-08 15:00:46.276000
+    - 2011-03-08 15:00:46.276000
+    - 1
+    - ""
+    - ""
+    - stefan.pettersson@lumano.se
+    - Stefan Pettersson
+    - 
+    - 36
+    - 0
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+  - - 29
+    - Julkonsert
+    - En rapsodi i julmusik
+    - En massa musik.
+    - 2011-03-26 19:00:00.000000
+    - 2011-03-26 19:00:00.000000
+    - ""
+    - ""
+    - ""
+    - ""
+    - 
+    - 
+    - 125
+    - 2011-03-08 15:01:09.383000
+    - 2011-03-08 15:01:09.383000
+    - 1
+    - ""
+    - ""
+    - stefan.pettersson@lumano.se
+    - Stefan Pettersson
+    - 
+    - 36
+    - 1
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+  - - 30
+    - Julkonsert
+    - En rapsodi i julmusik
+    - En massa musik.
+    - 2011-03-26 19:00:00.000000
+    - 2011-03-26 19:00:00.000000
+    - ""
+    - ""
+    - ""
+    - ""
+    - 
+    - 
+    - 125
+    - 2011-03-08 15:05:03.829000
+    - 2011-03-08 15:05:03.829000
+    - 1
+    - ""
+    - ""
+    - stefan.pettersson@lumano.se
+    - Stefan Pettersson
+    - 
+    - 36
+    - 0
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+  - - 31
+    - Julkonsert
+    - En rapsodi i julmusik
+    - En massa musik.
+    - 2011-03-26 19:00:00.000000
+    - 2011-03-26 19:00:00.000000
+    - ""
+    - ""
+    - ""
+    - ""
+    - 
+    - 
+    - 125
+    - 2011-03-08 15:05:25.934000
+    - 2011-03-08 15:05:25.934000
+    - 1
+    - ""
+    - ""
+    - stefan.pettersson@lumano.se
+    - Stefan Pettersson
+    - 
+    - 36
+    - 0
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+  - - 32
+    - Julkonsert
+    - En rapsodi i julmusik
+    - En massa musik.
+    - 2011-03-26 19:00:00.000000
+    - 2011-03-26 19:00:00.000000
+    - ""
+    - ""
+    - ""
+    - ""
+    - 
+    - 
+    - 125
+    - 2011-03-08 15:09:30.943000
+    - 2011-03-08 15:09:30.943000
+    - 1
+    - ""
+    - ""
+    - stefan.pettersson@lumano.se
+    - Stefan Pettersson
+    - 
+    - 36
+    - 0
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+  - - 33
+    - Julkonsert
+    - En rapsodi i julmusik
+    - En massa musik.
+    - 2011-03-26 19:00:00.000000
+    - 2011-03-26 19:00:00.000000
+    - ""
+    - ""
+    - ""
+    - ""
+    - 
+    - 
+    - 125
+    - 2011-03-08 15:09:54.074000
+    - 2011-03-08 15:09:54.074000
+    - 1
+    - ""
+    - ""
+    - stefan.pettersson@lumano.se
+    - Stefan Pettersson
+    - 
+    - 36
+    - 1
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+  - - 34
+    - Julkonsert
+    - En rapsodi i julmusik
+    - En massa musik.
+    - 2011-03-26 19:00:00.000000
+    - 2011-03-26 19:00:00.000000
+    - ""
+    - ""
+    - ""
+    - ""
+    - 
+    - 
+    - 125
+    - 2011-03-08 15:16:27.795000
+    - 2011-03-08 15:16:27.795000
+    - 1
+    - ""
+    - ""
+    - stefan.pettersson@lumano.se
+    - Stefan Pettersson
+    - 
+    - 36
+    - 0
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+  - - 35
+    - Julkonsert
+    - Ett potpurri i julmusik
+    - En massa musik.
+    - 2011-03-26 19:00:00.000000
+    - 2011-03-26 19:00:00.000000
+    - ""
+    - ""
+    - ""
+    - ""
+    - 
+    - 
+    - 125
+    - 2011-03-08 15:16:48.049000
+    - 2011-03-08 15:25:14.761000
+    - 1
+    - ""
+    - ""
+    - stefan.pettersson@lumano.se
+    - Stefan Pettersson
+    - 
+    - 36
+    - 2
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
 
 --- 
 organizers: 
@@ -35597,9 +36600,9 @@ users:
     - 
     - 
     - 
-    - 37
-    - 2011-03-02 12:19:55.749000
-    - 2011-02-25 09:33:59.688400
+    - 39
+    - 2011-03-11 07:56:21.647003
+    - 2011-03-07 07:59:30.432936
     - 127.0.0.1
     - 127.0.0.1
     - 
@@ -35612,7 +36615,7 @@ users:
     - Stefan
     - Pettersson
     - 2010-11-19 09:34:00.636000
-    - 2011-03-02 12:19:55.824000
+    - 2011-03-11 07:56:21.647003
     - true
   - - 3
     - b.r.stefan.pettersson@gmail.com
@@ -35636,7 +36639,7 @@ users:
     - ""
     - ""
     - 2011-01-07 13:28:32.336077
-    - 2011-01-07 13:30:40.803077
+    - 2011-03-11 08:15:53.228003
     - true
   - - 4
     - stefanp@lumano.se
@@ -36630,6 +37633,51 @@ mail_messages:
     - http://127.0.0.1:3000/organizers/1
     - 2011-02-04 08:34:04.094397
     - 2011-02-04 08:34:04.094397
+  - - 99
+    - stefan.pettersson@lumano.se
+    - stefan.pettersson@lumano.se
+    - 10
+    - 127.0.0.1
+    - Mozilla/5.0 (Windows; U; Windows NT 6.0; en-GB; rv:1.9.2.15) Gecko/20110303 Firefox/3.6.15 GTB7.1 ( .NET CLR 3.5.30729; .NET4.0C)
+    - http://127.0.0.1:3000/
+    - 2011-03-08 12:08:09.023000
+    - 2011-03-08 12:08:09.023000
+  - - 100
+    - stefan.pettersson@lumano.se
+    - stefan.pettersson@lumano.se
+    - 7
+    - 127.0.0.1
+    - Mozilla/5.0 (Windows; U; Windows NT 6.0; en-GB; rv:1.9.2.15) Gecko/20110303 Firefox/3.6.15 GTB7.1 ( .NET CLR 3.5.30729; .NET4.0C)
+    - http://127.0.0.1:3000/events/7/edit
+    - 2011-03-08 12:36:54.636000
+    - 2011-03-08 12:36:54.636000
+  - - 101
+    - stefan.pettersson@lumano.se
+    - stefan.pettersson@lumano.se
+    - 7
+    - 127.0.0.1
+    - Mozilla/5.0 (Windows; U; Windows NT 6.0; en-GB; rv:1.9.2.15) Gecko/20110303 Firefox/3.6.15 GTB7.1 ( .NET CLR 3.5.30729; .NET4.0C)
+    - http://127.0.0.1:3000/events/7
+    - 2011-03-08 12:40:05.172000
+    - 2011-03-08 12:40:05.172000
+  - - 102
+    - stefan.pettersson@lumano.se
+    - stefan.pettersson@lumano.se
+    - 7
+    - 127.0.0.1
+    - Mozilla/5.0 (Windows; U; Windows NT 6.0; en-GB; rv:1.9.2.15) Gecko/20110303 Firefox/3.6.15 GTB7.1 ( .NET CLR 3.5.30729; .NET4.0C)
+    - http://127.0.0.1:3000/events/7
+    - 2011-03-08 12:46:44.391000
+    - 2011-03-08 12:46:44.391000
+  - - 103
+    - stefan.pettersson@lumano.se
+    - stefan.pettersson@lumano.se
+    - 7
+    - 127.0.0.1
+    - Mozilla/5.0 (Windows; U; Windows NT 6.0; en-GB; rv:1.9.2.15) Gecko/20110303 Firefox/3.6.15 GTB7.1 ( .NET CLR 3.5.30729; .NET4.0C)
+    - http://127.0.0.1:3000/events/7
+    - 2011-03-08 12:49:54.142000
+    - 2011-03-08 12:49:54.142000
 
 --- 
 categories: 
@@ -36647,39 +37695,273 @@ categories:
     - 2011-02-11 08:20:25.508933
     - 2011-02-11 08:20:25.508933
     - 
-  - - 12
-    - "Kultur & n\xC3\xB6je"
-    - ...
-    - 2011-02-11 08:22:35.853933
-    - 2011-02-11 08:22:35.853933
+  - - 25
+    - fritid & hobby
+    - ""
+    - 2011-03-07 09:47:18.208936
+    - 2011-03-07 09:47:18.208936
     - "11"
-  - - 13
-    - Fritid & hobby
-    - ...
-    - 2011-02-11 08:23:00.196933
-    - 2011-02-11 08:23:00.196933
+  - - 26
+    - husdjur
+    - ""
+    - 2011-03-07 09:49:04.014936
+    - 2011-03-07 09:49:04.014936
+    - 11/25
+  - - 27
+    - mat & dryck
+    - ""
+    - 2011-03-07 09:49:21.575936
+    - 2011-03-07 09:49:21.575936
+    - 11/25
+  - - 28
+    - foto & video
+    - ""
+    - 2011-03-07 09:49:58.791936
+    - 2011-03-07 09:49:58.791936
+    - 11/25
+  - - 29
+    - "b\xC3\xA5tliv"
+    - ""
+    - 2011-03-07 09:50:39.236936
+    - 2011-03-07 09:50:39.236936
+    - 11/25
+  - - 30
+    - motor
+    - "bil, mc, motorsport, utst\xC3\xA4llningar "
+    - 2011-03-07 09:51:26.887936
+    - 2011-03-07 09:51:26.887936
+    - 11/25
+  - - 31
+    - "tr\xC3\xA4dg\xC3\xA5rd"
+    - ""
+    - 2011-03-07 09:51:45.022936
+    - 2011-03-07 09:51:45.022936
+    - 11/25
+  - - 32
+    - hantverk & handarbete
+    - ""
+    - 2011-03-07 09:52:07.807936
+    - 2011-03-07 09:52:07.807936
+    - 11/25
+  - - 33
+    - teve- & dataspel
+    - ""
+    - 2011-03-07 09:52:26.782936
+    - 2011-03-07 09:52:26.782936
+    - 11/25
+  - - 34
+    - "kultur & n\xC3\xB6je"
+    - ""
+    - 2011-03-07 09:52:50.327936
+    - 2011-03-07 09:52:50.327936
     - "11"
-  - - 14
-    - Bio
-    - ...
-    - 2011-02-11 08:31:36.793933
-    - 2011-02-11 08:31:36.793933
-    - 11/12
-  - - 15
-    - Teater
-    - ...
-    - 2011-02-11 08:32:07.971933
-    - 2011-02-11 08:32:07.971933
-    - 11/12
-  - - 16
-    - Konst
-    - ...
-    - 2011-02-11 08:32:14.882933
-    - 2011-02-11 08:32:14.882933
-    - 11/12
-  - - 17
-    - Tavlor
-    - ...
-    - 2011-02-11 08:32:58.009933
-    - 2011-02-11 08:32:58.009933
-    - 11/12/16
+  - - 35
+    - teater
+    - musikaler, revy, operetter, opera
+    - 2011-03-07 09:53:54.819936
+    - 2011-03-07 09:53:54.819936
+    - 11/34
+  - - 36
+    - konsert
+    - "klassiskt, rock, jazz, folkmusik, k\xC3\xB6rer"
+    - 2011-03-07 09:54:47.652936
+    - 2011-03-07 09:54:47.652936
+    - 11/34
+  - - 37
+    - cirkus & tivoli
+    - ""
+    - 2011-03-07 09:55:13.667936
+    - 2011-03-07 09:55:13.667936
+    - 11/34
+  - - 38
+    - dansa
+    - "klubb, s\xC3\xA4llskapsdans, folkmusik, ..."
+    - 2011-03-07 09:55:56.524936
+    - 2011-03-07 09:55:56.524936
+    - 11/34
+  - - 39
+    - "konst & utst\xC3\xA4llningar"
+    - ""
+    - 2011-03-07 09:56:28.287936
+    - 2011-03-07 09:56:28.287936
+    - 11/34
+  - - 40
+    - litteratur & poesi
+    - ""
+    - 2011-03-07 09:57:21.770936
+    - 2011-03-07 09:57:21.770936
+    - 11/34
+  - - 41
+    - festival
+    - ""
+    - 2011-03-07 09:57:56.387936
+    - 2011-03-07 09:58:13.325936
+    - 11/34
+  - - 42
+    - "upptr\xC3\xA4dande & shower"
+    - ""
+    - 2011-03-07 09:58:51.160936
+    - 2011-03-07 10:00:52.173936
+    - 11/34
+  - - 43
+    - guidade turer & visningar
+    - ""
+    - 2011-03-07 09:59:29.991936
+    - 2011-03-07 10:01:16.315936
+    - 11/34
+  - - 44
+    - "motion & h\xC3\xA4lsa"
+    - ""
+    - 2011-03-07 10:01:40.251936
+    - 2011-03-07 10:01:40.251936
+    - "11"
+  - - 45
+    - meditation & yoga
+    - ""
+    - 2011-03-07 10:02:05.111936
+    - 2011-03-07 10:02:05.111936
+    - 11/44
+  - - 46
+    - friluftsliv
+    - ""
+    - 2011-03-07 10:02:21.068936
+    - 2011-03-07 10:02:21.068936
+    - 11/44
+  - - 47
+    - utflykter & promenader
+    - ""
+    - 2011-03-07 10:02:41.114936
+    - 2011-03-08 12:00:48.829000
+    - 11/44
+  - - 48
+    - "personlig utveckling & l\xC3\xA4rande"
+    - ""
+    - 2011-03-07 10:03:16.745936
+    - 2011-03-07 10:03:16.745936
+    - "11"
+  - - 49
+    - shopping
+    - ""
+    - 2011-03-07 10:03:31.845936
+    - 2011-03-07 10:03:31.845936
+    - "11"
+  - - 50
+    - marknader
+    - ""
+    - 2011-03-07 10:08:42.698936
+    - 2011-03-07 10:08:42.698936
+    - 11/49
+  - - 51
+    - loppis
+    - ""
+    - 2011-03-07 10:08:57.518936
+    - 2011-03-07 10:08:57.518936
+    - 11/49
+  - - 52
+    - auktioner
+    - ""
+    - 2011-03-07 10:09:12.854936
+    - 2011-03-07 10:09:12.854936
+    - 11/49
+  - - 53
+    - "utf\xC3\xB6rs\xC3\xA4ljningar"
+    - ""
+    - 2011-03-07 10:09:25.960936
+    - 2011-03-07 10:09:25.960936
+    - 11/49
+  - - 54
+    - religion & troende
+    - ""
+    - 2011-03-07 10:09:40.204936
+    - 2011-03-07 10:09:40.204936
+    - "11"
+  - - 55
+    - "samh\xC3\xA4lle"
+    - ""
+    - 2011-03-07 10:10:00.480936
+    - 2011-03-07 10:10:00.480936
+    - 
+  - - 56
+    - politik & demokrati
+    - ""
+    - 2011-03-07 10:10:35.684936
+    - 2011-03-07 10:10:35.684936
+    - "55"
+  - - 57
+    - demonstrationer
+    - upprop, protester
+    - 2011-03-07 10:14:44.928936
+    - 2011-03-07 10:14:44.928936
+    - 55/56
+  - - 58
+    - fackligt
+    - ""
+    - 2011-03-07 10:15:01.857936
+    - 2011-03-07 10:15:01.857936
+    - "55"
+  - - 59
+    - "f\xC3\xB6retagande & entrepren\xC3\xB6rsdkap"
+    - ""
+    - 2011-03-07 10:15:22.340936
+    - 2011-03-07 10:15:22.340936
+    - "55"
+  - - 60
+    - "sport- & idrottst\xC3\xA4vlingar"
+    - ""
+    - 2011-03-07 10:16:01.914936
+    - 2011-03-07 10:36:49.633936
+    - "11"
+  - - 61
+    - "h\xC3\xA4stsport"
+    - ""
+    - 2011-03-07 10:16:15.575936
+    - 2011-03-07 10:36:49.543936
+    - 11/60
+  - - 62
+    - fotboll
+    - ""
+    - 2011-03-07 10:16:30.230936
+    - 2011-03-07 10:36:49.567936
+    - 11/60
+  - - 63
+    - friidrott
+    - ""
+    - 2011-03-07 10:16:50.659936
+    - 2011-03-07 10:36:49.590936
+    - 11/60
+  - - 65
+    - "helger & s\xC3\xA4songsfirande"
+    - ""
+    - 2011-03-07 10:17:34.050936
+    - 2011-03-07 10:17:49.959936
+    - "11"
+  - - 66
+    - "valborgsm\xC3\xA4ssoafton"
+    - ""
+    - 2011-03-07 10:18:11.329936
+    - 2011-03-07 10:18:11.329936
+    - 11/65
+  - - 67
+    - jul & advent
+    - ""
+    - 2011-03-07 10:18:26.950936
+    - 2011-03-07 10:18:26.950936
+    - 11/65
+  - - 68
+    - midsommar
+    - ""
+    - 2011-03-07 10:18:43.076936
+    - 2011-03-07 10:18:43.076936
+    - 11/65
+  - - 69
+    - eid al fitr
+    - ""
+    - 2011-03-07 10:19:01.007936
+    - 2011-03-07 10:19:01.007936
+    - 11/65
+  - - 71
+    - "\xC3\xB6vrigt"
+    - Om du verkligen inte hittar annan kategori som passar.
+    - 2011-03-07 10:20:14.832936
+    - 2011-03-07 10:35:59.957936
+    - "11"
