@@ -44,17 +44,17 @@ gem "geocoder"
 gem 'meta-tags', :require => 'meta_tags'
 gem "paperclip"
 gem "ancestry"
-gem 'icalendar'
 gem 'yaml_db'
 #gem 'nokogiri', "1.4.4.1"
-gem 'nokogiri'
+gem 'icalendar'
+gem 'nokogiri', '1.5.0.beta.3'
 gem 'heroku'
 
+gem 'sqlite3-ruby', :require => 'sqlite3'
 group :development, :test do
-  gem 'sqlite3-ruby', :require => 'sqlite3'
+  #gem 'sqlite3-ruby', :require => 'sqlite3'
 end
 
 group :production do
-  gem 'mysql'
+  #gem 'mysql'
 end
-
