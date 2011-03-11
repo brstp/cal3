@@ -1,7 +1,11 @@
 Kalendern för Rails 3
 
 
-Att göra vid uppstart
+git push #github
+git push heroku master
+
+#Att göra vid uppstart
+
 
 bundle install
 bundle update
