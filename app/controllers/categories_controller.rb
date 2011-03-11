@@ -93,11 +93,11 @@ protected
   def authorized?
     if !current_user
       flash[:alert] = t 'flash.actions.not_authenticated'
-      redirect_to :back
+      redirect_to :root
     else
       if !current_user.is_admin
         flash[:alert] = t 'flash.actions.not_admin'
-        redirect_to :back  
+        redirect_to :root  
       else
         # Do stuff...
       end
