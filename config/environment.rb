@@ -7,6 +7,10 @@ require File.expand_path('../application', __FILE__)
 #require 'openssl'
 #OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 
+require 'erb'
+YAML::load(ERB.new(IO.read('config/database.yml')).result).each_value {|env| env.merge!({"encoding" => "utf8", "collation" => "utf8_general_ci"}) }
+
+
 
 # Initialize the rails application
 Cal3::Application.initialize!
