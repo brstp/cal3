@@ -49,7 +49,7 @@ class Event < ActiveRecord::Base
   
   has_attached_file :image1, 
       :storage => :s3,
-      :bucket => 'static.foreningskalendern.se.',
+      :bucket => 'static.foreningskalendern.se',
       :s3_credentials => {
         :access_key_id => ENV['S3_KEY'],
         :secret_access_key => ENV['S3_SECRET']
@@ -62,7 +62,7 @@ class Event < ActiveRecord::Base
                   
   has_attached_file :image2, 
       :storage => :s3,
-      :bucket => 'static.foreningskalendern.se.',
+      :bucket => 'static.foreningskalendern.se',
       :s3_credentials => {
         :access_key_id => ENV['S3_KEY'],
         :secret_access_key => ENV['S3_SECRET']
@@ -75,7 +75,7 @@ class Event < ActiveRecord::Base
                   
   has_attached_file :image3,     
       :storage => :s3,
-      :bucket => 'static.foreningskalendern.se.',
+      :bucket => 'static.foreningskalendern.se',
       :s3_credentials => {
         :access_key_id => ENV['S3_KEY'],
         :secret_access_key => ENV['S3_SECRET']
