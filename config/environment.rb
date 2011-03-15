@@ -10,7 +10,7 @@ require File.expand_path('../application', __FILE__)
 class Rails::Application::Configuration
  def database_configuration
   require 'erb'
-  YAML::load(ERB.new(IO.read(database_configuration_file)).result).each_value {|env| env.merge!({"encoding" => "utf8", "collation" => "utf8_general_ci"}) }
+  YAML::load(ERB.new(IO.read(paths.config.database.to_a.first)).result).each_value {|env| env.merge!({"encoding" => "utf8", "collation" => "utf8_general_ci"}) }
   end
 end
 
