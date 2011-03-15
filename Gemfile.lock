@@ -31,6 +31,10 @@ GEM
     ancestry (1.2.3)
       activerecord (>= 2.2.2)
     arel (2.0.9)
+    aws-s3 (0.6.2)
+      builder
+      mime-types
+      xml-simple
     bcrypt-ruby (2.1.4)
     builder (2.1.2)
     capistrano (2.5.19)
@@ -126,6 +130,7 @@ GEM
     validation_reflection (1.0.0)
     warden (1.0.3)
       rack (>= 1.0.0)
+    xml-simple (1.0.14)
     yaml_db (0.2.0)
 
 PLATFORMS
@@ -133,6 +138,7 @@ PLATFORMS
 
 DEPENDENCIES
   ancestry
+  aws-s3
   capistrano
   devise
   formtastic (~> 1.1.0)

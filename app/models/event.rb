@@ -48,23 +48,44 @@ class Event < ActiveRecord::Base
  # end
   
   has_attached_file :image1, 
+      :storage => :s3,
+      :bucket => 'static.foreningskalendern.se.',
+      :s3_credentials => {
+        :access_key_id => ENV['S3_KEY'],
+        :secret_access_key => ENV['S3_SECRET']
+                         },
       :default_url => "/images/blue-yellow-landscape.jpg", 
       :styles => {:large => "800x600#", 
                   :medium => "360x240#", 
                   :small => "176x117#", 
                   :thumb => "40x30#"}
+                  
   has_attached_file :image2, 
+      :storage => :s3,
+      :bucket => 'static.foreningskalendern.se.',
+      :s3_credentials => {
+        :access_key_id => ENV['S3_KEY'],
+        :secret_access_key => ENV['S3_SECRET']
+                         },
       :default_url => "/images/anslagstavla-butik.jpg", 
       :styles => {:large => "800x600#", 
                   :medium => "360x240#", 
                   :small => "176x117#", 
                   :thumb => "40x30#"}
-  has_attached_file :image3, 
+                  
+  has_attached_file :image3,     
+      :storage => :s3,
+      :bucket => 'static.foreningskalendern.se.',
+      :s3_credentials => {
+        :access_key_id => ENV['S3_KEY'],
+        :secret_access_key => ENV['S3_SECRET']
+                          },
       :default_url => "/images/anslagstavla-vinter.jpg",
       :styles => {:large => "800x600#", 
                   :medium => "360x240#", 
                   :small => "176x117#", 
                   :thumb => "40x30#"}
+  
   
 
   # def coordinates
