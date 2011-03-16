@@ -8,7 +8,7 @@ before_filter :authorized?, :except => [:show, :index]
 before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
  
  
-  def index_old
+  def index
       #TODO Add almanac function to look up all absolute and relative days. 
       # summer_holiday:
       # christmas_holiday:
@@ -152,7 +152,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
   
   end
   
-  def index
+  def index2
     @events = Event.all(:order => 'start_datetime ASC')
   end
   

@@ -51,6 +51,7 @@ gem 'nokogiri'
 gem 'heroku'
 gem 'aws-s3'
 
+
 gem 'sqlite3-ruby', :require => 'sqlite3'
 group :development, :test do
   #gem 'sqlite3-ruby', :require => 'sqlite3'
