@@ -3,7 +3,7 @@ class MunicipalitiesController < ApplicationController
   before_filter :authorized?, :except => [:show, :index]
   
   def index
-    @municipalities = Municipality.all.sort
+    @municipalities = Municipality.all.sort_by &:name
   end
   
   def show
