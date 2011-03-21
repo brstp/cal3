@@ -11,8 +11,8 @@ class GmailPaginationLinkRenderer < WillPaginate::ViewHelpers::LinkRenderer
       items << :first_page 
       items << :previous_page 
       items << :summary
-      items << :next_page if total_pages > 2
-      items << :last_page if total_pages > 2
+      items << :next_page 
+      items << :last_page 
       items
     end
 

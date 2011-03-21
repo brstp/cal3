@@ -18,6 +18,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
       # sport_holiday3:
       # easter_holiday1:
       # easter_holiday2:
+      #TODO Config setting for number of hits per page
 
       today = Time.zone.now.beginning_of_day
       this_month = Time.zone.now.beginning_of_month
