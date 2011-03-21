@@ -21,6 +21,7 @@
 <% if @events.blank? %>  
   <p>Just nu hittar vi inte några inplanerade evenemang. </p>
 <% else %>
+  tjoho
   <%= will_paginate(
     :renderer => GmailPaginationLinkRenderer,
     :first_label => t('will_paginate.first'),
