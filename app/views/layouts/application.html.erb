@@ -62,13 +62,24 @@
       <div id="user_form">
 
       <%= form_for(:user, :as => :post, :url => "/users/sign_in" ) do |f| %>
-        <%= f.label :email, t('.email') %> <%= f.text_field :email, :size => "22" %>
-        <%= f.label :password, t('.password') %> <%= f.password_field :password, :size => "10" %>
-        <br />
-        <%= f.check_box :remember_me %> <%= f.label :remember_me, t('.remember_me') %>
-        <span id = "forgot_password"><%= link_to( t('.forgot_password'), "/users/password/new")%></span>
-        <%= f.submit t '.sign_in' %>
+        <div id = "login_email">
+          <%= f.label :email, t('.email') %><br/> 
+          <%= f.text_field :email, :size => "20" %><br/> 
+          <%= f.check_box :remember_me %> <%= f.label :remember_me, t('.remember_me') %>
+        </div>
+        <div id = "login_passwd">
+          <%= f.label :password, t('.password') %><br />
+          <%= f.password_field :password, :size => "8" %>
+        </div>
+        <div id = "login_login">
+          &nbsp;<br />
+          <%= f.submit t '.sign_in' %><br />
+          <span id = "forgot_password"><%= link_to( t('.forgot_password'), "/users/password/new")%></span>
+        </div>        
+        <div id = "login_auto">
+        </div>
       <% end %>
+      
       </div><!-- /user_form -->
     <% end %>
     </div> <!-- /user_account_box -->
