@@ -46,6 +46,7 @@ module Cal3
     config.use_plugin_parser = true
     
     config.autoload_paths += %W(#{config.root}/lib) #to get will_paginate pagination list
+    ActiveSupport::Multibyte::Unicode.default_normalization_form = :kc
 
   end
 end
