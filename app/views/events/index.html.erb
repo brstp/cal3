@@ -21,7 +21,23 @@
 <% if @events.blank? %>  
   <p>Just nu hittar vi inte några inplanerade evenemang. </p>
 <% else %>
-  <%= calendar @events%>
+  <%= will_paginate(
+    :renderer => GmailPaginationLinkRenderer,
+    :first_label => t('will_paginate.first'),
+    :previous_label => t('will_paginate.previous'),
+    :next_label => t('will_paginate.next'),
+    :last_label => t('will_paginate.last'),
+    :summary_label => " %d #{t('will_paginate.to')} %d #{t('will_paginate.of')} %d "
+                    ) %>
+  <%= calendar @events %>
+  <%= will_paginate(
+    :renderer => GmailPaginationLinkRenderer,
+    :first_label => t('will_paginate.first'),
+    :previous_label => t('will_paginate.previous'),
+    :next_label => t('will_paginate.next'),
+    :last_label => t('will_paginate.last'),
+    :summary_label => " %d #{t('will_paginate.to')} %d #{t('will_paginate.of')} %d "
+                    ) %>
 <% end %> 
 
 

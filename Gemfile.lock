@@ -44,7 +44,7 @@ GEM
       net-ssh (>= 2.0.14)
       net-ssh-gateway (>= 1.0.0)
     configuration (1.2.0)
-    devise (1.1.7)
+    devise (1.1.8)
       bcrypt-ruby (~> 2.1.2)
       warden (~> 1.0.2)
     erubis (2.6.6)
@@ -61,6 +61,9 @@ GEM
     highline (1.6.1)
     i18n (0.5.0)
     icalendar (1.1.6)
+    jquery-rails (0.2.7)
+      rails (~> 3.0)
+      thor (~> 0.14.4)
     launchy (0.3.7)
       configuration (>= 0.0.5)
       rake (>= 0.8.1)
@@ -87,7 +90,7 @@ GEM
       activesupport
     polyglot (0.3.1)
     pr_geohash (1.0.0)
-    rack (1.2.1)
+    rack (1.2.2)
     rack-mount (0.6.13)
       rack (>= 1.0.0)
     rack-test (0.5.7)
@@ -124,12 +127,13 @@ GEM
     timeliness (0.3.3)
     treetop (1.4.9)
       polyglot (>= 0.3.1)
-    tzinfo (0.3.24)
+    tzinfo (0.3.25)
     validates_timeliness (3.0.5)
       timeliness (~> 0.3.2)
     validation_reflection (1.0.0)
     warden (1.0.3)
       rack (>= 1.0.0)
+    will_paginate (3.0.pre2)
     xml-simple (1.0.14)
     yaml_db (0.2.0)
 
@@ -145,6 +149,7 @@ DEPENDENCIES
   geocoder
   heroku
   icalendar
+  jquery-rails
   mail_form
   meta-tags
   mocha
@@ -157,4 +162,5 @@ DEPENDENCIES
   timeliness
   validates_timeliness
   validation_reflection
+  will_paginate (= 3.0.pre2)
   yaml_db

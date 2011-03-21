@@ -311,6 +311,16 @@
     events_in_total: "evenemang. Alla fick inte plats här. Vill du kolla?"
     planned_events: "Planerade evenemang"
     category: "Kategori"
+    
+  will_paginate:
+    first: "<< första"
+    next: "nästa >"
+    previous: "< förra"
+    last: "sista >>"
+    of: "av"
+    to: "till"
+    shows: "visar"
+    events: "evenemang"
   
   when_facet:
     this_month: "den här månaden"

@@ -47,6 +47,8 @@ class Event < ActiveRecord::Base
     integer :organizer_id, :references => ::Organizer    
   end
  
+
+ 
   has_attached_file :image1, 
       :storage => :s3,
       :bucket => 'static.foreningskalendern.se',
@@ -94,6 +96,10 @@ class Event < ActiveRecord::Base
   # def coordinates=(sunspot_util_coordinates)
     # self.lat,self.lng = [sunspot_util_coordinates.lat, sunspot_util_coordinates.lng]
   # end
+  
+  def self.per_page
+    5
+  end
   
   def category_facet_id
     category = self.category
