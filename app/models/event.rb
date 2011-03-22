@@ -27,44 +27,67 @@ class Event < ActiveRecord::Base
 
   geocoded_by :street, :latitude => :lat, :longitude => :lng
 
- # searchable :auto_index => true, :auto_remove => true do
- #   text :subject, :boost => 3.0
- #   text :intro, :boost => 2.0
- #   text :description
- #   text :street
- #   text :city
- #   text :loc_descr
- #   text :phone_name
- #   text :email_name
- #   text :category
- #   text :organizer
- #   text :municipality
- #   time :start_datetime
- #   time :start, :trie => true, :using => :start_datetime
- #   integer :category_id, :references => ::Category
- #   integer :category_facet_id, :multiple => true, :references => ::Category
- #   integer :municipality_id, :references => ::Municipality
- #   integer :organizer_id, :references => ::Organizer    
- # end
-  
+  searchable :auto_index => true, :auto_remove => true do
+    text :subject, :boost => 3.0
+    text :intro, :boost => 2.0
+    text :description
+    text :street
+    text :city
+    text :loc_descr
+    text :phone_name
+    text :email_name
+    text :category
+    text :organizer
+    text :municipality
+    time :start_datetime
+    time :start, :trie => true, :using => :start_datetime
+    integer :category_id, :references => ::Category
+    integer :category_facet_id, :multiple => true, :references => ::Category
+    integer :municipality_id, :references => ::Municipality
+    integer :organizer_id, :references => ::Organizer    
+  end
+ 
+
+ 
   has_attached_file :image1, 
+      :storage => :s3,
+      :bucket => 'static.foreningskalendern.se',
+      :s3_credentials => {
+        :access_key_id => ENV['S3_KEY'],
+        :secret_access_key => ENV['S3_SECRET']
+                         },
       :default_url => "/images/blue-yellow-landscape.jpg", 
       :styles => {:large => "800x600#", 
                   :medium => "360x240#", 
                   :small => "176x117#", 
                   :thumb => "40x30#"}
+                  
   has_attached_file :image2, 
+      :storage => :s3,
+      :bucket => 'static.foreningskalendern.se',
+      :s3_credentials => {
+        :access_key_id => ENV['S3_KEY'],
+        :secret_access_key => ENV['S3_SECRET']
+                         },
       :default_url => "/images/anslagstavla-butik.jpg", 
       :styles => {:large => "800x600#", 
                   :medium => "360x240#", 
                   :small => "176x117#", 
                   :thumb => "40x30#"}
-  has_attached_file :image3, 
+                  
+  has_attached_file :image3,     
+      :storage => :s3,
+      :bucket => 'static.foreningskalendern.se',
+      :s3_credentials => {
+        :access_key_id => ENV['S3_KEY'],
+        :secret_access_key => ENV['S3_SECRET']
+                          },
       :default_url => "/images/anslagstavla-vinter.jpg",
       :styles => {:large => "800x600#", 
                   :medium => "360x240#", 
                   :small => "176x117#", 
                   :thumb => "40x30#"}
+  
   
 
   # def coordinates
@@ -73,6 +96,10 @@ class Event < ActiveRecord::Base
   # def coordinates=(sunspot_util_coordinates)
     # self.lat,self.lng = [sunspot_util_coordinates.lat, sunspot_util_coordinates.lng]
   # end
+  
+  def self.per_page
+    5
+  end
   
   def category_facet_id
     category = self.category

@@ -1,4 +1,7 @@
 class CategoriesController < ApplicationController
+
+  before_filter :authorized?
+  
   # GET /categories
   # GET /categories.xml
   def index
@@ -83,4 +86,22 @@ class CategoriesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  
+protected
+
+  def authorized?
+    if !current_user
+      flash[:alert] = t 'flash.actions.not_authenticated'
+      redirect_to :root
+    else
+      if !current_user.is_admin
+        flash[:alert] = t 'flash.actions.not_admin'
+        redirect_to :root  
+      else
+        # Do stuff...
+      end
+    end
+  end
+  
 end

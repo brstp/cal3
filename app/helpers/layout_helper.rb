@@ -112,9 +112,7 @@ module LayoutHelper
               <ul>
               )
       for row in facet_rows 
-      logger.info "****************************************"
-      logger.info row
-      logger.info row.instance.to_s
+
       str << %(
                 <li>
                   #{link_to( row.instance.and_mum.capitalize + " (" + row.count.to_s +  ")", 
@@ -551,4 +549,4 @@ google.maps.event.addDomListener(window, 'load', initialize);
     raw cal
   end #def calendar
   
-end # module LatoutHelper
+end # module LayoutHelper

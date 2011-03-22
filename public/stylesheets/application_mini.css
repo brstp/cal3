@@ -244,6 +244,7 @@ table.general tr.even {
   width: 300px;
   float: right;
 }
+
 #user_account {
   font-size: 80%;
   margin-top: 10px;
@@ -258,8 +259,9 @@ table.general tr.even {
   
 #user_form {
   font-size: 80%;
-  margin: 10px 0 10px 10px;
+  width: 100%;
   float: right;
+  margin: 5px 0 5px 0;
 }
 
 #user_form  label{
@@ -270,21 +272,31 @@ table.general tr.even {
   margin: 2px 0 2px 0;
 }
 
-#user_password{
+#login_email{
+  float: left;
 }
 
-#user_submit{
-  float: right;
+#login_passwd{
+  float: left;
+  margin: 0 2px 0 2px;
 }
 
-#forgot_password {
- margin-left: 5px;
+
+#login_login{
+  float: left;
+
+}
+
+#login_auto{
+  clear: both;
 }
 
 .image_box {
   float: right;
   margin-left: 10px;
 }
+
+
 
 .image_2{
 }

@@ -5,6 +5,8 @@ class Municipality < ActiveRecord::Base
   validates_length_of :name, :in => 5..40
   validates_uniqueness_of :name, :short_name, :admin_no
   
+  default_scope :order => 'name ASC'
+  
   #searchable :auto_index => true, :auto_remove => true do
   #  text :name
   #end
