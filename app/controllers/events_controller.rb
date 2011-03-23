@@ -30,7 +30,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
 
       result = Event.search do 
         keywords params[:q]
-        paginate :per_page => 3, :page => params[:page]
+        paginate :per_page => 30, :page => params[:page]
         facet :category_facet_id, :organizer_id, :municipality_id
         facet :start do
           row "today" do
@@ -153,9 +153,6 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
   
   end
   
-  def index2
-    @events = Event.all(:order => 'start_datetime ASC')
-  end
   
   def show
     Event.increment_counter :counter, params[:id]
@@ -178,7 +175,6 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
       @event.email_name += current_user.last_name 
     end
     @event.email_name.strip!
-    @event.phone_name = @event.email_name
   end
 
   def create

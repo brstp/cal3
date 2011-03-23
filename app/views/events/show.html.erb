@@ -57,12 +57,13 @@
 
 <%= simple_format @event.description %>
 
+<% unless @event.street.blank? %>
 <p>
   <strong><%= t('.address')%>:</strong><br />
   <%= @event.street %><br />
   <%= (@event.zip + ' ' + @event.city).strip %>
 </p>
-
+<% end %>
 <% unless @event.loc_descr.blank? %>
 <p>
   <strong><%= Event.human_attribute_name :loc_descr %>:</strong><br />
@@ -168,13 +169,16 @@
 
 <% unless @event.lat.nil? || @event.lng.nil?%>
   <div id="mapCanvas"></div>
-<p>
+  <%= map_marker @event %>
+  <p>
   <strong><%= I18n.t 'app.lat_lng' %>:</strong>
   <%= raw @event.lat_lng %>
-</p>
-<% end %>
+  </p>
+  <% else %>
+  <p>
+  <%= t '.no_location' %>
+  </p>
+  <% end %>
 
-
-<%= map_marker @event %>
 </div> 
  

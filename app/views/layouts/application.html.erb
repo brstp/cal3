@@ -32,7 +32,7 @@
   <%= javascript_include_tag  %>
   <%= stylesheet_link_tag  "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.4/themes/smoothness/jquery-ui.css" %>
   <%= javascript_include_tag "jquery.js", "jquery-ui.js", "jquery.rails.js", "jquery.ui.datepicker-sv.js", "jquery.googlemaps1.01.js", "jquery-ui-1.8.1.custom.min.js", "geocode", "application" %>
-  <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+  <script src="http://maps.google.com/maps/api/js?sensor=false&region=SE&language=sv" type="text/javascript"></script>
 
   <%= favicon_link_tag %>
   <%= csrf_meta_tag %>
@@ -46,7 +46,7 @@
 	<div id="topbar">
 		
 		<div id="nav" class="grid_11 alpha">
-			<ul id="pagenav" class="menu"><li id="menu-item-34" class="menu-item menu-item-type-custom menu-item-34"><a href="/">Startsidan/Alla evenemang</a></li>
+			<ul id="pagenav" class="menu"><li id="menu-item-34" class="menu-item menu-item-type-custom menu-item-34"><a href="/?start=future">Startsidan/Alla evenemang</a></li>
 <li id="menu-item-37" class="menu-item menu-item-type-custom menu-item-37"><a href="/not-yet-implemented/">Lägg in evenemang</a></li>
 <li id="menu-item-35" class="menu-item menu-item-type-custom menu-item-35"><a href="/municipalities">Alla kommuner</a></li>
 <li id="menu-item-36" class="menu-item menu-item-type-custom menu-item-36"><a href="/organizers">Alla arrangörer</a></li>

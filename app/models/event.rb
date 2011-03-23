@@ -9,7 +9,7 @@ class Event < ActiveRecord::Base
   belongs_to :category
 
   before_save :merge_start_datetime, :merge_stop_datetime
-  after_validation :consider_fetch
+  #after_validation :consider_fetch
 
 
   attr_accessible :subject, :intro, :description, :street, :zip, :city, :loc_descr, :lat, :lng, :municipality_id, :start_date, :start_time, :stop_date, :stop_time, :organizer_id, :phone_number, :phone_name, :email, :email_name, :category_id, :counter, :start_datetime, :stop_datetime, :image1, :image2, :image3
@@ -96,11 +96,7 @@ class Event < ActiveRecord::Base
   # def coordinates=(sunspot_util_coordinates)
     # self.lat,self.lng = [sunspot_util_coordinates.lat, sunspot_util_coordinates.lng]
   # end
-  
-  def self.per_page
-    5
-  end
-  
+
   def category_facet_id
     category = self.category
     out_array = []
@@ -174,6 +170,26 @@ class Event < ActiveRecord::Base
     end
   end
 
+  def init_lat
+    self.lat.blank? ? 62.00 : self.lat
+  end
+  
+  def init_lng
+    self.lng.blank? ? 16.00 : self.lng
+  end
+  
+  def init_zoom
+    if (self.lat.blank? or self.lng.blank?)
+      ""
+    else
+      "1"
+    end
+  end
+  
+  
+  def re_geocoded_street
+  end
+  
   #TODO A generic degree to Sdd°mm,mmm converter.
   def degrees_to_degrees_minutes degrees_float
     degrees = degrees_float.to_i

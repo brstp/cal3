@@ -6,12 +6,7 @@
       <% if @event.new_record? %> 
         <%= f.input :organizer, :required => true, :collection => current_user.organizers %>
       <% else %>
-        <li class="select required" id="event_organizer_input">
-        <label for="event_organizer_id"><%= t 'formtastic.labels.event.organizer'%><abbr title="<%= t 'formtastic.required'%>">*</abbr></label>
-        <%= @event.organizer.name %>
-        <p class="inline-hints">
-        <%= t 'formtastic.hints.event.organizer_no_change_allowed' %>
-        </li>        
+        <%= f.input :organizer, :required => true, :collection => current_user.organizers, :input_html => { :disabled => true}%>     
       <% end %>
       <%= f.input :municipality, :required => true, :collection => Municipality.find(:all, :order => "name ASC")%>
       <%= select_category_tree @event.category_id %>
@@ -32,22 +27,24 @@
       <%= f.input :image3 %>
       <hr />
       <%= f.input :street %>
-      <%= f.input :zip %>
-      <%= f.input :city %>
+      <%= f.input :re_geocoded_street, :input_html => { :disabled => true}%>
+      <%= f.input :zip, :as => :hidden %>
+      <%= f.input :city, :as => :hidden %>
       <%= f.input :loc_descr %>
 
       <%= f.input :lat %>
       <%= f.input :lng %>
-      
-      <p><%= f.buttons %></p> 
+      <%= f.input :init_lat, :as => :hidden %>
+      <%= f.input :init_lng, :as => :hidden %>
+      <%= f.input :init_zoom, :as => :hidden %>
 
-    <div id="infoPanel">
-    <p><%= t'.closest_address'%>:</p>
-    <div id="address"></div>
-  </div>
-  <div id="mapCanvas"></div>
+      
+      
+      <%= f.buttons %> 
+
+
+    <div id="mapCanvas"></div>
   
-  <%= draggable_map_marker @event %>
-  
+    
   <% end %>
 <% end %>
