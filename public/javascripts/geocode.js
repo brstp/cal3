@@ -9,34 +9,46 @@ var marker;
     
 function initialize(){
 //MAP
-  var latlng = new google.maps.LatLng(41.659,-4.714);
+  var latlng = new google.maps.LatLng(document.getElementById("event_init_lat").value ,document.getElementById("event_init_lng").value);
+  var initZoom = document.getElementById("event_init_zoom").value;
   var options = {
-    zoom: 16,
+    zoom: 4,
     center: latlng,
-    mapTypeId: google.maps.MapTypeId.SATELLITE
+    mapTypeId: google.maps.MapTypeId.ROADMAP
   };
         
-  map = new google.maps.Map(document.getElementById("map_canvas"), options);
-        
-  //GEOCODER
-  geocoder = new google.maps.Geocoder();
-        
+  map = new google.maps.Map(document.getElementById("mapCanvas"), options);
+    
+  //MARKER
   marker = new google.maps.Marker({
     map: map,
     draggable: true
   });
-				
+
+  if (document.getElementById("event_init_zoom").value){
+    map.setZoom(15);
+    var initLocation = new google.maps.LatLng(document.getElementById("event_init_lat").value ,document.getElementById("event_init_lng").value);
+    marker.setPosition(initLocation);
+    map.setCenter(initLocation);
+    }
+    
+  //GEOCODER
+  geocoder = new google.maps.Geocoder();
+
 }
 		
 $(document).ready(function() { 
          
   initialize();
-				  
+   // Define north-east and south-west points of Sweden
+   var ne = new google.maps.LatLng(69.20, 25.00);
+   var sw = new google.maps.LatLng(54.50, 10.50);
+			  
   $(function() {
-    $("#address").autocomplete({
+    $("#event_street").autocomplete({
       //This bit uses the geocoder to fetch address values
       source: function(request, response) {
-        geocoder.geocode( {'address': request.term }, function(results, status) {
+        geocoder.geocode( {'address': request.term + ', Sverige', 'bounds':  new google.maps.LatLngBounds(sw, ne) }, function(results, status) {
           response($.map(results, function(item) {
             return {
               label:  item.formatted_address,
@@ -49,11 +61,12 @@ $(document).ready(function() {
       },
       //This bit is executed upon selection of an address
       select: function(event, ui) {
-        $("#latitude").val(ui.item.latitude);
-        $("#longitude").val(ui.item.longitude);
+        $("#event_lat").val(ui.item.latitude);
+        $("#event_lng").val(ui.item.longitude);
         var location = new google.maps.LatLng(ui.item.latitude, ui.item.longitude);
         marker.setPosition(location);
         map.setCenter(location);
+        map.setZoom(15);
       }
     });
   });
@@ -63,9 +76,9 @@ $(document).ready(function() {
     geocoder.geocode({'latLng': marker.getPosition()}, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
         if (results[0]) {
-          $('#address').val(results[0].formatted_address);
-          $('#latitude').val(marker.getPosition().lat());
-          $('#longitude').val(marker.getPosition().lng());
+          $('#event_re_geocoded_street').val(results[0].formatted_address);
+          $('#event_lat').val(marker.getPosition().lat());
+          $('#event_lng').val(marker.getPosition().lng());
         }
       }
     });
