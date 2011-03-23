@@ -60,8 +60,7 @@
 <% unless @event.street.blank? %>
 <p>
   <strong><%= t('.address')%>:</strong><br />
-  <%= @event.street %><br />
-  <%= (@event.zip + ' ' + @event.city).strip %>
+  <%= @event.street %>
 </p>
 <% end %>
 <% unless @event.loc_descr.blank? %>
