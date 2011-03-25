@@ -52,3 +52,6 @@ gem 'will_paginate', "3.0.pre2"     #well, to paginatr
 group :development, :test do
 	gem 'sqlite3-ruby', :require => 'sqlite3'
 end
+group :production do
+	gem 'mysql'
+end

@@ -70,6 +70,7 @@ GEM
     meta-tags (1.2.3)
     mime-types (1.16)
     mocha (0.9.12)
+    mysql (2.8.1-x86-mingw32)
     nifty-generators (0.4.5)
     nokogiri (1.4.4.1-x86-mingw32)
     paperclip (2.3.8)
@@ -139,6 +140,7 @@ DEPENDENCIES
   mail_form
   meta-tags
   mocha
+  mysql
   nifty-generators
   nokogiri
   paperclip
