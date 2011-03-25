@@ -41,8 +41,17 @@ class Category < ActiveRecord::Base
   end
   
   def number_of_upcoming_events
-    self.events.find(:all, :conditions => ["stop_datetime >= '#{Time.now}'"]).count
+    out = self.events.find(:all, :conditions => ["stop_datetime >= '#{Time.now}'"]).count
+    if self.has_children?
+      for child in self.children.order('name ASC')
+        out += child.number_of_upcoming_events
+      end
+    end
+    out
   end
+  
+
+  
   
   def prefix
     str = ""

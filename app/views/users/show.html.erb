@@ -1,7 +1,16 @@
 <% title @user.name %>
 
+<% content_for :right_column_top do %>  
+  <%= my_organizers current_user %>
+<% end %>   
+
+<% if current_user %>
+  <%= button_to(t('app.edit'), edit_user_path(@user), :method => :get) %>
+  <%= button_to(t('app.destroy'), @user, :confirm => t('app.are_you_sure') + ' ' +@user.name + '?', :method => :delete )%>
+<%end%>
 
 
+<h1><%= @user.name%></h1>
 <p>
   <strong><%= t('.first_name')%>:</strong>
   <%= @user.first_name %>
@@ -12,13 +21,16 @@
 </p>
 <%= image_tag avatar_url(@user) %>
 <p>
+Bilden (avataren) kommer finns på Gravatar. <%= link_to("Lägg upp en bild av dig själv, eller ändra om du redan har en bild.", "http://sv.gravatar.com/", :rel => :nofollow) %>
+</p>
+<p>
   <strong><%= t('.email')%>:</strong>
   <%= @user.email %>
 </p>
 <% if current_user.is_admin? %>
 <p>
   <strong><%= t('.is_admin')%>:</strong>
-  <%= @user.is_admin %>
+  <%= t ('app.yess') if @user.is_admin %>
 </p>
 <% end %>
 <p>
@@ -30,8 +42,3 @@
   <% end %>  
 </ul>  
 
-<p>
-  <%= link_to t('app.edit'), edit_user_path(@user) %> |
-  <%= link_to t('app.destroy'), @user, :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to t('.list'), users_path %>
-</p>

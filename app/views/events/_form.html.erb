@@ -27,6 +27,7 @@
       <%= f.input :image3 %>
       <hr />
       <%= f.input :street %>
+      <div id="mapCanvas"></div>
       <%= f.input :re_geocoded_street, :input_html => { :disabled => true}%>
       <%= f.input :loc_descr %>
 
@@ -35,14 +36,24 @@
       <%= f.input :init_lat, :as => :hidden %>
       <%= f.input :init_lng, :as => :hidden %>
       <%= f.input :init_zoom, :as => :hidden %>
-
-      
-      
-      <%= f.buttons %> 
-
-
-    <div id="mapCanvas"></div>
-  
+      <div class = "button_container">
+        <div class= "button">
+          <%= f.buttons %>
+        </div>
+        <div class= "reset">
+        <% if @event.new_record? %> 
+          <%=link_to( t('.reset'), 
+                      new_event_path, 
+                      :confirm => t('.do_you_really_want_to_reset_me')) 
+                      %>
+        <% else %>
+          <%=link_to( t('.cancel'), 
+                      event_path, 
+                      :confirm => t('.do_you_really_want_to_cancel_me')) 
+                      %>
+        <% end %>
+        </div>
+      </div>
     
   <% end %>
 <% end %>

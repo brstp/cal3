@@ -59,13 +59,10 @@
 }
 
 .user_list {
-  background-color: #d4d0c8;
 }
 
 .authorized {
-  background-color: #d4d0c8;
-  padding: 2px 5px;
-  margin: 5px;
+
 }
 
 .user {
@@ -80,8 +77,10 @@
 
 
 #mapCanvas {
-    width: 100%;
+    width: 75%;
     height: 400px;
+    margin: 1em 0 2em 0;
+    margin-left: 25%;
 }
 
 table.tiny-calendar {
@@ -167,30 +166,8 @@ table.general tr.even {
 	background-color: white;
 }
 
-.general a {
-  /*background-color: lightyellow;*/
-  text-decoration: none;
-  color: blue;
-  font-weight: normal;
-}
-
-.general a:link{
-  color: blue;
-}
-
-.general a:active{
-  background-color: white;
-  color: red;
-  font-weight: bold;
-}
-
-.general a:hover{
-  background-color: white;
-  color: red;
-}
-
-.general a:visited{
-  color: purple;
+table.general input {
+  font-size: 80%
 }
 
 .number_column {
@@ -359,4 +336,27 @@ table.general tr.even {
   font-style: italic;
   color: grey;
   font-weight: normal;
+}
+
+#my_organizers li {
+  list-style-type: square;
+  margin: 0.1em 0 0.2em 2em;
+}
+
+.escutcheon {
+  float: left;
+  margin: 0 2em 1em 0;
+}
+
+.facebook_like {
+  border: none;
+  border: 0px;
+  overflow: hidden;
+  width: 450px;
+  height: 35px; 
+}
+
+.iframe_me {
+  width: 100%;
+  rows: 5;
 }

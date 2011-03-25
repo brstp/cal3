@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110323104642) do
+ActiveRecord::Schema.define(:version => 20110325074631) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(:version => 20110323104642) do
     t.text     "facts"
     t.string   "wikipedia_page"
     t.datetime "facts_last_updated"
+    t.string   "escutcheon"
   end
 
   add_index "municipalities", ["admin_no"], :name => "index_municipalities_on_admin_no", :unique => true

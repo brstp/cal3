@@ -103,7 +103,7 @@ table.calendar td.month_box {
 }
 
 .calendar a {
-  text-decoration: none;
+  text-decoration: underline;
   font-weight: normal;
 }
 
@@ -111,18 +111,11 @@ table.calendar td.month_box {
   color: blue;
 }
 
-.calendar a:active{
+.calendar a:active, .calendar a:hover, .calendar a:focus{
   background-color: white;
   color: red;
-  font-weight: bold;
 }
-
-.calendar a:hover{
-  background-color: white;
-  color: red;
-  text-decoration: underline;
-}
-
+´
 .calendar a:visited{
   color: purple;
 }

@@ -198,6 +198,8 @@
         image1: "Bild"
         image2: "En bild till"
         image3: "En tredje bild"
+        organizer: "Arrangör"
+        category: "Ämneskategori"
       organizer:
         name: "Namn"
         intro: "Sammanfattning"
@@ -310,12 +312,14 @@
     events_in_total: "evenemang. Alla fick inte plats här. Vill du kolla?"
     planned_events: "Planerade evenemang"
     category: "Kategori"
+    yess: "ja"
+    for_admin: "För systemadminstratörer"
     
   will_paginate:
-    first: "<< första"
-    next: "nästa >"
-    previous: "< förra"
-    last: "sista >>"
+    first: "&lt;&lt; första"
+    next: "nästa &gt;"
+    previous: "&lt; förra"
+    last: "sista &gt;&gt;"
     of: "av"
     to: "till"
     shows: "visar"
@@ -406,19 +410,8 @@
     save: 'Spara'
     submit: 'Skicka'
     required: 'Obligatorisk' 
-    update: 'zUppdatera'
     labels:
       event:
-        subject: "Rubrik"
-        intro: "Sammanfattning"
-        description: "Beskrivning"
-        start_date: "Startdatum"
-        start_time: "Börjar klockan"
-        stop_date: "Slutdatum"
-        stop_time: "Slutar klockan"
-        loc_descr: "Vägbeskrivning"
-        lat: "Latitud"
-        lng: "Longitud"
         municipality: "Kommun"
         organizer: "Arrangör"
         category: "Ämneskategori*"
@@ -477,9 +470,9 @@
         logotype: "En bild eller symbol som representerar arrangören. Används som en logotyp. Välj en bild som inte innehåller allt för mycket detaljer. Lämplig storlek är bredd: 300 pixlar och höjd: 225 pixlar. Vi förstorar eller förminskar bilden om det behövs. Bilden kan vara någon av formaten jpg, gif eller png."
         photo: "En dekorativ bild som visas i stort format på arrangörssidan. Se det som en reklambild för er. Vi rekommenderar ett motiv som visar vad ni ägnar er åt.  Lämplig storlek på bilden är bredd: 000 pixlar och höjd: 000 pixlar. Vi förstorar eller förminskar bilden om det behövs. Vi rekommenderar filformat jpg (gif och png fungerar också)."
     actions:
-      # event:
-        # create: "Skapa %{model}"
-        # update: "Spara %{model}"
+      event:
+        create: "Skapa evenemangsannons"
+        update: "Spara evenemangsannons"
       # municipality:
         # create: "Skapa %{model}"
         # update: "Spara"
@@ -505,6 +498,10 @@
       remember_me: "Logga in automatiskt"
       sign_in: "Logga in"
       forgot_password: "Glömt lösenord?"
+      quick_links: "Snabblänkar"
+      ads: "Annonser"
+      admin_links: "Administratörslänkar"
+      mail_messages: "Mejllogg evenemangskontakter"
       
   categories:
     new:
@@ -523,6 +520,7 @@
       email: "Mejladress"
       organizers: "Medlem i arrangörer"
       is_admin: "Är systemadministratör"
+      my_organizers: "Du har behörighet hos"
     edit:
       list: "Till användarlistan (strunta i ändringar)"
       show: "Strunta i ändringar"
@@ -551,6 +549,10 @@
       meta_description: "Hitta alla evenemang i"
       meta_description2: "och annonsera dina egna arrangemang så att de syns här."
       download_ics: "Spara evenemangen i kommunen i kalendern på din dator."
+      edit: "Ändra kommunsidan"
+      destroy: "Radera kommunsidan"
+      escutcheon_for: "Kommunvapen för"
+      promote: "Gör reklam för det som händer i"
       
   municipality:
     new:
@@ -577,7 +579,7 @@
       description: "Beskrivning"
       website: "Hemsida"
       upcoming: "Kommande evenemang"
-      members: "Medlemmar"
+      members_in: "Medlemmar i"
       show: "Visa"
       no_of_events_per_municipality: "inplanerade evenemang i kommunen"
       subscribe_rss: "Prenumerera på"
@@ -597,6 +599,19 @@
       new_event: "Vill du lägga in det första?"
       contact: "Kontaktinfo"
       download_ics: "Spara arrangörens alla evenemang i kalendern på din dator."
+      no_organizer: "Du är har inte behörighet hos någon arrangör."
+      do_apply: "Du kan ansöka om behörighet hos någon av de"
+      organizers_using: "arrangörer som redan använder kalendern (kolla på respektive arrangörs sida)"
+      register_new: "anmäla en ny arrangör"
+      edit: "Ändra arrangörssidan"
+      destroy: "Radera arrangörssidan"
+      at_the_moment: "Just nu verkar"
+      has_no_events: "inte ha några evenemang inplanerade."
+      for_organizers: "Administration för dig som har behörighet."
+      email: "Mejladress"
+      first_name: "Förnamn"
+      last_name: "Efternamn"
+      dont_leave: "Du kan inte ta bort ditt eget medlemskap."
 
   organizer:
     new:
@@ -613,6 +628,8 @@
   
 
   events:
+    new:
+      title: "Ny evenemangsannons"
     index:
       title: "Evenemang"
       page_title: "Alla evenemang. Evenemangskalender för alla arrangörer."
@@ -653,16 +670,13 @@
       address: "Adress"
       no_location: "Här kunde det ha funnits en karta men kalendern har inte förstått var evenemanget hålls någonstans. Om du är arrangör kan du lägga till en adress och/eller latitud/longitud för platsen."
     form:
-      closest_address: "Närmsta adress som vi känner till"
+      reset: "Rensa formuläret"
+      do_you_really_want_to_reset_me: "Vill du tömma hela annonsformuläret?"
+      cancel: "Avbryt"
+      do_you_really_want_to_cancel_me: "Vill du strunta i ändringar som du gjort sedan du sparade senast?"
+      
+      
   
-  event:
-    new:
-      title: "Nytt evenemang"
-      list: "Till evenemangslistan (strunta i ändringar)"
-    
-    index:
-      title: "Evenemang"
-      new: "Skapa nytt evenemang"
       
   mail_messages:
     form:
@@ -710,7 +724,7 @@
       signed_out: 'Nu är du utloggad.'
       sign_in: 'logga in'
       sign_out: 'Logga ut.'
-      sign_up: 'Registrera dig'
+      sign_up: 'Registrera användarkonto'
       not_you: 'Inte du?'
       change_settings: 'Ditt konto/byt lösenord'
       change_password: 'Byt lösenord'

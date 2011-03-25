@@ -32,7 +32,6 @@ class Event < ActiveRecord::Base
     text :intro, :boost => 2.0
     text :description
     text :street
-    text :city
     text :loc_descr
     text :phone_name
     text :email_name
@@ -114,9 +113,6 @@ class Event < ActiveRecord::Base
     end
     unless self.street.blank? 
       str += self.street + "\n"
-    end
-    unless self.city.blank? 
-      str += self.city
     end
     str.strip
   end
@@ -213,7 +209,7 @@ class Event < ActiveRecord::Base
   end
   
   def location
-    output_str = street + ', ' + city + ', ' + municipality.name + ', Sverige'
+    output_str = street + ', ' + municipality.name + ', Sverige'
     output_str
   end
 
@@ -231,10 +227,12 @@ class Event < ActiveRecord::Base
   def duration
     # TODO if not same day, better wording of end time, depending of length
     duration = I18n.localize(start_datetime, :format => :longest) + " - "
-    if @start_date != @stop_date
+    if self.start_date != self.stop_date
       duration += I18n.localize(stop_datetime, :format => :longest)
+    else 
+      duration += I18n.localize(stop_datetime, :format => :time)
     end
-    duration += I18n.localize(stop_datetime, :format => :time)
+
   end
 
 

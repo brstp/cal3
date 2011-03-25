@@ -1,0 +1,76 @@
+
+<a id="displayText" href="javascript:toggle();"><%= t('events.show.email_contact')%></a><br />
+<noscript>
+  <p>
+  Error message to the system owner: Form should degrade gracefully if no javascipt. TODO.
+  </p>
+</noscript>
+<div id="toggleText" style="display: none">
+<div id="mail_message" >
+<% @mail_message = MailMessage.new 
+    @mail_message.ip = request.remote_ip 
+    @mail_message.referer = request.headers["referer"]
+    @mail_message.user_agent = request.headers["user_agent"]
+    @mail_message.event_id = @event.id
+    @mail_message.to_name = @event.email_name
+    @mail_message.to_email = @event.email
+    if current_user
+      @mail_message.from_email = current_user.try :email
+      @mail_message.from_first_name = current_user.try :first_name
+      @mail_message.from_last_name = current_user.try :last_name
+    end
+%>
+
+<%= semantic_form_for @mail_message do |f| %>
+  <%= f.error_messages %>
+  <%= f.inputs  do %>
+    <%= f.input :to_name, :as => :hidden %>
+    <li class="string optional" ><label><%= MailMessage.human_attribute_name :to_name  %></label><%= image_tag avatar_url(@event) %> <%= @mail_message.to_name %></li>
+    <%= f.input :mail_body , :as => :text , :input_html => {:rows => 8, :cols => 48}%>
+    
+    <% if @mail_message.from_email.blank? %> 
+      <%= f.input :from_email %>     
+    <% else %>
+      <%= f.input :from_email, :as => :hidden %>
+      <li class="string required" >
+        <label>
+          <%= MailMessage.human_attribute_name :from_email %>
+        </label><%= @mail_message.from_email %> 
+        <%= t 'devise.sessions.not_you' %> 
+        <%= link_to I18n.t('devise.sessions.sign_out'), destroy_user_session_path %>
+      </li>
+    <% end %>
+    
+  <% if @mail_message.from_first_name.blank? %> 
+      <%= f.input :from_first_name %>     
+  <% else %>
+      <%= f.input :from_first_name, :as => :hidden %>
+      <li class="string required" ><label><%= MailMessage.human_attribute_name :from_first_name %></label><%= @mail_message.from_first_name %> <%= t 'devise.sessions.not_you' %> 
+        <%= link_to I18n.t('devise.sessions.sign_out'), destroy_user_session_path %>
+  <% end %>
+
+      <%= f.input :from_last_name %>     
+
+      <%= f.input :from_phone %>     
+       
+    <%= f.buttons %>
+    
+      <%= t 'mail_messages.form.self_copy'%> 
+    
+    
+      <%= t 'mail_messages.form.disclaimer'%> 
+    
+    
+    
+    <%= f.input :ip, :as => :hidden %>
+    <li class="string optional" ><label><%= MailMessage.human_attribute_name :ip  %></label><%= @mail_message.ip %></li>
+    <%= f.input :user_agent, :as => :hidden %>
+    <li class="string optional" ><label><%= MailMessage.human_attribute_name :user_agent %></label><%= @mail_message.user_agent %></li>
+    <%= f.input :referer, :as => :hidden %>
+    <li class="string optional" ><label><%= MailMessage.human_attribute_name :referer %></label><%= @mail_message.referer %></li>
+    <%= f.input :event_id, :as => :hidden %>
+    <li class="string optional" ><label><%= MailMessage.human_attribute_name :event_id %></label><%= @mail_message.event_id %></li>
+  <% end %>
+<% end %>
+</div> <!-- /mail_message -->
+</div> <!-- /toggleText -->

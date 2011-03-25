@@ -13,7 +13,7 @@ git push heroku master
 
 #Att göra vid uppstart
 
-
+. ../amazon-s3-keys.sh    # sourca credentials till Amazon S3 i env variables (vill inte ha dem i kodträdet)
 bundle install
 bundle update
 rake db:migrate

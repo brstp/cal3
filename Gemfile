@@ -45,9 +45,9 @@ gem 'meta-tags', :require => 'meta_tags'
 gem "paperclip"
 gem "ancestry"
 gem 'yaml_db'
-#gem 'nokogiri', "1.4.4.1"
+gem 'nokogiri', "1.4.4.1"
 gem 'icalendar'
-gem 'nokogiri'
+#gem 'nokogiri'
 gem 'heroku'
 gem 'aws-s3'
 #gem 'kaminari'

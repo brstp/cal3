@@ -24,15 +24,13 @@ h6 a:link, h6 a:visited  {
 /*>>>>> Navigation <<<<<*/
 /*--------------------*/
 
-a:link, a:visited  {
-	color: #00649e;
-}
+
 
 #pagenav li a:link, #pagenav li a:visited  {
 	color: #000;
 }
 
-#pagenav li a:hover, #pagenav li.current_page_item a  {
+#pagenav li a:hover, #pagenav li a:focus, #pagenav li.current_page_item a  {
 	background-color: #e1e1e1;
 }
 
@@ -138,7 +136,6 @@ a:link, a:visited  {
 }
 
 .box ul li  {
-	border-bottom: 1px solid #e1e1e1;
 }
 
 #more_posts .item.left  {

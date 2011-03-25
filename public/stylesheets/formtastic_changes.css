@@ -18,3 +18,22 @@ form.formtastic fieldset > ol > li.error > input {
   border-color: red;
   display: table;
 }
+
+#event_submit {
+  padding: 0.2em;
+  font-size: 2em;
+}
+
+
+.button_container {
+  margin-left: 5em;
+ }
+ 
+.button {
+  float: left;
+ }
+ 
+.reset {
+  padding-top: 1.5em;
+} 
+      <div class = "button_container"><div class= "button"><%= f.buttons %></div><div class= "reset">Rensa</div></div>

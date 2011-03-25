@@ -13,10 +13,25 @@
                           organizer_path(@organizer, 
                           :only_path => false)  %>
 
+<% if current_user %>
+  <% if current_user.authorized? @organizer %>
+    <%= button_to(  t('.edit'), 
+                    edit_organizer_path(@organizer), 
+                    :method => :get, 
+                    :class => :organizer_user) %>
+  <%end%>
+  <% if current_user.is_admin? %>
+      <%= button_to(  t('.destroy'), 
+                    @organizer, 
+                    :confirm => t('app.are_you_sure') + ' ' +@organizer.name + '?', 
+                    :method => :delete ) %>
+  <%end%>
+<%end%>
 
+<br/>
                    
 <%= image_tag @organizer.logotype.url(:small) %>
-<%= facebook_like organizer_path(:only_path => false) %>
+<%= facebook_like organizer_path(:only_path => false), "top", "like" %>
 
 <h1><%= @organizer.name %></h1>
 <p>
@@ -52,7 +67,7 @@
 <h3><%= t '.upcoming' %></h3>
 
 <% if @organizer.upcoming_events.blank? %>  
-  <p>Just nu verkar <%= @organizer.name %> inte ha några evenemang inplanerade. 
+  <p><%= t('.at_the_moment') + ' ' + @organizer.name + ' ' + t('.has_no_events') %> 
   <% unless !current_user.organizers.include? @organizer and !current_user.is_admin? %>
     <%= link_to t('.new_event'), new_event_path %>.
   <% end %>
@@ -62,22 +77,55 @@
 <% end %>
 
 
+
+
+   
+<p>
+<%= link_to t('.subscribe_rss') + ' ' + @organizer.name + t('app.s') + ' ' + t('.organizers_event'), :format => :rss, :only_path => false %>  
+<%= link_to image_tag("rss_icon.gif", :alt => t('.rss_alt') + ' ' + @organizer.name), :format => :rss, :only_path => false %>
+</p>
+<p>
+<%= link_to(t('.download_ics'), organizer_url(:only_path => false, :format => :ics ))  %>
+</p>
+
+
+<p>
+<%= t('.share_as_iframe') %><br />
+<code><%= h '<iframe src="' + organizer_url(:format => :ihtml) + '"  frameborder="1" ></iframe>' %></code>
+</p>
+
+<%= facebook_like organizer_path(:only_path => false), "bottom", "like" %>
+
+<hr />
+<h2><%= t '.for_organizers'%></h2>
 <% if current_user %>
   <% if current_user.authorized? @organizer %>
   <div class = "authorized">
   <p>
-    <h3><%= t '.members' %>:</h3>
+    <h3><%= t('.members_in') + ' ' + @organizer.name %>:</h3>
   </p>
-  <ol class = "user_list">
+  <table class = "general">
+    <tr>
+      <th><%= t '.email'%></th>
+      <th><%= t '.first_name'%></th>
+      <th><%= t '.last_name'%></th>
+      <th></th>
+    </tr>
     <% for user in @organizer.users %>
-      <li><div class = "user">
-      <%= link_to user.name , user %></div>
-      <% unless user == current_user %>
-        <%= button_to I18n.t('organizers.show.unmember') , membership_path(Membership.find(:first, :conditions => ["organizer_id = ? and user_id = ?", @organizer.id, user.id])), :confirm => I18n.t('organizers.show.sure_unmember') + user.name, :method => :delete %> 
-      <% end %>
-      </li>
+    <tr class = "<%= cycle("even", "odd") %>">
+      <td><%= link_to user.email , user %></td>
+      <td><%= link_to user.first_name , user %></td>
+      <td><%= link_to user.last_name , user %></td>
+      <td>
+        <% unless user == current_user %>
+          <%= button_to I18n.t('organizers.show.unmember') , membership_path(Membership.find(:first, :conditions => ["organizer_id = ? and user_id = ?", @organizer.id, user.id])), :confirm => I18n.t('organizers.show.sure_unmember') + user.name, :method => :delete %> 
+        <%else%>
+          <%= t '.dont_leave'%>
+        <% end %>
+      </td>
+    </tr>
     <% end %> 
-  </ol>
+  </table>
 
 
 <p>
@@ -97,31 +145,3 @@
 <% end %>
 <% end %>
 
-
-   
-<p>
-<%= link_to t('.subscribe_rss') + ' ' + @organizer.name + t('app.s') + ' ' + t('.organizers_event'), :format => :rss, :only_path => false %>  
-<%= link_to image_tag("rss_icon.gif", :alt => t('.rss_alt') + ' ' + @organizer.name), :format => :rss, :only_path => false %>
-</p>
-<p>
-<%= link_to(t('.download_ics'), organizer_url(:only_path => false, :format => :ics ))  %>
-</p>
-
-
-<p>
-<%= t('.share_as_iframe') %><br />
-<code><%= h '<iframe src="' + organizer_url(:format => :ihtml) + '"  frameborder="1" ></iframe>' %></code>
-</p>
-
-<% if current_user %>
-  <% if current_user.authorized? @organizer %>
-  
-<ul class = "authorized">
-  <li><%= link_to t('app.edit') + " "+ @organizer.name + t('app.s') + ' ' + t('app.page'), edit_organizer_path(@organizer) %></li>
-  <% if current_user.try :is_admin %>
-  <li><%= link_to t('app.destroy') + " "+ @organizer.name+ t('app.s') + ' ' + t('app.page'), @organizer, :confirm => t('app.are_you_sure') + ' ' +@organizer.name + '?', :method => :delete %></li>
-  <% end %>
-</p>
-</ul>
-<%end%>
-<%end%>

@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
 
   validates_presence_of :email
   validates :email, :email => true
+  
+  default_scope :order => 'email'
 
   def name
     output_str=""

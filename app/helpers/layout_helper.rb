@@ -21,6 +21,39 @@ module LayoutHelper
     content_for(:head) { javascript_include_tag(*args) }
   end
   
+  def my_organizers user
+    unless user.blank?
+      str = ""
+        str << %(
+                <div class = "box" id="my_organizers">
+                  <span class="heading"> #{t 'users.show.my_organizers' }:</span>
+                )
+        unless user.organizers.blank?
+          str << %(
+                   <ul>
+          )
+          for organizer in user.organizers  
+            str << %(
+                      <li>#{link_to organizer.name,  organizer}</li>  
+                    )
+          end
+          str << %(
+                    </ul>
+                  )
+        else
+           str << %(
+                    <p>#{t('organizers.show.no_organizer')}</p>
+                    )
+        end
+          str << %(
+                    <p>#{t('organizers.show.do_apply')} #{ link_to t('organizers.show.organizers_using'), organizers_path} #{t'app.or'} #{ link_to t('organizers.show.register_new'), new_organizer_path}.</p>
+                    </div><!-- /my_organizers --> 
+                  )
+      raw str
+    end
+  end
+  
+  
   def select_category_tree selected_category = nil
     raw %(
     <li class="radio required" id="event_category_input">
@@ -53,7 +86,7 @@ module LayoutHelper
     str << facet_municipality( @municipality_facet_rows )
     str << %(
             </ul>
-          </div>)
+            )
       
     raw str
   
@@ -246,11 +279,13 @@ module LayoutHelper
     raw str
   end
   
-  def facebook_like(page_url, ref="default")
+  def facebook_like(page_url, ref="default", verb="recommend")
     str = %(
-    <iframe src="http://www.facebook.com/plugins/like.php?href=#{page_url}&amp;layout=standard&amp;show_faces=false&amp;width=450&amp;action=recommend&amp;colorscheme=light&amp;height=35&amp;locale=sv_SE&amp;ref=#{ref}" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:35px;" allowTransparency="true"></iframe>
+    <iframe src="http://www.facebook.com/plugins/like.php?href=#{page_url}&amp;layout=standard&amp;show_faces=false&amp;width=450&amp;action=#{verb}&amp;colorscheme=light&amp;height=35&amp;locale=sv_SE&amp;ref=#{ref}" frameborder="0" class = "facebook_like" seamless></iframe>
     )
-    
+    # str = %( 
+    # <iframe src="http://www.facebook.com/plugins/like.php?href=#{page_url}&amp;layout=standard&amp;show_faces=false&amp;width=450&amp;action=#{verb}&amp;colorscheme=light&amp;height=35&amp;locale=sv_SE&amp;ref=#{ref}" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:35px;" allowTransparency="true"></iframe>
+    # )
     raw str
   end
   
@@ -346,7 +381,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
       str = (link_to category.name + ' (' + category.number_of_upcoming_events.to_s + ')', (events_path :category_facet_id => category.id)) + " > " + str
       category = category.parent
     end
-    str = (t '.category') + ': ' + str
+    str = (t '.category') + ' ' + str
     str = str.to(str.length - 7)
     raw str
   end

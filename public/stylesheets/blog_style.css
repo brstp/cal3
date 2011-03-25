@@ -69,13 +69,25 @@ ul, ol  {
 /*>>>>> Navigation <<<<<*/
 /*--------------------*/
 
-a:link, a:visited  {
-	text-decoration: none;
-}
 
-a:hover  {
+
+a  {
 	text-decoration: underline;
 }
+
+
+a:active  {
+	color: red;
+}
+
+a:hover {
+  color: red;
+}
+
+a:focus {
+  color: red;
+}
+
 
 #nav {
 	height: 68px;

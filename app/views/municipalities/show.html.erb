@@ -2,23 +2,45 @@
                    :description => t('.meta_description') + ' ' + @municipality.name + ' ' +  t('.meta_description2')%>
 
 <% content_for :head do %>  
-  <%= auto_discovery_link_tag( :rss, municipality_url(:format => 'rss') , {:title => t('app.events_in') + ' ' + @municipality.name + t('app.at') + ' ' +  t('app.site_name')}) %>
-  <%= %>
+  <%= auto_discovery_link_tag(  :rss, 
+                                municipality_url(:format => 'rss'), 
+                                {:title => t('app.events_in') + ' ' + @municipality.name + t('app.at') + ' ' +  t('app.site_name')}) 
+                                %>
 <% end %> 
 
-<% content_for :right_column_facts do %>  
+<% content_for :right_column_bottom do %>  
   <%= municipality_facts @municipality %>
 <% end %>
 
-<h1><%= t('.upcoming') + ' ' + @municipality.name %></h1>
+<% open_graph_properties  t('.upcoming') + ' ' + @municipality.name,
+                          @municipality.escutcheon, 
+                          municipality_path(:only_path => false) 
+                          %>
 
+<% if current_user %>
+  <% if current_user.is_admin? %>
+    <div class ="authorized">
+      <%= button_to t('.edit'), edit_municipality_path(@municipality), :method => :get, :class => :organizer_user %>
+      <%= button_to t('.destroy'), @municipality, :confirm => t('app.are_you_sure') + ' ' +@municipality.name + '?', :method => :delete %>
+    </div>
+  <% end %>
+<% end %>
 
+<div class = "page_heading">
+  <%= image_tag   @municipality.escutcheon, 
+                  :class => :escutcheon, 
+                  :alt => t('.escutcheon_for') + ' ' + @municipality.name 
+                  %>
+  <h1 ><%= t('.upcoming') + ' ' + @municipality.name %></h1>
+  <%= facebook_like municipality_path(:only_path => false), "top" %>
+</div>
 
 <% if @municipality.upcoming_events.blank? %>  
   <p>Just nu finns det inte några evenemang inplanerade i <%= @municipality.name %>.</p>
 <% else %>
   <%= calendar @municipality.upcoming_events %>
 <% end %>
+
 
 <p>
 <%= link_to t('.subscribe_rss') + ' ' + @municipality.name, :format => :rss, :only_path => false %>  
@@ -29,51 +51,53 @@
 <%= link_to(t('.download_ics'), municipality_url(:only_path => false, :format => :ics ))  %>
 </p>
 
-<p>
-<%= t('.share_as_iframe') %><br />
-<code><%= h '<iframe src="' + municipality_url(:format => :ihtml) + '"  frameborder="1" ></iframe>' %></code>
-</p>
+<%= content_for :right_column_bottom do %>  
+  <div class = "box" id = "promote_municipality">
+    <span class="heading"><%= t('.promote')%><br /> <%=@municipality.name%>:</span>
+    <p>
+    <%= link_to t('.subscribe_rss') + ' ' + @municipality.name, :format => :rss, :only_path => false %>  
+    <%= link_to image_tag("rss_icon.gif", :alt => t('.rss_alt') + ' ' + @municipality.name), :format => :rss, :only_path => false %>
+    </p>
 
+    <p>
+    <%= link_to(t('.download_ics'), municipality_url(:only_path => false, :format => :ics ))  %>
+    </p>
 
-
-
-
-<% if current_user %>
-  <% if current_user.is_admin? %>
-  <div class = "authorized">
-<p>
-  <strong><%= t 'formtastic.labels.municipality.admin_no' %>: </strong>
-  <%= @municipality.admin_no %>
-</p>
-
-<p>
-  <strong><%= t 'formtastic.labels.municipality.parent_admin_no' %>: </strong>
-  <%= @municipality.parent_admin_no %>
-</p>
-
-<p>
-  <strong><%= t 'formtastic.labels.municipality.short_name' %>: </strong>
-  <%= @municipality.short_name %>
-</p>
-
-<p>
-  <strong>Wikipediasida:</strong>
-  <%= @municipality.wikipedia_page %>
-</p>
-
-</div> <!-- authorized -->
-<% end %>
+    <p>
+    <%= t('.share_as_iframe') %>
+    </p>
+    <%= text_area_tag( "id", h('<iframe src="' + municipality_url(:format => :ihtml) + '"  frameborder="1" ></iframe>'), :class => :iframe_me, :readonly => true) %>
+  </div> <!-- /promote_municipality -->
 <% end %>
 
 
 <% if current_user %>
   <% if current_user.is_admin? %>
+  <hr />
+  <h2><%= t 'app.for_admin'%></h2>
   <div class = "authorized">
-    <ul>
-    <li><%= link_to t('app.edit'), edit_municipality_path(@municipality) %></li>
-    <li><%= link_to t('app.destroy'), @municipality, :confirm => t('app.are_you_sure') + ' ' +@municipality.name + '?', :method => :delete %></li>
-    </ul>
+    <p>
+      <strong><%= t 'formtastic.labels.municipality.admin_no' %>: </strong>
+      <%= @municipality.admin_no %>
+    </p>
+    <p>
+      <strong><%= t 'formtastic.labels.municipality.parent_admin_no' %>: </strong>
+      <%= @municipality.parent_admin_no %>
+    </p>
+    <p>
+      <strong><%= t 'formtastic.labels.municipality.short_name' %>: </strong>
+      <%= @municipality.short_name %>
+    </p>
+    <p>
+      <strong>Wikipediasida:</strong>
+      <%= @municipality.wikipedia_page %>
+    </p>
+    <p>
+      <strong>Vapensköld (wikimedia):</strong>
+      <%= @municipality.escutcheon %>
+    </p>
   </div> <!-- authorized -->
+<% end %>
+<% end %>
 
-<% end %>
-<% end %>
+<%= facebook_like municipality_path(:only_path => false), "bottom" %>

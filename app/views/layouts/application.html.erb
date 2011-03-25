@@ -32,7 +32,7 @@
   <%= javascript_include_tag  %>
   <%= stylesheet_link_tag  "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.4/themes/smoothness/jquery-ui.css" %>
   <%= javascript_include_tag "jquery.js", "jquery-ui.js", "jquery.rails.js", "jquery.ui.datepicker-sv.js", "jquery.googlemaps1.01.js", "jquery-ui-1.8.1.custom.min.js", "geocode", "application" %>
-  <script src="http://maps.google.com/maps/api/js?sensor=false&region=SE&language=sv" type="text/javascript"></script>
+  <script src="http://maps.google.com/maps/api/js?sensor=false&amp;region=SE&amp;language=sv" type="text/javascript"></script>
 
   <%= favicon_link_tag %>
   <%= csrf_meta_tag %>
@@ -46,8 +46,8 @@
 	<div id="topbar">
 		
 		<div id="nav" class="grid_11 alpha">
-			<ul id="pagenav" class="menu"><li id="menu-item-34" class="menu-item menu-item-type-custom menu-item-34"><a href="/?start=future">Startsidan/Alla evenemang</a></li>
-<li id="menu-item-37" class="menu-item menu-item-type-custom menu-item-37"><a href="/not-yet-implemented/">Lägg in evenemang</a></li>
+			<ul id="pagenav" class="menu"><li id="menu-item-34" class="menu-item menu-item-type-custom menu-item-34"><a href="/?start=future">Start/Alla evenemang</a></li>
+<li id="menu-item-37" class="menu-item menu-item-type-custom menu-item-37"><a href="/events/new">Lägg in evenemangsannons</a></li>
 <li id="menu-item-35" class="menu-item menu-item-type-custom menu-item-35"><a href="/municipalities">Alla kommuner</a></li>
 <li id="menu-item-36" class="menu-item menu-item-type-custom menu-item-36"><a href="/organizers">Alla arrangörer</a></li>
 </ul>		</div><!-- /nav -->
@@ -90,9 +90,9 @@
 	
 		<div id="logo">
 		
-			<h1><a href="http://info.foreningskalendern.se" title="Föreningskalendern">Föreningskalendern</a></h1>
+			<h1><a href="/?start=future" title="Föreningskalendern">Föreningskalendern</a></h1>
 			<h2>Allt som händer &#8211; innan det är försent</h2>
-			<%= link_to((image_tag 'logotyp.png', :alt => "Föreningskalenderns logotyp", :title => "Föreningskalendern - allt som händer innan det är för sent."), :root, :title => "Föreningskalendern - allt som händer innan det är för sent." ) %>
+			<%= link_to((image_tag 'logotyp.png', :alt => "Föreningskalenderns logotyp", :title => "Föreningskalendern - allt som händer innan det är för sent."), "/?start=future", :title => "Föreningskalendern - allt som händer innan det är för sent." ) %>
 			
 		</div><!-- /logo -->
 		
@@ -130,67 +130,52 @@
 		</div><!-- /left_single -->
 
 				<div id="right">
-				
-								
-					  <div id="user_nav" class="box">
+					<% unless user_signed_in? %>		
+					<div id="user_nav" class="box">
             <p>
-              <% if user_signed_in? %>
-         
-              <% else %>
                 <%= link_to I18n.t('devise.sessions.sign_up'), new_user_registration_path %> <%= I18n.t('app.or') %> 
-                <%=link_to I18n.t('devise.sessions.sign_in'), new_user_session_path %>
-              <% end %>
+                <%=link_to I18n.t('devise.sessions.sign_in'), new_user_session_path %>    
               </p>
-          </div> <!-- user_nav -->
+          </div> <!-- /user_nav -->
+          <% end %>
+
+          <%= content_for :right_column_top %>
           
-          <%= content_for :right_column_facet %>
-          
-					<div id="calendar-nav" class="box">
-          <span class="heading">Snabblänkar:</span>
-            <ul>
-              <% if current_user %> <li><%= link_to t('.new_organizer'), new_organizer_path %></li>
-              <% unless current_user.organizers.empty? and !current_user.is_admin? %>
-<li><%= link_to t('.new_event'), new_event_path %></li>
-              <% end %>
-                <% if current_user.is_admin? %>
-                  <li class = "authorized"><%= link_to t('.users'), users_path %></li>
-                  <li class = "authorized"><%= link_to t('.categories'), categories_path %></li>
-                  <%end%>
+          <% if current_user %>    
+            <div id="calendar-nav" class="box">
+              <span class="heading"><%= t '.quick_links' %>:</span>
+              <ul>              
+                  <li><%= link_to t('.new_organizer'), new_organizer_path %></li>
                   <li><%= link_to(t('.subscribe_rss'), events_url(:only_path => false, :format => :rss) )  %>  
-<%= link_to image_tag("rss_icon.gif", :alt => t('.rss_alt')), events_url(:only_path => false, :format => :rss) %></li>                  
-              <%end%>
-            </ul>
-										
-					</div><!-- /post-meta -->
+  <%= link_to image_tag("rss_icon.gif", :alt => t('.rss_alt')), events_url(:only_path => false, :format => :rss) %></li>                     
+              </ul>										
+            </div><!-- /calendar-nav -->
+          <%end%>  
+
+          <% if current_user %>
+            <% if current_user.is_admin? %>
+              <div id="admin_nav" class="box">
+                <span class="heading"><%= t '.admin_links' %>:</span>
+                <ul>
+                  <li><%= link_to t('.users'), users_path %></li>
+                  <li><%= link_to t('.categories'), categories_path %></li>
+                  <li><%= link_to t('.mail_messages'), mail_messages_path %></li>
+                </ul>
+              </div><!-- /admin_nav -->
+            <%end%>
+          <%end%>
+          
+
+          <div id="ads" class="box">
+            <span class="heading"><%= t '.ads' %>:</span>				
+            <div class="adblock">
+              <a href="http://www.woothemes.com" title="Stöd vår sponsor"><img src="http://www.woothemes.com/ads/125x125b.jpg" alt="Sponsor" /></a>
+              <a href="http://www.woothemes.com" title="Stöd vår sponsor"><img src="http://www.woothemes.com/ads/125x125b.jpg" alt="Sponsor" /></a>
+            </div><!-- /adblock -->
+          </div><!-- /ads -->
+
+      <%= content_for :right_column_bottom %>
 					
-								
-		
-				
-				
-			<div id="ads" class="box">
-			
-				<span class="heading">Annons:</span>
-				
-				<div class="adblock">
-
-									
-
-					<a href="http://www.woothemes.com" title="Stöd vår sponsor"><img src="http://www.woothemes.com/ads/125x125b.jpg" alt="Sponsor" /></a>
-
-									
-
-					<a href="http://www.woothemes.com" title="Stöd vår sponsor"><img src="http://www.woothemes.com/ads/125x125b.jpg" alt="Sponsor" /></a>
-
-										
-
-				</div><!-- /adblock -->
-			
-			</div><!-- /ads -->
-
-      
-      <%= content_for :right_column_facts %>
-					
-			
 			<div class="clear"></div>
 					
 		</div><!-- /right -->
