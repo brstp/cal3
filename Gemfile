@@ -9,8 +9,7 @@ gem 'rails', '3.0.5'
 # Use unicorn as the web server
 # gem 'unicorn'
 
-# Deploy with Capistrano
-gem 'capistrano'
+
 
 # To use debugger
 # gem 'ruby-debug'
@@ -28,28 +27,26 @@ gem 'capistrano'
 #   gem 'webrat'
 # end
 
-
-gem 'devise'
-gem 'formtastic', '~> 1.1.0'
-gem "validation_reflection"
-gem 'nifty-generators'
-gem 'validates_timeliness'
+#gem 'capistrano'                  #deploy
+gem 'devise'                        #authentication
+gem 'formtastic', '~> 1.1.0'        #forms
+gem "validation_reflection"         #validation of mandatory attributes
+gem 'nifty-generators'              #somehow smarter views and controllers
+gem 'validates_timeliness'          #validate time/datetime
 gem "mocha", :group => :test
-gem 'sunspot_rails' #, '1.2.rc4'
-
-gem 'jquery-rails'
-gem 'mail_form'
+gem 'sunspot_rails' #, '1.2.rc4'    #api classes for solr
+gem 'jquery-rails'                  #instead of prototype (javascript)
+gem 'mail_form'                     #needed? used? TODO
 gem 'timeliness'
-gem "geocoder"
-gem 'meta-tags', :require => 'meta_tags'
-gem "paperclip"
-gem "ancestry"
-gem 'yaml_db'
+gem "geocoder"                      #server side geo coding
+gem 'meta-tags', :require => 'meta_tags'  #header tags
+gem "paperclip"                     #upload and organizer images
+gem "ancestry"                      #tree structure
+gem 'yaml_db'                       #dump, load db as yaml 
 #gem 'nokogiri', "1.4.4.1"
-gem 'nokogiri', '~> 1.4.4'
-gem 'icalendar'
-gem 'heroku'
-gem 'aws-s3'
-gem 'will_paginate', "3.0.pre2"
-
-gem 'sqlite3-ruby', :require => 'sqlite3'
+gem 'nokogiri', '~> 1.4.4'          #parse
+gem 'icalendar'                     #create ical events
+gem 'heroku'                        #remote control for prod env at Heroku
+gem 'aws-s3'                        #API towards Amazon Web Services
+gem 'will_paginate', "3.0.pre2"     #well, to paginatr
+gem 'sqlite3-ruby', :require => 'sqlite3'   # db (at least in dev)
