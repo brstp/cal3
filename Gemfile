@@ -49,4 +49,6 @@ gem 'icalendar'                     #create ical events
 gem 'heroku'                        #remote control for prod env at Heroku
 gem 'aws-s3'                        #API towards Amazon Web Services
 gem 'will_paginate', "3.0.pre2"     #well, to paginatr
-gem 'sqlite3-ruby', :require => 'sqlite3'   # db (at least in dev)
+group :development, :test do
+	gem 'sqlite3-ruby', :require => 'sqlite3'
+end
