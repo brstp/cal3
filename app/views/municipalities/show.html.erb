@@ -13,7 +13,7 @@
 <% end %>
 
 <% open_graph_properties  t('.upcoming') + ' ' + @municipality.name,
-                          @municipality.escutcheon, 
+                          @municipality.try :escutcheon, 
                           municipality_path(:only_path => false) 
                           %>
 
@@ -27,7 +27,7 @@
 <% end %>
 
 <div class = "page_heading">
-  <%= image_tag   @municipality.escutcheon, 
+  <%= image_tag   @municipality.try :escutcheon, 
                   :class => :escutcheon, 
                   :alt => t('.escutcheon_for') + ' ' + @municipality.name 
                   %>
@@ -94,7 +94,7 @@
     </p>
     <p>
       <strong>Vapensköld (wikimedia):</strong>
-      <%= @municipality.escutcheon %>
+      <%= @municipality.try :escutcheon %>
     </p>
   </div> <!-- authorized -->
 <% end %>
