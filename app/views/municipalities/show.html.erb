@@ -13,7 +13,7 @@
 <% end %>
 
 <% open_graph_properties  t('.upcoming') + ' ' + @municipality.name,
-                          @municipality.try :escutcheon, 
+                          @municipality.escutcheon, 
                           municipality_path(:only_path => false) 
                           %>
 
@@ -27,10 +27,12 @@
 <% end %>
 
 <div class = "page_heading">
-  <%= image_tag   @municipality.try :escutcheon, 
-                  :class => :escutcheon, 
-                  :alt => t('.escutcheon_for') + ' ' + @municipality.name 
-                  %>
+  <% unless @municipality.escutcheon.blank? %>
+    <%= image_tag   @municipality.escutcheon, 
+                    :class => :escutcheon, 
+                    :alt => t('.escutcheon_for') + ' ' + @municipality.name 
+                    %>
+  <%end%>
   <h1 ><%= t('.upcoming') + ' ' + @municipality.name %></h1>
   <%= facebook_like municipality_path(:only_path => false), "top" %>
 </div>
@@ -94,7 +96,7 @@
     </p>
     <p>
       <strong>Vapensköld (wikimedia):</strong>
-      <%= @municipality.try :escutcheon %>
+      <%= @municipality.escutcheon %>
     </p>
   </div> <!-- authorized -->
 <% end %>
