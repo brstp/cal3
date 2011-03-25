@@ -45,19 +45,11 @@ gem 'meta-tags', :require => 'meta_tags'
 gem "paperclip"
 gem "ancestry"
 gem 'yaml_db'
-gem 'nokogiri', "1.4.4.1"
+#gem 'nokogiri', "1.4.4.1"
+gem 'nokogiri', '~> 1.4.4'
 gem 'icalendar'
-#gem 'nokogiri'
 gem 'heroku'
 gem 'aws-s3'
-#gem 'kaminari'
 gem 'will_paginate', "3.0.pre2"
 
 gem 'sqlite3-ruby', :require => 'sqlite3'
-group :development, :test do
-  #gem 'sqlite3-ruby', :require => 'sqlite3'
-end
-
-group :production do
-  #gem 'mysql'
-end

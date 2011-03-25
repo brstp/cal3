@@ -17,13 +17,15 @@ git push heroku master
 bundle install
 bundle update
 rake db:migrate
+
 rake sunspot:solr:run         # Starta sökmotorn på windows. Script under ruby/.../gems/... patchat för rätt "escape-tecken" för Windows
 rake sunspot:solr:start      # Starta sökmotorn på *ix
 rake sunspot:reindex          # Indexera om
 rake import:municipalities    # Importera kommuner med data från csv-fil. Källa: SCB. Manuellt redigerad för korrekta namn för de kommuner som heter "stad" och för korrekta gentiv-s.
+
+rake db:data:load             # Kanske... ladda exempeldata
 rake scrape:municipalities    # Hämta url:er från Wikipedia till faktasida per kommun
 rake scrape:update_facts      # Hämta faktaruta per kommun
 
-# Lägg in en admin.
-
-rake db:data:load             # Kanske... ladda exempeldata
+# Lägg in en första användare b.r.stefan.pettersson@gmail.com
+rake setup:first_admin        # b.r.stefan.pettersson@gmail.com
