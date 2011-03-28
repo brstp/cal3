@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class Municipality < ActiveRecord::Base
   has_many :events
   attr_accessible :name, :short_name, :admin_no, :parent_admin_no, :facts, :wikipedia_page, :escutcheon
