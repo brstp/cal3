@@ -344,7 +344,7 @@ module LayoutHelper
 
         function initialize() {
           var latLng = new google.maps.LatLng( #{event.lat}, #{event.lng});
-          var map = new google.maps.Map(document.getElementById('mapCanvas'), {
+          var map = new google.maps.Map(document.getElementById('map_view'), {
             zoom: 10,
             center: latLng,
             mapTypeId: google.maps.MapTypeId.ROADMAP

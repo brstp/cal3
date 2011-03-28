@@ -75,12 +75,17 @@
   height: 300px
 }
 
-
-#mapCanvas {
+#map_edit {
     width: 75%;
     height: 400px;
     margin: 1em 0 2em 0;
     margin-left: 25%;
+}
+
+#map_view {
+    width: 100%;
+    height: 400px;
+    margin: 1em 0 2em 0;
 }
 
 table.tiny-calendar {

@@ -17,7 +17,7 @@ function initialize(){
     mapTypeId: google.maps.MapTypeId.ROADMAP
   };
         
-  map = new google.maps.Map(document.getElementById("mapCanvas"), options);
+  map = new google.maps.Map(document.getElementById("map_edit"), options);
     
   //MARKER
   marker = new google.maps.Marker({

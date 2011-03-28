@@ -1,3 +1,5 @@
+<%= javascript_include_tag "geocode" %>
+
 <%= semantic_form_for @event, :html => {:multipart => true} do |f| %>
   <%= f.error_messages %>
   <%= f.inputs do %>
@@ -27,7 +29,7 @@
       <%= f.input :image3 %>
       <hr />
       <%= f.input :street %>
-      <div id="mapCanvas"></div>
+      <div id="map_edit"></div>
       <%= f.input :re_geocoded_street, :input_html => { :disabled => true}%>
       <%= f.input :loc_descr %>
 
@@ -54,6 +56,5 @@
         <% end %>
         </div>
       </div>
-    
   <% end %>
 <% end %>

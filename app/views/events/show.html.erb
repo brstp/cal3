@@ -92,8 +92,9 @@
 <%= image_tag avatar_url(@event) %>
 </div> <!-- /event_contact -->
 
+
 <% unless @event.lat.nil? || @event.lng.nil?%>
-  <div id="mapCanvas"></div>
+  <div id="map_view"></div>
   <%= map_marker @event %>
   <p>
   <strong><%= I18n.t 'app.lat_lng' %>:</strong>
