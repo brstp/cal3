@@ -139,9 +139,10 @@
 <%= facebook_like organizer_path(:only_path => false), "bottom", "like" %>
 
 <hr />
-<h2><%= t '.for_organizers'%></h2>
+
 <% if current_user %>
   <% if current_user.authorized? @organizer %>
+  <h2><%= t '.for_organizers'%></h2>
   <div class = "authorized">
   <p>
     <h3><%= t('.members_in') + ' ' + @organizer.name %>:</h3>

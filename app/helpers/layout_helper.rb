@@ -46,7 +46,7 @@ module LayoutHelper
                     )
         end
           str << %(
-                    <p>#{t('organizers.show.do_apply')} #{ link_to t('organizers.show.organizers_using'), organizers_path} #{t'app.or'} #{ link_to t('organizers.show.register_new'), new_organizer_path}.</p>
+                    <p>#{t('organizers.show.do_apply')} #{t('organizers.show.organizers_using')}  #{t'app.or'} <strong>#{ link_to t('organizers.show.register_new'), new_organizer_path}</strong>.</p>
                     </div><!-- /my_organizers --> 
                   )
       raw str
