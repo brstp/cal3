@@ -35,6 +35,6 @@ Kolla in vad som händer i din kommun.
 
 <% if current_user %>
 <% if current_user.is_admin? %>
-<p><%= link_to t('municipality.index.new'), new_municipality_path %></p>
+<p><%= link_to t('.new'), new_municipality_path %></p>
 <% end %>
 <% end %>

@@ -6,14 +6,22 @@ class Organizer < ActiveRecord::Base
   
   attr_accessible :name, :description, :website, :user_ids, :logotype, :photo, :intro, :phone, :email
   
-  validates_presence_of :name, :description
+  validates_presence_of :name, :description, :email
   validates_length_of :name, :in => 5..40
   validate :validates_website
   validates :phone, :phone => true
   validates :email, :email => true
   
-  has_attached_file :logotype, :default_url => "/images/no-organizer-logotype.png", :styles => {:large => "400x300", :medium => "300x225", :small => "100x75"}
-  has_attached_file :photo, :default_url => "/images/no-organizer-photo.png", :styles => {:medium => "400x300", :small => "100x75"}
+  has_attached_file   :logotype, 
+                      :default_url => "/images/organizer-logotype-90x109.png", 
+                      :styles => {  :medium => "90x109#", 
+                                    :small => "45x55#"
+                                 }
+                                    
+  has_attached_file   :photo,       :default_url => "/images/doldrums.jpg", 
+                      :styles => {  :medium => "360x240#",  
+                                    :small => "176x117#"
+                                 }
   
 #  searchable :auto_index => true, :auto_remove => true do
 #    text :name
@@ -23,6 +31,12 @@ class Organizer < ActiveRecord::Base
   
   def to_s
     self.name
+  end
+  
+  def refresh_images
+    Organizer.all.each do |organizer|
+      organizer.photo.reprocess!
+    end
   end
   
   def ical

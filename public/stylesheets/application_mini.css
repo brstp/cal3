@@ -348,7 +348,7 @@ table.general input {
   margin: 0.1em 0 0.2em 2em;
 }
 
-.escutcheon {
+.page_logotype {
   float: left;
   margin: 0 2em 1em 0;
 }
@@ -364,4 +364,16 @@ table.general input {
 .iframe_me {
   width: 100%;
   rows: 5;
+}
+
+.organizer_photo {
+  float: right;
+  margin: 1em 0em 2em 2em;
+}
+
+.break {
+  width: 100%
+  height: 1px;
+  margin: 0 0 -1px;
+  clear: both;
 }

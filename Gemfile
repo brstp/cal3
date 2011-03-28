@@ -43,8 +43,8 @@ gem 'meta-tags', :require => 'meta_tags'  #header tags
 gem "paperclip"                     #upload and organizer images
 gem "ancestry"                      #tree structure
 gem 'yaml_db'                       #dump, load db as yaml 
-#gem 'nokogiri', "1.4.4.1"
-gem 'nokogiri'                      #parse
+gem 'nokogiri', "~> 1.4.4.1"
+#gem 'nokogiri'                      #parse
 gem 'icalendar'                     #create ical events
 gem 'heroku'                        #remote control for prod env at Heroku
 gem 'aws-s3'                        #API towards Amazon Web Services

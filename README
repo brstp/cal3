@@ -29,3 +29,6 @@ rake scrape:update_facts      # Hämta faktaruta per kommun
 
 # Lägg in en första användare b.r.stefan.pettersson@gmail.com
 rake setup:first_admin        # b.r.stefan.pettersson@gmail.com
+
+rake paperclip:refresh:thumbnails CLASS=Event
+rake paperclip:refresh:thumbnails CLASS=Organizer

@@ -467,8 +467,8 @@
         intro: "En kort sammanfattande beskrivning om arrangören. Skriv gärna vad du/ni sysslar med, var ni finns (särskilt om det finns flera med samma namn). Kan vara en sammanfattning av beskrivningen längre ned på sidan."
         description: "En längre beskrivning av arrangören. Berätta vem du eller vilka ni är, var ni finns, vad ni gör, vem era evenemang vänder sig till."
         website: "Länk till arrangörens hemsida. Exempel: http://www.abc.se (jo, det där http:// eller https:// i början ska vara med)."  
-        logotype: "En bild eller symbol som representerar arrangören. Används som en logotyp. Välj en bild som inte innehåller allt för mycket detaljer. Lämplig storlek är bredd: 300 pixlar och höjd: 225 pixlar. Vi förstorar eller förminskar bilden om det behövs. Bilden kan vara någon av formaten jpg, gif eller png."
-        photo: "En dekorativ bild som visas i stort format på arrangörssidan. Se det som en reklambild för er. Vi rekommenderar ett motiv som visar vad ni ägnar er åt.  Lämplig storlek på bilden är bredd: 000 pixlar och höjd: 000 pixlar. Vi förstorar eller förminskar bilden om det behövs. Vi rekommenderar filformat jpg (gif och png fungerar också)."
+        logotype: "En bild eller symbol som representerar arrangören. Används som en logotyp. Välj en bild som inte innehåller allt för mycket detaljer. Lämplig storlek är bredd: 90 pixlar och höjd: 109 pixlar. Vi förstorar eller förminskar bilden om det behövs. Bilden bör vara i formaten gif eller png med transparent bakgrund."
+        photo: "En dekorativ bild som visas i stort format på arrangörssidan. Se det som en reklambild för er. Vi rekommenderar ett motiv som visar vad ni ägnar er åt.  Lämplig storlek på bilden är bredd: 720 pixlar och höjd: 480 pixlar. Vi förstorar eller förminskar bilden om det behövs. Vi rekommenderar filformat jpg (gif och png fungerar också)."
     actions:
       event:
         create: "Skapa evenemangsannons"
@@ -537,6 +537,13 @@
     index:
       title: "Alla kommuner"
       no_of_events_per_municipality: "inplanerade evenemang i kommunen"
+      new: "Lägg upp ny kommunsida"
+    new:
+      title: "Ny kommunsida"
+      list: "Visa kommunlistan (strunta i ändringar)"
+    edit:
+      show: "Visa kommunsidan (strunta i ändringar)"
+      list: "Visa kommunlistan (strunta i ändringar)"
     show:
       upcoming: "Kommande evenemang i"
       no_of_events_per_organizer: " inplanerat evenemang"
@@ -553,21 +560,9 @@
       destroy: "Radera kommunsidan"
       escutcheon_for: "Kommunvapen för"
       promote: "Gör reklam för det som händer i"
+      previous_events: "Redan genomförda evenemang i"
       
-  municipality:
-    new:
-      title: "Ny kommun"
-      list: "Till kommunlistan (strunta i ändringar)"
-    edit:
-      show: "Visa kommunen (strunta i ändringar)"
-      list: "Till kommunlistan (strunta i ändringar)"
-    show:
-      list: "Till kommunlistan"
-    index:
-      title: "Kommuner"
-      new: "Skapa ny kommun"
-  
-  
+
   organizers:
     index:
       title: "Alla arrangörer och deras evenemang"
@@ -612,6 +607,9 @@
       first_name: "Förnamn"
       last_name: "Efternamn"
       dont_leave: "Du kan inte ta bort ditt eget medlemskap."
+      previous_events: "s redan genomförda evenemang."
+      promote: "Gör reklam för"
+      logotype_for: "Logotyp för"
 
   organizer:
     new:

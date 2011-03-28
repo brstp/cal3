@@ -29,7 +29,7 @@
 <div class = "page_heading">
   <% unless @municipality.escutcheon.blank? %>
     <%= image_tag   @municipality.escutcheon, 
-                    :class => :escutcheon, 
+                    :class => :page_logotype, 
                     :alt => t('.escutcheon_for') + ' ' + @municipality.name 
                     %>
   <%end%>
@@ -37,12 +37,33 @@
   <%= facebook_like municipality_path(:only_path => false), "top" %>
 </div>
 
-<% if @municipality.upcoming_events.blank? %>  
+<% if @events.blank? %>  
   <p>Just nu finns det inte några evenemang inplanerade i <%= @municipality.name %>.</p>
 <% else %>
-  <%= calendar @municipality.upcoming_events %>
+  <%= will_paginate( 
+          @events,
+          :renderer => GmailPaginationLinkRenderer,
+          :first_label => t('will_paginate.first'),
+          :previous_label => t('will_paginate.previous'),
+          :next_label => t('will_paginate.next'),
+          :last_label => t('will_paginate.last'),
+          :summary_label => " %d #{t('will_paginate.to')} %d #{t('will_paginate.of')} %d "
+          ) %>
+  <%= calendar @events %>
+  <%= will_paginate( 
+          @events,
+          :renderer => GmailPaginationLinkRenderer,
+          :first_label => t('will_paginate.first'),
+          :previous_label => t('will_paginate.previous'),
+          :next_label => t('will_paginate.next'),
+          :last_label => t('will_paginate.last'),
+          :summary_label => " %d #{t('will_paginate.to')} %d #{t('will_paginate.of')} %d "
+          ) %>
 <% end %>
 
+<p>
+<%= link_to t('.previous_events') + ' ' + @municipality.name + '.', events_path(:municipality_id => @municipality.id, :start => :past) %>
+</p>
 
 <p>
 <%= link_to t('.subscribe_rss') + ' ' + @municipality.name, :format => :rss, :only_path => false %>  

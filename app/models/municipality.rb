@@ -7,6 +7,7 @@ class Municipality < ActiveRecord::Base
   
   default_scope :order => 'name ASC'
   
+ 
   #searchable :auto_index => true, :auto_remove => true do
   #  text :name
   #end
