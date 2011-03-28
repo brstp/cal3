@@ -26,6 +26,15 @@ class Municipality < ActiveRecord::Base
     c.to_ical
   end
   
+  def self.select_municipality
+    municipality_array  = {}
+    municipality_array[I18n.t('events.form.select_municipality')] = nil 
+    for municipality in Municipality.find(:all, :order => "name ASC")
+      municipality_array[municipality.name] = municipality.id 
+    end
+    municipality_array 
+  end
+  
   def upcoming_events
     self.events.find(:all, :conditions => ["stop_datetime >= '#{Time.now}'"], :order => "start_datetime ASC")   
   end
@@ -39,3 +48,13 @@ class Municipality < ActiveRecord::Base
   end
   
 end
+
+
+  def select_organizer
+    my_organizer = {}
+    my_organizer[I18n.t('events.form.select_organizer')] = nil 
+    for organizer in self.organizers
+      my_organizer[organizer.name] = organizer.id 
+    end
+    my_organizer  
+  end

@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class User < ActiveRecord::Base
   has_many :memberships, :dependent => :destroy
   has_many :organizers, :through => :memberships
@@ -26,6 +27,15 @@ class User < ActiveRecord::Base
       output_str += " <" + self.email + ">"
     end
     output_str.strip
+  end
+  
+  def select_organizer
+    my_organizer = {}
+    my_organizer[I18n.t('events.form.select_organizer')] = nil 
+    for organizer in self.organizers
+      my_organizer[organizer.name] = organizer.id 
+    end
+    my_organizer  
   end
 
   def is_admin?

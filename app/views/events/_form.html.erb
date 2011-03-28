@@ -6,11 +6,19 @@
       <%= f.input :subject %>
       <%= f.input :intro, :input_html => {:size => 50} %>
       <% if @event.new_record? %> 
-        <%= f.input :organizer, :required => true, :collection => current_user.organizers %>
+        <%= f.input   :organizer, 
+                      :required => true, 
+                      :collection => @organizers, 
+                      :include_blank => false 
+                      %>
       <% else %>
-        <%= f.input :organizer, :required => true, :collection => current_user.organizers, :input_html => { :disabled => true}%>     
+        <%= f.input :organizer, :required => true, :input_html => { :disabled => true}%>     
       <% end %>
-      <%= f.input :municipality, :required => true, :collection => Municipality.find(:all, :order => "name ASC")%>
+      <%= f.input   :municipality, 
+                    :required => true, 
+                    :collection => Municipality.select_municipality,
+                    :include_blank => false 
+                    %>
       <%= select_category_tree @event.category_id %>
       <%= f.input :description, :input_html => {:rows => 8, :cols => 48} %>
       <hr />

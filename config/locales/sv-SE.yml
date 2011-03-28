@@ -672,6 +672,8 @@
       do_you_really_want_to_reset_me: "Vill du tömma hela annonsformuläret?"
       cancel: "Avbryt"
       do_you_really_want_to_cancel_me: "Vill du strunta i ändringar som du gjort sedan du sparade senast?"
+      select_organizer: "--- Välj en arrangör ---"
+      select_municipality: "--- Välj en kommun ---"
       
       
   

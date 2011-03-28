@@ -165,6 +165,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
   
   
   def new
+    @organizers = current_user.select_organizer
     @event = Event.new
     @event.email = current_user.email
     @event.email_name = ''
@@ -178,6 +179,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
   end
 
   def create
+    @organizers = current_user.select_organizer
     @event = Event.new(params[:event])
     if @event.save
       OrganizerMailer.new_event_confirmation(@event, current_user).deliver
