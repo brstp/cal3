@@ -1,21 +1,17 @@
 <% title t('.title') %>
 
-<table>
+<table class = "general">
   <tr>
-    <th></th>
     <th><%= User.human_attribute_name('first_name') %></th>
     <th><%= User.human_attribute_name('last_name') %></th>
     <th><%= User.human_attribute_name('email') %></th>
-    <th></th>
+    
   </tr>
   <% for user in @users %>
-    <tr>
-      <td><%= link_to "Visa", user %></td>
-      <td><%= user.first_name %></td>
-      <td><%= user.last_name %></td>
-      <td><%= user.email %></td>
-      <td><%= link_to t('app.edit'), edit_user_path(user) %></td>
-
+    <tr class = <%= cycle("even", "odd") %> >
+      <td><%= link_to user.first_name.to_s, user %></td>
+      <td><%= link_to user.last_name.to_s, user %></td>
+      <td><%= link_to user.email, user %></td>
     </tr>
   <% end %>
 </table>

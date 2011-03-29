@@ -27,18 +27,24 @@ Bilden (avataren) kommer finns på Gravatar. <%= link_to("Lägg upp en bild av d
   <strong><%= t('.email')%>:</strong>
   <%= @user.email %>
 </p>
-<% if current_user.is_admin? %>
-<p>
-  <strong><%= t('.is_admin')%>:</strong>
-  <%= t ('app.yess') if @user.is_admin %>
-</p>
-<% end %>
+
 <p>
   <strong><%= t '.organizers' %>:</strong>
 </p>
+<% unless @user.organizers.blank? %>
 <ul>  
   <% for organizer in @user.organizers %>  
   <li><%= link_to organizer.name,  organizer %></li>  
   <% end %>  
 </ul>  
-
+<%else%>
+  <p>Är inte medlem hos någon arrangör.</p>
+<%end%>
+<% if current_user.is_admin? %>
+<hr />
+<h3>För systemadminstratörer:</h3>
+<p>
+  <strong><%= t('.is_admin')%>:</strong>
+  <%= t ('app.yess') if @user.is_admin %>
+</p>
+<% end %>

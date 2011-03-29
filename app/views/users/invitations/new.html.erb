@@ -1,12 +1,14 @@
-<h2>Send invitation</h2>
+<h2><%= t('.send_invitation')%></h2>
 
 <%= form_for resource, :as => resource_name, :url => invitation_path(resource_name) do |f| %>
   <%= devise_error_messages! %>
-
+  
   <p><%= f.label :email %><br />
   <%= f.text_field :email %></p>
+  
+  <%= f.text_field :invitor, :value => current_user.id, :hidden => true %>
 
-  <p><%= f.submit "Send an invitation" %></p>
+  <p><%= f.submit t('.send_an_invitation') %></p>
 <% end %>
 
-<%= link_to "Home", after_sign_in_path_for(resource_name) %><br />
+<%# link_to "Home", after_sign_in_path_for(resource_name) %><br />

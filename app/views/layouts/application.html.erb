@@ -54,9 +54,10 @@
     <div id = "user_account_box">
 		<% if user_signed_in? %>
       <div id="user_account">
-      <%= image_tag avatar_url(current_user), :id => :user_avatar %>
-      <%= current_user.email %><br /><%= t 'devise.sessions.not_you' %> <%= link_to I18n.t('devise.sessions.sign_out'), destroy_user_session_path %><br />
-      <%= link_to (t 'devise.sessions.change_settings'), edit_user_path(current_user) %>
+      
+      <%= link_to (image_tag avatar_url(current_user), :id => :user_avatar), "http://sv.gravatar.com", :title => t('.use_gravatar'), :rel => :nofolow %>
+      <%= current_user.email %><br /><%= t 'users.sessions.not_you' %> <%= link_to I18n.t('users.sessions.sign_out'), destroy_user_session_path %><br />
+      <%= link_to (t 'users.sessions.change_settings'), edit_user_path(current_user) %>
       </div><!-- /user_account -->
     <% else %>
       <div id="user_form">
@@ -130,15 +131,17 @@
 		</div><!-- /left_single -->
 
 				<div id="right">
-					<% unless user_signed_in? %>		
-					<div id="user_nav" class="box">
+          <div id="user_nav" class="box">
             <p>
-                <%= link_to I18n.t('devise.sessions.sign_up'), new_user_registration_path %> <%= I18n.t('app.or') %> 
-                <%=link_to I18n.t('devise.sessions.sign_in'), new_user_session_path %>    
-              </p>
+              <% unless user_signed_in? %>		
+                    <%= link_to I18n.t('users.sessions.sign_up'), new_user_registration_path %> <%= I18n.t('app.or') %> 
+                    <%=link_to I18n.t('users.sessions.sign_in'), new_user_session_path %>    
+              <% else %>
+                    <%= t('users.invitations.new.have_a_friend')%><br />
+                    <%= link_to t('users.invitations.new.invite_her'), new_user_invitation_path %>
+              <% end %>
+            </p>
           </div> <!-- /user_nav -->
-          <% end %>
-
           <%= content_for :right_column_top %>
           
           <% if current_user %>    
@@ -189,6 +192,7 @@
 		<ul>
 			<li class=""><a href="http://info.foreningskalendern.se" title="Föreningskalendern"><span class="left"></span>Om kalendern<span class="right"></span></a></li>
 			<li class="page_item page-item-6"><a href="http://info.foreningskalendern.se/kundtjanst-kontakt/" title="Kundtjänst &amp; kontakt">Kundtjänst &#038; kontakt</a></li>
+      <li class="page_item page-item-6"><a href="http://info.foreningskalendern.se/legalt/" title="Legala frågor">Allmänna villkor, upphovsrätt, cookies och personuppgifter</a></li>
 		</ul>
 		
 		

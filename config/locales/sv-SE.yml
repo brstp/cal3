@@ -502,6 +502,7 @@
       ads: "Annonser"
       admin_links: "Administratörslänkar"
       mail_messages: "Mejllogg evenemangskontakter"
+      use_gravatar: "Personbilden (avataren) kommer från gravatar.com. Du kan välja en bild att representera dig."
       
   categories:
     new:
@@ -532,7 +533,82 @@
     index:
       new: "Skapa ny användare"
       title: "Användare"
-      
+    # Devise below
+    failure:
+      unauthenticated: 'Du måste logga in eller skapa ett konto innan du kan fortsätta.'
+      unconfirmed: 'Du måste bekräfta ditt konto innan du kan fortsätta.'
+      locked: 'Ditt konto är låst.'
+      invalid: 'Fel mejladress eller lösenord.'
+      invalid_token: 'Ogiltig token för autentisering.' #TODO
+      timeout: 'Din session är inte längre giltig, vänligen logga in igen för att fortsätta.'
+      inactive: 'Ditt konto har inte aktiverats ännu.'
+    sessions:
+      signed_in: 'Nu är du inloggad.'
+      signed_out: 'Nu är du utloggad.'
+      sign_in: 'logga in'
+      sign_out: 'Logga ut.'
+      sign_up: 'Registrera användarkonto'
+      not_you: 'Inte du?'
+      change_settings: 'Ditt konto/byt lösenord'
+      change_password: 'Byt lösenord'
+      signed_in_as: 'Inloggad som'
+      forgot_password: 'Glömt ditt lösenord?'
+      not_received_confirmation: "Har inte fått mejlet med länken för att bekräfta kontot?"
+      not_received_unlock: "Har inte fått mejlet med länken för att låsa upp kontot?"
+      new:
+        sign_in: 'Logga in'
+    invitations:
+      send_instructions: 'Tack för hjälpen. Vi har skickat ett inbjudningsmejl till din kompis.'
+      updated: 'Så där, nu är ditt användarkonto igång som det ska.'
+      new:
+        send_invitation: 'Bjud in en kompis till kalendern'
+        send_an_invitation: 'Skicka inbjudan'
+        have_a_friend: 'Vill du ge din kompis ett konto i kalendern?'
+        invite_her: 'Ge bort en inbjudan kostnadsfritt!'
+      edit:
+        set_your_password: 'Nu behöver du välja ett lösenord för användarkontot.'
+        welcome: 'Välkommen till kalendern!'
+        set_my_password: 'Sätt lösenord'
+    passwords:
+      send_instructions: 'Du kommer få ett mejl med instruktioner om hur du kan återställa ditt lösenord inom någon minut.'
+      updated: 'Ditt lösenord har uppdaterats. Du är nu inloggad.'
+      forgot_your_password: "Har du glömt ditt lösenord?"
+      mail_me: "Mejla mig"
+    confirmations:
+      send_instructions: 'Du kommer att få ett mejl med instruktioner om hur du kan bekräfta ditt konto inom någon minut.'
+      confirmed: 'Ditt konto har bekräftats. Du är nu inloggad.'
+      new:
+        resend_confirmation_instructions: 'Skicka mejl för att bekräfta att det är ditt användarkonto.'
+        resend: 'Skicka bekräftelsemejl'
+    registrations:
+      signed_up: 'Ett nytt konto har skapats. En bekräftelse har skickats med mejl.'
+      updated: 'Ditt konto har uppdaterats.'
+      destroyed: 'Hej då! Ditt konto har avregistrerats. Vi hoppas få se dig snart igen.'
+      edit:
+        change_password_or_email: 'Ändra lösenord eller mejladress.'
+        submit: "Ändra"
+        back: "Tillbaka till ditt konto"
+    unlocks:
+      send_instructions: 'Du kommer få epost med instruktioner om hur du kan låsa upp ditt konto inom några minuter.'
+      unlocked: 'Ditt konto har låsts upp. Du är nu inloggad.'
+    mailer:
+      confirmation_instructions:
+        subject: 'Bekräfta ditt användarkonto på Föreningskalendern'
+      reset_password_instructions:
+        subject: 'Ändring av lösenord på Föreningskalendern'
+      unlock_instructions:
+        subject: 'Lås upp dit användarkonto på Föreningskalendern'      
+      invitation:
+        subject: 'Inbjudan till Kalendern'     
+  devise:
+    invitations:
+      user: #TODO fix below, should be part of users, not devise...
+        send_instructions: 'Tack för hjälpen. Vi har skickat ett inbjudningsmejl till din kompis.'
+        updated: 'Så där, nu är ditt användarkonto igång som det ska.'
+    sessions:
+      user:
+        signed_out: 'Nu är du utloggad.'
+        signed_in: 'Nu är du inloggad.'
   municipalities:
     index:
       title: "Alla kommuner"
@@ -709,61 +785,3 @@
   rss:
     title: "Föreningskalendern"
     description: "Allt som händer - där det händer. Du kan själv annonsera dina evenemang på Föreningskalendern."
-
-  devise:
-    failure:
-      unauthenticated: 'Du måste logga in eller skapa ett konto innan du kan fortsätta.'
-      unconfirmed: 'Du måste bekräfta ditt konto innan du kan fortsätta.'
-      locked: 'Ditt konto är låst.'
-      invalid: 'Fel mejladress eller lösenord.'
-      invalid_token: 'Ogiltig token för autentisering.' #TODO
-      timeout: 'Din session är inte längre giltig, vänligen logga in igen för att fortsätta.'
-      inactive: 'Ditt konto har inte aktiverats ännu.'
-    sessions:
-      signed_in: 'Nu är du inloggad.'
-      signed_out: 'Nu är du utloggad.'
-      sign_in: 'logga in'
-      sign_out: 'Logga ut.'
-      sign_up: 'Registrera användarkonto'
-      not_you: 'Inte du?'
-      change_settings: 'Ditt konto/byt lösenord'
-      change_password: 'Byt lösenord'
-      signed_in_as: 'Inloggad som'
-      forgot_password: 'Glömt ditt lösenord?'
-      not_received_confirmation: "Har inte fått mejlet med länken för att bekräfta kontot?"
-      not_received_unlock: "Har inte fått mejlet med länken för att låsa upp kontot?"
-    invitations:
-      send_instructions: 'TODO An email with instructions about how to set the password has been sent.'
-      updated: 'TODO Your password was set successfully. You are now signed in.'
-    passwords:
-      send_instructions: 'Du kommer få ett mejl med instruktioner om hur du kan återställa ditt lösenord inom någon minut.'
-      updated: 'Ditt lösenord har uppdaterats. Du är nu inloggad.'
-      forgot_your_password: "Har du glömt ditt lösenord?"
-      mail_me: "Mejla mig"
-    confirmations:
-      send_instructions: 'Du kommer att få ett mejl med instruktioner om hur du kan bekräfta ditt konto inom någon minut.'
-      confirmed: 'Ditt konto har bekräftats. Du är nu inloggad.'
-      new:
-        resend_confirmation_instructions: 'Skicka mejl igen med länk för att bekräfta att det är ditt användarkonto.'
-        resend: 'Mejla mig'
-    registrations:
-      signed_up: 'Ett nytt konto har skapats. En bekräftelse har skickats med mejl.'
-      updated: 'Ditt konto har uppdaterats.'
-      destroyed: 'Hej då! Ditt konto har avregistrerats. Vi hoppas få se dig snart igen.'
-      edit:
-        change_password_or_email: 'Ändra lösenord eller mejladress.'
-        submit: "Ändra"
-        back: "Tillbaka till ditt konto"
-    unlocks:
-      send_instructions: 'Du kommer få epost med instruktioner om hur du kan låsa upp ditt konto inom några minuter.'
-      unlocked: 'Ditt konto har låsts upp. Du är nu inloggad.'
-    mailer:
-      confirmation_instructions:
-        subject: 'Bekräfta ditt användarkonto på Föreningskalendern'
-      reset_password_instructions:
-        subject: 'Ändring av lösenord på Föreningskalendern'
-      unlock_instructions:
-        subject: 'Lås upp dit användarkonto på Föreningskalendern'      
-      invitation:
-        subject: 'TODO Invitation'      
-        
