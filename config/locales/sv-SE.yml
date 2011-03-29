@@ -732,7 +732,9 @@
       forgot_password: 'Glömt ditt lösenord?'
       not_received_confirmation: "Har inte fått mejlet med länken för att bekräfta kontot?"
       not_received_unlock: "Har inte fått mejlet med länken för att låsa upp kontot?"
-      
+    invitations:
+      send_instructions: 'TODO An email with instructions about how to set the password has been sent.'
+      updated: 'TODO Your password was set successfully. You are now signed in.'
     passwords:
       send_instructions: 'Du kommer få ett mejl med instruktioner om hur du kan återställa ditt lösenord inom någon minut.'
       updated: 'Ditt lösenord har uppdaterats. Du är nu inloggad.'
@@ -752,11 +754,9 @@
         change_password_or_email: 'Ändra lösenord eller mejladress.'
         submit: "Ändra"
         back: "Tillbaka till ditt konto"
-        
     unlocks:
       send_instructions: 'Du kommer få epost med instruktioner om hur du kan låsa upp ditt konto inom några minuter.'
       unlocked: 'Ditt konto har låsts upp. Du är nu inloggad.'
-      
     mailer:
       confirmation_instructions:
         subject: 'Bekräfta ditt användarkonto på Föreningskalendern'
@@ -764,4 +764,6 @@
         subject: 'Ändring av lösenord på Föreningskalendern'
       unlock_instructions:
         subject: 'Lås upp dit användarkonto på Föreningskalendern'      
+      invitation:
+        subject: 'TODO Invitation'      
         

@@ -52,7 +52,6 @@ Devise.setup do |config|
   # Time interval where the invitation token is valid (default: 0).
   # If invite_for is 0 or nil, the invitation will never expire.
   config.invite_for = 4.weeks
-  config.invitation_limit = 5
   
   # ==> Configuration for :confirmable
   # The time you want to give your user to confirm his account. During this time
@@ -65,17 +64,17 @@ Devise.setup do |config|
 
   # ==> Configuration for :rememberable
   # The time the user will be remembered without asking for credentials again.
-  # config.remember_for = 2.weeks
+  config.remember_for = 12.weeks
 
   # If true, a valid remember token can be re-used between multiple browsers.
-  # config.remember_across_browsers = true
+  config.remember_across_browsers = true
 
   # If true, extends the user's remember period when remembered via cookie.
-  # config.extend_remember_period = false
+  config.extend_remember_period = false
 
   # ==> Configuration for :validatable
   # Range for password length
-  # config.password_length = 6..20
+  config.password_length = 1..100
 
   # Regex to use to validate the email address
   # config.email_regexp = /^([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})$/i
@@ -113,11 +112,11 @@ Devise.setup do |config|
   # Turn scoped views on. Before rendering "sessions/new", it will first check for
   # "users/sessions/new". It's turned off by default because it's slower if you
   # are using only default views.
-  # config.scoped_views = true
+  config.scoped_views = true
 
   # Configure the default scope given to Warden. By default it's the first
   # devise role declared in your routes.
-  # config.default_scope = :user
+  config.default_scope = :user
 
   # Configure sign_out behavior. 
   # By default sign_out is scoped (i.e. /users/sign_out affects only :user scope).
