@@ -28,7 +28,9 @@ gem 'rails', '3.0.5'
 # end
 
 #gem 'capistrano'                  #deploy
-gem 'devise'                        #authentication
+
+gem 'devise',           '~> 1.1.3'  #authentication
+gem 'devise_invitable', '~> 0.3.4'
 gem 'formtastic', '~> 1.1.0'        #forms
 gem "validation_reflection"         #validation of mandatory attributes
 gem 'nifty-generators'              #somehow smarter views and controllers
