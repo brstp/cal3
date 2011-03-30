@@ -25,6 +25,9 @@
 
     <% if current_user.is_admin? %>
       <%= f.input :is_admin %>
+      <hr />
+      <h2>För systemadministratörer</h2>
+      <%= f.inputs %>
     <% end %>
     <%= f.buttons %>
   <% end %>
