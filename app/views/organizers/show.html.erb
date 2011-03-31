@@ -138,17 +138,19 @@
 
 <%= facebook_like organizer_path(:only_path => false), "bottom", "like" %>
 
-<hr />
+
 
 <% if current_user %>
   <% if current_user.authorized? @organizer %>
+  <hr />
   <h2><%= t '.for_organizers'%></h2>
   <div class = "authorized">
-  <p>
-    <h3><%= t('.members_in') + ' ' + @organizer.name %>:</h3>
-  </p>
+  
+  
+  <h3><%= t('.members_in') + ' ' + @organizer.name %>:</h3>
   <table class = "general">
-    <tr>
+     <tr>
+      <th></th>
       <th><%= t '.email'%></th>
       <th><%= t '.first_name'%></th>
       <th><%= t '.last_name'%></th>
@@ -156,6 +158,7 @@
     </tr>
     <% for user in @organizer.users %>
     <tr class = "<%= cycle("even", "odd") %>">
+      <td><%= image_tag avatar_url(user) %></td>
       <td><%= link_to user.email , user %></td>
       <td><%= link_to user.first_name , user %></td>
       <td><%= link_to user.last_name , user %></td>
@@ -170,7 +173,40 @@
     <% end %> 
   </table>
 
+  
+  <p>&nbsp;</p>
 
+  <h3>Användare som vill bli administratörer för <%= @organizer.name %>:</h3>
+  <% unless @organizer.memberships.find(:all, :conditions => ["prospect_user_id <> ? ", "null"]).blank? %>
+    <p>Om du inte agerar så kommer användarna att plockas bort från listan efter ... veckor. TODO</p>
+    <table class = "general">
+      <% for membership in @organizer.memberships.find(:all, :conditions => ["prospect_user_id <> ? ", "null"]) %>
+        <% user = User.find membership.prospect_user_id %>
+        <tr class = "<%= cycle("even", "odd") %>">
+          <td><%= image_tag avatar_url(user) %></td>
+          <td><%= link_to user.name , user %>:<br /><%= membership.argumentation %></td>
+          <td>
+              <%= button_to   t('.promote_prospect'), 
+                              membership_promote_prospect_path(membership, 
+                                                                :organizer_id => @organizer.id,
+                                                                :user_id => user.id,
+                                                                :membership_id => membership.id), 
+                              :method => :put, 
+                              %>                         
+          </td>
+          <td>
+              <%= button_to t('.cancel_prospect'), 
+                            membership_path(Membership.find(:first, :conditions => ["organizer_id = ? and user_id = ?", @organizer.id, user.id])),
+                            :confirm => t('.confirm_cancel_prospect1') + user.name + t('.confirm_cancel_prospect2') + @organizer.name + t('.note_legal') 
+                            %> 
+          </td>
+        </tr>
+      <% end %> 
+    </table>
+    <p>§ Liten text om att dela ut behöigheter. Den som du gör till administratör kommer att få samma behörighet som du och andra adminstratörer... Personen som ansökt om att bli adminstratör kommer att få ett mejl när du godkänner eller avslår ansökan. TODO</p>
+  <%else%>
+    <p>Just nu finns det inga ansökningar.</p>
+  <%end%>
 <p>
   <h3><%= t '.all_registered_users' %>:</h3>
 </p>

@@ -8,9 +8,13 @@ Cal3::Application.routes.draw do
 
   resources :users
 
-  resources :memberships
-
-  resources :organizers
+  resources :memberships do
+    put 'promote_prospect', :as => "promote_prospect"
+    delete 'cancel_prospect', :as => "cancel"
+  end
+  # resources :memberships
+  
+  resources :organizers 
 
   resources :events
 

@@ -1,8 +1,9 @@
+# encoding: UTF-8
 class MembershipsController < ApplicationController
 
 before_filter :authenticate_user!
 before_filter :authorized_to_create?, :except => [:destroy]
-before_filter :authorized_to_destroy?, :except => [:create]
+before_filter :authorized_to_destroy?, :except => [:create, :promote_prospect]
   
   def create
     organizer_id = params[:organizer_id]
@@ -24,6 +25,37 @@ before_filter :authorized_to_destroy?, :except => [:create]
     end 
   end
   
+  def promote_prospect
+    @membership = Membership.find(params[:membership_id])
+    unless @membership.blank?
+      if (!@membership.organizer_id.blank? && @membership.user_id.blank? && !@membership.prospect_user_id.blank?)
+        @membership.user_id = @membership.prospect_user_id
+        @membership.prospect_user_id = nil
+        @membership.promotor = current_user.id
+        if @membership.save
+          #TODO Send email
+          flash[:notice] = I18n.t 'flash.actions.create.added_membership'
+          redirect_to :back
+        else
+          flash[:alert] = "Något gick fel. Det gick inte att spara användaren som administratör i databasen. Kontrollera om någon annan administratör redan hunnit dela ut behörigheten. Om inte, prova igen."
+          redirect_to :back
+        end
+      else
+        flash[:alert] = "Något gick fel. Det gick inte att spara användaren som administratör i databasen. Kontrollera om någon annan administratör redan hunnit dela ut behörigheten. Om inte, prova igen."
+        redirect_to :back
+      end
+    else
+      flash[:alert] = "Kan inte hitta någon sådan ansökan. Den kanske har kanske nyligen blivit godkänd av någon annan administratör."
+      redirect_to :back
+    end
+  end
+  
+  def cancel_prospect
+    logger.info "##########################################"
+    logger.info "In memberships_controller#promote_user"
+    flash[:notice] = "Succé"
+    redirect_to :back
+  end
   
   def destroy
     @membership = Membership.find(params[:id])

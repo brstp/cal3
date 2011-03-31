@@ -650,7 +650,7 @@
       description: "Beskrivning"
       website: "Hemsida"
       upcoming: "Kommande evenemang"
-      members_in: "Medlemmar i"
+      members_in: "Administratörer för"
       show: "Visa"
       no_of_events_per_municipality: "inplanerade evenemang i kommunen"
       subscribe_rss: "Prenumerera på"
@@ -686,6 +686,13 @@
       previous_events: "s redan genomförda evenemang."
       promote: "Gör reklam för"
       logotype_for: "Logotyp för"
+      promote_prospect: "Gör till medlem"
+      cancel_prospect: "Avslå ansökan"
+      confirm_promote_prospect1: "Vill du godkänna att "
+      confirm_promote_prospect2: " blir adminstratör för "
+      note_legal: "?\n\nSe paragraftexten för detaljer."
+      confirm_cancel_prospect1: "Vill du avslå ansökan från "
+      confirm_cancel_prospect2: " att bli adminstratör för "
 
   organizer:
     new:
