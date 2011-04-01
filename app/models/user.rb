@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
   validates_presence_of :email
   validates :email, :email => true
   
+  before_destroy :destroy_prospectships
+  
   default_scope :order => 'email'
 
   def name
@@ -37,7 +39,14 @@ class User < ActiveRecord::Base
     end
     my_organizer  
   end
-
+  
+  def destroy_prospectships
+    prospectships = Membership.find_all_by_prospect_user_id self.id
+    for prospectship in prospectships
+      prospectship.destroy
+    end
+  end
+  
   def is_admin?
     is_admin
   end

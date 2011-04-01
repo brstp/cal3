@@ -1,19 +1,31 @@
 #user_nav {
 }
 
-#flash_notice, #flash_error, #flash_alert {
-  padding: 5px 8px;
-  margin: 10px 0;
+.flash_notice, .flash_error, .flash_alert, .user_message, .authorized_context {
+  padding: 0 0.7em 0.7em 0.7em;
+  margin: 0 0 0.5em 0;
 }
 
-#flash_notice {
+.flash_notice {
+  padding: 0.7em;
   background-color: #CFC;
   border: solid 1px #6C6;
 }
 
-#flash_error, #flash_alert {
+.flash_error, .flash_alert {
+  padding: 0.7em;
   background-color: #FCC;
   border: solid 1px #C66;
+}
+
+.user_message {
+  background-color: #e1e1e1;
+  border: solid 1px #CCC;
+}
+
+.authorized_context{
+  background-color: #e1e1e1;
+  border: solid 1px #CCC;
 }
 
 .fieldWithErrors {
@@ -299,7 +311,7 @@ table.general input {
 }
 
 .organizer_user {
-  margin: 0 20px 10px 0;
+  margin: 0 1em 0 0;
 }
 
 #category_mum_input ol li label {
@@ -341,7 +353,7 @@ table.general input {
   font-weight: normal;
 }
 
-#my_organizers li {
+.my_organizers li {
   list-style-type: square;
   margin: 0.1em 0 0.2em 2em;
 }
@@ -375,3 +387,4 @@ table.general input {
   margin: 0 0 -1px;
   clear: both;
 }
+

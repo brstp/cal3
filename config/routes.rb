@@ -10,7 +10,7 @@ Cal3::Application.routes.draw do
 
   resources :memberships do
     put 'promote_prospect', :as => "promote_prospect"
-    delete 'cancel_prospect', :as => "cancel"
+    delete 'cancel_prospect', :as => "cancel_prospect"
   end
   # resources :memberships
   

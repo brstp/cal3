@@ -21,11 +21,23 @@ module LayoutHelper
     content_for(:head) { javascript_include_tag(*args) }
   end
   
+  def user_message organizer, user
+    if (! organizer.users.include? user)  && (organizer.memberships.find_by_prospect_user_id(user.id))
+      str = %(
+                <div class = "user_message">
+                    Du har ansökt om att bli administratör hos föreningen #{I18n.localize(organizer.memberships.find_by_prospect_user_id(user.id).created_at) }. Din ansökan kommer att behandlas av föreningens administratörer. 
+                    #{button_to "Ångra ansökan om behörighet"}
+                </div>
+              )
+      raw str
+    end
+  end
+  
   def my_organizers user
     unless user.blank?
       str = ""
         str << %(
-                <div class = "box" id="my_organizers">
+                <div class = "box my_organizers">
                   <span class="heading"> #{t 'users.show.my_organizers' }:</span>
                 )
         unless user.organizers.blank?
@@ -52,7 +64,27 @@ module LayoutHelper
       raw str
     end
   end
-  
+
+  def my_applications user
+    unless user.blank?
+      prospectships = Membership.find_all_by_prospect_user_id(user.id)         
+      unless prospectships.blank?
+        str = ""
+        str << %(
+          <div class = "box my_organizers">
+            <span class="heading">#{ t('.your_admin_applications')}:</span>
+          )
+        str << %( <ul class = "my_organizers"> )
+        for prospectship in prospectships  
+          str << %(  <li>#{link_to prospectship.organizer.name,  prospectship.organizer}</li> )
+        end
+        str << %( 
+                    </ul>
+                  </div>)
+        raw str
+      end
+    end
+  end  
   
   def select_category_tree selected_category = nil
     raw %(

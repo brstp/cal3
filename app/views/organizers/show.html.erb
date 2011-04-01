@@ -5,8 +5,6 @@
   <%= auto_discovery_link_tag( :rss, organizer_url(:format => 'rss') , {:title => @organizer.name + t('app.s') + ' ' + t('.organizers_event') + ' ' + t('app.at') + ' ' +  t('app.site_name')}) %>
 <% end %>                     
                    
-<% content_for :right_column_facts do %>
-<% end %>
 
 <%= open_graph_properties @organizer.name, 
                           request.protocol + request.host_with_port + @organizer.logotype.url(:large), 
@@ -14,18 +12,41 @@
                           :only_path => false)  %>
 
 <% if current_user %>
+  <% if (! @organizer.users.include? current_user) %>  
+    <% prospectship = @organizer.memberships.find_by_prospect_user_id(current_user.id) %>
+    <% if prospectship %>
+      <%= content_for :user_message do %>
+        <div class = "user_message">
+            <p>
+            <%= t('.you_have_applied')%> 
+            <%= @organizer.name %>
+            <%= I18n.localize(prospectship.created_at) %>. 
+            <%= t('.application_processed') %>
+            </p>
+              <%= button_to I18n.t('organizers.show.cancel_my_application'),    
+                            membership_cancel_prospect_path(prospectship), 
+                            :confirm => t('.sure_cancel') + ' ' + @organizer.name + '?', 
+                            :method => :delete %> 
+        </div>
+      <% end %>
+    <% end %>
+  <% end%>
+      
   <% if current_user.authorized? @organizer %>
-    <%= button_to(  t('.edit'), 
-                    edit_organizer_path(@organizer), 
-                    :method => :get, 
-                    :class => :organizer_user) %>
-  <%end%>
-  <% if current_user.is_admin? %>
-      <%= button_to(  t('.destroy'), 
-                    @organizer, 
-                    :confirm => t('app.are_you_sure') + ' ' +@organizer.name + '?', 
-                    :method => :delete ) %>
-  <%end%>
+    <div class = "authorized_context">
+      <p><%= t('.for_organizers')%>:</p>
+      <%= button_to(  t('.edit'), 
+                      edit_organizer_path(@organizer), 
+                      :method => :get, 
+                      :class => :organizer_user) %>
+    <%end%>
+    <% if current_user.is_admin? %>
+        <%= button_to(  t('.destroy'), 
+                      @organizer, 
+                      :confirm => t('app.are_you_sure') + ' ' +@organizer.name + '?', 
+                      :method => :delete ) %>
+    <%end%>
+  </div>
 <%end%>
 
 
@@ -114,30 +135,7 @@
 </p>
 
 
-
-
-<%= content_for :right_column_bottom do %>  
-  <div class = "box" id = "promote_municipality">
-    <span class="heading"><%= t('.promote')%><br /> <%=@organizer.name%>:</span>
-    <p>
-      <%= link_to t('.subscribe_rss') + ' ' + @organizer.name + t('app.s') + ' ' + t('.organizers_event'), :format => :rss, :only_path => false %>  
-      <%= link_to image_tag("rss_icon.gif", :alt => t('.rss_alt') + ' ' + @organizer.name), :format => :rss, :only_path => false %>
-    </p>
-
-    <p>
-      <%= link_to(t('.download_ics'), organizer_url(:only_path => false, :format => :ics ))  %>
-    </p>
-
-    <p>
-    <%= t('.share_as_iframe') %>
-    </p>
-    <%= text_area_tag( "id", h('<iframe src="' + organizer_url(:format => :ihtml) + '"  frameborder="1" ></iframe>'), :class => :iframe_me, :readonly => true) %>
-  </div> <!-- /promote_organizer -->
-<% end %>
-
-
 <%= facebook_like organizer_path(:only_path => false), "bottom", "like" %>
-
 
 
 <% if current_user %>
@@ -158,7 +156,7 @@
     </tr>
     <% for user in @organizer.users %>
     <tr class = "<%= cycle("even", "odd") %>">
-      <td><%= image_tag avatar_url(user) %></td>
+      <td><%= image_tag avatar_url(user) %><br /></td>
       <td><%= link_to user.email , user %></td>
       <td><%= link_to user.first_name , user %></td>
       <td><%= link_to user.last_name , user %></td>
@@ -183,7 +181,7 @@
       <% for membership in @organizer.memberships.find(:all, :conditions => ["prospect_user_id <> ? ", "null"]) %>
         <% user = User.find membership.prospect_user_id %>
         <tr class = "<%= cycle("even", "odd") %>">
-          <td><%= image_tag avatar_url(user) %></td>
+          <td><%= image_tag avatar_url(user) %><br /></td>
           <td><%= link_to user.name , user %>:<br /><%= membership.argumentation %></td>
           <td>
               <%= button_to   t('.promote_prospect'), 
@@ -195,10 +193,10 @@
                               %>                         
           </td>
           <td>
-              <%= button_to t('.cancel_prospect'), 
-                            membership_path(Membership.find(:first, :conditions => ["organizer_id = ? and user_id = ?", @organizer.id, user.id])),
-                            :confirm => t('.confirm_cancel_prospect1') + user.name + t('.confirm_cancel_prospect2') + @organizer.name + t('.note_legal') 
-                            %> 
+              <%= button_to t('.cancel_prospect'),    
+                            membership_cancel_prospect_path(membership), 
+                            :confirm => t('.confirm_cancel_prospect1') + user.name + t('.confirm_cancel_prospect2') + @organizer.name + t('.note_legal'), 
+                            :method => :delete %> 
           </td>
         </tr>
       <% end %> 
@@ -224,3 +222,23 @@
 <% end %>
 <% end %>
 
+
+
+<%= content_for :right_column_bottom do %>  
+  <div class = "box" id = "promote_municipality">
+    <span class="heading"><%= t('.promote')%><br /> <%=@organizer.name%>:</span>
+    <p>
+      <%= link_to t('.subscribe_rss') + ' ' + @organizer.name + t('app.s') + ' ' + t('.organizers_event'), :format => :rss, :only_path => false %>  
+      <%= link_to image_tag("rss_icon.gif", :alt => t('.rss_alt') + ' ' + @organizer.name), :format => :rss, :only_path => false %>
+    </p>
+
+    <p>
+      <%= link_to(t('.download_ics'), organizer_url(:only_path => false, :format => :ics ))  %>
+    </p>
+
+    <p>
+    <%= t('.share_as_iframe') %>
+    </p>
+    <%= text_area_tag( "id", h('<iframe src="' + organizer_url(:format => :ihtml) + '"  frameborder="1" ></iframe>'), :class => :iframe_me, :readonly => true) %>
+  </div> <!-- /promote_organizer -->
+<% end %>

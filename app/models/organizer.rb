@@ -1,5 +1,8 @@
+# encoding: UTF-8
 class Organizer < ActiveRecord::Base
   include ActionView::Helpers::UrlHelper
+  include ActionView::Helpers::RawOutputHelper
+
   has_many :events
   has_many :memberships, :dependent => :destroy
   has_many :users, :through => :memberships
@@ -33,11 +36,13 @@ class Organizer < ActiveRecord::Base
     self.name
   end
   
-  def refresh_images
+  def refresh_images # only used manually
     Organizer.all.each do |organizer|
       organizer.photo.reprocess!
     end
   end
+  
+
   
   def ical
     c = Icalendar::Calendar.new

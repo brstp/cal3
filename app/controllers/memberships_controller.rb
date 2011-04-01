@@ -2,8 +2,9 @@
 class MembershipsController < ApplicationController
 
 before_filter :authenticate_user!
-before_filter :authorized_to_create?, :except => [:destroy]
-before_filter :authorized_to_destroy?, :except => [:create, :promote_prospect]
+before_filter :authorized_to_create?, :except => [:destroy, :cancel_prospect]
+before_filter :authorized_to_destroy?, :except => [:create, :promote_prospect, :cancel_prospect]
+before_filter :authorized_to_cancel?, :cancel_prospect
   
   def create
     organizer_id = params[:organizer_id]
@@ -32,6 +33,7 @@ before_filter :authorized_to_destroy?, :except => [:create, :promote_prospect]
         @membership.user_id = @membership.prospect_user_id
         @membership.prospect_user_id = nil
         @membership.promotor = current_user.id
+        @membership.promoted_at = Time.now
         if @membership.save
           #TODO Send email
           flash[:notice] = I18n.t 'flash.actions.create.added_membership'
@@ -51,9 +53,10 @@ before_filter :authorized_to_destroy?, :except => [:create, :promote_prospect]
   end
   
   def cancel_prospect
-    logger.info "##########################################"
-    logger.info "In memberships_controller#promote_user"
-    flash[:notice] = "Succé"
+    @membership = Membership.find( params[:membership_id] )
+    #TODO Send email
+    @membership.destroy
+    flash[:notice] = I18n.t 'flash.actions.destroy.prospectship_removed'
     redirect_to :back
   end
   
@@ -91,7 +94,7 @@ before_filter :authorized_to_destroy?, :except => [:create, :promote_prospect]
       redirect_to :back
     else
       @membership = Membership.find( params[:id] )
-      if !current_user.organizers.include? @membership.organizer  #and !current_user.is_admin?
+      if !current_user.organizers.include? @membership.organizer  and !current_user.is_admin?
         flash[:alert] = t 'flash.actions.not_member_here'
         redirect_to :back
       else
@@ -100,4 +103,23 @@ before_filter :authorized_to_destroy?, :except => [:create, :promote_prospect]
     end  
   end
   
+  def authorized_to_cancel?
+    unless current_user
+      flash[:alert] = t 'flash.actions.not_authenticated'
+      redirect_to :back
+    else
+      @membership = Membership.find( params[:membership_id] )
+      if @membership.blank?
+        flash[:alert] = t 'flash.actions.not_prospect_here'
+        redirect_to :back
+      else
+        if (@membership.prospect_user_id == current_user.id) or (current_user.organizers.include? @membership.organizer) or current_user.is_admin?
+              # Do stuff
+        else      
+          flash[:alert] = t 'flash.actions.not_you'
+          redirect_to :back
+        end
+      end
+    end  
+  end
 end

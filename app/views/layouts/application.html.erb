@@ -116,9 +116,12 @@
 
 	  
       <% flash.each do |name, msg| %>
-        <%= content_tag :div, msg, :id => "flash_#{name}" %>
+        <%= content_tag :div, msg, :class => "flash_#{name}" %>
       <% end %>
-            
+      
+     <%= content_for :user_message %>
+      
+      
       <%= yield %>
 			
 			</div><!-- /post -->
@@ -132,18 +135,20 @@
 
 				<div id="right">
           <div id="user_nav" class="box">
-            <p>
-              <% unless user_signed_in? %>		
+              <% unless user_signed_in? %>
+                    <p>
                     <%= link_to I18n.t('users.sessions.sign_up'), new_user_registration_path %> <%= I18n.t('app.or') %> 
                     <%=link_to I18n.t('users.sessions.sign_in'), new_user_session_path %>    
+                    </p>
               <% else %>
+                    <p>
                     <%= t('users.invitations.new.have_a_friend')%><br />
                     <%= link_to t('users.invitations.new.invite_her'), new_user_invitation_path %>
+                    </p>
               <% end %>
-            </p>
           </div> <!-- /user_nav -->
           <%= content_for :right_column_top %>
-          
+          <%= my_applications current_user %>
           <% if current_user %>    
             <div id="calendar-nav" class="box">
               <span class="heading"><%= t '.quick_links' %>:</span>
