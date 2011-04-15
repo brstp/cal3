@@ -1,5 +1,25 @@
 Cal3::Application.routes.draw do
 
+
+  
+  resources :petitions
+
+  resources :memberships do
+    put 'promote'
+    put 'no_thanks'
+    put 'degrade'
+    put 'approve'
+    put 'reject'
+    put 'cancel'
+    put 'regret' 
+    delete 'admin_ack'
+    delete 'user_ack'
+    post 'apply'
+    post 'nominate'
+  end
+  
+  resources :memberships
+  
   resources :categories
 
   resources :mail_messages
@@ -7,13 +27,7 @@ Cal3::Application.routes.draw do
   devise_for :users
 
   resources :users
-
-  resources :memberships do
-    put 'promote_prospect', :as => "promote_prospect"
-    delete 'cancel_prospect', :as => "cancel_prospect"
-  end
-  # resources :memberships
-  
+ 
   resources :organizers 
 
   resources :events

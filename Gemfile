@@ -31,9 +31,8 @@ gem 'rails', '3.0.5'
 
 gem 'devise',           '~> 1.1.3'  #authentication
 gem 'devise_invitable', '~> 0.3.4'
-gem 'formtastic', '~> 1.1.0'        #forms
+gem 'formtastic'                    #forms
 gem "validation_reflection"         #validation of mandatory attributes
-gem 'nifty-generators'              #somehow smarter views and controllers
 gem 'validates_timeliness'          #validate time/datetime
 gem "mocha", :group => :test
 gem 'sunspot_rails' #, '1.2.rc4'    #api classes for solr
@@ -50,9 +49,10 @@ gem 'nokogiri', "~> 1.4.4.1"
 gem 'icalendar'                     #create ical events
 gem 'heroku'                        #remote control for prod env at Heroku
 gem 'aws-s3'                        #API towards Amazon Web Services
-gem 'will_paginate', "3.0.pre2"     #well, to paginatr
+gem 'will_paginate', "3.0.pre2"     #well, to paginate
 group :development, :test do
 	gem 'sqlite3-ruby', :require => 'sqlite3'
+  gem "nifty-generators"
 end
 group :production do
 	gem 'sqlite3-ruby', :require => 'sqlite3'

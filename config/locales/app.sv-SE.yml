@@ -1,0 +1,151 @@
+sv-SE:
+  app:
+    back_to_list: "Tillbaka till listan"
+    edit: "Ändra"
+    are_you_sure: "Vill du radera"
+    destroy: "Ta bort"
+    site_name: "Kalendern"  
+    destroyed: "Raderat %{resource_name}."
+    arranged_by: "Arrangeras av"
+    in_municipality: "i"
+    clock: "klockan"
+    s: "s"
+    at: "på"
+    events_in: "Evenemang i"
+    or: 'eller'
+    no_reply_email: "svara-inte--no-reply@mumin.nu"
+    no_reply_name: "Kalendern. Svara inte."
+    page: "sida"
+    lat_lng: "Latitud/longitud"
+    organizer: "Arrangör"
+    summary: "Sammanfattning"
+    there_are: "Det finns"
+    events_in_total: "evenemang. Alla fick inte plats här. Vill du kolla?"
+    planned_events: "Planerade evenemang"
+    category: "Kategori"
+    yess: "ja"
+    for_admin: "För systemadminstratörer"
+  number:
+    # Used in number_with_delimiter()
+    # These are also the defaults for 'currency', 'percentage', 'precision', and 'human'
+    format:
+      # Sets the separator between the units, for more precision (e.g. 1.0 / 2.0 == 0.5)
+      separator: ","
+      # Delimits thousands (e.g. 1,000,000 is a million) (always in groups of three)
+      delimiter: "."
+      # Number of decimals after the separator (the number 1 with a precision of 2 gives: 1.00)
+      precision: 2
+
+    # Used in number_to_currency()
+    currency:
+      format:
+        # Where is the currency sign? %u is the currency unit, %n the number (default: $5.00)
+        format: "%n %u"
+        unit: "kr"
+
+    # Used in number_to_human_size()
+    human:
+      format:
+        # These three are to override number.format and are optional
+        # separator:
+        # delimiter: ""
+        precision: 1
+      storage_units:
+        # Storage units output formatting.
+        # %u is the storage unit, %n is the number (default: 2 MB)
+        format: "%n %u"
+        units:
+          byte:
+            one:   "Byte"
+            other: "Bytes"
+          kb: "KB"
+          mb: "MB"
+          gb: "GB"
+          tb: "TB"
+# Used in array.to_sentence.
+  support:
+    array:
+      words_connector: ", "
+      two_words_connector: " och "
+      last_word_connector: " och "
+    select:
+      # default value for :prompt => true in FormOptionsHelper
+      prompt: "Välj"          
+      
+  rss:
+    title: "Föreningskalendern"
+    description: "Allt som händer - där det händer. Du kan själv annonsera dina evenemang på Föreningskalendern."
+  
+  flash:
+    actions:
+      update: 
+        notice: "Ändrat"
+      create:
+        notice: "Skapat"
+        sent: "Ditt mejl har skickats till evenemangets kontaktperson. Vi mejlar en kopia till dig."
+        added_membership: "Okej, gjort till administratör."
+        couldnt_save_membership: "Något gick fel. Vi kan tyvärr inte göra personen till administratör för arrangören."
+        membership_exists_already: "Personen är redan admininstratör för arrangören."
+        organizer_and_membership: "Okej, skapat en sida för arrangören och lagt till dig som administratör."
+      destroy:
+        notice: "Tagit bort"
+        alert: "Kunde inte ta bort"
+        dont_delete_own_membership: "Du får inte själv ta bort ditt eget adminstratörsskap för arrangören. Be någon av de andra administratörerna att göra det."
+        membership_removed: "Okej, är inte längre adminstratör."
+        prospectship_removed: "Okej, ansökan att bli administratör är bortplockad."
+        
+      not_member: "Du har inte behörighet. Du är inte administratör hos den här arrangören (eller någon annan)"
+      not_member_here: "Du har inte behörighet. Du måste vara administratör hos den här arrangören."
+      not_prospect_here: "Du kan inte ta bort ansökan, den har redan hunnit behandlas."
+      not_authenticated: "Något har gått fel. Du behöver logga in."
+      not_admin: "Du har inte behörighet. Du måste ha administratörsrättigheter."
+      not_you: "Du har inte behörighet att se eller ändra någon annans uppgifter."
+      
+  when_facet:
+    this_month: "den här månaden"
+    next_month: "nästa månad"
+    third_month: "nästnästa månad"
+    today: "idag"
+    tomorrow: "i morgon"
+    this_weekend: "på lördag-söndag"
+    next_weekend: "nästa lördag-söndag"
+    summer_holiday:
+    christmas_holiday:
+    christmas_days:
+    midsummer:
+    walpurgis_night: "valborgsmässoafton"
+    this_week: "den här veckan"
+    next_week: "nästa vecka"
+    sport_holiday1:
+    sport_holiday2:
+    sport_holiday3:
+    easter_holiday1:
+    easter_holiday2:
+    past: "tidigare, genomförda"
+    future: "idag och framåt"
+
+  mail:
+    cc_event: "Kopia evenemang"
+    to_event: "Om evenemang"
+    new_event: "Nytt evenemang"
+    changed_event: "Ändrat evenemang"
+
+  map:
+    drag_me: "Du kan flytta kartnålen genom att dra den med musen."      
+    
+  formtastic:
+    create: "Skapa %{model}"
+    update: "Spara"
+    "yes": 'Ja'
+    "no": 'Nej'
+    yes: "Ja"
+    no: "Nej"
+    create: 'Skapa'
+    save: 'Spara'
+    submit: 'Skicka'
+    required: 'Obligatorisk'
+    hints:
+    actions:
+      petition:
+        create: 'Ansök'
+        update: 'Spara'      

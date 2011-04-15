@@ -1,125 +1,121 @@
-# encoding: UTF-8
 class MembershipsController < ApplicationController
+  def index
+    @memberships = Membership.all
+  end
 
-before_filter :authenticate_user!
-before_filter :authorized_to_create?, :except => [:destroy, :cancel_prospect]
-before_filter :authorized_to_destroy?, :except => [:create, :promote_prospect, :cancel_prospect]
-before_filter :authorized_to_cancel?, :cancel_prospect
-  
-  def create
-    organizer_id = params[:organizer_id]
-    user_id = params[:user_id]
-    unless Membership.find(:all, :conditions => ["organizer_id = ? and user_id = ?", organizer_id, user_id]).blank?
-      flash[:alert] = I18n.t 'flash.actions.create.membership_exists_already'
-      redirect_to :back      
-    else
-      @organizer = Organizer.find( organizer_id )
-      @membership = @organizer.memberships.build(:user_id => user_id )
-      if @membership.save
-        # TODO remove from prospects
-        flash[:notice] = I18n.t 'flash.actions.create.added_membership'
-        redirect_to :back
-      else
-        flash[:alert] = I18n.t 'flash.actions.create.couldnt_save_membership'
-        redirect_to :back
-      end
-    end 
-  end
-  
-  def promote_prospect
-    @membership = Membership.find(params[:membership_id])
-    unless @membership.blank?
-      if (!@membership.organizer_id.blank? && @membership.user_id.blank? && !@membership.prospect_user_id.blank?)
-        @membership.user_id = @membership.prospect_user_id
-        @membership.prospect_user_id = nil
-        @membership.promotor = current_user.id
-        @membership.promoted_at = Time.now
-        if @membership.save
-          #TODO Send email
-          flash[:notice] = I18n.t 'flash.actions.create.added_membership'
-          redirect_to :back
-        else
-          flash[:alert] = "Något gick fel. Det gick inte att spara användaren som administratör i databasen. Kontrollera om någon annan administratör redan hunnit dela ut behörigheten. Om inte, prova igen."
-          redirect_to :back
-        end
-      else
-        flash[:alert] = "Något gick fel. Det gick inte att spara användaren som administratör i databasen. Kontrollera om någon annan administratör redan hunnit dela ut behörigheten. Om inte, prova igen."
-        redirect_to :back
-      end
-    else
-      flash[:alert] = "Kan inte hitta någon sådan ansökan. Den kanske har kanske nyligen blivit godkänd av någon annan administratör."
-      redirect_to :back
-    end
-  end
-  
-  def cancel_prospect
-    @membership = Membership.find( params[:membership_id] )
-    #TODO Send email
-    @membership.destroy
-    flash[:notice] = I18n.t 'flash.actions.destroy.prospectship_removed'
-    redirect_to :back
-  end
-  
-  def destroy
+  def show
     @membership = Membership.find(params[:id])
-    if @membership.user == current_user
-      flash[:alert] = I18n.t 'flash.actions.destroy.dont_delete_own_membership'
-    else
-      @membership.destroy
-      flash[:notice] = I18n.t 'flash.actions.destroy.membership_removed'
-    end
-    redirect_to :back
+    @organizer = Organizer.find @membership.organizer_id
+    @user = User.find @membership.user_id
   end
-  
-  protected
-  
-  def authorized_to_create?
-    unless current_user
-      flash[:alert] = t 'flash.actions.not_authenticated'
-      redirect_to :back
+
+  def new
+    @membership = Membership.new
+  end
+
+  def create
+    @membership = Membership.new(params[:membership])
+    if @membership.save
+      redirect_to @membership, :notice => "Successfully created membership."
     else
-      @organizer = Organizer.find( params[:organizer_id] )
-      if !current_user.organizers.include? @organizer and !current_user.is_admin?
-        flash[:alert] = t 'flash.actions.not_member_here'
-        redirect_to :back
-      else
-        # do stuff
-      end
+      render :action => 'new'
+    end
+  end
+
+  def edit
+    @membership = Membership.find(params[:id])
+  end
+
+  def update
+    @membership = Membership.find(params[:id])
+    if @membership.update_attributes(params[:membership])
+      redirect_to @membership, :notice  => "Successfully updated membership."
+    else
+      
+     render :action => 'edit'
+    end
+  end
+
+
+  
+  
+  def nominate  # admin nominate from undefinied to nominated
+    @membership = Membership.new(params[:membership])
+    if @membership.save
+      redirect_to @membership, :notice => "Successfully created membership."
+    else
+      render :action => 'new'
     end  
   end
 
-  def authorized_to_destroy?
-    unless current_user
-      flash[:alert] = t 'flash.actions.not_authenticated'
-      redirect_to :back
+  def apply  # user apply from undefined to applied
+    @membership = Membership.new(params[:membership])
+    if @membership.save
+      redirect_to @membership, :notice => "Successfully created membership."
     else
-      @membership = Membership.find( params[:id] )
-      if !current_user.organizers.include? @membership.organizer  and !current_user.is_admin?
-        flash[:alert] = t 'flash.actions.not_member_here'
-        redirect_to :back
-      else
-        # do stuff
-      end
-    end  
+      render :action => 'new'
+    end
   end
   
-  def authorized_to_cancel?
-    unless current_user
-      flash[:alert] = t 'flash.actions.not_authenticated'
-      redirect_to :back
-    else
-      @membership = Membership.find( params[:membership_id] )
-      if @membership.blank?
-        flash[:alert] = t 'flash.actions.not_prospect_here'
-        redirect_to :back
-      else
-        if (@membership.prospect_user_id == current_user.id) or (current_user.organizers.include? @membership.organizer) or current_user.is_admin?
-              # Do stuff
-        else      
-          flash[:alert] = t 'flash.actions.not_you'
-          redirect_to :back
-        end
-      end
-    end  
+
+  
+  def no_thanks
   end
+  
+  def degrade
+  end
+  
+  def approve
+  end
+  
+  def reject
+  end
+  
+  def cancel
+  end
+  
+  def  promote
+  end
+
+  def  promote
+  end
+  
+
+  def destroy  # TODO remove.
+    @membership = Membership.find(params[:id])
+    @membership.destroy
+    redirect_to memberships_url, :notice => "Successfully destroyed membership."
+  end
+  
+  def regret # user regret from applied to resigned
+    @membership = Membership.find(params[:id])
+    @membership.regretted_at = Time.now
+    @membership.state = "resigned"
+    logger.info "##### regret #### state at comment"
+    logger.info @membership.state
+    logger.info @membership.regretted_at
+    render :action => :edit
+    if @membership.save
+      logger.info "------ yes ---------"
+    else
+      logger.info "------  No ---------"
+      
+      # format.html { render :action => 'organizers/show'}
+    end
+  end
+  
+
+  
+  def admin_ack # admin acknowledge from inform_admin to destroy
+    @membership = Membership.find(params[:id])  
+    @membership.destroy
+    redirect_to memberships_url, :notice => "#admin_ack Successfully destroyed membership."
+  end
+  
+  def user_ack  # user acknowledge from inform_user to destroy
+    @membership = Membership.find(params[:id])  
+    @membership.destroy
+    redirect_to memberships_url, :notice => "#user_ack Successfully destroyed membership."
+  end
+  
 end

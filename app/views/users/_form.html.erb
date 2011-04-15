@@ -15,14 +15,27 @@
         <%= t 'formtastic.hints.user.email_no_change_allowed' %>
         </p>
     </li>
-
+        
     <li class="string optional">
-      <label for="user_organizers"><%= User.human_attribute_name :organizers%></label>
-      <% for organizer in @user.organizers %>
+      <label for="user_authorized"><%= t '.is_admin_for' %></label>
+      <% for organizer in @user.authorized %>
         <%= link_to organizer.name,  organizer %>
       <% end %>
     </li>
 
+    <% unless @user.applications.blank? %>
+      <li class="string optional">
+        <label for="user_applications"><%= t '.applications' %></label>
+      <ul>  
+        <% for organizer in @user.applications %>  
+        <li><%= link_to organizer.name,  organizer %></li>  
+        <% end %>  
+      </ul>  
+      </li>
+    <%end%>
+
+    
+    
     <% if current_user.is_admin? %>
       <%= f.input :is_admin %>
       <hr />

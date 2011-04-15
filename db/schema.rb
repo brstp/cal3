@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110401091127) do
+ActiveRecord::Schema.define(:version => 20110415150050) do
 
 # Could not dump table "bup_users" because of following StandardError
 #   Unknown type 'id' for column 'invitor'
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(:version => 20110401091127) do
     t.string   "phone_number"
     t.string   "phone_name"
     t.string   "email"
-    t.string   "email_name"
+    t.string   "human_name"
     t.integer  "event_id"
     t.integer  "category_id"
     t.integer  "counter",             :default => 0
@@ -74,14 +74,11 @@ ActiveRecord::Schema.define(:version => 20110401091127) do
   create_table "memberships", :force => true do |t|
     t.integer  "organizer_id"
     t.integer  "user_id"
-    t.boolean  "is_personal"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "prospect_user_id"
-    t.integer  "promotor"
-    t.string   "argumentation"
-    t.datetime "promoted_at"
   end
+
+  add_index "memberships", ["organizer_id", "user_id"], :name => "index_memberships_on_organizer_id_and_user_id", :unique => true
 
   create_table "municipalities", :force => true do |t|
     t.string   "name"
@@ -118,6 +115,19 @@ ActiveRecord::Schema.define(:version => 20110401091127) do
     t.string   "email"
     t.string   "phone"
   end
+
+  create_table "petitions", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "organizer_id"
+    t.string   "argumentation"
+    t.integer  "decision_made_by_user_id"
+    t.string   "rejected_reason"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "approved"
+  end
+
+  add_index "petitions", ["organizer_id", "user_id"], :name => "index_petitions_on_organizer_id_and_user_id", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "email"

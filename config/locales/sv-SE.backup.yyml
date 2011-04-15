@@ -1,0 +1,56 @@
+# Swedish translation.
+
+"sv-SE":
+  activerecord:
+    models:
+   
+      membership:
+        state: "Status"
+        argumentation: "Berätta kort för arrangörens administratörer varför du ansöker om att bli administratör."
+        applied_at: "Ansökningsdatum"
+        applied_comment: "Varför ansöker du att bli administratör?"
+        promoted_at: "Ansökan godkänd"
+        promoted_by_id: "Ansökan godkänd av"
+        regretted_at: "Ansökan ångrad"
+        regretted_comment: "Varför vill du ångra ansökan?"
+        degraded_at: "Rättigheterna bortplockade"
+        degraded_comment: "Varför tas rättigheterna bort?"
+        degraded_by_id: "Rättigheterna borttagna av"
+        nominated_at: "Föreslagen som adminstratör"
+        nominated_by_id: "Föreslagen som administratör av"
+        nominated_comment: "Varför ska användaren bli administratör?"
+        rejected_at: "Förslaget avfärdat"
+        rejected_comment: "Varför vill du inte bli adminstratör?"
+        approved_at: "Förslaget att bli admininstratör godkänt"
+        cancelled_at: "Förslaget ångrat"
+        cancelled_by_id: "Förslaget ångrat av"
+        cancelled_comment: "Varför ångras förslaget att göra till administratör?"
+        no_thanks_at: "Ansökan avslagen"
+        no_thanks_by_id: "Ansökan avslagen av"
+        no_thanks_comment: "Anledning till avslag på ansökan om att bli administratör"
+
+  
+  memberships:
+    show:
+      title: "Administratör hos arrangör"
+      to_organizer: "Till arrangör"
+      to_user: "Till användare"
+      whats_next: "Vad händer nu?"
+    states:
+      i_am: 
+        admin: "Du är adminstratör."
+        applied: "Du har ansökt om att bli administratör."
+        disposed: "Dina behörigheter har ändrats."
+        nominated: "Du har fått förslag att bli adminstratör."
+        resigned: "Du är inte längre engagagerad."
+      next_step:
+        admin:  "Du är administratör."
+        applied: "Vänta på att arrangören godkänner eller avslår din ansökan."
+        disposed: "Ta bort meddelandet om ändrade behörigheter."
+        nominated: "Svara på erbjudandet om att bli administratör."
+        resigned: "Du behöver inte göra något. Arrangören informeras."
+        
+
+
+  
+      

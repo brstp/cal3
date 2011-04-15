@@ -1,0 +1,32 @@
+<% title "Petition" %>
+
+<p>
+  <strong>User:</strong>
+  <%= @petition.user %>
+</p>
+<p>
+  <strong>Organizer:</strong>
+  <%= @petition.organizer %>
+</p>
+<p>
+  <strong>Argumentation:</strong>
+  <%= @petition.argumentation %>
+</p>
+<p>
+  <strong>Decision Made By User:</strong>
+  <%= @petition.decision_made_by_user %>
+</p>
+<p>
+  <strong>Approved:</strong>
+  <%= @petition.approved %>
+</p>
+<p>
+  <strong>Rejected Reason:</strong>
+  <%= @petition.rejected_reason %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_petition_path(@petition) %> |
+  <%= link_to "Destroy", @petition, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", petitions_path %>
+</p>

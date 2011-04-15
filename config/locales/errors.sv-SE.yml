@@ -1,0 +1,92 @@
+# Append your own errors here or at the model/attributes scope.
+# You can define own errors for models or model attributes.
+# The values :model, :attribute and :value are always available for interpolation.
+#
+# For example,
+#   models:
+#     user:
+#       blank: "This is a custom blank message for %{model}: %{attribute}"
+#       attributes:
+#         login:
+#           blank: "This is a custom blank message for User login"
+# Will define custom blank validation message for User model and
+# custom blank validation message for login attribute of User model.
+sv-SE:
+  activerecord:
+    errors:
+      format: "%{attribute} %{message}"
+      template:
+        header:
+          one: "Ett fel förhindrade denna %{model} från att sparas"
+          other: "%{count} fel förhindrade denna %{model} från att sparas"
+        body: "Det var problem med följande fält:"
+      
+      # The values :model, :attribute and :value are always available for interpolation
+      # The value :count is available when applicable. Can be used for pluralization.
+      messages:
+        inclusion: "finns inte i listan"
+        exclusion: "är reserverat"
+        invalid: "är ogiltigt"
+        confirmation: "stämmer inte överens"
+        accepted: "måste vara accepterad"
+        empty: "får ej vara tom"
+        blank: "måste anges"
+        too_long: "är för lång (maximum är %{count} tecken)"
+        too_short: "är för kort (minimum är %{count} tecken)"
+        wrong_length: "har fel längd (ska vara %{count} tecken)"
+        taken: "används redan"
+        not_a_number: "är inte ett nummer"
+        greater_than: "måste vara större än %{count}"
+        greater_than_or_equal_to: "måste vara större än eller lika med %{count}"
+        equal_to: "måste vara samma som"
+        less_than: "måste vara mindre än %{count}"
+        less_than_or_equal_to: "måste vara mindre än eller lika med %{count}"
+        odd: "måste vara udda"
+        even: "måste vara jämnt"
+        record_invalid: "Ett fel uppstod: %{errors}"      
+  error_messages:
+    helper:
+      invalid_fields: "Det här ser lite fel ut"
+      correct_the_following_errors_and_try_again: "Kolla igenom vad som gått fel och försök igen."
+  activemodel:
+    errors:
+      template:
+        header:
+          one:   "Ett fel förhindrade denna %{model} från att sparas"
+          other: "%{count} fel förhindrade denna %{model} från att sparas"
+        # The variable :count is also available
+        body: "Det var problem med följande fält:"
+  
+  # error:
+    # messages:
+      # invalid_date: "ser inte ut som ett datum"
+      # invalid_time: "ser inte ut som ett klockslag"
+      # invalid_datetime: "ser inte ut som datum och klockslag"
+      # is_at: "måste vara %{restriction}"
+      # before: "måste vara tidigare än %{restriction}"
+      # on_or_before: "måste vara %{restriction} eller tidigare"
+      # after: "måste vara senare än %{restriction}"
+      # on_or_after: "måste vara %{restriction} eller senare"
+
+
+  errors:
+    messages:
+      invalid_date: "ser inte ut som ett datum"
+      invalid_time: "ser inte ut som ett klockslag"
+      invalid_datetime: "ser inte ut som datum och klockslag"
+      is_at: "måste vara %{restriction}"
+      before: "måste vara tidigare än %{restriction}"
+      on_or_before: "måste vara %{restriction} eller tidigare"
+      after: "måste vara senare än %{restriction}"
+      on_or_after: "måste vara %{restriction} eller senare"
+      not_found: "hittades inte"
+      already_confirmed: "är redan bekräftad"
+      not_locked: "är inte låst"
+      invalid_email: "ser inte ut att vara en korrekt mejladress."
+      invalid_url: "ser inte ut att vara en korrekt länk till en webbsida"
+      invalid_phone_number: "ser inte ut som ett korrekt telefonnummer. Använd siffror, mellanslag och bindestreck om du vill. Du får använda plustecken för internationella telefonnummer. Glöm inte riktnummer."
+      name_but_no_phone: "måste anges om du anger ett namn (eller ta bort namnet)."
+      phone_but_no_name: "måste anges om du anger ett telefonnummer."
+      not_saved:
+        one: 'Ett fel gjorde att %{model} inte kunde sparas:'
+        other: '%{count} fel gjorde att %{model} inte kunde sparas:'        

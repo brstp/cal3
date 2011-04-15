@@ -17,7 +17,19 @@
     <div class = "user_message">
 
         <p>
-    
+        <% case membership.state %>
+          <% when "admin" %>
+            Du är administratör för <%= @organizer.name%>s arrangörssida.<br />
+            <strong><%= link_to "Just nu finns det behörighetsärenden att agera på.", :anchor => :admin %></strong><br /><%= link_to "Ändra arrangörssidan eller dela ut behörigheter.", :anchor => :admin %>
+          <% when "applied" %>
+            Du har ansökt om att bli administratör för <%= @organizer.name%>s arrangörssida.  <%= link_to "Status...", membership_path(membership, :id => membership.id ) %>  
+            <%= link_to "Ångra...", membership_regret_path(membership, :id => membership.id ), :method => :put %>
+          <% when "nominated" %>
+            <%= @organizer.name %> vill att du ska vara administratör. Kommentar från <% membership.nominated_by_id.name %>: <emphasis>Kommentar</emphasis>. 
+          <% when "disposed" %>
+          <% when "resigned" %>
+          <% else %>
+        <% end %>
         </p>
 
     </div>

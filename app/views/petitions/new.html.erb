@@ -1,0 +1,34 @@
+<h1><%= title t '.title' %></h1>
+
+<%= semantic_form_for @petition, @user  do |f| %>
+  <%= f.error_messages %>
+  <%= f.inputs do %>
+    <%= f.input   :organizer, 
+                  :required => true,
+                  :as => :string,
+                  :input_html => { :disabled => true} %>
+    <%= f.semantic_fields_for :user do |user| %>
+      <%= user.inputs do %>
+      <%= user.input  :email,
+                      :input_html => { :disabled => true}%>
+      <li><p class = "inline-text"><%= t 'users.sessions.not_you' %> <%= link_to I18n.t('users.sessions.sign_out'), destroy_user_session_path %></p></li>
+      <%= user.input  :first_name, 
+                      :required => true,
+                       %>
+      <%= user.input  :last_name, 
+                      :required => true,
+                       %>
+ 
+      <% end %>
+    <% end %>
+
+    <%= f.input   :argumentation %>
+    <%= f.input   :user_id, 
+                  :as => :hidden %>
+    <%= f.input   :organizer_id, 
+                  :as => :hidden %>   
+  <% end %>
+  <%= f.buttons %>
+<% end %>
+
+<%= link_to t('.back'), :back %>

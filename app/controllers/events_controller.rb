@@ -168,14 +168,14 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
     @organizers = current_user.select_organizer
     @event = Event.new
     @event.email = current_user.email
-    @event.email_name = ''
+    @event.human_name = ''
     unless (current_user.first_name.blank?) 
-      @event.email_name += current_user.first_name + " " 
+      @event.human_name += current_user.first_name + " " 
     end
     unless (current_user.last_name.blank?) 
-      @event.email_name += current_user.last_name 
+      @event.human_name += current_user.last_name 
     end
-    @event.email_name.strip!
+    @event.human_name.strip!
   end
 
   def create
@@ -221,7 +221,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
       flash[:alert] = t 'flash.actions.not_authenticated'
       redirect_to :action => :back      
     else
-      if current_user.organizers.empty? and !current_user.is_admin?
+      if current_user.organizers.blank? and !current_user.is_admin?
         flash[:alert] = t 'flash.actions.not_member'
         redirect_to :back
       end

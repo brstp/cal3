@@ -22,7 +22,7 @@ module LayoutHelper
   end
   
   def user_message organizer, user
-    if (! organizer.users.include? user)  && (organizer.memberships.find_by_prospect_user_id(user.id))
+    if false && (! organizer.users.include? user)  && (organizer.memberships.find_by_prospect_user_id(user.id))
       str = %(
                 <div class = "user_message">
                     Du har ansökt om att bli administratör hos föreningen #{I18n.localize(organizer.memberships.find_by_prospect_user_id(user.id).created_at) }. Din ansökan kommer att behandlas av föreningens administratörer. 
@@ -67,7 +67,9 @@ module LayoutHelper
 
   def my_applications user
     unless user.blank?
-      prospectships = Membership.find_all_by_prospect_user_id(user.id)         
+      prospectships = nil 
+      #TODO adding states
+      #prospectships = Membership.find_all_by_prospect_user_id(user.id)         
       unless prospectships.blank?
         str = ""
         str << %(
@@ -91,9 +93,9 @@ module LayoutHelper
     <li class="radio required" id="event_category_input">
     <fieldset>
     <legend class="label">
-    <label>#{t('formtastic.labels.event.category')}</label>
+    <label>#{ Event.human_attribute_name('category') }*</label>
     </legend>
-    <ol class = "category-level-0">
+    <ol class = "category-level-0" >
     #{Category.all.first.root.climb selected_category}
     </ol>
     </fieldset>

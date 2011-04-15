@@ -89,7 +89,7 @@
     helper:
       invalid_fields: "Det här ser lite fel ut"
       correct_the_following_errors_and_try_again: "Kolla igenom vad som gått fel och försök igen."
-      
+
   activemodel:
     errors:
       template:
@@ -109,7 +109,7 @@
           one: "Ett fel förhindrade denna %{model} från att sparas"
           other: "%{count} fel förhindrade denna %{model} från att sparas"
         body: "Det var problem med följande fält:"
-      
+
       # The values :model, :attribute and :value are always available for interpolation
       # The value :count is available when applicable. Can be used for pluralization.
       messages:
@@ -161,7 +161,7 @@
       user: "användare"
       mail: "mejl"
       category: "ämneskategori"
-      
+
     # Translate model attribute names. Used in Model.human_attribute_name(attribute).
     #attributes:
       # For example,
@@ -191,7 +191,7 @@
         municipality: "Kommun"
         municipality_id: "Kommun"
         email: "Mejladress"
-        email_name: "Namn för mejladressen"
+        human_name: "Namn för mejladressen"
         phone_number: "Telefonnummer"
         phone_name: "Namn för telefonnummer"
         category: "Ämneskategori"
@@ -235,9 +235,13 @@
         user_agent: "Webbläsarmodell"
         from_phone: "Ditt telefonnummer"
         event_id: "Evenemangsannons"
+      petition:
+        user: "Användare"
+        organizer: "Arrangör"
+        argumentation: "Motiv för att bli administratör"
 
-      
-      
+
+
   date:
     formats:
       # Use the strftime parameters for formats.
@@ -260,9 +264,9 @@
     formats:
       default: "%Y-%m-%d %H.%M"                 # 2011-05-27 13.25
       short: "%e %b %H.%M"                      # 3 dec 13.25
-      shorty: "%e %b"                           # 3 dec 
+      shorty: "%e %b"                           # 3 dec
       long: "%e %B %Y %H.%M"                    # 3 december 2011 13.25
-      longest: "%A %e %B %Y klockan %H.%M"      # tisdag 3 december 2011 klockan 13.25 
+      longest: "%A %e %B %Y klockan %H.%M"      # tisdag 3 december 2011 klockan 13.25
       time: "%H.%M"                             # 13.45
       mini: "%e %B %Y"                          # 3 december 2011
       clock: "Kl. %H.%M"                        # Kl. 13.45
@@ -286,14 +290,14 @@
       # default value for :prompt => true in FormOptionsHelper
       prompt: "Välj"
 
-    
+
   app:
     back_to_list: "Tillbaka till listan"
     edit: "Ändra"
     are_you_sure: "Vill du radera"
     destroy: "Ta bort"
     sitename: "Föreningskalendern"  #remove this...
-    site_name: "Föreningskalendern"  
+    site_name: "Föreningskalendern"
     destroyed: "Raderat %{resource_name}."
     arranged_by: "Arrangeras av"
     in_municipality: "i"
@@ -314,7 +318,7 @@
     category: "Kategori"
     yess: "ja"
     for_admin: "För systemadminstratörer"
-    
+
   will_paginate:
     first: "&lt;&lt; första"
     next: "nästa &gt;"
@@ -324,39 +328,9 @@
     to: "till"
     shows: "visar"
     events: "evenemang"
-  
-  when_facet:
-    this_month: "den här månaden"
-    next_month: "nästa månad"
-    third_month: "nästnästa månad"
-    today: "idag"
-    tomorrow: "i morgon"
-    this_weekend: "på lördag-söndag"
-    next_weekend: "nästa lördag-söndag"
-    summer_holiday:
-    christmas_holiday:
-    christmas_days:
-    midsummer:
-    walpurgis_night: "valborgsmässoafton"
-    this_week: "den här veckan"
-    next_week: "nästa vecka"
-    sport_holiday1:
-    sport_holiday2:
-    sport_holiday3:
-    easter_holiday1:
-    easter_holiday2:
-    past: "tidigare, genomförda"
-    future: "idag och framåt"
-    
-  mail:
-    cc_event: "Kopia evenemang"
-    to_event: "Om evenemang"
-    new_event: "Nytt evenemang"
-    changed_event: "Ändrat evenemang"
-    
-  map:
-    drag_me: "Du kan flytta kartnålen genom att dra den med musen."
-    
+
+
+
   error:
     messages:
       invalid_date: "ser inte ut som ett datum"
@@ -390,17 +364,17 @@
       not_saved:
         one: 'Ett fel gjorde att %{model} inte kunde sparas:'
         other: '%{count} fel gjorde att %{model} inte kunde sparas:'
-      
 
-  
+
+
 
   validates_timeliness:
     error_value_formats:
       date: '%Y-%m-%d'
       time: '%H.%M'
       datetime: '%Y-%m-%d %H.%M'
-      
-#Formtastic      
+
+#Formtastic
   formtastic:
     "yes": 'Ja'
     "no": 'Nej'
@@ -409,7 +383,7 @@
     create: 'Skapa'
     save: 'Spara'
     submit: 'Skicka'
-    required: 'Obligatorisk' 
+    required: 'Obligatorisk'
     labels:
       event:
         municipality: "Kommun"
@@ -449,14 +423,14 @@
         lng: "Också i decimalformat"
         municipality: "Där evenemanget sker. Markera menyn och skriv första bokstaven i kommunnamnet för att snabbt hitta kommunen."
         email: "Om någon vill nå dig som arrangerar, vilken mejladress tar du emot frågor på? Mejlet skickas från ett kontaktformulär där din mejladress inte visas."
-        email_name: "Vem går mejlet till? Namnet visas istället för mejladress i kontaktformuläret. Exempel: \"Veera Virtanen\" eller \"Föreningskansliet\"."
+        human_name: "Vem går mejlet till? Namnet visas istället för mejladress i kontaktformuläret. Exempel: \"Veera Virtanen\" eller \"Föreningskansliet\"."
         phone_number: "Om någon vill nå dig som arrangerar, vilket telefonnummer tar du emot frågor på? Komplett telefonnummer inklusive riktnummer."
         phone_name: "Vem går telefonnumret till? Exempel: \"Åke Svensson\" eller \"Föreningskansliet\"."
         image1: "En bild som visas i evenemangsannonsen. Bör vara minst 600 pixel bred. Bilden skalas och beskärs så att den passar utrymmet. Den här bilden är den som visas störst i annonsen."
         image2: "Ytterligare bild."
         image3: "Ytterligare bild."
         category: "Vad handlar evenemanget om? Vilket ämne? Försök ange en så specifik kategori som möjligt."
-      municipality: 
+      municipality:
         name: "Namnet på kommunen (en del kommuner heter \"stad\")"
       user:
         email_no_change_allowed: "Mejladressen kan inte ändras."
@@ -466,9 +440,13 @@
         name: "Namnet på föreningen, företaget eller dig som arrangerar."
         intro: "En kort sammanfattande beskrivning om arrangören. Skriv gärna vad du/ni sysslar med, var ni finns (särskilt om det finns flera med samma namn). Kan vara en sammanfattning av beskrivningen längre ned på sidan."
         description: "En längre beskrivning av arrangören. Berätta vem du eller vilka ni är, var ni finns, vad ni gör, vem era evenemang vänder sig till."
-        website: "Länk till arrangörens hemsida. Exempel: http://www.abc.se (jo, det där http:// eller https:// i början ska vara med)."  
+        website: "Länk till arrangörens hemsida. Exempel: http://www.abc.se (jo, det där http:// eller https:// i början ska vara med)."
         logotype: "En bild eller symbol som representerar arrangören. Används som en logotyp. Välj en bild som inte innehåller allt för mycket detaljer. Lämplig storlek är bredd: 90 pixlar och höjd: 109 pixlar. Vi förstorar eller förminskar bilden om det behövs. Bilden bör vara i formaten gif eller png med transparent bakgrund."
         photo: "En dekorativ bild som visas i stort format på arrangörssidan. Se det som en reklambild för er. Vi rekommenderar ett motiv som visar vad ni ägnar er åt.  Lämplig storlek på bilden är bredd: 720 pixlar och höjd: 480 pixlar. Vi förstorar eller förminskar bilden om det behövs. Vi rekommenderar filformat jpg (gif och png fungerar också)."
+      petition:
+        argumentation: "Varför"
+        user: "qq"
+        organizer: "ww"
     actions:
       event:
         create: "Skapa evenemangsannons"
@@ -504,7 +482,7 @@
       mail_messages: "Mejllogg evenemangskontakter"
       use_gravatar: "Personbilden (avataren) kommer från gravatar.com. Du kan välja en bild att representera dig."
       your_admin_applications: "Dina administratörsansökningar"
-      
+
   categories:
     new:
       list: "Till kategorilistan (strunta i ändringar)"
@@ -513,7 +491,7 @@
       title: "Ändra kategori"
       list: "Till kategorilistan (strunta i ändringar)"
       show: "Strunta i ändringar"
-      
+
   users:
     show:
       list: "Till användarlistan"
@@ -529,7 +507,7 @@
       title: "Ändra på mitt användarkonto"
       change_password: 'Ändra mitt lösenord eller mejladress'
     new:
-      title: "Ny användare" 
+      title: "Ny användare"
       list: "Till användarlistan (strunta i ändringar)"
     index:
       new: "Skapa ny användare"
@@ -598,9 +576,9 @@
       reset_password_instructions:
         subject: 'Ändring av lösenord på Föreningskalendern'
       unlock_instructions:
-        subject: 'Lås upp dit användarkonto på Föreningskalendern'      
+        subject: 'Lås upp dit användarkonto på Föreningskalendern'
       invitation:
-        subject: 'Inbjudan till Kalendern'     
+        subject: 'Inbjudan till Kalendern'
   devise:
     invitations:
       user: #TODO fix below, should be part of users, not devise...
@@ -638,12 +616,12 @@
       escutcheon_for: "Kommunvapen för"
       promote: "Gör reklam för det som händer i"
       previous_events: "Redan genomförda evenemang i"
-      
+
 
   organizers:
     index:
       title: "Alla arrangörer och deras evenemang"
-      meta_description: "Hitta arrangörer till olika evenemang i Sverige. Du kan annonsera dina arrangemang också." 
+      meta_description: "Hitta arrangörer till olika evenemang i Sverige. Du kan annonsera dina arrangemang också."
       new: "Skapa ny arrangör"
       no_of_events_per_organizer: "inplanerat evenemang"
     show:
@@ -656,7 +634,7 @@
       no_of_events_per_municipality: "inplanerade evenemang i kommunen"
       subscribe_rss: "Prenumerera på"
       organizers_event: "evenemang"
-      rss_alt: "Prenumerera på RSS-flöde med evenemang hos" 
+      rss_alt: "Prenumerera på RSS-flöde med evenemang hos"
       rss_title: "evenemang i Föreningskalendern"
       rss_description: "Alla evenemang för arrangören. I Föreningskalendern. Du kan också annonsera dina evenemang på http://127.0.0.1"
       more_events: "Hitta fler evenemang och annonsera."
@@ -711,7 +689,7 @@
     index:
       title: "Arrangörer"
       new: "Skapa ny arrangör"
-  
+
 
   events:
     new:
@@ -725,7 +703,7 @@
       new_organizer: "Skapa ny arrangör"
       no_of_events_per_municipality: "inplanerade evenemang i kommunen"
       no_of_events_per_organizer: "inplanerat evenemang"
-      rss_alt: "Prenumerera på RSS-flöde med alla evenemang." 
+      rss_alt: "Prenumerera på RSS-flöde med alla evenemang."
       rss_title: "Alla evenemang i Föreningskalendern"
       show_all_facets: "Visa alla"
       when: "Händer när"
@@ -738,8 +716,8 @@
     edit:
       title: "Ändra evenemanget"
       show: "Visa evenemanget (strunta i ändringar)"
-      list: "Till evenemangslistan (strunta i ändringar)"  
-    show: 
+      list: "Till evenemangslistan (strunta i ändringar)"
+    show:
       list: "Till evenemangslistan"
       no_of_events_per_municipality: "inplanerade evenemang i kommunen"
       no_of_events_per_organizer: "inplanerat evenemang"
@@ -762,18 +740,18 @@
       do_you_really_want_to_cancel_me: "Vill du strunta i ändringar som du gjort sedan du sparade senast?"
       select_organizer: "--- Välj en arrangör ---"
       select_municipality: "--- Välj en kommun ---"
-      
-      
-  
-      
+
+
+
+
   mail_messages:
     form:
       self_copy: "När du skickar det här mejlet så skickar vi dig en kopia."
       disclaimer: "    Vi sparar inte själva meddelandet som du skickar till arrangören, däremot informationen om att ett mejl har skickats (från och till vem). Vi använder den informationen för att försöka stoppa spam och missbruk. Vi sparar också nedanstående information om din webbläsare av samma skäl."
-      
+
   flash:
     actions:
-      update: 
+      update:
         notice: "Ändrat"
       create:
         notice: "Skapat"
@@ -788,14 +766,14 @@
         dont_delete_own_membership: "Du får inte själv ta bort ditt eget adminstratörsskap för arrangören. Be någon av de andra administratörerna att göra det."
         membership_removed: "Okej, är inte längre adminstratör."
         prospectship_removed: "Okej, ansökan att bli administratör är bortplockad."
-        
+
       not_member: "Du har inte behörighet. Du är inte administratör hos den här arrangören (eller någon annan)"
       not_member_here: "Du har inte behörighet. Du måste vara administratör hos den här arrangören."
       not_prospect_here: "Du kan inte ta bort ansökan, den har redan hunnit behandlas."
       not_authenticated: "Något har gått fel. Du behöver logga in."
       not_admin: "Du har inte behörighet. Du måste ha administratörsrättigheter."
       not_you: "Du har inte behörighet att se eller ändra någon annans uppgifter."
-      
+
   rss:
     title: "Föreningskalendern"
     description: "Allt som händer - där det händer. Du kan själv annonsera dina evenemang på Föreningskalendern."

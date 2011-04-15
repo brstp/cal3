@@ -4,8 +4,27 @@ class Organizer < ActiveRecord::Base
   include ActionView::Helpers::RawOutputHelper
 
   has_many :events
-  has_many :memberships, :dependent => :destroy
-  has_many :users, :through => :memberships
+  
+  # has_many  :memberships, 
+            # :dependent => :destroy
+ 
+  # has_many  :users, 
+            # :through => :memberships
+  
+  has_many  :petitions, 
+            :dependent => :destroy
+            
+  has_many  :petition_users, 
+            :through => :petitions, 
+            :source => :user  
+  
+  # has_many :admins, :through => :memberships, :source => :user, :conditions => "memberships.state = 'admin'"
+  # has_many :applications, :through => :memberships, :source => :user, :conditions => "memberships.state = 'applied'"
+  # has_many :nominees, :through => :memberships, :source => :user, :conditions => "memberships.state = 'nominated'"
+  # has_many :user_infos, :through => :memberships, :source => :user, :conditions => "memberships.state = 'inform_admin'"
+  
+  
+
   
   attr_accessible :name, :description, :website, :user_ids, :logotype, :photo, :intro, :phone, :email
   
@@ -42,6 +61,16 @@ class Organizer < ActiveRecord::Base
     end
   end
   
+  def relation_with user
+    membership = self.memberships.find_by_user_id user.id
+    if membership
+      I18n.t("memberships.states.i_am.#{membership.state}")
+    else
+      ''
+    end
+  end
+  
+
 
   
   def ical

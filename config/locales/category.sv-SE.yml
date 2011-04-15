@@ -1,0 +1,21 @@
+sv-SE:
+  activerecord:
+    models:
+      category: 'ämneskategori'
+    attributes:
+      categories:
+        name: 'namn'
+        description: 'Beskrivning'
+        ancestry: 'Tillhör kategori'
+  categories:
+    new:
+      list: 'Till kategorilistan (strunta i ändringar)'
+      title: 'Skapa ny kategori'
+    edit:
+      title: 'Ändra kategori'
+      list: 'Till kategorilistan (strunta i ändringar)'
+      show: 'Strunta i ändringar'
+  formtastic:
+    hints:
+      model_name:
+        attribute_name: ''

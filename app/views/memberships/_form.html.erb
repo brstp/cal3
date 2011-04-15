@@ -1,16 +1,9 @@
-<%= form_for @membership do |f| %>
+<%= semantic_form_for @membership do |f| %>
   <%= f.error_messages %>
-  <p>
-    <%= f.label :organizer_id %><br />
-    <%= f.text_field :organizer_id %>
-  </p>
-  <p>
-    <%= f.label :user_id %><br />
-    <%= f.text_field :user_id %>
-  </p>
-  <p>
-    <%= f.label :is_personal %><br />
-    <%= f.check_box :is_personal %>
-  </p>
-  <p><%= f.submit %></p>
+  <%= f.inputs do %>
+      <%= f.input :comment, :required => true %>
+      <%= f.buttons %>
+  <% end %>
 <% end %>
+
+

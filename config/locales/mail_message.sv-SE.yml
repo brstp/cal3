@@ -1,0 +1,27 @@
+sv-SE:
+  activerecord:
+    models:
+      mail_message: "mejl"
+    attributes:
+      mail_message:
+        to_name: "Till"
+        mail_body: "Meddelande"
+        from_email: "Din mejladress"
+        from_first_name: "Ditt förnamn"
+        from_last_name: "Ditt efternamn"
+        to_email: "Mottagarmejladress"
+        ip: "Din dators IP-adress"
+        referer: "Webbsidan som förde dig hit"
+        user_agent: "Webbläsarmodell"
+        from_phone: "Ditt telefonnummer"
+        event_id: "Evenemangsannons"
+  mail_messages:
+    form:
+      self_copy: "När du skickar det här mejlet så skickar vi dig en kopia."
+      disclaimer: "Vi sparar inte själva meddelandet som du skickar till arrangören, däremot informationen om att ett mejl har skickats (från och till vem). Vi använder den informationen för att försöka stoppa spam och missbruk. Vi sparar också nedanstående information om din webbläsare av samma skäl."
+  formtastic:
+    hints:
+      mail_message:
+        from_phone: "Inklusive riktnummer."
+    mail_message:
+      create: "Skicka mejl"        

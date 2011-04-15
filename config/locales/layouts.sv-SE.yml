@@ -1,0 +1,23 @@
+sv-SE:
+  layouts:
+      application:
+        events: "Alla evenemang"
+        organizers: "Alla arrangörer"
+        municipalities: "Alla kommuner"
+        users: "Alla användare"
+        categories: "Alla kategorier"
+        new_organizer: "Lägg upp en ny arrangör"
+        new_event: "Lägg in evenemangsannons"
+        subscribe_rss: "Prenumera på flöde med alla evenemangsannonser"
+        rss_alt: "Prenumerera på RSS-flöde med alla evenemang."
+        email: "Mejladress:"
+        password: "Lösenord:"
+        remember_me: "Logga in automatiskt"
+        sign_in: "Logga in"
+        forgot_password: "Glömt lösenord?"
+        quick_links: "Snabblänkar"
+        ads: "Annonser"
+        admin_links: "Administratörslänkar"
+        mail_messages: "Mejllogg evenemangskontakter"
+        use_gravatar: "Personbilden (avataren) kommer från gravatar.com. Du kan välja en bild att representera dig."
+        your_admin_applications: "Dina administratörsansökningar"

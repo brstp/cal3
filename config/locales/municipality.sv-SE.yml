@@ -1,0 +1,47 @@
+sv-SE:
+  activerecord:
+    models:
+      municipality: "kommun"
+    attributes:
+      municipality:
+        name: "Kommunnamn"
+        admin_no: "SCB-kommunkod"
+        short_name: "Kort kommunnamn"
+        parent_admin_no: "SCB-länskod"
+        facts: "Kommunfakta från wikipedia (html)"
+        wikipedia_page: "Länk till wikipediasida för kommunen"
+        facts_last_updated: "Fakta senast hämtad"
+        escutcheon: "Länk till kommunvapen"
+  municipalities:
+    index:
+      title: "Alla kommuner"
+      no_of_events_per_municipality: "inplanerade evenemang i kommunen"
+      new: "Lägg upp ny kommunsida"
+    new:
+      title: "Ny kommunsida"
+      list: "Visa kommunlistan (strunta i ändringar)"
+    edit:
+      show: "Visa kommunsidan (strunta i ändringar)"
+      list: "Visa kommunlistan (strunta i ändringar)"
+    show:
+      upcoming: "Kommande evenemang i"
+      no_of_events_per_organizer: " inplanerat evenemang"
+      subscribe_rss: "Prenumerera på evenemang i"
+      rss_alt: "Prenumerera på RSS-flöde för evenemang i"
+      rss_title: "Evenemang som sker i"
+      rss_description: "Alla evenemang i kommunen. I Föreningskalendern. Du kan också annonsera dina evenemang på http://127.0.0.1"
+      more_events: "Hitta fler evenemang och annonsera."
+      share_as_iframe: "Vill du ha evenemangen i kommunen på din hemsida? Kopiera och klistra in i din mall eller htmlfil: "
+      meta_description: "Hitta alla evenemang i"
+      meta_description2: "och annonsera dina egna arrangemang så att de syns här."
+      download_ics: "Spara evenemangen i kommunen i kalendern på din dator."
+      edit: "Ändra kommunsidan"
+      destroy: "Radera kommunsidan"
+      escutcheon_for: "Kommunvapen för"
+      promote: "Gör reklam för det som händer i"
+      previous_events: "Redan genomförda evenemang i"
+  formtastic:
+    hints:
+      municipality: 
+        name: "Namnet på kommunen (en del kommuner heter \"stad\")"
+

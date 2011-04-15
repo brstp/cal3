@@ -1,0 +1,34 @@
+sv-SE:
+  activerecord:
+    models:
+      petition: "Administratörsansökan"
+    attributes:
+      petition:
+        user: 'Användare'
+        organizer: 'Arrangör'
+        argumentation: 'Anledning till ansökan'
+        approved: 'Godkänn ansökan'
+        rejected_reason: 'Anledning till avslag'
+        decision_made_by_user: 'Beslutet fattat av'
+        created_at: 'Ansökan gjord'
+  error_messages:
+    petition:
+      already_applied: 'du har redan ansökt om att bli administratör för den här arrangören.'
+      approved_blank: 'måste besvaras.'
+  petitions:
+    show:
+    index:
+      title: 'Alla ansökningar om att bli administratör'
+      new: 'Skapa ny ansökan'
+    edit:
+      title: 'Godkänn eller avslå ansökan att bli adminstratör'
+      back: 'Tillbaka'
+    new: 
+      title: 'Ansökan att bli administratör' 
+      back: 'Tillbaka'
+    form:
+  formtastic:
+    hints:
+      petition:
+        argumentation: 'Berätta kort vem du är och varför du ansöker om att bli administratör.'
+        rejected_reason: 'Om du avslår ansökan, skriv en kort förklaring till den som ansökt om behörighet.'

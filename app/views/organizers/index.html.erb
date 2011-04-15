@@ -17,6 +17,9 @@ Om du inte registrerat ett användarkonto, gör det och logga in för att skapa 
       <th>Arrangör</th>
       <th class = "number_column">Inplanerade<br />evenemang</th>
       <th>Nästa evenemang</th>
+      <% if current_user %>
+        <th></th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -29,6 +32,9 @@ Om du inte registrerat ett användarkonto, gör det och logga in för att skapa 
       <%= link_to(l(organizer.next_event.start_datetime, :format => :shorty) + ', ' +organizer.next_event.subject + ' (' + organizer.next_event.municipality.short_name + ')', organizer.next_event, :title => organizer.next_event.try(:intro)) %>
       <% end %>
       </td>
+      <% if current_user %>
+        <td><%# link_to organizer.relation_with(current_user), organizer %></td>
+      <% end %>
     </tr>
   <% end %>
   </tbody>

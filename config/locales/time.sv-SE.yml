@@ -1,0 +1,88 @@
+sv-SE:
+  time:
+    formats:
+      default: "%Y-%m-%d %H.%M"                 # 2011-05-27 13.25
+      month_and_year: "%B %Y"
+      day_of_week: "%A"
+      date: "%Y-%m-%d"                          # 2011-05-24
+      day_of_month: "%e"
+      clock: "Kl. %H.%M"                        # Kl. 13.45
+      machine: "%Y-%m-%dT%H:%M:00%z"
+      short: "%e %b %H.%M"                      # 3 dec 13.25
+      shorty: "%e %b"                           # 3 dec 
+      long: "%e %B %Y %H.%M"                    # 3 december 2011 13.25
+      longest: "%A %e %B %Y klockan %H.%M"      # tisdag 3 december 2011 klockan 13.25 
+      time: "%H.%M"                             # 13.45
+      mini: "%e %B %Y"                          # 3 december 2011
+      day: "%e %b"                              #
+      icalendar: "%Y%m%dT%H%M00"
+    am: ""
+    pm: ""
+  date:
+    formats:
+      # Use the strftime parameters for formats.
+      # When no format has been given, it uses default.
+      # You can provide other formats here if you like!
+      default: "%Y-%m-%d"
+      short: "%e %b"
+      long: "%e %B %Y"
+
+    day_names: [söndag, måndag, tisdag, onsdag, torsdag, fredag, lördag]
+    abbr_day_names: [sön, mån, tis, ons, tor, fre, lör]
+
+    # Don't forget the nil at the beginning; there's no such thing as a 0th month
+    month_names: [~, januari, februari, mars, april, maj, juni, juli, augusti, september, oktober, november, december]
+    abbr_month_names: [~, jan, feb, mar, apr, maj, jun, jul, aug, sep, okt, nov, dec]
+    # Used in date_select and datime_select.
+    order: [ :day, :month, :year ]
+  validates_timeliness:
+    error_value_formats:
+      date: '%Y-%m-%d'
+      time: '%H.%M'
+      datetime: '%Y-%m-%d %H.%M'
+      
+  # Used in distance_of_time_in_words(), distance_of_time_in_words_to_now(), time_ago_in_words()
+  datetime:
+    distance_in_words:
+      half_a_minute: "en halv minut"
+      less_than_x_seconds:
+        one:   "mindre än en sekund"
+        other: "mindre än %{count} sekunder"
+      x_seconds:
+        one:   "en sekund"
+        other: "%{count} sekunder"
+      less_than_x_minutes:
+        one:   "mindre än en minut"
+        other: "mindre än %{count} minuter"
+      x_minutes:
+        one:   "en minut"
+        other: "%{count} minuter"
+      about_x_hours:
+        one:   "ungefär en timme"
+        other: "ungefär %{count} timmar"
+      x_days:
+        one:   "en dag"
+        other: "%{count} dagar"
+      about_x_months:
+        one:   "ungefär en månad"
+        other: "ungefär %{count} månader"
+      x_months:
+        one:   "en månad"
+        other: "%{count} månader"
+      about_x_years:
+        one:   "ungefär ett år"
+        other: "ungefär %{count} år"
+      over_x_years:
+        one:   "mer än ett år"
+        other: "mer än %{count} år"
+      almost_x_years:
+        one:   "nästan ett år"
+        other: "nästan %{count} år"
+    prompts:
+      year:   "År"
+      month:  "Månad"
+      day:    "Dag"
+      hour:   "Timme"
+      minute: "Minut"
+      second: "Sekund"
+      

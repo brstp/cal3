@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  user_id: 1
+  organizer_id: 1
+  argumentation: MyString
+  rejected_by_user_id: 1
+  rejected_reason: MyString
+
+two:
+  user_id: 1
+  organizer_id: 1
+  argumentation: MyString
+  rejected_by_user_id: 1
+  rejected_reason: MyString

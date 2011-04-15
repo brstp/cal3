@@ -12,7 +12,7 @@
     @mail_message.referer = request.headers["referer"]
     @mail_message.user_agent = request.headers["user_agent"]
     @mail_message.event_id = @event.id
-    @mail_message.to_name = @event.email_name
+    @mail_message.to_name = @event.human_name
     @mail_message.to_email = @event.email
     if current_user
       @mail_message.from_email = current_user.try :email

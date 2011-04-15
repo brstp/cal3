@@ -33,7 +33,7 @@
 }
 
 .error_messages {
-  width: 400px;
+  width: 100%;
   border: 2px solid #CF0000;
   padding: 0px;
   padding-bottom: 12px;
@@ -388,3 +388,13 @@ table.general input {
   clear: both;
 }
 
+.user_comment {
+  font-style: italic;
+}
+
+
+form.formtastic fieldset > ol > li p.inline-text { 
+   
+  margin: 0 0 0 25%; 
+  }
+  
