@@ -18,12 +18,13 @@
   </div><!-- /facet -->
 <% end %>
   
+<p>Antal träffar:<%=  @events.count %></p>
   
 <% if @events.blank? %>  
   <p>Just nu hittar vi inte några inplanerade evenemang. </p>
 <% else %>
   <%= will_paginate(
-    :renderer => GmailPaginationLinkRenderer,
+    :renderer => CustomPaginationLinkRenderer,
     :first_label => t('will_paginate.first'),
     :previous_label => t('will_paginate.previous'),
     :next_label => t('will_paginate.next'),
@@ -32,7 +33,7 @@
                     ) %>
   <%= calendar @events %>
   <%= will_paginate(
-    :renderer => GmailPaginationLinkRenderer,
+    :renderer => CustomPaginationLinkRenderer,
     :first_label => t('will_paginate.first'),
     :previous_label => t('will_paginate.previous'),
     :next_label => t('will_paginate.next'),
@@ -42,12 +43,25 @@
 <% end %> 
 
 
-
-
-
 <p>
-<%= link_to(t('.subscribe_rss'), events_url(:only_path => false, :format => :rss, :q => params[:q], :category_id => params[:category_id], :municipality_id => params[:municipality_id], :organizer_id => params[:organizer_id]) )  %>
-<%= link_to image_tag("rss_icon.gif", :alt => t('.rss_alt')), events_url(:only_path => false, :format => :rss, :q => params[:q], :category_id => params[:category_id], :municipality_id => params[:municipality_id], :organizer_id => params[:organizer_id]) %>
+<%= link_to(  t('.subscribe_rss'), 
+              :only_path => false,
+              :format => :rss,
+              :q => params[:q], 
+              :start => params[:start],
+              :category_facet_id => params[:category_facet_id],
+              :organizer_id => params[:organizer_id],
+              :municipality_id => params[:municipality_id] ) %>
+
+<%= link_to image_tag("rss_icon.gif", 
+            :alt => t('.rss_alt')), 
+            events_url( :only_path => false, 
+                        :format => :rss, 
+                        :q => params[:q], 
+                        :start => params[:start],
+                        :category_id => params[:category_id], 
+                        :municipality_id => params[:municipality_id], 
+                        :organizer_id => params[:organizer_id]) %>
 </p>
 <p>
 <%= link_to(t('layouts.application.subscribe_rss'), events_url(:only_path => false, :format => :rss) )  %>  

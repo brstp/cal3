@@ -42,7 +42,7 @@
 <% else %>
   <%= will_paginate( 
           @events,
-          :renderer => GmailPaginationLinkRenderer,
+          :renderer => CustomPaginationLinkRenderer,
           :first_label => t('will_paginate.first'),
           :previous_label => t('will_paginate.previous'),
           :next_label => t('will_paginate.next'),
@@ -52,7 +52,7 @@
   <%= calendar @events %>
   <%= will_paginate( 
           @events,
-          :renderer => GmailPaginationLinkRenderer,
+          :renderer => CustomPaginationLinkRenderer,
           :first_label => t('will_paginate.first'),
           :previous_label => t('will_paginate.previous'),
           :next_label => t('will_paginate.next'),

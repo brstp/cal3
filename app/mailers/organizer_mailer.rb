@@ -103,12 +103,7 @@ class OrganizerMailer < ActionMailer::Base
   def deleted_event_confirmation
   end
   
-  def new_member_confirmation
-  end
-  
-  def deleted_member_confirmation
-  end
-  
+
   def contact_person_confirmation
   end
 end
