@@ -1,0 +1,30 @@
+sv-SE:
+  activerecord:
+    models:
+      model_name: 'administratörsskap'
+    attributes:
+      model_name:
+        organizer: 'Arrangör'
+        organizer_id: 'Arrangör'
+        user: 'Användare'
+        user_id: 'Användare'
+  model_name:
+    show:
+    index:
+    edit:
+      title: ''
+      back: ''
+    new: 
+      title: '' 
+      back: ''
+    form:
+  formtastic:
+    hints:
+      model_name:
+        attribute_name: ''
+  membership:
+    flash:
+      notice:
+        destroyed: 'Du har tagit bort administratörsskapet.'
+      failure:
+        dont_resign: 'Du får inte avsluta ditt administratörsskap själv. Du får be någon av de andra administratörerna hos arrangören att göra det.'

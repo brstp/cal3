@@ -25,7 +25,13 @@ class PetitionsController < ApplicationController
 
   def create
     logger.info "------------- create --------------"
-    @petition = Petition.new(params[:petition])
+    @user = User.find(params[:petition][:user_attributes][:id])
+    @user.update_attributes(params[:petition][:user_attributes])
+    @user.update_attribute 'name_required', true
+    args = params[:petition]
+    @petition = Petition.new( :organizer_id => args[:organizer_id], 
+                              :user_id => args[:user_id], 
+                              :argumentation => args[:argumentation])
     if @petition.save
       redirect_to @petition, :notice => t('petition.flash.notice.created')
       OrganizerMailer.new_petition(@petition, current_user).deliver

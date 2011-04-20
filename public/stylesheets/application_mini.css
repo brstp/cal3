@@ -405,3 +405,6 @@ form.formtastic fieldset > ol > li p.inline-text {
   margin: 0 0 0 25%; 
   }
   
+.left {
+  float: left;
+}

@@ -100,23 +100,23 @@
   <h2><%= t 'app.for_admin'%></h2>
   <div class = "authorized">
     <p>
-      <strong><%= t 'formtastic.labels.municipality.admin_no' %>: </strong>
+      <strong><%= Municipality.human_attribute_name 'admin_no' %>: </strong>
       <%= @municipality.admin_no %>
     </p>
     <p>
-      <strong><%= t 'formtastic.labels.municipality.parent_admin_no' %>: </strong>
+      <strong><%= Municipality.human_attribute_name 'parent_admin_no' %>: </strong>
       <%= @municipality.parent_admin_no %>
     </p>
     <p>
-      <strong><%= t 'formtastic.labels.municipality.short_name' %>: </strong>
+      <strong><%= Municipality.human_attribute_name 'short_name' %>: </strong>
       <%= @municipality.short_name %>
     </p>
     <p>
-      <strong>Wikipediasida:</strong>
+      <strong><%= Municipality.human_attribute_name 'wikipedia_page' %>:</strong>
       <%= @municipality.wikipedia_page %>
     </p>
     <p>
-      <strong>Vapensköld (wikimedia):</strong>
+      <strong><%= Municipality.human_attribute_name 'escutcheon' %>:</strong>
       <%= @municipality.escutcheon %>
     </p>
   </div> <!-- authorized -->

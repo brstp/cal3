@@ -10,7 +10,9 @@ class Petition < ActiveRecord::Base
                   :argumentation, 
                   :decision_made_by_user_id,
                   :rejected_reason,
-                  :approved
+                  :user_attributes,
+                  :approved,
+                  :id
   
   validates_presence_of :organizer, 
                         :user, 
@@ -32,7 +34,8 @@ class Petition < ActiveRecord::Base
 
   default_scope :order => 'created_at DESC'
   
-  accepts_nested_attributes_for :user     # Formtastic needs this
+  accepts_nested_attributes_for   :user
+                                  # Formtastic nested forms need this
 
   def rejected?
     self.approved == false
