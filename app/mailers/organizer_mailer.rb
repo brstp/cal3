@@ -31,8 +31,8 @@ class OrganizerMailer < ActionMailer::Base
           )
   end
   
-  def new_petition(petition, current_user)
-    @user = current_user
+  def new_petition(petition, user)
+    @user = user
     @petition = petition
     @organizer = @petition.organizer
     @wannabe = @petition.user 
@@ -48,8 +48,8 @@ class OrganizerMailer < ActionMailer::Base
     
   end
   
-  def approved_petition(petition, current_user)
-    @user = current_user
+  def approved_petition(petition, user)
+    @user = user
     @petition = petition
     @organizer = @petition.organizer
     @wannabe = @petition.user 
@@ -66,8 +66,8 @@ class OrganizerMailer < ActionMailer::Base
     
   end
 
-  def rejected_petition(petition, current_user)
-    @user = current_user
+  def rejected_petition(petition, user)
+    @user = user
     @petition = petition
     @organizer = @petition.organizer
     @wannabe = @petition.user 
@@ -78,12 +78,28 @@ class OrganizerMailer < ActionMailer::Base
     
     mail(   :cc => "#{cc_organizer}", 
             :to => "#{@wannabe}",
-            :Precedence => "junk",
             :subject => "#{I18n.t('petition.mail.rejected')} #{@organizer}"   
           )    
     
   end
   
+  def cancelled_membership(membership, user)
+    @user = user
+    @membership = membership
+    @organizer = @membership.organizer
+    @ex = @membership.user 
+    cc_organizer = ""
+    for dude in @organizer.users
+      cc_organizer += (dude.name + ',')
+    end
+    
+    mail(   :cc => "#{cc_organizer}", 
+            :to => "#{@wannabe}",
+            :subject => "#{I18n.t('membership.mail.destroyed')} #{@organizer}"   
+          )    
+    
+  end  
+
   def deleted_event_confirmation
   end
   

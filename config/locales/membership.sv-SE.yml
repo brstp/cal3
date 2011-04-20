@@ -25,6 +25,8 @@ sv-SE:
   membership:
     flash:
       notice:
-        destroyed: 'Du har tagit bort administratörsskapet.'
+        destroyed: 'Du har tagit bort behörigheten som administratör. Vi skickar ett mejl om det till användaren. Du får en kopia.'
       failure:
         dont_resign: 'Du får inte avsluta ditt administratörsskap själv. Du får be någon av de andra administratörerna hos arrangören att göra det.'
+    mail:
+      destroyed: 'Admininstratör borttagen för'
