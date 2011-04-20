@@ -42,7 +42,6 @@ class Petition < ActiveRecord::Base
   end
   
   def validates_duplicates_membership
-    logger.info "--------------- validates_duplicates_membership ------"
     unless Membership.find_by_user_id_and_organizer_id(self.user_id, self.organizer_id ) == nil
       errors.add(:organizer_id, I18n.t('errors.messages.duplicates_membership'))
     end

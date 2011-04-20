@@ -11,12 +11,10 @@ class PetitionsController < ApplicationController
   end
 
   def show
-    logger.info "------------- show --------------"
     @petition = Petition.find(params[:id])
   end
 
   def new
-    logger.info "------------- new --------------"
     @petition = Petition.new
     @user = current_user
     @petition.user_id = current_user.id
@@ -24,7 +22,6 @@ class PetitionsController < ApplicationController
   end
 
   def create
-    logger.info "------------- create --------------"
     @user = User.find(params[:petition][:user_attributes][:id])
     @user.update_attributes(params[:petition][:user_attributes])
     @user.update_attribute 'name_required', true
@@ -41,13 +38,11 @@ class PetitionsController < ApplicationController
   end
 
   def edit
-    logger.info "------------- edit --------------"
     @petition = Petition.find(params[:id])
     @petition.decision_made_by_user = current_user
   end
 
   def update
-    logger.info "------------- update --------------"
     @petition = Petition.find(params[:id])
     if @petition.update_attributes(params[:petition])
       if @petition.approved
@@ -71,7 +66,6 @@ class PetitionsController < ApplicationController
   end
 
   def destroy
-    logger.info "------------- destroy --------------"
     @petition = Petition.find(params[:id])
     organizer = @petition.organizer
     @petition.destroy
@@ -81,7 +75,6 @@ class PetitionsController < ApplicationController
 protected
   
   def is_admin?  
-    logger.info "------------- is_admin? --------------"
     unless current_user.is_admin?
       flash[:alert] = t 'devise.failure.not_admin'
       if request.env["HTTP_REFERER"].blank?
@@ -93,7 +86,6 @@ protected
   end
   
   def is_organizer?
-    logger.info "------------- is_organizer? --------------"
     @petition = Petition.find(params[:id])
     logger.info @petition.organizer.users
     unless (@petition.organizer.users.include? current_user) || current_user.is_admin?
@@ -107,8 +99,6 @@ protected
   end
 
   def my_own?  
-     return
-    logger.info "------------- my_own? --------------"
     @petition = Petition.find(params[:id])
     unless (@petition.user == current_user) || current_user.is_admin?
       flash[:alert] = t('devise.failure.not_mine')
