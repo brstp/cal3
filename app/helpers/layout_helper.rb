@@ -33,12 +33,14 @@ module LayoutHelper
     end
   end
   
+
+
   def my_organizers user
     unless user.blank?
       str = ""
         str << %(
                 <div class = "box my_organizers">
-                  <span class="heading"> #{t 'users.show.my_organizers' }:</span>
+                  <span class="heading"> #{t 'organizers.show.my_organizers' }:</span>
                 )
         unless user.organizers.blank?
           str << %(
@@ -58,35 +60,34 @@ module LayoutHelper
                     )
         end
           str << %(
-                    <p>#{t('organizers.show.do_apply')} #{t('organizers.show.organizers_using')}  #{t'app.or'} <strong>#{ link_to t('organizers.show.register_new'), new_organizer_path}</strong>.</p>
-                    </div><!-- /my_organizers --> 
+                    <p>#{t('organizers.show.do_apply')} #{t('organizers.show.organizers_using')}  #{t'app.or'} <strong>#{ link_to t('organizers.show.register_new'), new_organizer_path}</strong>.</p>  
+                  )
+        
+        petition_organizers = user.petition_organizers
+        unless petition_organizers.blank?
+          str << %(
+                  <p>
+                    #{t 'organizers.show.you_have_applied'}:
+                  </p>
+                  <ul>
+                  )
+          
+          for organizer in petition_organizers
+            str << %(
+                      <li>#{link_to organizer.name,  organizer}</li>  
+                    )
+          end
+          str << %(
+                    </ul>
+                  )
+        end
+                  
+        str << %(
+                    </div><!-- /my_organizers -->
                   )
       raw str
     end
   end
-
-  def my_applications user
-    unless user.blank?
-      prospectships = nil 
-      #TODO adding states
-      #prospectships = Membership.find_all_by_prospect_user_id(user.id)         
-      unless prospectships.blank?
-        str = ""
-        str << %(
-          <div class = "box my_organizers">
-            <span class="heading">#{ t('.your_admin_applications')}:</span>
-          )
-        str << %( <ul class = "my_organizers"> )
-        for prospectship in prospectships  
-          str << %(  <li>#{link_to prospectship.organizer.name,  prospectship.organizer}</li> )
-        end
-        str << %( 
-                    </ul>
-                  </div>)
-        raw str
-      end
-    end
-  end  
   
   def select_category_tree selected_category = nil
     raw %(

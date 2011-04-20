@@ -31,4 +31,5 @@
   <%= f.buttons %>
 <% end %>
 
-<%= link_to t('.back'), :back %>
+<%= link_to t('.back_to_organizer') + ' ' + @petition.organizer.name, organizer_path(@petition.organizer) %>
+

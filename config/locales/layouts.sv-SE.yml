@@ -6,6 +6,7 @@ sv-SE:
         municipalities: "Alla kommuner"
         users: "Alla användare"
         categories: "Alla kategorier"
+        memberships: "Alla administratörer"
         new_organizer: "Lägg upp en ny arrangör"
         new_event: "Lägg in evenemangsannons"
         subscribe_rss: "Prenumera på flöde med alla evenemangsannonser"
@@ -21,3 +22,4 @@ sv-SE:
         mail_messages: "Mejllogg evenemangskontakter"
         use_gravatar: "Personbilden (avataren) kommer från gravatar.com. Du kan välja en bild att representera dig."
         your_admin_applications: "Dina administratörsansökningar"
+        is_admin: "är systemadministratör"

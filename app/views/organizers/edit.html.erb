@@ -1,8 +1,8 @@
-<% title(t('app.edit') + ' ' +@organizer.name) %>
+<h1><%=title(t('app.edit') + ' ' +@organizer.name) %></h1>
 
 <%= render 'form' %>
 
 <p>
-  <%= link_to t('organizer.edit.show'), @organizer %> |
-  <%= link_to t('organizer.edit.list'), organizers_path %>
+  <%= link_to t('.show'), @organizer %> |
+  <%= link_to t('.list'), organizers_path %>
 </p>

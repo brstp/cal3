@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class OrganizersController < ApplicationController
 
 before_filter :authenticate_user!, :except => [:show, :index]
@@ -72,7 +74,7 @@ protected
       flash[:alert] = t 'flash.actions.not_authenticated'
       redirect_to :action => :back          
     else
-      if current_user.authorize.empty? and !current_user.is_admin?
+      if current_user.organizers.empty? and !current_user.is_admin?
         flash[:alert] = t 'flash.actions.not_member'
         redirect_to :back
       end
@@ -81,7 +83,7 @@ protected
   
   def authorized_for_this? 
     @organizer = Organizer.find(params[:id])
-    if !current_user.authorized.include? @organizer and !current_user.is_admin?
+    if !current_user.organizers.include? @organizer and !current_user.is_admin?
       flash[:alert] = t 'flash.actions.not_member_here'
         redirect_to :back
     end

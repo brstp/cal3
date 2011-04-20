@@ -27,19 +27,29 @@ class Petition < ActiveRecord::Base
   validates_uniqueness_of :organizer_id, 
                           :scope => :user_id, 
                           :message => I18n.t('error_messages.petition.already_applied')
+                          
+  validate :validates_duplicates_membership
 
   default_scope :order => 'created_at DESC'
   
-  accepts_nested_attributes_for :user
+  accepts_nested_attributes_for :user     # Formtastic needs this
 
   def rejected?
     self.approved == false
   end
   
-  def belongs_to? user
+  def validates_duplicates_membership
+    logger.info "--------------- validates_duplicates_membership ------"
+    unless Membership.find_by_user_id_and_organizer_id(self.user_id, self.organizer_id ) == nil
+      errors.add(:organizer_id, I18n.t('errors.messages.duplicates_membership'))
+    end
   end
   
-  def is_admin_for? user
+  def promote_to_membership
+    if self.approved
+      m = Membership.find_or_initialize_by_user_id_and_organizer_id self.user_id, self.organizer_id
+      m.save!
+    end
   end
   
 end

@@ -29,7 +29,6 @@ sv-SE:
       is_system_admin: 'Är systemadministratör'
       is_admin_for: 'Administratör för'
       applications: 'Ansökt att bli administratör för'
-      my_organizers: 'Du är administratör för'
     edit:
       list: 'Till användarlistan (strunta i ändringar)'
       show: 'Strunta i ändringar'
@@ -69,6 +68,9 @@ sv-SE:
       not_received_unlock: 'Har inte fått mejlet med länken för att låsa upp kontot?'
       new:
         sign_in: 'Logga in'
+      not_signed_in: 'Nu försöker du göra något som du måste vara inloggad för att kunna göra. Logga in (eller registrera dig om du inte redan har gjort det).'
+      not_admin: 'Nu försöker du göra något som bara systemadministratören får göra. Sorry.'
+        
     invitations:
       send_instructions: 'Tack för hjälpen. Vi har skickat ett inbjudningsmejl till din kompis.'
       updated: 'Så där, nu är ditt användarkonto igång som det ska.'

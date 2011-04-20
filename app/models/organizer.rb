@@ -5,11 +5,11 @@ class Organizer < ActiveRecord::Base
 
   has_many :events
   
-  # has_many  :memberships, 
-            # :dependent => :destroy
+  has_many  :memberships, 
+            :dependent => :destroy
  
-  # has_many  :users, 
-            # :through => :memberships
+  has_many  :users, 
+            :through => :memberships
   
   has_many  :petitions, 
             :dependent => :destroy

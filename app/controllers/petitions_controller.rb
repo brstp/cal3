@@ -1,49 +1,130 @@
 # encoding: UTF-8
 class PetitionsController < ApplicationController
+  before_filter :authenticate_user!
+  before_filter :is_admin?, :only => [:index]
+  before_filter :my_own?, :only => [:destroy]
+  before_filter :is_organizer?, :only => [:edit, :update]
+  before_filter :is_own_or_organizer?, :only => [:show]
+
   def index
     @petitions = Petition.all
   end
 
   def show
+    logger.info "------------- show --------------"
     @petition = Petition.find(params[:id])
   end
 
   def new
+    logger.info "------------- new --------------"
     @petition = Petition.new
     @user = current_user
     @petition.user_id = current_user.id
     @petition.organizer_id = params[:organizer_id]
-    if @petition.organizer_id.blank?
-      @petition.organizer_id = 2 # TODO debug
-    end
   end
 
   def create
+    logger.info "------------- create --------------"
     @petition = Petition.new(params[:petition])
     if @petition.save
-      redirect_to @petition, :notice => "Din ansökan är klar. Nu kommer arrangören att behandla den."
+      redirect_to @petition, :notice => t('petition.flash.notice.created')
+      OrganizerMailer.new_petition(@petition, current_user).deliver
     else
       render :action => 'new'
     end
   end
 
   def edit
+    logger.info "------------- edit --------------"
     @petition = Petition.find(params[:id])
     @petition.decision_made_by_user = current_user
   end
 
   def update
+    logger.info "------------- update --------------"
     @petition = Petition.find(params[:id])
     if @petition.update_attributes(params[:petition])
-      redirect_to @petition, :notice  => "Ansökan behandlad och sparad" # TODO different notices depending on decision.
+      if @petition.approved
+        @petition.promote_to_membership
+        OrganizerMailer.approved_petition(@petition, current_user).deliver
+        # TODO logging
+        @petition.destroy
+        flash[:notice] = t('petition.flash.notice.approved')
+        redirect_to organizer_path(@petition.organizer)
+      else 
+        OrganizerMailer.rejected_petition(@petition, current_user).deliver
+        # TODO logging
+        @petition.destroy
+        flash[:notice] = t('petition.flash.notice.rejected')
+        redirect_to organizer_path(@petition.organizer)
+      end
+      
     else
       render :action => 'edit'
     end
   end
 
   def destroy
+    logger.info "------------- destroy --------------"
     @petition = Petition.find(params[:id])
+    organizer = @petition.organizer
     @petition.destroy
-    redirect_to petitions_url, :notice => "Du har dragit tillbaka din ansökan."
+    redirect_to organizer, :notice => t('petition.flash.notice.destroyed' )
   end
+  
+protected
+  
+  def is_admin?  
+    logger.info "------------- is_admin? --------------"
+    unless current_user.is_admin?
+      flash[:alert] = t 'devise.failure.not_admin'
+      if request.env["HTTP_REFERER"].blank?
+        redirect_to :root
+      else
+        redirect_to  :back      
+      end
+    end
+  end
+  
+  def is_organizer?
+    logger.info "------------- is_organizer? --------------"
+    @petition = Petition.find(params[:id])
+    logger.info @petition.organizer.users
+    unless (@petition.organizer.users.include? current_user) || current_user.is_admin?
+      flash[:alert] = t('devise.failure.not_organizer')
+      if request.env["HTTP_REFERER"].blank?
+        redirect_to :root
+      else
+        redirect_to  :back      
+      end
+    end
+  end
+
+  def my_own?  
+     return
+    logger.info "------------- my_own? --------------"
+    @petition = Petition.find(params[:id])
+    unless (@petition.user == current_user) || current_user.is_admin?
+      flash[:alert] = t('devise.failure.not_mine')
+      if request.env["HTTP_REFERER"].blank?
+        redirect_to :root
+      else
+        redirect_to :back      
+      end
+    end
+  end
+  
+  def is_own_or_organizer?
+    @petition = Petition.find(params[:id])
+    unless (@petition.user == current_user) || (@petition.organizer.users.include? current_user) || current_user.is_admin?
+      flash[:alert] = t('devise.failure.not_mine')
+      if request.env["HTTP_REFERER"].blank?
+        redirect_to :root
+      else
+        redirect_to :back      
+      end
+    end
+  end
+  
+  
 end

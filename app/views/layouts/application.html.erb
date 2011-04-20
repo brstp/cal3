@@ -56,7 +56,9 @@
       <div id="user_account">
       
       <%= link_to (image_tag avatar_url(current_user), :id => :user_avatar), "http://sv.gravatar.com", :title => t('.use_gravatar'), :rel => :nofolow %>
-      <%= current_user.email %><br /><%= t 'users.sessions.not_you' %> <%= link_to I18n.t('users.sessions.sign_out'), destroy_user_session_path %><br />
+      <%= current_user.email %>
+      <%= raw %(<abbr title="#{t'.is_admin'}">*</abbr>) if current_user.is_admin? %>
+      <br /><%= t 'users.sessions.not_you' %> <%= link_to I18n.t('users.sessions.sign_out'), destroy_user_session_path %><br />
       <%= link_to (t 'users.sessions.change_settings'), edit_user_path(current_user) %>
       </div><!-- /user_account -->
     <% else %>
@@ -148,7 +150,6 @@
               <% end %>
           </div> <!-- /user_nav -->
           <%= content_for :right_column_top %>
-          <%= my_applications current_user %>
           <% if current_user %>    
             <div id="calendar-nav" class="box">
               <span class="heading"><%= t '.quick_links' %>:</span>
@@ -156,7 +157,7 @@
                   <li><%= link_to t('.new_organizer'), new_organizer_path %></li>
                   <li><%= link_to(t('.subscribe_rss'), events_url(:only_path => false, :format => :rss) )  %>  
   <%= link_to image_tag("rss_icon.gif", :alt => t('.rss_alt')), events_url(:only_path => false, :format => :rss) %></li>                     
-              </ul>										
+              </ul>
             </div><!-- /calendar-nav -->
           <%end%>  
 
@@ -166,6 +167,7 @@
                 <span class="heading"><%= t '.admin_links' %>:</span>
                 <ul>
                   <li><%= link_to t('.users'), users_path %></li>
+                  <li><%= link_to t('.memberships'), memberships_path %></li>
                   <li><%= link_to t('.categories'), categories_path %></li>
                   <li><%= link_to t('.mail_messages'), mail_messages_path %></li>
                 </ul>

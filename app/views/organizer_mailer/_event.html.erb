@@ -1,4 +1,4 @@
-<%= @user.name %> för arrangören <%= link_to @event.organizer.name, organizer_url(@event.organizer)%> i Föreningskalendern. Du får det här mejlet för kännedom eftersom du har arrangörsbehörighet i <%= link_to @event.organizer.name, organizer_url(@event.organizer)%>.
+<%= @user.name %> för arrangören <%= link_to @event.organizer.name, organizer_url(@event.organizer)%> i Kalendern. Du får det här mejlet för kännedom eftersom du är administratör för <%= link_to @event.organizer.name, organizer_url(@event.organizer)%>.
 </p>
 <p>
 Här är en kortversion av evenemangsannonsen:

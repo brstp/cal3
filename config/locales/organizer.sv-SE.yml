@@ -17,8 +17,9 @@ sv-SE:
     index:
       title: "Alla arrangörer och deras evenemang"
       meta_description: "Hitta arrangörer till olika evenemang i Sverige. Du kan annonsera dina arrangemang också." 
-      new: "Skapa ny arrangör"
+      new: "Skapa ny arrangörssida"
       no_of_events_per_organizer: "inplanerat evenemang"
+      you_have_applied: 'Du har ansökt om att bli admininstratör för'
     show:
       list: "Till arrangörslistan"
       name: "Namn"
@@ -42,13 +43,14 @@ sv-SE:
       title: "s kommande evenemang."
       meta_description: "Kolla in "
       meta_description2: "s alla evenemang. Du kan också annonsera dina arrangemang så att de syns här."
-      new_event: "Vill du lägga in det första?"
+      new_event: "Lägg in evenemangsannons"
+      first_event: "Vill du lägga in det första?"
       contact: "Kontaktinfo"
       download_ics: "Spara arrangörens alla evenemang i kalendern på din dator."
       no_organizer: "Du är har inte behörighet hos någon arrangör."
       do_apply: "Du kan ansöka om behörighet hos någon av de"
       organizers_using: "arrangörer som redan använder kalendern (kolla på respektive arrangörs sida)"
-      register_new: "anmäla en ny arrangör"
+      register_new: "lägga upp en ny arrangörssida"
       edit: "Ändra arrangörssidan"
       destroy: "Radera arrangörssidan"
       at_the_moment: "Just nu verkar"
@@ -61,6 +63,7 @@ sv-SE:
       previous_events: "s redan genomförda evenemang."
       promote: "Gör reklam för"
       logotype_for: "Logotyp för"
+      you_are_admin_for: 'Du är administratör för'
       promote_prospect: "Gör till administratör"
       cancel_prospect: "Avslå ansökan"
       confirm_promote_prospect1: "Vill du godkänna att "
@@ -72,6 +75,15 @@ sv-SE:
       application_processed: "Din ansökan kommer att behandlas av deras administratörer. "
       sure_cancel: "Vill du dra tillbaka din ansökan att bli administratör för"
       cancel_my_application: "Ångra ansökan"
+      do_you_work_for: 'Jobbar du för'
+      apply_for_adminship: 'Ansök om att bli admininstratör...'
+      approve_user: 'Godkänn/avslå ansökan...'
+      petitions: 'Ansökningar'
+      users: 'Administratörer'
+      no_petitions: 'Just nu finns det inga ansökningar.'
+      you_have_petitions: 'Du har fått in ansökningar om att bli administratör som ska godkännas eller avslås.'
+      my_organizers: 'Du är administratör för'
+
     new:
       title: "Ny arrangör"
       list: "Till arrangörslistan (strunta i ändringar)"

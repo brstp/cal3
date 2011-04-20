@@ -1,52 +1,23 @@
-<% title "Memberships" %>
+﻿<h1><%= title "Alla adminstratörer" %></h1>
 
-<table>
+<table class = "general">
   <tr>
+    <th>Id</th> 
+    <th></th>
     <th>Organizer</th>
+    <th></th>
     <th>User</th>
-    <th>State</th>
-    <th>Applied At</th>
-    <th>Applied Comment</th>
-    <th>Promoted At</th>
-    <th>Promoted By</th>
-    <th>Approved At</th>
-    <th>No Thanks At</th>
-    <th>No Thanks By</th>
-    <th>No Thanks Comment</th>
-    <th>Nominated At</th>
-    <th>Nominated By</th>
-    <th>Nominated Comment</th>
-    <th>Cancelled At</th>
-    <th>Cancelled By</th>
-    <th>Rejected At</th>
-    <th>Rejected Comment</th>
-    <th>Degraded At</th>
-    <th>Degraded By</th>
-    <th>Degraded Comment</th>
+    <th></th>
+    <th></th>
+    <th></th>
   </tr>
   <% for membership in @memberships %>
-    <tr>
+    <tr class = '<%= cycle "even", "odd" %>' >
+      <td><%= membership.id %></td>
       <td><%= membership.organizer_id %></td>
+      <td><%= link_to membership.organizer, membership.organizer %></td>
       <td><%= membership.user_id %></td>
-      <td><%= membership.state %></td>
-      <td><%= membership.applied_at %></td>
-      <td><%= membership.applied_comment %></td>
-      <td><%= membership.promoted_at %></td>
-      <td><%= membership.promoted_by_id %></td>
-      <td><%= membership.approved_at %></td>
-      <td><%= membership.no_thanks_at %></td>
-      <td><%= membership.no_thanks_by_id %></td>
-      <td><%= membership.no_thanks_comment %></td>
-      <td><%= membership.nominated_at %></td>
-      <td><%= membership.nominated_by_id %></td>
-      <td><%= membership.nominated_comment %></td>
-      <td><%= membership.cancelled_at %></td>
-      <td><%= membership.cancelled_by_id %></td>
-      <td><%= membership.rejected_at %></td>
-      <td><%= membership.rejected_comment %></td>
-      <td><%= membership.degraded_at %></td>
-      <td><%= membership.degraded_by_id %></td>
-      <td><%= membership.degraded_comment %></td>
+      <td><%= link_to membership.user, membership.user %></td>
       <td><%= link_to "Show", membership %></td>
       <td><%= link_to "Edit", edit_membership_path(membership) %></td>
       <td><%= link_to "Destroy", membership, :confirm => 'Are you sure?', :method => :delete %></td>

@@ -18,16 +18,16 @@
         
     <li class="string optional">
       <label for="user_authorized"><%= t '.is_admin_for' %></label>
-      <% for organizer in @user.authorized %>
+      <% for organizer in @user.organizers %>
         <%= link_to organizer.name,  organizer %>
       <% end %>
     </li>
 
-    <% unless @user.applications.blank? %>
+    <% unless @user.petitions.blank? %>
       <li class="string optional">
         <label for="user_applications"><%= t '.applications' %></label>
       <ul>  
-        <% for organizer in @user.applications %>  
+        <% for organizer in @user.petition_organizers %>  
         <li><%= link_to organizer.name,  organizer %></li>  
         <% end %>  
       </ul>  

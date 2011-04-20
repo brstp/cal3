@@ -55,6 +55,7 @@ sv-SE:
       show: "Visa evenemanget (strunta i ändringar)"
       list: "Till evenemangslistan (strunta i ändringar)"  
     show: 
+      you_are_admin_for: 'Du är administratör för'
       list: "Till evenemangslistan"
       no_of_events_per_municipality: "inplanerade evenemang i kommunen"
       no_of_events_per_organizer: "inplanerat evenemang"
@@ -105,3 +106,7 @@ sv-SE:
         image2: "Ytterligare bild."
         image3: "Ytterligare bild."
         category: "Vad handlar evenemanget om? Vilket ämne? Försök ange en så specifik kategori som möjligt."
+  event:
+    mail:
+      new: "Nytt evenemang"
+      changed: "Ändrat evenemang"

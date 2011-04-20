@@ -2,21 +2,9 @@ Cal3::Application.routes.draw do
 
 
   
-  resources :petitions
+  resources :memberships
 
-  resources :memberships do
-    put 'promote'
-    put 'no_thanks'
-    put 'degrade'
-    put 'approve'
-    put 'reject'
-    put 'cancel'
-    put 'regret' 
-    delete 'admin_ack'
-    delete 'user_ack'
-    post 'apply'
-    post 'nominate'
-  end
+  resources :petitions
   
   resources :memberships
   

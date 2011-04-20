@@ -1,140 +1,16 @@
-<h1><%= title t(".title") %></h1>
+<% title "Membership" %>
 
 <p>
-  <strong><%= Organizer.model_name.human.capitalize %></strong>
-  <%= link_to @organizer.name , organizer_path(@organizer)  %> </p>
-<p>
-  <strong><%= User.human_attribute_name "name" %></strong>
-  <%= link_to @user.name, user_path(@user) %>
+  <strong>Organizer:</strong>
+  <%= @membership.organizer_id %>
 </p>
 <p>
-  <strong><%= Membership.human_attribute_name "state" %></strong>
-  <%= t 'memberships.states.i_am.' +@membership.state %>
+  <strong>User:</strong>
+  <%= @membership.user_id %>
 </p>
 
-<% unless @membership.applied_comment.blank? %>
-  <p>
-    <strong><%= Membership.human_attribute_name "applied_at" %></strong>
-    <%= l @membership.applied_at %>
-  </p>
-  <p>
-    <strong><%= Membership.human_attribute_name "applied_comment" %></strong>
-    <%= @membership.applied_comment %>
-  </p>
-<% end %>
-
-<% unless @membership.regretted_comment.blank? %>
-  <p>
-    <strong><%= Membership.human_attribute_name "regretted_at" %></strong>
-    <%= l @membership.regretted_at %>
-  </p>
-  <p>
-    <strong><%= Membership.human_attribute_name "regretted_comment" %></strong>
-    <%= @membership.regretted_comment %>
-  </p>
-<% end %>
-
-
-<% unless @membership.promoted_by_id.blank? %>
-  <p>
-    <strong><%= Membership.human_attribute_name "promoted_at" %></strong>
-    <%= @membership.promoted_at %>
-  </p>
-  <p>
-    <strong><%= Membership.human_attribute_name "promoted_by_id" %></strong>
-    <%= (User.find @membership.promoted_by_id).name %>
-  </p>
-<% end %>
-
-
-<% unless @membership.approved_at == nil %>
-  <p>
-    <strong><%= Membership.human_attribute_name "approved_at" %></strong>
-    <%= l @membership.approved_at %>
-  </p>
-<% end %>
-
-<% unless @membership.no_thanks_comment.blank? %>
-  <p>
-    <strong><%= Membership.human_attribute_name "no_thanks_at" %></strong>
-    <%= @membership.no_thanks_at %>
-  </p>
-  <p>
-    <strong><%= Membership.human_attribute_name "no_thanks_by_id" %></strong>
-    <%= (User.find @membership.no_thanks_by_id).name %>
-  </p>
-  <p>
-    <strong><%= Membership.human_attribute_name "no_thanks_comment" %></strong>
-    <%= @membership.no_thanks_comment %>
-  </p>
-<% end %>
-
-<% unless @membership.nominated_comment.blank? %>
-  <p>
-    <strong><%= Membership.human_attribute_name "nominated_at" %></strong>
-    <%= @membership.nominated_at %>
-  </p>
-  <p>
-    <strong><%= Membership.human_attribute_name "nominated_by_id" %></strong>
-    <%= (User.find @membership.nominated_by_id).name %>
-  </p>
-  <p>
-    <strong><%= Membership.human_attribute_name "nominated_comment" %></strong>
-    <%= @membership.nominated_comment %>
-  </p>
-<% end %>
-
-<% unless @membership.cancelled_comment.blank? %>
-  <p>
-    <strong><%= Membership.human_attribute_name "cancelled_at" %></strong>
-    <%= @membership.cancelled_at %>
-  </p>
-  <p>
-    <strong><%= Membership.human_attribute_name "cancelled_by_id" %></strong>
-    <%= (User.find @membership.cancelled_by_id).name %>
-  </p>
-  <p>
-    <strong><%= Membership.human_attribute_name "cancelled_comment" %></strong>
-    <%= @membership.cancelled_comment %>
-  </p>
-<% end %>
-
-
-<% unless @membership.rejected_comment.blank? %>
-  <p>
-    <strong><%= Membership.human_attribute_name "rejected_at" %></strong>
-    <%= @membership.rejected_at %>
-  </p>
-  <p>
-    <strong><%= Membership.human_attribute_name "rejected_comment" %></strong>
-    <%= @membership.rejected_comment %>
-  </p>
-<% end %>
-
-<% unless @membership.degraded_comment.blank? %>
-  <p>
-    <strong>Degraded At:</strong>
-    <%= @membership.degraded_at %>
-  </p>
-  <p>
-    <strong>Degraded By:</strong>
-    <%= (User.find @membership.degraded_by_id).name %>
-  </p>
-  <p>
-    <strong>Degraded Comment:</strong>
-    <%= @membership.degraded_comment %>
-  </p>
-<% end %>
-
 <p>
-  <strong><%= t '.whats_next' %></strong>
-  <%= t 'memberships.states.next_step.' +@membership.state %>
-</p>
-
-
-
-<p>
-  <%= link_to t('.to_organizer') + " " + @organizer.name , organizer_path(@organizer)  %> 
-<br />
-  <%= link_to t('.to_user') + " " + @user.name, user_path(@user) %>
+  <%= link_to "Edit", edit_membership_path(@membership) %> |
+  <%= link_to "Destroy", @membership, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", memberships_path %>
 </p>

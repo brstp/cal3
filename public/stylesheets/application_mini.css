@@ -2,7 +2,7 @@
 }
 
 .flash_notice, .flash_error, .flash_alert, .user_message, .authorized_context {
-  padding: 0 0.7em 0.7em 0.7em;
+  padding: 0 0.5em 0 0.5em;
   margin: 0 0 0.5em 0;
 }
 
@@ -185,6 +185,10 @@ table.general input {
   font-size: 80%
 }
 
+table.general td {
+  vertical-align: top;
+  }
+    
 .number_column {
   text-align: right;
 }
@@ -318,13 +322,19 @@ table.general input {
   padding-top: 0;
   margin: 0;
 }
+
+
+form.formtastic fieldset > ol > li fieldset ol.category-level-0  {
+  float: left;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 .category-level-0 {
-  color: red;
- 
 }
 
 .category-level-1 {
-  color: green;
 }
 
 .category-level-1 li {
@@ -332,17 +342,14 @@ table.general input {
 }
 
 .category-level-2 {
-  color: blue;
 }
 
 .category-level-3 {
-  color: purple;
 }
 
 .category-level-2 li {
   font-weight: normal;
 }
-
 .category-level-3 li {
   font-style: italic;
 }

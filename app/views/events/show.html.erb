@@ -21,10 +21,23 @@
 
 <% if current_user %>
   <% if current_user.authorized? @event.organizer %>
-  <%= button_to(t('.edit'), edit_event_path(@event), :method => :get, :class => :organizer_user) %>
-  <%= button_to(t('.destroy'), @event, :confirm => t('app.are_you_sure') + ' ' +@event.subject + '?', :method => :delete )%>
-  <%end%>
-<%end%>
+    <div class = "user_message">
+        <p>
+          <%= t('.you_are_admin_for') %> <%= @event.organizer %>.
+        </p>
+        <p>
+          <%= button_to(  t('.edit'), 
+                          edit_event_path(@event), 
+                          :method => :get, 
+                          :class => :organizer_user) %>
+          <%= button_to(  t('.destroy'), 
+                          @event, 
+                          :confirm => t('app.are_you_sure') + ' ' +@event.subject + '?', 
+                          :method => :delete )%>
+        </p>
+    </div>
+  <% end %>
+<% end %>
 
 
 <%= facebook_like event_path(:only_path => false), "top" %>

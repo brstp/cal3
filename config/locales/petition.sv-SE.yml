@@ -17,18 +17,34 @@ sv-SE:
       approved_blank: 'måste besvaras.'
   petitions:
     show:
+      title: 'Ansökan om att bli administratör'
+      approve: 'Godkänn/avslå ansökan'
+      cancel: 'Dra tillbaka ansökan'
+      are_you_sure: "Är du säker att du vill dra tillbaka din ansökan att bli administratör i "
     index:
       title: 'Alla ansökningar om att bli administratör'
       new: 'Skapa ny ansökan'
     edit:
       title: 'Godkänn eller avslå ansökan att bli adminstratör'
-      back: 'Tillbaka'
+      back_to_organizer: 'Tillbaka till arrangörssidan för'
     new: 
       title: 'Ansökan att bli administratör' 
-      back: 'Tillbaka'
+      back_to_organizer: 'Tillbaka till arrangörssidan för'
     form:
   formtastic:
     hints:
       petition:
         argumentation: 'Berätta kort vem du är och varför du ansöker om att bli administratör.'
         rejected_reason: 'Om du avslår ansökan, skriv en kort förklaring till den som ansökt om behörighet.'
+  petition:
+    flash:
+      notice:
+        updated: "Ansökan behandlad och sparad"
+        created: "Din ansökan är klar. Vi mejlar den till arrangören som kommer att behandla den. Du får en kopia av mejlet."
+        destroyed: "Du har dragit tillbaka din ansökan."
+        approved: "Du har godkänt ansökan. Vi mejlar till den nya administratören och berättar det. Du och andra administratörer får en kopia av mejlet."
+        rejected: "Du har avslagit ansökan. Vi mejlar till användaren och berättar det. Du får en kopia av mejlet."
+    mail:
+      new: "Ansökan om att bli adminstratör för"
+      approved: "För kännedom: ny administratör för"
+      rejected: "Avslag ansökan administratör för"

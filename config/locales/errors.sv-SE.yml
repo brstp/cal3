@@ -71,6 +71,7 @@ sv-SE:
 
   errors:
     messages:
+      duplicates_membership: "har du redan administratörsrättigheter för"
       invalid_date: "ser inte ut som ett datum"
       invalid_time: "ser inte ut som ett klockslag"
       invalid_datetime: "ser inte ut som datum och klockslag"

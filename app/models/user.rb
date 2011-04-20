@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
              
   has_many  :petition_organizers,
             :through => :petitions,
-            :source => :organizers
+            :source => :organizer
 
            
   # has_many  :applications, 
