@@ -48,7 +48,7 @@ sv-SE:
       organizers: "Av arrangör"
       municipalities: "I kommun"
       search: "Sök"
-      seek_event: "Sök evenemang"
+      seek_event: "Sök evenemang, ämne, arrangör, plats"
       reset_search: "Rensa sökningen och visa alla evenemang."
     edit:
       title: "Ändra evenemanget"

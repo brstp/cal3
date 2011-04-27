@@ -110,10 +110,16 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
             when params[:start] == "new_years_eve"
               with(:start).between(new_years_eve..(new_years_eve + 1.day))
             when params[:start] == "walpurgis_night"
-              with(:start).between((this_year+ 4.month + 30.day)..(this_year + 5.month ))
+              with(:start).between((this_year + 4.month + 29.day)..(this_year + 4.month + 30.day ))
           end
         end
-      
+
+      unless params[:start] == "past"
+        with(:start).between(today..(today + 10.year))
+      else
+        with(:start).between((today - 100.year)..today)
+      end
+
       unless params[:category_facet_id].blank?
         with( :category_facet_id ).equal_to( params[:category_facet_id].to_i )
       end      

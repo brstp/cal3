@@ -106,9 +106,12 @@ module LayoutHelper
   
   def facet_search
     str = ""
-    
-    str << %(   
-        #{link_to t('.reset_search') }
+    unless params[:q].blank? && params[:start].blank? && params[:category_facet_id].blank? && params[:organizer_id].blank? && params[:municipality_id].blank?
+      str << %(#{link_to t('.reset_search') })
+    else
+      str << %(&nbsp;)
+    end
+    str << %(        
         <ul>
             )
     str << %(<li class = "facet-1">#{t'.when'}</li>)
@@ -135,6 +138,7 @@ module LayoutHelper
             <li class = "facet-2">
               <ul>
               )
+
       for row in facet_rows 
       str << %(
                 <li>
@@ -148,11 +152,28 @@ module LayoutHelper
                 </li>
               )
       end
-      unless params[:start].blank?
+
+      unless params[:start] == "past"
+      str << %(
+                <li class = "facet-2">
+                  
+                  #{link_to( t('when_facet.past').capitalize, 
+                              events_path(  :q => params[:q], 
+                                            :start => :past,
+                                            :category_facet_id => params[:category_facet_id],
+                                            :organizer_id => params[:organizer_id],
+                                            :municipality_id => params[:municipality_id]
+                                          ) ) }
+                  
+                </li>
+              )
+      end
+      
+      unless params[:start] != "past"
       str << %(
                 <li class = "facet-2">
                   <strong>
-                  #{link_to( t('.show_all_facets'), 
+                  #{link_to( t('when_facet.future').capitalize, 
                               events_path(  :q => params[:q], 
                                             :start => nil,
                                             :category_facet_id => params[:category_facet_id],
