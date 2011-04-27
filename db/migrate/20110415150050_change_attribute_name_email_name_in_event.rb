@@ -1,6 +1,6 @@
 class ChangeAttributeNameEmailNameInEvent < ActiveRecord::Migration
   def self.up
-     rename_column :events, :email_name, :human_name
+    rename_column :events, :email_name, :human_name
   end
 
   def self.down
