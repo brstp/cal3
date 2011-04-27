@@ -25,8 +25,8 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
       this_week = Time.zone.now.beginning_of_week
       this_year = Time.zone.now.beginning_of_year
       beginning_of_time = Time.parse('1970-03-27')
-      christmas_eve = Time.zone.now.beginning_of_year + 12.month + 24.day
-      new_years_eve = Time.zone.now.beginning_of_year + 12.month + 31.day     
+      christmas_eve = Time.zone.now.beginning_of_year + 11.month + 23.day
+      new_years_eve = Time.zone.now.beginning_of_year + 11.month + 30.day     
 
       result = Event.search do 
         keywords params[:q]
@@ -73,7 +73,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
             with :start, new_years_eve..(new_years_eve + 1.day)
           end
           row "walpurgis_night" do
-            with :start, (this_year+ 4.month + 30.day)..(this_year + 5.month )
+            with :start, (this_year+ 4.month + 29.day)..(this_year + 4.month + 30.day)
           end
         end
 

@@ -113,6 +113,8 @@ sv-SE:
     this_weekend: "på lördag-söndag"
     next_weekend: "nästa lördag-söndag"
     summer_holiday:
+    christmas_eve: "julafton"
+    new_years_eve: "nyårsafton"
     christmas_holiday:
     christmas_days:
     midsummer:
