@@ -328,7 +328,7 @@ module LayoutHelper
     str = %(
             <div class = "box">
             <span class="heading">#{t('.page_viewed')}:</span>
-            <span class = "counter">#{"%06.0f" % counter }</span>
+            <span class = "counter"><span class = "counter-text">#{"%06.0f" % counter }</span></span>
             </div> 
           )
 

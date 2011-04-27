@@ -214,10 +214,14 @@ table.general td {
   font-size: 2em;
   font: Verdana;
   background-color: black;
-  color: lightgrey;
   padding: 0.2em;
   padding-left: 0.7em;
   letter-spacing: 0.5em;
+  text-decoration: line-through;
+  color: black;
+}
+.counter-text {
+  color: lightgrey;
 }
 
 .facet-1 {
