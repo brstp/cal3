@@ -34,16 +34,44 @@ class Organizer < ActiveRecord::Base
   validates :phone, :phone => true
   validates :email, :email => true
   
-  has_attached_file   :logotype, 
-                      :default_url => "/images/organizer-logotype-90x109.png", 
-                      :styles => {  :medium => "90x109#", 
-                                    :small => "45x55#"
-                                 }
+  has_attached_file :logotype, 
+                    :storage => :s3,
+                    :bucket => 'static.foreningskalendern.se',
+                    :s3_credentials => {
+                      :access_key_id => ENV['S3_KEY'],
+                      :secret_access_key => ENV['S3_SECRET'] },
+                    :default_url => "/images/organizer-logotype-90x109.png", 
+                    :styles => {  
+                      :medium => "90x109#", 
+                      :small => "45x55#"}
                                     
-  has_attached_file   :photo,       :default_url => "/images/doldrums.jpg", 
-                      :styles => {  :medium => "360x240#",  
-                                    :small => "176x117#"
-                                 }
+  has_attached_file :photo,      
+                    :storage => :s3,
+                    :bucket => 'static.foreningskalendern.se',
+                    :s3_credentials => {
+                      :access_key_id => ENV['S3_KEY'],
+                      :secret_access_key => ENV['S3_SECRET']},
+                    :default_url => "/images/doldrums.jpg", 
+                    :styles => {  
+                      :medium => "360x240#",  
+                      :small => "176x117#"}
+  
+  
+
+  # has_attached_file :image1, 
+      # :storage => :s3,
+      # :bucket => 'static.foreningskalendern.se',
+      # :s3_credentials => {
+        # :access_key_id => ENV['S3_KEY'],
+        # :secret_access_key => ENV['S3_SECRET']
+                         # },
+      # :default_url => "/images/blue-yellow-landscape.jpg", 
+      # :styles => {:large => "800x600#", 
+                  # :medium => "360x240#", 
+                  # :small => "176x117#", 
+                  # :thumb => "40x30#"}  
+
+
   
 #  searchable :auto_index => true, :auto_remove => true do
 #    text :name

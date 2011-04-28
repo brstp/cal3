@@ -4,41 +4,42 @@ class Category < ActiveRecord::Base
   validates_uniqueness_of :name
   has_many :events
   has_many :categories
-  
+
   attr_accessible :name, :description, :ancestry, :mum
-  
+
   has_ancestry
-  
+
   #searchable :auto_index => true, :auto_remove => true do
   #  text :name
   #  text :description
   #end
-  
+
   def mum
     self.parent.object_id
   end
-  
+
   def mum= category_id
     unless category_id.blank?
       self.parent = Category.find(category_id)
     end
   end
-  
-  
+
+
   def and_mum
     category = self
     out_str = ""
     while category.depth > 0
-      out_str = category.name + " > " + out_str 
+      out_str = category.name + " > " + out_str
       category = category.parent
-    end    
+    end
     out_str.to(out_str.length - 4)
   end
-  
-  
+
+
   def to_s
     self.name
   end
+
   
   def number_of_upcoming_events
     out = self.events.find(:all, :conditions => ["stop_datetime >= '#{Time.now}'"]).count
@@ -49,19 +50,17 @@ class Category < ActiveRecord::Base
     end
     out
   end
-  
 
-  
   
   def prefix
     str = ""
     self.depth.times {
       str += "_"
     }
-    str 
+    str
   end
-  
-  
+
+
   def climb selected = nil
     out = ""
     if self.depth > 0
@@ -79,7 +78,7 @@ class Category < ActiveRecord::Base
     end
     raw out
   end
-  
+
 
   def tree_to_list
     out = "<li>" + self.try(:name) + "</li>"
@@ -91,9 +90,9 @@ class Category < ActiveRecord::Base
       out += "</ol>"
       raw out
     end
-  
+
   end
-  
+
 
 end
 

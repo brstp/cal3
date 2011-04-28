@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
-  
+
   #TODO: Move default start/stop dates/times to inializers
   #TODO: Check if use of 'self' is ok
   #TODO: Use validates_time, validates_date
@@ -43,38 +43,37 @@ class Event < ActiveRecord::Base
     integer :category_id, :references => ::Category
     integer :category_facet_id, :multiple => true, :references => ::Category
     integer :municipality_id, :references => ::Municipality
-    integer :organizer_id, :references => ::Organizer    
+    integer :organizer_id, :references => ::Organizer
   end
- 
 
- 
-  has_attached_file :image1, 
+
+  has_attached_file :image1,
       :storage => :s3,
       :bucket => 'static.foreningskalendern.se',
       :s3_credentials => {
         :access_key_id => ENV['S3_KEY'],
         :secret_access_key => ENV['S3_SECRET']
                          },
-      :default_url => "/images/blue-yellow-landscape.jpg", 
-      :styles => {:large => "800x600#", 
-                  :medium => "360x240#", 
-                  :small => "176x117#", 
+      :default_url => "/images/blue-yellow-landscape.jpg",
+      :styles => {:large => "800x600#",
+                  :medium => "360x240#",
+                  :small => "176x117#",
                   :thumb => "40x30#"}
-                  
-  has_attached_file :image2, 
+
+  has_attached_file :image2,
       :storage => :s3,
       :bucket => 'static.foreningskalendern.se',
       :s3_credentials => {
         :access_key_id => ENV['S3_KEY'],
         :secret_access_key => ENV['S3_SECRET']
                          },
-      :default_url => "/images/anslagstavla-butik.jpg", 
-      :styles => {:large => "800x600#", 
-                  :medium => "360x240#", 
-                  :small => "176x117#", 
+      :default_url => "/images/anslagstavla-butik.jpg",
+      :styles => {:large => "800x600#",
+                  :medium => "360x240#",
+                  :small => "176x117#",
                   :thumb => "40x30#"}
-                  
-  has_attached_file :image3,     
+
+  has_attached_file :image3,
       :storage => :s3,
       :bucket => 'static.foreningskalendern.se',
       :s3_credentials => {
@@ -82,12 +81,12 @@ class Event < ActiveRecord::Base
         :secret_access_key => ENV['S3_SECRET']
                           },
       :default_url => "/images/anslagstavla-vinter.jpg",
-      :styles => {:large => "800x600#", 
-                  :medium => "360x240#", 
-                  :small => "176x117#", 
+      :styles => {:large => "800x600#",
+                  :medium => "360x240#",
+                  :small => "176x117#",
                   :thumb => "40x30#"}
-  
-  
+
+
 
   # def coordinates
     # Sunspot::Util::Coordinates.new(self.lat,self.lng)
@@ -102,32 +101,32 @@ class Event < ActiveRecord::Base
     while category.depth > 0
       out_array << category.id
       category = category.parent
-    end    
+    end
     out_array
   end
-  
+
   def location
     str = ""
-    unless self.loc_descr.blank? 
+    unless self.loc_descr.blank?
       str += self.loc_descr + "\n"
     end
-    unless self.street.blank? 
+    unless self.street.blank?
       str += self.street + "\n"
     end
     str.strip
   end
-  
+
   def ical
     e = Icalendar::Event.new
     c = Icalendar::Calendar.new
     #TODO Better way to point out url with helper (uid/url)
-    e.uid = "http://www.foreningskalendern.se/event/#{self.id}"    
+    e.uid = "http://www.foreningskalendern.se/event/#{self.id}"
     e.dtstart = I18n.localize(self.start_datetime, :format => :icalendar)
-    e.dtend = I18n.localize(self.stop_datetime, :format => :icalendar)    
+    e.dtend = I18n.localize(self.stop_datetime, :format => :icalendar)
     e.summary = self.subject
     e.description = self.description
-    e.created = I18n.localize(self.created_at, :format => :icalendar)   
-    e.url = e.uid    
+    e.created = I18n.localize(self.created_at, :format => :icalendar)
+    e.url = e.uid
     #TODO: url to organizer page...
     e.organizer = self.organizer.name
     e.location = self.location
@@ -137,17 +136,17 @@ class Event < ActiveRecord::Base
     c.publish
     c.to_ical
   end
-  
+
   def ical_single_event
     e = Icalendar::Event.new
     #TODO Better way to point out url with helper (uid/url)
-    e.uid = "http://www.foreningskalendern.se/event/#{self.id}"    
+    e.uid = "http://www.foreningskalendern.se/event/#{self.id}"
     e.dtstart = I18n.localize(self.start_datetime, :format => :icalendar)
-    e.dtend = I18n.localize(self.stop_datetime, :format => :icalendar)    
+    e.dtend = I18n.localize(self.stop_datetime, :format => :icalendar)
     e.summary = self.subject
     e.description = self.description
-    e.created = I18n.localize(self.created_at, :format => :icalendar)   
-    e.url = e.uid    
+    e.created = I18n.localize(self.created_at, :format => :icalendar)
+    e.url = e.uid
     #TODO: url to organizer page...
     e.organizer = self.organizer.name
     e.location = self.location
@@ -156,7 +155,7 @@ class Event < ActiveRecord::Base
     e
   end
 
-    
+
   def consider_fetch
     if self.lat.blank? or self.lng.blank?
       fetch_coordinates unless self.street.blank?
@@ -166,11 +165,11 @@ class Event < ActiveRecord::Base
   def init_lat
     self.lat.blank? ? 62.00 : self.lat
   end
-  
+
   def init_lng
     self.lng.blank? ? 16.00 : self.lng
   end
-  
+
   def init_zoom
     if (self.lat.blank? or self.lng.blank?)
       ""
@@ -178,28 +177,28 @@ class Event < ActiveRecord::Base
       "1"
     end
   end
-  
-  
+
+
   def re_geocoded_street
   end
-  
+
   #TODO A generic degree to Sdd°mm,mmm converter.
   def degrees_to_degrees_minutes degrees_float
     degrees = degrees_float.to_i
     minutes = ((degrees_float - degrees).abs * 60 * 1000).to_i/1000.0
     degrees.to_s + '&deg;' + minutes.to_s + '\''
   end
-  
+
   def lat_lng
     pos_str = ''
-    if lat >= 0 
+    if lat >= 0
       pos_str += 'N '
     else
       pos_str += 'S '
     end
-    pos_str += degrees_to_degrees_minutes(lat) 
+    pos_str += degrees_to_degrees_minutes(lat)
     pos_str += ' '
-    if lng >= 0 
+    if lng >= 0
       pos_str += 'O '
     else
       pos_str += 'V '
@@ -207,17 +206,17 @@ class Event < ActiveRecord::Base
     pos_str += degrees_to_degrees_minutes(lng)
     pos_str
   end
-  
+
   def location
     output_str = street + ', ' + municipality.name + ', Sverige'
     output_str
   end
 
-  def upcoming_events 
+  def upcoming_events
     # self.find(:all, :conditions => ["stop_datetime >= '#{Time.now}'"], :order => "start_datetime ASC")
-    Event.where("stop_datetime >= ? AND start_datetime <= ?", 
+    Event.where("stop_datetime >= ? AND start_datetime <= ?",
                 Time.now.beginning_of_day, Time.now.end_of_day + 2.months ).
-                order('start_datetime ASC').limit 200 
+                order('start_datetime ASC').limit 200
   end
 
   def municipality_short
@@ -229,7 +228,7 @@ class Event < ActiveRecord::Base
     duration = I18n.localize(start_datetime, :format => :longest) + " - "
     if self.start_date != self.stop_date
       duration += I18n.localize(stop_datetime, :format => :longest)
-    else 
+    else
       duration += I18n.localize(stop_datetime, :format => :time)
     end
 

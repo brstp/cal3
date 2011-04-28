@@ -7,7 +7,7 @@ class Membership < ActiveRecord::Base
                   :user_id,
                   :created_at,
                   :updated_at
- 
+
   validates :organizer_id, :presence => true, :uniqueness => { :scope => :user_id }  
 
 end
