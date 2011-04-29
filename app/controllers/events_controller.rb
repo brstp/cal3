@@ -6,10 +6,10 @@ include ActiveRecord::CounterCache
 before_filter :authenticate_user!, :except => [:show, :index]
 before_filter :authorized?, :except => [:show, :index]
 before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
- 
- 
+
+
   def index
-      #TODO Add almanac function to look up all absolute and relative days. 
+      #TODO Add almanac function to look up all absolute and relative days.
       # summer_holiday:
       # christmas_holiday:
       # midsummer:
@@ -26,9 +26,9 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
       this_year = Time.zone.now.beginning_of_year
       beginning_of_time = Time.parse('1970-03-27')
       christmas_eve = Time.zone.now.beginning_of_year + 11.month + 23.day
-      new_years_eve = Time.zone.now.beginning_of_year + 11.month + 30.day     
+      new_years_eve = Time.zone.now.beginning_of_year + 11.month + 30.day
 
-      result = Event.search do 
+      result = Event.search do
         keywords params[:q]
         paginate :per_page => 30, :page => params[:page]
         facet :category_facet_id, :organizer_id, :municipality_id
@@ -47,7 +47,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
           end
           row "next_week" do
             with :start, (this_week + 1.week)..(this_week + 2.week)
-          end  
+          end
           row "next_weekend" do
             with :start, (this_week + 12.day )..(this_week + 14.day)
           end
@@ -62,7 +62,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
           end
           row "past" do
             with :start, (today - 100.year)..today
-          end     
+          end
           row "christmas_eve" do
             with :start, christmas_eve..(christmas_eve + 1.day)
           end
@@ -122,8 +122,8 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
 
       unless params[:category_facet_id].blank?
         with( :category_facet_id ).equal_to( params[:category_facet_id].to_i )
-      end      
-      
+      end
+
       unless params[:organizer_id].blank?
         with( :organizer_id ).equal_to( params[:organizer_id].to_i )
       end
@@ -131,35 +131,35 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
       unless params[:municipality_id].blank?
         with( :municipality_id ).equal_to( params[:municipality_id].to_i )
       end
-      
+
     end
-    
+
     if result.facet( :start )
       @start_facet_rows = result.facet(:start).rows
     end
-     
+
     if result.facet( :category_facet_id )
       @category_facet_rows = result.facet(:category_facet_id).rows
     end
-    
+
     if result.facet( :organizer_id )
       @organizer_facet_rows = result.facet(:organizer_id).rows
-    end    
-    
+    end
+
     if result.facet( :municipality_id )
       @municipality_facet_rows = result.facet(:municipality_id).rows
     end
-   
+
     @events = result
-    
+
     respond_to do |format|
       format.html
       format.rss
     end
-  
+
   end
-  
-  
+
+
   def show
     Event.increment_counter :counter, params[:id]
     @event = Event.find(params[:id])
@@ -168,18 +168,18 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
       format.ics
     end
   end
-  
-  
+
+
   def new
     @organizers = current_user.select_organizer
     @event = Event.new
     @event.email = current_user.email
     @event.human_name = ''
-    unless (current_user.first_name.blank?) 
-      @event.human_name += current_user.first_name + " " 
+    unless (current_user.first_name.blank?)
+      @event.human_name += current_user.first_name + " "
     end
-    unless (current_user.last_name.blank?) 
-      @event.human_name += current_user.last_name 
+    unless (current_user.last_name.blank?)
+      @event.human_name += current_user.last_name
     end
     @event.human_name.strip!
   end
@@ -195,11 +195,11 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
       render :action => 'new'
     end
   end
-  
+
   def edit
     @event = Event.find(params[:id])
   end
-  
+
   def update
     @event = Event.find(params[:id])
     if @event.update_attributes(params[:event])
@@ -210,22 +210,22 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
       render :action => 'edit'
     end
   end
-  
+
   def destroy
     @event = Event.find(params[:id])
     @event.destroy
     flash[:notice] = t 'flash.actions.destroy.notice'
     redirect_to events_url
   end
-  
 
-  
+
+
   protected
-  
+
   def authorized?
     unless current_user
       flash[:alert] = t 'flash.actions.not_authenticated'
-      redirect_to :action => :back      
+      redirect_to :action => :back
     else
       if current_user.organizers.blank? and !current_user.is_admin?
         flash[:alert] = t 'flash.actions.not_member'
@@ -233,13 +233,13 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
       end
     end
   end
-  
-  def authorized_for_this? 
+
+  def authorized_for_this?
     @event = Event.find(params[:id])
     if (!current_user.organizers.include? @event.organizer and !current_user.is_admin?)
       flash[:alert] = t 'flash.actions.not_member_here'
         redirect_to :back
     end
   end
-  
+
 end

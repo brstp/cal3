@@ -26,8 +26,8 @@ class PetitionsController < ApplicationController
     @user.update_attributes(params[:petition][:user_attributes])
     @user.update_attribute 'name_required', true
     args = params[:petition]
-    @petition = Petition.new( :organizer_id => args[:organizer_id], 
-                              :user_id => args[:user_id], 
+    @petition = Petition.new( :organizer_id => args[:organizer_id],
+                              :user_id => args[:user_id],
                               :argumentation => args[:argumentation])
     if @petition.save
       redirect_to @petition, :notice => t('petition.flash.notice.created')
@@ -52,14 +52,14 @@ class PetitionsController < ApplicationController
         @petition.destroy
         flash[:notice] = t('petition.flash.notice.approved')
         redirect_to organizer_path(@petition.organizer)
-      else 
+      else
         OrganizerMailer.rejected_petition(@petition, current_user).deliver
         # TODO logging
         @petition.destroy
         flash[:notice] = t('petition.flash.notice.rejected')
         redirect_to organizer_path(@petition.organizer)
       end
-      
+
     else
       render :action => 'edit'
     end
@@ -71,20 +71,20 @@ class PetitionsController < ApplicationController
     @petition.destroy
     redirect_to organizer, :notice => t('petition.flash.notice.destroyed' )
   end
-  
+
 protected
-  
-  def is_admin?  
+
+  def is_admin?
     unless current_user.is_admin?
       flash[:alert] = t 'devise.failure.not_admin'
       if request.env["HTTP_REFERER"].blank?
         redirect_to :root
       else
-        redirect_to  :back      
+        redirect_to  :back
       end
     end
   end
-  
+
   def is_organizer?
     @petition = Petition.find(params[:id])
     logger.info @petition.organizer.users
@@ -93,23 +93,23 @@ protected
       if request.env["HTTP_REFERER"].blank?
         redirect_to :root
       else
-        redirect_to  :back      
+        redirect_to  :back
       end
     end
   end
 
-  def my_own?  
+  def my_own?
     @petition = Petition.find(params[:id])
     unless (@petition.user == current_user) || current_user.is_admin?
       flash[:alert] = t('devise.failure.not_mine')
       if request.env["HTTP_REFERER"].blank?
         redirect_to :root
       else
-        redirect_to :back      
+        redirect_to :back
       end
     end
   end
-  
+
   def is_own_or_organizer?
     @petition = Petition.find(params[:id])
     unless (@petition.user == current_user) || (@petition.organizer.users.include? current_user) || current_user.is_admin?
@@ -117,10 +117,10 @@ protected
       if request.env["HTTP_REFERER"].blank?
         redirect_to :root
       else
-        redirect_to :back      
+        redirect_to :back
       end
     end
   end
-  
-  
+
+
 end

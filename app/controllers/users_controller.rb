@@ -50,7 +50,7 @@ class UsersController < ApplicationController
 
 
 protected
-  
+
   def authorized_admin?
     unless current_user
       flash[:alert] = t 'flash.actions.not_authenticated'
@@ -62,8 +62,8 @@ protected
       end
     end
   end
-  
-  
+
+
   def authorized_for_this?
     unless current_user
       flash[:alert] = t 'flash.actions.not_authenticated'
@@ -73,7 +73,7 @@ protected
         flash[:alert] = t 'flash.actions.not_you'
         redirect_to :back
       end
-    end  
+    end
   end
-  
+
 end

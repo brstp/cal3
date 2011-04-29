@@ -1,7 +1,7 @@
 class CategoriesController < ApplicationController
 
   before_filter :authorized?
-  
+
   # GET /categories
   # GET /categories.xml
   def index
@@ -56,7 +56,7 @@ class CategoriesController < ApplicationController
       end
     end
   end
-  
+
 
 
   # PUT /categories/1
@@ -86,8 +86,8 @@ class CategoriesController < ApplicationController
       format.xml  { head :ok }
     end
   end
-  
-  
+
+
 protected
 
   def authorized?
@@ -97,11 +97,11 @@ protected
     else
       if !current_user.is_admin
         flash[:alert] = t 'flash.actions.not_admin'
-        redirect_to :root  
+        redirect_to :root
       else
         # Do stuff...
       end
     end
   end
-  
+
 end

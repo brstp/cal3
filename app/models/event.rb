@@ -1,4 +1,4 @@
-class Event < ActiveRecord::Base
+﻿class Event < ActiveRecord::Base
 
   #TODO: Move default start/stop dates/times to inializers
   #TODO: Check if use of 'self' is ok

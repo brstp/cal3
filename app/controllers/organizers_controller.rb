@@ -9,7 +9,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
   def index
     @organizers = Organizer.all(:order => 'name ASC')
   end
-  
+
   def show
     @organizer = Organizer.find(params[:id])
     @events = @organizer.upcoming_events.paginate :page => params[:page], :per_page => 2
@@ -17,22 +17,22 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
     respond_to do |format|
       format.html # show.html.erb
       format.ihtml
-      format.rss  
+      format.rss
       format.ics
     end
   end
-  
-  
+
+
   def new
     @organizer = Organizer.new
   end
-  
-  
+
+
   def create
     @organizer = Organizer.new(params[:organizer])
     if @organizer.save
       flash[:notice] = t 'flash.actions.create.notice'
-      
+
       @membership = @organizer.memberships.build(:user_id => current_user.id )
       if @membership.save
         flash[:notice] = I18n.t 'flash.actions.create.organizer_and_membership'
@@ -44,11 +44,11 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
       render :action => 'new'
     end
   end
-  
+
   def edit
     @organizer = Organizer.find(params[:id])
   end
-  
+
   def update
     @organizer = Organizer.find(params[:id])
     if @organizer.update_attributes(params[:organizer])
@@ -58,7 +58,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
       render :action => 'edit'
     end
   end
-  
+
   def destroy
     @organizer = Organizer.find(params[:id])
     @organizer.destroy
@@ -72,7 +72,7 @@ protected
   def authorized?
     unless current_user
       flash[:alert] = t 'flash.actions.not_authenticated'
-      redirect_to :action => :back          
+      redirect_to :action => :back
     else
       if current_user.organizers.empty? and !current_user.is_admin?
         flash[:alert] = t 'flash.actions.not_member'
@@ -80,8 +80,8 @@ protected
       end
     end
   end
-  
-  def authorized_for_this? 
+
+  def authorized_for_this?
     @organizer = Organizer.find(params[:id])
     if !current_user.organizers.include? @organizer and !current_user.is_admin?
       flash[:alert] = t 'flash.actions.not_member_here'

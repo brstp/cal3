@@ -1,9 +1,9 @@
 require "application_responder"
 
 class ApplicationController < ActionController::Base
-
+ 
   protect_from_forgery
-  
+
   # http://groups.google.com/group/plataformatec-devise/tree/browse_frm/month/2010-06
   # def stored_location_for( resource )
     # if current_user
@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
        # end
      # end
      # super( resource )
-   # end 
+   # end
 
 
   # http://stackoverflow.com/questions/4234442/devise-sign-in-and-redirect-never-seems-to-work
@@ -25,8 +25,8 @@ class ApplicationController < ActionController::Base
       # flash[:notice] = "Congratulations, you're signed up!"
       # return params[:redirect_to]
     # end
-    # super( resource ) 
+    # super( resource )
   # end
 
-   
+
 end

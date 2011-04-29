@@ -1,7 +1,7 @@
 class MailMessagesController < ApplicationController
 before_filter :authenticate_user!, :except => [:new, :create]
 before_filter :authorized?, :except => [:new, :create]
-  
+
   # GET /mail_messages
   def index
     @mail_messages = MailMessage.all
@@ -31,7 +31,7 @@ before_filter :authorized?, :except => [:new, :create]
   def create
     @mail_message = MailMessage.new(params[:mail_message])
     @mail_message.to_email = Event.find(@mail_message.event_id).email
-    
+
     if current_user
       time_to_save = false
       if current_user.first_name.blank? and !@mail_message.from_first_name.blank?
@@ -41,7 +41,7 @@ before_filter :authorized?, :except => [:new, :create]
       if current_user.last_name.blank? and !@mail_message.from_last_name.blank?
         current_user.last_name = @mail_message.from_last_name
         time_to_save = true
-      end      
+      end
       current_user.save if time_to_save
     end
 
@@ -49,7 +49,7 @@ before_filter :authorized?, :except => [:new, :create]
       if @mail_message.save
         EventMailer.copy_event_sender(@mail_message).deliver
         EventMailer.contact_event(@mail_message).deliver
-        format.html { redirect_to(Event.find(@mail_message.event_id), :notice => I18n.t('flash.actions.create.sent')) } 
+        format.html { redirect_to(Event.find(@mail_message.event_id), :notice => I18n.t('flash.actions.create.sent')) }
       else
         format.html { render :action => "new" }
       end
