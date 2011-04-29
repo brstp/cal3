@@ -217,7 +217,7 @@ table.general td {
   padding: 0.2em;
   padding-left: 0.7em;
   letter-spacing: 0.5em;
-  text-decoration: line-through;
+  /* text-decoration: line-through; */
   color: black;
 
 }
