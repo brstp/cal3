@@ -1,4 +1,14 @@
 sv-SE:
+  formtastic:
+    hints:
+      organizer:
+        name: "Namnet på föreningen, företaget eller dig som arrangerar."
+        intro: "En kort sammanfattande beskrivning om arrangören. Skriv gärna vad du/ni sysslar med, var ni finns (särskilt om det finns flera med samma namn). Kan vara en sammanfattning av beskrivningen längre ned på sidan."
+        description: "En längre beskrivning av arrangören. Berätta vem du eller vilka ni är, var ni finns, vad ni gör, vem era evenemang vänder sig till."
+        website: "Länk till arrangörens hemsida. Exempel: http://www.abc.se (jo, det där http:// eller https:// i början ska vara med)."  
+        logotype: "En bild eller symbol som representerar arrangören. Används som en logotyp. Välj en bild som inte innehåller allt för mycket detaljer. Lämplig storlek är bredd: 90 pixlar och höjd: 109 pixlar. Vi förstorar eller förminskar bilden om det behövs. Bilden bör vara i formaten gif eller png med transparent bakgrund."
+        photo: "En dekorativ bild som visas i stort format på arrangörssidan. Se det som en reklambild för er. Vi rekommenderar ett motiv som visar vad ni ägnar er åt.  Lämplig storlek på bilden är bredd: 720 pixlar och höjd: 480 pixlar. Vi förstorar eller förminskar bilden om det behövs. Vi rekommenderar filformat jpg (gif och png fungerar också)."
+        
   activerecord:
     models:
       organizer: "arrangör"
@@ -93,13 +103,3 @@ sv-SE:
       show: "Visa arrangören (strunta i ändringar)"
       list: "Till arrangörslistan (strunta i ändringar)"
 
-      
-  formtastic:
-    hints:
-      organizer:
-        name: "Namnet på föreningen, företaget eller dig som arrangerar."
-        intro: "En kort sammanfattande beskrivning om arrangören. Skriv gärna vad du/ni sysslar med, var ni finns (särskilt om det finns flera med samma namn). Kan vara en sammanfattning av beskrivningen längre ned på sidan."
-        description: "En längre beskrivning av arrangören. Berätta vem du eller vilka ni är, var ni finns, vad ni gör, vem era evenemang vänder sig till."
-        website: "Länk till arrangörens hemsida. Exempel: http://www.abc.se (jo, det där http:// eller https:// i början ska vara med)."  
-        logotype: "En bild eller symbol som representerar arrangören. Används som en logotyp. Välj en bild som inte innehåller allt för mycket detaljer. Lämplig storlek är bredd: 90 pixlar och höjd: 109 pixlar. Vi förstorar eller förminskar bilden om det behövs. Bilden bör vara i formaten gif eller png med transparent bakgrund."
-        photo: "En dekorativ bild som visas i stort format på arrangörssidan. Se det som en reklambild för er. Vi rekommenderar ett motiv som visar vad ni ägnar er åt.  Lämplig storlek på bilden är bredd: 720 pixlar och höjd: 480 pixlar. Vi förstorar eller förminskar bilden om det behövs. Vi rekommenderar filformat jpg (gif och png fungerar också)."
