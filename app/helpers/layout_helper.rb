@@ -106,7 +106,7 @@ module LayoutHelper
   
   def facet_search
     str = ""
-    unless params[:q].blank? && params[:start].blank? && params[:category_facet_id].blank? && params[:organizer_id].blank? && params[:municipality_id].blank?
+    unless params[:q].blank? && params[:stop].blank? && params[:category_facet_id].blank? && params[:organizer_id].blank? && params[:municipality_id].blank?
       str << %(#{link_to t('.reset_search') })
     else
       str << %(&nbsp;)
@@ -115,7 +115,7 @@ module LayoutHelper
         <ul>
             )
     str << %(<li class = "facet-1">#{t'.when'}</li>)
-    str << facet_when( @start_facet_rows )
+    str << facet_when( @stop_facet_rows )
     str << %(<li class = "facet-1">#{t'.categories'}</li>)
     str << (facet_category( @category_facet_rows ))
     str << %(<li class = "facet-1">#{t'.organizers'}</li>)
@@ -144,7 +144,7 @@ module LayoutHelper
                 <li>
                   #{link_to( t('when_facet.' + row.value.to_s).capitalize + " (" + row.count.to_s +  ")", 
                               events_path(  :q => params[:q], 
-                                            :start => row.value,
+                                            :stop => row.value,
                                             :category_facet_id => params[:category_facet_id],
                                             :organizer_id => params[:organizer_id],
                                             :municipality_id => params[:municipality_id]
@@ -153,13 +153,13 @@ module LayoutHelper
               )
       end
 
-      unless params[:start] == "past"
+      unless params[:stop] == "past"
       str << %(
                 <li class = "facet-2">
                   
                   #{link_to( t('when_facet.past').capitalize, 
                               events_path(  :q => params[:q], 
-                                            :start => :past,
+                                            :stop => :past,
                                             :category_facet_id => params[:category_facet_id],
                                             :organizer_id => params[:organizer_id],
                                             :municipality_id => params[:municipality_id]
@@ -169,13 +169,13 @@ module LayoutHelper
               )
       end
       
-      unless params[:start] != "past"
+      unless params[:stop] != "past"
       str << %(
                 <li class = "facet-2">
                   <strong>
                   #{link_to( t('when_facet.future').capitalize, 
                               events_path(  :q => params[:q], 
-                                            :start => nil,
+                                            :stop => nil,
                                             :category_facet_id => params[:category_facet_id],
                                             :organizer_id => params[:organizer_id],
                                             :municipality_id => params[:municipality_id]
@@ -206,7 +206,7 @@ module LayoutHelper
                 <li>
                   #{link_to( row.instance.and_mum.capitalize + " (" + row.count.to_s +  ")", 
                               events_path(  :q => params[:q], 
-                                            :start => params[:start],
+                                            :stop => params[:stop],
                                             :category_facet_id => row.instance,
                                             :organizer_id => params[:organizer_id],
                                             :municipality_id => params[:municipality_id]
@@ -220,7 +220,7 @@ module LayoutHelper
                   <strong>
                   #{link_to( t('.show_all_facets'), 
                               events_path(  :q => params[:q], 
-                                            :start => params[:start],
+                                            :stop => params[:stop],
                                             :category_facet_id => nil,
                                             :organizer_id => params[:organizer_id],
                                             :municipality_id => params[:municipality_id]
@@ -249,7 +249,7 @@ module LayoutHelper
                 <li>
                   #{link_to( row.instance.to_s + " (" + row.count.to_s +  ")", 
                               events_path(  :q => params[:q], 
-                                            :start => params[:start],
+                                            :stop => params[:stop],
                                             :category_facet_id => params[:category_facet_id],
                                             :organizer_id => row.instance,
                                             :municipality_id => params[:municipality_id]
@@ -263,7 +263,7 @@ module LayoutHelper
                   <strong>
                   #{link_to( t('.show_all_facets'), 
                               events_path(  :q => params[:q], 
-                                            :start => params[:start],
+                                            :stop => params[:stop],
                                             :category_facet_id => params[:category_facet_id],
                                             :organizer_id => nil,
                                             :municipality_id => params[:municipality_id]
@@ -292,7 +292,7 @@ module LayoutHelper
                 <li>
                   #{link_to( row.instance.to_s + " (" + row.count.to_s +  ")", 
                               events_path(  :q => params[:q], 
-                                            :start => params[:start],
+                                            :stop => params[:stop],
                                             :category_facet_id => params[:category_facet_id],
                                             :organizer_id => params[:organizer_id],
                                             :municipality_id => row.instance
@@ -306,7 +306,7 @@ module LayoutHelper
                   <strong>
                   #{link_to( t('.show_all_facets'), 
                               events_path(  :q => params[:q], 
-                                            :start => params[:start],
+                                            :stop => params[:stop],
                                             :category_facet_id => params[:category_facet_id],
                                             :organizer_id => params[:organizer_id],
                                             :municipality_id => nil
@@ -380,19 +380,7 @@ module LayoutHelper
     end
   end
   
-  def organizer_facts organizer
-    str =%(
-          <div id="municipality_facts" class="box">
-          <span class="heading">Fakta om arrangören: </span>
-          #{image_tag organizer.logotype.url(:small)}
-          <h4>#{link_to(organizer.name, organizer)}</h4>
-          <p>
-          #{organizer.intro}
-          #{mini_calendar organizer.events.order("start_datetime ASC")}
-          </div>
-          )
-    raw str
-  end
+
   
   def map_marker(event)
    str = %(
@@ -445,7 +433,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
  
   def mini_calendar events = nil, more_events = events_url, max_no = 10
   #TODO time limits and no of events in initializer (and align)
-    if events.nil?
+    if events.blank?
       events = Event.where("stop_datetime >= ? AND start_datetime <= ?", 
                   Time.now.beginning_of_day, Time.now.end_of_day + 12.months ).
                   order('start_datetime ASC')
@@ -460,8 +448,9 @@ google.maps.event.addDomListener(window, 'load', initialize);
             <table class = "tiny-calendar">
               <caption>#{t('app.planned_events')}</caption>
             )
-    
-    for event in events.limit max_no 
+    logger.info "++++++++++++++++++++++++++++++++++++++"
+    logger.info events.count
+    for event in events #.limit(max_no) 
     cal << %(
               <tr class = "#{cycle("odd", "even")}">
                 <td>#{link_to( event.subject, event, :title => t('app.arranged_by') + ' ' + event.organizer.name + ' ' + t('app.in_municipality') + ' ' + event.municipality.name + '. ' + event.try( :intro))}</td>

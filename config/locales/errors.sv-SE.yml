@@ -57,16 +57,16 @@ sv-SE:
         # The variable :count is also available
         body: "Det var problem med följande fält:"
   
-  # error:
-    # messages:
-      # invalid_date: "ser inte ut som ett datum"
-      # invalid_time: "ser inte ut som ett klockslag"
-      # invalid_datetime: "ser inte ut som datum och klockslag"
-      # is_at: "måste vara %{restriction}"
-      # before: "måste vara tidigare än %{restriction}"
-      # on_or_before: "måste vara %{restriction} eller tidigare"
-      # after: "måste vara senare än %{restriction}"
-      # on_or_after: "måste vara %{restriction} eller senare"
+  error:
+    messages:
+      invalid_date: "ser inte ut som ett datum"
+      invalid_time: "ser inte ut som ett klockslag"
+      invalid_datetime: "ser inte ut som datum och klockslag"
+      is_at: "måste vara %{restriction}"
+      before: "måste vara tidigare än %{restriction}"
+      on_or_before: "måste vara %{restriction} eller tidigare"
+      after: "måste vara senare än %{restriction}"
+      on_or_after: "måste vara %{restriction} eller senare"
 
 
   errors:

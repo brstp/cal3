@@ -15,7 +15,7 @@ Om du inte registrerat ett användarkonto, gör det och logga in för att skapa 
   <thead>
     <tr>
       <th>Arrangör</th>
-      <th class = "number_column">Inplanerade<br />evenemang</th>
+      <th class = "number_column">Planerade<br />evenemang</th>
       <th>Nästa evenemang</th>
       <% if current_user %>
         <th></th>
@@ -23,6 +23,7 @@ Om du inte registrerat ett användarkonto, gör det och logga in för att skapa 
     </tr>
   </thead>
   <tbody>
+  <% reset_cycle %>
   <% for organizer in @organizers %>
     <tr class = "<%= cycle("even", "odd") %>">
       <td><%= link_to organizer.name, organizer %></td>

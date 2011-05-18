@@ -55,6 +55,7 @@ sv-SE:
       show: "Visa evenemanget (strunta i ändringar)"
       list: "Till evenemangslistan (strunta i ändringar)"  
     show: 
+      organizer_facts: 'Fakta om arrangören'
       you_are_admin_for: 'Du är administratör för'
       list: "Till evenemangslistan"
       no_of_events_per_municipality: "inplanerade evenemang i kommunen"

@@ -112,7 +112,27 @@ class Organizer < ActiveRecord::Base
   end
   
   def upcoming_events
-    self.events.find(:all, :conditions => ["stop_datetime >= '#{Time.now}'"], :order => "start_datetime ASC")   
+    #self.events.all #find(:all, :conditions => ["stop_datetime >= '#{Time.now}'"], :order => "start_datetime ASC")   
+    today = Time.zone.now.beginning_of_day    
+    Event.search do
+      with( :organizer_id ).equal_to self.id
+      with(:stop).between(today..(today + 10.year))
+      #paginate :per_page => 10
+      order_by(:start_datetime, :asc)
+
+    end
+
+  end
+  
+  
+  
+  
+  def past_events?
+    !(self.events.find(:all, :conditions => ["stop_datetime < '#{Time.now}'"])).blank?
+  end
+  
+  def future_events?
+    !(self.events.find(:all, :conditions => ["stop_datetime >= '#{Time.now}'"])).blank?
   end
 
   def number_of_upcoming_events
