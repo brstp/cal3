@@ -24,7 +24,7 @@ Cal3::Application.configure do
   config.action_dispatch.best_standards_support = :builtin
 
   # 
-  config.git_branch = File.read '.git/ORIG_HEAD'
+  #config.git_branch = File.read '.git/ORIG_HEAD'
 
 
   # Care / don't care if the mailer can't send

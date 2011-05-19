@@ -34,6 +34,6 @@ Cal3::Application.configure do
   config.active_support.deprecation = :stderr
   
   config.action_mailer.default_url_options = { :host => '127.0.0.1:3000' }
-  config.git_branch = File.read '.git/ORIG_HEAD'
+  #config.git_branch = File.read '.git/ORIG_HEAD'
 
   end
