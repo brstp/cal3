@@ -48,5 +48,6 @@ Cal3::Application.configure do
   config.active_support.deprecation = :notify
   
   config.action_mailer.default_url_options = { :host => 'smooth-water-991.heroku.com' }
+  config.git_branch = File.read '.git/ORIG_HEAD'
       
 end
