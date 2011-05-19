@@ -23,5 +23,6 @@ sv-SE:
     hints:
       mail_message:
         from_phone: "Inklusive riktnummer."
-    mail_message:
-      create: "Skicka mejl"        
+    actions:
+      mail_message:
+        create: "Skicka mejl"        

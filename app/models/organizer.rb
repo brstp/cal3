@@ -112,16 +112,7 @@ class Organizer < ActiveRecord::Base
   end
   
   def upcoming_events
-    #self.events.all #find(:all, :conditions => ["stop_datetime >= '#{Time.now}'"], :order => "start_datetime ASC")   
-    today = Time.zone.now.beginning_of_day    
-    Event.search do
-      with( :organizer_id ).equal_to self.id
-      with(:stop).between(today..(today + 10.year))
-      #paginate :per_page => 10
-      order_by(:start_datetime, :asc)
-
-    end
-
+    self.events.find(:all, :conditions => ["stop_datetime >= '#{Time.now}'"], :order => "start_datetime ASC")   
   end
   
   

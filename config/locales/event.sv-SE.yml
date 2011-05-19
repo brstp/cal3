@@ -64,7 +64,7 @@ sv-SE:
       destroy: "Radera evenemangsannonsen"
       ok_to_keep: "Den får ligga kvar även efter att evenemanget hållits."
       page_viewed: "Sidan visad"
-      download_ics: "Spara evenemanget i kalendern på din dator."
+      download_ics: "Spara evenemanget i Outlook eller annan kalendern på din dator."
       category: "i ämneskategorin"
       want_contact: "Har du frågor? Vill du kontakta arrangören?"
       email_contact: "Mejla evenemangets kontaktperson"

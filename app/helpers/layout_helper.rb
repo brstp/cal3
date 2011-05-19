@@ -432,12 +432,14 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
  
   def mini_calendar events = nil, more_events = events_url, max_no = 10
+    logger.info "++++++++++++++++++++++++++++++++++++++"
+    logger.info events.count
   #TODO time limits and no of events in initializer (and align)
-    if events.blank?
-      events = Event.where("stop_datetime >= ? AND start_datetime <= ?", 
-                  Time.now.beginning_of_day, Time.now.end_of_day + 12.months ).
-                  order('start_datetime ASC')
-    end
+    #if events.blank?
+    #  events = Event.where("stop_datetime >= ? AND start_datetime <= ?", 
+    #              Time.now.beginning_of_day, Time.now.end_of_day + 12.months ).
+    #              order('start_datetime ASC')
+    #end
     many_events = ""
     if events.count > max_no
       many_events = link_to(t('app.there_are') + ' ' + events.count.to_s + ' ' + t('app.events_in_total'), more_events) 
@@ -448,8 +450,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
             <table class = "tiny-calendar">
               <caption>#{t('app.planned_events')}</caption>
             )
-    logger.info "++++++++++++++++++++++++++++++++++++++"
-    logger.info events.count
+
     for event in events #.limit(max_no) 
     cal << %(
               <tr class = "#{cycle("odd", "even")}">

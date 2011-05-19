@@ -105,7 +105,7 @@
 
 <% if @organizer.future_events? %>
   <p>
-    <%= link_to(t('.download_ics1') + ' ' + @organizer.name + t('app.s') + ' ' + t('.download_ics2'), organizer_url(:only_path => false, :format => :ics ))  %>
+    <%= link_to(t('.download_ics1') + ' ' + @organizer.name + t('app.s') + ' ' + t('.download_ics2'), organizer_url(:only_path => false, :format => :ics ), :title => t('app.ics_file'))  %>
   </p>
 <% end %>
 
@@ -117,7 +117,7 @@
 
 <% if @organizer.past_events? %>
   <p>
-    <%= link_to @organizer.name + t('.previous_events'), events_path(:organizer_id => @organizer.id, :start => :past) %>
+    <%= link_to @organizer.name + t('.previous_events'), events_path(:organizer_id => @organizer.id, :stop => :past) %>
   </p>
 <% end %>
 
@@ -226,7 +226,7 @@
 
       <% if @organizer.future_events? %>
         <p>
-          <%= link_to(t('.download_ics1') + ' ' + @organizer.name + t('app.s') + ' ' + t('.download_ics2'), organizer_url(:only_path => false, :format => :ics ))  %>
+          <%= link_to(t('.download_ics1') + ' ' + @organizer.name + t('app.s') + ' ' + t('.download_ics2'), organizer_url(:only_path => false, :format => :ics ), :title => t('app.ics_file'))  %>
         </p>
       <% end %>
 
@@ -238,7 +238,7 @@
 
       <% if @organizer.past_events? %>
         <p>
-          <%= link_to @organizer.name + t('.previous_events'), events_path(:organizer_id => @organizer.id, :start => :past) %>
+          <%= link_to @organizer.name + t('.previous_events'), events_path(:organizer_id => @organizer.id, :stop => :past) %>
         </p>
       <% end %>
 
