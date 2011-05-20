@@ -114,6 +114,17 @@ class Organizer < ActiveRecord::Base
   def upcoming_events
     self.events.find(:all, :conditions => ["stop_datetime >= '#{Time.now}'"], :order => "start_datetime ASC")   
   end
+  
+  
+  
+  
+  def past_events?
+    !(self.events.find(:all, :conditions => ["stop_datetime < '#{Time.now}'"])).blank?
+  end
+  
+  def future_events?
+    !(self.events.find(:all, :conditions => ["stop_datetime >= '#{Time.now}'"])).blank?
+  end
 
   def number_of_upcoming_events
     self.events.find(:all, :conditions => ["stop_datetime >= '#{Time.now}'"]).count

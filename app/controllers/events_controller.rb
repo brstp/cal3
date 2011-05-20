@@ -32,48 +32,48 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
         keywords params[:q]
         paginate :per_page => 30, :page => params[:page]
         facet :category_facet_id, :organizer_id, :municipality_id
-        facet :start do
+        facet :stop do
           row "today" do
-            with :start, today..(today + 1.day)
+            with :stop, today..(today + 1.day)
           end
           row "tomorrow" do
-            with :start, (today + 1.day)..(today + 2.day)
+            with :stop, (today + 1.day)..(today + 2.day)
           end
           row "this_week" do
-            with :start, this_week..(this_week + 1.week)
+            with :stop, this_week..(this_week + 1.week)
           end
           row "this_weekend" do
-            with :start, (this_week + 5.day)..(this_week + 7.day)
+            with :stop, (this_week + 5.day)..(this_week + 7.day)
           end
           row "next_week" do
-            with :start, (this_week + 1.week)..(this_week + 2.week)
+            with :stop, (this_week + 1.week)..(this_week + 2.week)
           end
           row "next_weekend" do
-            with :start, (this_week + 12.day )..(this_week + 14.day)
+            with :stop, (this_week + 12.day )..(this_week + 14.day)
           end
           row "this_month" do
-            with :start, (this_month)..(this_month + 1.month)
+            with :stop, (this_month)..(this_month + 1.month)
           end
           row "next_month" do
-            with :start, (this_month + 1.month)..(this_month + 2.month)
+            with :stop, (this_month + 1.month)..(this_month + 2.month)
           end
           row "future" do
-            with :start, today..(today + 10.year)
+            with :stop, today..(today + 10.year)
           end
           row "past" do
-            with :start, (today - 100.year)..today
+            with :stop, (today - 100.year)..today
           end
           row "christmas_eve" do
-            with :start, christmas_eve..(christmas_eve + 1.day)
+            with :stop, christmas_eve..(christmas_eve + 1.day)
           end
           row "christmas_day" do
-            with :start, (christmas_eve + 1.day)..(christmas_eve + 2.day)
+            with :stop, (christmas_eve + 1.day)..(christmas_eve + 2.day)
           end
           row "new_years_eve" do
-            with :start, new_years_eve..(new_years_eve + 1.day)
+            with :stop, new_years_eve..(new_years_eve + 1.day)
           end
           row "walpurgis_night" do
-            with :start, (this_year+ 4.month + 29.day)..(this_year + 4.month + 30.day)
+            with :stop, (this_year+ 4.month + 29.day)..(this_year + 4.month + 30.day)
           end
         end
 
@@ -81,43 +81,43 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
         # TODO Sök nära mig. # s.near([40,5, -72.3], :distance => 5, :sort => true)
 
 
-        unless params[:start].blank?
+        unless params[:stop].blank?
           case
-            when params[:start] == "this_week"
-              with(:start).between((this_week)..(this_week+1.week))
-            when params[:start] == "next_week"
-              with(:start).between((this_week+1.week)..(this_week+2.week))
-            when params[:start] == "today"
-              with(:start).between(today..(today + 1.day))
-            when params[:start] == "tomorrow"
-              with(:start).between((today + 1.day)..(today + 2.day))
-            when params[:start] == "this_weekend"
-              with(:start).between((this_week + 5.day)..(this_week + 7.day))
-            when params[:start] == "next_weekend"
-              with(:start).between((this_week + 12.day )..(this_week + 14.day))
-            when params[:start] == "this_month"
-              with(:start).between((this_month)..(this_month + 1.month))
-            when params[:start] == "next_month"
-              with(:start).between((this_month + 1.month)..(this_month + 2.month))
-            when params[:start] == "future"
-              with(:start).between(today..(today + 10.year))
-            when params[:start] == "past"
-              with(:start).between((today - 100.year)..today)
-            when params[:start] == "christmas_eve"
-              with(:start).between(christmas_eve..(christmas_eve + 1.day))
-            when params[:start] == "christmas_day"
-              with(:start).between((christmas_eve + 1.day)..(christmas_eve + 2.day))
-            when params[:start] == "new_years_eve"
-              with(:start).between(new_years_eve..(new_years_eve + 1.day))
-            when params[:start] == "walpurgis_night"
-              with(:start).between((this_year + 4.month + 29.day)..(this_year + 4.month + 30.day ))
+            when params[:stop] == "this_week"
+              with(:stop).between((this_week)..(this_week+1.week))
+            when params[:stop] == "next_week"
+              with(:stop).between((this_week+1.week)..(this_week+2.week))
+            when params[:stop] == "today"
+              with(:stop).between(today..(today + 1.day))
+            when params[:stop] == "tomorrow"
+              with(:stop).between((today + 1.day)..(today + 2.day))
+            when params[:stop] == "this_weekend"
+              with(:stop).between((this_week + 5.day)..(this_week + 7.day))
+            when params[:stop] == "next_weekend"
+              with(:stop).between((this_week + 12.day )..(this_week + 14.day))
+            when params[:stop] == "this_month"
+              with(:stop).between((this_month)..(this_month + 1.month))
+            when params[:stop] == "next_month"
+              with(:stop).between((this_month + 1.month)..(this_month + 2.month))
+            when params[:stop] == "future"
+              with(:stop).between(today..(today + 10.year))
+            when params[:stop] == "past"
+              with(:stop).between((today - 100.year)..today)
+            when params[:stop] == "christmas_eve"
+              with(:stop).between(christmas_eve..(christmas_eve + 1.day))
+            when params[:stop] == "christmas_day"
+              with(:stop).between((christmas_eve + 1.day)..(christmas_eve + 2.day))
+            when params[:stop] == "new_years_eve"
+              with(:stop).between(new_years_eve..(new_years_eve + 1.day))
+            when params[:stop] == "walpurgis_night"
+              with(:stop).between((this_year + 4.month + 29.day)..(this_year + 4.month + 30.day ))
           end
         end
 
-      unless params[:start] == "past"
-        with(:start).between(today..(today + 10.year))
+      unless params[:stop] == "past"
+        with(:stop).between(today..(today + 10.year))
       else
-        with(:start).between((today - 100.year)..today)
+        with(:stop).between((today - 100.year)..today)
       end
 
       unless params[:category_facet_id].blank?
@@ -134,8 +134,8 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
 
     end
 
-    if result.facet( :start )
-      @start_facet_rows = result.facet(:start).rows
+    if result.facet( :stop )
+      @stop_facet_rows = result.facet(:stop).rows
     end
 
     if result.facet( :category_facet_id )

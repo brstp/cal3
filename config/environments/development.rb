@@ -22,7 +22,10 @@ Cal3::Application.configure do
 
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
-  
+
+  # 
+  #config.git_branch = File.read '.git/ORIG_HEAD'
+
 
   # Care / don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = true

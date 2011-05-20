@@ -2,40 +2,6 @@
 Hej!
 </p> 
 <p>
-Det här mejlet kommer från någon som använt kontaktformuläret på Kalendern, [TODO länk här].
+Det här mejlet kommer från någon som använt kontaktformuläret på Kalendern, <%= events_url %>.
 </p>
-<p>
-Från: <%= @mail_message.from_name + ' <' + @mail_message.from_email%>><br />
-<% if @mail_message.from_phone.blank? %>
-Avsändaren ville inte lämna något telefonnummer.
-<% else %>
-Telefon: <%= @mail_message.from_phone %>
-<% end %>
-</p>
-<hr />
-<p>
-Meddelande:
-</p>
-<p>
-<%= @mail_message.mail_body %>
-</p>
-<hr />
-<p>
-Du får det här mejlet för att den person som skrivit in evenemangsannonsen angett din mejladress som kontaktinformation för evenemanget.
-</p>
-Annonsen för <%= Event.find(@mail_message.event_id).subject %> finns på <%= event_url(Event.find(@mail_message.event_id))%>
-</p>
-<p>
-Avsändaren känner inte till din mejladress förrän du svarar på det här mejlet. Vi kan inte veta om avsändarens kontaktinformation är korrekt. Om avsändaren missbrukar möjligheten att skicka mejl eller gör något olagligt, skicka vidare hela det här mejlet till abuse@kalendern.se.
-</p>
-<hr />
-Allt som händer - överallt på Kalendern. Locka deltagare till dina evenemang också. [TODO länk här]
-<hr />
-<p>
-Mejlet (med id: <%= @mail_message.id %>) skickades <%= @mail_message.created_at %> från en dator med IP-adress: <%= @mail_message.ip %>. Den som skickade mejlet har en webbläsare av typ (user agent): <%= @mail_message.user_agent %>. Sidan som ledde till kontaktformuläret (referer) var: <%= @mail_message.referer %> Evenemangsannonsen har id: <%= @mail_message.event_id %>
-</p>
-<hr />
-<p>
-Allt som händer - överallt på Kalendern. Locka deltagare till dina evenemang också. [TODO länk här]
-</p>
-<hr />
+<%= render 'event_mail' %>

@@ -103,18 +103,24 @@
           ) %>
 <% end %>
 
-<p>
-<%= link_to @organizer.name + t('.previous_events'), events_path(:organizer_id => @organizer.id, :start => :past) %>
-</p>
+<% if @organizer.future_events? %>
+  <p>
+    <%= link_to(t('.download_ics1') + ' ' + @organizer.name + t('app.s') + ' ' + t('.download_ics2'), organizer_url(:only_path => false, :format => :ics ), :title => t('app.ics_file'))  %>
+  </p>
+<% end %>
 
 <p>
-<%= link_to t('.subscribe_rss') + ' ' + @organizer.name + t('app.s') + ' ' + t('.organizers_event'), :format => :rss, :only_path => false %>  
-<%= link_to image_tag("rss_icon.gif", :alt => t('.rss_alt') + ' ' + @organizer.name), :format => :rss, :only_path => false %>
+  <%= link_to t('.subscribe_rss') + ' ' + @organizer.name + t('app.s') + ' ' + t('.organizers_event'), :format => :rss, :only_path => false %>  
+  <%= link_to image_tag("rss_icon.gif", :alt => t('.rss_alt') + ' ' + @organizer.name), :format => :rss, :only_path => false %>
+  <%= link_to t('.whats_rss'), "http://sv.wikipedia.org/wiki/RSS-l%C3%A4sare", :rel => :nofollow %>
 </p>
 
-<p>
-<%= link_to(t('.download_ics'), organizer_url(:only_path => false, :format => :ics ))  %>
-</p>
+<% if @organizer.past_events? %>
+  <p>
+    <%= link_to @organizer.name + t('.previous_events'), events_path(:organizer_id => @organizer.id, :stop => :past) %>
+  </p>
+<% end %>
+
 
 
 <%= facebook_like organizer_path(:only_path => false), "bottom", "like" %>
@@ -217,14 +223,24 @@
 <%= content_for :right_column_bottom do %>  
   <div class = "box" id = "promote_organizer">
     <span class="heading"><%= t('.promote')%><br /> <%=@organizer.name%>:</span>
-    <p>
-      <%= link_to t('.subscribe_rss') + ' ' + @organizer.name + t('app.s') + ' ' + t('.organizers_event'), :format => :rss, :only_path => false %>  
-      <%= link_to image_tag("rss_icon.gif", :alt => t('.rss_alt') + ' ' + @organizer.name), :format => :rss, :only_path => false %>
-    </p>
 
-    <p>
-      <%= link_to(t('.download_ics'), organizer_url(:only_path => false, :format => :ics ))  %>
-    </p>
+      <% if @organizer.future_events? %>
+        <p>
+          <%= link_to(t('.download_ics1') + ' ' + @organizer.name + t('app.s') + ' ' + t('.download_ics2'), organizer_url(:only_path => false, :format => :ics ), :title => t('app.ics_file'))  %>
+        </p>
+      <% end %>
+
+      <p>
+        <%= link_to t('.subscribe_rss') + ' ' + @organizer.name + t('app.s') + ' ' + t('.organizers_event'), :format => :rss, :only_path => false %>  
+        <%= link_to image_tag("rss_icon.gif", :alt => t('.rss_alt') + ' ' + @organizer.name), :format => :rss, :only_path => false %>
+        <%= link_to t('.whats_rss'), "http://sv.wikipedia.org/wiki/RSS-l%C3%A4sare", :rel => :nofollow %>
+      </p>
+
+      <% if @organizer.past_events? %>
+        <p>
+          <%= link_to @organizer.name + t('.previous_events'), events_path(:organizer_id => @organizer.id, :stop => :past) %>
+        </p>
+      <% end %>
 
     <p>
     <%= t('.share_as_iframe') %>
