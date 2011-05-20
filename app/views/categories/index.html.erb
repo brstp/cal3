@@ -15,7 +15,7 @@
 <% @categories.each do |category| %>
   <tr class = "<%= cycle("even", "odd") %>">
     <td><%= category.id %></td>
-    <td><%= category.prefix + category.name %></td>
+    <td><%= category.prefix + category.name %> (<%= category.events.count %>)</td>
     <td><%= category.description %></td>
     <td><%= category.parent.try :name %></td>
     <td><%= category.ancestry %></td>

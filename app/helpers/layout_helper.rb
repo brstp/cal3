@@ -89,20 +89,7 @@ module LayoutHelper
     end
   end
   
-  def select_category_tree selected_category = nil
-    raw %(
-    <li class="radio required" id="event_category_input">
-    <fieldset>
-    <legend class="label">
-    <label>#{ Event.human_attribute_name('category') }*</label>
-    </legend>
-    <ol class = "category-level-0" >
-    #{Category.all.first.root.climb selected_category}
-    </ol>
-    </fieldset>
-    <p class="inline-hints">#{t('formtastic.hints.event.category')}</p></li>
-        )
-  end
+
   
   def facet_search
     str = ""
@@ -432,8 +419,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
  
   def mini_calendar events = nil, more_events = events_url, max_no = 10
-    logger.info "++++++++++++++++++++++++++++++++++++++"
-    logger.info events.count
+
   #TODO time limits and no of events in initializer (and align)
     #if events.blank?
     #  events = Event.where("stop_datetime >= ? AND start_datetime <= ?", 
