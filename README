@@ -13,11 +13,14 @@ git push heroku master
 
 #Att göra vid uppstart
 
-. ../amazon-s3-keys.sh    # sourca credentials till Amazon S3 i env variables (vill inte ha dem i kodträdet)
+
 bundle install
 bundle update
 rake db:migrate
 
+rails plugin install git://github.com/wtn/csv_records.git
+
+. ../cal3-credentials.sh    # sourca credentials till Amazon S3 i env variables (vill inte ha dem i kodträdet)
 rake sunspot:solr:run         # Starta sökmotorn på windows. Script under ruby/.../gems/... patchat för rätt "escape-tecken" för Windows
 rake sunspot:solr:start      # Starta sökmotorn på *ix
 rake sunspot:reindex          # Indexera om
