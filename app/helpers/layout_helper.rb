@@ -188,18 +188,19 @@ module LayoutHelper
               <ul>
               )
       for row in facet_rows 
-
-      str << %(
-                <li>
-                  #{link_to( row.instance.and_mum.capitalize + " (" + row.count.to_s +  ")", 
-                              events_path(  :q => params[:q], 
-                                            :stop => params[:stop],
-                                            :category_facet_id => row.instance,
-                                            :organizer_id => params[:organizer_id],
-                                            :municipality_id => params[:municipality_id]
-                                          ) ) }
-                </li>
-              )
+        unless row.instance.blank?
+          str << %(
+                    <li>
+                      #{link_to( row.instance.and_mum.capitalize + " (" + row.count.to_s +  ")", 
+                                  events_path(  :q => params[:q], 
+                                                :stop => params[:stop],
+                                                :category_facet_id => row.instance,
+                                                :organizer_id => params[:organizer_id],
+                                                :municipality_id => params[:municipality_id]
+                                              ) ) }
+                    </li>
+                  )
+        end
       end
       unless params[:category_facet_id].blank?
       str << %(
@@ -406,6 +407,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
   end
   
   def in_category event
+    exit if event.category.blank?
     category = event.category
     str = ""
     while category.depth > 0
