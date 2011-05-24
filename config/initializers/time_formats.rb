@@ -11,3 +11,4 @@ Timeliness.add_formats(:datetime, 'yyyy-mm-dd hh.nn', :before => 'yyyy-mm-dd hh:
 Timeliness.add_formats(:datetime, 'yyyy-mm-dd h.nn', :before => 'yyyy-mm-dd hh:nn:ss')
 Timeliness.add_formats(:datetime, 'yyyy-mm-dd hh.n', :before => 'yyyy-mm-dd hh:nn:ss')
 Timeliness.add_formats(:datetime, 'yyyy-mm-dd h.n', :before => 'yyyy-mm-dd hh:nn:ss')
+
