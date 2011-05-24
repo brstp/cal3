@@ -165,12 +165,39 @@ sv-SE:
         description: "En längre beskrivning av arrangören. Berätta vem du eller vilka ni är, var ni finns, vad ni gör, vem era evenemang vänder sig till."
         website: "Länk till arrangörens hemsida. Exempel: http://www.abc.se (jo, det där http:// eller https:// i början ska vara med)."  
         logotype: "En bild eller symbol som representerar arrangören. Används som en logotyp. Välj en bild som inte innehåller allt för mycket detaljer. Lämplig storlek är bredd: 90 pixlar och höjd: 109 pixlar. Vi förstorar eller förminskar bilden om det behövs. Bilden bör vara i formaten gif eller png med transparent bakgrund."
-        photo: "En dekorativ bild som visas i stort format på arrangörssidan. Se det som en reklambild för er. Vi rekommenderar ett motiv som visar vad ni ägnar er åt.  Lämplig storlek på bilden är bredd: 720 pixlar och höjd: 480 pixlar. Vi förstorar eller förminskar bilden om det behövs. Vi rekommenderar filformat jpg (gif och png fungerar också)."        
+        photo: "En dekorativ bild som visas i stort format på arrangörssidan. Se det som en reklambild för er. Vi rekommenderar ett motiv som visar vad ni ägnar er åt.  Lämplig storlek på bilden är bredd: 720 pixlar och höjd: 480 pixlar. Vi förstorar eller förminskar bilden om det behövs. Vi rekommenderar filformat jpg (gif och png fungerar också)."
+      event:
+        subject: "Använd 7-40 tecken."
+        intro: "Skriv en jättekort sammanfattning på max 100 tecken."
+        description: "Ge en komplett beskrivning av evenemanget."
+        organizer: "Kan inte ändras på ett evenemang som redan är publicerat. Om du ändå vill ändra så får du radera evenemanget och skapa ett nytt."
+        start_date: "Exempel: 2009-02-21"
+        start_time: "Exempel: 14.30"
+        stop_date: "Exempel: 2009-02-21"
+        stop_time: "Exempel: 15.30"
+        street: "Gärna en gatuadress av typen: \"Kungsgatan 5, 572 30 Oskarshamn\". Google hjälper oss att visa adresser som matchar det du skriver in. Ofta fungerar det med hyfsat kända platser som: \"Munsö kyrka\". När du valt en plats prickar vi in en kartnål på kartan längre ned på sidan. Du kan zooma in kartan och flytta kartnålen."
+        re_geocoded_street: "Närmsta kända gatuadress när du flyttar kartnålen. Visas inte i annonsen. Funkar hyfsat bra i tätorter men skrattretande dåligt i glesbygd. Det är Google som hjälper oss med detta."
+        loc_descr: "Om det inte räcker med gatuadress, beskriv platsen där evenemanget hålls. Exempel: \"Utomhusscenen i parken.\""
+        lat: "Du kan använda latitud/longitud för att förklara en plats som inte har något namn, så att vi kan placera kartnålen rätt. Oftast lyckas vi få fram en position med hjälp av adressen som du skrivit in. Latitud/longitud skrivs i decimalform (med decimalpunkt)."
+        lng: "Också i decimalformat"
+        municipality: "Där evenemanget sker. Markera menyn och skriv första bokstaven i kommunnamnet för att snabbt hitta kommunen."
+        email: "Om någon vill nå dig som arrangerar, vilken mejladress tar du emot frågor på? Mejlet skickas från ett kontaktformulär där din mejladress inte visas."
+        human_name: "Vem går mejlet till? Namnet visas istället för mejladress i kontaktformuläret. Exempel: \"Veera Virtanen\" eller \"Föreningskansliet\"."
+        phone_number: "Om någon vill nå dig som arrangerar, vilket telefonnummer tar du emot frågor på? Komplett telefonnummer inklusive riktnummer."
+        phone_name: "Vem går telefonnumret till? Exempel: \"Åke Svensson\" eller \"Föreningskansliet\"."
+        image1: "En bild som visas i evenemangsannonsen. Bör vara minst 600 pixel bred. Bilden skalas och beskärs så att den passar utrymmet. Den här bilden är den som visas störst i annonsen."
+        image2: "Ytterligare bild."
+        image3: "Ytterligare bild."
+        category: "Vad handlar evenemanget om? Vilket ämne? Försök ange en så specifik kategori som möjligt."        
+                
     actions:
       petition:
         create: 'Ansök'
-        update: 'Spara'        
-        
+        update: 'Spara'                       
+      event:
+        create: "Skapa evenemangsannons"
+        update: "Spara evenemangsannons"  
+
   devise:
     failure:
       unauthenticated: 'Du måste logga in eller skapa ett konto innan du kan fortsätta.'

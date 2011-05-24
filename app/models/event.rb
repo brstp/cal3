@@ -19,7 +19,7 @@
 
 
   validates_presence_of :subject, :description, :municipality_id, :start_date, :start_time, 
-                        :stop_date, :stop_time, :organizer_id, :email, :human_name, :category_id, :category
+                        :stop_date, :stop_time, :organizer_id, :email, :human_name, :category
   validates_length_of :subject, :in => 7..40
   validates_length_of :intro, :in => 0..90
   validates_numericality_of :lat, :allow_nil => true
@@ -27,7 +27,6 @@
   validate :validates_start_time, :validates_start_date, :validates_stop_time, :validates_stop_date, :validates_start_stop, :validates_phone_details
   validates :phone_number, :phone => true
   validates :email, :email => true
-  validates_numericality_of :category_id, :greater_than => 0, :allow_nil => false
   # validates_presence_of :phone_name, :unless => :blank_phone_number
 
   geocoded_by :street, :latitude => :lat, :longitude => :lng
