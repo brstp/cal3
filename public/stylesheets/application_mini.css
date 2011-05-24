@@ -212,7 +212,7 @@ table.general td {
 
 .counter {
   font-size: 2em;
-  font: verdana;
+  font-family: Verdana, Tahoma, Helvetica, Arial;
   background-color: black;
   padding: 0.2em;
   padding-left: 0.7em;
@@ -385,7 +385,6 @@ form.formtastic fieldset > ol > li fieldset ol.category-level-0  {
 
 .iframe_me {
   width: 100%;
-  rows: 5;
 }
 
 .organizer_photo {
