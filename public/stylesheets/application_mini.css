@@ -104,8 +104,8 @@ table.tiny-calendar {
   font-size: 89%;
   border: none;
   margin-top: 1em;
-  margin-bottom: 1 em;
-	background-color: f7f7f7;
+  margin-bottom: 1em;
+	background-color: #f7f7f7;
   width: 100%;
   text-align: left;
 }
@@ -152,7 +152,7 @@ table.general {
 	border-spacing: 2px;
   margin-right: 1em;
   margin-bottom: 1em;
-	background-color: f7f7f7;
+	background-color: #f7f7f7;
   width: 100%;
   text-align: left;
 }
@@ -212,7 +212,7 @@ table.general td {
 
 .counter {
   font-size: 2em;
-  font: Verdana;
+  font: verdana;
   background-color: black;
   padding: 0.2em;
   padding-left: 0.7em;
@@ -222,7 +222,7 @@ table.general td {
 
 }
 .counter-text {
-  color: lightgrey;
+  color: #f7f7f7;
 }
 
 .facet-1 {
@@ -361,7 +361,7 @@ form.formtastic fieldset > ol > li fieldset ol.category-level-0  {
 
 .category_description{
   font-style: italic;
-  color: grey;
+  color: #ccc;
   font-weight: normal;
 }
 
@@ -394,7 +394,7 @@ form.formtastic fieldset > ol > li fieldset ol.category-level-0  {
 }
 
 .break {
-  width: 100%
+  width: 100%;
   height: 1px;
   margin: 0 0 -1px;
   clear: both;
