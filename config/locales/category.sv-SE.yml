@@ -4,7 +4,7 @@ sv-SE:
       category: 'ämneskategori'
     attributes:
       categories:
-        name: 'namn'
+        name: 'Namn'
         description: 'Beskrivning'
         ancestry: 'Tillhör kategori'
   categories:
@@ -19,3 +19,6 @@ sv-SE:
     hints:
       model_name:
         attribute_name: ''
+    labels:
+      name: "Namn"
+      description: "Beskrivning"

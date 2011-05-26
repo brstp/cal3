@@ -2,8 +2,8 @@
 
 <table class = "general">
   <tr>
-    <th>Id</th>
     <th>Name</th>
+    <th>Id</th>    
     <th>Description</th>
     <th>Mamma</th>
     <th>Ancecstry</th>
@@ -14,8 +14,8 @@
 
 <% @categories.each do |category| %>
   <tr class = "<%= cycle("even", "odd") %>">
-    <td><%= category.id %></td>
     <td><%= category.prefix + category.name %> (<%= category.events.count %>)</td>
+    <td><%= category.id %></td>
     <td><%= category.description %></td>
     <td><%= category.parent.try :name %></td>
     <td><%= category.ancestry %></td>
