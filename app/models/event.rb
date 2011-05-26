@@ -61,10 +61,10 @@
         :secret_access_key => ENV['S3_SECRET']
                          },
       :default_url => "/images/blue-yellow-landscape.jpg",
-      :styles => {:large => "800x600#",
-                  :medium => "360x240#",
-                  :small => "176x117#",
-                  :thumb => "40x30#"}
+      :styles => {:large => "800x600",
+                  :medium => "360x240",
+                  :small => "176x117",
+                  :thumb => "40x30#}
 
   has_attached_file :image2,
       :storage => :s3,
