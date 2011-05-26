@@ -35,9 +35,9 @@
 .error_messages {
   width: 100%;
   border: 2px solid #CF0000;
-  padding: 0.5em;
-  padding-bottom: 1em;
-  margin-bottom: 2em;
+  padding: 0px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
   background-color: #f0f0f0;
   font-size: 12px;
 }
@@ -397,6 +397,7 @@ table.general td {
 .user_comment {
   font-style: italic;
 }
+
 
   
 .left {
