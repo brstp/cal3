@@ -329,12 +329,7 @@ table.general td {
 }
 
 
-form.formtastic fieldset > ol > li fieldset ol.category-level-0  {
-  float: left;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-}
+
 
 .category-level-0 {
 }
@@ -403,11 +398,6 @@ form.formtastic fieldset > ol > li fieldset ol.category-level-0  {
   font-style: italic;
 }
 
-
-form.formtastic fieldset > ol > li p.inline-text { 
-   
-  margin: 0 0 0 25%; 
-  }
   
 .left {
   float: left;

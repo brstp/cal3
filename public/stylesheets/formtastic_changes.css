@@ -13,30 +13,28 @@ form.formtastic fieldset ol li fieldset legend { margin-left: -6px;}
 
 --------------------------------------------------------------------------------------------------*/
 
-form.formtastic fieldset > ol > li.error > input {
-  padding: 2px;
+form.formtastic fieldset > ol > li.error {
   border-color: red;
-  display: table;
+  border-width: 2px;
+  border-style: solid;
+  background-color: #f0f0f0;
+  padding: 0 0.5em 0 0.5em;
 }
 
-#event_submit {
-  padding: 0.2em;
-  font-size: 2em;
+form.formtastic fieldset > ol > li p.inline-hints { 
+  color:#666; 
 }
 
-
-.button_container {
-  margin-left: 5em;
- }
- 
-.button {
+form.formtastic fieldset > ol > li fieldset ol.category-level-0  {
   float: left;
- }
- 
-.reset {
-  padding-top: 1.5em;
-} 
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
 
-form.formtastic fieldset > ol > li.string input, form.formtastic fieldset > ol > li.password input, form.formtastic fieldset > ol > li.numeric input, form.formtastic fieldset > ol > li.email input, form.formtastic fieldset > ol > li.url input, form.formtastic fieldset > ol > li.phone input, form.formtastic fieldset > ol > li.search input {
-  width: 50%;
-}      
+form.formtastic fieldset > ol > li p.inline-text { 
+   
+  margin: 0 0 0 25%; 
+  }
+  
+  

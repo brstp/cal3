@@ -11,8 +11,11 @@ sv-SE:
     submit: 'Skicka'
     required: 'Obligatorisk'
     labels:
-      name: "Namn"
-      description: "Beskrivning"
+      categories:
+        name: "Namn"
+        description: "Beskrivning"
+      event:
+        organizer: 'Arrangör'
     hints:
       organizer:
         name: "Namnet på föreningen, företaget eller dig som arrangerar."
