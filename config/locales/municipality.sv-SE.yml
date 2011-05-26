@@ -46,8 +46,3 @@ sv-SE:
       escutcheon_for: "Kommunvapen för"
       promote: "Gör reklam för det som händer i"
       previous_events: "Redan genomförda evenemang i"
-  formtastic:
-    hints:
-      municipality: 
-        name: "Namnet på kommunen (en del kommuner heter \"stad\")"
-

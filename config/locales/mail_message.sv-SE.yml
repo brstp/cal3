@@ -19,10 +19,3 @@ sv-SE:
     form:
       self_copy: "När du skickar det här mejlet så skickar vi dig en kopia."
       disclaimer: "Vi sparar inte själva meddelandet som du skickar till arrangören, däremot informationen om att ett mejl har skickats (från och till vem). Vi använder den informationen för att försöka stoppa spam och missbruk. Vi sparar också nedanstående information om din webbläsare av samma skäl."
-  formtastic:
-    hints:
-      mail_message:
-        from_phone: "Inklusive riktnummer."
-    actions:
-      mail_message:
-        create: "Skicka mejl"        

@@ -18,10 +18,6 @@ sv-SE:
       title: '' 
       back: ''
     form:
-  formtastic:
-    hints:
-      model_name:
-        attribute_name: ''
   membership:
     flash:
       notice:

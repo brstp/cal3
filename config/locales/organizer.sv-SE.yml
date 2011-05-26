@@ -92,11 +92,9 @@ sv-SE:
       no_petitions: 'Just nu finns det inga ansökningar.'
       you_have_petitions: 'Du har fått in ansökningar om att bli administratör som ska godkännas eller avslås.'
       my_organizers: 'Du är administratör för'
-
     new:
       title: "Ny arrangör"
       list: "Till arrangörslistan (strunta i ändringar)"
     edit:
       show: "Visa arrangören (strunta i ändringar)"
       list: "Till arrangörslistan (strunta i ändringar)"
-

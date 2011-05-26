@@ -113,15 +113,7 @@ sv-SE:
       unlock_instructions:
         subject: 'Lås upp dit användarkonto på Föreningskalendern'      
       invitation:
-        subject: 'Inbjudan till Kalendern'
-  formtastic:
-    labels:
-      user:
-    hints:
-      user:
-        email_no_change_allowed: 'Mejladressen kan inte ändras.'
-        new_password: '(du behöver bara fylla i om du vill byta lösenord)'
-        current_password: 'Fyll i lösenordet om du ska byta lösenord eller mejladress'        
+        subject: 'Inbjudan till Kalendern'   
   devise:
     invitations:
       user: #TODO fix below, should be part of users, not devise...

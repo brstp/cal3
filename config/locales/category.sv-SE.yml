@@ -15,10 +15,3 @@ sv-SE:
       title: 'Ändra kategori'
       list: 'Till kategorilistan (strunta i ändringar)'
       show: 'Strunta i ändringar'
-  formtastic:
-    hints:
-      model_name:
-        attribute_name: ''
-    labels:
-      name: "Namn"
-      description: "Beskrivning"
