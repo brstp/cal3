@@ -63,5 +63,5 @@ sv-SE:
         create: 'Ansök'
         update: 'Spara'                       
       event:
-        create: "Skapa evenemangsannons"
-        update: "Spara evenemangsannons"  
+        create: "Skapa evenemangsannonsen"
+        update: "Spara evenemangsannonsen"  
