@@ -6,7 +6,7 @@
   <%= auto_discovery_link_tag( :rss, events_url(:format => 'rss') , {:title => t('.rss_title') }) %>
 <% end %> 
 
-    <h1>Allt som händer innan det är försent.</h1>
+    <h1><%= t '.subject' %></h1>
 
 <% content_for :right_column_top do %>
   <div class = "box" id="facet">
@@ -21,7 +21,7 @@
   
   
 <% if @events.blank? %>  
-  <p>Just nu hittar vi inte några inplanerade evenemang. </p>
+  <p><%= t '.no_events'%></p>
 <% else %>
   <%= will_paginate(
     :renderer => CustomPaginationLinkRenderer,
@@ -48,7 +48,7 @@
               :only_path => false,
               :format => :rss,
               :q => params[:q], 
-              :start => params[:start],
+              :stop => params[:stop],
               :category_facet_id => params[:category_facet_id],
               :organizer_id => params[:organizer_id],
               :municipality_id => params[:municipality_id] ) %>
@@ -58,7 +58,7 @@
             events_url( :only_path => false, 
                         :format => :rss, 
                         :q => params[:q], 
-                        :start => params[:start],
+                        :stop => params[:stop],
                         :category_id => params[:category_id], 
                         :municipality_id => params[:municipality_id], 
                         :organizer_id => params[:organizer_id]) %>

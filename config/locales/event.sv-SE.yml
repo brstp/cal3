@@ -50,6 +50,8 @@ sv-SE:
       search: "Sök"
       seek_event: "Sök evenemang, ämne, arrangör, plats"
       reset_search: "Rensa sökningen och visa alla evenemang."
+      no_events: 'Just nu hittar vi inte några evenemang som matchar det du letar efter.'
+      subject: 'Allt som händer innan det är försent.'
     edit:
       title: "Ändra evenemanget"
       show: "Visa evenemanget (strunta i ändringar)"
@@ -79,34 +81,7 @@ sv-SE:
       do_you_really_want_to_cancel_me: "Vill du strunta i ändringar som du gjort sedan du sparade senast?"
       select_organizer: "--- Välj en arrangör ---"
       select_municipality: "--- Välj en kommun ---"
-  formtastic:
-    event:
-      create: "Skapa evenemangsannons"
-      update: "Spara evenemangsannons"  
-    hints:
-      event:
-        subject: "Använd 7-40 tecken."
-        intro: "Skriv en jättekort sammanfattning på max 100 tecken."
-        description: "Ge en komplett beskrivning av evenemanget."
-        organizer: "Kan inte ändras på ett evenemang som redan är publicerat. Om du ändå vill ändra så får du radera evenemanget och skapa ett nytt."
-        start_date: "Exempel: 2009-02-21"
-        start_time: "Exempel: 14.30"
-        stop_date: "Exempel: 2009-02-21"
-        stop_time: "Exempel: 15.30"
-        street: "Gärna en gatuadress av typen: \"Kungsgatan 5, 572 30 Oskarshamn\". Google hjälper oss att visa adresser som matchar det du skriver in. Ofta fungerar det med hyfsat kända platser som: \"Munsö kyrka\". När du valt en plats prickar vi in en kartnål på kartan längre ned på sidan. Du kan zooma in kartan och flytta kartnålen."
-        re_geocoded_street: "Närmsta kända gatuadress när du flyttar kartnålen. Visas inte i annonsen. Funkar hyfsat bra i tätorter men skrattretande dåligt i glesbygd. Det är Google som hjälper oss med detta."
-        loc_descr: "Om det inte räcker med gatuadress, beskriv platsen där evenemanget hålls. Exempel: \"Utomhusscenen i parken.\""
-        lat: "Du kan använda latitud/longitud för att förklara en plats som inte har något namn, så att vi kan placera kartnålen rätt. Oftast lyckas vi få fram en position med hjälp av adressen som du skrivit in. Latitud/longitud skrivs i decimalform (med decimalpunkt)."
-        lng: "Också i decimalformat"
-        municipality: "Där evenemanget sker. Markera menyn och skriv första bokstaven i kommunnamnet för att snabbt hitta kommunen."
-        email: "Om någon vill nå dig som arrangerar, vilken mejladress tar du emot frågor på? Mejlet skickas från ett kontaktformulär där din mejladress inte visas."
-        human_name: "Vem går mejlet till? Namnet visas istället för mejladress i kontaktformuläret. Exempel: \"Veera Virtanen\" eller \"Föreningskansliet\"."
-        phone_number: "Om någon vill nå dig som arrangerar, vilket telefonnummer tar du emot frågor på? Komplett telefonnummer inklusive riktnummer."
-        phone_name: "Vem går telefonnumret till? Exempel: \"Åke Svensson\" eller \"Föreningskansliet\"."
-        image1: "En bild som visas i evenemangsannonsen. Bör vara minst 600 pixel bred. Bilden skalas och beskärs så att den passar utrymmet. Den här bilden är den som visas störst i annonsen."
-        image2: "Ytterligare bild."
-        image3: "Ytterligare bild."
-        category: "Vad handlar evenemanget om? Vilket ämne? Försök ange en så specifik kategori som möjligt."
+  
   event:
     mail:
       new: "Nytt evenemang"

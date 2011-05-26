@@ -1,29 +1,29 @@
 <% set_meta_tags :title => t('.title'),
                    :description => t('.meta_description') %>
 
-<h1>Alla Sveriges kommuner</h1>
+<h1><%= t('.title') %></h1>
 <p>
-Kolla in vad som händer i din kommun.
+<%= t('.sub_title') %>
 </p>
 
 
 <table class = "general">
-  <caption>Alla Sveriges kommuner</caption>
+  <caption><%= t('.title') %></caption>
   <thead>
     <tr>
-      <th>Kommun</th>
-      <th class = "number_column">Inplanerade<br />evenemang</th>
-      <th>Nästa evenemang</th>
+      <th><%= t ('.municipality') %></th>
+      <th class = "number_column"><%= t ('.number_of_planned') %></th>
+      <th><%= t ('.next_event') %></th>
     </tr>
   </thead>
   <tbody>
   <% for municipality in @municipalities %>
     <tr class = "<%= cycle("even", "odd") %>">
       <td><%= link_to municipality.name, municipality %></td>
-      <td class = number_column><%= municipality.number_of_upcoming_events %></td>
+      <td class = number_column><%= link_to municipality.number_of_upcoming_events.to_s, municipality, :title => t('.number_of_all1') + ' ' + municipality.events.count.to_s + ' ' +  t('.number_of_all2') + ' ' + municipality.name + '.' %></td>
       <td>
         <% unless municipality.next_event.nil?%>
-      <%= link_to(l(municipality.next_event.start_datetime, :format => :shorty) + ', ' +municipality.next_event.subject + ' (' + municipality.next_event.organizer.name + ')', municipality.next_event, :title => municipality.next_event.try(:intro)) %>
+      <%= link_to(l(municipality.next_event.start_datetime, :format => :shorty) + ', ' +municipality.next_event.subject + ' (' + municipality.next_event.organizer.name + ')', municipality.next_event, :title => municipality.next_event.intro ) %>
       <% end %>
       </td>
     </tr>

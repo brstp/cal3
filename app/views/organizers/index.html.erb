@@ -5,9 +5,13 @@
   <%= my_organizers current_user %>
 <% end %>   
 
-<h1>Alla arrangörer i Föreningskalendern. </h1>
+<h1><%= t('.title') %> </h1>
 <p>
-Om du inte registrerat ett användarkonto, gör det och logga in för att skapa dina egna evenemangsannonser.                   
+  <% unless current_user %>
+  <%= link_to I18n.t('users.sessions.sign_up'), new_user_registration_path %> <%= I18n.t('app.or') %>
+  <%=link_to I18n.t('users.sessions.sign_in'), new_user_session_path %> 
+  <%= t '.create_your_own' %>        
+  <% end %>          
 </p>
 
 <table class = "general">
@@ -27,7 +31,7 @@ Om du inte registrerat ett användarkonto, gör det och logga in för att skapa 
   <% for organizer in @organizers %>
     <tr class = "<%= cycle("even", "odd") %>">
       <td><%= link_to organizer.name, organizer %></td>
-      <td class = number_column><%= organizer.number_of_upcoming_events %></td>
+      <td class = number_column><%=  link_to organizer.number_of_upcoming_events, organizer, :title => organizer.name + ' ' + t('.number_all_events1') + ' ' + organizer.events.count.to_s + ' ' + t('.number_all_events2') %></td>
       <td>
         <% unless organizer.next_event.nil?%>
       <%= link_to(l(organizer.next_event.start_datetime, :format => :shorty) + ', ' +organizer.next_event.subject + ' (' + organizer.next_event.municipality.short_name + ')', organizer.next_event, :title => organizer.next_event.try(:intro)) %>
@@ -44,3 +48,16 @@ Om du inte registrerat ett användarkonto, gör det och logga in för att skapa 
 <% if current_user %>
   <p><%= link_to t('.new'), new_organizer_path %></p>
 <% end %>
+
+
+              <% unless user_signed_in? %>
+                    <p>
+                    <%= link_to I18n.t('users.sessions.sign_up'), new_user_registration_path %> <%= I18n.t('app.or') %> 
+                    <%=link_to I18n.t('users.sessions.sign_in'), new_user_session_path %>    
+                    </p>
+              <% else %>
+                    <p>
+                    <%= t('users.invitations.new.have_a_friend')%><br />
+                    <%= link_to t('users.invitations.new.invite_her'), new_user_invitation_path %>
+                    </p>
+              <% end %>

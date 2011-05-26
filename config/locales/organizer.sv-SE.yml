@@ -24,6 +24,9 @@ sv-SE:
       new: "Skapa ny arrangörssida"
       no_of_events_per_organizer: "inplanerat evenemang"
       you_have_applied: 'Du har ansökt om att bli admininstratör för'
+      number_all_events1: 'har lagt in '
+      number_all_events2: 'evenemang hittills.'
+      create_your_own: 'för att lägga upp en arrangörssida skapa dina egna evenemangsannonser.'
     show:
       list: "Till arrangörslistan"
       name: "Namn"

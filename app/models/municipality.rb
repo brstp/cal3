@@ -44,7 +44,7 @@ class Municipality < ActiveRecord::Base
   end
   
   def next_event
-    self.events.find(:all, :conditions => ["start_datetime >= '#{Time.now}'"], :order => "start_datetime ASC" ).first
+    self.events.find(:all, :conditions => ["stop_datetime >= '#{Time.now}'"], :order => "start_datetime ASC" ).first
   end
   
 end
