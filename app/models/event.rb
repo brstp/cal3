@@ -52,7 +52,6 @@
     integer :organizer_id, :references => ::Organizer
   end
 
-
   has_attached_file :image1,
       :storage => :s3,
       :bucket => 'static.foreningskalendern.se',
