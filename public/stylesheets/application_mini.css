@@ -398,6 +398,10 @@ table.general td {
   font-style: italic;
 }
 
+.deployed {
+  background-color: #ccc;
+  color: #eee; 
+}
 
   
 .left {

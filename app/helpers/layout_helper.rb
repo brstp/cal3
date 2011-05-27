@@ -556,4 +556,15 @@ google.maps.event.addDomListener(window, 'load', initialize);
     raw cal
   end #def calendar
   
+  def timestamp
+    logger.info "+++++++++++++++++++++++++++++++"
+    str = ""
+    file = File.open(File.expand_path('../../../timestamp.txt', __FILE__))
+    file.each do |line|
+      str << line
+    end
+    file.close
+    str
+  end
+  
 end # module LayoutHelper
