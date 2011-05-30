@@ -4,9 +4,9 @@ class EventsController < ApplicationController
 include ActiveRecord::CounterCache
 
 before_filter :authenticate_user!, :except => [:show, :index]
-before_filter :authorized?, :except => [:show, :index]
+before_filter :authorized?, :except => [:new, :show, :index]
 before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
-
+  
 
   def index
       #TODO Add almanac function to look up all absolute and relative days.
@@ -171,7 +171,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
 
 
   def new
-    @organizers = current_user.select_organizer
+    @organizers = current_user.organizers
     @event = Event.new
     @event.email = current_user.email
     @event.human_name = ''

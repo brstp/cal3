@@ -83,6 +83,14 @@ sv-SE:
       do_you_really_want_to_cancel_me: "Vill du strunta i ändringar som du gjort sedan du sparade senast?"
       select_organizer: "--- Välj en arrangör ---"
       select_municipality: "--- Välj en kommun ---"
+      explain_mandatory: Fält som är markerade med * är obligatoriska. Alla övriga fält är frivilliga.
+      which_organizer: 'Vilken arrangör vill du skapa en evenemangsannons för?'
+      not_organizer: 'Det ser inte ut som om du är administratör för någon arrangör.'
+      select: 'Du kan nu:'
+      apply_for_organizer: 'Leta reda på den arrangör som du jobbar för och ansök om att bli administratör.'
+      create_organizer1: 'Skapa en arrangörssida. '
+      create_organizer2: 'Kolla först så att arrangören inte redan har en sida.'
+      
   
   event:
     mail:
