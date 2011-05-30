@@ -185,7 +185,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
   end
 
   def create
-    @organizers = current_user.select_organizer
+    @organizers = current_user.organizers
     @event = Event.new(params[:event])
     if @event.save
       OrganizerMailer.new_event_confirmation(@event, current_user).deliver
