@@ -20,14 +20,18 @@
 
   validates_presence_of :subject, :description, :municipality_id, :start_date, :start_time, 
                         :stop_date, :stop_time, :organizer_id, :email, :human_name, :category
+
   validates_length_of :subject, :in => 7..40
   validates_length_of :intro, :in => 0..90
   validates_numericality_of :lat, :allow_nil => true
   validates_numericality_of :lng, :allow_nil => true
-  validate :validates_start_time, :validates_start_date, :validates_stop_time, :validates_stop_date, :validates_start_stop, :validates_phone_details
+
+  validate  :validates_start_time, :validates_start_date, :validates_stop_time, :validates_stop_date, 
+            :validates_start_stop
+  validate :validates_phone_details
   validates :phone_number, :phone => true
   validates :email, :email => true
-  # validates_presence_of :phone_name, :unless => :blank_phone_number
+
 
   geocoded_by :street, :latitude => :lat, :longitude => :lng
 
@@ -231,64 +235,79 @@
 
   def duration
     # TODO if not same day, better wording of end time, depending of length
-    duration = I18n.localize(start_datetime, :format => :longest) + " - "
-    if self.start_date != self.stop_date
-      duration += I18n.localize(stop_datetime, :format => :longest)
-    else
-      duration += I18n.localize(stop_datetime, :format => :time)
+    duration = I18n.localize(start_datetime, :format => :longest)   
+    unless  (self.start_datetime == self.stop_datetime)
+      duration += " - "
+      if self.start_date != self.stop_date
+        duration += I18n.localize(stop_datetime, :format => :longest)
+      else
+        duration += I18n.localize(stop_datetime, :format => :time)
+      end
     end
-
+    duration
   end
 
 
   def start_date=(date_str)
-    @start_date = date_str.strip
+    @start_date = date_str
   end
 
   def start_time=(time_str)
-    @start_time = time_str.strip
+    @start_time = time_str
   end
 
   def stop_date=(date_str)
-    @stop_date = date_str.strip
+    @stop_date = date_str
   end
 
   def stop_time=(time_str)
-    @stop_time = time_str.strip
+    @stop_time = time_str
   end
 
 
   def start_date
-    if(self.start_datetime) then
-      I18n.localize(self.start_datetime, :format => :date)
+    unless @start_date.blank?
+      @start_date
     else
-      @start_date  ||= I18n.localize((Time.now + 2.days), :format => :date) #default
+      if self.start_datetime then
+        I18n.localize(self.start_datetime, :format => :date)
+      else
+        nil
+      end
     end
   end
 
-   def stop_date
+  def stop_date
     if(self.stop_datetime) then
       I18n.localize(self.stop_datetime, :format => :date)
     else
-      @stop_date  ||= I18n.localize((Time.now + 2.days), :format => :date)
+      @stop_date  
     end
   end
 
   def start_time
-    if(self.start_datetime) then
-      I18n.localize(self.start_datetime, :format => :time)
+    unless @start_time.blank?
+      @start_time
     else
-      @start_time ||= "19.00" #default
-    end
+      if self.start_datetime then
+        I18n.localize(self.start_datetime, :format => :time)
+      else
+        nil
+      end
+    end  
   end
 
 
   def stop_time
-    if(self.stop_datetime) then
-      I18n.localize(self.stop_datetime, :format => :time)
+    unless @stop_time.blank?
+      @stop_time
     else
-      @stop_time ||= "19.00" #default
-    end
+      if self.stop_datetime then
+        I18n.localize(self.stop_datetime, :format => :time)
+      else
+        nil
+      end
+    end  
   end
 
 
@@ -322,12 +341,12 @@ protected
 
   def validates_start_stop
     if errors.empty?
-      if @start_date > @stop_date
+      if Timeliness.parse(@start_date) > Timeliness.parse(@stop_date)
         errors.add(:stop_date, I18n.t('error.messages.on_or_after', :restriction => @start_date))
       else
-        if @start_date == @stop_date and @start_time > @stop_time
+        if (Timeliness.parse(@start_date) == Timeliness.parse(@stop_date)) && (Timeliness.parse(@start_time) > Timeliness.parse(@stop_time))
           errors.add(:stop_time, I18n.t('error.messages.on_or_after', :restriction => @start_time))
-          end
+        end
       end
     end
   end
