@@ -98,6 +98,8 @@ sv-SE:
       signed_up: 'Ett nytt konto har skapats. En bekräftelse har skickats med mejl.'
       updated: 'Ditt konto har uppdaterats.'
       destroyed: 'Hej då! Ditt konto har avregistrerats. Vi hoppas få se dig snart igen.'
+      new:
+        sign_up: 'Registrera användarkonto'
       edit:
         change_password_or_email: 'Ändra lösenord eller mejladress.'
         submit: 'Ändra'
