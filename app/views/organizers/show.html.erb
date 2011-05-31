@@ -144,15 +144,17 @@
       <%= button_to(  t('.edit'), 
                       edit_organizer_path(@organizer), 
                       :method => :get, 
-                      :class => :organizer_user) %>
-    <%= button_to t('.new_event'), new_event_path %>                      
+                      :class => :organizer_user) %>                      
     <% if current_user.is_admin? %>
       <%= button_to(  t('.destroy'), 
                     @organizer, 
                     :confirm => t('app.are_you_sure') + ' ' +@organizer.name + '?', 
                     :method => :delete ) %>
     <% end # is_admin %>
-
+<p>
+    <%= link_to   t('.new_event'), 
+                    new_event_path(:organizer_id => @organizer.id) %>
+</p>
     <h3>Användare som vill bli administratörer för <%= @organizer.name %>:</h3>
 
     <% unless @organizer.petition_users.blank?  %>

@@ -175,6 +175,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
     @event = Event.new
     @event.email = current_user.email
     @event.human_name = ''
+    @event.organizer_id = params[:organizer_id]
     unless (current_user.first_name.blank?)
       @event.human_name += current_user.first_name + " "
     end
