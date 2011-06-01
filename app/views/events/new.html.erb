@@ -8,16 +8,17 @@
       <li><%= link_to organizer.name, new_event_path(:organizer_id => organizer.id)  %></li>
     <% end %>
     </ul>
+    <p><%= t '.or_other_options' %>:</p>
   <% else %>
     <h3>
       <%= t '.not_organizer' %>
     </h3>
-    <p><%= t '.select' %></p>
-    <ul>
-      <li><%= link_to t('.apply_for_organizer'), organizers_path %></li>
-      <li><%= link_to t('.create_organizer1'), new_organizer_path %> <%= link_to t('.create_organizer2'), organizers_path %></li>
-    </ul>
+    <p><%= t '.select' %>:</p>
   <% end %>
+  <ul>
+    <li><%= link_to t('.apply_for_organizer'), organizers_path %></li>
+    <li><%= link_to t('.create_organizer1'), new_organizer_path %> <%= link_to t('.create_organizer2'), organizers_path %></li>
+  </ul>
 <% else %>
   <%= render 'form' %>
 <% end %>

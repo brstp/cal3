@@ -33,10 +33,11 @@ sv-SE:
       title: "Ny evenemangsannons"
       which_organizer: 'Vilken arrangör vill du skapa en evenemangsannons för?'
       not_organizer: 'Det ser inte ut som om du är administratör för någon arrangör.'
-      select: 'Du kan nu:'
+      select: 'Du kan nu'
       apply_for_organizer: 'Leta reda på den arrangör som du jobbar för och ansök om att bli administratör.'
       create_organizer1: 'Skapa en arrangörssida. '
-      create_organizer2: 'Kolla först så att arrangören inte redan har en sida.'      
+      create_organizer2: 'Kolla först så att arrangören inte redan har en sida.'     
+      or_other_options: 'Du kan också' 
     index:
       title: "Evenemang"
       page_title: "Alla evenemang. Evenemangskalender för alla arrangörer."
