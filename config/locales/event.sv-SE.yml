@@ -83,6 +83,8 @@ sv-SE:
       no_location: "Här kunde det ha funnits en karta men kalendern har inte förstått var evenemanget hålls någonstans."
       no_location_im_authorized1: "Eftersom du är administratör hos" 
       no_location_im_authorized2: "kan du lägga till en adress och/eller latitud/longitud för platsen."
+      created_at: 'Evenemangsannonsen skapad'
+      updated_at: 'Senast uppdaterad'
     form:
       reset: "Rensa formuläret"
       do_you_really_want_to_reset_me: "Vill du tömma hela annonsformuläret?"
