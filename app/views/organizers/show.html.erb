@@ -53,7 +53,7 @@
 <%= simple_format @organizer.description %>
 
 
-<p class = "break">
+<p class = "break"></p><p>
 <% unless @organizer.website.blank? %>
   <strong><%=t '.website' =%>:</strong>
   <%= link_to @organizer.website, @organizer.website %>
