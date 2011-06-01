@@ -21,10 +21,13 @@ namespace :scrape do
                 gsub(/<td colspan="2">.*\ stad<\/td>/, "").
                 gsub(/<td colspan="2">.*\ kommun<\/td>/, "<td class = 'municipality_name' colspan = '2'>#{municipality.name}</td>").
                 gsub(/<td colspan="2">Kommun<\/td>/, "")
-      municipality.escutcheon = doc.at_css('.mergedrow img')[:src]
+      unless doc.at_css('.mergedrow img').blank?
+        municipality.escutcheon = doc.at_css('.mergedrow img')[:src]
+      else
+        municipality.escutcheon = "/images/no-municipality-logotype-90x109.png"
+      end
       municipality.facts_last_updated = Time.now
-      municipality.save!
-      
+      municipality.save!  
     end
   end  
   
