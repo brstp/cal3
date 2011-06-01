@@ -1,8 +1,4 @@
 sv-SE:
-  formtastic:
-    hints:
-
-        
   activerecord:
     models:
       organizer: "arrangör"
