@@ -557,9 +557,8 @@ google.maps.event.addDomListener(window, 'load', initialize);
   end #def calendar
   
   def timestamp
-    logger.info "+++++++++++++++++++++++++++++++"
     str = ""
-    file = File.open(File.expand_path('../../../timestamp.txt', __FILE__))
+    file = File.open(File.expand_path('../../../.git/', __FILE__))
     file.each do |line|
       str << line
     end
