@@ -1,7 +1,7 @@
 sv-SE:
   activerecord:
     models:
-      organizer: "arrangör"
+      organizer: "arrangörssida"
     attributes:
       organizer:
         name: "Namn"
@@ -15,7 +15,7 @@ sv-SE:
         users: "Administratörer"
   organizers:
     index:
-      title: "Alla arrangörer och deras evenemang"
+      title: "Alla arrangörssidor och deras evenemang"
       meta_description: "Hitta arrangörer till olika evenemang i Sverige. Du kan annonsera dina arrangemang också." 
       new: "Skapa ny arrangörssida"
       no_of_events_per_organizer: "inplanerat evenemang"
@@ -52,7 +52,7 @@ sv-SE:
       contact: "Kontaktinfo"
       download_ics1: "Spara"
       download_ics2: "nu inplanerade evenemang i Outlook eller annan kalendern i din dator."
-      no_organizer: "Du är har inte behörighet hos någon arrangör."
+      no_organizer: "Du är har inte behörighet hos någon arrangörssida."
       do_apply: "Du kan ansöka om behörighet hos någon av de"
       organizers_using: "arrangörer som redan använder kalendern (kolla på respektive arrangörs sida)"
       register_new: "lägga upp en ny arrangörssida"
@@ -89,8 +89,8 @@ sv-SE:
       you_have_petitions: 'Du har fått in ansökningar om att bli administratör som ska godkännas eller avslås.'
       my_organizers: 'Du är administratör för'
     new:
-      title: "Ny arrangör"
+      title: "Ny arrangörssida"
       list: "Till arrangörslistan (strunta i ändringar)"
     edit:
-      show: "Visa arrangören (strunta i ändringar)"
+      show: "Visa arrangörssidan (strunta i ändringar)"
       list: "Till arrangörslistan (strunta i ändringar)"

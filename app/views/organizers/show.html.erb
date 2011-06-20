@@ -77,7 +77,7 @@
   <p><%= t('.at_the_moment') + ' ' + @organizer.name + ' ' + t('.has_no_events') %> 
   <% if current_user %>
     <% unless !current_user.organizers.include? @organizer and !current_user.is_admin? %>
-      <%= link_to t('.first_event'), new_event_path %>.
+      <%= link_to t('.first_event'), new_event_path(:organizer_id => @organizer.id) %>.
     <% end %>
   <% end %>
   </p>

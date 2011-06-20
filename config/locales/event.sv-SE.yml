@@ -44,7 +44,7 @@ sv-SE:
       meta_description: "Använd föreningskalendern för att hitta kul saker att göra. Annonsera dina evenemang. För föreningar."
       new: "Skapa nytt evenemang"
       subscribe_rss: "Prenumerera på alla evenemang som matchar den här sökningen."
-      new_organizer: "Skapa ny arrangör"
+      new_organizer: "Skapa ny arrangörssida"
       no_of_events_per_municipality: "inplanerade evenemang i kommunen"
       no_of_events_per_organizer: "inplanerat evenemang"
       rss_alt: "Prenumerera på RSS-flöde med alla evenemang." 
@@ -98,5 +98,5 @@ sv-SE:
   
   event:
     mail:
-      new: "Nytt evenemang"
-      changed: "Ändrat evenemang"
+      new: "Ny evenemangssida"
+      changed: "Ändrad evenemangssida"
