@@ -130,7 +130,7 @@ table.tiny-calendar tr.even {
 }
 
 .tiny-calendar a:link{
-  color: blue;
+  color: #006;
 }
 
 .tiny-calendar a:active{
@@ -406,4 +406,19 @@ table.general td {
   
 .left {
   float: left;
+}
+
+
+#q-container {
+  width: 100%;
+  clear: both;
+}
+
+#q-container input {
+  font-size: 2em;  
+}
+
+#q-container input#q {
+  font-size: 2em;  
+  width: 200px;
 }

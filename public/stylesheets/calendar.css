@@ -108,7 +108,7 @@ table.calendar td.month_box {
 }
 
 .calendar a:link{
-  color: blue;
+  color: #006;
 }
 
 .calendar a:active, .calendar a:hover, .calendar a:focus{
