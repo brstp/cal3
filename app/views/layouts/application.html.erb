@@ -37,7 +37,7 @@
   <%= favicon_link_tag "favicon.png" %>
   <%= csrf_meta_tag %>
   <%= yield(:head) %>
-  
+  <link rel="alternate" type="application/rss+xml" title="RSS-flöde med alla kommande evenemang" href="http://<%= request.host + ':' + request.port.to_s %>/events.rss /">
 </head>
 
 <body class="single single-post custom unknown">

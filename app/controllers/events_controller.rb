@@ -151,6 +151,10 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
     end
 
     @events = result
+    logger.info "****************************"
+    logger.info @events.count
+    logger.info "****************************"
+
 
     respond_to do |format|
       format.html

@@ -8,7 +8,6 @@ xml.rss "version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/" do
 
     #xml.atom( :link, :href => events_url(:format => 'rss'), :rel => "self", :type => "application/rss+xml" )
     for event in @events
-      @events.each do |event|
         xml.item do
           xml.title event.start_date + ' ' + event.subject
           xml.description event.intro + '<br /><strong>' + event.duration + '</strong><br>' + t('app.arranged_by') + ' ' + event.organizer.name + ' ' + t('app.in_municipality') + ' ' + event.municipality.name + '<br />' + simple_format(event.description)
@@ -18,7 +17,6 @@ xml.rss "version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/" do
           #xml.geo :lat,  -43.526958 # latitude
           #xml.geo :long, 172.744217 # longitude
         end
-      end
     end
   end
 end
