@@ -19,7 +19,7 @@
 
 
   validates_presence_of :subject, :description, :municipality_id, :start_date, :start_time, 
-                        :stop_date, :stop_time, :organizer_id, :email, :human_name, :category
+                        :organizer_id, :email, :human_name, :category # :stop_date, :stop_time
 
   validates_length_of :subject, :in => 7..40
   validates_length_of :intro, :in => 0..90
@@ -257,11 +257,23 @@
   end
 
   def stop_date=(date_str)
-    @stop_date = date_str
+    unless date_str.blank?
+      @stop_date = date_str
+    else
+      unless @start_date.blank?
+        @stop_date = @start_date
+      end
+    end
   end
 
   def stop_time=(time_str)
-    @stop_time = time_str
+    unless time_str.blank?
+      @stop_time = time_str
+    else
+      unless @start_time.blank?
+        @stop_time = @start_time
+      end
+    end
   end
 
 
