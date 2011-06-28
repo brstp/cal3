@@ -15,7 +15,7 @@
   attr_accessible :subject, :intro, :description, :street, :loc_descr, :lat, :lng, :municipality_id, 
                   :start_date, :start_time, :stop_date, :stop_time, :organizer_id, :phone_number, 
                   :phone_name, :email, :human_name, :category_id, :counter, :start_datetime, 
-                  :stop_datetime, :image1, :image2, :image3
+                  :stop_datetime, :image1, :image2, :image3, :created_by_user_id, :updated_by_user_id
 
 
   validates_presence_of :subject, :description, :municipality_id, :start_date, :start_time, 
@@ -105,6 +105,7 @@
     # self.lat,self.lng = [sunspot_util_coordinates.lat, sunspot_util_coordinates.lng]
   # end
 
+  
   def category_facet_id
     category = self.category
     out_array = []

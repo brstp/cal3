@@ -123,10 +123,21 @@
 </p>
   <%= facebook_like event_path(:only_path => false), "bottom" %>
 <p>
-<%= t '.created_at' %> <%= I18n.localize @event.created_at, :format => :default %>. 
-
+<%= t '.created_at' %> <%= I18n.localize @event.created_at, :format => :default %>  
+  <% if current_user %>
+    <% if current_user.authorized? @event.organizer %>
+       av <%= (User.find @event.created_by_user_id).name %>
+    <% end %>
+  <% end %>
+<br />  
 <% unless @event.created_at == @event.updated_at %>
-  <%= t '.updated_at' %> <%= I18n.localize @event.updated_at, :format => :default %>.
+  <%= t '.updated_at' %> <%= I18n.localize @event.updated_at, :format => :default %>
+  <% if current_user %>
+    <% if current_user.authorized? @event.organizer %>
+      av <%= (User.find @event.updated_by_user_id).name %>
+    <% end %>
+  <% end %>
+  <br />
 <% end %>
 </p>
 </div> 
