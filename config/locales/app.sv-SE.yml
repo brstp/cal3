@@ -11,6 +11,7 @@ sv-SE:
     clock: "klockan"
     s: "s"
     at: "på"
+    by: 'av'
     events_in: "Evenemang i"
     or: 'eller'
     no_reply_email: "svara-inte--no-reply@mumin.nu"
