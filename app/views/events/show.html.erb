@@ -126,9 +126,7 @@
 <%= t '.created_at' %> <%= I18n.localize @event.created_at, :format => :default %>  
   <% if current_user %>
     <% if current_user.authorized? @event.organizer %>
-      <% unless @event.created_by_user_id == 0 || @event.created_by_user_id.nil? %>
-        <%= t('app.by') + ' ' + (User.find @event.created_by_user_id).name %>
-      <% end %>
+      <%= @event.created_by %>      
     <% end %>
   <% end %>
 <br />  
@@ -136,9 +134,7 @@
   <%= t '.updated_at' %> <%= I18n.localize @event.updated_at, :format => :default %>
   <% if current_user %>
     <% if current_user.authorized? @event.organizer %>
-      <% unless @event.updated_by_user_id == 0 %>
-       <%= t('app.by') + ' ' + (User.find @event.updated_by_user_id).name %>
-      <% end %>
+      <%= @event.updated_by %>
     <% end %>
   <% end %>
   <br />

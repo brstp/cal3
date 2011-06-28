@@ -105,6 +105,23 @@
     # self.lat,self.lng = [sunspot_util_coordinates.lat, sunspot_util_coordinates.lng]
   # end
 
+  def updated_by
+    unless self.updated_by_user_id.nil?
+      updated_by_user= User.find self.updated_by_user_id
+      unless updated_by_user.blank?
+        I18n.t('app.by') + ' ' + updated_by_user.name
+      end
+    end
+  end
+  
+  def created_by
+    unless self.created_by_user_id.nil?
+      created_by_user= User.find self.created_by_user_id
+      unless created_by_user.blank?
+        I18n.t('app.by') + ' ' + created_by_user.name
+      end  
+    end
+  end
   
   def category_facet_id
     category = self.category
