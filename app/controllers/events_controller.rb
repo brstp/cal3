@@ -167,6 +167,11 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
   def show
     Event.increment_counter :counter, params[:id]
     @event = Event.find(params[:id])
+
+    logger.info "-------------------- events#show"
+    logger.info @event.updated_by_user_id
+    logger.info "-------------------- events#show"
+
     respond_to do |format|
       format.html
       format.ics
@@ -209,6 +214,9 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
   def update
     @event = Event.find(params[:id])
     @event.updated_by_user_id = current_user.id
+    logger.info "-------------------- events#update"
+    logger.info @event.updated_by_user_id
+    logger.info "-------------------- events#update"
     if @event.update_attributes(params[:event])
       OrganizerMailer.changed_event_confirmation(@event, current_user).deliver
       flash[:notice] = t 'flash.actions.update.notice'
