@@ -229,6 +229,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
   def destroy
     @event = Event.find(params[:id])
     @event.destroy
+    # TODO: Mejla om raderad
     flash[:notice] = t 'flash.actions.destroy.notice'
     redirect_to events_url
   end
