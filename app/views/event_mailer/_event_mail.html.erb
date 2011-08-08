@@ -21,16 +21,16 @@ Du får det här mejlet för att den person som skrivit in evenemangsannonsen an
 Annonsen för <%= Event.find(@mail_message.event_id).subject %> finns på <%= event_url(Event.find(@mail_message.event_id))%>
 </p>
 <p>
-Avsändaren känner inte till din mejladress förrän du svarar på det här mejlet. Vi kan inte veta om avsändarens kontaktinformation är korrekt. Om avsändaren missbrukar möjligheten att skicka mejl eller gör något olagligt, skicka vidare hela det här mejlet till abuse@foreningskalendern.se.
+Avsändaren känner inte till din mejladress förrän du svarar på det här mejlet. Vi kan inte veta om avsändarens kontaktinformation är korrekt. Om avsändaren missbrukar möjligheten att skicka mejl eller gör något olagligt, skicka vidare hela det här mejlet till kundtjanst@allom.se.
 </p>
 <hr />
-Allt som händer, innan det är för sent. Locka deltagare till dina evenemang också. <%= events_url %>
+Allom - allt som händer, innan det är för sent. Locka deltagare till dina evenemang också. <%= events_url %>
 <hr />
 <p>
 Mejlet (med id: <%= @mail_message.id %>) skickades <%= @mail_message.created_at %> från en dator med IP-adress: <%= @mail_message.ip %>. Den som skickade mejlet har en webbläsare av typ (user agent): <%= @mail_message.user_agent %>. Sidan som ledde till kontaktformuläret (referer) var: <%= @mail_message.referer %> Evenemangsannonsen har id: <%= @mail_message.event_id %>
 </p>
 <hr />
 <p>
-Allt som händer, innan det är för sent. Locka deltagare till dina evenemang också. <%= events_url %>
+Allom - allt som händer, innan det är för sent. Locka deltagare till dina evenemang också. <%= events_url %>
 </p>
 <hr />
