@@ -73,6 +73,7 @@ ul, ol  {
 
 a  {
 	text-decoration: underline;
+	color: #006;
 }
 
 
@@ -88,6 +89,10 @@ a:focus {
   color: red;
 }
 
+
+a:visited {
+  color: purple;
+}
 
 #nav {
 	height: 68px;
@@ -278,7 +283,8 @@ span.heading  {
 	margin: 15px 0 15px 0;
 }
 
-#featured  {
+#featured  {
+
 	float: left;
 	width: 940px;
 	padding: 0 10px 20px 10px;

@@ -89,20 +89,7 @@ module LayoutHelper
     end
   end
   
-  def select_category_tree selected_category = nil
-    raw %(
-    <li class="radio required" id="event_category_input">
-    <fieldset>
-    <legend class="label">
-    <label>#{ Event.human_attribute_name('category') }*</label>
-    </legend>
-    <ol class = "category-level-0" >
-    #{Category.all.first.root.climb selected_category}
-    </ol>
-    </fieldset>
-    <p class="inline-hints">#{t('formtastic.hints.event.category')}</p></li>
-        )
-  end
+
   
   def facet_search
     str = ""
@@ -201,18 +188,19 @@ module LayoutHelper
               <ul>
               )
       for row in facet_rows 
-
-      str << %(
-                <li>
-                  #{link_to( row.instance.and_mum.capitalize + " (" + row.count.to_s +  ")", 
-                              events_path(  :q => params[:q], 
-                                            :stop => params[:stop],
-                                            :category_facet_id => row.instance,
-                                            :organizer_id => params[:organizer_id],
-                                            :municipality_id => params[:municipality_id]
-                                          ) ) }
-                </li>
-              )
+        unless row.instance.blank?
+          str << %(
+                    <li>
+                      #{link_to( row.instance.and_mum.capitalize + " (" + row.count.to_s +  ")", 
+                                  events_path(  :q => params[:q], 
+                                                :stop => params[:stop],
+                                                :category_facet_id => row.instance,
+                                                :organizer_id => params[:organizer_id],
+                                                :municipality_id => params[:municipality_id]
+                                              ) ) }
+                    </li>
+                  )
+        end
       end
       unless params[:category_facet_id].blank?
       str << %(
@@ -419,6 +407,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
   end
   
   def in_category event
+    exit if event.category.blank?
     category = event.category
     str = ""
     while category.depth > 0
@@ -432,8 +421,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
  
   def mini_calendar events = nil, more_events = events_url, max_no = 10
-    logger.info "++++++++++++++++++++++++++++++++++++++"
-    logger.info events.count
+
   #TODO time limits and no of events in initializer (and align)
     #if events.blank?
     #  events = Event.where("stop_datetime >= ? AND start_datetime <= ?", 
@@ -567,5 +555,15 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
     raw cal
   end #def calendar
+  
+  def timestamp
+    str = ""
+    file = File.open(File.expand_path('../../../.git/', __FILE__))
+    file.each do |line|
+      str << line
+    end
+    file.close
+    str
+  end
   
 end # module LayoutHelper

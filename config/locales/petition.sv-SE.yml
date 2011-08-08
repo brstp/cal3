@@ -31,11 +31,6 @@ sv-SE:
       title: 'Ansökan att bli administratör' 
       back_to_organizer: 'Tillbaka till arrangörssidan för'
     form:
-  formtastic:
-    hints:
-      petition:
-        argumentation: 'Berätta kort vem du är och varför du ansöker om att bli administratör.'
-        rejected_reason: 'Om du avslår ansökan, skriv en kort förklaring till den som ansökt om behörighet.'
   petition:
     flash:
       notice:

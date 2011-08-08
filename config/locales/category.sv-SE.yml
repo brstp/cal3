@@ -4,7 +4,7 @@ sv-SE:
       category: 'ämneskategori'
     attributes:
       categories:
-        name: 'namn'
+        name: 'Namn'
         description: 'Beskrivning'
         ancestry: 'Tillhör kategori'
   categories:
@@ -15,7 +15,3 @@ sv-SE:
       title: 'Ändra kategori'
       list: 'Till kategorilistan (strunta i ändringar)'
       show: 'Strunta i ändringar'
-  formtastic:
-    hints:
-      model_name:
-        attribute_name: ''

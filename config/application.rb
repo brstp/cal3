@@ -24,7 +24,7 @@ module Cal3
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
-    # config.time_zone = 'Stockholm'
+    config.time_zone = 'Stockholm'
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
@@ -42,8 +42,6 @@ module Cal3
     
     config.action_mailer.default_url_options = { :host => 'localhost:3000' }
     
-    # Use timeliness gem for parsing dates and times
-    config.use_plugin_parser = true
     
     config.autoload_paths += %W(#{config.root}/lib) #to get will_paginate pagination list
     #ActiveSupport::Multibyte::Unicode.default_normalization_form = :nkfc

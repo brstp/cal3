@@ -1,6 +1,5 @@
 Kalendern för Rails 3
 
-
 git push #github
 git push heroku master
 
@@ -18,7 +17,7 @@ bundle install
 bundle update
 rake db:migrate
 
-rails plugin install git://github.com/wtn/csv_records.git
+#rails plugin install git://github.com/wtn/csv_records.git
 
 . ../cal3-credentials.sh    # sourca credentials till Amazon S3 i env variables (vill inte ha dem i kodträdet)
 rake sunspot:solr:run         # Starta sökmotorn på windows. Script under ruby/.../gems/... patchat för rätt "escape-tecken" för Windows
@@ -35,3 +34,6 @@ rake setup:first_admin        # b.r.stefan.pettersson@gmail.com
 
 rake paperclip:refresh:thumbnails CLASS=Event
 rake paperclip:refresh:thumbnails CLASS=Organizer
+
+
+Use heroku db:pull when you wish to export the contents of your Heroku app’s database. Some uses include backups, local debugging, or to move the app’s deployment location. Kom ihåg reindex av solr!

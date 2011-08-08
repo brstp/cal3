@@ -14,9 +14,15 @@ sv-SE:
         escutcheon: "Länk till kommunvapen"
   municipalities:
     index:
-      title: "Alla kommuner"
+      title: "Alla Sveriges kommuner och vad som händer i dem."
       no_of_events_per_municipality: "inplanerade evenemang i kommunen"
       new: "Lägg upp ny kommunsida"
+      number_of_all1: 'Totalt har det lagts upp'
+      number_of_all2: 'evenemangsannonser i'
+      municipality: 'Kommun'
+      number_of_planned: 'Planerade evenemang'
+      next_event: 'Nästa evenemang'
+      sub_title: 'Kolla in vad som händer i din kommun.'
     new:
       title: "Ny kommunsida"
       list: "Visa kommunlistan (strunta i ändringar)"
@@ -40,8 +46,3 @@ sv-SE:
       escutcheon_for: "Kommunvapen för"
       promote: "Gör reklam för det som händer i"
       previous_events: "Redan genomförda evenemang i"
-  formtastic:
-    hints:
-      municipality: 
-        name: "Namnet på kommunen (en del kommuner heter \"stad\")"
-

@@ -1,4 +1,4 @@
-<h2><%= t('.welcome') %></h2>
+<h2><%= title(t('.welcome')) %></h2>
 <p><%= t('.set_your_password') %></p>
 <%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :method => :put } do |f| %>
   <%= devise_error_messages! %>

@@ -42,8 +42,8 @@ class Organizer < ActiveRecord::Base
                       :secret_access_key => ENV['S3_SECRET'] },
                     :default_url => "/images/organizer-logotype-90x109.png", 
                     :styles => {  
-                      :medium => "90x109#", 
-                      :small => "45x55#"}
+                      :medium => "90x109", 
+                      :small => "45x55"}
                                     
   has_attached_file :photo,      
                     :storage => :s3,
@@ -53,8 +53,8 @@ class Organizer < ActiveRecord::Base
                       :secret_access_key => ENV['S3_SECRET']},
                     :default_url => "/images/doldrums.jpg", 
                     :styles => {  
-                      :medium => "360x240#",  
-                      :small => "176x117#"}
+                      :medium => "360x240",  
+                      :small => "176x117"}
   
   
 

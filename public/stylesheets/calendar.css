@@ -10,7 +10,7 @@ table.calendar {
 	border-style: outset;
 	border-color: green;
 	border-collapse: collapse;
-	background-color: f7f7f7;
+	background-color: #f7f7f7;
   width: 100%;
 }
 
@@ -108,7 +108,7 @@ table.calendar td.month_box {
 }
 
 .calendar a:link{
-  color: blue;
+  color: #006;
 }
 
 .calendar a:active, .calendar a:hover, .calendar a:focus{

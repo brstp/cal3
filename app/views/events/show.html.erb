@@ -106,21 +106,39 @@
 <%= image_tag avatar_url(@event) %>
 </div> <!-- /event_contact -->
 
-
+<p>
 <% unless @event.lat.nil? || @event.lng.nil?%>
   <div id="map_view"></div>
-  <%= map_marker @event %>
-  <p>
+    <%= map_marker @event %>
   <strong><%= I18n.t 'app.lat_lng' %>:</strong>
   <%= raw @event.lat_lng %>
-  </p>
-  <% else %>
-  <p>
+<% else %>
   <%= t '.no_location' %>
-  </p>
+  <% if current_user %>
+    <% if current_user.authorized? @event.organizer %>
+      <%= link_to t('.no_location_im_authorized1') + ' ' + @event.organizer.name + ' ' + t('.no_location_im_authorized2'), edit_event_path(@event), :link => :nofollow %>
+    <% end %>
   <% end %>
-
+<% end %>
+</p>
   <%= facebook_like event_path(:only_path => false), "bottom" %>
-
+<p>
+<%= t '.created_at' %> <%= I18n.localize @event.created_at, :format => :default %>  
+  <% if current_user %>
+    <% if current_user.authorized? @event.organizer %>
+      <%= @event.created_by %>      
+    <% end %>
+  <% end %>
+<br />  
+<% unless @event.created_at == @event.updated_at || @event.updated_by_user_id.nil?%>
+  <%= t '.updated_at' %> <%= I18n.localize @event.updated_at, :format => :default %>
+  <% if current_user %>
+    <% if current_user.authorized? @event.organizer %>
+      <%= @event.updated_by %>
+    <% end %>
+  <% end %>
+  <br />
+<% end %>
+</p>
 </div> 
  

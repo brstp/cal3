@@ -4,9 +4,9 @@ class EventsController < ApplicationController
 include ActiveRecord::CounterCache
 
 before_filter :authenticate_user!, :except => [:show, :index]
-before_filter :authorized?, :except => [:show, :index]
+before_filter :authorized?, :except => [:new, :show, :index]
 before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
-
+  
 
   def index
       #TODO Add almanac function to look up all absolute and relative days.
@@ -151,6 +151,10 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
     end
 
     @events = result
+    logger.info "****************************"
+    logger.info @events.count
+    logger.info "****************************"
+
 
     respond_to do |format|
       format.html
@@ -163,6 +167,11 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
   def show
     Event.increment_counter :counter, params[:id]
     @event = Event.find(params[:id])
+
+    logger.info "-------------------- events#show"
+    logger.info @event.updated_by_user_id
+    logger.info "-------------------- events#show"
+
     respond_to do |format|
       format.html
       format.ics
@@ -171,10 +180,11 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
 
 
   def new
-    @organizers = current_user.select_organizer
+    @organizers = current_user.organizers
     @event = Event.new
     @event.email = current_user.email
     @event.human_name = ''
+    @event.organizer_id = params[:organizer_id]
     unless (current_user.first_name.blank?)
       @event.human_name += current_user.first_name + " "
     end
@@ -185,8 +195,9 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
   end
 
   def create
-    @organizers = current_user.select_organizer
+    @organizers = current_user.organizers
     @event = Event.new(params[:event])
+    @event.created_by_user_id = current_user.id
     if @event.save
       OrganizerMailer.new_event_confirmation(@event, current_user).deliver
       flash[:notice] = t 'flash.actions.create.notice'
@@ -202,6 +213,10 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
 
   def update
     @event = Event.find(params[:id])
+    @event.updated_by_user_id = current_user.id
+    logger.info "-------------------- events#update"
+    logger.info @event.updated_by_user_id
+    logger.info "-------------------- events#update"
     if @event.update_attributes(params[:event])
       OrganizerMailer.changed_event_confirmation(@event, current_user).deliver
       flash[:notice] = t 'flash.actions.update.notice'
@@ -214,6 +229,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
   def destroy
     @event = Event.find(params[:id])
     @event.destroy
+    # TODO: Mejla om raderad
     flash[:notice] = t 'flash.actions.destroy.notice'
     redirect_to events_url
   end

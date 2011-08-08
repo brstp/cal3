@@ -33,10 +33,27 @@
   <%= stylesheet_link_tag  "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.4/themes/smoothness/jquery-ui.css" %>
   <%= javascript_include_tag "jquery.js", "jquery-ui.js", "jquery.rails.js", "jquery.ui.datepicker-sv.js", "jquery.googlemaps1.01.js", "jquery-ui-1.8.1.custom.min.js",  "application" %>
   <script src="http://maps.google.com/maps/api/js?sensor=false&amp;region=SE&amp;language=sv" type="text/javascript"></script>
-
+  <meta name="google-site-verification" content="TADUOWffa3kU7lYWEuPmo9YrL72sQsoxypI0ffHQOTY" />
   <%= favicon_link_tag "favicon.png" %>
   <%= csrf_meta_tag %>
   <%= yield(:head) %>
+  <link rel="alternate" type="application/rss+xml" title="RSS-flöde med alla kommande evenemang" href="http://<%= request.host + ':' + request.port.to_s %>/events.rss /">
+  
+  <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24098932-1']);
+  _gaq.push(['_setDomainName', 'none']);
+  _gaq.push(['_setAllowLinker', true]);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
   
 </head>
 
@@ -115,7 +132,7 @@
 		
 						
 			<div class="post">
-
+      <h2>Föreningskalendern testkör - just nu inga garantier att innehållet är korrekt.</h2>
 	  
       <% flash.each do |name, msg| %>
         <%= content_tag :div, msg, :class => "flash_#{name}" %>
@@ -200,7 +217,6 @@
 			<li class=""><a href="http://info.foreningskalendern.se" title="Föreningskalendern"><span class="left"></span>Om kalendern<span class="right"></span></a></li>
 			<li class="page_item page-item-6"><a href="http://info.foreningskalendern.se/kundtjanst-kontakt/" title="Kundtjänst &amp; kontakt">Kundtjänst &#038; kontakt</a></li>
       <li class="page_item page-item-6"><a href="http://info.foreningskalendern.se/legalt/" title="Legala frågor">Allmänna villkor, upphovsrätt, cookies och personuppgifter</a></li>
-      <li><%# Rails.application.config.git_branch %></li>
 		</ul>
 		
 		

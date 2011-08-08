@@ -53,7 +53,7 @@
 <%= simple_format @organizer.description %>
 
 
-<p class = "break">
+<p class = "break"></p><p>
 <% unless @organizer.website.blank? %>
   <strong><%=t '.website' =%>:</strong>
   <%= link_to @organizer.website, @organizer.website %>
@@ -77,7 +77,7 @@
   <p><%= t('.at_the_moment') + ' ' + @organizer.name + ' ' + t('.has_no_events') %> 
   <% if current_user %>
     <% unless !current_user.organizers.include? @organizer and !current_user.is_admin? %>
-      <%= link_to t('.first_event'), new_event_path %>.
+      <%= link_to t('.first_event'), new_event_path(:organizer_id => @organizer.id) %>.
     <% end %>
   <% end %>
   </p>
@@ -101,6 +101,8 @@
           :last_label => t('will_paginate.last'),
           :summary_label => " %d #{t('will_paginate.to')} %d #{t('will_paginate.of')} %d "
           ) %>
+          
+        
 <% end %>
 
 <% if @organizer.future_events? %>
@@ -142,15 +144,17 @@
       <%= button_to(  t('.edit'), 
                       edit_organizer_path(@organizer), 
                       :method => :get, 
-                      :class => :organizer_user) %>
-    <%= button_to t('.new_event'), new_event_path %>                      
+                      :class => :organizer_user) %>                      
     <% if current_user.is_admin? %>
       <%= button_to(  t('.destroy'), 
                     @organizer, 
                     :confirm => t('app.are_you_sure') + ' ' +@organizer.name + '?', 
                     :method => :delete ) %>
     <% end # is_admin %>
-
+<p>
+    <%= link_to   t('.new_event'), 
+                    new_event_path(:organizer_id => @organizer.id) %>
+</p>
     <h3>Användare som vill bli administratörer för <%= @organizer.name %>:</h3>
 
     <% unless @organizer.petition_users.blank?  %>

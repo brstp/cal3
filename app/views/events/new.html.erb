@@ -1,2 +1,24 @@
+# encoding: UTF-8
 <% title t '.title' %>
-<%= render 'form' %>
+<% if @event.organizer_id.nil? %> 
+  <% unless @organizers.blank? %>
+    <h3><%= t '.which_organizer' %> </h3>
+    <ul>
+    <% for organizer in @organizers %>
+      <li><%= link_to organizer.name, new_event_path(:organizer_id => organizer.id)  %></li>
+    <% end %>
+    </ul>
+    <p><%= t '.or_other_options' %>:</p>
+  <% else %>
+    <h3>
+      <%= t '.not_organizer' %>
+    </h3>
+    <p><%= t '.select' %>:</p>
+  <% end %>
+  <ul>
+    <li><%= link_to t('.apply_for_organizer'), organizers_path %></li>
+    <li><%= link_to t('.create_organizer1'), new_organizer_path %> <%= link_to t('.create_organizer2'), organizers_path %></li>
+  </ul>
+<% else %>
+  <%= render 'form' %>
+<% end %>

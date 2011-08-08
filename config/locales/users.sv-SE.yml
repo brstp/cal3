@@ -11,7 +11,7 @@ sv-SE:
         organizers: "Arrangörer"
         is_admin: ""
         password: "Lösenord"
-        remember_me: "Kom ihåg mig mellan besöken"
+        remember_me: "Logga in automatiskt när jag kommer tillbaka."
         password_confirmation: "Upprepa lösenordet"
         current_password: "Nuvarande lösenord"
         new_password: "Nytt lösenord"
@@ -84,10 +84,11 @@ sv-SE:
         welcome: 'Välkommen till kalendern!'
         set_my_password: 'Sätt lösenord'
     passwords:
+      new:
+        mail_me: 'Mejla mig'
+        forgot_your_password: 'Har du glömt ditt lösenord?'
       send_instructions: 'Du kommer få ett mejl med instruktioner om hur du kan återställa ditt lösenord inom någon minut.'
       updated: 'Ditt lösenord har uppdaterats. Du är nu inloggad.'
-      forgot_your_password: 'Har du glömt ditt lösenord?'
-      mail_me: 'Mejla mig'
     confirmations:
       send_instructions: 'Du kommer att få ett mejl med instruktioner om hur du kan bekräfta ditt konto inom någon minut.'
       confirmed: 'Ditt konto har bekräftats. Du är nu inloggad.'
@@ -98,6 +99,8 @@ sv-SE:
       signed_up: 'Ett nytt konto har skapats. En bekräftelse har skickats med mejl.'
       updated: 'Ditt konto har uppdaterats.'
       destroyed: 'Hej då! Ditt konto har avregistrerats. Vi hoppas få se dig snart igen.'
+      new:
+        sign_up: 'Registrera användarkonto'
       edit:
         change_password_or_email: 'Ändra lösenord eller mejladress.'
         submit: 'Ändra'
@@ -113,15 +116,7 @@ sv-SE:
       unlock_instructions:
         subject: 'Lås upp dit användarkonto på Föreningskalendern'      
       invitation:
-        subject: 'Inbjudan till Kalendern'
-  formtastic:
-    labels:
-      user:
-    hints:
-      user:
-        email_no_change_allowed: 'Mejladressen kan inte ändras.'
-        new_password: '(du behöver bara fylla i om du vill byta lösenord)'
-        current_password: 'Fyll i lösenordet om du ska byta lösenord eller mejladress'        
+        subject: 'Inbjudan till Kalendern'   
   devise:
     invitations:
       user: #TODO fix below, should be part of users, not devise...
