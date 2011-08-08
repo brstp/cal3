@@ -44,7 +44,5 @@ namespace :scrape do
       end
     end
   end
-  
-  # //*[contains(concat( " ", @class, " " ), concat( " ", "mergedrow", " " ))]//img
-  
+
 end

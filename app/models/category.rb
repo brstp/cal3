@@ -13,7 +13,8 @@ class Category < ActiveRecord::Base
   #  text :name
   #  text :description
   #end
-
+  
+  
   def mum
     self.parent.object_id
   end
