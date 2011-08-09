@@ -59,7 +59,7 @@
 
   has_attached_file :image1,
       :storage => :s3,
-      :bucket => 'static.foreningskalendern.se',
+      :bucket => 'static.allom.se',
       :s3_credentials => {
         :access_key_id => ENV['S3_KEY'],
         :secret_access_key => ENV['S3_SECRET']
@@ -72,7 +72,7 @@
 
   has_attached_file :image2,
       :storage => :s3,
-      :bucket => 'static.foreningskalendern.se',
+      :bucket => 'static.allom.se',
       :s3_credentials => {
         :access_key_id => ENV['S3_KEY'],
         :secret_access_key => ENV['S3_SECRET']
@@ -85,7 +85,7 @@
 
   has_attached_file :image3,
       :storage => :s3,
-      :bucket => 'static.foreningskalendern.se',
+      :bucket => 'static.allom.se',
       :s3_credentials => {
         :access_key_id => ENV['S3_KEY'],
         :secret_access_key => ENV['S3_SECRET']
@@ -148,7 +148,7 @@
     e = Icalendar::Event.new
     c = Icalendar::Calendar.new
     #TODO Better way to point out url with helper (uid/url)
-    e.uid = "http://www.foreningskalendern.se/event/#{self.id}"
+    e.uid = "http://allom.se/event/#{self.id}"
     e.dtstart = I18n.localize(self.start_datetime, :format => :icalendar)
     e.dtend = I18n.localize(self.stop_datetime, :format => :icalendar)
     e.summary = self.subject
@@ -168,7 +168,7 @@
   def ical_single_event
     e = Icalendar::Event.new
     #TODO Better way to point out url with helper (uid/url)
-    e.uid = "http://www.foreningskalendern.se/event/#{self.id}"
+    e.uid = "http://allom.se/event/#{self.id}"
     e.dtstart = I18n.localize(self.start_datetime, :format => :icalendar)
     e.dtend = I18n.localize(self.stop_datetime, :format => :icalendar)
     e.summary = self.subject

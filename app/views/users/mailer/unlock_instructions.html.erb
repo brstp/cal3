@@ -5,8 +5,8 @@
 <%= @resource.email %>
 <% end %>
 !</p>
-<p>Någon, kanske du själv, har gjort många misslyckade inloggningsförsök på ditt användarkonto på Kalendern. Vi blev orolig att någon försöker bryta sig in. Därför har vi automatiskt låst ditt användarkonto.</p>
+<p>Någon, kanske du själv, har gjort många misslyckade inloggningsförsök på ditt användarkonto på Allom. Vi blev orolig att någon försöker bryta sig in. Därför har vi automatiskt låst ditt användarkonto.</p>
 
-<p>Klicka på länken för att låsa upp ditt användarkonto på Kalendern.</p>
+<p>Klicka på länken för att låsa upp ditt användarkonto på Allom.</p>
 
-<p><%= link_to 'Lås upp mitt användarkonto på Kalendern.', unlock_url(@resource, :unlock_token => @resource.unlock_token) %></p>
+<p><%= link_to 'Lås upp mitt användarkonto på Allom.', unlock_url(@resource, :unlock_token => @resource.unlock_token) %></p>

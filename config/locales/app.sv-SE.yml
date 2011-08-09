@@ -4,7 +4,7 @@ sv-SE:
     edit: "Ändra"
     are_you_sure: "Vill du radera"
     destroy: "Ta bort"
-    site_name: "Kalendern"  
+    site_name: "Allom"  
     destroyed: "Raderat %{resource_name}."
     arranged_by: "Arrangeras av"
     in_municipality: "i"
@@ -14,8 +14,8 @@ sv-SE:
     by: 'av'
     events_in: "Evenemang i"
     or: 'eller'
-    no_reply_email: "svara-inte--no-reply@mumin.nu"
-    no_reply_name: "Kalendern. Svara inte."
+    no_reply_email: "auto@allom.se"
+    no_reply_name: "Allom"
     page: "sida"
     lat_lng: "Latitud/longitud"
     organizer: "Arrangör"
@@ -78,8 +78,8 @@ sv-SE:
       prompt: "Välj"          
       
   rss:
-    title: "Föreningskalendern"
-    description: "Allt som händer - där det händer. Du kan själv annonsera dina evenemang på Föreningskalendern."
+    title: "Allom"
+    description: "Allom - kalendern med allt som händer innan det är för sent. Du kan själv annonsera dina evenemang på Allom."
   
   flash:
     actions:
@@ -180,13 +180,13 @@ sv-SE:
       send_instructions: 'Tack för hjälpen. Vi har skickat ett inbjudningsmejl till din kompis.'
       updated: 'Så där, nu är ditt användarkonto igång som det ska.'
       new:
-        send_invitation: 'Bjud in en kompis till kalendern'
+        send_invitation: 'Bjud in en kompis till Allom'
         send_an_invitation: 'Skicka inbjudan'
-        have_a_friend: 'Vill du ge din kompis ett konto i kalendern?'
+        have_a_friend: 'Vill du ge din kompis ett konto i Allom?'
         invite_her: 'Ge bort en inbjudan kostnadsfritt!'
       edit:
         set_your_password: 'Nu behöver du välja ett lösenord för användarkontot.'
-        welcome: 'Välkommen till kalendern!'
+        welcome: 'Välkommen till Allom!'
         set_my_password: 'Sätt lösenord'
       user: #TODO fix below, should be part of users, not devise...
         send_instructions: 'Tack för hjälpen. Vi har skickat ett inbjudningsmejl till din kompis.'
@@ -215,10 +215,10 @@ sv-SE:
       unlocked: 'Ditt konto har låsts upp. Du är nu inloggad.'
     mailer:
       confirmation_instructions:
-        subject: 'Bekräfta ditt användarkonto på Föreningskalendern'
+        subject: 'Bekräfta ditt användarkonto på Allom'
       reset_password_instructions:
-        subject: 'Ändring av lösenord på Föreningskalendern'
+        subject: 'Ändring av lösenord på Allom'
       unlock_instructions:
-        subject: 'Lås upp dit användarkonto på Föreningskalendern'
+        subject: 'Lås upp dit användarkonto på Allom'
       invitation:
-        subject: 'Inbjudan till Kalendern'
+        subject: 'Inbjudan till Allom'

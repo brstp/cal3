@@ -1,21 +1,19 @@
 <p>Hej!</p>
 
-<p><%= (User.find @resource.invitor).name %> bjudit in dig till Kalendern.<br /> 
+<p><%= (User.find @resource.invitor).name %> bjudit in dig till Allom - kalendern med allt som händer innan det är för sent.<br /> 
 Klicka på länken nedan för att skapa ett kostnadsfritt användarkonto.</p>
 
-<p><%= link_to 'Ja, jag vill ha ett konto på Kalendern.', accept_invitation_url(@resource, :invitation_token => @resource.invitation_token) %></p>
+<p><%= link_to 'Ja, jag vill ha ett konto på Allom.', accept_invitation_url(@resource, :invitation_token => @resource.invitation_token) %></p>
 
 <p>Om länken inte fungerar i din mejlläsare, kopiera länken<br />
 nedan och klistra in den i adressfältet på din webbläsare.</p>
 
 <p><code><%= accept_invitation_url(@resource, :invitation_token => @resource.invitation_token) %></code></p>
 
-<p>Kalendern är en tjänst som.... TODO beskrivning här. </p>
+<p>Allom är en evenemangskalender där du hittar kul och nyttiga saker som händer. Med användarkonto kan du lägga in evenemang för föreningar och företag eller som privatperson.</p>
 
-<p>Om du inte vill ha ett användarkonto på Kalendern så <br />
+<p>Om du inte vill ha ett användarkonto på Allom så <br />
 kan du bara slänga det här mejlet. Användarkontot skapas <br />
 bara om du klickar på länken här ovanför.</p>
 
-<p>Det här mejlet skickades automatiskt. <br />
-Du kan inte svara på det. Om du har frågor, kontakta: </br>
-TODO: mejladress här </p>
+<p>Det här mejlet skickades automatiskt från Allom. Du kan inte svara på det. Om du har frågor om Allom i allmänhet kan du kontakta vår kundtjänst, http://info.allom.se/kundtjanst-kontakt/.</p>

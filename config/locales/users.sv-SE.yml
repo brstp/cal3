@@ -50,7 +50,7 @@ sv-SE:
       unconfirmed: 'Du måste bekräfta ditt konto innan du kan fortsätta.'
       locked: 'Ditt konto är låst.'
       invalid: 'Fel mejladress eller lösenord.'
-      invalid_token: 'Ogiltig token för autentisering.' #TODO
+      invalid_token: 'Den hemliga koden för inloggning är trasig.' 
       timeout: 'Din session är inte längre giltig, vänligen logga in igen för att fortsätta.'
       inactive: 'Ditt konto har inte aktiverats ännu.'
     sessions:
@@ -75,13 +75,13 @@ sv-SE:
       send_instructions: 'Tack för hjälpen. Vi har skickat ett inbjudningsmejl till din kompis.'
       updated: 'Så där, nu är ditt användarkonto igång som det ska.'
       new:
-        send_invitation: 'Bjud in en kompis till kalendern'
+        send_invitation: 'Bjud in en kompis till Allom'
         send_an_invitation: 'Skicka inbjudan'
-        have_a_friend: 'Vill du ge din kompis ett konto i kalendern?'
+        have_a_friend: 'Vill du ge din kompis ett konto i Allom?'
         invite_her: 'Ge bort en inbjudan kostnadsfritt!'
       edit:
         set_your_password: 'Nu behöver du välja ett lösenord för användarkontot.'
-        welcome: 'Välkommen till kalendern!'
+        welcome: 'Välkommen till Allom!'
         set_my_password: 'Sätt lösenord'
     passwords:
       new:
@@ -110,13 +110,13 @@ sv-SE:
       unlocked: 'Ditt konto har låsts upp. Du är nu inloggad.'
     mailer:
       confirmation_instructions:
-        subject: 'Bekräfta ditt användarkonto på Föreningskalendern'
+        subject: 'Bekräfta ditt användarkonto på Allom'
       reset_password_instructions:
-        subject: 'Ändring av lösenord på Föreningskalendern'
+        subject: 'Ändring av lösenord på Allom'
       unlock_instructions:
-        subject: 'Lås upp dit användarkonto på Föreningskalendern'      
+        subject: 'Lås upp dit användarkonto på Allom'      
       invitation:
-        subject: 'Inbjudan till Kalendern'   
+        subject: 'Inbjudan till Allom'   
   devise:
     invitations:
       user: #TODO fix below, should be part of users, not devise...
