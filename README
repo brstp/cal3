@@ -25,7 +25,7 @@ rake sunspot:solr:start      # Starta sökmotorn på *ix
 rake sunspot:reindex          # Indexera om
 rake import:municipalities    # Importera kommuner med data från csv-fil. Källa: SCB. Manuellt redigerad för korrekta namn för de kommuner som heter "stad" och för korrekta gentiv-s.
 
-rake db:data:load             # Kanske... ladda exempeldata
+heroku db:push             # Kanske... ladda exempeldata från lokalt till Heroku (pull åt andra hållet)
 rake scrape:municipalities    # Hämta url:er från Wikipedia till faktasida per kommun
 rake scrape:update_facts      # Hämta faktaruta per kommun
 
