@@ -59,25 +59,13 @@
     <!-- *** This fieldType is used by Sunspot! *** -->
     <fieldType name="rand" class="solr.RandomSortField" omitNorms="true"/>
     <!-- *** This fieldType is used by Sunspot! *** -->
-    <fieldtype class="solr.TextField" positionIncrementGap="100" name="text">
-      <analyzer type="index">
+    <fieldType name="text" class="solr.TextField" omitNorms="false">
+      <analyzer>
         <tokenizer class="solr.StandardTokenizerFactory"/>
         <filter class="solr.StandardFilterFactory"/>
         <filter class="solr.LowerCaseFilterFactory"/>
-        <filter class="solr.StopFilterFactory" words="stopwords.txt" ignoreCase="true"/>
-        <filter class="solr.TrimFilterFactory" />
-        <filter class="solr.EdgeNGramFilterFactory"
-          minGramSize="3"
-          maxGramSize="30"/>
       </analyzer>
-      <analyzer type="query">
-        <tokenizer class="solr.StandardTokenizerFactory"/>
-        <filter class="solr.StandardFilterFactory"/>
-        <filter class="solr.LowerCaseFilterFactory"/>
-        <filter class="solr.StopFilterFactory" words="stopwords.txt" ignoreCase="true"/>
-        <filter class="solr.TrimFilterFactory" />
-      </analyzer>
-    </fieldtype>
+    </fieldType>
     <!-- *** This fieldType is used by Sunspot! *** -->
     <fieldType name="boolean" class="solr.BoolField" omitNorms="true"/>
     <!-- *** This fieldType is used by Sunspot! *** -->

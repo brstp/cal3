@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.9'
+gem 'rails', '3.0.10'
 
 
 # Use unicorn as the web server
@@ -49,8 +49,10 @@ gem 'aws-s3'                        #API towards Amazon Web Services
 gem 'will_paginate', "3.0.pre2"     #well, to paginate
 
 group :development, :test do
-	gem 'sqlite3-ruby', :require => 'sqlite3'
+  gem 'sqlite3-ruby', :require => 'sqlite3'
   gem "nifty-generators"
+  gem 'heroku'
+  gem 'taps'
 end
 
 group :production do
