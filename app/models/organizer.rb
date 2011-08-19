@@ -24,9 +24,11 @@ class Organizer < ActiveRecord::Base
   # has_many :user_infos, :through => :memberships, :source => :user, :conditions => "memberships.state = 'inform_admin'"
   
   
+  default_scope :order => 'name'
 
   
-  attr_accessible :name, :description, :website, :user_ids, :logotype, :photo, :intro, :phone, :email
+  attr_accessible :name, :description, :website, :user_ids, :logotype, 
+                  :photo, :intro, :phone, :email
   
   validates_presence_of :name, :description, :email
   validates_length_of :name, :in => 5..40
@@ -42,8 +44,8 @@ class Organizer < ActiveRecord::Base
                       :secret_access_key => ENV['S3_SECRET'] },
                     :default_url => "/images/organizer-logotype-90x109.png", 
                     :styles => {  
-                      :medium => "90x109", 
-                      :small => "45x55"}
+                      :medium => "600x200", 
+                      :small => "270x90"}
                                     
   has_attached_file :photo,      
                     :storage => :s3,
@@ -64,6 +66,11 @@ class Organizer < ActiveRecord::Base
   
   def to_s
     self.name
+  end
+  
+  def default_municipality
+    self.events.find( :all, 
+                      :order => "created_at DESC" ).first.try :municipality
   end
   
   def refresh_images # only used manually
@@ -94,8 +101,8 @@ class Organizer < ActiveRecord::Base
     c.to_ical
   end
   
-  def upcoming_events
-    self.events.find(:all, :conditions => ["stop_datetime >= '#{Time.now}'"], :order => "start_datetime ASC")   
+  def upcoming_events max_no = 99999
+    self.events.find(:all, :conditions => ["stop_datetime >= '#{Time.now}'"], :order => "start_datetime ASC", :limit => max_no)   
   end
   
   

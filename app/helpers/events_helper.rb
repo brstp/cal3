@@ -2,18 +2,30 @@
 module EventsHelper
 
 
-  def organizer_facts organizer
+  def organizer_facts organizer, max_no = 9999
     str =%(
-          <div id="municipality_facts" class="box">
+          <div id="organizer_facts" class="box">
           <span class="heading">#{t '.organizer_facts'}:</span>
           #{link_to((image_tag  organizer.logotype.url(:small), :alt => organizer.name + "s logotyp", :title => organizer.intro), organizer, :title => "Allom - kalendern med allt som händer innan det är för sent." )}
           <h4>#{link_to(organizer.name, organizer)}</h4>
           <p>
           #{organizer.intro}
-          #{mini_calendar organizer.upcoming_events}
-          </div>
+          </p>
+          #{mini_calendar organizer.upcoming_events(max_no) , events_url }
+          
           )
+      
+    if organizer.number_of_upcoming_events > max_no
+      str << %(
+                #{link_to(t('app.there_are') + ' ' + organizer.number_of_upcoming_events.to_s + ' ' + t('app.events_in_total'), events_url(:organizer_id => organizer.id) )}
+              )
+    end
+    
+    str << %(
+          </div>
+            )
     raw str
+    
   end
   
   def select_category_tree selected_category = nil

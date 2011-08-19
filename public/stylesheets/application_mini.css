@@ -2,9 +2,11 @@
 }
 
 .flash_notice, .flash_error, .flash_alert, .user_message, .authorized_context {
-  padding: 0 0.5em 0 0.5em;
-  margin: 0 0 0.5em 0;
+  padding: 0 0.5em 0.5em 0.5em;
+  margin: 0 0 1em 0;
 }
+
+
 
 .flash_notice {
   padding: 0.7em;
@@ -366,7 +368,6 @@ table.general td {
 }
 
 .page_logotype {
-  float: left;
   margin: 0 2em 1em 0;
 }
 
@@ -421,4 +422,19 @@ table.general td {
 #q-container input#q {
   font-size: 2em;  
   width: 200px;
+}
+
+.larger {
+  font-size: 150%;
+}
+
+.organizer-actions li {
+  margin: 0 0 0.5em 1em;
+  color: #ccc;
+  list-style-type: square;
+}
+
+.organizer-actions {
+  margin: 1em 0 4em 0;
+  
 }

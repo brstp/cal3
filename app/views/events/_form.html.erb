@@ -1,6 +1,6 @@
 <%= javascript_include_tag "geocode" %>
 <p><%= t('.explain_mandatory') %></p>
-<%= semantic_form_for @event, :html => {:multipart => true} do |f| %>
+<%= semantic_form_for @event, :html => {:multipart => true, :novalidate => true} do |f| %>
   <%= f.error_messages %>
   <%= f.inputs do %>
       <%= f.input :subject %>
@@ -11,11 +11,14 @@
                       :input_html => { :disabled => true}
                       %>
 
+      <% @event.municipality = @event.organizer.default_municipality %>
+        
       <%= f.input   :municipality, 
                     :required => true, 
                     :collection => Municipality.select_municipality,
                     :include_blank => false 
                     %>
+                    
       <hr />
       <h3>Vad</h3>
       <%= f.input :intro %>                    

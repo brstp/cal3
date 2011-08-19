@@ -43,7 +43,7 @@ sv-SE:
       page_title: "Alla evenemang. Evenemangskalender för alla arrangörer."
       meta_description: "Använd Allom för att hitta kul och nyttiga saker att göra. Annonsera dina evenemang. För föreningar, privatpersoner och företag."
       new: "Skapa nytt evenemang"
-      subscribe_rss: "Prenumerera på alla evenemang som matchar den här sökningen."
+      subscribe_rss: "Flöde för denna sökning."
       new_organizer: "Skapa ny arrangörssida"
       no_of_events_per_municipality: "inplanerade evenemang i kommunen"
       no_of_events_per_organizer: "inplanerat evenemang"

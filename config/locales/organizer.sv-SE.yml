@@ -17,7 +17,7 @@ sv-SE:
     index:
       title: "Alla arrangörssidor och deras evenemang"
       meta_description: "Hitta arrangörer till olika evenemang i Sverige. Du kan annonsera dina arrangemang också." 
-      new: "Skapa ny arrangörssida"
+      new: "Lägg upp en ny arrangörssida"
       no_of_events_per_organizer: "inplanerat evenemang"
       you_have_applied: 'Du har ansökt om att bli admininstratör för'
       number_all_events1: 'har lagt in '
@@ -32,7 +32,7 @@ sv-SE:
       members_in: "Administratörer för"
       show: "Visa"
       no_of_events_per_municipality: "inplanerade evenemang i kommunen"
-      subscribe_rss: "Prenumerera på"
+      subscribe_rss: "Prenumerera på eller publicera RSS-flöde från"
       organizers_event: "kommande evenemang i din RSS-läsare."
       rss_alt: "Prenumerera på RSS-flöde med evenemang hos" 
       rss_title: "evenemang i Allom"
@@ -88,9 +88,11 @@ sv-SE:
       no_petitions: 'Just nu finns det inga ansökningar.'
       you_have_petitions: 'Du har fått in ansökningar om att bli administratör som ska godkännas eller avslås.'
       my_organizers: 'Du är administratör för'
+      petitions_to_be_purged: "Om du inte agerar på ansökningarna, gallrar vi bort dem efter cirka en månad."
     new:
-      title: "Ny arrangörssida"
+      title: "Lägg upp en ny arrangörssida"
       list: "Till arrangörslistan (strunta i ändringar)"
     edit:
       show: "Visa arrangörssidan (strunta i ändringar)"
       list: "Till arrangörslistan (strunta i ändringar)"
+      edit: "Ändra arrangörssidan för"

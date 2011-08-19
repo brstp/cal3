@@ -6,13 +6,7 @@
 <% end %>   
 
 <h1><%= t('.title') %> </h1>
-<p>
-  <% unless current_user %>
-  <%= link_to I18n.t('users.sessions.sign_up'), new_user_registration_path %> <%= I18n.t('app.or') %>
-  <%=link_to I18n.t('users.sessions.sign_in'), new_user_session_path %> 
-  <%= t '.create_your_own' %>        
-  <% end %>          
-</p>
+  <p class = "larger"><%= link_to t('.new'), new_organizer_path %></p>
 
 <table class = "general">
   <caption>Inplanerade evenemang för alla arrangörer</caption>
@@ -45,19 +39,5 @@
   </tbody>
 </table>
 
-<% if current_user %>
-  <p><%= link_to t('.new'), new_organizer_path %></p>
-<% end %>
+    <p class = "larger"><%= link_to t('.new'), new_organizer_path %></p>
 
-
-              <% unless user_signed_in? %>
-                    <p>
-                    <%= link_to I18n.t('users.sessions.sign_up'), new_user_registration_path %> <%= I18n.t('app.or') %> 
-                    <%=link_to I18n.t('users.sessions.sign_in'), new_user_session_path %>    
-                    </p>
-              <% else %>
-                    <p>
-                    <%= t('users.invitations.new.have_a_friend')%><br />
-                    <%= link_to t('users.invitations.new.invite_her'), new_user_invitation_path %>
-                    </p>
-              <% end %>

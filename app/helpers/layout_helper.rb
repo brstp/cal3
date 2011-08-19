@@ -420,18 +420,9 @@ google.maps.event.addDomListener(window, 'load', initialize);
   end
 
  
-  def mini_calendar events = nil, more_events = events_url, max_no = 10
+  def mini_calendar events = nil, more_events = events_url
 
-  #TODO time limits and no of events in initializer (and align)
-    #if events.blank?
-    #  events = Event.where("stop_datetime >= ? AND start_datetime <= ?", 
-    #              Time.now.beginning_of_day, Time.now.end_of_day + 12.months ).
-    #              order('start_datetime ASC')
-    #end
-    many_events = ""
-    if events.count > max_no
-      many_events = link_to(t('app.there_are') + ' ' + events.count.to_s + ' ' + t('app.events_in_total'), more_events) 
-    end
+
     
     cal = ""
     cal << %(
@@ -439,8 +430,8 @@ google.maps.event.addDomListener(window, 'load', initialize);
               <caption>#{t('app.planned_events')}</caption>
             )
 
-    for event in events #.limit(max_no) 
-    cal << %(
+    for event in events
+      cal << %(
               <tr class = "#{cycle("odd", "even")}">
                 <td>#{link_to( event.subject, event, :title => t('app.arranged_by') + ' ' + event.organizer.name + ' ' + t('app.in_municipality') + ' ' + event.municipality.name + '. ' + event.try( :intro))}</td>
                 <td><abbr class="day" title="#{l(event.start_datetime, :format => :machine) }">
@@ -451,8 +442,6 @@ google.maps.event.addDomListener(window, 'load', initialize);
     end
    
     cal << %(
-            <tr class = "#{cycle("odd", "even")}">
-            <td colspan = "2">#{many_events}&nbsp;</td></tr>
             </table>
             )
     raw cal

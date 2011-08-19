@@ -167,16 +167,7 @@
               <% end %>
           </div> <!-- /user_nav -->
           <%= content_for :right_column_top %>
-          <% if current_user %>    
-            <div id="calendar-nav" class="box">
-              <span class="heading"><%= t '.quick_links' %>:</span>
-              <ul>              
-                  <li><%= link_to t('.new_organizer'), new_organizer_path %></li>
-                  <li><%= link_to(t('.subscribe_rss'), events_url(:only_path => false, :format => :rss) )  %>  
-  <%= link_to image_tag("rss_icon.gif", :alt => t('.rss_alt')), events_url(:only_path => false, :format => :rss) %></li>                     
-              </ul>
-            </div><!-- /calendar-nav -->
-          <%end%>  
+
 
           <% if current_user %>
             <% if current_user.is_admin? %>
@@ -196,8 +187,8 @@
           <div id="ads" class="box">
             <span class="heading"><%= t '.ads' %>:</span>				
             <div class="adblock">
-              <a href="http://www.woothemes.com" title="Stöd vår sponsor"><img src="http://www.woothemes.com/ads/125x125b.jpg" alt="Sponsor" /></a>
-              <a href="http://www.woothemes.com" title="Stöd vår sponsor"><img src="http://www.woothemes.com/ads/125x125b.jpg" alt="Sponsor" /></a>
+              <%= image_tag "plugg-125x125px.jpg", :alt => "Annonsutrymme", :title => "Annonsutrymme" %>
+              <%= image_tag "plugg-125x125px.jpg", :alt => "Annonsutrymme", :title => "Annonsutrymme" %>
             </div><!-- /adblock -->
           </div><!-- /ads -->
 
@@ -214,9 +205,11 @@
 	<div id="footer">
 		
 		<ul>
-			<li class=""><a href="http://info.allom.se" title="Allom"><span class="left"></span>Om Allom<span class="right"></span></a></li>
+			<li class=""><a href="http://info.allom.se" title="Alloms blogg - framför allt för arrangörer."><span class="left"></span>Blogg<span class="right"></span></a></li>
+			<li class=""><a href="http://info.allom.se/om-foreningskalendern/" title="Om Allom"><span class="left"></span>Om Allom<span class="right"></span></a></li>
 			<li class="page_item page-item-6"><a href="http://info.allom.se/kundtjanst-kontakt/" title="Kundtjänst &amp; kontakt">Kundtjänst &#038; kontakt</a></li>
       <li class="page_item page-item-6"><a href="http://info.allom.se/legalt/" title="Legala frågor">Allmänna villkor, upphovsrätt, cookies och personuppgifter</a></li>
+	    <li><%= link_to(t('.rss_short'), events_url(:only_path => false, :format => :rss) )  %>&nbsp;<%= link_to image_tag("rss_icon.gif", :alt => t('layouts.application.rss_alt')), events_url(:only_path => false, :format => :rss) %>
 		</ul>
 		
 		

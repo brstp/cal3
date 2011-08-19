@@ -18,6 +18,32 @@
   <% end %>
   </div>
   <%= facet_search %>
+  <p>
+  <% if params[:q] || params[:category_facet_id] || params[:organizer_id] || params[:municipality_id] || params[:stop] %>
+    <%= link_to(  t('.subscribe_rss'), 
+                  :only_path => false,
+                  :format => :rss,
+                  :q => params[:q], 
+                  :stop => params[:stop],
+                  :category_facet_id => params[:category_facet_id],
+                  :organizer_id => params[:organizer_id],
+                  :municipality_id => params[:municipality_id] ) %>
+
+    <%= link_to image_tag("rss_icon.gif", 
+                :alt => t('.rss_alt')), 
+                events_url( :only_path => false, 
+                            :format => :rss, 
+                            :q => params[:q], 
+                            :stop => params[:stop],
+                            :category_id => params[:category_id], 
+                            :municipality_id => params[:municipality_id], 
+                            :organizer_id => params[:organizer_id]) %>
+    
+  <% else %>
+    <%= link_to(t('layouts.application.subscribe_rss'), events_url(:only_path => false, :format => :rss) )  %>  
+    <%= link_to image_tag("rss_icon.gif", :alt => t('layouts.application.rss_alt')), events_url(:only_path => false, :format => :rss) %>
+  <% end %>
+    </p>
   </div><!-- /facet -->
 <% end %>
   
@@ -45,27 +71,4 @@
 <% end %> 
 
 
-<p>
-<%= link_to(  t('.subscribe_rss'), 
-              :only_path => false,
-              :format => :rss,
-              :q => params[:q], 
-              :stop => params[:stop],
-              :category_facet_id => params[:category_facet_id],
-              :organizer_id => params[:organizer_id],
-              :municipality_id => params[:municipality_id] ) %>
 
-<%= link_to image_tag("rss_icon.gif", 
-            :alt => t('.rss_alt')), 
-            events_url( :only_path => false, 
-                        :format => :rss, 
-                        :q => params[:q], 
-                        :stop => params[:stop],
-                        :category_id => params[:category_id], 
-                        :municipality_id => params[:municipality_id], 
-                        :organizer_id => params[:organizer_id]) %>
-</p>
-<p>
-<%= link_to(t('layouts.application.subscribe_rss'), events_url(:only_path => false, :format => :rss) )  %>  
-<%= link_to image_tag("rss_icon.gif", :alt => t('layouts.application.rss_alt')), events_url(:only_path => false, :format => :rss) %>
-</p>
