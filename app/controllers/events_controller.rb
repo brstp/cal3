@@ -190,7 +190,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
     @event.created_by_user_id = current_user.id
     if @event.save
       OrganizerMailer.new_event_confirmation(@event, current_user).deliver
-      flash[:notice] = t 'flash.actions.create.notice'
+      flash[:notice] = t 'events.flash.notice.created'
       redirect_to @event
     else
       render :action => 'new'
@@ -206,7 +206,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
     @event.updated_by_user_id = current_user.id
     if @event.update_attributes(params[:event])
       OrganizerMailer.changed_event_confirmation(@event, current_user).deliver
-      flash[:notice] = t 'flash.actions.update.notice'
+      flash[:notice] = t 'events.flash.notice.updated'
       redirect_to @event
     else
       render :action => 'edit'

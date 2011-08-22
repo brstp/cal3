@@ -94,7 +94,11 @@ sv-SE:
       select_organizer: "--- Välj en arrangör ---"
       select_municipality: "--- Välj en kommun ---"
       explain_mandatory: Fält som är markerade med * är obligatoriska. Alla övriga fält är frivilliga.
-
+    flash:
+      notice:
+        created: "Evenemangsannonsen skapad. Inom några minuter kommer den att vara synlig i vår sökmotor."
+        updated: "Evenemangsannonsen ändrad. Inom några minuter kommer ämdringarna att vara synliga i vår sökmotor."
+      
       
   
   event:
