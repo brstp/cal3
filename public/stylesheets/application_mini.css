@@ -207,10 +207,16 @@ table.general td {
   background-color: #ccc;
   padding: 1em;
   border-width: 2px;
-  border-color: red;
+  border-color: #000;
   border-style: solid;
 }
 
+
+
+.license {
+  font-size: 80%;
+  margin: 1em 1em 1em 1em;
+}
 
 .counter {
   font-size: 2em;

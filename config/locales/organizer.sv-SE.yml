@@ -65,7 +65,7 @@ sv-SE:
       first_name: "Förnamn"
       last_name: "Efternamn"
       dont_leave: "Du kan inte ta bort ditt eget administratörsskap."
-      previous_events: "s redan genomförda evenemang."
+      previous_events: "redan genomförda evenemang."
       promote: "Gör reklam för"
       logotype_for: "Logotyp för"
       you_are_admin_for: 'Du är administratör för'
@@ -89,6 +89,10 @@ sv-SE:
       you_have_petitions: 'Du har fått in ansökningar om att bli administratör som ska godkännas eller avslås.'
       my_organizers: 'Du är administratör för'
       petitions_to_be_purged: "Om du inte agerar på ansökningarna, gallrar vi bort dem efter cirka en månad."
+      created_at: 'Arrangörssidan skapad'
+      updated_at: 'Senast uppdaterad'
+      hint_store: 'Tips! Lägg in evenemangen i din dator eller mobil'
+      you_are_sysadmin: 'Du är systemadministratör'
     new:
       title: "Lägg upp en ny arrangörssida"
       list: "Till arrangörslistan (strunta i ändringar)"

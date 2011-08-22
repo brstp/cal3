@@ -2,7 +2,7 @@
                    :description => t('.meta_description') + ' ' + @organizer.name + ' ' +  t('.meta_description2')%>
 
 <% content_for :head do %>  
-  <%= auto_discovery_link_tag( :rss, organizer_url(:format => 'rss') , {:title => @organizer.name + t('app.s') + ' ' + t('.organizers_event') + ' ' + t('app.at') + ' ' +  t('app.site_name')}) %>
+  <%= auto_discovery_link_tag( :rss, organizer_url(:format => 'rss') , {:title => genitive(@organizer.name) + ' ' + t('.organizers_event') + ' ' + t('app.at') + ' ' +  t('app.site_name')}) %>
 <% end %>                     
                    
 
@@ -12,10 +12,18 @@
                           :only_path => false)  %>
 
 <% if current_user %>
-  <% if @organizer.users.include? current_user || current_user.is_admin? %>
+  <% if (@organizer.users.include? current_user) || current_user.is_admin? %>
     <div class = "user_message">
-        <p>
-          <%= t('.you_are_admin_for') + ' '+ @organizer.name %>. 
+        
+          <% if @organizer.users.include? current_user %>
+            <p><%= t('.you_are_admin_for') + ' '+ @organizer.name %>. </p>
+          <% end %>
+          
+          
+          <% if current_user.is_admin? %>
+            <p><%= t('.you_are_sysadmin') %>. </p>
+          <% end %>
+          
           <% unless @organizer.petition_users.blank? %>
             <p>
               <%= link_to t('.you_have_petitions'), 
@@ -126,11 +134,11 @@
         
 <% end %>
 
-<p><strong>Tips! Lägg in evenemangen i din dator eller mobil:</strong></p>
+<p><strong><%= t '.hint_store'%>:</strong></p>
 <ul class = "organizer-actions" >
 <% if @organizer.future_events? %>
   <li>
-    <%= link_to(t('.download_ics1') + ' ' + @organizer.name + t('app.s') + ' ' + t('.download_ics2'), organizer_url(:only_path => false, :format => :ics ), :title => t('app.ics_file'))  %>
+    <%= link_to(t('.download_ics1') + ' ' + genitive(@organizer.name) + ' ' + t('.download_ics2'), organizer_url(:only_path => false, :format => :ics ), :title => t('app.ics_file'))  %>
   </li>
 <% end %>
 
@@ -142,7 +150,7 @@
 
 <% if @organizer.past_events? %>
   <li>
-    <%= link_to @organizer.name + t('.previous_events'), events_path(:organizer_id => @organizer.id, :stop => :past) %>
+    <%= link_to genitive(@organizer.name) + ' ' + t('.previous_events'), events_path(:organizer_id => @organizer.id, :stop => :past) %>
   </li>
 <% end %>
 
@@ -150,16 +158,34 @@
 
 <%= facebook_like organizer_path(:only_path => false), "bottom", "like" %>
 
+<% unless @organizer.users.include? current_user %>
+  <p>
+    <%= t('.do_you_work_for') + ' ' + @organizer.name%>? 
+    <%= link_to t('.apply_for_adminship'), 
+                new_petition_path( :organizer_id => @organizer.id ) %>
+  </p> 
+<% end %>
+
+<p>
+<%= t '.created_at' %> <%= I18n.localize @organizer.created_at, :format => :default %>  
+  <% if current_user %>
+    <% if (current_user.authorized? @organizer) || current_user.is_admin? %>
+      <%= @organizer.created_by %>      
+    <% end %>
+  <% end %>
+<br />  
+<% unless @organizer.created_at == @organizer.updated_at || @organizer.updated_by_user_id.nil?%>
+  <%= t '.updated_at' %> <%= I18n.localize @organizer.updated_at, :format => :default %>
+  <% if current_user %>
+    <% if (current_user.authorized? @organizer) || current_user.is_admin? %>
+      <%= @organizer.updated_by %>
+    <% end %>
+  <% end %>
+<% end %>
+</p>
+
 
 <% if current_user %>
-  <% unless (( current_user.authorized? @organizer) || (@organizer.petition_users.include? current_user) ) %>
-  <% # TODO Make it possible to sign up and make a petition in one step %>
-    <p>
-      <%= t('.do_you_work_for') + ' ' + @organizer.name%>? 
-      <%= link_to t('.apply_for_adminship'), 
-                  new_petition_path( :organizer_id => @organizer.id ) %>
-    </p> 
-  <% end %>
   
   <% if current_user.authorized?(@organizer) || current_user.is_admin? %>
     </div><div class="post" id = "admin">
@@ -240,13 +266,28 @@
   <% end #authorized @organizer %>
 <% end #current_user %>
 
+<% content_for :disclaimer do %>
+<div class = "license"
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/2.5/se/" title = "CC BY-SA 2.5 Sverige">
+  <img alt="Creative Commons-licens" src="http://i.creativecommons.org/l/by-sa/2.5/se/88x31.png" />
+</a> 
+<br />
+
+Arrangörssidan (text & bilder) är licensierad under en <a rel="license" href="http://creativecommons.org/licenses/by-sa/2.5/se/">Creative Commons Erkännande-DelaLika 2.5 Sverige Licens</a>. 
+
+<a href = "http://info.allom.se/legalt/" title="Alloms allmänna villkor och upphovsrätt">Hur får jag använda eller återpublicera?</a>
+
+</div>
+
+<% end %>
+
 <%= content_for :right_column_bottom do %>  
   <div class = "box" id = "promote_organizer">
     <span class="heading"><%= t('.promote')%><br /> <%=@organizer.name%>:</span>
 
       <% if @organizer.future_events? %>
         <p>
-          <%= link_to(t('.download_ics1') + ' ' + @organizer.name + t('app.s') + ' ' + t('.download_ics2'), organizer_url(:only_path => false, :format => :ics ), :title => t('app.ics_file'))  %>
+          <%= link_to(t('.download_ics1') + ' ' + genitive(@organizer.name) + ' ' + t('.download_ics2'), organizer_url(:only_path => false, :format => :ics ), :title => t('app.ics_file'))  %>
         </p>
       <% end %>
 

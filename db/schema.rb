@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110628113950) do
+ActiveRecord::Schema.define(:version => 20110822051412) do
 
 # Could not dump table "bup_users" because of following StandardError
 #   Unknown type 'id' for column 'invitor'
@@ -117,6 +117,8 @@ ActiveRecord::Schema.define(:version => 20110628113950) do
     t.string    "intro"
     t.string    "email"
     t.string    "phone"
+    t.integer   "created_by_user_id"
+    t.integer   "updated_by_user_id"
   end
 
   create_table "petitions", :force => true do |t|

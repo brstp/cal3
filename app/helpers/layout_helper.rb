@@ -21,6 +21,12 @@ module LayoutHelper
     content_for(:head) { javascript_include_tag(*args) }
   end
   
+  def genitive (str)
+    str += "s" unless (str.split('').last.downcase == "s")
+    str
+  end
+  
+
   def user_message organizer, user
     if false && (! organizer.users.include? user)  && (organizer.memberships.find_by_prospect_user_id(user.id))
       str = %(
@@ -398,27 +404,6 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
    
   
-  def arranged_by event
-    raw ( t('app.arranged_by') + ' ' + link_to( (event.organizer.name+ ' (' + event.organizer.number_of_upcoming_events.to_s + ')'), event.organizer, :title => event.organizer.intro) ) 
-  end
-  
-  def arranged_in event
-    raw ( t('app.in_municipality') + ' ' + link_to(  (event.municipality.name + ' (' + event.municipality.number_of_upcoming_events.to_s + ')'), event.municipality ))
-  end
-  
-  def in_category event
-    exit if event.category.blank?
-    category = event.category
-    str = ""
-    while category.depth > 0
-      str = (link_to category.name + ' (' + category.number_of_upcoming_events.to_s + ')', (events_path :category_facet_id => category.id)) + " > " + str
-      category = category.parent
-    end
-    str = (t '.category') + ' ' + str
-    str = str.to(str.length - 7)
-    raw str
-  end
-
  
   def mini_calendar events = nil, more_events = events_url
 

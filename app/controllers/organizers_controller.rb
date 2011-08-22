@@ -31,6 +31,8 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
 
   def create
     @organizer = Organizer.new(params[:organizer])
+    @organizer.created_by_user_id = current_user.id
+
     if @organizer.save
       flash[:notice] = t 'flash.actions.create.notice'
 
@@ -52,6 +54,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
 
   def update
     @organizer = Organizer.find(params[:id])
+    @organizer.updated_by_user_id = current_user.id
     if @organizer.update_attributes(params[:organizer])
       flash[:notice] = t 'flash.actions.update.notice'
       redirect_to @organizer

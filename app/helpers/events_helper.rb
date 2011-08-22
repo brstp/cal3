@@ -43,5 +43,71 @@ module EventsHelper
         )
   end
   
+  
+   def duration event
+    str = %(
+                <abbr class="dtstart" title="#{I18n.localize(event.start_datetime, :format => :machine)}">
+                  #{I18n.localize(event.start_datetime, :format => :longest)}
+                </abbr>
+                )
+    unless  (event.start_datetime == event.stop_datetime)
+      str << %(
+                -
+                <abbr class="dtend" title="#{I18n.localize(event.stop_datetime, :format => :machine)}">
+                )
+      if event.start_date != event.stop_date
+        str << %( #{I18n.localize(event.stop_datetime, :format => :longest)} )
+      else
+        str << %( #{I18n.localize(event.stop_datetime, :format => :time)} )
+      end
+      str << %( </abbr>)
+    end
+    raw str
+  end
+  
+  
+  def lat_lng event
+    str = %( <abbr class ="geo" title ="#{event.lat};#{event.lng}">)
+    if event.lat >= 0
+      str << %(N )
+    else
+      str << %(S )
+    end
+    str << %( #{event.lat_degrees_minute} )
+    
+    if event.lng >= 0
+      str << %(O )
+    else
+      str << %(V )
+    end
+    str << %(#{event.lng_degrees_minute} </abbr>)
+    
+    raw str
+  end
+  
+  
+  def arranged_by event
+  
+    raw ( t('app.arranged_by') + ' <span class="organizer">' + link_to( ( event.organizer.name + ' (' + event.organizer.number_of_upcoming_events.to_s + ')'), event.organizer, :title => event.organizer.intro) + '</span>') 
+  end
+  
+  def arranged_in event
+    raw ( t('app.in_municipality') + ' ' + link_to(  (event.municipality.name + ' (' + event.municipality.number_of_upcoming_events.to_s + ')'), event.municipality ))
+  end
+  
+  def in_category event
+    exit if event.category.blank?
+    category = event.category
+    str = ""
+    while category.depth > 0
+      str = (link_to category.name + ' (' + category.number_of_upcoming_events.to_s + ')', (events_path :category_facet_id => category.id)) + " > " + str
+      category = category.parent
+    end
+    str = (t '.category') + ' ' + str
+    str = str.to(str.length - 7)
+    raw( '<span class = "category">' + str + '</span>' )
+  end
+
+  
 end
   

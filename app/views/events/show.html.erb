@@ -7,25 +7,38 @@
                           event_path(:only_path => false) 
                           %>
                           
+                          
+<% content_for :head do %>
+
+    <link rel="profile" href="http://microformats.org/profile/hcalendar">
+<% end %> 
+                         
 <% content_for :right_column_bottom do %>  
   <%= page_counter @event.counter%>
   <%= organizer_facts @event.organizer, 10 %>
 <% end %>       
 
 <% if @event.stop_datetime > Time.now %>
-  <div class = "event_in_future"> 
+  <div class = "event_in_future vevent"> 
 <% else %>           
-  <div class = "event_in_past"> 
+  <div class = "event_in_past vevent"> 
   <h1><%= t('.in_past')%></h1>
 <% end %>
 
 
 <% if current_user %>
-  <% if current_user.authorized? @event.organizer %>
+  <% if (current_user.authorized? @event.organizer ) || current_user.is_admin? %>
     <div class = "user_message">
+      <% if (current_user.authorized? @event.organizer ) %>
         <p>
           <%= t('.you_are_admin_for') %> <%= @event.organizer %>.
         </p>
+      <% end %>
+      <% if current_user.is_admin? %>
+        <p>
+          <%= t('.you_are_sysadmin') %>
+        </p>
+      <% end %>      
         <p>
           <%= button_to(  t('.edit'), 
                           edit_event_path(@event), 
@@ -56,8 +69,8 @@
   </div>
 </div>
 
-<p><strong><%= @event.duration.capitalize %></strong></p>
-<h1><%= @event.subject %></h1>
+<p><strong><%= duration(@event) %></strong></p>
+<h1><span class = "summary"><%= @event.subject %></span></h1>
 <p>
  <%= arranged_by @event%><br />
  <%= arranged_in @event %><br />
@@ -69,12 +82,15 @@
   <h3><%= @event.intro %></h3>
 <% end %>
 
-<%= simple_format @event.description %>
+
+ <%= simple_format @event.description %>
 
 <% unless @event.street.blank? %>
 <p>
   <strong><%= t('.address')%>:</strong><br />
-  <%= @event.street %>
+  <span class = "location"> 
+    <%= @event.street %>
+  </span>
 </p>
 <% end %>
 <% unless @event.loc_descr.blank? %>
@@ -111,7 +127,7 @@
   <div id="map_view"></div>
     <%= map_marker @event %>
   <strong><%= I18n.t 'app.lat_lng' %>:</strong>
-  <%= raw @event.lat_lng %>
+  <%= lat_lng @event %>
 <% else %>
   <%= t '.no_location' %>
   <% if current_user %>
@@ -125,7 +141,7 @@
 <p>
 <%= t '.created_at' %> <%= I18n.localize @event.created_at, :format => :default %>  
   <% if current_user %>
-    <% if current_user.authorized? @event.organizer %>
+    <% if (current_user.authorized? @event.organizer) || current_user.is_admin? %>
       <%= @event.created_by %>      
     <% end %>
   <% end %>
@@ -133,12 +149,25 @@
 <% unless @event.created_at == @event.updated_at || @event.updated_by_user_id.nil?%>
   <%= t '.updated_at' %> <%= I18n.localize @event.updated_at, :format => :default %>
   <% if current_user %>
-    <% if current_user.authorized? @event.organizer %>
+    <% if (current_user.authorized? @event.organizer) || current_user.is_admin? %>
       <%= @event.updated_by %>
     <% end %>
   <% end %>
-  <br />
 <% end %>
 </p>
 </div> 
+
+<% content_for :disclaimer do %>
+<div class = "license"
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/2.5/se/" title = "CC BY-SA 2.5 Sverige">
+  <img alt="Creative Commons-licens" src="http://i.creativecommons.org/l/by-sa/2.5/se/88x31.png" />
+</a> 
+<br />
+
+Evenemangsannonsen (text & bilder) är licensierad under en <a rel="license" href="http://creativecommons.org/licenses/by-sa/2.5/se/">Creative Commons Erkännande-DelaLika 2.5 Sverige Licens</a>. 
+
+<a href = "http://info.allom.se/legalt/" title="Alloms allmänna villkor och upphovsrätt">Hur får jag använda eller återpublicera?</a>
+
+</div>
+<% end %>
  

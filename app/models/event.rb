@@ -217,22 +217,16 @@
     degrees.to_s + '&deg;' + minutes.to_s + '\''
   end
 
-  def lat_lng
-    pos_str = ''
-    if lat >= 0
-      pos_str += 'N '
-    else
-      pos_str += 'S '
-    end
-    pos_str += degrees_to_degrees_minutes(lat)
-    pos_str += ' '
-    if lng >= 0
-      pos_str += 'O '
-    else
-      pos_str += 'V '
-    end
-    pos_str += degrees_to_degrees_minutes(lng)
-    pos_str
+  def lat_degrees_minute
+    degrees = lat.to_i
+    minutes = ((lat - degrees).abs * 60 * 1000).to_i/1000.0
+    degrees.to_s + '°' + minutes.to_s + '\''
+  end
+
+  def lng_degrees_minute
+    degrees = lng.to_i
+    minutes = ((lng - degrees).abs * 60 * 1000).to_i/1000.0
+    degrees.to_s + '°' + minutes.to_s + '\''
   end
 
   def location
