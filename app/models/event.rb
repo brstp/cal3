@@ -32,6 +32,7 @@
   validates :phone_number, :phone => true
   validates :email, :email => true
 
+  has_friendly_id :subject, :use_slug => true
 
   geocoded_by :street, :latitude => :lat, :longitude => :lng
 
@@ -338,7 +339,12 @@
 protected
 
   def merge_start_datetime
+    logger.info "---------- in merge_start_datetime"
+    logger.info @start_date
+    logger.info @start_time
+    
     self.start_datetime = Timeliness.parse(@start_date + " " + @start_time) if errors.empty?
+    logger.info "---------- left"
   end
 
   def merge_stop_datetime

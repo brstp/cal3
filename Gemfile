@@ -41,12 +41,12 @@ gem 'meta-tags', :require => 'meta_tags'  #header tags
 gem "paperclip"                     #upload and organizer images
 gem "ancestry"                      #tree structure
 gem 'yaml_db'                       #dump, load db as yaml 
-#gem 'nokogiri', "~> 1.4.4.1"       #window version
 gem 'nokogiri'                      #parse
 gem 'icalendar'                     #create ical events
 gem 'heroku'                        #remote control for prod env at Heroku
 gem 'aws-s3'                        #API towards Amazon Web Services
 gem 'will_paginate', "3.0.pre2"     #well, to paginate
+gem 'friendly_id'                   # slugs, to make friendly urls
 
 group :development, :test do
   gem 'sqlite3-ruby', :require => 'sqlite3'
