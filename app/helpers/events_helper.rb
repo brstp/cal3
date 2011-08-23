@@ -6,7 +6,7 @@ module EventsHelper
     str =%(
           <div id="organizer_facts" class="box">
           <span class="heading">#{t '.organizer_facts'}:</span>
-          #{link_to((image_tag  organizer.logotype.url(:small), :alt => organizer.name + "s logotyp", :title => organizer.intro), organizer, :title => "Allom - kalendern med allt som händer innan det är för sent." )}
+          #{link_to((image_tag  organizer.logotype.url(:small), :alt => organizer.name + "s logotyp", :title => organizer.intro), organizer, :title => organizer.name )}
           <h4>#{link_to(organizer.name, organizer)}</h4>
           <p>
           #{organizer.intro}
