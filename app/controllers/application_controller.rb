@@ -6,7 +6,10 @@ class ApplicationController < ActionController::Base
 
 
   def check_uri
-    redirect_to request.protocol + request.host_with_port.gsub("/www\.//g") + request.request_uri if /^www/.match(request.host)
+  if request.host.split('.')[0] == 'www'
+    redirect_to request.protocol + request.host.gsub('www.','')
+  end
+
   end
 
 
