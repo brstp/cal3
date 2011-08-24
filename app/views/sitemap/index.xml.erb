@@ -1,0 +1,34 @@
+<% base_url = "#{request.protocol}#{request.host_with_port}" %>
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc><%= base_url %><%= root_path  %></loc>
+    <lastmod><%= l (Time.now - 1.minute), :format => :machine %></lastmod>
+  </url>
+  <url>
+    <loc><%= base_url %><%= municipalities_path  %></loc>
+    <lastmod><%= l (Time.now - 2.minute), :format => :machine %></lastmod>
+  </url>
+  <url>
+    <loc><%= base_url %><%= organizers_path  %></loc>
+    <lastmod><%= l (Time.now - 1.minute), :format => :machine %></lastmod>
+  </url>
+<% for organizer in Organizer.all %>
+  <url>
+    <loc><%= base_url %><%= organizer_path organizer %></loc>
+    <lastmod><%= l organizer.updated_at, :format => :machine %></lastmod>
+  </url>
+<% end %>
+<% for event in Event.all %>
+  <url>
+    <loc><%= base_url %><%= event_path event %></loc>
+    <lastmod><%= l event.updated_at, :format => :machine %></lastmod>
+  </url>
+<% end %>
+<% for municipality in Municipality.all %>
+  <url>
+    <loc><%= base_url %><%= municipality_path municipality %></loc>
+    <lastmod><%= l municipality.updated_at, :format => :machine %></lastmod>
+  </url>
+<% end %>
+</urlset>
