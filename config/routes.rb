@@ -2,6 +2,10 @@ Cal3::Application.routes.draw do
 
 
   
+  get "sitemap/index"
+
+  get "site_map/index"
+
   resources :memberships
 
   resources :petitions
@@ -78,6 +82,8 @@ Cal3::Application.routes.draw do
   # just remember to delete public/index.html.
   # root :to => "welcome#index"
   root :to => 'events#index'
+  match "sitemap.xml", :to => "sitemap#index", :defaults => {:format => :xml}
+
 
   # See how all your routes lay out with "rake routes"
 

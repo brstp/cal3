@@ -3,3 +3,14 @@
 # To ban all spiders from the entire site uncomment the next two lines:
 # User-Agent: *
 # Disallow: /
+
+Sitemap: http://allom.se/sitemap.xml
+
+User-Agent: *
+Disallow: /users
+Disallow: /petitions
+Disallow: /memberships
+Disallow: /organizer_mailers
+Disallow: /mail_messages
+Disallow: /event_mailers
+Disallow: /categories
