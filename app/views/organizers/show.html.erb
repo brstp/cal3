@@ -1,8 +1,9 @@
 <% set_meta_tags :title => @organizer.name + t('.title'),
-                   :description => t('.meta_description') + ' ' + @organizer.name + ' ' +  t('.meta_description2')%>
+                   :description => t('.meta_description') + ' ' + genitive(@organizer.name) + ' ' +  t('.meta_description2')%>
 
 <% content_for :head do %>  
   <%= auto_discovery_link_tag( :rss, organizer_url(:format => 'rss') , {:title => genitive(@organizer.name) + ' ' + t('.organizers_event') + ' ' + t('app.at') + ' ' +  t('app.site_name')}) %>
+  <link rel = "canonical" href="<%= t('app.site_url') + organizer_path(@event) %>"/> 
 <% end %>                     
                    
 

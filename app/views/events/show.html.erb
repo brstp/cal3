@@ -9,7 +9,8 @@
                           
                           
 <% content_for :head do %>
-    <link rel="profile" href="http://microformats.org/profile/hcalendar">
+    <link rel="profile" href="http://microformats.org/profile/hcalendar" />
+    <link rel = "canonical" href="<%= t('app.site_url') + event_path(@event) %>"/> 
 <% end %> 
                          
 <% content_for :right_column_bottom do %>  

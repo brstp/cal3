@@ -6,6 +6,8 @@
                                 municipality_url(:format => 'rss'), 
                                 {:title => t('app.events_in') + ' ' + @municipality.name + t('app.at') + ' ' +  t('app.site_name')}) 
                                 %>
+    <link rel = "canonical" href="<%= t('app.site_url') + municipality_path(@event) %>"/> 
+                                
 <% end %> 
 
 <% content_for :right_column_bottom do %>  

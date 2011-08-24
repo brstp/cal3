@@ -4,6 +4,7 @@
 
 <% content_for :head do %>  
   <%= auto_discovery_link_tag( :rss, events_url(:format => 'rss') , {:title => t('.rss_title') }) %>
+    <link rel = "canonical" href="<%= t('app.site_url') + root_path %>"/> 
 <% end %> 
 
     <h1><%= t '.subject' %></h1>

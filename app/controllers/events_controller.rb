@@ -160,8 +160,8 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
 
 
   def show
-    Event.increment_counter :counter, params[:id]
     @event = Event.find(params[:id])
+    Event.increment_counter :counter, @event.id
     respond_to do |format|
       format.html
       format.ics

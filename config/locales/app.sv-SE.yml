@@ -5,6 +5,7 @@ sv-SE:
     are_you_sure: "Vill du radera"
     destroy: "Ta bort"
     site_name: "Allom"  
+    site_url: "http://allom.se"
     destroyed: "Raderat %{resource_name}."
     arranged_by: "Arrangeras av"
     in_municipality: "i"
