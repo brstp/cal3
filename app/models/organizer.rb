@@ -26,6 +26,8 @@ class Organizer < ActiveRecord::Base
   
   default_scope :order => 'name'
 
+  has_friendly_id :name, :use_slug => true
+
   
   attr_accessible :name, :description, :website, :user_ids, :logotype, 
                   :photo, :intro, :phone, :email

@@ -12,6 +12,9 @@ class Municipality < ActiveRecord::Base
   #  text :name
   #end
   
+  has_friendly_id :name, :use_slug => true
+
+  
   def to_s
     self.name
   end
