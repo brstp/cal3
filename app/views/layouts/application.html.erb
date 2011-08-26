@@ -37,7 +37,7 @@
   <%= favicon_link_tag "favicon.png" %>
   <%= csrf_meta_tag %>
   <%= yield(:head) %>
-  <link rel="alternate" type="application/rss+xml" title="RSS-flöde med alla kommande evenemang" href="http://<%= request.host + ':' + request.port.to_s %>/events.rss /">
+  <link rel="alternate" type="application/rss+xml" title="RSS-flöde med alla kommande evenemang" href="http://<%= request.host + ':' + request.port.to_s %>/events.rss" />
   
   <script type="text/javascript">
 
@@ -72,7 +72,7 @@
 		<% if user_signed_in? %>
       <div id="user_account">
       
-      <%= link_to (image_tag avatar_url(current_user), :id => :user_avatar), "http://sv.gravatar.com", :title => t('.use_gravatar'), :rel => :nofolow %>
+      <%= link_to (image_tag avatar_url(current_user), :id => :user_avatar), "http://sv.gravatar.com", :title => t('.use_gravatar'), :rel => :nofollow %>
       <%= current_user.email %>
       <%= raw %(<abbr title="#{t'.is_admin'}">*</abbr>) if current_user.is_admin? %>
       <br /><%= t 'users.sessions.not_you' %> <%= link_to I18n.t('users.sessions.sign_out'), destroy_user_session_path %><br />
@@ -119,7 +119,7 @@
 		<div id="header_ad">
 
 		
-		<a href="http://www.sos-barnbyar.se/fadder/bli_fadder/Pages/default.aspx?et_cid=6&et_lid=9"><img class = "next-to-logo", src="http://www.sos-barnbyar.se/stod-oss/Reklam-Kampanjer/Documents/2010/468x60.gif" width="468" height="60" alt="advert" /></a>
+		<a href="http://www.sos-barnbyar.se/fadder/bli_fadder/Pages/default.aspx?et_cid=6&amp;et_lid=9"><img class = "next-to-logo"  src="http://www.sos-barnbyar.se/stod-oss/Reklam-Kampanjer/Documents/2010/468x60.gif" width="468" height="60" alt="advert"></a>
 		
 		
 		

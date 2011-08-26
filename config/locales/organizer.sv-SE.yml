@@ -93,6 +93,7 @@ sv-SE:
       updated_at: 'Senast uppdaterad'
       hint_store: 'Tips! Lägg in evenemangen i din dator eller mobil'
       you_are_sysadmin: 'Du är systemadministratör'
+      and_events_and_memberships: 'med alla evenemang och kopplingen till administratörer'
     new:
       title: "Lägg upp en ny arrangörssida"
       list: "Till arrangörslistan (strunta i ändringar)"

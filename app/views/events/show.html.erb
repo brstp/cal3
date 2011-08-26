@@ -39,7 +39,7 @@
           <%= t('.you_are_sysadmin') %>
         </p>
       <% end %>      
-        <p>
+        
           <%= button_to(  t('.edit'), 
                           edit_event_path(@event), 
                           :method => :get, 
@@ -48,7 +48,7 @@
                           @event, 
                           :confirm => t('app.are_you_sure') + ' ' +@event.subject + '?', 
                           :method => :delete )%>
-        </p>
+        
     </div>
   <% end %>
 <% end %>
@@ -132,7 +132,7 @@
   <%= t '.no_location' %>
   <% if current_user %>
     <% if current_user.authorized? @event.organizer %>
-      <%= link_to t('.no_location_im_authorized1') + ' ' + @event.organizer.name + ' ' + t('.no_location_im_authorized2'), edit_event_path(@event), :link => :nofollow %>
+      <%= link_to t('.no_location_im_authorized1') + ' ' + @event.organizer.name + ' ' + t('.no_location_im_authorized2'), edit_event_path(@event) %>
     <% end %>
   <% end %>
 <% end %>
@@ -158,7 +158,7 @@
 </div> 
 
 <% content_for :disclaimer do %>
-<div class = "license"
+<div class = "license">
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/2.5/se/" title = "CC BY-SA 2.5 Sverige">
   <img alt="Creative Commons-licens" src="http://i.creativecommons.org/l/by-sa/2.5/se/88x31.png" />
 </a> 

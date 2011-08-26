@@ -4,7 +4,7 @@
 
 <% content_for :head do %>  
   <%= auto_discovery_link_tag( :rss, events_url(:format => 'rss') , {:title => t('.rss_title') }) %>
-    <link rel = "canonical" href="<%= t('app.site_url') + root_path %>"/> 
+    <link rel = "canonical" href="<%= t('app.site_url')  %>/" /> 
 <% end %> 
 
     <h1><%= t '.subject' %></h1>
@@ -74,7 +74,7 @@
 
 
 <% content_for :disclaimer do %>
-<div class = "license"
+<div class = "license">
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/2.5/se/" title = "CC BY-SA 2.5 Sverige">
   <img alt="Creative Commons-licens" src="http://i.creativecommons.org/l/by-sa/2.5/se/88x31.png" />
 </a> 

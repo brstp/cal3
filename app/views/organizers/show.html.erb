@@ -47,7 +47,7 @@
     <% if current_user.is_admin? %>
       <%= button_to(  t('.destroy'), 
                     @organizer, 
-                    :confirm => t('app.are_you_sure') + ' ' +@organizer.name + '?', 
+                    :confirm => t('app.are_you_sure') + ' ' +@organizer.name + ' ' + t('.and_events_and_memberships') + '?', 
                     :method => :delete ) %>
     <% end # is_admin %>
       
@@ -268,7 +268,7 @@
 <% end #current_user %>
 
 <% content_for :disclaimer do %>
-<div class = "license"
+<div class = "license">
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/2.5/se/" title = "CC BY-SA 2.5 Sverige">
   <img alt="Creative Commons-licens" src="http://i.creativecommons.org/l/by-sa/2.5/se/88x31.png" />
 </a> 

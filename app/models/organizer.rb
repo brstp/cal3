@@ -3,7 +3,8 @@ class Organizer < ActiveRecord::Base
   include ActionView::Helpers::UrlHelper
   include ActionView::Helpers::RawOutputHelper
 
-  has_many :events
+  has_many  :events,
+            :dependent => :destroy
   
   has_many  :memberships, 
             :dependent => :destroy
