@@ -3,7 +3,7 @@
                    :description => @event.intro %>
 
 <% open_graph_properties  @event.subject,
-                          request.protocol + request.host_with_port + @event.image1.url( :large), 
+                          @event.image1.url( :large), 
                           event_path(:only_path => false) 
                           %>
                           

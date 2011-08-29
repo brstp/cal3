@@ -8,7 +8,7 @@
                    
 
 <%= open_graph_properties @organizer.name, 
-                          request.protocol + request.host_with_port + @organizer.logotype.url(:large), 
+                          @organizer.logotype.url(:large), 
                           organizer_path(@organizer, 
                           :only_path => false)  %>
 
