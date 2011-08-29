@@ -151,6 +151,8 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
     end
 
     @events = result
+    
+    
     respond_to do |format|
       format.html
       format.rss

@@ -245,7 +245,7 @@ module LayoutHelper
                               events_path(  :q => params[:q], 
                                             :stop => params[:stop],
                                             :category_facet_id => params[:category_facet_id],
-                                            :organizer_id => row.instance,
+                                            :organizer_id => row.instance.id,
                                             :municipality_id => params[:municipality_id]
                                           ) ) }
                 </li>
@@ -289,7 +289,7 @@ module LayoutHelper
                                             :stop => params[:stop],
                                             :category_facet_id => params[:category_facet_id],
                                             :organizer_id => params[:organizer_id],
-                                            :municipality_id => row.instance
+                                            :municipality_id => row.instance.id
                                           ) ) }
                 </li>
               )
