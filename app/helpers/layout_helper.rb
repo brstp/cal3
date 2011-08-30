@@ -348,7 +348,7 @@ module LayoutHelper
     <meta property="og:type" content="activity" />
     <meta property="og:url" content="#{url}" />
     <meta property="og:site_name" content="#{t('app.site_name')}" />
-    <meta property="fb:admins" content="1083707575,137994786272472" /> 
+    <meta property="fb:admins" content="1083707575" /> 
 
     )
     unless img.blank?
