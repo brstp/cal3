@@ -2,7 +2,7 @@
 <% set_meta_tags :title => @event.subject,
                    :description => @event.intro %>
 
-<% open_graph_properties  @event.subject,
+<% open_graph_properties  (l(@event.start_datetime, :format => :shorty) + ': ' + @event.subject).strip,
                           @event.image1.url( :medium), 
                           event_path(:only_path => false) 
                           %>
