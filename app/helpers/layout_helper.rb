@@ -352,6 +352,9 @@ module LayoutHelper
 
     )
     unless img.blank?
+      unless img.include? "http://"
+        img = t('app.site_url') + img
+      end
       str << %(<meta property="og:image" content="#{img}" />)
       str << %(<link rel="image_src" href="#{img}" />)
     end
