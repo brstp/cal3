@@ -344,7 +344,7 @@ module LayoutHelper
     #TODO img per event (or generic img for the calendar)
     #     
     str = %(
-    <meta property="og:title" content="#{title}" />
+    <meta property="og:title" content="#{h(title)}" />
     <meta property="og:type" content="activity" />
     <meta property="og:url" content="#{url}" />
     <meta property="og:site_name" content="#{t('app.site_name')}" />
