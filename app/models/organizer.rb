@@ -45,21 +45,25 @@ class Organizer < ActiveRecord::Base
                     :s3_credentials => {
                       :access_key_id => ENV['S3_KEY'],
                       :secret_access_key => ENV['S3_SECRET'] },
-                    :default_url => "/images/organizer-logotype-90x109.png", 
+                    :default_url => "/images/organizers/logotypes/:style/missing.png",
                     :styles => {  
                       :medium => "600x200", 
                       :small => "270x90"}
                                     
+                                      
+  #  :default_url => "/images/organizer-logo--600x200.gif", 
+
+  
   has_attached_file :photo,      
                     :storage => :s3,
                     :bucket => 'static.allom.se',
                     :s3_credentials => {
                       :access_key_id => ENV['S3_KEY'],
                       :secret_access_key => ENV['S3_SECRET']},
-                    :default_url => "/images/doldrums.jpg", 
+                    :default_url => "/images/organizers/photos/:style/missing.jpg", 
                     :styles => {  
-                      :medium => "360x240",  
-                      :small => "176x117"}
+                      :medium => "360x240#" 
+                                }
   
 #  searchable :auto_index => true, :auto_remove => true do
 #    text :name

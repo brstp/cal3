@@ -24,7 +24,7 @@ namespace :scrape do
       unless doc.at_css('.mergedrow img').blank?
         municipality.escutcheon = doc.at_css('.mergedrow img')[:src]
       else
-        municipality.escutcheon = "/images/no-municipality-logotype-90x109.png"
+        municipality.escutcheon = "/images/municipalities/escutcheons/medium/missing.png"
       end
       municipality.facts_last_updated = Time.now
       municipality.save!  

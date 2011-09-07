@@ -613,11 +613,12 @@ h2.lifestream_date {
 
 #ads .adblock  {
 	padding: 3px 3px 0 3px;
-	margin: 0 0 10px 0;
 }
 
-#ads .adblock img  {
+#ads  img  {
 	margin: 5px;
+  padding: 5px;
+  background-color: #dadada;
 }
 
 #cats_archives  {

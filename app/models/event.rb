@@ -65,11 +65,9 @@
         :access_key_id => ENV['S3_KEY'],
         :secret_access_key => ENV['S3_SECRET']
                          },
-      :default_url => "/images/blue-yellow-landscape.jpg",
-      :styles => {:large => "800x600",
-                  :medium => "360x240",
-                  :small => "176x117",
-                  :thumb => "40x30"}
+      :default_url => "/images/events/image1s/:style/missing.jpg",
+      :styles => {:medium => "360x240#",
+                  :small => "176x117#"}
 
   has_attached_file :image2,
       :storage => :s3,
@@ -78,11 +76,9 @@
         :access_key_id => ENV['S3_KEY'],
         :secret_access_key => ENV['S3_SECRET']
                          },
-      :default_url => "/images/anslagstavla-butik.jpg",
-      :styles => {:large => "800x600",
-                  :medium => "360x240",
-                  :small => "176x117",
-                  :thumb => "40x30"}
+      :default_url => "/images/events/image2s/:style/missing.jpg",
+      :styles => {:medium => "360x240#",
+                  :small => "176x117#"}
 
   has_attached_file :image3,
       :storage => :s3,
@@ -91,11 +87,9 @@
         :access_key_id => ENV['S3_KEY'],
         :secret_access_key => ENV['S3_SECRET']
                           },
-      :default_url => "/images/anslagstavla-vinter.jpg",
-      :styles => {:large => "800x600",
-                  :medium => "360x240",
-                  :small => "176x117",
-                  :thumb => "40x30"}
+      :default_url => "/images/events/image3s/:style/missing.jpg",
+      :styles => {:medium => "360x240#",
+                  :small => "176x117#"}
 
 
 

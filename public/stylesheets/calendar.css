@@ -39,7 +39,8 @@ table.calendar th {
 	border-color: green;
 	background-color: #f7f7f7;
 	font: bold 14px Arial, Helvetica, sans-serif;
-	text-align: left;
+  margin: 0;
+  padding: 0;
 }
 
 table.calendar td {
@@ -66,14 +67,14 @@ table.calendar td.month_box {
 
 .day_box {
   vertical-align: top;
-  text-align: center;
   width: 3em;
-  padding: 0.1em;
+  padding: 0 0.1em 0 0.1em;
 }
 
 .day_of_month {
   color: #000;
   font-size: 200%;
+
 }  
 
 .sondag {
@@ -85,6 +86,9 @@ table.calendar td.month_box {
 
 .day_of_week {
 	font: normal 70% Arial, Helvetica, sans-serif;
+  text-align: center;
+    
+
 } 
 
 .events_with_time {

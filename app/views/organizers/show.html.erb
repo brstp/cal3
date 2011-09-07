@@ -78,7 +78,10 @@
 
 <div class = "break"></div>
 
-<%= image_tag @organizer.photo.url(:medium), :class => :organizer_photo %>
+
+<div class = "image_box">
+  <%= image_tag @organizer.photo.url(:medium), :class => :organizer_photo %>
+</div>
 
 <%= simple_format @organizer.description %>
 
