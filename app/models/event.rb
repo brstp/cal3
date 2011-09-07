@@ -333,11 +333,19 @@
 protected
 
   def merge_start_datetime
-    self.start_datetime = Timeliness.parse(@start_date + " " + @start_time) if errors.empty?
+    if errors.empty?
+      unless @start_date.blank? || @start_time.blank?
+        self.start_datetime = Timeliness.parse(@start_date + " " + @start_time) 
+      end
+    end
   end
 
   def merge_stop_datetime
-    self.stop_datetime = Timeliness.parse(@stop_date + " " + @stop_time) if errors.empty?
+    if errors.empty?
+      unless @stop_date.blank? || @stop_time.blank?
+        self.stop_datetime = Timeliness.parse(@stop_date + " " + @stop_time) 
+      end
+    end
   end
 
   def validates_start_time
