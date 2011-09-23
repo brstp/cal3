@@ -34,8 +34,7 @@ class Event < ActiveRecord::Base
   validates :image2_url, :allow_blank => true, :uri => { :format => /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix }
   validates :image3_url, :allow_blank => true, :uri => { :format => /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix }
                         
-  validate  :validates_start_time, :validates_start_date, :validates_stop_time, :validates_stop_date, 
-            :validates_start_stop
+  validate  :validates_start_time, :validates_start_date, :validates_stop_time, :validates_stop_date, :validates_start_stop
   validate :validates_phone_details
   validates :phone_number, :phone => true
   validates :email, :email => true

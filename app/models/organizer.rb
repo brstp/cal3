@@ -35,9 +35,9 @@ class Organizer < ActiveRecord::Base
   
   validates_presence_of :name, :description, :email
   validates_length_of :name, :in => 5..40
-  validate :validates_website
   validates :phone, :phone => true
-  validates :email, :email => true
+  validates :email, :email => true  
+  validates :website, :allow_blank => true, :uri => { :format => /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix }
   
   has_attached_file :logotype, 
                     :storage => :s3,
@@ -72,6 +72,15 @@ class Organizer < ActiveRecord::Base
   
   def to_s
     self.name
+  end
+  
+  def website= url_str
+    unless url_str.blank?
+      unless url_str.split(':')[0] == 'http' || url_str.split(':')[0] == 'https'
+          url_str = "http://" + url_str
+      end
+    end  
+    write_attribute :website, url_str
   end
   
   def default_municipality
@@ -147,14 +156,6 @@ class Organizer < ActiveRecord::Base
   end
   
     
-  def validates_website
 
-    return 0 if self.website.blank?
-    
-    if self.website.match(URI::regexp(%w(http https))).nil?
-      errors.add(:website, I18n.t('errors.messages.invalid_url'))
-    end
-  
-  end
   
 end

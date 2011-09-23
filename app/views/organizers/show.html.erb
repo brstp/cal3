@@ -89,7 +89,7 @@
 <p class = "break"></p><p>
 <% unless @organizer.website.blank? %>
   <strong><%=t '.website' =%>:</strong>
-  <%= link_to @organizer.website, @organizer.website %>
+  <%= link_to_unless @organizer.events.blank?, @organizer.website, @organizer.website %>
   </p>
   <p>
 <% end %>
