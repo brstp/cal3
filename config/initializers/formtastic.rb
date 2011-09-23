@@ -35,7 +35,7 @@ Formtastic::SemanticFormBuilder.default_text_area_width = 50
 
 # Set the string that will be appended to the labels/fieldsets which are optional
 # Defaults to an empty string ("") and also accepts procs (see required_string above)
-Formtastic::SemanticFormBuilder.optional_string = " (frivillig)"
+Formtastic::SemanticFormBuilder.optional_string = " (frivilligt)"
 
 # Set the way inline errors will be displayed.
 # Defaults to :sentence, valid options are :sentence, :list, :first and :none

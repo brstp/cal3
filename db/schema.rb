@@ -11,10 +11,36 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110823063255) do
+ActiveRecord::Schema.define(:version => 20110921122004) do
 
-# Could not dump table "bup_users" because of following StandardError
-#   Unknown type 'id' for column 'invitor'
+  create_table "bup_users", :force => true do |t|
+    t.string    "email"
+    t.string    "encrypted_password",   :limit => 128, :default => ""
+    t.string    "password_salt",                       :default => ""
+    t.string    "reset_password_token"
+    t.string    "remember_token"
+    t.timestamp "remember_created_at"
+    t.integer   "sign_in_count",                       :default => 0
+    t.timestamp "current_sign_in_at"
+    t.timestamp "last_sign_in_at"
+    t.string    "current_sign_in_ip"
+    t.string    "last_sign_in_ip"
+    t.string    "confirmation_token"
+    t.timestamp "confirmed_at"
+    t.timestamp "confirmation_sent_at"
+    t.integer   "failed_attempts",                     :default => 0
+    t.string    "unlock_token"
+    t.timestamp "locked_at"
+    t.string    "authentication_token"
+    t.string    "first_name"
+    t.string    "last_name"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.boolean   "is_admin",                            :default => false
+    t.string    "invitation_token",     :limit => 20
+    t.timestamp "invitation_sent_at"
+    t.text      "invitor"
+  end
 
   create_table "categories", :force => true do |t|
     t.string    "name"
@@ -27,41 +53,47 @@ ActiveRecord::Schema.define(:version => 20110823063255) do
   add_index "categories", ["ancestry"], :name => "index_categories_on_ancestry"
 
   create_table "events", :force => true do |t|
-    t.string    "subject"
-    t.string    "intro"
-    t.text      "description"
-    t.timestamp "start_datetime"
-    t.timestamp "stop_datetime"
-    t.string    "street"
-    t.string    "loc_descr"
-    t.float     "lat"
-    t.float     "lng"
-    t.integer   "municipality_id"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.integer   "organizer_id"
-    t.string    "phone_number"
-    t.string    "phone_name"
-    t.string    "email"
-    t.string    "human_name"
-    t.integer   "event_id"
-    t.integer   "category_id"
-    t.integer   "counter",             :default => 0
-    t.string    "image1_file_name"
-    t.string    "image1_content_type"
-    t.integer   "image1_file_size"
-    t.timestamp "image1_updated_at"
-    t.string    "image2_file_name"
-    t.string    "image2_content_type"
-    t.integer   "image2_file_size"
-    t.timestamp "image2_updated_at"
-    t.string    "image3_file_name"
-    t.string    "image3_content_type"
-    t.integer   "image3_file_size"
-    t.timestamp "image3_updated_at"
-    t.integer   "created_by_user_id"
-    t.integer   "updated_by_user_id"
-    t.string    "cached_slug"
+    t.string   "subject"
+    t.string   "intro"
+    t.text     "description"
+    t.datetime "start_datetime"
+    t.datetime "stop_datetime"
+    t.string   "street"
+    t.string   "loc_descr"
+    t.float    "lat"
+    t.float    "lng"
+    t.integer  "municipality_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "organizer_id"
+    t.string   "phone_number"
+    t.string   "phone_name"
+    t.string   "email"
+    t.string   "human_name"
+    t.integer  "event_id"
+    t.integer  "category_id"
+    t.integer  "counter",             :default => 0
+    t.string   "image1_file_name"
+    t.string   "image1_content_type"
+    t.integer  "image1_file_size"
+    t.datetime "image1_updated_at"
+    t.string   "image2_file_name"
+    t.string   "image2_content_type"
+    t.integer  "image2_file_size"
+    t.datetime "image2_updated_at"
+    t.string   "image3_file_name"
+    t.string   "image3_content_type"
+    t.integer  "image3_file_size"
+    t.datetime "image3_updated_at"
+    t.integer  "created_by_user_id"
+    t.integer  "updated_by_user_id"
+    t.string   "cached_slug"
+    t.string   "image1_caption"
+    t.string   "image1_url"
+    t.string   "image2_caption"
+    t.string   "image2_url"
+    t.string   "image3_caption"
+    t.string   "image3_url"
   end
 
   create_table "mail_messages", :force => true do |t|
@@ -138,12 +170,12 @@ ActiveRecord::Schema.define(:version => 20110823063255) do
   add_index "petitions", ["organizer_id", "user_id"], :name => "index_petitions_on_organizer_id_and_user_id", :unique => true
 
   create_table "slugs", :force => true do |t|
-    t.string   "name"
-    t.integer  "sluggable_id"
-    t.integer  "sequence",                     :default => 1, :null => false
-    t.string   "sluggable_type", :limit => 40
-    t.string   "scope"
-    t.datetime "created_at"
+    t.string    "name"
+    t.integer   "sluggable_id"
+    t.integer   "sequence",                     :default => 1, :null => false
+    t.string    "sluggable_type", :limit => 40
+    t.string    "scope"
+    t.timestamp "created_at"
   end
 
   add_index "slugs", ["name", "sluggable_type", "sequence", "scope"], :name => "index_slugs_on_n_s_s_and_s", :unique => true

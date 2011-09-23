@@ -11,8 +11,9 @@
                       :input_html => { :disabled => true}
                       %>
 
-      <% @event.municipality = @event.organizer.default_municipality %>
-        
+  
+      <%@event.municipality = @event.organizer.default_municipality if (params[:municipality_id]).blank? %>
+   
       <%= f.input   :municipality, 
                     :required => true, 
                     :collection => Municipality.select_municipality,
@@ -36,11 +37,44 @@
       <%= f.input :human_name %>
       <%= f.input :phone_number %>
       <%= f.input :phone_name %>
+
       <hr />
-      <h3>Bilder i annonsen</h3>
-      <%= f.input :image1 %>
-      <%= f.input :image2 %>
-      <%= f.input :image3 %>
+      <h3>Övre stora bilden</h3>             
+      <% unless @event.image1_file_name.blank? %>
+        <li class="string" id="event_existing_image1"><label for="event_existing_image1">Nuvarande bild</label><%= image_tag @event.image1.url :small %></li>
+        <%= f.input :image1_delete, :as => :boolean %>
+        <%= f.input :image1, :label => t('.replace_image') %>
+      <% else %>
+        <%= f.input :image1 %>
+      <% end %>
+      <%= f.input :image1_caption %>
+      <%= f.input :image1_url %>
+     
+     <hr />
+     <h3>Vänstra lilla bilden</h3>  
+      <% unless @event.image2_file_name.blank? %>
+        <li class="string" id="event_existing_image2"><label for="event_existing_image2">Nuvarande bild</label><%= image_tag @event.image2.url :small %></li>
+        <%= f.input :image2_delete, :as => :boolean %>
+        <%= f.input :image2, :label => t('.replace_image') %>
+      <% else %>
+        <%= f.input :image2 %>
+      <% end %>
+      <%= f.input :image2_caption %>
+      <%= f.input :image2_url %>
+ 
+      <hr />
+      <h3>Högra lilla bilden</h3>  
+      <% unless @event.image3_file_name.blank? %>
+        <h3>Ändra bilden</h3> 
+        <li class="string" id="event_existing_image3"><label for="event_existing_image3">Nuvarande bild</label><%= image_tag @event.image3.url :small %></li>
+        <%= f.input :image3_delete, :as => :boolean %>
+        <%= f.input :image3, :label => t('.replace_image') %>
+      <% else %>
+        <%= f.input :image3 %>
+      <% end %>
+      <%= f.input :image3_caption %>
+      <%= f.input :image3_url %>
+      
       <hr />
       <h3>Var</h3>
       <%= f.input :street %>

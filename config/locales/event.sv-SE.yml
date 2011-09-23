@@ -23,11 +23,21 @@ sv-SE:
         phone_number: "Telefonnummer"
         phone_name: "Namn för telefonnummer"
         category: "Ämneskategori"
-        image1: "Bild"
-        image2: "En bild till"
-        image3: "En tredje bild"
+        image1: "Stora bilden"
+        image2: "Vänstra bilden"
+        image3: "Högra bilden"
         organizer: "Arrangör"
         category: "Ämneskategori"
+        image1_caption: "Bildtext"
+        image1_url: "Bildlänk"
+        image1_delete: "Radera bilden, bildtext och länk"
+        image2_caption: "Bildtext"
+        image2_url: "Bildlänk"
+        image2_delete: "Radera bilden, bildtext och länk"
+        image3_caption: "Bildtext"
+        image3_url: "Bildlänk"
+        image3_delete: "Radera bilden, bildtext och länk"
+
   events:
     new:
       title: "Ny evenemangsannons"
@@ -94,6 +104,7 @@ sv-SE:
       select_organizer: "--- Välj en arrangör ---"
       select_municipality: "--- Välj en kommun ---"
       explain_mandatory: Fält som är markerade med * är obligatoriska. Alla övriga fält är frivilliga.
+      replace_image: 'Ersätt bilden'
     flash:
       notice:
         created: "Evenemangsannonsen skapad. Inom några minuter kommer den att vara synlig i vår sökmotor."

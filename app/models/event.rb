@@ -1,4 +1,5 @@
-﻿class Event < ActiveRecord::Base
+# encoding: UTF-8
+class Event < ActiveRecord::Base
 
   #TODO: Move default start/stop dates/times to inializers
   #TODO: Check if use of 'self' is ok
@@ -9,23 +10,30 @@
   belongs_to :category
 
   before_save :merge_start_datetime, :merge_stop_datetime
+  before_save :destroy_image1?, :destroy_image2?, :destroy_image3?
   #after_validation :consider_fetch
 
 
   attr_accessible :subject, :intro, :description, :street, :loc_descr, :lat, :lng, :municipality_id, 
                   :start_date, :start_time, :stop_date, :stop_time, :organizer_id, :phone_number, 
                   :phone_name, :email, :human_name, :category_id, :counter, :start_datetime, 
-                  :stop_datetime, :image1, :image2, :image3, :created_by_user_id, :updated_by_user_id
+                  :stop_datetime, :image1, :image2, :image3, :created_by_user_id, :updated_by_user_id,
+                  :image1_caption, :image1_url, :image1_delete, :image2_caption, :image2_url, :image2_delete, :image3_caption, :image3_url, :image3_delete
 
 
-  validates_presence_of :subject, :description, :municipality_id, :start_date, :start_time, 
-                        :organizer_id, :email, :human_name, :category # :stop_date, :stop_time
-
+  validates_presence_of :subject, :description, :municipality_id, :start_date, :start_time, :organizer_id, :email, :human_name, :category 
   validates_length_of :subject, :in => 7..40
   validates_length_of :intro, :in => 0..90
   validates_numericality_of :lat, :allow_nil => true
   validates_numericality_of :lng, :allow_nil => true
+  validates_length_of :image1_caption, :in => 0..60
+  validates_length_of :image2_caption, :image3_caption, :in => 0..40
 
+                        
+  validates :image1_url, :allow_blank => true, :uri => { :format => /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix }
+  validates :image2_url, :allow_blank => true, :uri => { :format => /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix }
+  validates :image3_url, :allow_blank => true, :uri => { :format => /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix }
+                        
   validate  :validates_start_time, :validates_start_date, :validates_stop_time, :validates_stop_date, 
             :validates_start_stop
   validate :validates_phone_details
@@ -47,6 +55,9 @@
     text :category
     text :organizer
     text :municipality
+    text :image1_caption
+    text :image2_caption
+    text :image3_caption
     time :start_datetime
     time :stop_datetime
     time :start, :trie => true, :using => :start_datetime
@@ -92,14 +103,61 @@
                   :small => "176x117#"}
 
 
+  def image1_url= url_str
+    unless url_str.blank?
+      unless url_str.split(':')[0] == 'http' || url_str.split(':')[0] == 'https'
+          url_str = "http://" + url_str
+      end
+    end  
+    write_attribute :image1_url, url_str
+  end
 
-  # def coordinates
-    # Sunspot::Util::Coordinates.new(self.lat,self.lng)
-  # end
-  # def coordinates=(sunspot_util_coordinates)
-    # self.lat,self.lng = [sunspot_util_coordinates.lat, sunspot_util_coordinates.lng]
-  # end
+  def image1_delete
+    @image1_delete ||= "0"
+  end
 
+  def image1_delete=(value)
+    @image1_delete = value
+  end
+
+
+    def image2_url= url_str
+    unless url_str.blank?
+      unless url_str.split(':')[0] == 'http' || url_str.split(':')[0] == 'https'
+          url_str = "http://" + url_str
+      end
+    end  
+    write_attribute :image2_url, url_str
+  end
+
+
+  def image2_delete
+    @image2_delete ||= "0"
+  end
+
+  def image2_delete=(value)
+    @image2_delete = value
+  end
+  
+    def image3_url= url_str
+    unless url_str.blank?
+      unless url_str.split(':')[0] == 'http' || url_str.split(':')[0] == 'https'
+          url_str = "http://" + url_str
+      end
+    end  
+    write_attribute :image3_url, url_str
+  end
+
+
+  def image3_delete
+    @image3_delete ||= "0"
+  end
+
+  def image3_delete=(value)
+    @image3_delete = value
+  end
+  
+  
   def updated_by
     unless self.updated_by_user_id.nil?
       updated_by_user= User.find self.updated_by_user_id
@@ -332,6 +390,30 @@
 
 protected
 
+  def destroy_image1?
+    if (@image1_delete == "1" )
+      self.image1.clear 
+      write_attribute :image1_caption, nil
+      write_attribute :image1_url, nil
+    end
+  end
+  
+  def destroy_image2?
+    if (@image2_delete == "1" )
+      self.image2.clear 
+      write_attribute :image2_caption, nil
+      write_attribute :image2_url, nil
+    end
+  end
+
+  def destroy_image3?
+    if (@image3_delete == "1" )
+      self.image3.clear 
+      write_attribute :image3_caption, nil
+      write_attribute :image3_url, nil
+    end
+  end  
+  
   def merge_start_datetime
     if errors.empty?
       unless @start_date.blank? || @start_time.blank?
@@ -387,5 +469,6 @@ protected
       end
     end
   end
+
 
 end

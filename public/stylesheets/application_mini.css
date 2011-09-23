@@ -443,3 +443,18 @@ table.general td {
   margin: 1em 0 4em 0;
   
 }
+
+.image_caption {
+  font-size: 80%;
+}
+
+.created-updated{
+  font-size: 80%;
+}
+
+
+.img-edit{
+  font-size: 80%;
+  float: right;
+}
+

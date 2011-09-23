@@ -70,6 +70,8 @@ sv-SE:
 
 
   errors:
+    events:
+      invalid_url: "har fel format eller webbservern i andra änden svarar inte"
     messages:
       duplicates_membership: "har du redan administratörsrättigheter för"
       invalid_date: "ser inte ut som ett datum"

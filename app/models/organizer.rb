@@ -51,7 +51,6 @@ class Organizer < ActiveRecord::Base
                       :small => "270x90"}
                                     
                                       
-  #  :default_url => "/images/organizer-logo--600x200.gif", 
 
   
   has_attached_file :photo,      
