@@ -1,5 +1,7 @@
 <%= semantic_form_for @organizer, :html => {:multipart => true, :novalidate => true} do |f| %>
   <%= f.error_messages %>
+  <p><%= t('.explain_mandatory') %></p>
+
   <%= f.inputs do %>  
     <%= f.input :name %>
     <%= f.input :intro %>
@@ -7,13 +9,51 @@
     <%= f.input :website %>
     <%= f.input :phone %>
     <%= f.input :email %>
-    <%= f.input :logotype %>
-    <%= f.input :photo %>
+    <hr />
+    <% unless @organizer.logotype_file_name.blank? %>
+        <li class="string" id="organizer_existing_logotype"><label for="organizer_existing_logotype"><%= t '.existing_logotype' %></label><%= image_tag @organizer.logotype.url :small %></li>
+        <%= f.input :logotype_delete, :as => :boolean %>
+        <%= f.input :logotype, :label => t('.replace_logotype') %>
+      <% else %>
+        <%= f.input :logotype %>
+      <% end %>
+    
+    <hr />
+      <% unless @organizer.photo_file_name.blank? %>
+        <li class="string" id="organizer_existing_photo"><label for="organizer_existing_photo"><%= t '.existing_photo' %></label><%= image_tag @organizer.photo.url :medium %></li>
+        <%= f.input :photo_delete, :as => :boolean %>
+        <%= f.input :photo, :label => t('.replace_image') %>
+      <% else %>
+        <%= f.input :photo %>
+      <% end %>
+      <%= f.input :photo_caption %>
+      <%= f.input :photo_url %>
+         
+    
+    
     <%= f.input :users, :as => :hidden %>
     <li class="string" id="organizer_disclaimer"><label for="organizer_disclaimer">Innan du sparar... </label><p class="inline-hints">När du sparar arrangörssidan godkänner du <a href ="http://info.allom.se/legalt/" target = "_blank">Alloms allmänna villkor</a> (nytt fönster). Kom ihåg att du måste ha tillåtelse om du använder andras texter eller bilder i arrangörssidan. Vi publicerar arrangörssidan med licensen <i>CC NC-SA 2.5 Sverige</i>.</p></li>
   <% end %>
  
  
-  <p><%= f.buttons %></p>
-    
+
+      <div class = "button_container">
+        <div class= "button">
+          <%= f.buttons %>
+        </div>
+        <div class= "reset">
+        <% if @organizer.new_record? %> 
+          <%=link_to( t('.reset'), 
+                      new_organizer_path, 
+                      :confirm => t('.do_you_really_want_to_reset_me')) 
+                      %>
+        <% else %>
+          <%=link_to( t('.cancel'), 
+                      organizer_path, 
+                      :confirm => t('.do_you_really_want_to_cancel_me')) 
+                      %>
+        <% end %>
+        </div>
+      </div>
+  
 <% end %>

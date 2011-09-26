@@ -28,16 +28,17 @@ class Organizer < ActiveRecord::Base
   default_scope :order => 'name'
 
   has_friendly_id :name, :use_slug => true
-
-  
-  attr_accessible :name, :description, :website, :user_ids, :logotype, 
-                  :photo, :intro, :phone, :email
+  before_save :destroy_photo? 
+  before_save :destroy_logotype?
+  attr_accessible :name, :description, :website, :photo_url, :photo_caption, :photo_delete, :user_ids, :logotype, :logotype_delete, :photo, :intro, :phone, :email
   
   validates_presence_of :name, :description, :email
-  validates_length_of :name, :in => 5..40
+  validates_length_of :name, :in => 5..50
+  validates_length_of :photo_caption, :in => 0..60
   validates :phone, :phone => true
   validates :email, :email => true  
   validates :website, :allow_blank => true, :uri => { :format => /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix }
+  validates :photo_url, :allow_blank => true, :uri => { :format => /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix }
   
   has_attached_file :logotype, 
                     :storage => :s3,
@@ -73,6 +74,33 @@ class Organizer < ActiveRecord::Base
   def to_s
     self.name
   end
+  
+  def photo_url= url_str
+    unless url_str.blank?
+      unless url_str.split(':')[0] == 'http' || url_str.split(':')[0] == 'https'
+          url_str = "http://" + url_str
+      end
+    end  
+    write_attribute :photo_url, url_str
+  end
+
+  def photo_delete
+    @photo_delete ||= "0"
+  end
+
+  def photo_delete=(value)
+    @photo_delete = value
+  end
+
+  
+  def logotype_delete
+    @logotype_delete ||= "0"
+  end
+
+  def logotype_delete=(value)
+    @logotype_delete = value
+  end
+
   
   def website= url_str
     unless url_str.blank?
@@ -155,7 +183,20 @@ class Organizer < ActiveRecord::Base
     self.events.find(:all, :conditions => ["start_datetime >= '#{Time.now}'"], :order => "start_datetime ASC" ).first
   end
   
-    
+  protected
+  
+  def destroy_photo?
+    if (@photo_delete == "1" )
+      self.photo.clear 
+      write_attribute :photo_caption, nil
+      write_attribute :photo_url, nil
+    end
+  end
 
+  def destroy_logotype?
+    if (@logotype_delete == "1" )
+      self.logotype.clear 
+    end
+  end
   
 end

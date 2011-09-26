@@ -35,3 +35,6 @@ form.formtastic fieldset > ol > li p.inline-text {
   }
   
   
+form.formtastic fieldset.buttons {
+  font-size: 2em;
+}

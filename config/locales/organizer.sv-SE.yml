@@ -13,6 +13,11 @@ sv-SE:
         phone: "Telefonnummer"
         email: "Mejladress"
         users: "Administratörer"
+        photo_caption: "Bildtext"
+        photo_url: "Bildlänk"
+        photo_delete: "Radera bilden, bildtext och länk"
+        logotype_delete: "Radera logotypen"
+
   organizers:
     index:
       title: "Alla arrangörssidor och deras evenemang"
@@ -94,6 +99,16 @@ sv-SE:
       hint_store: 'Tips! Lägg in evenemangen i din dator eller mobil'
       you_are_sysadmin: 'Du är systemadministratör'
       and_events_and_memberships: 'med alla evenemang och kopplingen till administratörer'
+    form:
+      replace_image: "Ersätt bilden"
+      replace_logotype: "Ersätt logotypen"
+      explain_mandatory: Fält som är markerade med * är obligatoriska. Alla övriga fält är frivilliga.
+      existing_photo: "Nuvarande bild"
+      existing_logotype: "Nuvarande logotyp"
+      do_you_really_want_to_reset_me: "Vill du tömma hela arrangörssidan?"
+      reset: "Rensa formuläret"
+      cancel: "Avbryt"
+      do_you_really_want_to_cancel_me: "Vill du strunta i ändringar som du gjort sedan du sparade senast?"
     new:
       title: "Lägg upp en ny arrangörssida"
       list: "Till arrangörslistan (strunta i ändringar)"

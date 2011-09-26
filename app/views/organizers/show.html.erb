@@ -80,7 +80,13 @@
 
 
 <div class = "image_box">
-  <%= image_tag @organizer.photo.url(:medium), :class => :organizer_photo %>
+  <%= link_to_unless @organizer.photo_url.blank? || @organizer.photo_file_name.blank?, (image_tag( @organizer.photo.url(:medium), :title => @organizer.photo_caption, :alt => @organizer.photo_caption)), @organizer.photo_url, :rel => :nofollow %><br />
+  <div class = "image_caption">
+    <% unless @organizer.photo_file_name.blank? %>
+      <%= @organizer.photo_caption %>
+    <%end %>
+  </div>
+  
 </div>
 
 <%= simple_format @organizer.description %>

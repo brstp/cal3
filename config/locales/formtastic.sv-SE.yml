@@ -18,7 +18,7 @@ sv-SE:
         organizer: 'Arrangör'
     hints:
       organizer:
-        name: "Namnet på föreningen, företaget eller dig som arrangerar."
+        name: "Namnet på föreningen, företaget eller dig som arrangerar. Fem till femtio tecken långt."
         intro: "En kort sammanfattande beskrivning om arrangören. Skriv gärna vad du/ni sysslar med, var ni finns (särskilt om det finns flera med samma namn). Kan vara en sammanfattning av beskrivningen längre ned på sidan."
         description: "En längre beskrivning av arrangören. Berätta vem du eller vilka ni är, var ni finns, vad ni gör, vem era evenemang vänder sig till."
         website: "Länk till arrangörens hemsida. När du sparar kontrollerar vi att adressen finns och funkar."
@@ -75,3 +75,6 @@ sv-SE:
       event:
         create: "Skapa evenemangsannonsen"
         update: "Spara evenemangsannonsen"
+      organizer:
+        create: "Skapa arrangörssidan"
+        update: "Spara arrangörssidan"

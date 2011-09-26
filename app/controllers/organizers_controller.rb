@@ -2,6 +2,7 @@
 
 class OrganizersController < ApplicationController
 
+
 before_filter :authenticate_user!, :except => [:show, :index]
 before_filter :authorized?, :except => [:show, :index, :new, :create]
 before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]

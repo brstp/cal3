@@ -24,7 +24,7 @@
       <h3>Vad</h3>
       <%= f.input :intro %>                    
       <%= select_category_tree @event.category_id %>
-      <%= f.input :description, :input_html => {:rows => 8, :cols => 48} %>
+      <%= f.input :description %>
       <hr />
       <h3>När</h3>
       <%= f.input :start_date %>
