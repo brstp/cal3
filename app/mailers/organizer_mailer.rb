@@ -1,5 +1,5 @@
 class OrganizerMailer < ActionMailer::Base
-  default :from => "Allom <auto@allom.se>"
+  default :from => "Allom <kundtjanst@allom.se>"
   
   def new_event_confirmation(event, user)
     @user = user

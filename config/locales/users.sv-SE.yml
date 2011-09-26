@@ -96,7 +96,7 @@ sv-SE:
         resend_confirmation_instructions: 'Skicka mejl för att bekräfta att det är ditt användarkonto.'
         resend: 'Skicka bekräftelsemejl'
     registrations:
-      signed_up: 'Ett nytt konto har skapats. En bekräftelse har skickats med mejl.'
+      signed_up: 'Vi skickar nu ett mejl. I det mejlet finns en länk som du klickar på för att bekräfta ditt nya konto. Sedan kan du börja lägga upp evenemangsannonser.'
       updated: 'Ditt konto har uppdaterats.'
       destroyed: 'Hej då! Ditt konto har avregistrerats. Vi hoppas få se dig snart igen.'
       new:
