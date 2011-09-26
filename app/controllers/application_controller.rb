@@ -6,14 +6,9 @@ class ApplicationController < ActionController::Base
 
 
   def check_uri
-  if request.host.split('.')[0] == 'www'
-    redirect_to request.protocol + request.host.gsub('www.',''), :status => 301
-  end
-  
-  if request.host.include? 'foreningskalendern'
-    redirect_to request.uri.gsub('foreningskalendern','allom'), :status => 301
-  end
-
+    if request.host.split('.')[0] == 'www'
+      redirect_to request.protocol + request.host.gsub('www.',''), :status => 301
+    end
   end
 
 
