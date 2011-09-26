@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   end
   
   if request.host.include? 'foreningskalendern'
-    redirect_to request.protocol + request.host.gsub('foreningskalendern','allom'), :status => 301
+    redirect_to request.uri.gsub('foreningskalendern','allom'), :status => 301
   end
 
   end
