@@ -64,8 +64,6 @@ sv-SE:
       categories: "I ämneskategori"
       organizers: "Av arrangör"
       municipalities: "I kommun"
-      search: "Sök"
-      seek_event: "Sök evenemang, ämne, arrangör, plats"
       reset_search: "Rensa sökningen och visa alla evenemang."
       no_events: 'Just nu hittar vi inte några evenemang som matchar det du letar efter.'
       subject: 'Kalendern med allt som händer innan det är för sent.'

@@ -11,11 +11,11 @@
 
 <% content_for :right_column_top do %>
   <div class = "box" id="facet">
-  <span class="heading"><%= t '.seek_event' %>:</span>
+  <span class="heading"><%= t 'app.seek_event' %>:</span>
   <div id = "q-container">
     <%= form_tag({:action => 'index'}, :method => 'get' ) do %>
     <%= search_field_tag :q, params[:q] %>
-    <%= submit_tag t('.search') %>
+    <%= submit_tag t('app.search') %>
   <% end %>
   </div>
   <%= facet_search %>

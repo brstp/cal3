@@ -12,7 +12,21 @@
     <link rel="profile" href="http://microformats.org/profile/hcalendar" />
     <link rel = "canonical" href="<%= t('app.site_url') + event_path(@event) %>"/> 
 <% end %> 
-                         
+                     
+
+<% content_for :right_column_top do %>
+  <div class = "box" id="facet">
+  <span class="heading"><%= t 'app.seek_event' %>:</span>
+  <div id = "q-container">
+    <%= form_tag({:action => 'index'}, :method => 'get' ) do %>
+    <%= search_field_tag :q, params[:q] %>
+    <%= submit_tag t('app.search') %>
+  <% end %>
+  </div>
+  <p><%= link_to t('app.detailed_search'), events_path %></p>
+  </div>
+<% end %>
+  
 <% content_for :right_column_bottom do %>  
   <%= page_counter @event.counter%>
   <%= organizer_facts @event.organizer, 10 %>

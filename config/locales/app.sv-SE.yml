@@ -31,6 +31,9 @@ sv-SE:
     To: 'Till'
     page_of: 's sida'
     ics_file: "Du kan spara i Outlook, iCalendar eller andra kalendrar som förstår det vanliga iCal-formatet."
+    search: 'Sök'
+    seek_event: "Sök evenemang, ämne, arrangör, plats"
+    detailed_search: "Detaljerad sökning"
   number:
     # Used in number_with_delimiter()
     # These are also the defaults for 'currency', 'percentage', 'precision', and 'human'
