@@ -4,6 +4,7 @@ git push #github
 git push heroku master
 
 
+
 # S3-credentials as config vars
 # http://devcenter.heroku.com/articles/config-vars
 # https://aws-portal.amazon.com/gp/aws/developer/account/index.html
