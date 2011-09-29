@@ -1,7 +1,7 @@
 sv-SE:
   devise:
     failure:
-      unauthenticated: 'Välkommen. Logga in för att fortsätta. Har du inget användarkonto? Då registrerar du ett snabbt (vi behöver bara mejladress och lösenord).'
+      unauthenticated: 'Välkommen. Logga in för att fortsätta. Har du inget användarkonto? Då registrerar du ett snabbt.'
       unconfirmed: 'Du måste bekräfta ditt konto innan du kan fortsätta.'
       locked: 'Ditt konto är låst.'
       invalid: 'Fel mejladress eller lösenord.'
