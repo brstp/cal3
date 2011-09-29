@@ -15,6 +15,10 @@
                      
 
 <% content_for :right_column_top do %>
+  <div class = "box">
+    <span class="heading">Hej arrangör!</span>
+    Vill du prova att kostnadsfritt annonsera dina evenemang här på Allom? Vi guidar dig hela vägen. <%= link_to "Börja nu.", new_event_path %>
+  </div>
   <div class = "box" id="facet">
   <span class="heading"><%= t 'app.seek_event' %>:</span>
   <div id = "q-container">
@@ -67,6 +71,15 @@
   <% end %>
 <% end %>
 
+<% if params[:recruit] %>
+  <div class = "user_message">
+    <p>
+      <%= t('.do_you_work_for') + ' ' + @event.organizer.name%>? 
+      <%= link_to t('.apply_for_adminship'), 
+                  new_petition_path( :organizer_id => @event.organizer.id ) %>
+    </p> 
+  </div>
+<% end %>
 
 <%= facebook_like event_path(:only_path => false), "top" %>
 <div class = "event_left">
@@ -187,6 +200,13 @@
     <% end %>
   <% end %>
 <% end %>
+
+<% if @event.organizer.may_recruit? current_user %>
+    <%= t('.do_you_work_for') + ' ' + @event.organizer.name%>? 
+    <%= link_to t('.apply_for_adminship'), 
+                new_petition_path( :organizer_id => @event.organizer.id ) %>
+<% end %>
+
 </p>
 </div> 
 

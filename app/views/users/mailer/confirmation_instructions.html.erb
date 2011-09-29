@@ -1,17 +1,19 @@
-<p>Hej 
-<% if @resource.first_name then %>  
-<%= @resource.first_name %>
-<% else %> 
-<%= @resource.email %>
-<% end %>
-!</p>
+<p>Hej!</p>
 
-<p>Välkommen till <a href = "http://allom.se">Allom - kalendern med allt som händer innan det är för sent</a>.</p>
-<p>Bekräfta ditt nya användarkonto.</p>
+<p>Välkommen till Allom, evenemangskalendern </p>
 
-<p><%= link_to 'Bekräfta användarkontot', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>
+<p>Du har registrerat ett användarkonto. Nästa steg är att du bekräftar det genom att klicka på länken. Du blir då automatiskt inloggad.</p>
 
-<p>Om du inte skapat ett användarkonto på Allom så kan du slänga det här mejlet. Någon angav antagligen din mejladress av misstag.
+<p><%= link_to confirmation_url(@resource, :confirmation_token => @resource.confirmation_token), confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>
+
+<p>Om du inte skapat ett användarkonto på Allom så kan du slänga det här mejlet. Någon angav antagligen din mejladress av misstag. Användarkontot går inte att använda utan att du som ägar mejladressen bekräftar det.
 </p>
 
-<p>Det här mejlet skickades automatiskt från Allom. Du kan inte svara på det här mejlet. Om du har frågor om Allom i allmänhet kan du kontakta vår kundtjänst, http://info.allom.se/kundtjanst-kontakt/.</p>
+<p>På Allom kan du snabbt och lätt lägga upp evenemangsannonser.</p>
+
+<p>Tips: Vill du visa en liten trevlig bild av dig själv när du är inloggad på Allom? Gå till <a href="http://sv.gravatar.com">Gravatar</a> och koppla ihop ett foto med din mejladress.</p>
+
+<p>Det här mejlet skickades automatiskt från Allom. Om du har frågor om Allom i allmänhet kan du kontakta vår kundtjänst, http://info.allom.se/kundtjanst-kontakt/.</p>
+<p>
+Allom - kalendern med allt som händer innan det är för sent
+</p>

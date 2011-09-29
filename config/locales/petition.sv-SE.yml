@@ -25,17 +25,19 @@ sv-SE:
       title: 'Alla ansökningar om att bli administratör'
       new: 'Skapa ny ansökan'
     edit:
-      title: 'Godkänn eller avslå ansökan att bli adminstratör'
+      title: 'Godkänn eller avslå ansökan att bli administratör'
       back_to_organizer: 'Tillbaka till arrangörssidan för'
     new: 
-      title: 'Ansökan att bli administratör' 
+      title: 'Ansök om att bli administratör' 
       back_to_organizer: 'Tillbaka till arrangörssidan för'
+      description1: "Din ansökan kommer att skickas till den eller de som redan är administratör för arrangörssidan."
+      description2: "Du får ett mejl när de godkänt eller avslagit din ansökan."
     form:
   petition:
     flash:
       notice:
         updated: "Ansökan behandlad och sparad"
-        created: "Din ansökan är klar. Vi mejlar den till arrangören som kommer att behandla den. Du får en kopia av mejlet."
+        created: "Din ansökan är klar. Vi har mejlat den till arrangörens administratörer som kommer att behandla den. Du får en kopia av mejlet. Hoppas att arrangören svarar snabbt."
         destroyed: "Du har dragit tillbaka din ansökan."
         approved: "Du har godkänt ansökan. Vi mejlar till den nya administratören och berättar det. Du och andra administratörer får en kopia av mejlet."
         rejected: "Du har avslagit ansökan. Vi mejlar till användaren och berättar det. Du får en kopia av mejlet."

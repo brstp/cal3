@@ -1,8 +1,8 @@
 <% set_meta_tags :title => @organizer.name + t('.title'),
-                   :description => t('.meta_description') + ' ' + genitive(@organizer.name) + ' ' +  t('.meta_description2')%>
+                   :description => t('.meta_description') + ' ' + @organizer.s + ' ' +  t('.meta_description2')%>
 
 <% content_for :head do %>  
-  <%= auto_discovery_link_tag( :rss, organizer_url(:format => 'rss') , {:title => genitive(@organizer.name) + ' ' + t('.organizers_event') + ' ' + t('app.at') + ' ' +  t('app.site_name')}) %>
+  <%= auto_discovery_link_tag( :rss, organizer_url(:format => 'rss') , {:title => @organizer.s + ' ' + t('.organizers_event') + ' ' + t('app.at') + ' ' +  t('app.site_name')}) %>
   <link rel = "canonical" href="<%= t('app.site_url') + organizer_path(@event) %>"/> 
 <% end %>                     
                    
@@ -59,10 +59,27 @@
           <%= link_to( t('.you_have_applied') + ' ' + @organizer.name, @organizer.petitions.find_by_user_id(current_user.id) )  %>.
         </p>
     </div>
-  <% end %>
-<% end #current_user %>
+    <% else %>
+      <% if params[:recruit] %>
+        <div class = "user_message">
+          <p>
+            <%= t('.do_you_work_for') + ' ' + @organizer.name%>? 
+            <%= link_to t('.apply_for_adminship'), 
+                        new_petition_path( :organizer_id => @organizer.id ) %>
+          </p> 
+        </div>
+      <% end %>
+    <% end %>
+  
+
+  
+  <% end #current_user %>
 
 
+  
+  
+  
+  
 
 <div class = "page_heading">
   <% unless @organizer.logotype.blank? %>
@@ -148,7 +165,7 @@
 <ul class = "organizer-actions" >
 <% if @organizer.future_events? %>
   <li>
-    <%= link_to(t('.download_ics1') + ' ' + genitive(@organizer.name) + ' ' + t('.download_ics2'), organizer_url(:only_path => false, :format => :ics ), :title => t('app.ics_file'))  %>
+    <%= link_to(t('.download_ics1') + ' ' + @organizer.s + ' ' + t('.download_ics2'), organizer_url(:only_path => false, :format => :ics ), :title => t('app.ics_file'))  %>
   </li>
 <% end %>
 
@@ -160,7 +177,7 @@
 
 <% if @organizer.past_events? %>
   <li>
-    <%= link_to genitive(@organizer.name) + ' ' + t('.previous_events'), events_path(:organizer_id => @organizer.id, :stop => :past) %>
+    <%= link_to @organizer.s + ' ' + t('.previous_events'), events_path(:organizer_id => @organizer.id, :stop => :past) %>
   </li>
 <% end %>
 
@@ -168,22 +185,15 @@
 
 <%= facebook_like organizer_path(:only_path => false), "bottom", "like" %>
 
-<% unless @organizer.users.include? current_user %>
-  <p>
-    <%= t('.do_you_work_for') + ' ' + @organizer.name%>? 
-    <%= link_to t('.apply_for_adminship'), 
-                new_petition_path( :organizer_id => @organizer.id ) %>
-  </p> 
-<% end %>
 
-<p>
+
+<p class = "created-updated" >
 <%= t '.created_at' %> <%= I18n.localize @organizer.created_at, :format => :default %>  
   <% if current_user %>
     <% if (current_user.authorized? @organizer) || current_user.is_admin? %>
       <%= @organizer.created_by %>      
     <% end %>
-  <% end %>
-<br />  
+  <% end %> 
 <% unless @organizer.created_at == @organizer.updated_at || @organizer.updated_by_user_id.nil?%>
   <%= t '.updated_at' %> <%= I18n.localize @organizer.updated_at, :format => :default %>
   <% if current_user %>
@@ -192,6 +202,13 @@
     <% end %>
   <% end %>
 <% end %>
+
+<% if @organizer.may_recruit? current_user %>
+    <%= t('.do_you_work_for') + ' ' + @organizer.name%>? 
+    <%= link_to t('.apply_for_adminship'), 
+                new_petition_path( :organizer_id => @organizer.id ) %>
+<% end %>
+
 </p>
 
 
@@ -297,7 +314,7 @@ Arrangörssidan (text & bilder) är licensierad under en <a rel="license" href="
 
       <% if @organizer.future_events? %>
         <p>
-          <%= link_to(t('.download_ics1') + ' ' + genitive(@organizer.name) + ' ' + t('.download_ics2'), organizer_url(:only_path => false, :format => :ics ), :title => t('app.ics_file'))  %>
+          <%= link_to(t('.download_ics1') + ' ' + @organizer.s + ' ' + t('.download_ics2'), organizer_url(:only_path => false, :format => :ics ), :title => t('app.ics_file'))  %>
         </p>
       <% end %>
 

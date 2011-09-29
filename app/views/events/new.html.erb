@@ -10,15 +10,12 @@
     </ul>
     <p><%= t '.or_other_options' %>:</p>
   <% else %>
-    <h3>
-      <%= t '.not_organizer' %>
-    </h3>
-    <p><%= t '.select' %>:</p>
+    <h1><%= t '.not_organizer' %></h1>
+    <p><%= t '.add_organizer_now' %></p>
+    <p><%= t '.select' %></p>
   <% end %>
-  <ul>
-    <li><%= link_to t('.apply_for_organizer'), organizers_path %></li>
-    <li><%= link_to t('.create_organizer1'), new_organizer_path %> <%= link_to t('.create_organizer2'), organizers_path %></li>
-  </ul>
+    <p><%= link_to t('.apply_for_organizer'), organizers_path(:recruit => true) %></p>
+    <p><%= link_to t('.create_organizer1'), new_organizer_path %></p>
 <% else %>
   <%= render 'form' %>
 <% end %>

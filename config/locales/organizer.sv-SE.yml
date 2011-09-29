@@ -86,7 +86,7 @@ sv-SE:
       sure_cancel: "Vill du dra tillbaka din ansökan att bli administratör för"
       cancel_my_application: "Ångra ansökan"
       do_you_work_for: 'Jobbar du för'
-      apply_for_adminship: 'Ansök om att bli admininstratör...'
+      apply_for_adminship: 'Ansök om att bli admininstratör för den här sidan.'
       approve_user: 'Godkänn/avslå ansökan...'
       petitions: 'Ansökningar'
       users: 'Administratörer'

@@ -25,4 +25,4 @@ sv-SE:
       failure:
         dont_resign: 'Du får inte avsluta ditt administratörsskap själv. Du får be någon av de andra administratörerna hos arrangören att göra det.'
     mail:
-      destroyed: 'Admininstratör borttagen för'
+      destroyed: 'Administratör borttagen för'

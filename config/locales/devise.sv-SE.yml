@@ -1,0 +1,77 @@
+sv-SE:
+  devise:
+    failure:
+      unauthenticated: 'Välkommen. Logga in för att fortsätta. Har du inget användarkonto? Då registrerar du ett snabbt (vi behöver bara mejladress och lösenord).'
+      unconfirmed: 'Du måste bekräfta ditt konto innan du kan fortsätta.'
+      locked: 'Ditt konto är låst.'
+      invalid: 'Fel mejladress eller lösenord.'
+      invalid_token: 'Den hemliga koden för inloggning är trasig.' 
+      timeout: 'Din session är inte längre giltig, vänligen logga in igen för att fortsätta.'
+      inactive: 'Ditt konto har inte aktiverats ännu.'
+    sessions:
+      signed_in: 'Nu är du inloggad.'
+      signed_out: 'Nu är du utloggad.'
+      sign_in: 'Logga in'
+      sign_out: 'Logga ut.'
+      sign_up: 'Ny här? Registrera ett eget användarkonto.'
+      not_you: 'Inte du?'
+      change_settings: 'Ditt konto/byt lösenord'
+      change_password: 'Byt lösenord'
+      signed_in_as: 'Inloggad som'
+      forgot_password: 'Glömt ditt lösenord?'
+      not_received_confirmation: 'Har inte fått mejlet med länken för att bekräfta kontot?'
+      not_received_unlock: 'Har inte fått mejlet med länken för att låsa upp kontot?'
+      new:
+        sign_in: 'Logga in'
+      not_signed_in: 'Nu försöker du göra något som du måste vara inloggad för att kunna göra. Logga in (eller registrera dig om du inte redan har gjort det).'
+      not_admin: 'Nu försöker du göra något som bara systemadministratören får göra. Sorry.'
+      user:
+        signed_out: 'Nu är du utloggad.'
+        signed_in: 'Nu är du inloggad.'              
+      
+    invitations:
+      send_instructions: 'Tack för hjälpen. Vi har skickat ett inbjudningsmejl till din kompis.'
+      updated: 'Så där, nu är ditt användarkonto igång som det ska.'
+      new:
+        send_invitation: 'Bjud in en kompis till Allom'
+        send_an_invitation: 'Skicka inbjudan'
+        have_a_friend: 'Vill du ge din kompis ett konto i Allom?'
+        invite_her: 'Ge bort en inbjudan kostnadsfritt!'
+      edit:
+        set_your_password: 'Nu behöver du välja ett lösenord för användarkontot.'
+        welcome: 'Välkommen till Allom!'
+        set_my_password: 'Sätt lösenord'
+    passwords:
+      new:
+        mail_me: 'Mejla mig'
+        forgot_your_password: 'Har du glömt ditt lösenord?'
+      send_instructions: 'Du kommer få ett mejl med instruktioner om hur du kan återställa ditt lösenord inom någon minut.'
+      updated: 'Ditt lösenord har uppdaterats. Du är nu inloggad.'
+    confirmations:
+      send_instructions: 'Du kommer att få ett mejl med instruktioner om hur du kan bekräfta ditt konto inom någon minut.'
+      confirmed: 'Ditt användarkonto är nu igång. Du är inloggad. För att lägga in en evenemangsannons, klicka på "Lägg in en evenemangsannons" i toppmenyn.'
+      new:
+        resend_confirmation_instructions: 'Skicka mejl för att bekräfta att det är ditt användarkonto.'
+        resend: 'Skicka bekräftelsemejl'
+    registrations:
+      signed_up: 'Vi skickar nu ett mejl till dig. I det mejlet finns en länk som du klickar på för att bekräfta ditt nya konto. Sedan kan du börja lägga upp evenemangsannonser.'
+      updated: 'Ditt konto har uppdaterats.'
+      destroyed: 'Hej då! Ditt konto har avregistrerats. Vi hoppas få se dig snart igen.'
+      new:
+        sign_up: 'Registrera användarkonto'
+      edit:
+        change_password_or_email: 'Ändra lösenord eller mejladress.'
+        submit: 'Ändra'
+        back: 'Tillbaka till ditt konto'
+    unlocks:
+      send_instructions: 'Du kommer få epost med instruktioner om hur du kan låsa upp ditt konto inom några minuter.'
+      unlocked: 'Ditt konto har låsts upp. Du är nu inloggad.'
+    mailer:
+      confirmation_instructions:
+        subject: 'Bekräfta ditt användarkonto på Allom'
+      reset_password_instructions:
+        subject: 'Ändring av lösenord på Allom'
+      unlock_instructions:
+        subject: 'Lås upp dit användarkonto på Allom'      
+      invitation:
+        subject: 'Inbjudan till Allom'   

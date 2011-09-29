@@ -71,8 +71,8 @@
       <%= link_to (image_tag avatar_url(current_user), :id => :user_avatar), "http://sv.gravatar.com", :title => t('.use_gravatar'), :rel => :nofollow %>
       <%= current_user.email %>
       <%= raw %(<abbr title="#{t'.is_admin'}">*</abbr>) if current_user.is_admin? %>
-      <br /><%= t 'users.sessions.not_you' %> <%= link_to I18n.t('users.sessions.sign_out'), destroy_user_session_path %><br />
-      <%= link_to (t 'users.sessions.change_settings'), edit_user_path(current_user) %>
+      <br /><%= t 'devise.sessions.not_you' %> <%= link_to I18n.t('devise.sessions.sign_out'), destroy_user_session_path %><br />
+      <%= link_to (t 'devise.sessions.change_settings'), edit_user_path(current_user) %>
       </div><!-- /user_account -->
     <% else %>
       <div id="user_form">
@@ -156,13 +156,13 @@
           <div id="user_nav" class="box">
               <% unless user_signed_in? %>
                     <p>
-                    <%= link_to I18n.t('users.sessions.sign_up'), new_user_registration_path %> <%= I18n.t('app.or') %> 
-                    <%=link_to I18n.t('users.sessions.sign_in'), new_user_session_path %>    
+                    <%= link_to I18n.t('devise.sessions.sign_up'), new_user_registration_path %> <%= I18n.t('app.or') %> 
+                    <%=link_to I18n.t('devise.sessions.sign_in'), new_user_session_path %>    
                     </p>
               <% else %>
                     <p>
-                    <%= t('users.invitations.new.have_a_friend')%><br />
-                    <%= link_to t('users.invitations.new.invite_her'), new_user_invitation_path %>
+                    <%= t('devise.invitations.new.have_a_friend')%><br />
+                    <%= link_to t('devise.invitations.new.invite_her'), new_user_invitation_path %>
                     </p>
               <% end %>
           </div> <!-- /user_nav -->

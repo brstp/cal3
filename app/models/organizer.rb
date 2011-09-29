@@ -75,6 +75,14 @@ class Organizer < ActiveRecord::Base
     self.name
   end
   
+  def s
+    if (self.name.split('').last.downcase == "s")
+      self.name
+    else
+      self.name + "s"  
+    end
+  end
+  
   def photo_url= url_str
     unless url_str.blank?
       unless url_str.split(':')[0] == 'http' || url_str.split(':')[0] == 'https'
@@ -164,7 +172,11 @@ class Organizer < ActiveRecord::Base
     self.events.find(:all, :conditions => ["stop_datetime >= '#{Time.now}'"], :order => "start_datetime ASC", :limit => max_no)   
   end
   
-  
+  def may_recruit? user
+    return true if user.blank?
+    return true if (!self.users.include? user) && (!self.petition_users.include? user)
+    false
+  end
   
   
   def past_events?

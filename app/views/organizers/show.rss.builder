@@ -1,7 +1,7 @@
 xml.instruct! :xml, :version => "1.0"
 xml.rss "version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/" do
   xml.channel do
-    xml.title (genitive(@organizer.name) + ' ' + t('.rss_title'))
+    xml.title (@organizer.s + ' ' + t('.rss_title'))
     xml.description t '.rss_description'
     xml.link events_url(:format => 'rss')
     xml.language 'sv-SE'

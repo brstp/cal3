@@ -1,4 +1,5 @@
 class OrganizerMailer < ActionMailer::Base
+  #include ActiveSupport::Multibyte::Chars
   default :from => "Allom <kundtjanst@allom.se>"
   
   def new_event_confirmation(event, user)

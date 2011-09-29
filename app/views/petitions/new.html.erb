@@ -1,5 +1,7 @@
 <h1><%= title t '.title' %></h1>
 
+<p><%= t '.description1'%></p><p><%= t '.description2'%></p>
+
 <%= semantic_form_for @petition, @user  do |f| %>
   <%= f.error_messages %>
   <%= f.inputs do %>
@@ -11,7 +13,7 @@
       <%= user.inputs do %>
       <%= user.input  :email,
                       :input_html => { :disabled => true}%>
-      <li><p class = "inline-text"><%= t 'users.sessions.not_you' %> <%= link_to I18n.t('users.sessions.sign_out'), destroy_user_session_path %></p></li>
+      <li><p class = "inline-text"><%= t 'devise.sessions.not_you' %> <%= link_to I18n.t('devise.sessions.sign_out'), destroy_user_session_path %></p></li>
       <%= user.input  :first_name, 
                       :required => true,
                        %>

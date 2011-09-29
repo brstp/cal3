@@ -42,11 +42,11 @@ sv-SE:
     new:
       title: "Ny evenemangsannons"
       which_organizer: 'Vilken arrangör vill du skapa en evenemangsannons för?'
-      not_organizer: 'Det ser inte ut som om du är administratör för någon arrangör.'
-      select: 'Du kan nu'
-      apply_for_organizer: 'Leta reda på den arrangör som du jobbar för och ansök om att bli administratör.'
-      create_organizer1: 'Skapa en arrangörssida. '
-      create_organizer2: 'Kolla först så att arrangören inte redan har en sida.'     
+      not_organizer: 'Det ser inte ut som om du är administratör för någon arrangörssida.'
+      add_organizer_now: "Nu är det bara ett steg kvar innan du kan lägga in evenemangsannonsen. Vi måste förstå vilken arrangör eller vilka arrangörer som du jobbar för."
+      select: 'Vad stämmer bäst?'
+      apply_for_organizer: 'Jag jobbar för en arrangör som redan har en sida här på Allom. Jag vill också bli administratör för den sidan.'
+      create_organizer1: 'Jag representerar en arrangör som inte har en sida på Allom. Jag vill skapa en arrangörssida.'
       or_other_options: 'Du kan också' 
     index:
       title: "Evenemang"
@@ -94,6 +94,8 @@ sv-SE:
       created_at: 'Evenemangsannonsen skapad'
       updated_at: 'Senast uppdaterad'
       you_are_sysadmin: 'Du är systemadministratör.'
+      do_you_work_for: 'Jobbar du för'
+      apply_for_adminship: 'Ansök om att bli admininstratör.'
     form:
       reset: "Rensa formuläret"
       do_you_really_want_to_reset_me: "Vill du tömma hela annonsformuläret?"

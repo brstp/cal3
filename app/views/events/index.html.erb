@@ -10,6 +10,11 @@
     <h1><%= t '.subject' %></h1>
 
 <% content_for :right_column_top do %>
+
+  <div class = "box">
+  <span class="heading">Hej arrangör!</span>
+  Vill du prova att kostnadsfritt annonsera dina evenemang här på Allom? Vi guidar dig hela vägen. <%= link_to "Börja nu.", new_event_path %>
+  </div>
   <div class = "box" id="facet">
   <span class="heading"><%= t 'app.seek_event' %>:</span>
   <div id = "q-container">

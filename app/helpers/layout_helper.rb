@@ -21,11 +21,6 @@ module LayoutHelper
     content_for(:head) { javascript_include_tag(*args) }
   end
   
-  def genitive (str)
-    str += "s" unless (str.split('').last.downcase == "s")
-    str
-  end
-  
 
   def user_message organizer, user
     if false && (! organizer.users.include? user)  && (organizer.memberships.find_by_prospect_user_id(user.id))
