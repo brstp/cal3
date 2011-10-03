@@ -203,12 +203,13 @@
   <% end %>
 <% end %>
 
+<%= link_to t(".edit"), edit_organizer_path %>. 
 <% if @organizer.may_recruit? current_user %>
     <%= t('.do_you_work_for') + ' ' + @organizer.name%>? 
     <%= link_to t('.apply_for_adminship'), 
                 new_petition_path( :organizer_id => @organizer.id ) %>
 <% end %>
-
+Arrangörssidan (text & bilder) är licensierad under en <a rel="license" rel="nofollow" href="http://creativecommons.org/licenses/by-sa/2.5/se/">Creative Commons Erkännande-DelaLika 2.5 Sverige Licens</a>. 
 </p>
 
 
@@ -293,20 +294,6 @@
   <% end #authorized @organizer %>
 <% end #current_user %>
 
-<% content_for :disclaimer do %>
-<div class = "license">
-<a rel="license" href="http://creativecommons.org/licenses/by-sa/2.5/se/" title = "CC BY-SA 2.5 Sverige">
-  <img alt="Creative Commons-licens" src="http://i.creativecommons.org/l/by-sa/2.5/se/88x31.png" />
-</a> 
-<br />
-
-Arrangörssidan (text & bilder) är licensierad under en <a rel="license" href="http://creativecommons.org/licenses/by-sa/2.5/se/">Creative Commons Erkännande-DelaLika 2.5 Sverige Licens</a>. 
-
-<a href = "http://info.allom.se/legalt/" title="Alloms allmänna villkor och upphovsrätt">Hur får jag använda eller återpublicera?</a>
-
-</div>
-
-<% end %>
 
 <%= content_for :right_column_bottom do %>  
   <div class = "box" id = "promote_organizer">
