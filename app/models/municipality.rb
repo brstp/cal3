@@ -19,6 +19,8 @@ class Municipality < ActiveRecord::Base
     self.name
   end
   
+ 
+  
   def ical
     c = Icalendar::Calendar.new
     #TODO Better way to point out url with helper (uid/url)
