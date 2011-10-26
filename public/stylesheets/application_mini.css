@@ -137,12 +137,12 @@ table.tiny-calendar tr.even {
 
 .tiny-calendar a:active{
   background-color: white;
-  color: red;
+  color: #e72f2a;
 }
 
 .tiny-calendar a:hover{
   background-color: white;
-  color: red;
+  color: #e72f2a;
 }
 
 .tiny-calendar a:visited{
@@ -247,6 +247,8 @@ table.general td {
 #facet li {
   border-bottom-style: none;
 }
+
+
 
 #user_account_box {
   height: 68px;

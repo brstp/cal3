@@ -41,12 +41,13 @@ sv-SE:
   events:
     new:
       title: "Ny evenemangsannons"
-      which_organizer: 'Vilken arrangör vill du skapa en evenemangsannons för?'
+      option: "Alternativ"
+      which_organizer: 'Arrangören har en sida på Allom och du är administratör.'
       not_organizer: 'Det ser inte ut som om du är administratör för någon arrangörssida.'
       add_organizer_now: "Nu är det bara ett steg kvar innan du kan lägga in evenemangsannonsen. Vi måste förstå vilken arrangör eller vilka arrangörer som du jobbar för."
       select: 'Vad stämmer bäst?'
-      apply_for_organizer: 'Jag jobbar för en arrangör som redan har en sida här på Allom. Jag vill också bli administratör för den sidan.'
-      create_organizer1: 'Jag representerar en arrangör som inte har en sida på Allom. Jag vill skapa en arrangörssida.'
+      apply_for_organizer: 'Leta reda på arrangören och bli adminstratör.'
+      create_organizer: 'Jag vill skapa en arrangörssida.'
       or_other_options: 'Vilket stämmer bäst' 
     index:
       title: "Evenemang"

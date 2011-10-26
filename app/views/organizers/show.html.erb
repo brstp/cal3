@@ -290,9 +290,11 @@ Arrangörssidan (text & bilder) är licensierad under en <a rel="license" rel="n
     <% end #users %> 
     <% reset_cycle %>
   </table>
+  <h3>Bjud in någon att bli administratör</h3>
+  <p>Kopiera länken <%= link_to organizer_path( :only_path => false, :recruit => 1 ), organizer_path( :only_path => false, :recruit => 1 ) %> och skicka den med mejl till personen som du vill dela ut behörighet till. Hon eller han kan då göra en ansökan som du får godkänna.</p>
 </div> <!-- authorized -->
   <% end #authorized @organizer %>
-<% end #current_user %>
+  <% end #current_user %>
 
 
 <%= content_for :right_column_bottom do %>  

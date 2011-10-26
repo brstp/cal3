@@ -112,14 +112,14 @@ table.calendar td.month_box {
 }
 
 .calendar a:link{
-  color: #006;
+  color: #000;
 }
 
 .calendar a:active, .calendar a:hover, .calendar a:focus{
   background-color: white;
-  color: red;
+  color: #e72f2a;
 }
-´
+
 .calendar a:visited{
   color: purple;
 }

@@ -73,26 +73,23 @@ ul, ol  {
 
 a  {
 	text-decoration: underline;
-	color: #006;
+	color: #000;
 }
 
 
 a:active  {
-	color: red;
+	color: #e72f2a;
 }
 
 a:hover {
-  color: red;
+  color: #e72f2a;
 }
 
 a:focus {
-  color: red;
+  color: #e72f2a;
 }
 
 
-a:visited {
-  color: purple;
-}
 
 #nav {
 	height: 68px;
@@ -238,7 +235,7 @@ a:visited {
 }
 
 #header img.logo  {
-	margin: 40px 0 0 0;
+	margin: 8px 0 0 10px;
 }
 
 #logo  {

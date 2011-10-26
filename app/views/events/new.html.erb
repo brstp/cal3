@@ -1,21 +1,24 @@
 # encoding: UTF-8
-<% title t '.title' %>
+<h1><%= title t '.title' %></h1>
+<p>Nu under pilotkörningen kostar det inte något att lägga upp en evenemangsannons. Du som är med och hjälper oss att utvärdera Allom nu kommer att få lägga in evenemangsannonser kostnadsfritt till slutet av 2012.</p>
+<p>Alla evenemangsannonser hänger ihop med en arrangörssida. Varje arrangör på Allom har var sin arrangörssida. En arrangör kan vara du som privatperson, en förening, ett företag, en myndighet eller egentligen vilken sammanslutning som helst.</p>
+<p>Det kostar inte något att ha en arrangörssida.</p>
+<% bullet_no = 0 %>
 <% if @event.organizer_id.nil? %> 
   <% unless @organizers.blank? %>
-    <h3><%= t '.which_organizer' %> </h3>
+    <h3><%= t '.option'%> <%= bullet_no +=1 %>: <%= t '.which_organizer' %> </h3>
+    <p>Välj arrangör:</p>
     <ul>
     <% for organizer in @organizers %>
       <li><%= link_to organizer.name, new_event_path(:organizer_id => organizer.id)  %></li>
     <% end %>
     </ul>
-    <p><%= t '.or_other_options' %>:</p>
-  <% else %>
-    <h1><%= t '.not_organizer' %></h1>
-    <p><%= t '.add_organizer_now' %></p>
-    <p><%= t '.select' %></p>
   <% end %>
-    <p><%= link_to t('.apply_for_organizer'), organizers_path(:recruit => true) %></p>
-    <p><%= link_to t('.create_organizer1'), new_organizer_path %></p>
+  <h3><%= t '.option'%> <%= bullet_no +=1 %>: Arrangören har en sida på Allom men du är <i>inte</i> administratör. </h3>
+  <p><%= link_to t('.apply_for_organizer'), organizers_path(:recruit => true) %></p>
+  <h3><%= t '.option'%> <%= bullet_no +=1 %>: Arrangören har inte någon sida på Allom.</h3>
+    <p>Kontrollera först att arrangören inte redan har en sida, så vu undviker dubletter.</p>
+    <p><%= link_to t('.create_organizer'), new_organizer_path %></p>
 <% else %>
   <%= render 'form' %>
 <% end %>

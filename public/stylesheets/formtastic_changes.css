@@ -14,7 +14,7 @@ form.formtastic fieldset ol li fieldset legend { margin-left: -6px;}
 --------------------------------------------------------------------------------------------------*/
 
 form.formtastic fieldset > ol > li.error {
-  border-color: red;
+  border-color: #e72f2a;
   border-width: 2px;
   border-style: solid;
   background-color: #f0f0f0;
