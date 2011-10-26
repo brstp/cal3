@@ -132,21 +132,23 @@ table.tiny-calendar tr.even {
 }
 
 .tiny-calendar a:link{
-  color: #006;
+  color: #000;
+}
+
+
+
+
+
+.tiny-calendar a:visited{
+  color: purple;
 }
 
 .tiny-calendar a:active{
-  background-color: white;
   color: #e72f2a;
 }
 
 .tiny-calendar a:hover{
-  background-color: white;
   color: #e72f2a;
-}
-
-.tiny-calendar a:visited{
-  color: purple;
 }
  
 table.general {
