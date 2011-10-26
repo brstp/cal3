@@ -43,3 +43,11 @@ sv-SE:
     index:
       new: 'Skapa ny användare'
       title: 'Användare'
+    confirmations:
+      new:
+        resend_confirmation_instructions: "Skicka bekräftelse via mejl igen."
+        resend: "Skicka"
+    passwords:
+      new:
+        forgot_your_password: "Glömt lösenordet?"
+        mail_me: "Skicka via mejl"

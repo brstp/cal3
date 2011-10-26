@@ -18,8 +18,8 @@ sv-SE:
       change_settings: 'Ditt konto/byt lösenord'
       change_password: 'Byt lösenord'
       signed_in_as: 'Inloggad som'
-      forgot_password: 'Glömt ditt lösenord?'
-      not_received_confirmation: 'Har inte fått mejlet med länken för att bekräfta kontot?'
+      forgot_password: 'Lås upp bortglömt lösenord.'
+      not_received_confirmation: 'Skicka mejlbekräftelse på nytt användarkonto igen.'
       not_received_unlock: 'Har inte fått mejlet med länken för att låsa upp kontot?'
       new:
         sign_in: 'Logga in'
