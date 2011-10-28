@@ -59,22 +59,18 @@
           <%= link_to( t('.you_have_applied') + ' ' + @organizer.name, @organizer.petitions.find_by_user_id(current_user.id) )  %>.
         </p>
     </div>
-    <% else %>
-      <% if params[:recruit] %>
-        <div class = "user_message">
-          <p>
-            <%= t('.do_you_work_for') + ' ' + @organizer.name%>? 
-            <%= link_to t('.apply_for_adminship'), 
-                        new_petition_path( :organizer_id => @organizer.id ) %>
-          </p> 
-        </div>
-      <% end %>
     <% end %>
-  
-
-  
   <% end #current_user %>
-
+  
+  <% if params[:recruit] %>
+    <div class = "user_message">
+      <p>
+        <%= t('.do_you_work_for') + ' ' + @organizer.name%>? 
+        <%= link_to t('.apply_for_adminship'), 
+                    new_petition_path( :organizer_id => @organizer.id ) %>
+      </p> 
+    </div>
+  <% end %>
 
   
   
