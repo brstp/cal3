@@ -81,38 +81,43 @@
   </div>
 <% end %>
 
-<%= facebook_like event_path(:only_path => false), "top" %>
+
 <div class = "event_left">
+<%= facebook_like event_path(:only_path => false), "top" %>
 
-<div class = "image_box">
-    
-  <%= link_to_unless @event.image1_url.blank? || @event.image1_file_name.blank?, (image_tag( @event.image1.url(:medium), :title => @event.image1_caption, :alt => @event.image1_caption)), @event.image1_url, :rel => :nofollow %><br />
-  <div class = "image_caption">
-    <% unless @event.image1_file_name.blank? %>
-      <%= @event.image1_caption %>
-    <%end %>
-  </div>
-
-  <div class = "image_2">
-    <div class = "image_2a">
-      <%= link_to_unless @event.image2_url.blank? || @event.image2_file_name.blank?, (image_tag( @event.image2.url(:small), :title => @event.image2_caption, :alt => @event.image2_caption)), @event.image2_url, :rel => :nofollow %><br />
-      <div class = "image_caption">
-        <% unless @event.image2_file_name.blank? %>
+<div class = "image_column">
+  <div class = "image_box">  
+    <%= link_to_unless @event.image1_url.blank? || @event.image1_file_name.blank?, (image_tag( @event.image1.url(:medium), :title => @event.image1_caption, :alt => @event.image1_caption)), @event.image1_url, :rel => :nofollow %><br />
+    <div class = "image_caption">
+      <% unless @event.image1_file_name.blank? %>
+        <%= @event.image1_caption %>
+      <% end %>
+    </div> <!-- /image_caption -->
+  </div> <!-- /image_box -->
+  
+  <% unless @event.image2_url.blank? %>
+    <div class = "image_box">  
+      <%= link_to_unless @event.image2_file_name.blank?, (image_tag( @event.image2.url(:medium), :title => @event.image2_caption, :alt => @event.image2_caption)), @event.image2_url, :rel => :nofollow %><br />
+      <% unless @event.image2_caption.blank? %>
+        <div class = "image_caption">
           <%= @event.image2_caption %>
-        <%end %>
-      </div>
-    </div>
-    
-    <div class = "image_2b">
-      <%= link_to_unless @event.image3_url.blank? || @event.image3_file_name.blank?, (image_tag( @event.image3.url(:small), :title => @event.image3_caption, :alt => @event.image3_caption)), @event.image3_url, :rel => :nofollow %><br />
+        </div> <!-- /image_caption -->
+      <%end %>
+    </div> <!-- /image_box -->
+    <% end %>
+
+  <% unless @event.image3_url.blank? %>
+    <div class = "image_box">  
+      <%= link_to_unless @event.image3_url.blank? || @event.image3_file_name.blank?, (image_tag( @event.image3.url(:medium), :title => @event.image3_caption, :alt => @event.image3_caption)), @event.image3_url, :rel => :nofollow %><br />
       <div class = "image_caption">
         <% unless @event.image3_file_name.blank? %>
           <%= @event.image3_caption %>
         <%end %>
-      </div>
-    </div>
-  </div>
-</div>
+      </div> <!-- /image_caption -->
+    </div> <!-- /image_box -->
+  <% end %>
+
+</div> <!-- /image_column -->
 
 <p><strong><%= duration(@event) %></strong></p>
 <h1><span class = "summary"><%= @event.subject %></span></h1>

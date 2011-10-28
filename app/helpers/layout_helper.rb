@@ -324,13 +324,10 @@ module LayoutHelper
     raw str
   end
   
-  def facebook_like(page_url, ref="default", verb="recommend")
+  def facebook_like(page_url, ref="default", verb="like")
     str = %(
-    <iframe src="http://www.facebook.com/plugins/like.php?href=#{page_url}&amp;layout=standard&amp;show_faces=false&amp;width=450&amp;action=#{verb}&amp;colorscheme=light&amp;height=35&amp;locale=sv_SE&amp;ref=#{ref}" frameborder="0" class = "facebook_like" seamless></iframe>
+    <div class="fb-like" data-send="false" data-width="640" data-show-faces="true" data-action=#{verb}></div>
     )
-    # str = %( 
-    # <iframe src="http://www.facebook.com/plugins/like.php?href=#{page_url}&amp;layout=standard&amp;show_faces=false&amp;width=450&amp;action=#{verb}&amp;colorscheme=light&amp;height=35&amp;locale=sv_SE&amp;ref=#{ref}" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:35px;" allowTransparency="true"></iframe>
-    # )
     raw str
   end
   
