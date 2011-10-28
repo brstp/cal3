@@ -39,7 +39,7 @@
       <%= f.input :phone_name %>
 
       <hr />
-      <h3>Övre stora bilden</h3>             
+      <h3>Övre bilden</h3>             
       <% unless @event.image1_file_name.blank? %>
         <li class="string" id="event_existing_image1"><label for="event_existing_image1">Nuvarande bild</label><%= image_tag @event.image1.url :small %></li>
         <%= f.input :image1_delete, :as => :boolean %>
@@ -51,7 +51,7 @@
       <%= f.input :image1_url %>
      
      <hr />
-     <h3>Vänstra lilla bilden</h3>  
+     <h3>Mellersta bilden</h3>  
       <% unless @event.image2_file_name.blank? %>
         <li class="string" id="event_existing_image2"><label for="event_existing_image2">Nuvarande bild</label><%= image_tag @event.image2.url :small %></li>
         <%= f.input :image2_delete, :as => :boolean %>
@@ -63,7 +63,7 @@
       <%= f.input :image2_url %>
  
       <hr />
-      <h3>Högra lilla bilden</h3>  
+      <h3>Undre bilden</h3>  
       <% unless @event.image3_file_name.blank? %>
         <h3>Ändra bilden</h3> 
         <li class="string" id="event_existing_image3"><label for="event_existing_image3">Nuvarande bild</label><%= image_tag @event.image3.url :small %></li>
