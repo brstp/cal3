@@ -92,14 +92,15 @@
 <div class = "break"></div>
 
 
-<div class = "image_box">
-  <%= link_to_unless @organizer.photo_url.blank? || @organizer.photo_file_name.blank?, (image_tag( @organizer.photo.url(:medium), :title => @organizer.photo_caption, :alt => @organizer.photo_caption)), @organizer.photo_url, :rel => :nofollow %><br />
-  <div class = "image_caption">
-    <% unless @organizer.photo_file_name.blank? %>
-      <%= @organizer.photo_caption %>
-    <%end %>
+<div class = "image_column">
+  <div class = "image_box">
+    <%= link_to_unless @organizer.photo_url.blank? || @organizer.photo_file_name.blank?, (image_tag( @organizer.photo.url(:medium), :title => @organizer.photo_caption, :alt => @organizer.photo_caption)), @organizer.photo_url, :rel => :nofollow %><br />
+      <% unless @organizer.photo_file_name.blank? %>
+        <div class = "image_caption">    
+          <%= @organizer.photo_caption %>
+        </div>
+      <%end %>
   </div>
-  
 </div>
 
 <%= simple_format @organizer.description %>
