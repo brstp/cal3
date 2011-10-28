@@ -88,12 +88,14 @@
 <div class = "image_column">
   <div class = "image_box">  
     <%= link_to_unless @event.image1_url.blank? || @event.image1_file_name.blank?, (image_tag( @event.image1.url(:medium), :title => @event.image1_caption, :alt => @event.image1_caption)), @event.image1_url, :rel => :nofollow %><br />
-    <div class = "image_caption">
-      <% unless @event.image1_file_name.blank? %>
-        <%= @event.image1_caption %>
-      <% end %>
-    </div> <!-- /image_caption -->
-  </div> <!-- /image_box -->
+    <% unless @event.image1_caption.blank? %>  
+      <div class = "image_caption">
+        <% unless @event.image1_file_name.blank? %>
+          <%= @event.image1_caption %>
+        <% end %>
+      </div> <!-- /image_caption -->
+    <% end %>
+    </div> <!-- /image_box -->
   
   <% unless @event.image2_url.blank? %>
     <div class = "image_box">  
