@@ -458,8 +458,12 @@ table.general td {
 
 .created-updated{
   font-size: 80%;
+  color: #ccc;
 }
 
+.created-updated a{
+  color: #ccc;
+}
 
 .img-edit{
   font-size: 80%;
