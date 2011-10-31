@@ -26,8 +26,7 @@ class Event < ActiveRecord::Base
   validates_length_of :intro, :in => 0..90
   validates_numericality_of :lat, :allow_nil => true
   validates_numericality_of :lng, :allow_nil => true
-  validates_length_of :image1_caption, :in => 0..60
-  validates_length_of :image2_caption, :image3_caption, :in => 0..40
+  validates_length_of :image1_caption, :image2_caption, :image3_caption, :in => 0..60
 
                         
   validates :image1_url, :allow_blank => true, :uri => { :format => /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix }
