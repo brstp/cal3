@@ -172,6 +172,10 @@ class Organizer < ActiveRecord::Base
     self.events.find(:all, :conditions => ["stop_datetime >= '#{Time.now}'"], :order => "start_datetime ASC", :limit => max_no)   
   end
   
+  def past_events max_no = 99999
+    self.events.find(:all, :conditions => ["stop_datetime <= '#{Time.now}'"], :order => "start_datetime DESC", :limit => max_no)   
+  end
+  
   def may_recruit? user
     return true if user.blank?
     return true if (!self.users.include? user) && (!self.petition_users.include? user)

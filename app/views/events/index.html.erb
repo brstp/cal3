@@ -7,7 +7,25 @@
     <link rel = "canonical" href="<%= t('app.site_url')  %>/" /> 
 <% end %> 
 
-    <h1><%= t '.subject' %></h1>
+    <h1>
+      <% unless params[:q].blank? && params[:category_facet_id].blank? && params[:municipality_id].blank? && params[:organizer_id].blank? %> 
+        <% unless params[:organizer_id].to_i == 0 %>
+          <%= link_to Organizer.find(params[:organizer_id].to_i).s, Organizer.find(params[:organizer_id]) %>
+        <% end %>
+   
+        <%= params[:q] %> 
+        <% unless params[:category_facet_id].to_i == 0 %>
+          <%= Category.find(params[:category_facet_id].to_i).name %>
+        <% end %>
+         evenemang
+        <% unless params[:municipality_id].to_i == 0 %>
+          i <%= Municipality.find(params[:municipality_id].to_i).short_name %>
+        <% end %>
+        
+      <% else %>
+        <%= t '.subject' %>
+      <% end %>
+    </h1>
 
 <% content_for :right_column_top do %>
 

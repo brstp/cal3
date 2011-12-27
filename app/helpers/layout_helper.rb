@@ -402,14 +402,14 @@ google.maps.event.addDomListener(window, 'load', initialize);
    
   
  
-  def mini_calendar events = nil, more_events = events_url
+  def mini_calendar events = nil, more_events = events_url, caption = t('app.planned_events')
 
 
     
     cal = ""
     cal << %(
             <table class = "tiny-calendar">
-              <caption>#{t('app.planned_events')}</caption>
+              <caption>#{caption}</caption>
             )
 
     for event in events
@@ -422,7 +422,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
               </tr>
             )
     end
-   
+    reset_cycle
     cal << %(
             </table>
             )

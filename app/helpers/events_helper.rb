@@ -21,6 +21,15 @@ module EventsHelper
               )
     end
     
+    str << %( 
+              <p>
+                &nbsp;
+              </p>
+              #{mini_calendar organizer.past_events(max_no) , events_url, t(".past_events") }  
+            )
+    
+    
+    
     str << %(
           </div>
             )

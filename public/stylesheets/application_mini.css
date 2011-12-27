@@ -117,6 +117,11 @@ table.tiny-calendar td {
   padding-right: 1em;
 }
 
+table.tiny-calendar caption {
+  font-size: 150%;
+  padding: 0.5em;
+}
+
 table.tiny-calendar tr.odd {
 	background-color: #f7f7f7;
 }
