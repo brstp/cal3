@@ -113,8 +113,9 @@ table.tiny-calendar {
 }
 
 table.tiny-calendar td {
-  padding-left: 1em;
-  padding-right: 1em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  min-width: 90px;
 }
 
 table.tiny-calendar caption {

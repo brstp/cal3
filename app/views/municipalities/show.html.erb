@@ -10,9 +10,6 @@
                                 
 <% end %> 
 
-<% content_for :right_column_bottom do %>  
-  <%= municipality_facts @municipality %>
-<% end %>
 
 <% open_graph_properties  t('.upcoming') + ' ' + @municipality.name,
                           @municipality.escutcheon, 
@@ -76,24 +73,6 @@
 <%= link_to(t('.download_ics'), municipality_url(:only_path => false, :format => :ics ))  %>
 </p>
 
-<%= content_for :right_column_bottom do %>  
-  <div class = "box" id = "promote_municipality">
-    <span class="heading"><%= t('.promote')%><br /> <%=@municipality.name%>:</span>
-    <p>
-    <%= link_to t('.subscribe_rss') + ' ' + @municipality.name, :format => :rss, :only_path => false %>  
-    <%= link_to image_tag("rss_icon.gif", :alt => t('.rss_alt') + ' ' + @municipality.name), :format => :rss, :only_path => false %>
-    </p>
-
-    <p>
-    <%= link_to(t('.download_ics'), municipality_url(:only_path => false, :format => :ics ))  %>
-    </p>
-
-    <p>
-    <%= t('.share_as_iframe') %>
-    </p>
-    <%= text_area_tag( "id", h('<iframe src="' + municipality_url(:format => :ihtml) + '"  frameborder="1" ></iframe>'), :class => :iframe_me, :readonly => true) %>
-  </div> <!-- /promote_municipality -->
-<% end %>
 
 
 <% if current_user %>
@@ -126,3 +105,25 @@
 <% end %>
 
 <%= facebook_like municipality_path(:only_path => false), "bottom" %>
+
+<%= content_for :right_column_bottom do %>  
+  <%= municipality_facts @municipality %>
+  <div class = "box" id = "promote_municipality">
+    <span class="heading"><%= t('.promote')%><br /> <%=@municipality.name%>:</span>
+    <p>
+    <%= link_to t('.subscribe_rss') + ' ' + @municipality.name, :format => :rss, :only_path => false %>  
+    <%= link_to image_tag("rss_icon.gif", :alt => t('.rss_alt') + ' ' + @municipality.name), :format => :rss, :only_path => false %>
+    </p>
+
+    <p>
+    <%= link_to(t('.download_ics'), municipality_url(:only_path => false, :format => :ics ))  %>
+    </p>
+
+    <p>
+    <%= t('.share_as_iframe') %>
+    </p>
+    <%= text_area_tag( "id", h('<iframe src="' + municipality_url(:format => :ihtml) + '"  frameborder="1" ></iframe>'), :class => :iframe_me, :readonly => true) %>
+  </div> <!-- /promote_municipality -->
+  
+  <%= local_organizers @organizers, @municipality %>
+<% end %>

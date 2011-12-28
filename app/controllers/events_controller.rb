@@ -164,6 +164,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
   def show
     @event = Event.find(params[:id])
     Event.increment_counter :counter, @event.id
+    @event.update_attribute(:last_googleboted, Time.now) if request.headers["user_agent"].include? "Googlebot"
     respond_to do |format|
       format.html
       format.ics

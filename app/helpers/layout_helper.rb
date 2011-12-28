@@ -399,7 +399,29 @@ google.maps.event.addDomListener(window, 'load', initialize);
     raw str
   end
 
-   
+  def upcoming_and_past_events organizer, max_no = 99999
+  
+    str = ""
+    if organizer.upcoming_events.count > 0
+      str << %(
+                #{mini_calendar organizer.upcoming_events(max_no) , events_url }
+              )
+        
+      if organizer.number_of_upcoming_events > max_no
+        str << %(
+                  #{link_to(t('app.there_are') + ' ' + organizer.number_of_upcoming_events.to_s + ' ' + t('app.events_in_total'), events_url(:organizer_id => organizer.id) )}
+                )
+      end
+    end
+    
+    if organizer.past_events.count > 0
+      str << %( 
+                #{mini_calendar organizer.past_events(max_no) , events_url, t(".past_events") }  
+              )
+    end
+            
+    raw str
+  end 
   
  
   def mini_calendar events = nil, more_events = events_url, caption = t('app.planned_events')

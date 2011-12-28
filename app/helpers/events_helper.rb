@@ -1,8 +1,37 @@
 # encoding: UTF-8
 module EventsHelper
 
+  def related_events event, max_no = 9999
+    municipality = event.municipality
+    category = event.category
+
+    str = ""
+    
+    if municipality.upcoming_events.count > 0
+      str <<  %( 
+                  #{mini_calendar municipality.upcoming_events(max_no), events_url, t('.events_nearby') }
+                )
+    end
+       
+    if category.upcoming_events.count > 0
+      str <<  %(
+                #{mini_calendar category.upcoming_events(max_no), events_url, t('.events_in_same_category') }
+              )
+    end
+    
+    unless str.blank?
+      raw   %(
+                <div id="related_events" class="box">
+                  <span class="heading">#{t '.related_events'}:</span>
+                  #{str}
+                </div>
+              )
+    end
+ 
+  end
 
   def organizer_facts organizer, max_no = 9999
+  
     str =%(
           <div id="organizer_facts" class="box">
           <span class="heading">#{t '.organizer_facts'}:</span>
@@ -11,26 +40,11 @@ module EventsHelper
           <p>
           #{organizer.intro}
           </p>
-          #{mini_calendar organizer.upcoming_events(max_no) , events_url }
-          
+                    
           )
-      
-    if organizer.number_of_upcoming_events > max_no
-      str << %(
-                #{link_to(t('app.there_are') + ' ' + organizer.number_of_upcoming_events.to_s + ' ' + t('app.events_in_total'), events_url(:organizer_id => organizer.id) )}
-              )
-    end
+          
+    str << %( #{upcoming_and_past_events organizer} 
     
-    str << %( 
-              <p>
-                &nbsp;
-              </p>
-              #{mini_calendar organizer.past_events(max_no) , events_url, t(".past_events") }  
-            )
-    
-    
-    
-    str << %(
           </div>
             )
     raw str

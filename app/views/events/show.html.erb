@@ -34,6 +34,7 @@
 <% content_for :right_column_bottom do %>  
   <%= page_counter @event.counter%>
   <%= organizer_facts @event.organizer, 10 %>
+  <%= related_events @event, 5 %>
 <% end %>       
 
 <% if @event.stop_datetime > Time.now %>

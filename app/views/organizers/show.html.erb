@@ -295,25 +295,7 @@ Arrangörssidan (text & bilder) är licensierad under en <a rel="license" rel="n
 
 
 <%= content_for :right_column_bottom do %>  
-  <div class = "box" id = "promote_organizer">
-    <span class="heading"><%= t('.promote')%><br /> <%=@organizer.name%>:</span>
-
-      <% if @organizer.future_events? %>
-        <p>
-          <%= link_to(t('.download_ics1') + ' ' + @organizer.s + ' ' + t('.download_ics2'), organizer_url(:only_path => false, :format => :ics ), :title => t('app.ics_file'))  %>
-        </p>
-      <% end %>
-
-      <p>
-        <%= link_to t('.subscribe_rss') + ' ' + @organizer.name, :format => :rss, :only_path => false %>  
-        <%= link_to image_tag("rss_icon.gif", :alt => t('.rss_alt') + ' ' + @organizer.name), :format => :rss, :only_path => false %>
-        <%= link_to t('.whats_rss'), "http://sv.wikipedia.org/wiki/RSS-l%C3%A4sare", :rel => :nofollow %>
-      </p>
-
-
-    <p>
-    <%= t('.share_as_iframe') %>
-    </p>
-    <%= text_area_tag( "id", h('<iframe src="' + organizer_url(:format => :ihtml) + '"  frameborder="1" ></iframe>'), :class => :iframe_me, :readonly => true) %>
-  </div> <!-- /promote_organizer -->
+  <%= promote_organizer @organizer %>
+  <%= upcoming_and_past_events @organizer %>
+  
 <% end #right_column_bottom %>

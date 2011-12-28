@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110926122050) do
+ActiveRecord::Schema.define(:version => 20111228142355) do
 
   create_table "bup_users", :force => true do |t|
     t.string    "email"
@@ -94,6 +94,7 @@ ActiveRecord::Schema.define(:version => 20110926122050) do
     t.string    "image2_url"
     t.string    "image3_caption"
     t.string    "image3_url"
+    t.datetime  "last_googleboted"
   end
 
   create_table "mail_messages", :force => true do |t|
@@ -135,27 +136,27 @@ ActiveRecord::Schema.define(:version => 20110926122050) do
   add_index "municipalities", ["parent_admin_no"], :name => "index_municipalities_on_parent_admin_no"
 
   create_table "organizers", :force => true do |t|
-    t.string   "name"
-    t.text     "description"
-    t.string   "website"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "logotype_file_name"
-    t.string   "logotype_content_type"
-    t.integer  "logotype_file_size"
-    t.datetime "logotype_updated_at"
-    t.string   "photo_file_name"
-    t.string   "photo_content_type"
-    t.integer  "photo_file_size"
-    t.datetime "photo_updated_at"
-    t.string   "intro"
-    t.string   "email"
-    t.string   "phone"
-    t.integer  "created_by_user_id"
-    t.integer  "updated_by_user_id"
-    t.string   "cached_slug"
-    t.string   "photo_caption"
-    t.string   "photo_url"
+    t.string    "name"
+    t.text      "description"
+    t.string    "website"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.string    "logotype_file_name"
+    t.string    "logotype_content_type"
+    t.integer   "logotype_file_size"
+    t.timestamp "logotype_updated_at"
+    t.string    "photo_file_name"
+    t.string    "photo_content_type"
+    t.integer   "photo_file_size"
+    t.timestamp "photo_updated_at"
+    t.string    "intro"
+    t.string    "email"
+    t.string    "phone"
+    t.integer   "created_by_user_id"
+    t.integer   "updated_by_user_id"
+    t.string    "cached_slug"
+    t.string    "photo_caption"
+    t.string    "photo_url"
   end
 
   create_table "petitions", :force => true do |t|

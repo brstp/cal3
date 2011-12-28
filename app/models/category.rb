@@ -52,6 +52,16 @@ class Category < ActiveRecord::Base
     out
   end
 
+  def upcoming_events max_no = 0
+    
+    if max_no > 0
+      self.events.find(:all, :conditions => ["stop_datetime >= '#{Time.now}'"], :order => "start_datetime ASC", :limit => max_no)   
+    else
+      self.events.find(:all, :conditions => ["stop_datetime >= '#{Time.now}'"], :order => "start_datetime ASC")   
+    end
+    
+  end
+
   
   def prefix
     str = ""

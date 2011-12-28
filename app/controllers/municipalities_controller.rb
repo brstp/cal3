@@ -9,6 +9,7 @@ class MunicipalitiesController < ApplicationController
   def show
     @municipality = Municipality.find(params[:id])
     @events = @municipality.upcoming_events.paginate :page => params[:page], :per_page => 30
+    @organizers = @municipality.events.count(:group => "organizer").sort_by { |k,v| -v}
       respond_to do |format|
         format.html # show.html.erb
         format.ihtml

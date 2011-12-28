@@ -98,6 +98,9 @@ sv-SE:
       do_you_work_for: 'Jobbar du för'
       apply_for_adminship: 'Ansök om att bli admininstratör.'
       past_events: "Genomförda evenemang"
+      related_events: "Relaterade evenemang"
+      events_nearby: "Evenemang i närheten"
+      events_in_same_category: "I samma kategori"
     form:
       reset: "Rensa formuläret"
       do_you_really_want_to_reset_me: "Vill du tömma hela annonsformuläret?"
