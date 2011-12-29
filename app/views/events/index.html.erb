@@ -1,31 +1,14 @@
 # encoding:utf-8
-<% set_meta_tags :title => t('.page_title'),
-                   :description => t('.meta_description') %>
-
+<% set_meta_tags :description => t('.meta_description') %>
+<% set_meta_tags :title => query_to_string %>
 <% content_for :head do %>  
   <%= auto_discovery_link_tag( :rss, events_url(:format => 'rss') , {:title => t('.rss_title') }) %>
     <link rel = "canonical" href="<%= t('app.site_url')  %>/" /> 
+    
+  
 <% end %> 
 
-    <h1>
-      <% unless params[:q].blank? && params[:category_facet_id].blank? && params[:municipality_id].blank? && params[:organizer_id].blank? %> 
-        <% unless params[:organizer_id].to_i == 0 %>
-          <%= link_to Organizer.find(params[:organizer_id].to_i).s, Organizer.find(params[:organizer_id]) %>
-        <% end %>
-   
-        <%= params[:q] %> 
-        <% unless params[:category_facet_id].to_i == 0 %>
-          <%= Category.find(params[:category_facet_id].to_i).name %>
-        <% end %>
-         evenemang
-        <% unless params[:municipality_id].to_i == 0 %>
-          i <%= Municipality.find(params[:municipality_id].to_i).short_name %>
-        <% end %>
-        
-      <% else %>
-        <%= t '.subject' %>
-      <% end %>
-    </h1>
+  <h1><%= query_to_string t('.subject') %></h1>
 
 <% content_for :right_column_top do %>
 

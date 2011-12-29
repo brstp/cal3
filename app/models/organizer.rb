@@ -30,7 +30,7 @@ class Organizer < ActiveRecord::Base
   has_friendly_id :name, :use_slug => true
   before_save :destroy_photo? 
   before_save :destroy_logotype?
-  attr_accessible :name, :description, :website, :photo_url, :photo_caption, :photo_delete, :user_ids, :logotype, :logotype_delete, :photo, :intro, :phone, :email
+  attr_accessible :name, :description, :website, :photo_url, :photo_caption, :photo_delete, :user_ids, :logotype, :logotype_delete, :photo, :intro, :phone, :email, :last_googleboted
   
   validates_presence_of :name, :description, :email
   validates_length_of :name, :in => 5..50
@@ -79,7 +79,7 @@ class Organizer < ActiveRecord::Base
     if (self.name.split('').last.downcase == "s")
       self.name
     else
-      self.name + "s"  
+      self.name.strip + "s"  
     end
   end
   

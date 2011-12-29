@@ -14,6 +14,8 @@ sv-SE:
     at: "på"
     by: 'av'
     events_in: "Evenemang i"
+    event: "evenemang"
+    events: "evenemang"
     or: 'eller'
     no_reply_email: "kundtjanst@allom.se"
     no_reply_name: "Allom"

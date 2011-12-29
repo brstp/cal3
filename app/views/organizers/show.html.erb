@@ -188,9 +188,12 @@
 <%= t '.created_at' %> <%= I18n.localize @organizer.created_at, :format => :default %>  
   <% if current_user %>
     <% if (current_user.authorized? @organizer) || current_user.is_admin? %>
-      <%= @organizer.created_by %>      
+      <%= @organizer.created_by%>.
+        <% unless @organizer.last_googleboted.blank? %>
+          <%= t('.last_visited') + " " + l(@organizer.last_googleboted, :format => :default) + ' ' + t('.by_googlebot') %>.
+        <% end %>
     <% end %>
-  <% end %> 
+  <% end %>
 <% unless @organizer.created_at == @organizer.updated_at || @organizer.updated_by_user_id.nil?%>
   <%= t '.updated_at' %> <%= I18n.localize @organizer.updated_at, :format => :default %>
   <% if current_user %>

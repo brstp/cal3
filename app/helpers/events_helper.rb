@@ -29,6 +29,35 @@ module EventsHelper
     end
  
   end
+  
+  def query_to_string default_str = t('app.site_name')
+    str =""
+    unless  ( params[:q].blank? && 
+              params[:category_facet_id].blank? && 
+              params[:municipality_id].blank? && 
+              params[:organizer_id].blank? )
+            
+      unless params[:organizer_id].to_i == 0 
+        str = str + Organizer.find(params[:organizer_id].to_i).s + " "
+      end
+      str = str + " " + params[:q].to_s + " "
+      unless params[:category_facet_id].to_i == 0
+        str = str + Category.find(params[:category_facet_id].to_i).name + " "
+      end
+      if str.blank? 
+        str = str + " " + t('app.events').titleize + " "
+      else
+        str = str + " " + t('app.events') + " "
+      end
+      unless params[:municipality_id].to_i == 0
+        str = str + " i " + Municipality.find(params[:municipality_id].to_i).short_name
+      end
+    else
+      str = default_str
+    end
+    str = str.squish
+    str
+  end
 
   def organizer_facts organizer, max_no = 9999
   

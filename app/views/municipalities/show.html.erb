@@ -100,6 +100,12 @@
       <strong><%= Municipality.human_attribute_name 'escutcheon' %>:</strong>
       <%= @municipality.escutcheon %>
     </p>
+    
+    <% unless @municipality.last_googleboted.blank? %>
+      <p>
+        <%= t('.last_visited') + " " + l(@municipality.last_googleboted, :format => :default) + ' ' + t('.by_googlebot') %>.
+      </p>
+    <% end %>
   </div> <!-- authorized -->
 <% end %>
 <% end %>

@@ -197,6 +197,9 @@
   <% if current_user %>
     <% if (current_user.authorized? @event.organizer) || current_user.is_admin? %>
       <%= @event.created_by %>. 
+      <% unless @event.last_googleboted.blank? %>
+          <%= t('.last_visited') + " " + l(@event.last_googleboted, :format => :default) + ' ' + t('.by_googlebot') %>.
+      <% end %>
     <% end %>
   <% end %>
   
@@ -210,6 +213,7 @@
 <% end %>
 
 <%= link_to t('.edit'), edit_event_path %>.
+
 
 
 <% if @event.organizer.may_recruit? current_user %>

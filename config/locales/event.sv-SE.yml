@@ -101,6 +101,8 @@ sv-SE:
       related_events: "Relaterade evenemang"
       events_nearby: "Evenemang i närheten"
       events_in_same_category: "I samma kategori"
+      last_visited: "Senast besökt"
+      by_googlebot: "av Googles sökmotorrobot"
     form:
       reset: "Rensa formuläret"
       do_you_really_want_to_reset_me: "Vill du tömma hela annonsformuläret?"

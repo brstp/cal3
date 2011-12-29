@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111228142355) do
+ActiveRecord::Schema.define(:version => 20111229094316) do
 
   create_table "bup_users", :force => true do |t|
     t.string    "email"
@@ -94,7 +94,7 @@ ActiveRecord::Schema.define(:version => 20111228142355) do
     t.string    "image2_url"
     t.string    "image3_caption"
     t.string    "image3_url"
-    t.datetime  "last_googleboted"
+    t.timestamp "last_googleboted"
   end
 
   create_table "mail_messages", :force => true do |t|
@@ -129,6 +129,7 @@ ActiveRecord::Schema.define(:version => 20111228142355) do
     t.timestamp "facts_last_updated"
     t.string    "escutcheon"
     t.string    "cached_slug"
+    t.datetime  "last_googleboted"
   end
 
   add_index "municipalities", ["admin_no"], :name => "index_municipalities_on_admin_no", :unique => true
@@ -157,6 +158,7 @@ ActiveRecord::Schema.define(:version => 20111228142355) do
     t.string    "cached_slug"
     t.string    "photo_caption"
     t.string    "photo_url"
+    t.datetime  "last_googleboted"
   end
 
   create_table "petitions", :force => true do |t|

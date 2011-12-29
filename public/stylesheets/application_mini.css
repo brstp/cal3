@@ -212,11 +212,9 @@ table.general td {
 }
 
 .event_in_past {
-  background-color: #ccc;
+  background-color: #eee;
   padding: 1em;
-  border-width: 2px;
-  border-color: #000;
-  border-style: solid;
+
 }
 
 

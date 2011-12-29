@@ -100,6 +100,8 @@ sv-SE:
       you_are_sysadmin: 'Du är systemadministratör'
       and_events_and_memberships: 'med alla evenemang och kopplingen till administratörer'
       past_events: "Tidigare evenemang"
+      last_visited: "Senast besökt"
+      by_googlebot: "av Googles sökmotorrobot"
     form:
       replace_image: "Ersätt bilden"
       replace_logotype: "Ersätt logotypen"
