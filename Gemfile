@@ -38,7 +38,7 @@ gem 'mail_form'                     #needed? used? TODO
 gem 'timeliness'
 gem "geocoder"                      #server side geo coding
 gem 'meta-tags', :require => 'meta_tags'  #header tags
-gem "paperclip"                     #upload and organizer images
+gem "paperclip", "2.3.16"                    #upload and organizer images
 gem "ancestry"                      #tree structure
 gem 'yaml_db'                       #dump, load db as yaml 
 gem 'nokogiri'                      #parse
