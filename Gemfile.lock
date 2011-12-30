@@ -32,10 +32,11 @@ GEM
     ancestry (1.2.4)
       activerecord (>= 2.2.2)
     arel (2.0.10)
-    aws-s3 (0.6.2)
-      builder
-      mime-types
-      xml-simple
+    aws-sdk (1.2.5)
+      httparty (~> 0.7)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
+      uuidtools (~> 2.1)
     bcrypt-ruby (2.1.4-x86-mingw32)
     builder (2.1.2)
     cocaine (0.2.1)
@@ -58,6 +59,9 @@ GEM
       rest-client (~> 1.6.1)
       rubyzip
       term-ansicolor (~> 1.0.5)
+    httparty (0.8.1)
+      multi_json
+      multi_xml
     i18n (0.5.0)
     icalendar (1.1.6)
     jquery-rails (1.0.19)
@@ -78,6 +82,8 @@ GEM
     mime-types (1.17.2)
     mocha (0.10.0)
       metaclass (~> 0.0.1)
+    multi_json (1.0.4)
+    multi_xml (0.4.1)
     nifty-generators (0.4.6)
     nokogiri (1.5.0-x86-mingw32)
     orm_adapter (0.0.5)
@@ -141,13 +147,13 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     tzinfo (0.3.31)
+    uuidtools (2.1.2)
     validates_timeliness (3.0.8)
       timeliness (~> 0.3.4)
     validation_reflection (1.0.0)
     warden (1.0.6)
       rack (>= 1.0)
     will_paginate (3.0.pre2)
-    xml-simple (1.1.1)
     yaml_db (0.2.2)
 
 PLATFORMS
@@ -155,7 +161,7 @@ PLATFORMS
 
 DEPENDENCIES
   ancestry
-  aws-s3
+  aws-sdk
   devise (~> 1.2.0)
   devise_invitable (~> 0.4.0)
   formtastic
