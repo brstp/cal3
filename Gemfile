@@ -44,8 +44,8 @@ gem 'yaml_db'                       #dump, load db as yaml
 gem 'nokogiri'                      #parse
 gem 'icalendar'                     #create ical events
 gem 'heroku'                        #remote control for prod env at Heroku
-#gem 'aws-s3'                        #API towards Amazon Web Services
-gem  'aws-sdk'
+gem 'aws-s3'                        #API towards Amazon Web Services
+#gem  'aws-sdk'
 gem 'will_paginate' , "3.0.pre2"     #well, to paginate
 gem 'friendly_id', "~> 4.0.0"       # slugs, to make friendly urls
 
