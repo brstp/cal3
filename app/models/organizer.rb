@@ -27,7 +27,9 @@ class Organizer < ActiveRecord::Base
   
   default_scope :order => 'name'
 
-  has_friendly_id :name, :use_slug => true
+  extend FriendlyId
+  friendly_id :name, :use => :slugged
+  
   before_save :destroy_photo? 
   before_save :destroy_logotype?
   attr_accessible :name, :description, :website, :photo_url, :photo_caption, :photo_delete, :user_ids, :logotype, :logotype_delete, :photo, :intro, :phone, :email, :last_googleboted

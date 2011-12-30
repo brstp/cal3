@@ -11,8 +11,9 @@ class Municipality < ActiveRecord::Base
   #searchable :auto_index => true, :auto_remove => true do
   #  text :name
   #end
-  
-  has_friendly_id :name, :use_slug => true
+
+  extend FriendlyId
+  friendly_id :name, :use => :slugged
 
   
   def to_s

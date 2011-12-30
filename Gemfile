@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.10'
+gem 'rails', '3.0.11'
 
 
 # Use unicorn as the web server
@@ -26,8 +26,8 @@ gem 'rails', '3.0.10'
 
 #gem 'capistrano'                  #deploy
 
-gem 'devise',           '~> 1.1.3'  #authentication
-gem 'devise_invitable', '~> 0.3.4'
+gem 'devise',           '~> 1.2.0'  #authentication
+gem 'devise_invitable', '~> 0.4.0'
 gem 'formtastic'                    #forms
 gem "validation_reflection"         #validation of mandatory attributes
 gem 'validates_timeliness'          #validate time/datetime
@@ -45,8 +45,8 @@ gem 'nokogiri'                      #parse
 gem 'icalendar'                     #create ical events
 gem 'heroku'                        #remote control for prod env at Heroku
 gem 'aws-s3'                        #API towards Amazon Web Services
-gem 'will_paginate', "3.0.pre2"     #well, to paginate
-gem 'friendly_id'                   # slugs, to make friendly urls
+gem 'will_paginate' , "3.0.pre2"     #well, to paginate
+gem 'friendly_id', "~> 4.0.0"       # slugs, to make friendly urls
 
 group :development, :test do
   gem 'sqlite3-ruby', :require => 'sqlite3'

@@ -38,7 +38,8 @@ class Event < ActiveRecord::Base
   validates :phone_number, :phone => true
   validates :email, :email => true
 
-  has_friendly_id :subject, :use_slug => true
+  extend FriendlyId
+  friendly_id :subject, :use => :slugged
 
   geocoded_by :street, :latitude => :lat, :longitude => :lng
 

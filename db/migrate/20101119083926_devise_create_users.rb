@@ -14,6 +14,8 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :last_name
       t.string :email
 
+      t.encryptable
+
       t.timestamps
     end
 
