@@ -47,7 +47,7 @@ gem 'aws-s3'                        #API towards Amazon Web Services
 #gem  'aws-sdk'
 gem 'will_paginate' , "3.0.pre2"     #well, to paginate
 gem 'friendly_id', "~> 4.0.0"       # slugs, to make friendly urls
-
+gem 'pg'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -69,5 +69,5 @@ group :development, :test do
 end
 
 group :production do
-	gem 'pg'
+	#gem 'pg' 
 end
