@@ -30,7 +30,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
 
       result = Event.search do
         keywords params[:q]
-        paginate :per_page => 30, :page => params[:page]
+        # paginate :per_page => 30, :page => params[:page]
         facet :category_facet_id, :organizer_id, :municipality_id
         facet :stop do
           row "today" do

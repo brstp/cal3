@@ -39,6 +39,7 @@
 <% if @events.blank? %>  
   <p>Just nu finns det inte några evenemang inplanerade i <%= @municipality.name %>.</p>
 <% else %>
+<% if false %>
   <%= will_paginate( 
           @events,
           :renderer => CustomPaginationLinkRenderer,
@@ -48,7 +49,9 @@
           :last_label => t('will_paginate.last'),
           :summary_label => " %d #{t('will_paginate.to')} %d #{t('will_paginate.of')} %d "
           ) %>
+          <%end%>
   <%= calendar @events %>
+  <% if false %>
   <%= will_paginate( 
           @events,
           :renderer => CustomPaginationLinkRenderer,
@@ -58,6 +61,7 @@
           :last_label => t('will_paginate.last'),
           :summary_label => " %d #{t('will_paginate.to')} %d #{t('will_paginate.of')} %d "
           ) %>
+          <%end%>
 <% end %>
 
 <p>

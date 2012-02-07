@@ -66,8 +66,6 @@ Devise.setup do |config|
   # The time the user will be remembered without asking for credentials again.
   config.remember_for = 12.weeks
 
-  # If true, a valid remember token can be re-used between multiple browsers.
-  config.remember_across_browsers = true
 
   # If true, extends the user's remember period when remembered via cookie.
   config.extend_remember_period = true
@@ -144,4 +142,9 @@ Devise.setup do |config|
   #   end
   #   manager.default_strategies(:scope => :user).unshift :twitter_oauth
   # end
+  
+  config.case_insensitive_keys = [ :email ]
+  config.use_salt_as_remember_token = true
+  config.reset_password_within = 24.hours
+  
 end

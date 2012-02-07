@@ -58,6 +58,7 @@
 <% if @events.blank? %>  
   <p><%= t '.no_events'%></p>
 <% else %>
+  <% if false %>
   <%= will_paginate(
     :renderer => CustomPaginationLinkRenderer,
     :first_label => t('will_paginate.first'),
@@ -66,8 +67,11 @@
     :last_label => t('will_paginate.last'),
     :summary_label => " %d #{t('will_paginate.to')} %d #{t('will_paginate.of')} %d "
                     ) %>
+    <% end %>
   <%= calendar @events %>
-  <%= will_paginate(
+  
+  <% if false %>
+  <%# will_paginate(
     :renderer => CustomPaginationLinkRenderer,
     :first_label => t('will_paginate.first'),
     :previous_label => t('will_paginate.previous'),
@@ -75,6 +79,7 @@
     :last_label => t('will_paginate.last'),
     :summary_label => " %d #{t('will_paginate.to')} %d #{t('will_paginate.of')} %d "
                     ) %>
+  <% end %>
 <% end %> 
 
 

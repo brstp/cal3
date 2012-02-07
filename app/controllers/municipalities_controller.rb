@@ -9,7 +9,7 @@ class MunicipalitiesController < ApplicationController
   def show
     @municipality = Municipality.find(params[:id])
     @municipality.update_attribute(:last_googleboted, Time.now) if request.headers["user_agent"].include? "Googlebot"
-    @events = @municipality.upcoming_events.paginate :page => params[:page], :per_page => 30
+    @events = @municipality.upcoming_events #.paginate :page => params[:page], :per_page => 30
     @organizers = @municipality.events.count(:group => "organizer").sort_by { |k,v| -v}
       respond_to do |format|
         format.html # show.html.erb
