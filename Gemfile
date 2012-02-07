@@ -59,7 +59,6 @@ end
 
 gem 'jquery-rails'
 
-
 group :development, :test do
   gem 'sqlite3-ruby', :require => 'sqlite3'
   gem "nifty-generators"
@@ -70,4 +69,6 @@ end
 
 group :production do
 	#gem 'pg' 
+  #gem 'thin'
+
 end
