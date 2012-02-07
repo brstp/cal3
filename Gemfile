@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.3'
+gem 'rails', '3.2.0'
 
 
 # Use unicorn as the web server
@@ -26,8 +26,8 @@ gem 'rails', '3.1.3'
 
 #gem 'capistrano'                  #deploy
 
-gem 'devise',           '~> 1.4.1'  #authentication
-gem 'devise_invitable', '~> 0.5.4'
+gem 'devise',           '~> 2.0.0'  #authentication
+gem 'devise_invitable' #, '~> 0.7.0'
 gem 'formtastic'                    #forms
 gem "validation_reflection"         #validation of mandatory attributes
 gem 'validates_timeliness'          #validate time/datetime
@@ -48,7 +48,7 @@ gem 'aws-s3'                        #API towards Amazon Web Services
 gem 'will_paginate' , "3.0.pre2"     #well, to paginate
 gem 'friendly_id', "~> 4.0.0"       # slugs, to make friendly urls
 gem 'pg'
-gem 'mysql'
+# gem 'mysql'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -71,5 +71,4 @@ end
 group :production do
 	#gem 'pg' 
   #gem 'thin'
-
 end

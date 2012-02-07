@@ -12,6 +12,7 @@ class OrganizerMailer < ActionMailer::Base
     end
     
     mail(   :to => "#{to_organizer}", 
+            :bcc => "admin@allom.se",
             :Precedence => "junk",
             :subject => "#{I18n.t('event.mail.new')}: #{event.subject}"   
           )
@@ -27,6 +28,7 @@ class OrganizerMailer < ActionMailer::Base
     end
     
     mail(   :to => "#{to_organizer}", 
+            :bcc => "admin@allom.se",
             :Precedence => "junk",
             :subject => "#{I18n.t('event.mail.changed')}: #{event.subject}"   
           )
@@ -44,6 +46,7 @@ class OrganizerMailer < ActionMailer::Base
     
     mail(   :to => "#{to_organizer}", 
             :cc => "#{@wannabe}",
+            :bcc => "admin@allom.se",
             :subject => "#{I18n.t('petition.mail.new')} #{@organizer}"   
           )    
     
@@ -61,6 +64,7 @@ class OrganizerMailer < ActionMailer::Base
     
     mail(   :cc => "#{cc_organizer}", 
             :to => "#{@wannabe}",
+            :bcc => "admin@allom.se",
             :Precedence => "junk",
             :subject => "#{I18n.t('petition.mail.approved')} #{@organizer}"   
           )    
@@ -79,6 +83,7 @@ class OrganizerMailer < ActionMailer::Base
     
     mail(   :cc => "#{cc_organizer}", 
             :to => "#{@wannabe}",
+            :bcc => "admin@allom.se",
             :subject => "#{I18n.t('petition.mail.rejected')} #{@organizer}"   
           )    
     
@@ -96,6 +101,7 @@ class OrganizerMailer < ActionMailer::Base
     
     mail(   :cc => "#{cc_organizer}", 
             :to => "#{@wannabe}",
+            :bcc => "admin@allom.se",
             :subject => "#{I18n.t('membership.mail.destroyed')} #{@organizer}"   
           )    
     
