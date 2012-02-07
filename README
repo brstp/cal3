@@ -43,3 +43,4 @@ Use heroku db:pull when you wish to export the contents of your Heroku app’s d
 Buggfix Outoftime på Windows
 http://outoftime.lighthouseapp.com/projects/20339/tickets/84-sunspot-solr-run-doesnt-start-on-windows
 
+heroku config:add PATH=bin:vendor/bundle/ruby/1.9.1/bin:/usr/local/bin:/usr/bin:/bin --app allom-stage
