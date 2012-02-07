@@ -55,7 +55,6 @@ group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
-  gem 'activerecord-postgresql-adapter'
 end
 
 gem 'jquery-rails'
