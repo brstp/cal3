@@ -1,4 +1,3 @@
-
 .infobox {
    font-size: 89%;
    border: 1px solid #ccc;
@@ -19,7 +18,7 @@
 .infobox.bordered .borderless td,
 .infobox.bordered .borderless th { border: 0; }
 
-/* Stilmallar för avgränsade infoboxar med sammansatta rader */
+/* Stilmallar fÃ¶r avgrÃ¤nsade infoboxar med sammansatta rader */
 .infobox.bordered .mergedtoprow td,
 .infobox.bordered .mergedtoprow th {
    border: 0;

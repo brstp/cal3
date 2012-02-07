@@ -61,15 +61,21 @@ module EventsHelper
 
   def organizer_facts organizer, max_no = 9999
   
-    str =%(
+  str =%(
           <div id="organizer_facts" class="box">
           <span class="heading">#{t '.organizer_facts'}:</span>
-          #{link_to((image_tag  organizer.logotype.url(:small), :alt => organizer.name + "s logotyp", :title => organizer.intro), organizer, :title => organizer.name )}
+        )
+  unless organizer.logotype.blank?
+    str << %(
+              #{link_to((image_tag  organizer.logotype.url(:small), :alt => organizer.name + "s logotyp", :title => organizer.intro), organizer, :title => organizer.name )}
+            )
+  end
+    
+  str << %(
           <h4>#{link_to(organizer.name, organizer)}</h4>
           <p>
           #{organizer.intro}
           </p>
-                    
           )
           
     str << %( #{upcoming_and_past_events organizer} 

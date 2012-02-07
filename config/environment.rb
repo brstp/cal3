@@ -8,14 +8,14 @@ require File.expand_path('../application', __FILE__)
 #OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 
 
-class Rails::Application::Configuration
+# class Rails::Application::Configuration
 
 
- def database_configuration
-  require 'erb'
-  YAML::load(ERB.new(IO.read(paths.config.database.to_a.first)).result).each_value {|env| env.merge!({"encoding" => "utf8", "collation" => "utf8_general_ci"}) }
-  end
-end
+ # def database_configuration
+  # require 'erb'
+  # YAML::load(ERB.new(IO.read(paths.config.database.to_a.first)).result).each_value {|env| env.merge!({"encoding" => "utf8", "collation" => "utf8_general_ci"}) }
+  # end
+# end
 
 # Initialize the rails application
 Cal3::Application.initialize!

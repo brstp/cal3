@@ -3,7 +3,7 @@
 /* Changed by Stefan Pettersson (stefan.pettersson@lumano.se) */
 jQuery(function($){
     $.datepicker.regional['sv'] = {
-		closeText: 'Stäng',
+		closeText: 'StÃ¤ng',
         prevText: '&laquo;F&ouml;rra',
 		nextText: 'N&auml;sta &raquo;',
 		currentText: 'Idag',
@@ -11,7 +11,7 @@ jQuery(function($){
         'juli','augusti','september','oktober','november','december'],
         monthNamesShort: ['jan','feb','mar','apr','maj','jun',
         'jul','aug','sep','okt','nov','dec'],
-		dayNamesShort: ['Sön','Mån','Tis','Ons','Tor','Fre','Lör'],
+		dayNamesShort: ['SÃ¶n','MÃ¥n','Tis','Ons','Tor','Fre','LÃ¶r'],
 		dayNames: ['s&ouml;ndag','m&aring;ndag','tisdag','onsdag','torsdag','fredag','l&ouml;rdag'],
 		dayNamesMin: ['s&ouml;','m&aring;','ti','on','to','fr','l&ouml;'],
 		weekHeader: 'v.',

@@ -94,5 +94,5 @@ Evenemangsannonser och arrangörssidor (text & bilder) är licensierade under en
 <% end %>
 
 <%= open_graph_properties "Allom - kalendern med allt som händer innan det är för sent", 
-                          "http://allom.se/img/liten-logotyp-allom-v1.png", 
+                          "#{request.protocol}#{request.host_with_port}#{asset_path("evenemang-allom-evenemangskalendern.png")}", 
                           t('app.site_url') %>

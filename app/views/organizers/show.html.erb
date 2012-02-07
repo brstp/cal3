@@ -6,12 +6,21 @@
   <link rel = "canonical" href="<%= t('app.site_url') + organizer_path(@event) %>"/> 
 <% end %>                     
                    
+<% unless @organizer.logotype.blank? %>
 
-<%= open_graph_properties @organizer.name, 
-                          @organizer.logotype.url(:medium), 
-                          organizer_path(@organizer, 
-                          :only_path => false)  %>
+  <%= open_graph_properties @organizer.name, 
+                            @organizer.logotype.url(:medium), 
+                            organizer_path(@organizer, 
+                            :only_path => false)  %>
 
+<% else %>
+  <%= open_graph_properties @organizer.name, 
+                            "#{request.protocol}#{request.host_with_port}#{asset_path("evenemang-allom-evenemangskalendern.png")}}", 
+                            organizer_path(@organizer, 
+                            :only_path => false)  %>
+
+<% end %>                            
+                            
 <% if current_user %>
   <% if (@organizer.users.include? current_user) || current_user.is_admin? %>
     <div class = "user_message">

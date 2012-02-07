@@ -1,7 +1,7 @@
 # encoding: UTF-8
 class Organizer < ActiveRecord::Base
   include ActionView::Helpers::UrlHelper
-  include ActionView::Helpers::RawOutputHelper
+  #include ActionView::Helpers::RawOutputHelper
 
   has_many  :events,
             :dependent => :destroy
@@ -18,11 +18,6 @@ class Organizer < ActiveRecord::Base
   has_many  :petition_users, 
             :through => :petitions, 
             :source => :user  
-  
-  # has_many :admins, :through => :memberships, :source => :user, :conditions => "memberships.state = 'admin'"
-  # has_many :applications, :through => :memberships, :source => :user, :conditions => "memberships.state = 'applied'"
-  # has_many :nominees, :through => :memberships, :source => :user, :conditions => "memberships.state = 'nominated'"
-  # has_many :user_infos, :through => :memberships, :source => :user, :conditions => "memberships.state = 'inform_admin'"
   
   
   default_scope :order => 'name'
@@ -48,12 +43,12 @@ class Organizer < ActiveRecord::Base
                     :s3_credentials => {
                       :access_key_id => ENV['S3_KEY'],
                       :secret_access_key => ENV['S3_SECRET'] },
-                    :default_url => "/images/organizers/logotypes/:style/missing.png",
+                    
                     :styles => {  
                       :medium => "600x200", 
                       :small => "270x90"}
                                     
-                                      
+  # :default_url => "/images/organizers/logotypes/:style/missing.png",                                    
 
   
   has_attached_file :photo,      
@@ -179,8 +174,9 @@ class Organizer < ActiveRecord::Base
   end
   
   def may_recruit? user
-    return true if user.blank?
-    return true if (!self.users.include? user) && (!self.petition_users.include? user)
+    # **** TODO ****
+    # return true if user.blank?
+    # return true if (!self.users.include? user) && (!self.petition_users.include? user)
     false
   end
   

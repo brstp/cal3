@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.11'
+gem 'rails', '3.1.3'
 
 
 # Use unicorn as the web server
@@ -26,14 +26,13 @@ gem 'rails', '3.0.11'
 
 #gem 'capistrano'                  #deploy
 
-gem 'devise',           '~> 1.2.0'  #authentication
-gem 'devise_invitable', '~> 0.4.0'
+gem 'devise',           '~> 1.4.1'  #authentication
+gem 'devise_invitable', '~> 0.5.4'
 gem 'formtastic'                    #forms
 gem "validation_reflection"         #validation of mandatory attributes
 gem 'validates_timeliness'          #validate time/datetime
 gem "mocha", :group => :test
-gem 'sunspot_rails' #, '1.2.rc4'    #api classes for solr
-gem 'jquery-rails'                  #instead of prototype (javascript)
+gem 'sunspot_rails', '1.2.1' #'1.2.rc4'    #api classes for solr
 gem 'mail_form'                     #needed? used? TODO
 gem 'timeliness'
 gem "geocoder"                      #server side geo coding
@@ -49,11 +48,24 @@ gem 'aws-s3'                        #API towards Amazon Web Services
 gem 'will_paginate' , "3.0.pre2"     #well, to paginate
 gem 'friendly_id', "~> 4.0.0"       # slugs, to make friendly urls
 
+
+# Gems used only for assets and not required
+# in production environments by default.
+group :assets do
+  gem 'sass-rails'
+  gem 'coffee-rails'
+  gem 'uglifier'
+end
+
+gem 'jquery-rails'
+
+
 group :development, :test do
   gem 'sqlite3-ruby', :require => 'sqlite3'
   gem "nifty-generators"
   gem 'heroku'
   gem 'taps'
+#  gem 'sunspot_solr'
 end
 
 group :production do

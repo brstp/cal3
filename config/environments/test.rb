@@ -36,4 +36,12 @@ Cal3::Application.configure do
   config.action_mailer.default_url_options = { :host => '127.0.0.1:3000' }
   #config.git_branch = File.read '.git/ORIG_HEAD'
 
+  # Configure static asset server for tests with Cache-Control for performance
+  config.serve_static_assets = true
+  config.static_cache_control = "public, max-age=3600"
+
+  # This config option was shown in the episode but is actually not used, so don't bother adding it.
+  config.assets.allow_debugging = true
+  
+  
   end

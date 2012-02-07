@@ -8,3 +8,4 @@ solr/data
 sunspot-solr.pid
 log
 public/system
+.sass-cache/

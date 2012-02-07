@@ -9,31 +9,20 @@
 
   <%= stylesheet_link_tag "blog_css_reset", :media => :all %>
   <%= stylesheet_link_tag "blog_css_960", :media => :all %>
-  <%= stylesheet_link_tag "blog_style" %>
-
-	<!--[if IE 7]>
-		<link rel="stylesheet" type="text/css" media="all" href="/public/stylesheets/blog_ie7.css" />
-	<![endif]-->
-
-	<!--[if IE 6]>
-		<link rel="stylesheet" type="text/css" media="all" href="/public/stylesheets/blog_ie6.css" />
-		<script type="text/javascript" src="/public/stylesheets/blog/includes/js/pngfix.js"></script>
-		<script type="text/javascript" src="http://info.allom.se/wp-content/themes/bloggingstream/includes/js/menu.js"></script>
-	<![endif]-->
-  
+  <%= stylesheet_link_tag "blog_style" %>  
   <%= stylesheet_link_tag "blog_styles_default", :media => :all %>
   <%= stylesheet_link_tag "blog_custom", :media => :all %>
   <%= stylesheet_link_tag 'calendar', :media => :all %>
   <%= stylesheet_link_tag 'wikipedia' %>
-
-    
-  <%= javascript_include_tag  %>
   <%= stylesheet_link_tag  "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.4/themes/smoothness/jquery-ui.css" %>
-  <%= javascript_include_tag "jquery.js", "jquery-ui.js", "jquery.rails.js", "jquery.ui.datepicker-sv.js", "jquery.googlemaps1.01.js", "jquery-ui-1.8.1.custom.min.js",  "application" %>
-  <script src="http://maps.google.com/maps/api/js?sensor=false&amp;region=SE&amp;language=sv" type="text/javascript"></script>
+  <script src="http://maps.google.com/maps/api/js?sensor=false&amp;region=SE&amp;language=sv" type="text/javascript"></script>  
+    
+    
+  <%= javascript_include_tag "application" %>
+  
   <meta name="google-site-verification" content="TADUOWffa3kU7lYWEuPmo9YrL72sQsoxypI0ffHQOTY" />
   <%= favicon_link_tag "favicon.png" %>
-  <link rel="apple-touch-icon" href="/images/Allom_57x57_2.png" />
+  <link rel="apple-touch-icon" href="<%= asset_path 'Allom_57x57_2.png' %>" />
   
   
   <%= csrf_meta_tag %>

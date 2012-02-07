@@ -1,5 +1,5 @@
 class Category < ActiveRecord::Base
-  include ActionView::Helpers::RawOutputHelper
+  #include ActionView::Helpers::RawOutputHelper
   validates_presence_of :name
   validates_uniqueness_of :name
   has_many :events
@@ -87,7 +87,7 @@ class Category < ActiveRecord::Base
       end
       out << "</ol>\n</li>\n"
     end
-    raw out
+    out #raw out
   end
 
 
@@ -99,7 +99,7 @@ class Category < ActiveRecord::Base
         out += child.tree_to_list.to_s
       end
       out += "</ol>"
-      raw out
+      out # raw out
     end
 
   end
