@@ -88,6 +88,7 @@ GEM
     mocha (0.10.3)
       metaclass (~> 0.0.1)
     multi_json (1.0.4)
+    mysql (2.8.1-x86-mingw32)
     nifty-generators (0.4.6)
     nokogiri (1.5.0-x86-mingw32)
     orm_adapter (0.0.6)
@@ -198,6 +199,7 @@ DEPENDENCIES
   mail_form
   meta-tags
   mocha
+  mysql
   nifty-generators
   nokogiri
   paperclip (= 2.3.16)
