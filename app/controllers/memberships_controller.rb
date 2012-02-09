@@ -55,7 +55,6 @@ class MembershipsController < ApplicationController
   protected
 
   def is_admin?
-    logger.info "------------- is_admin? --------------"
     unless current_user.is_admin?
       flash[:alert] = t 'devise.failure.not_admin'
       if request.env["HTTP_REFERER"].blank?
@@ -67,9 +66,7 @@ class MembershipsController < ApplicationController
   end
 
   def is_organizer_but_not_mine?
-    logger.info "------------- is_organizer_but_not_mine? --------------"
     @membership = Membership.find(params[:id])
-    logger.info @membership.organizer.users
     return if current_user.is_admin?
 
     unless @membership.organizer.users.include? current_user

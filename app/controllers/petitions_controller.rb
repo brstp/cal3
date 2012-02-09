@@ -87,7 +87,6 @@ protected
 
   def is_organizer?
     @petition = Petition.find(params[:id])
-    logger.info @petition.organizer.users
     unless (@petition.organizer.users.include? current_user) || current_user.is_admin?
       flash[:alert] = t('devise.failure.not_organizer')
       if request.env["HTTP_REFERER"].blank?

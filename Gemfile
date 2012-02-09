@@ -32,7 +32,7 @@ gem 'formtastic'                    #forms
 gem "validation_reflection"         #validation of mandatory attributes
 gem 'validates_timeliness'          #validate time/datetime
 gem "mocha", :group => :test
-gem 'sunspot_rails', '1.2.1' #'1.2.rc4'    #api classes for solr
+gem 'sunspot_rails' #, '1.2.1' #'1.2.rc4'    #api classes for solr
 gem 'mail_form'                     #needed? used? TODO
 gem 'timeliness'
 gem "geocoder"                      #server side geo coding
@@ -65,7 +65,7 @@ group :development, :test do
   gem "nifty-generators"
   gem 'heroku'
   gem 'taps'
-#  gem 'sunspot_solr'
+  gem 'sunspot_solr'
 end
 
 group :production do
