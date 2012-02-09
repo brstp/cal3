@@ -49,6 +49,8 @@ gem 'aws-s3'                        #API towards Amazon Web Services
 gem 'friendly_id', "~> 4.0.0"       # slugs, to make friendly urls
 gem 'pg'
 # gem 'mysql'
+gem 'kaminari'          # pagination
+gem "sunspot_with_kaminari" #, '~> 0.1'
 
 # Gems used only for assets and not required
 # in production environments by default.

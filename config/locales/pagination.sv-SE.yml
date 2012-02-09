@@ -1,0 +1,7 @@
+sv-SE:
+  views:
+    pagination:
+      first: "Första"
+      next: "Nästa"
+      previous: "Förra"
+      last: "Sista"
