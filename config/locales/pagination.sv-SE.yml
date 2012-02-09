@@ -3,5 +3,6 @@ sv-SE:
     pagination:
       first: "Första"
       next: "Nästa"
+      truncate: "..."
       previous: "Förra"
       last: "Sista"
