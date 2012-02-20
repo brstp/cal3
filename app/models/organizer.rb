@@ -1,6 +1,7 @@
 # encoding: UTF-8
 class Organizer < ActiveRecord::Base
   include ActionView::Helpers::UrlHelper
+  #include ActionView::Helpers::AssetTagHelper
   #include ActionView::Helpers::RawOutputHelper
 
   has_many  :events,
@@ -43,7 +44,7 @@ class Organizer < ActiveRecord::Base
                     :s3_credentials => {
                       :access_key_id => ENV['S3_KEY'],
                       :secret_access_key => ENV['S3_SECRET'] },
-                    
+                    :default_url => "missing-organizer-logotype.pngs", 
                     :styles => {  
                       :medium => "600x200", 
                       :small => "270x90"}
@@ -57,7 +58,7 @@ class Organizer < ActiveRecord::Base
                     :s3_credentials => {
                       :access_key_id => ENV['S3_KEY'],
                       :secret_access_key => ENV['S3_SECRET']},
-                    :default_url => "/images/organizers/photos/:style/missing.jpg", 
+                    :default_url => "missing-organizer.jpg", 
                     :styles => {  
                       :medium => "360x240#" 
                                 }
@@ -67,7 +68,8 @@ class Organizer < ActiveRecord::Base
 #    text :intro
 #    text :description
 #  end
-  
+ 
+ 
   def to_s
     self.name
   end

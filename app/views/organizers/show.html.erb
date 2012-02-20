@@ -15,7 +15,7 @@
 
 <% else %>
   <%= open_graph_properties @organizer.name, 
-                            "#{request.protocol}#{request.host_with_port}#{asset_path("evenemang-allom-evenemangskalendern.png")}}", 
+                            "#{request.protocol}#{request.host_with_port}#{image_path("evenemang-allom-evenemangskalendern.png")}}", 
                             organizer_path(@organizer, 
                             :only_path => false)  %>
 

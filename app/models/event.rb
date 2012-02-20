@@ -1,5 +1,7 @@
 # encoding: UTF-8
 class Event < ActiveRecord::Base
+  include ActionView::Helpers::AssetTagHelper
+
 
   #TODO: Move default start/stop dates/times to inializers
   #TODO: Check if use of 'self' is ok
@@ -75,7 +77,7 @@ class Event < ActiveRecord::Base
         :access_key_id => ENV['S3_KEY'],
         :secret_access_key => ENV['S3_SECRET']
                          },
-      :default_url => "/images/events/image1s/:style/missing.jpg",
+      :default_url => "missing-event.jpg",
       :styles => {:medium => "360x240#",
                   :small => "176x117#"}
 
@@ -86,7 +88,7 @@ class Event < ActiveRecord::Base
         :access_key_id => ENV['S3_KEY'],
         :secret_access_key => ENV['S3_SECRET']
                          },
-      :default_url => "/images/events/image2s/:style/missing.jpg",
+      :default_url => "missing-event.jpg",
       :styles => {:medium => "360x240#",
                   :small => "176x117#"}
 
@@ -97,7 +99,7 @@ class Event < ActiveRecord::Base
         :access_key_id => ENV['S3_KEY'],
         :secret_access_key => ENV['S3_SECRET']
                           },
-      :default_url => "/images/events/image3s/:style/missing.jpg",
+      :default_url => "missing-event.jpg",
       :styles => {:medium => "360x240#",
                   :small => "176x117#"}
 

@@ -48,7 +48,7 @@ gem 'aws-s3'                        #API towards Amazon Web Services
 #gem 'will_paginate' , "3.0.pre2"     #well, to paginate
 gem 'friendly_id', "~> 4.0.0"       # slugs, to make friendly urls
 gem 'pg'
-# gem 'mysql'
+#gem 'mysql'
 gem 'kaminari'          # pagination
 gem "sunspot_with_kaminari" #, '~> 0.1'
 
