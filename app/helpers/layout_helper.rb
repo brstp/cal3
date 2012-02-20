@@ -461,6 +461,10 @@ google.maps.event.addDomListener(window, 'load', initialize);
     logger.info events.count
     logger.info "************* events.counts ******"
     
+    
+    logger.info events.first.start_datetime
+    logger.info "************* events.first.start_datetime ******"
+    
     current_month = events.first.start_datetime.beginning_of_month
     
     logger.info events.first.start_datetime
