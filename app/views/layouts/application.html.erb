@@ -73,7 +73,7 @@
       <%= current_user.email %>
       <%= raw %(<abbr title="#{t'.is_admin'}">*</abbr>) if current_user.is_admin? %>
       <br /><%= t 'devise.sessions.not_you' %> <%= link_to I18n.t('devise.sessions.sign_out'), destroy_user_session_path %><br />
-      <%= link_to (t 'devise.sessions.change_settings'), edit_user_path(current_user) %>
+      <%= link_to (t 'devise.sessions.change_settings'), current_user %>
       </div><!-- /user_account -->
     <% else %>
       <div id="user_form">

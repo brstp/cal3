@@ -6,7 +6,7 @@
 
 <% if current_user %>
   <% if (@user == current_user) || current_user.is_admin? %>
-    <%= button_to(  t('app.edit'), 
+    <%= button_to(  "Ändra användarkontot eller byt lösenord", 
                     edit_user_path(@user), 
                     :method => :get) %>
     <%# button_to(  t('app.destroy'), 
@@ -34,24 +34,11 @@ Bilden (avataren) kommer finns på Gravatar. <%= link_to("Lägg upp en bild av d
   <%= @user.email %>
 </p>
 
-<p>
-  <strong><%= t '.is_admin_for' %>:</strong>
-</p>
-<% unless @user.organizers.blank? %>
-<ul>  
-  <% for organizer in @user.organizers %>  
-  <li><%= link_to organizer.name,  organizer %></li>  
-  <% end %>  
-</ul>  
-<%else%>
-  <p>Är inte medlem hos någon arrangör.</p>
-<%end%>
-
 
 
 <% unless @user.petitions.blank? %>
 <p>
-  <strong><%= t '.applications' %>:</strong>
+  <h3><%= t '.applications' %>:</h3>
 </p>
 <ul>  
   <% for organizer in @user.petition_organizers %>  
@@ -61,6 +48,42 @@ Bilden (avataren) kommer finns på Gravatar. <%= link_to("Lägg upp en bild av d
 <%end%>
 
 
+<% unless @user.organizers.blank? %>
+  <h3>Arrangörssidor och evenemangsannonser som du är administratör för</h3>  
+  <% reset_cycle %>
+  
+  <table class ="general" >
+    <thead>
+      <tr>
+        <th>Arrangörssida</th>
+        <th>Evenemangsannons</th>
+        <th>Visningar</th>
+        <th width="13%">Skapad</th>
+        <th width="13%">Startdatum</th>
+        <th>Genomförd</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for organizer in @user.organizers %>
+          <% if organizer.events.blank? %>
+            <tr class = "<%= cycle("even", "odd") %>"><td><%= link_to organizer.name, organizer %></td><td></td><td></td><td></td><td></td><td></td></tr>        
+          <% end %>
+        <% for event in organizer.events %>
+          <tr class = "<%= cycle("even", "odd") %>">
+            <td><%= link_to organizer.name, organizer %></td>
+            <td><%= link_to event.subject, event %></td>
+            <td><%= event.counter %></td>
+            <td><%= l event.created_at, :format => :date %></td>
+            <td><%= l event.start_datetime, :format => :date %></td>
+            <td><%= "x" if (event.stop_datetime < Time.now) %>  </td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+  
+  <% reset_cycle %>
+<% end %>
 <% if current_user.is_admin? %>
 <hr />
 <h3>För systemadminstratörer:</h3>

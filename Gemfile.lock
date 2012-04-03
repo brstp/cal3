@@ -59,6 +59,7 @@ GEM
     escape (0.0.4)
     execjs (1.3.0)
       multi_json (~> 1.0)
+    fattr (2.2.1)
     formtastic (2.0.2)
       rails (~> 3.0)
     friendly_id (4.0.0)
@@ -68,6 +69,7 @@ GEM
       rest-client (~> 1.6.1)
       rubyzip
       term-ansicolor (~> 1.0.5)
+    highline (1.6.11)
     hike (1.2.1)
     i18n (0.6.0)
     icalendar (1.1.6)
@@ -95,6 +97,8 @@ GEM
     multi_json (1.1.0)
     nifty-generators (0.4.6)
     nokogiri (1.5.0-x86-mingw32)
+    options (2.3.0)
+      fattr
     orm_adapter (0.0.6)
     paperclip (2.3.16)
       activerecord (>= 2.3.0)
@@ -104,6 +108,9 @@ GEM
     pg (0.13.1-x86-mingw32)
     polyglot (0.3.3)
     pr_geohash (1.0.0)
+    progress_bar (0.4.0)
+      highline (~> 1.6.1)
+      options (~> 2.3.0)
     rack (1.3.6)
     rack-cache (1.1)
       rack (>= 0.4)
@@ -212,6 +219,7 @@ DEPENDENCIES
   nokogiri
   paperclip (= 2.3.16)
   pg
+  progress_bar
   rails (= 3.1.3)
   sass-rails
   sqlite3-ruby
