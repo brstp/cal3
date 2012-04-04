@@ -51,5 +51,7 @@ sv-SE:
       new:
         forgot_your_password: "Glömt lösenordet?"
         mail_me: "Skicka via mejl"
+      edit:
+        change_password: "Ändra lösenordet"
     sessions:
       not_you: "Inte du?"

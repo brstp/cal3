@@ -22,8 +22,7 @@ rake db:migrate
 #rails plugin install git://github.com/wtn/csv_records.git
 
 . ../cal3-credentials.sh    # sourca credentials till Amazon S3 i env variables (vill inte ha dem i kodträdet)
-rake sunspot:solr:run         # Starta sökmotorn på windows. Script under ruby/.../gems/... patchat för rätt "escape-tecken" för Windows
-rake sunspot:solr:start      # Starta sökmotorn på *ix
+bundle exec rake sunspot:solr:start # or sunspot:solr:run to start in foreground         # Starta sökmotorn på windows. Script under ruby/.../gems/... patchat för rätt "escape-tecken" för Windows
 rake sunspot:reindex          # Indexera om
 rake import:municipalities    # Importera kommuner med data från csv-fil. Källa: SCB. Manuellt redigerad för korrekta namn för de kommuner som heter "stad" och för korrekta gentiv-s.
 

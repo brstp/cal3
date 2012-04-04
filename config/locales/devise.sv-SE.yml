@@ -1,6 +1,7 @@
 sv-SE:
   devise:
     failure:
+      already_authenticated: 'Du var redan inloggad. Gör inget. Fortsätt som vanligt.'
       unauthenticated: 'Välkommen. Logga in för att fortsätta. Har du inget användarkonto? Då registrerar du ett snabbt.'
       unconfirmed: 'Du måste bekräfta ditt konto innan du kan fortsätta.'
       locked: 'Ditt konto är låst.'
