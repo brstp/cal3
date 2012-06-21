@@ -1,0 +1,10 @@
+= form_for @dummy do |f|
+  -if @dummy.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@dummy.errors.count, "error")} prohibited this dummy from being saved:"
+      %ul
+        - @dummy.errors.full_messages.each do |msg|
+          %li= msg
+
+  .actions
+    = f.submit 'Save'

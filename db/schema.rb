@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120404084921) do
+ActiveRecord::Schema.define(:version => 20120619161126) do
 
   create_table "bup_users", :force => true do |t|
     t.string    "email"
@@ -51,6 +51,11 @@ ActiveRecord::Schema.define(:version => 20120404084921) do
   end
 
   add_index "categories", ["ancestry"], :name => "index_categories_on_ancestry"
+
+  create_table "dummies", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "events", :force => true do |t|
     t.string    "subject"

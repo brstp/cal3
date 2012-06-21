@@ -2,7 +2,7 @@
 module OrganizersHelper
 
 
-def promote_organizer organizer
+  def promote_organizer organizer
     str = %(
               <div class = "box" id = "promote_organizer">
               <span class="heading">#{ t('.promote') }<br /> #{organizer.name}:</span>
@@ -29,4 +29,117 @@ def promote_organizer organizer
                     )
     raw str
   end
+
+  
+  def organizer_meta
+    
+    unless @organizer.logotype.blank?
+      organizer_logo =  @organizer.logotype.url(:medium)
+    else
+      organizer_logo = request.protocol + request.host_with_port + image_path("evenemang-allom-evenemangskalendern.png") 
+    end  
+    
+    set_meta_tags( 
+      :title => @organizer.name,
+      :description => "Kolla in  #{@organizer.s} alla evenemang. Du kan också annonsera på Allom. #{@organizer.intro}",
+      :canonical => "http://allom.se#{organizer_path(@organizer)}",
+      :open_graph => {
+        :title => @organizer.name,
+        :type  => :activity,
+        :url   => "http://allom.se#{organizer_path(@organizer)}" ,
+        :image => organizer_logo,
+        :site_name => "Allom - evenemangskalendern",
+        }
+      )
+      
+    content_for :head do  
+      (raw "<link rel=\"image_src\" href=\"#{organizer_logo}\" />") + "\n" + auto_discovery_link_tag( :rss, organizer_url(:format => 'rss') , {:title => "#{@organizer.s} evenemang på Allom - evenemangskalendern."})
+    end
+       
+  end
+  
+
+  def aside_calendar organizer
+    
+    events = organizer.upcoming_events
+    str = ""
+    unless events.blank?
+      
+      str << %(
+                <table class='mini_calendar'>
+                <caption>
+                  #{organizer.s} kommande evenemang
+                </caption>
+                <tbody>
+            )
+      
+      for event in events      
+        str << %(
+                    <tr itemscope itemtype="http://schema.org/Event">
+                      <td>
+                        <a class='inline_div' href='#{event_path event}' title='#{event.intro}'>
+                          <div class='calendar_day'>
+                            <div class='weekday'>#{l(event.start_datetime, :format => :abbr_day_of_week)}</div>
+                            <div class='day_of_month'>#{l(event.start_datetime, :format => :day_of_month)}</div>
+                            <div class='month'>#{l(event.start_datetime, :format => :abbr_month_of_year)}</div>
+                          </div>
+                        </a>
+                      </td>
+                      <td>
+                        <a href='#{event_path event}' title='#{event.intro}' itemprop='url'><span itemprop="name">#{event.subject}</span> #{l(event.start_datetime, :format => :time)}, #{event.municipality_short}</a>
+                        <meta itemprop="startDate" content="#{l(event.start_datetime, :format => :machine)}">
+                        <meta itemprop="description" content="#{event.intro}}">
+                        <span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                          <meta itemprop="addressLocality" content="#{event.municipality}}">
+                        </span>
+                      </td>
+                    </tr>
+                )
+      end
+              
+      str << %(
+                </table>
+                <p class = "event_type">#{link_to "#{organizer.s} alla kommande evenemang (#{organizer.number_of_upcoming_events})", events_path(:organizer_id => organizer.id) }</p>
+              )
+    
+    else
+      str << %(Just nu har #{organizer.name} inte några evenemang inplanerade.)
+    end
+    
+    unless organizer.past_events.blank?
+      str << %(
+              <p class = "event_type">#{link_to "#{organizer.s} alla tidigare evenemang (#{organizer.number_of_past_events})", events_path(:organizer_id => organizer.id, :stop => :past) }</p>
+              )
+    end
+
+  
+    raw str
+  end
+                
+  def footer organizer
+    
+    str = %(Arrangörssidan skapad #{l organizer.created_at })
+    if current_user
+      if (current_user.authorized? organizer) || current_user.is_admin?
+        str << %( #{organizer.created_by}.)
+        unless organizer.last_googleboted.blank?
+          str << %( Senast besökt #{l(@organizer.last_googleboted)} av Google sökmotorrobot.)
+        end
+      end
+    end
+    
+    unless organizer.created_at == @organizer.updated_at || @organizer.updated_by_user_id.nil?
+      str << %( Uppdaterad #{l organizer.updated_at})
+      if current_user
+        if (current_user.authorized? organizer) || current_user.is_admin?
+          str << %( #{organizer.updated_by})
+        end
+      end
+      str << %(. )
+    end
+     
+    str << %( Sidans texter & bilder är licensierade av arrangören under Creative Commons Erkännande-DelaLika 2.5 Sverige Licens, CC (BY-SA).)
+    str
+  end
+  
 end

@@ -4,6 +4,7 @@ sv-SE:
       default: "%Y-%m-%d %H.%M"                 # 2011-05-27 13.25
       month_and_year: "%B %Y"
       day_of_week: "%A"
+      abbr_day_of_week: "%a"
       date: "%Y-%m-%d"                          # 2011-05-24
       day_of_month: "%e"
       clock: "Kl. %H.%M"                        # Kl. 13.45
@@ -15,6 +16,7 @@ sv-SE:
       time: "%H.%M"                             # 13.45
       mini: "%e %B %Y"                          # 3 december 2011
       day: "%e %b"                              #
+      abbr_month_of_year: "%b"
       icalendar: "%Y%m%dT%H%M00"
     am: ""
     pm: ""

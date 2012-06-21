@@ -1,0 +1,61 @@
+%content.content{:itemscope => true, :itemtype => "http://schema.org/Organization"}
+  %article.article{:role => "main"}
+    %header
+      %p.category Arrangör:
+      %h1{:itemprop => :name}= @organizer.name
+
+      .header_image_container
+        = image_tag(  @organizer.photo.url(:medium), 
+                      :title => @organizer.photo_caption, 
+                      :alt => @organizer.photo_caption)
+        //= image_tag( "http://s3.amazonaws.com/static.allom.se/app/public/system/photos/120/medium/Sn%C3%A5rpan%20(2).JPG?1333011913", :width => "100%", :class => "header_image")
+        - unless @organizer.photo_file_name.blank? || @organizer.photo_caption.blank?
+          .image_text
+            = link_to_unless    (@organizer.photo_url.blank? || @organizer.photo_file_name.blank?),
+                                @organizer.photo_caption,
+                                @organizer.photo_url, 
+                                :rel => :nofollow
+    %h3{:itemprop => :description}= @organizer.intro
+    = simple_format @organizer.description 
+   
+    %h3= "Var är #{@organizer.name} aktiv?"
+    #map_view
+    .two_cols
+      .two_cols1      
+        = image_tag "red-marker.png"
+        %p.minor Kommande evenemang.
+      .two_cols1      
+        = image_tag "red-marker.png"
+        %p.minor Redan genomförda evenemang.
+
+
+    %footer.event_organizer{:role => "complementary"}
+      %h3#article_footer Kontaktinfo
+      %ul
+        - unless @organizer.email.blank?
+          %li
+            = link_to raw("Mejla <span itemprop=\"email\">#{@organizer.email}\</span>"), "tel:#{@organizer.phone}"
+        - unless @organizer.phone.blank?
+          %li
+            = link_to raw("Ring <span itemprop=\"telephone\">#{@organizer.phone}\</span>"), "tel:#{@organizer.phone}" 
+        - unless @organizer.website.blank?
+          %li
+            = link_to_unless @organizer.events.blank?, @organizer.website, @organizer.website, :itemprop => :url
+            
+      %p.minor 
+        = footer @organizer
+      %nav.event_admin
+        %h3#article_nav 
+          Jobbar du för 
+          = @organizer.name + '?'
+        %ul
+          %li
+            = link_to "Ändra arrangörssidan", edit_organizer_path 
+          %li
+            = link_to "Ansök om att bli administratör", new_petition_path( :organizer_id => @organizer.id )
+          //%li
+          //  = link_to "Marknadsför arrangören"
+            
+  %aside{:role => "complementary"}
+    = render 'aside'
+= organizer_meta

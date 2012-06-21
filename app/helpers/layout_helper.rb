@@ -13,6 +13,24 @@ module LayoutHelper
     content_for(:head) { javascript_include_tag(*args) }
   end
   
+  
+  def share_me 
+    str = %(
+            <div class='social_box' id='facebook'>
+              <div class='fb-like' data-href=#{url_for(:only_path => false)} data-send='false' data-show-faces='true' data-width='230'></div>
+            </div>
+            <div class='social_box' id='twitter'>
+              <a class='twitter-share-button' data-lang='sv' data-size='large' data-via='allom_se' href='https://twitter.com/share'>Tweeta</a>
+            </div>
+            <div class='social_box' id='plusone'>
+              <div class='g-plusone' data-annotation='inline' data-href=#{url_for(:only_path => false)} data-size='tall' data-width='260'></div>
+            </div>
+            <div class='social_box' id='email'>
+              #{link_to image_tag("email-button.png", :alt => "Tipsa en vän om det här evenemanget med ett mejl.", :title => "Tipsa en vän om det här evenemanget med ett mejl." ), ""} 
+            </div>
+    )
+    raw str
+  end
 
   def user_message organizer, user
     if false && (! organizer.users.include? user)  && (organizer.memberships.find_by_prospect_user_id(user.id))

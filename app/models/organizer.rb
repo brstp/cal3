@@ -156,7 +156,9 @@ class Organizer < ActiveRecord::Base
     end
   end
 
+
   
+
   def ical
     c = Icalendar::Calendar.new
     #TODO Better way to point out url with helper (uid/url)
@@ -193,6 +195,10 @@ class Organizer < ActiveRecord::Base
 
   def number_of_upcoming_events
     self.events.find(:all, :conditions => ["stop_datetime >= '#{Time.now}'"]).count
+  end
+
+  def number_of_past_events
+    self.events.find(:all, :conditions => ["stop_datetime < '#{Time.now}'"]).count
   end
   
   def next_event

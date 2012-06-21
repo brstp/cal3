@@ -53,23 +53,29 @@ gem 'kaminari'          # pagination
 gem "sunspot_with_kaminari" #, '~> 0.1'
 
 gem 'progress_bar'
+gem 'jquery-rails'
+gem 'haml'
+gem 'haml-rails'
+gem 'html5-rails'
+
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
+  gem 'sass-rails' #,   '~> 3.2.3'
+  gem 'compass', '0.12.alpha.4'
+  gem 'compass-h5bp'
 end
 
-gem 'jquery-rails'
 
 group :development, :test do
   gem 'sqlite3-ruby', :require => 'sqlite3'
   gem "nifty-generators"
   gem 'heroku'
   gem 'taps'
-  gem 'sunspot_solr'
+  gem 'sunspot_solr', '1.3.0'
 end
 
 group :production do

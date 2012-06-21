@@ -1,7 +1,8 @@
 ﻿//= require jquery
 //= require jquery_ujs
+//= require h5bp
 //= require_self
-//= require_tree .
+
 
 
 // Place your application-specific JavaScript functions and classes here

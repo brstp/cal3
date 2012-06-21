@@ -2,6 +2,8 @@ Cal3::Application.routes.draw do
 
 
   
+  resources :dummies
+
   get "sitemap/index"
 
   get "site_map/index"

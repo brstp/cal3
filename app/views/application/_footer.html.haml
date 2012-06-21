@@ -1,0 +1,14 @@
+.content_container
+  %footer.footer{:role => "contentinfo"}
+    #login
+      = form_tag
+      = text_field_tag :user, "din mejladress"
+      = text_field_tag :passwd, "ditt lösenord"
+      = submit_tag "Logga in" 
+      %br
+        = link_to "Glömt lösenord?" 
+        = link_to "Registrera kostnadsfritt konto."
+    .abuse
+      = link_to "Anmäl/felanmäl sidan.", ""
+    .owner
+      = link_to "Allom © Kalenderbolaget i Sverige AB.", ""
