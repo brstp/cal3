@@ -673,6 +673,11 @@ p.minor {
   
 }
 
+p.article_meta {
+  @include font-size(10);
+  margin-bottom: 1em;
+  color: $grey;
+}
 
 // 11C SEARCH ===========================================
 
@@ -830,6 +835,17 @@ p.minor {
   bottom: 0;
   right: 0;
 }
+
+
+// 11E User message
+
+.user_message{
+  margin: 1em 0 1em 0;
+  padding: 0.25em 0.5em 0.25em 0.5em;
+  @include background(linear-gradient(color-stops($light_admin,  $dark_admin, $dark_admin )));  
+  @include border-radius;
+}
+
 
 // 12 ASIDE / COMPLEMENTARY ==============================
 

@@ -1,6 +1,16 @@
 %content.content{:itemscope => true, :itemtype => "http://schema.org/Organization"}
   %article.article{:role => "main"}
     %header
+    
+      - if params[:recruit]
+        .user_message
+          %p
+            = "Jobbar du för #{@organizer.name}?"
+          %p
+            = link_to "Ansök om att bli administratör för den här sidan.", new_petition_path( :organizer_id => @organizer.id )
+      
+      = admin_message
+      
       %p.category Arrangör:
       %h1{:itemprop => :name}= @organizer.name
 
@@ -42,7 +52,7 @@
           %li
             = link_to_unless @organizer.events.blank?, @organizer.website, @organizer.website, :itemprop => :url
             
-      %p.minor 
+      %p.article_meta
         = footer @organizer
       %nav.event_admin
         %h3#article_nav 

@@ -1,4 +1,5 @@
-= image_tag @organizer.logotype.url(:medium), :width => "100%", :id => "organizer_logotype", :alt => "#{@organizer.s} logotyp", :title => "#{@organizer.s} logotyp", :itemprop => :image
+- unless @organizer.logotype_file_name.blank?
+  = image_tag @organizer.logotype.url(:medium), :width => "100%", :id => "organizer_logotype", :alt => "#{@organizer.s} logotyp", :title => "#{@organizer.s} logotyp", :itemprop => :image
 %h3.aside_top 
   Tipsa om 
   = @organizer.name + "!"

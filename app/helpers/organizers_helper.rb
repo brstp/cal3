@@ -30,6 +30,137 @@ module OrganizersHelper
     raw str
   end
 
+
+  def admin_message  
+    if current_user
+      if (@organizer.users.include? current_user) || current_user.is_admin? || (@organizer.petition_users.include? current_user)
+        str = ""
+        str << %(
+                  <div class = "user_message">
+                    <h2>Administration av #{@organizer.s} arrangörssida</h3>
+                )
+
+        if current_user.is_admin?
+          str << %(
+                    <p>Du är systemadministratör.</p>
+
+                    #{ 
+                      button_to(  
+                        "Radera arrangörssidan", 
+                        @organizer, 
+                        :confirm => "Är du säker att du vill radera arrangörssidan för #{@organizer.name}? Det kommer inte gå att återskapa den. Alla arrangörens evenemangsannonser kommer också att raderas.", 
+                        :method => :delete ) }
+                  )
+        end
+        
+        if @organizer.users.include? current_user
+           str << %(
+                      <p>Du är administratör för #{@organizer.name}.</p>
+                    )
+        end
+        unless @organizer.petition_users.blank?
+          str << %(
+                    <p>#{link_to "Du har ansökningar att bli administratör att behandla", :anchor => :admin}</p>
+                  )
+        end
+        str << %(
+                    <p>
+                      #{link_to "Lägg in ny evenemangsannons", new_event_path(:organizer_id => @organizer.id)}
+                    </p>
+                    #{ button_to(  "Ändra arrangörssidan",
+                      edit_organizer_path(@organizer), 
+                      :method => :get, 
+                      :class => :organizer_user)}    
+
+                    
+                  )
+        unless @organizer.petition_users.blank?
+          str << %(
+                    <h3>Användare som vill bli administratörer för #{@organizer.name}</h3>
+                    <table class = "general">
+                  )
+          for petition in @organizer.petitions
+            str << %(
+                      <tr>
+                        <td>#{ image_tag avatar_url(petition.user) }</td>
+                        <td>#{   
+                          if current_user.is_admin
+                            link_to petition.user , petition.user 
+                          else
+                            petition.user 
+                          end
+                            }</td>
+                        <td>#{ link_to"godkänn/avslå", edit_petition_path(petition) }</td>
+                      </tr>
+                    )            
+          end
+          
+                  
+          str << %(
+                    </table>
+                  )
+        else
+          str << %(
+                    <p>Inga ansökningar att bli administratör just nu.</p>
+                  )          
+        end
+        
+        str << %(                    
+                    <h3>Administratörer för #{@organizer.name}</h3>
+                      <table class = "general"> 
+                )  
+
+      for user in @organizer.users
+        str << %(
+            <tr>
+              <td>#{image_tag avatar_url(user)}<br /></td>
+              <td>
+              #{
+                if current_user.is_admin
+                  link_to user, user 
+                else
+                  user
+                end
+              }
+              </td>
+              <td>
+                #{
+                  unless user == current_user
+                    button_to "Ta bort" ,
+                    membership_path(Membership.find(:first, :conditions => ["organizer_id = ? and user_id = ?", @organizer.id, user.id])), 
+                    :confirm => "Är du säker på att du vill ta bort administratörsskapet för #{user.name} från #{@organizer.name}? ", 
+                    :method => :delete
+                  end
+                  }
+              </td>
+            </tr>
+                )
+      end 
+      str << %(
+                </table>
+                <h3>Bjud in någon att bli administratör</h3>
+                <p>Kopiera länken #{ link_to organizer_path( :only_path => false, :recruit => 1 ), organizer_path( :only_path => false, :recruit => 1 ) } och mejla till den som du vill dela ut behörighet till. Hen kan då göra en ansökan som du godkänner här på arrangörssidan.</p>
+
+              )
+  
+        if @organizer.petition_users.include? current_user 
+          str << %(
+                    <p>
+                      #{link_to( 
+                        "Du har ansökt om att bli administratör för #{@organizer.name}.",
+                        @organizer.petitions.find_by_user_id(current_user.id)
+                        )}
+                    </p>                  
+                  )
+        end
+        str << %(
+                  </div>
+                )
+        raw str
+      end
+    end
+  end # /admin_message
+
   
   def organizer_meta
     
