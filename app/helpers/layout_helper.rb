@@ -370,11 +370,10 @@ module LayoutHelper
     unless municipality.facts.blank?
       str = %(
           <div id="municipality_facts" class="box">
-           <span class="heading">Snabbfakta om #{municipality.name}</span>
             #{municipality.facts}
             <p class = "wikipedia-source"> 
-            Faktatext från #{link_to("Wikipedia", municipality.wikipedia_page, :rel => :nofollow)}.
-            Rättigheter enligt #{link_to("CC BY-SA 3.0", "http://creativecommons.org/licenses/by-sa/3.0/deed.sv", :rel => :nofollow)}. Faktabilder från #{link_to "Wikimedia", "http://commons.wikimedia.org/wiki/Main_Page", :rel => :nofollow}. Rättigheter: #{link_to("CC BY-SA 2.5", "http://creativecommons.org/licenses/by-sa/2.5/deed.sv", :rel => :nofollow)}. Senast hämtad: #{I18n.localize(municipality.facts_last_updated, :format => :default)}</p>
+            Faktatext från #{link_to("Wikipedia", municipality.wikipedia_page, :rel => :nofollow)}. Senast hämtad: #{I18n.localize(municipality.facts_last_updated, :format => :default)}
+            Rättigheter enligt #{link_to("CC BY-SA 3.0", "http://creativecommons.org/licenses/by-sa/3.0/deed.sv", :rel => :nofollow)}. Faktabilder från #{link_to "Wikimedia", "http://commons.wikimedia.org/wiki/Main_Page", :rel => :nofollow}. Rättigheter: #{link_to("CC BY-SA 2.5", "http://creativecommons.org/licenses/by-sa/2.5/deed.sv", :rel => :nofollow)}. </p>
             </div>
           )
       raw str

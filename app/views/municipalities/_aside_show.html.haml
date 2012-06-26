@@ -1,0 +1,23 @@
+%h3.aside_top 
+  Dela med dig av evenemang i #{@municipality.name}! 
+
+= share_me
+
+= local_organizers @organizers, @municipality
+
+= municipality_facts @municipality
+      
+%h3 Prenumerera
+.subscribe_container
+  .subscribe_icon
+    = link_to image_tag("rss-icon-32x32.png", :alt => "Flöde med alla evenemang.", :title => "Prenumerera på RSS-flöde med alla evenemang i #{@municipality.name} i din RSS-läsare eller visa evenemangen i din blogg."), :format => :rss, :only_path => false
+  .subscribe_text
+    =link_to "Alla evenemang i #{@municipality.name} som RSS-flöde."  , :format => :rss, :only_path => false
+
+- unless @municipality.upcoming_events.blank?
+  .subscribe_container  
+    %br
+    .subscribe_icon
+      = link_to image_tag("ical-icon-32x32.png", :alt => "Flöde med alla evenemang.", :title => "Prenumerera på RSS-flöde med alla evenemang #{@municipality.name} i din RSS-läsare eller visa evenemangen i din blogg."), :format => :ics, :only_path => false
+    .subscribe_text
+      = link_to "Spara nu inplanerade evenemang i #{@municipality.name} i din Outlook eller annan kalender.", municipality_url(:only_path => false, :format => :ics ), :title => "Spara nu inplanerade evenemang i #{@municipality.name} i din Outlook eller annan kalender."

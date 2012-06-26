@@ -1,0 +1,45 @@
+.content{:itemscope => true, :itemtype => "http://schema.org/Organization"}
+  %article.article{:role => "main"}
+    %header
+      = render "flashes"
+      %p.category Plats:
+      %h1{:itemprop => :name}= @municipality.name
+      = admin_municipality
+    #map_view
+    .two_cols
+      .two_cols1      
+        = image_tag "red-marker.png"
+        %p.minor Kommande evenemang.
+      .two_cols1      
+        = image_tag "red-marker.png"
+        %p.minor Redan genomförda evenemang.
+
+    - unless @events.blank?
+      %h6 Visar #{@events.count} av #{@municipality.upcoming_events.count} evenemang
+      %table.mini_calendar
+        %tbody
+          - for event in @municipality.upcoming_events
+            %tr
+              %td
+                <a class='inline_div' href='#{event_path event}' title='#{event.subject}. #{event.intro}'>
+                .calendar_day
+                  .weekday #{l(event.start_datetime, :format => :abbr_day_of_week)}
+                  .day_of_month #{l(event.start_datetime, :format => :day_of_month)}
+                  .month #{l(event.start_datetime, :format => :abbr_month_of_year)}
+                </a>
+              %td
+                = link_to (event.subject + ' (' + event.category.name + ') Kl. ' + l(event.start_datetime, :format => :time) + '. ' + event.organizer.name ) + '. ', event_path(event), :title => event.intro
+      %p 
+        = link_to "Visa alla inplanerade evenemang i #{@municipality.name}...", events_path,  :municipality_id => @municipality.id
+    - else
+      %p Just nu finns det inte några evenemang inplanerade i #{@municipality.name}. 
+    %p #{ link_to "Lägg in ett evenemang som sker i #{@municipality.name}...", new_event_path(:municipality_id => @municipality.id) }
+
+    - unless @municipality.past_events.blank?
+      %p
+        = link_to "Visa alla genomförda evenemang i #{@municipality.name}...", events_path(:municipality_id => @municipality.id, :start => :past)
+            
+  %aside{:role => "complementary"}
+    = render 'aside_show'
+
+=municipality_meta

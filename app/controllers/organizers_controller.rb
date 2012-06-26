@@ -13,7 +13,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
 
   def show
     @organizer = Organizer.find(params[:id])
-    @events = @organizer.upcoming_events # .paginate :page => params[:page]
+    @events = @organizer.upcoming_events #.paginate :page => params[:page], :per_page => 10
     @organizer.update_attribute(:last_googleboted, Time.now) if request.headers["user_agent"].include? "Googlebot"
     @membership = Membership.new
     respond_to do |format|

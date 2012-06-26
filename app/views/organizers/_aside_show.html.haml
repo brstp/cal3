@@ -19,6 +19,6 @@
   .subscribe_container  
     %br
     .subscribe_icon
-      = link_to image_tag("ical-icon-32x32.png", :alt => "Flöde med alla evenemang.", :title => "Prenumerera på RSS-flöde med #{@organizer.s} alla evenemang i din RSS-läsare eller visa evenemangen i din blogg."), :format => :rss, :only_path => false
+      = link_to image_tag("ical-icon-32x32.png", :alt => "Spara #{@organizer.s} nu inplanerade evenemang i din Outlook eller annan kalender.", :title => "Spara #{@organizer.s} nu inplanerade evenemang i din Outlook eller annan kalender."), :format => :ics, :only_path => false
     .subscribe_text
-      = link_to "Spara #{@organizer.s} nu inplanerade evenemang i Outlook eller annan kalender i din dator.", "organizer_url(:only_path => false, :format => :ics )"
+      = link_to "Spara #{@organizer.s} nu inplanerade evenemang i din Outlook eller annan kalender.",  organizer_url(:only_path => false, :format => :ics ), :title => "Spara #{@organizer.s} nu inplanerade evenemang i din Outlook eller annan kalender."

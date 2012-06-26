@@ -10,7 +10,7 @@ form.formtastic fieldset > ol > li { padding:0.5em 0; margin-bottom:0.5em; }
 
 /* LABELS
 --------------------------------------------------------------------------------------------------*/
-form.formtastic fieldset > ol > li label { display:block;  padding-top:.2em; font-weight: bold; }
+form.formtastic fieldset > ol > li label { display:block;  padding-top:.2em; font-weight: bold; width: 100%}
 
 
 /* INLINE HINTS
@@ -43,6 +43,12 @@ form.formtastic fieldset > ol > li.text textarea[cols] {  -webkit-box-sizing : b
 form.formtastic fieldset > ol > li.boolean label { padding-left:0; width:auto; }
 form.formtastic fieldset > ol > li.boolean label input {margin:0 0.5em 0 0.2em; vertical-align: 0; }
 
+
+form.formtastic fieldset > ol > li fieldset ol.fragments-group {
+  width: 100%;
+  padding: 2em 0 0 0;
+  
+}
 
 /*
 form.formtastic fieldset > ol > li fieldset ol.category-level-0  {
