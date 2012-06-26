@@ -1,0 +1,56 @@
+.content
+  %article{ :class => :article, :role => :main}
+    = semantic_form_for @organizer, :html => {:multipart => true, :novalidate => true} do |f| 
+      = f.error_messages
+      %p= t('.explain_mandatory')
+    
+      = f.inputs do   
+        = f.input :name
+        = f.input :intro
+        = f.input :description
+        = f.input :website
+        = f.input :phone
+        = f.input :email
+        
+        %hr 
+        - unless @organizer.logotype_file_name.blank?
+          <li class="string" id="organizer_existing_logotype">
+          <label for="organizer_existing_logotype">
+          = t '.existing_logotype'
+          </label>
+          = image_tag @organizer.logotype.url :medium, :width => "100%"
+          </li>
+          = f.input :logotype_delete, :as => :boolean
+          = f.input :logotype, :label => t('.replace_logotype')
+        - else
+          = f.input :logotype
+
+        %hr                
+        
+        -  unless @organizer.photo_file_name.blank? 
+          <li class="string" id="organizer_existing_photo">
+          <label for="organizer_existing_photo">
+          = t '.existing_photo' 
+          </label>
+          = image_tag @organizer.photo.url( :medium), :width => "100%"
+          </li>
+          = f.input :photo_delete, :as => :boolean
+          = f.input :photo, :label => t('.replace_image')
+        - else 
+          = f.input :photo
+          = f.input :photo_caption
+          = f.input :photo_url
+          
+        = f.input :users, :as => :hidden 
+        
+        <li class="string" id="organizer_disclaimer">
+        <label for="organizer_disclaimer">
+        Innan du sparar... 
+        </label>
+        <p class="inline-hints">
+        När du sparar arrangörssidan godkänner du <a href ="http://info.allom.se/legalt/" target = "_blank">Alloms allmänna villkor</a> (nytt fönster). Om du använder andras texter eller bilder i arrangörssidan måste du ha deras tillstånd. Du publicerar arrangörssidan med licensen <i>CC NC-SA 2.5 Sverige</i>.
+        </p>
+        </li>          
+        = f.actions do
+          = f.action :submit, :as => :button
+          = f.action :cancel, :as => :link, :label => "Avbryt, gå tillbaka"

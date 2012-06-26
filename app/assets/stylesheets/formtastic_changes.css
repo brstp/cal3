@@ -1,0 +1,54 @@
+
+/* FIELDSETS & LISTS
+--------------------------------------------------------------------------------------------------*/
+form.formtastic fieldset { overflow:auto; margin-top: 1.5em; margin-bottom: 3em; } /* clearing contained floats */
+
+/* INPUT LIs
+--------------------------------------------------------------------------------------------------*/
+form.formtastic fieldset > ol > li { padding:0.5em 0; margin-bottom:0.5em; } 
+
+
+/* LABELS
+--------------------------------------------------------------------------------------------------*/
+form.formtastic fieldset > ol > li label { display:block;  padding-top:.2em; font-weight: bold; }
+
+
+/* INLINE HINTS
+--------------------------------------------------------------------------------------------------*/
+form.formtastic fieldset > ol > li p.inline-hints { color:#666; margin: 0; }
+
+
+/* INLINE ERRORS
+--------------------------------------------------------------------------------------------------*/
+form.formtastic fieldset > ol > li p.inline-errors { color:#cc0000; margin:0; border: solid 2px red; padding: 0.25em;}
+
+
+/* STRING, NUMERIC, PASSWORD, EMAIL, URL, PHONE & SEARCH OVERRIDES
+--------------------------------------------------------------------------------------------------*/
+form.formtastic fieldset > ol > li.search input {  -webkit-box-sizing : border-box;
+  -moz-box-sizing : border-box; width:100%; }
+form.formtastic fieldset > ol > li.search input[size] {  -webkit-box-sizing : border-box;
+  -moz-box-sizing : border-box; width:100%; }
+
+
+/* TEXTAREA OVERRIDES
+--------------------------------------------------------------------------------------------------*/
+form.formtastic fieldset > ol > li.text textarea { -webkit-box-sizing : border-box; -moz-box-sizing : border-box; width:100%; margin-bottom: 1em; }
+form.formtastic fieldset > ol > li.text textarea[cols] {  -webkit-box-sizing : border-box; -moz-box-sizing : border-box; width:100%; } 
+
+
+
+/* BOOLEAN OVERRIDES
+--------------------------------------------------------------------------------------------------*/
+form.formtastic fieldset > ol > li.boolean label { padding-left:0; width:auto; }
+form.formtastic fieldset > ol > li.boolean label input {margin:0 0.5em 0 0.2em; vertical-align: 0; }
+
+
+/*
+form.formtastic fieldset > ol > li fieldset ol.category-level-0  {
+  float: left;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+*/
