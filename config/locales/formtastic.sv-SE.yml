@@ -19,13 +19,15 @@ sv-SE:
     hints:
       organizer:
         name: "Namnet på föreningen, företaget eller dig som arrangerar. Fem till femtio tecken långt."
-        intro: "En kort sammanfattande beskrivning om arrangören. Skriv gärna vad du/ni sysslar med, var ni finns (särskilt om det finns flera med samma namn). Kan vara en sammanfattning av beskrivningen längre ned på sidan."
+        intro: "Kort beskrivning om arrangören. Vad du/ni sysslar med, var ni finns."
         description: "En längre beskrivning av arrangören. Berätta vem du eller vilka ni är, var ni finns, vad ni gör, vem era evenemang vänder sig till."
         website: "Länk till arrangörens hemsida. När du sparar kontrollerar vi att adressen finns och funkar."
-        logotype: "En bild eller symbol som representerar arrangören. Används som en logotyp. Lämplig storlek är bredd 600 x höjd 200 pixlar. Välj en bild som inte innehåller allt för mycket detaljer (den kommer ibland att visas med 200 pixlars bredd). Vi förstorar eller förminskar bilden om det behövs. Bilden bör vara i formaten jpg, gif eller png."
-        photo: "En dekorativ bild som visas i stort format på arrangörssidan. Se det som en reklambild för er. Vi rekommenderar ett motiv som visar vad ni ägnar er åt.  Lämplig storlek på bilden är bredd: 720 pixlar och höjd: 480 pixlar. Vi förstorar eller förminskar bilden om det behövs. Vi rekommenderar filformat jpg (gif och png fungerar också)."
+        logotype: "En bild eller symbol som representerar arrangören. Lämplig storlek är bredd 800 pixlar. Välj en bild som inte innehåller allt för mycket detaljer. Vi förstorar eller förminskar bilden om det behövs. Bilden bör vara i formaten jpg, gif eller png."
+        photo: "En dekorativ bild som visas stort på arrangörssidan. Gärna ett motiv som visar vad ni ägnar er åt.  Lämplig bredd på bilden är 800 pixlar. Vi förstorar eller förminskar bilden om det behövs. Använd filformat jpg (gif och png fungerar också)."
         email: "En mejladress för den som vill kontakta arrangören. Mejladressen kommer att synas på webbplatsen."
         phone: "Inklusive riktnummer."
+        photo_caption: "Kort text under bilden, t.ex. fotografens namn."
+        photo_url: "Bildtexten kan vara en länk, t.ex. till fotografens hemsida."
       event:
         subject: "Använd 7-40 tecken."
         intro: "Skriv en jättekort sammanfattning på max 100 tecken."

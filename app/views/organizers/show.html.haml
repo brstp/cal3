@@ -1,7 +1,9 @@
-%content.content{:itemscope => true, :itemtype => "http://schema.org/Organization"}
+.content{:itemscope => true, :itemtype => "http://schema.org/Organization"}
   %article.article{:role => "main"}
     %header
-    
+      
+      = render "flashes"
+      
       - if params[:recruit]
         .user_message
           %p
@@ -17,8 +19,10 @@
       .header_image_container
         = image_tag(  @organizer.photo.url(:medium), 
                       :title => @organizer.photo_caption, 
-                      :alt => @organizer.photo_caption)
-        //= image_tag( "http://s3.amazonaws.com/static.allom.se/app/public/system/photos/120/medium/Sn%C3%A5rpan%20(2).JPG?1333011913", :width => "100%", :class => "header_image")
+                      :alt => @organizer.photo_caption,
+                      :class => "header_image",
+                      :width => "100%")
+
         - unless @organizer.photo_file_name.blank? || @organizer.photo_caption.blank?
           .image_text
             = link_to_unless    (@organizer.photo_url.blank? || @organizer.photo_file_name.blank?),
@@ -39,15 +43,15 @@
         %p.minor Redan genomförda evenemang.
 
 
-    %footer.event_organizer{:role => "complementary"}
+    %footer.event_organizer
       %h3#article_footer Kontaktinfo
       %ul
         - unless @organizer.email.blank?
           %li
-            = link_to raw("Mejla <span itemprop=\"email\">#{@organizer.email}\</span>"), "tel:#{@organizer.phone}"
+            = link_to raw("Mejla <span itemprop=\"email\">#{@organizer.email}\</span>"), "mailto:#{@organizer.email}"
         - unless @organizer.phone.blank?
           %li
-            = link_to raw("Ring <span itemprop=\"telephone\">#{@organizer.phone}\</span>"), "tel:#{@organizer.phone}" 
+            = link_to raw("Ring <span itemprop=\"telephone\">#{@organizer.phone}\</span>"), "tel:#{CGI::escape(@organizer.phone)}" 
         - unless @organizer.website.blank?
           %li
             = link_to_unless @organizer.events.blank?, @organizer.website, @organizer.website, :itemprop => :url

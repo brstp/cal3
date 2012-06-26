@@ -157,7 +157,7 @@ background-color : white;
 //border: solid 1px black;
 }
 
-.content_container{
+.content_container, {
   //border: solid 1px red;
   width : 90%; /* 252px; */
   margin-left: auto; 
@@ -500,6 +500,15 @@ textarea {
 overflow : auto; 
 vertical-align : top; }
 
+// In formtastic forms
+.button_action button {
+  @include font-size(25); 
+  @include background(linear-gradient(color-stops($light_allom_red, $allom_red, $allom_red )));
+  background-color: $allom_red;
+  @include border-radius;
+  color: white;
+  }
+
 // 8 BANNER 		========================================================
 
 .banner {
@@ -569,11 +578,26 @@ vertical-align : top; }
   display: none;
 }
 
+.edit_action .top_navigation_container, .edit_action .bottom_navigation_container, .edit_action .footer {
+  display: none;
+}
+
+
+.update_action .top_navigation_container, .update_action .bottom_navigation_container, .update_action .footer{
+  display: none;
+}
+
+
+.new_action .top_navigation_container, .new_action .bottom_navigation_container, .new_action .footer{
+  display: none;
+}
+
   
 // 10 CONTENT 		============================================
 
 
 // 11 MAIN 			============================================
+
 
 // 11A calendar sheet 
 
@@ -598,14 +622,15 @@ vertical-align : top; }
     margin: 0.15em 0 0.35em 0;
     font-weight : 800;
   }
-}
+  
+  .names {
+    @include font-size(12);
+    font-weight: normal;
+    font-style: italic;
+  }
+  
 
-.names {
-  @include font-size(12);
-  font-weight: normal;
-  font-style: italic;
 }
-
 // 11B ARTICLE  =============================================================
 
 article {
@@ -847,11 +872,43 @@ p.article_meta {
 }
 
 
+//11F flashes
+
+#flash{
+  
+  .notice {
+    // TODO: välj kulörer
+    background-color: $light_allom_green;
+    @include border-radius;
+    padding: 0.25em;
+    margin-top: 1em;
+    p {
+      margin: 0.25em;
+    }
+  }
+}
+
+.error_messages{
+
+    background-color: $allom_red;
+    @include border-radius;
+    padding: 0.5em 1em 1.5em 1em;
+    margin: 1em 0 1em 0;  
+    color: white;    
+    ul{
+      li {
+        list-style-type: disc;
+        margin: 1em 1em 1em 2em;
+      }
+    }
+
+}
+
 // 12 ASIDE / COMPLEMENTARY ==============================
 
 
 
-#organizer_logotype{
+.organizer_logotype{
   margin-top: 2.8em;
 }
 
@@ -1247,20 +1304,19 @@ header, article, aside, nav, footer  {
   
   article, nav  {
   width: (480px*0.8);
-}
+  }
 
-header {
+  header {
   width: 100%;
-}
+  }
 
 
-.logotype_container {
+  .logotype_container {
     width: 216px;
   }
 
-  .content_container {
-    width: 691px;
-    
+  .content_container  {
+    width: 691px;  
   }
 
   footer {
@@ -1318,7 +1374,7 @@ header {
     padding-top: 0.3em;
   }
   
-  .content_container{
+  .content_container, {
     @include clearfix;
   }
   

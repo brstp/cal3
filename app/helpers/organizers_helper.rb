@@ -37,7 +37,7 @@ module OrganizersHelper
         str = ""
         str << %(
                   <div class = "user_message">
-                    <h2>Administration av #{@organizer.s} arrangörssida</h3>
+                    <h2>Administration av #{@organizer.s} arrangörssida</h2>
                 )
 
         if current_user.is_admin?

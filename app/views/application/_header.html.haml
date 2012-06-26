@@ -1,7 +1,6 @@
 %header.banner{:role => "banner"}
   .logotype_container
-    %a{:href => "/"}
-      =image_tag "evenemangskalendern-allom-evenemang.png", :alt => "Evenemangskalendern Alloms logotyp", :title => "till evenemangskalendern Alloms startsida", :width => "100%"
+    = link_to_unless(( controller.action_name == "edit" || controller.action_name == "update" || controller.action_name == "new"), image_tag( "evenemangskalendern-allom-evenemang.png", :alt => "Evenemangskalendern Alloms logotyp", :title => "Till evenemangskalendern Alloms startsida", :width => "100%"), "/")
 
   .calendar_day.today
     .weekday #{l(DateTime.now, :format => :abbr_day_of_week)}

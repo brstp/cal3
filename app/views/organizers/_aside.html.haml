@@ -1,9 +1,9 @@
 - unless @organizer.logotype_file_name.blank?
-  = image_tag @organizer.logotype.url(:medium), :width => "100%", :id => "organizer_logotype", :alt => "#{@organizer.s} logotyp", :title => "#{@organizer.s} logotyp", :itemprop => :image
+  = image_tag @organizer.logotype.url(:medium), :width => "100%", :class => "organizer_logotype", :alt => "#{@organizer.s} logotyp", :title => "#{@organizer.s} logotyp", :itemprop => :image
 %h3.aside_top 
   Tipsa om 
   = @organizer.name + "!"
-  = share_me
+= share_me
 
 %h3 Kommande evenemang
 = aside_calendar @organizer
