@@ -1,61 +1,49 @@
 .content
   %article.article{:role => "main"}
     %header
-      %p.category Arrangör:
-      %h1 Sörmlands matkluster
-      .event_image_container
-        = image_tag "Plommonflera.jpg", :width => "100%", :title => "", :alt => "", :class => :event_image
-        .image_text
-          %a{:href => "", :title => ""}
-            Mumsiga sörmländska plommon. Foto: Nisse Nilsson CC (BY-NC)
-    %h2 En ekonomisk förening som jobbar för bättre, mer och godare lokal mat.
-    %p Nitton matproducenter i Sörmland i samarbete, med stöd från LRF, Strängnäs kommun, Eskilstuna kommun, Flens kommun och Nyköpings kommun.
-    %p Kontaktperson: Eva Callmer
-    %p Kontaktperson för Sörmlands Matkluster.
-    %p Svarar på frågor om Sörmlands Matkluster och medlemsansökningar.
-    %p Postadress: 
-    Eva Callmer
-    %br 
-    Dunker Järnvägsstationen 
-    %br
-    642 96 Malmköping
-   
-    %h3
-      Var är Sörmlands matkluster aktivt?
-    #map_view
-    .two_cols
-      .two_cols1      
-        = image_tag "red-marker.png"
-        %p.minor Kommande evenemang.
-      .two_cols1      
-        = image_tag "red-marker.png"
-        %p.minor Redan genomförda evenemang.
+      = render "flashes"
 
-
-    %footer.event_organizer{:role => "complementary"}
-      %h3#article_footer Kontaktinfo
-      %ul
-        %li
-          %a{:href => "", :title => ""}
-            Mejla Eva Callmer (kontaktformulär)
-        %li
-          %a{:href => "tel:+46733125555"}
-            Ring Eva Callmer: 0733‑12 55 55
-        %li
-          %a{:href => "http://matkluster.se/"}
-            Hemsida: http://matkluster.se/
-      %p.minor Arrangörssidan skapad 2011-10-25 14.04 av nisse@nowhere.com. Text och bilder är licensierade under CC (BY-SA 2.5) Sverige.
-      %nav.event_admin
-        %h3#article_nav Jobbar du för Sörmlands matkluster?
-        %ul
-          %li
-            %a{:href => "", :title => ""}
-              Ändra arrangörssidan
-          %li
-            %a{:href => "", :title => ""}
-              Ansök om att bli administratör
-          %li
-            %a{:href => "", :title => ""}
-              Marknadsför arrangören
+    - if params[:recruit]
+      %h1 Vilken arrangör jobbar du för?
+    - else
+      %h1 Alla arrangörssidor på Allom
+      %p= link_to "Lägg upp en ny arrangörssida", new_organizer_path
+      %p Att lägga upp en arrangörssida går snabbt och kostar inte något.
+  
+    %table.general
+      %thead
+        %tr
+          %th Arrangör (inplanerade/totalt)
+          %th Nästa evenemang
+      %tbody
+        - for organizer in @organizers
+          %tr
+            %td
+              - if params[:recruit]
+                = link_to organizer.name, organizer_path(organizer, :recruit => true )
+              - else 
+                = link_to organizer.name, organizer_path(organizer) 
+              (#{organizer.number_of_upcoming_events}/#{organizer.events.count})
+            %td
+              - unless organizer.next_event.nil?
+                = link_to(l(organizer.next_event.start_datetime, :format => :shorty) + ', ' +organizer.next_event.subject + ' (' + organizer.next_event.municipality.short_name + ')', organizer.next_event, :title => organizer.next_event.try(:intro))
+    
+    %p= link_to "Lägg upp en ny arrangörssida", new_organizer_path
+    
+            
   %aside{:role => "complementary"}
-    = render 'aside'
+    = render 'aside_index'
+
+
+
+
+
+- set_meta_tags :title => "Alla arrangörssidor på Allom.", :description => "Lägg in dina evenemang på evenemangskalendern Allom. Snabbt och enkelt. Kostnadsfritt konto."
+
+
+
+
+  
+      
+      
+      
