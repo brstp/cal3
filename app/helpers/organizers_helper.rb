@@ -221,7 +221,8 @@ module OrganizersHelper
                         <meta itemprop="startDate" content="#{l(event.start_datetime, :format => :machine)}">
                         <meta itemprop="description" content="#{event.intro}}">
                         <span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-                          <meta itemprop="addressLocality" content="#{event.municipality}}">
+                          <meta itemprop="addressLocality" content="#{event.location}}">
+
                         </span>
                       </td>
                     </tr>

@@ -1,4 +1,5 @@
-.content{:itemscope => true, :itemtype => "http://schema.org/Organization"}
+.content{:itemscope => true, :itemtype => "http://schema.org/City"}
+  <meta itemprop="url" content="#{municipality_url}}">
   %article.article{:role => "main"}
     %header
       = render "flashes"
@@ -19,7 +20,7 @@
       %table.mini_calendar
         %tbody
           - for event in @municipality.upcoming_events
-            %tr
+            %tr{:itemscope => true, :itemtype => "http://schema.org/Event"}
               %td
                 <a class='inline_div' href='#{event_path event}' title='#{event.subject}. #{event.intro}'>
                 .calendar_day
@@ -28,7 +29,12 @@
                   .month #{l(event.start_datetime, :format => :abbr_month_of_year)}
                 </a>
               %td
-                = link_to (event.subject + ' (' + event.category.name + ') Kl. ' + l(event.start_datetime, :format => :time) + '. ' + event.organizer.name ) + '. ', event_path(event), :title => event.intro
+                = link_to raw(event.subject + ' (' + event.category.name + ') Kl.&nbsp;' + l(event.start_datetime, :format => :time) + '. ' + event.organizer.name ) + '. ', event_path(event), :title => event.intro, :itemprop => :url
+                <meta itemprop="startDate" content="#{l(event.start_datetime, :format => :machine)}">
+                <meta itemprop="description" content="#{event.intro}}">
+                <meta itemprop="name" content="#{event.subject}}">
+                <meta itemprop="performer" content="#{event.organizer.name}}">
+                <meta itemprop="addressLocality" content="#{event.location}}">
       %p 
         = link_to "Visa alla inplanerade evenemang i #{@municipality.name}...", events_path,  :municipality_id => @municipality.id
     - else
