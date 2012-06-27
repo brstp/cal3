@@ -153,6 +153,16 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
 
     @events = result
     
+    #@gallery = Event.find(:all, :conditions => ["stop_datetime >= '#{Time.now - 9.months}'"], :order => "updated_at DESC", :limit => 9, :offset => 2)
+    
+    @gallery =  Event.where(['stop_datetime >= ? AND image1_file_name IS NOT NULL', "#{Time.now}"]).order('updated_at DESC').offset(2).limit(9)
+
+    if @gallery.count < 9
+          @gallery = @gallery +  Event.where(['stop_datetime < ? AND image1_file_name IS NOT NULL', "#{Time.now}"]).order('updated_at DESC').limit(9-@gallery.count)
+    end
+
+    @gallery = @gallery.shuffle
+    
     respond_to do |format|
       format.html
       format.rss

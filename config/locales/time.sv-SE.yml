@@ -34,7 +34,7 @@ sv-SE:
 
     # Don't forget the nil at the beginning; there's no such thing as a 0th month
     month_names: [~, januari, februari, mars, april, maj, juni, juli, augusti, september, oktober, november, december]
-    abbr_month_names: [~, jan, feb, mar, apr, maj, jun, jul, aug, sep, okt, nov, dec]
+    abbr_month_names: [~, jan, feb, mars, april, maj, juni, juli, aug, sep, okt, nov, dec]
     # Used in date_select and datime_select.
     order: [ :day, :month, :year ]
   validates_timeliness:

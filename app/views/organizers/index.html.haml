@@ -29,9 +29,8 @@
                 = link_to(l(organizer.next_event.start_datetime, :format => :shorty) + ', ' +organizer.next_event.subject + ' (' + organizer.next_event.municipality.short_name + ')', organizer.next_event, :title => organizer.next_event.try(:intro))
     
     %p= link_to "Lägg upp en ny arrangörssida", new_organizer_path
-    
-            
-  %aside{:role => "complementary"}
-    = render 'aside_index'
+
+    %aside{:role => "complementary"}
+      = render 'aside_index'
 
 - set_meta_tags :title => "Alla arrangörssidor på Allom.", :description => "Lägg in dina evenemang på evenemangskalendern Allom. Snabbt och enkelt. Kostnadsfritt konto."

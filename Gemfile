@@ -58,7 +58,6 @@ gem 'haml'
 gem 'haml-rails'
 gem 'html5-rails' # there is a bug in flashes, made monkey patch 
 
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

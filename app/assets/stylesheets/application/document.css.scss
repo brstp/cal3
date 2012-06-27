@@ -1059,6 +1059,7 @@ a.inline_div {
   img{
     padding: 0;
     margin: 0 0.1em 0.3em 0;
+    @include border-radius;
   }
 }
 
