@@ -1,0 +1,14 @@
+%h3.aside_top 
+  Dela med dig av evenemanget!
+= share_me
+%h3 Arrangören
+%span.event_organizer
+  = link_to @event.organizer.name, organizer_path(@event.organizer), :title => "Till arrangörens sida på Allom."
+
+%p= @event.organizer.intro
+%p Några kommande evenemang:
+= aside_calendar @event.organizer
+
+%h3
+
+= page_counter @event.counter

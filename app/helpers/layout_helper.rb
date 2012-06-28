@@ -325,46 +325,18 @@ module LayoutHelper
   
   def page_counter counter
     str = %(
-            <div class = "box">
-            <span class="heading">#{t('.page_viewed')}:</span>
-            <span class = "counter"><span class = "counter-text">#{"%06.0f" % counter }</span></span>
-            </div> 
+            <div class='counter'>
+              <div class='counter_text1'>Sidan visad:</div>
+              <span class='counter_number'>#{"%06.0f" % counter }</span>
+              <div class='counter_text2'>gånger.</div>
+            </div>
           )
 
     raw str
   end
   
-  def facebook_like(page_url, ref="default", verb="like")
-    str = %(
-    <div class="fb-like" data-send="false" data-width="640" data-show-faces="true" data-action=#{verb}></div>
-    )
-    raw str
-  end
-  
-  def open_graph_properties title="", img="", url=""
-    #TODO FB Admin in settings
-    #TODO img per event (or generic img for the calendar)
-    #     
-    str = %(
-    <meta property="og:title" content="#{h(title)}" />
-    <meta property="og:type" content="activity" />
-    <meta property="og:url" content="#{url}" />
-    <meta property="og:site_name" content="#{t('app.site_name')}" />
-    <meta property="fb:admins" content="1083707575" /> 
 
-    )
-    unless img.blank?
-      unless img.include? "http://"
-        img = t('app.site_url') + img
-      end
-      str << %(<meta property="og:image" content="#{img}" />)
-      str << %(<link rel="image_src" href="#{img}" />)
-    end
-    content_for(:head) {
-    raw str 
-    }
 
-  end
   
   def municipality_facts municipality
     unless municipality.facts.blank?
@@ -570,5 +542,56 @@ google.maps.event.addDomListener(window, 'load', initialize);
     file.close
     str
   end
+  
+  
+  def aside_calendar organizer
+    events = organizer.upcoming_events
+    str = ""
+    unless events.blank?
+      str << %(
+                <table class='mini_calendar'>
+                <caption>
+                  #{organizer.s} kommande evenemang
+                </caption>
+                <tbody>
+            )
+      for event in events      
+        str << %(
+                    <tr itemscope itemtype="http://schema.org/Event">
+                      <td>
+                        <a class='inline_div' href='#{event_path event}' title='#{event.intro}'>
+                          <div class='calendar_day'>
+                            <div class='weekday'>#{l(event.start_datetime, :format => :abbr_day_of_week)}</div>
+                            <div class='day_of_month'>#{l(event.start_datetime, :format => :day_of_month)}</div>
+                            <div class='month'>#{l(event.start_datetime, :format => :abbr_month_of_year)}</div>
+                          </div>
+                        </a>
+                      </td>
+                      <td>
+                        <a href='#{event_path event}' title='#{event.intro}' itemprop='url'>Kl #{l(event.start_datetime, :format => :time)}: <span itemprop="name">#{event.subject}</span> (#{event.category.name}). #{event.municipality_short}.</a>
+                        <meta itemprop="startDate" content="#{l(event.start_datetime, :format => :machine)}">
+                        <meta itemprop="description" content="#{event.intro}}">
+                        <span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                          <meta itemprop="addressLocality" content="#{event.location}}">
+
+                        </span>
+                      </td>
+                    </tr>
+                )
+      end 
+      str << %(
+                </table>
+                <p class = "event_type">#{link_to "#{organizer.s} alla kommande evenemang (#{organizer.number_of_upcoming_events})", events_path(:organizer_id => organizer.id) }</p>
+              )
+    else
+      str << %(Just nu har #{organizer.name} inte några evenemang inplanerade.)
+    end
+    unless organizer.past_events.blank?
+      str << %(
+              <p class = "event_type">#{link_to "#{organizer.s} alla tidigare evenemang (#{organizer.number_of_past_events})", events_path(:organizer_id => organizer.id, :stop => :past) }</p>
+              )
+    end  
+    raw str
+  end # /aside_calendars
   
 end # module LayoutHelper

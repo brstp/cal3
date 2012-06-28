@@ -5,7 +5,7 @@ class Category < ActiveRecord::Base
   has_many :events
   has_many :categories
 
-  attr_accessible :name, :description, :ancestry, :mum
+  attr_accessible :name, :description, :ancestry, :mum, :parent
 
   has_ancestry
 

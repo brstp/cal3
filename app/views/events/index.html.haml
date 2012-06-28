@@ -1,0 +1,36 @@
+.content
+  %article.article{:role => "main"}
+    %header
+      = render "flashes"            
+    - unless @events.blank?
+      %h6 Visar #{@events.count} av ... evenemang
+
+      %table.mini_calendar
+        %tbody
+          - for event in @gallery
+            %tr{:itemscope => true, :itemtype => "http://schema.org/Event"}
+              %td
+                <a class='inline_div' href='#{event_path event}' title='#{event.subject}. #{event.intro}'>
+                .calendar_day
+                  .weekday #{l(event.start_datetime, :format => :abbr_day_of_week)}
+                  .day_of_month #{l(event.start_datetime, :format => :day_of_month)}
+                  .month #{l(event.start_datetime, :format => :abbr_month_of_year)}
+                </a>
+              %td
+                = link_to raw( 'Kl.&nbsp;' + l(event.start_datetime, :format => :time) + ': ' + event.subject + ' (' + event.category.name + ')' + '. ' + event.organizer.name + ', ' + event.municipality.short_name + '. ' + l(event.updated_at) ), event_path(event), :title => event.intro, :itemprop => :url
+                <meta itemprop="startDate" content="#{l(event.start_datetime, :format => :machine)}">
+                <meta itemprop="description" content="#{event.intro}}">
+                <meta itemprop="name" content="#{event.subject}}">
+                <meta itemprop="performer" content="#{event.organizer.name}}">
+                <meta itemprop="addressLocality" content="#{event.location}}">
+      %p 
+        = link_to "Visa alla inplanerade evenemang", events_path  
+    - else
+      %p Just nu finns det inte några evenemang inplanerade. 
+    %p #{ link_to "Lägg in ett evenemang...", new_event_path }
+  
+  %aside{:role => "complementary"}
+    = render 'aside_index'
+
+- set_meta_tags :title => "Allom - evenemangskalender för alla sorters evenemang och aktiviteter.", :description => "Hitta saker att göra. Lägg in dina evenemang på evenemangskalendern Allom. Snabbt och enkelt. Kostnadsfritt konto."
+

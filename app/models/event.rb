@@ -285,6 +285,27 @@ class Event < ActiveRecord::Base
     degrees.to_s + '°' + minutes.to_s + '\''
   end
 
+  def lat_lng
+    str = ""
+    if lat >= 0
+      str << %(N )
+    else
+      str << %(S )
+    end
+    str << %( #{lat_degrees_minute} )
+    
+    if lng >= 0
+      str << %(O )
+    else
+      str << %(V )
+    end
+    str << %(#{lng_degrees_minute})
+    str
+  end
+  
+
+
+
   def location
     output_str = street + ', ' + municipality.name + ', Sverige'
     output_str

@@ -39,6 +39,7 @@ class Organizer < ActiveRecord::Base
   validates :photo_url, :allow_blank => true, :uri => { :format => /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix }
   
   has_attached_file :logotype, 
+                    :path => "app/public/system/:attachment/:id/:style/:filename",
                     :storage => :s3,
                     :bucket => 'static.allom.se',
                     :s3_credentials => {
@@ -53,6 +54,7 @@ class Organizer < ActiveRecord::Base
 
   
   has_attached_file :photo,      
+                    :path => "app/public/system/:attachment/:id/:style/:filename",
                     :storage => :s3,
                     :bucket => 'static.allom.se',
                     :s3_credentials => {

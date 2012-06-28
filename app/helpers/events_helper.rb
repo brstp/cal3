@@ -122,50 +122,56 @@ module EventsHelper
     end
     raw str
   end
-  
-  
-  def lat_lng event
-    str = %( <abbr class ="geo" title ="#{event.lat};#{event.lng}">)
-    if event.lat >= 0
-      str << %(N )
-    else
-      str << %(S )
+
+  def event_footer 
+    str = %(Evenemangsannonsen skapad #{l @event.created_at })
+    if current_user
+      if (current_user.authorized? @event) || current_user.is_admin?
+        str << %( #{@event.created_by}.)
+        unless @event.last_googleboted.blank?
+          str << %( Senast besökt #{l(@event.last_googleboted)} av Google sökmotorrobot.)
+        end
+      end
     end
-    str << %( #{event.lat_degrees_minute} )
     
-    if event.lng >= 0
-      str << %(O )
+    unless @event.created_at == @event.updated_at || @event.updated_by_user_id.nil?
+      str << %( Uppdaterad #{l @event.updated_at})
+      if current_user
+        if (current_user.authorized? @event) || current_user.is_admin?
+          str << %( #{@event.updated_by})
+        end
+      end
+      str << %(. )
+    end
+     
+    str << %( Annonsens texter & bilder är licensierade av arrangören under Creative Commons Erkännande-DelaLika 2.5 Sverige Licens, CC (BY-SA).)
+    str
+  end
+  
+  def event_meta
+    unless @event.image1.blank?
+      logo =  @event.image1.url(:medium)
     else
-      str << %(V )
-    end
-    str << %(#{event.lng_degrees_minute} </abbr>)
+      logo = request.protocol + request.host_with_port + image_path("evenemang-allom-evenemangskalendern.png") 
+    end  
     
-    raw str
-  end
-  
-  
-  def arranged_by event
-  
-    raw ( t('app.arranged_by') + ' <span class="organizer">' + link_to( ( event.organizer.name + ' (' + event.organizer.number_of_upcoming_events.to_s + ')'), event.organizer, :title => event.organizer.intro) + '</span>') 
-  end
-  
-  def arranged_in event
-    raw ( t('app.in_municipality') + ' ' + link_to(  (event.municipality.name + ' (' + event.municipality.number_of_upcoming_events.to_s + ')'), event.municipality ))
-  end
-  
-  def in_category event
-    exit if event.category.blank?
-    category = event.category
-    str = ""
-    while category.depth > 0
-      str = (link_to category.name + ' (' + category.number_of_upcoming_events.to_s + ')', (events_path :category_facet_id => category.id)) + " > " + str
-      category = category.parent
+    set_meta_tags( 
+      :title => @event.subject,
+      :description => "#{@event.intro}. Arrangör: #{@event.organizer.name}.",
+      :canonical => "http://allom.se#{event_path(@event)}",
+      :open_graph => {
+        :title => @event.subject,
+        :type  => :activity,
+        :url   => "http://allom.se#{event_path(@event)}" ,
+        :image => logo,
+        :site_name => "Allom - evenemangskalendern",
+        }
+      )
+      
+    content_for :head do  
+      raw ("<link rel=\"image_src\" href=\"#{logo}\" />")
     end
-    str = (t '.category') + ' ' + str
-    str = str.to(str.length - 7)
-    raw( '<span class = "category">' + str + '</span>' )
   end
 
-  
 end
   

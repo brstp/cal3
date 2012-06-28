@@ -913,6 +913,23 @@ p.article_meta {
 
 }
 
+.ceased {
+  margin: 4em auto 4em auto;
+  text-align: center;
+  width: 180px;
+  .sign{
+    margin-top: 1em;
+    font-weight: bold;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    @include border-radius;
+    background-color: #fcd40a;
+    border: solid 0.75em #f04a53;
+    padding: 0.5em;
+  }
+}
+
 // 12 ASIDE / COMPLEMENTARY ==============================
 
 
@@ -995,6 +1012,7 @@ p.article_meta {
   text-decoration: none;
   display: block;
   padding: 0.5em;
+  @include font-size(12);
 }
 
 a.inline_div {

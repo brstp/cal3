@@ -1,0 +1,131 @@
+.content{:itemscope => true, :itemtype => "http://schema.org/Event"}
+  %article.article{:role => "main"}
+    %header
+      
+      - if @event.stop_datetime < Time.now
+        .ceased
+          =image_tag "warning_sign.png"
+          .sign 
+            Det här evenemanget har redan varit.
+
+      = render "flashes"
+      
+      - if params[:recruit]
+        .user_message
+          %p
+            = "Jobbar du för #{@event.organizer.name}?"
+          %p
+            = link_to "Ansök om att bli administratör.", new_petition_path( :organizer_id => @event.organizer.id )
+                  
+      = #admin_message
+      
+      %h1{:itemprop => :name}= @event.subject
+
+      .header_image_container
+        = image_tag(  @event.image1.url(:medium), 
+                      :title => @event.image1_caption, 
+                      :alt => @event.image1_caption,
+                      :class => "header_image",
+                      :width => "100%")
+
+        - unless @event.image1_file_name.blank? || @event.image1_caption.blank?
+          .image_text
+            = link_to_unless @event.image1_url.blank?, @event.image1_caption, @event.image1_url, :rel => :nofollow
+    %p.category
+      = @event.category.name.capitalize
+    %p #{@event.duration.capitalize} i #{@event.municipality.name}
+    
+    
+    - unless @event.intro.blank?
+      %h2{:itemprop => :description}= @event.intro
+      
+    //%a.call_to_action{:href => "", :title => ""}
+    //  Anmäl dig/köp biljett...
+    
+    = simple_format @event.description 
+    
+    .event_facts
+      %p 
+        %span.inline_heading
+          Pris: 
+        To do
+      %p 
+        %span.inline_heading
+          Anmälan: 
+        To do 
+
+      .div{:itemprop => "address", :itemscope => true, :itemtype => "http://schema.org/Place"}
+        - unless @event.loc_descr.blank?
+          %p
+            %span.inline_heading
+              Plats: 
+            %span{:itemprop => :name}
+              = @event.loc_descr
+               
+        - unless @event.street.blank?  
+          %p
+            %span.inline_heading{:itemprop => "address", :itemscope => true, :itemtype => "http://schema.org/PostalAddress" }
+              Adress: 
+            %span{:itemprop => "streetAddress"}
+              = @event.street
+
+        - unless @event.lat.nil? || @event.lng.nil?          
+          #map_view
+          %p
+            %span.inline_heading{:itemprop => "geo", :itemscope => true, :itemtype => "http://schema.org/GeoCoordinates"}
+              <meta itemprop="latitude" content="#{@event.lat}" />
+              <meta itemprop="longitude" content="#{@event.lng}" />
+              Latitud/longitud:
+            = @event.lat_lng
+        
+          = link_to "Google Maps för platsen", "http://maps.google.com/maps?q=#{@event.lat},#{@event.lng}", :class => :major
+        - else
+          %p &nbsp;
+          %p Kartplats för evenemanget saknas.
+          - if current_user
+            - if current_user.authorized? @event.organizer
+              = link_to "Lägg in platsen på kartan genom att ange en adress."
+    
+    = link_to "Spara i din kalender", event_path(@event, :format => :ics), :title => "Spara evenemanget i Outlook eller annan kalender som ical.", :class => :major
+
+
+    .event_type
+      %h3 Evenemanget kategoriserat som
+      %ul
+        - if @event.category.depth > 0
+          %li
+          = link_to "#{@event.category.parent.name.capitalize} (#{@event.category.parent.upcoming_events.count})", "/?category_facet_id=#{@event.category.parent.id}", :title => "Alla evenemang inom #{@event.category.parent.name} på Allom."
+        %li
+          = link_to "#{@event.category.name.capitalize} (#{@event.category.upcoming_events.count})", "/?category_facet_id=#{@event.category.id}", :title => "Alla evenemang inom #{@event.category.name} på Allom."
+        %li
+          = link_to "#{@event.municipality.name.capitalize} (#{@event.municipality.upcoming_events.count})", "/?municipality_id=#{@event.municipality.id}", :title => "Alla evenemang i #{@event.municipality.name} på Allom."
+        %li
+          = link_to "#{@event.organizer.name.capitalize} (#{@event.organizer.upcoming_events.count})", "/?organizer_id=#{@event.organizer.id}", :title => "Alla #{@event.organizer.s} evenemang på Allom."
+
+    %footer.event_organizer{:role => "complementary"}
+      %h3#article_footer Arrangören #{@event.organizer.name}
+      %p= @event.organizer.intro
+      %ul
+        %li
+          = link_to @event.organizer.s + " egen arrangörssida", organizer_path(@event.organizer)
+        %li
+          = link_to "Mejla #{@event.human_name} (kontaktformulär)" 
+        - unless @event.phone_number.blank?
+          %li
+            = link_to "Ring #{@event.phone_name}: #{@event.phone_number}", "tel:#{CGI::escape(@event.phone_number)}"
+
+      %p.article_meta
+        = event_footer 
+
+      %nav.event_admin
+        %h3#article_nav Jobbar du för #{@event.organizer.name}?
+        %ul
+          %li
+            = link_to "Ändra evenemangsannonsen", edit_event_path
+          %li
+            = link_to "Ansök om att bli administratör", new_petition_path( :organizer_id => @event.organizer.id )
+
+            
+  %aside{:role => "complementary"}
+    = render 'aside_show'
+= event_meta
