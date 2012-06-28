@@ -11,7 +11,7 @@
           %p
             = link_to "Ansök om att bli administratör för den här sidan.", new_petition_path( :organizer_id => @organizer.id )
       
-      = admin_message
+      = admin_organizer
       
       %p.category Arrangör:
       %h1{:itemprop => :name}= @organizer.name

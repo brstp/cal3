@@ -17,7 +17,7 @@
           %p
             = link_to "Ansök om att bli administratör.", new_petition_path( :organizer_id => @event.organizer.id )
                   
-      = #admin_message
+      = admin_event
       
       %h1{:itemprop => :name}= @event.subject
 

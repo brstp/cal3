@@ -31,7 +31,7 @@ module OrganizersHelper
   end
 
 
-  def admin_message  
+  def admin_organizer  
     if current_user
       if (@organizer.users.include? current_user) || current_user.is_admin? || (@organizer.petition_users.include? current_user)
         str = ""
