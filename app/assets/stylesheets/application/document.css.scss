@@ -656,6 +656,16 @@ article ul{
   margin: 1em 0 1.5em 0;
 }
 
+.map_info_window{
+  h1 {
+    @include font-size(12);
+    font-weight: bold; 
+  }
+  p {
+    @include font-size(10);
+  }
+}
+
 
 
 .event_facts{

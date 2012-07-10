@@ -1,24 +1,9 @@
 # encoding:utf-8
-<% set_meta_tags :title => @event.subject,
-                   :description => @event.intro %>
 
-<% open_graph_properties  (l(@event.start_datetime, :format => :shorty) + ': ' + @event.subject).strip,
-                          @event.image1.url( :medium), 
-                          event_path(:only_path => false) 
-                          %>
-                          
-                          
-<% content_for :head do %>
-    <link rel="profile" href="http://microformats.org/profile/hcalendar" />
-    <link rel = "canonical" href="<%= t('app.site_url') + event_path(@event) %>"/> 
-<% end %> 
                      
 
 <% content_for :right_column_top do %>
-  <div class = "box">
-    <span class="heading">Hej arrangör!</span>
-    Vill du prova att kostnadsfritt annonsera dina evenemang här på Allom? Vi guidar dig hela vägen. <%= link_to "Börja nu.", new_event_path %>
-  </div>
+  
   <div class = "box" id="facet">
   <span class="heading"><%= t 'app.seek_event' %>:</span>
   <div id = "q-container">
@@ -31,70 +16,3 @@
   </div>
 <% end %>
   
-<% content_for :right_column_bottom do %>  
-  <%= page_counter @event.counter%>
-  <%= organizer_facts @event.organizer, 10 %>
-  <%= related_events @event, 5 %>
-<% end %>       
-
-<% if @event.stop_datetime > Time.now %>
-  <div class = "event_in_future vevent"> 
-<% else %>           
-  <div class = "event_in_past vevent"> 
-  <h1><%= t('.in_past')%></h1>
-<% end %>
-
-
-<% if current_user %>
-  <% if (current_user.authorized? @event.organizer ) || current_user.is_admin? %>
-    <div class = "user_message">
-      <% if (current_user.authorized? @event.organizer ) %>
-        <p>
-          <%= t('.you_are_admin_for') %> <%= @event.organizer %>.
-        </p>
-      <% end %>
-      <% if current_user.is_admin? %>
-        <p>
-          <%= t('.you_are_sysadmin') %>
-        </p>
-      <% end %>      
-        
-          <%= button_to(  t('.edit'), 
-                          edit_event_path(@event), 
-                          :method => :get, 
-                          :class => :organizer_user) %>
-          <%= button_to(  t('.destroy'), 
-                          @event, 
-                          :confirm => t('app.are_you_sure') + ' ' +@event.subject + '?', 
-                          :method => :delete )%>
-        
-    </div>
-  <% end %>
-<% end %>
-
-<% if params[:recruit] %>
-  <div class = "user_message">
-    <p>
-      <%= t('.do_you_work_for') + ' ' + @event.organizer.name%>? 
-      <%= link_to t('.apply_for_adminship'), 
-                  new_petition_path( :organizer_id => @event.organizer.id ) %>
-    </p> 
-  </div>
-<% end %>
-
-
-
-
-<%= render 'contact_form' %>
-
-
-
-</div> <!-- /event_contact -->
-
-<p>
-
-
-</p>
-</div> 
-
- 

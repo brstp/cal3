@@ -92,7 +92,7 @@
     .event_type
       %h3 Evenemanget kategoriserat som
       %ul
-        - if @event.category.depth > 0
+        - if @event.category.depth > 1
           %li
           = link_to "#{@event.category.parent.name.capitalize} (#{@event.category.parent.upcoming_events.count})", "/?category_facet_id=#{@event.category.parent.id}", :title => "Alla evenemang inom #{@event.category.parent.name} på Allom."
         %li
@@ -129,3 +129,5 @@
   %aside{:role => "complementary"}
     = render 'aside_show'
 = event_meta
+- content_for :javascript do
+  = map_marker @event

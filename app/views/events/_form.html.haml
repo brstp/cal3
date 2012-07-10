@@ -1,0 +1,60 @@
+= semantic_form_for @event, :html => {:multipart => true, :novalidate => true} do |f| 
+  = f.error_messages
+  .mandatory_descr
+    %p= t('.explain_mandatory')
+
+  = f.inputs do   
+    = f.input :subject
+    = f.input   :organizer_id, :as => :hidden
+    = f.input   :organizer, :collection => @organizers, :required => true, :input_html => { :disabled => true}
+    - @event.municipality = @event.organizer.default_municipality if (params[:municipality_id]).blank? 
+
+    = f.input   :municipality, :required => true, :collection => Municipality.select_municipality, :include_blank => false 
+    %h3 Vad händer?
+    = f.input :intro
+    = select_category_tree @event.category_id
+    = f.input :description
+    %h3 När händer det?
+    = f.input :start_date
+    = f.input :start_time
+    = f.input :stop_date
+    = f.input :stop_time
+    %h3 Kontaktuppgifter
+    = f.input :email, :as => :email
+    = f.input :human_name
+    = f.input :phone_number
+    = f.input :phone_name
+    %h3 En fin bild
+    - unless @event.image1_file_name.blank?
+      <li class="string" id="event_existing_image1"><label for="event_existing_image1">Nuvarande bild</label>#{ image_tag @event.image1.url(:medium), :width => "100%"}</li>
+      = f.input :image1_delete, :as => :boolean
+      = f.input :image1, :label => t('.replace_image')
+    - else
+      = f.input :image1
+    = f.input :image1_caption
+    = f.input :image1_url
+    %h3 Var händer det?
+    = f.input :street 
+    #map_edit
+    = f.input :re_geocoded_street, :input_html => { :disabled => true}
+    = f.input :loc_descr
+
+    = f.input :lat
+    = f.input :lng
+    = f.input :init_lat, :as => :hidden
+    = f.input :init_lng, :as => :hidden
+    = f.input :init_zoom, :as => :hidden          
+    
+    <li class="string" id="event_disclaimer">
+    <label for="event_disclaimer">
+    Innan du sparar... 
+    </label>
+    <p class="inline-hints">
+    När du sparar evenemangsannonsen godkänner du <a href ="http://info.allom.se/legalt/" target = "_blank">Alloms allmänna villkor</a> (nytt fönster). Om du använder andras texter eller bilder i evenemangsannonsen måste du ha deras tillstånd. Du publicerar evenemangsannonsen med licensen <i>CC BY-SA 2.5 Sverige</i>.
+    </p>
+    </li>          
+    = f.actions do
+      = f.action :submit, :as => :button
+      = f.action :cancel, :as => :link, :label => "Avbryt, gå tillbaka"
+
+= javascript_include_tag "geocode"      

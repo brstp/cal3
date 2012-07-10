@@ -1,12 +1,13 @@
 ﻿//= require jquery
 //= require jquery_ujs
 //= require h5bp
-//= require_self
-
+//= require jquery-ui.min
+//= require jquery.ui.datepicker-sv.js
 
 
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
+
 
 
 
@@ -37,21 +38,3 @@ function toggle() {
 		text.innerHTML = "Ta bort mejlformuläret";
 	}
 }
-
-
-
-
-
-// Sets the form focus to the first element found in forms[0] that
-// is a textfield or text area
-$(document).ready(function(){
-  if (document.forms[0] == null) return;
-
-  for (var i = 0; i < document.forms[0].elements.length; i++) {
-    e = document.forms[0].elements[i];
-    if ((e.type == "text") || (e.type == "textarea")) {
-      e.focus();
-      break;
-    }
-  }
-});

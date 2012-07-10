@@ -1,7 +1,6 @@
+/* formtastic_changes.css */
 
-/* FIELDSETS & LISTS
---------------------------------------------------------------------------------------------------*/
-form.formtastic fieldset { overflow:auto; margin-top: 1.5em; margin-bottom: 3em; } /* clearing contained floats */
+
 
 /* INPUT LIs
 --------------------------------------------------------------------------------------------------*/
@@ -33,7 +32,7 @@ form.formtastic fieldset > ol > li.search input[size] {  -webkit-box-sizing : bo
 
 /* TEXTAREA OVERRIDES
 --------------------------------------------------------------------------------------------------*/
-form.formtastic fieldset > ol > li.text textarea { -webkit-box-sizing : border-box; -moz-box-sizing : border-box; width:100%; margin-bottom: 1em; }
+form.formtastic fieldset > ol > li.text textarea { -webkit-box-sizing : border-box; -moz-box-sizing : border-box; width:100%; margin-bottom: 0em; }
 form.formtastic fieldset > ol > li.text textarea[cols] {  -webkit-box-sizing : border-box; -moz-box-sizing : border-box; width:100%; } 
 
 
@@ -50,11 +49,75 @@ form.formtastic fieldset > ol > li fieldset ol.fragments-group {
   
 }
 
-/*
-form.formtastic fieldset > ol > li fieldset ol.category-level-0  {
-  float: left;
-  width: 100%;
-  margin: 0;
-  padding: 0;
+
+
+form.formtastic fieldset > ol > li.string input,
+form.formtastic fieldset > ol > li.password input,
+form.formtastic fieldset > ol > li.numeric input,
+form.formtastic fieldset > ol > li.email input,
+form.formtastic fieldset > ol > li.url input,
+form.formtastic fieldset > ol > li.phone input,
+form.formtastic fieldset > ol > li.search input {
+  -webkit-box-sizing : border-box;
+  -moz-box-sizing : border-box; 
+  width:100%;
+  
 }
-*/
+
+
+form.formtastic fieldset > ol > li.string input[size], 
+form.formtastic fieldset > ol > li.password input[size], 
+form.formtastic fieldset > ol > li.numeric input[size],
+form.formtastic fieldset > ol > li.email input[size],
+form.formtastic fieldset > ol > li.url input[size],
+form.formtastic fieldset > ol > li.phone input[size],
+form.formtastic fieldset > ol > li.search input[size] {
+  -webkit-box-sizing : border-box;
+  -moz-box-sizing : border-box; 
+  width: auto;
+  max-width: 100%; }
+
+
+form.formtastic fieldset > ol > li fieldset ol {
+  width: 100%;
+  padding: 2em 0 1em 0;
+  
+}
+
+form.formtastic fieldset > ol > li fieldset ol li ol {
+  width: 90%;
+  padding: 0 0 1em 10%;
+  
+}
+
+
+form.formtastic fieldset > ol > li ol li ol li ol li label {
+  font-weight: normal;
+}
+
+
+form.formtastic fieldset input,
+form.formtastic fieldset select,{
+  vertical-align: 0em;
+}
+
+form.formtastic fieldset > ol > li.radio fieldset ol li {
+  margin: 0;
+}
+
+.category_description {
+ font-weight: normal; 
+ color: grey;
+}
+
+.mandatory_descr {
+  margin-bottom: 1em;
+}
+
+
+#map_edit {
+    width: 100%;
+    height: 400px;
+    margin: 1em 0 2em 0;
+    
+}

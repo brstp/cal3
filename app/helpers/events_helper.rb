@@ -87,6 +87,8 @@ module EventsHelper
   end
   
   def select_category_tree selected_category = nil
+    
+    #<p class="inline-hints">#{t('formtastic.hints.event.category')}</p></li>
     raw %(
     <li class="radio required" id="event_category_input">
     <fieldset>
@@ -97,7 +99,6 @@ module EventsHelper
     #{Category.all.first.climb selected_category}
     </ol>
     </fieldset>
-    <p class="inline-hints">#{t('formtastic.hints.event.category')}</p></li>
         )
   end
   
@@ -210,6 +211,18 @@ module EventsHelper
     end
   end # /admin_event
 
+
+  def page_counter counter
+    str = %(
+            <div class='counter'>
+              <div class='counter_text1'>Sidan visad:</div>
+              <span class='counter_number'>#{"%06.0f" % counter }</span>
+              <div class='counter_text2'>gånger.</div>
+            </div>
+          )
+
+    raw str
+  end # /page_counter
 
 end
   

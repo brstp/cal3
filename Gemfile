@@ -3,17 +3,12 @@ source 'http://rubygems.org'
 gem 'rails', '3.1.3'
 
 
-# Use unicorn as the web server
-# gem 'unicorn'
-
-
 
 # To use debugger
 # gem 'ruby-debug'
 
 # Bundle the extra gems:
 # gem 'bj'
-# gem 'nokogiri'
 # gem 'sqlite3-ruby', :require => 'sqlite3'
 # gem 'aws-s3', :require => 'aws/s3'
 
@@ -24,7 +19,6 @@ gem 'rails', '3.1.3'
 #   gem 'webrat'
 # end
 
-#gem 'capistrano'                  #deploy
 
 gem 'devise',           '~> 2.0.0'  #authentication
 gem 'devise_invitable' #, '~> 0.7.0'

@@ -323,17 +323,7 @@ module LayoutHelper
   end
   
   
-  def page_counter counter
-    str = %(
-            <div class='counter'>
-              <div class='counter_text1'>Sidan visad:</div>
-              <span class='counter_number'>#{"%06.0f" % counter }</span>
-              <div class='counter_text2'>gånger.</div>
-            </div>
-          )
 
-    raw str
-  end
   
 
 
@@ -351,34 +341,50 @@ module LayoutHelper
       raw str
     end
   end
-  
 
-  
+
+
+
   def map_marker(event)
    str = %(
-        <script type="text/javascript">
+  function initialize() {
+    var myLatLng = new google.maps.LatLng( #{event.lat}, #{event.lng});
+    var myOptions = {
+                zoom: 10,
+                center: myLatLng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
 
-        function initialize() {
-          var latLng = new google.maps.LatLng( #{event.lat}, #{event.lng});
-          var map = new google.maps.Map(document.getElementById('map_view'), {
-            zoom: 10,
-            center: latLng,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-          });
-          var marker = new google.maps.Marker({
-            position: latLng,
-            title: '#{event.subject}  #{event.duration.capitalize}',
-            map: map,
-            draggable: false
-          });
-          
-          updateMarkerPosition(latLng);
-}
+    var map = new google.maps.Map(document.getElementById("map_view"), myOptions);
 
-google.maps.event.addDomListener(window, 'load', initialize);
-</script>)
+    var contentString = '<div class="map_info_window"><h1>#{event.subject}</h1><p>#{event.intro}</p><p>#{event.duration.capitalize}. Arrangeras av #{event.organizer.name} i ämneskategorin #{event.category.name}.</p></div>';
+ 
+    var infowindow = new google.maps.InfoWindow({
+        content: contentString
+    });
+
+    var marker = new google.maps.Marker({
+        position: myLatLng,
+        map: map,
+        title: '#{event.subject}  #{event.duration.capitalize}',
+        draggable: false
+    });
+    google.maps.event.addListener(marker, 'click', function() {
+      infowindow.open(map,marker);
+    });
+
+    var weatherLayer = new google.maps.weather.WeatherLayer({
+    });
+    weatherLayer.setMap(map);
+
+  }
+  google.maps.event.addDomListener(window, 'load', initialize);
+        )
     raw str
   end
+  
+
+
 
   def upcoming_and_past_events organizer, max_no = 99999
   
