@@ -14,6 +14,15 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
   def show
     @organizer = Organizer.find(params[:id])
     @events = @organizer.upcoming_events #.paginate :page => params[:page], :per_page => 10
+    
+    @markers = @organizer.events.to_gmaps4rails do |event, marker|
+      marker.infowindow "<div class=\"info_window\"> <h1>#{event.subject}</h1> <p>Kategori: #{event.category.name.capitalize} </p><p>#{event.short_duration.capitalize} </p></div>"
+      marker.picture map_marker(event)
+      marker.title   "#{event.subject} \n(#{event.category.name.capitalize}) \n#{event.short_duration.capitalize}"
+      #marker.sidebar "i'm the sidebar"
+      marker.json({ :id => event.id, :foo => "bar" })
+    end   
+    
     @organizer.update_attribute(:last_googleboted, Time.now) if request.headers["user_agent"].include? "Googlebot"
     @membership = Membership.new
     respond_to do |format|

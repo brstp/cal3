@@ -224,5 +224,6 @@ module EventsHelper
     raw str
   end # /page_counter
 
+
 end
   

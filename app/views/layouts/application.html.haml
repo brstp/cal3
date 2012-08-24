@@ -22,7 +22,7 @@
       = render "javascripts"
 
       -# Google Maps
-      <script src="http://maps.google.com/maps/api/js?sensor=false&amp;region=SE&amp;language=sv&amp;libraries=weather" type="text/javascript"></script>
+      -# <script src="http://maps.google.com/maps/api/js?sensor=false&amp;region=SE&amp;language=sv&amp;libraries=weather" type="text/javascript"></script>
       
       -# Facebook like
       <div id="fb-root"></div>
@@ -55,3 +55,6 @@
         $(document).ready(function() {
           #{yield :javascript}
         });
+      <!-- :-) -->
+      = yield :scripts
+      <!-- :-) -->

@@ -153,6 +153,22 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
 
     @events = result
     
+    event_set = []
+    for event in @events #TODO refactor two loops into one
+      event_set << event
+    end
+
+
+    @markers = Event.all.to_gmaps4rails do |event, marker|
+
+      marker.infowindow "<div class=\"info_window\"> <h1>#{event.subject}</h1> <p>Kategori: #{event.category.name.capitalize} </p><p>#{event.short_duration.capitalize} </p></div>"
+      marker.picture map_marker(event)
+      marker.title   "#{event.subject} \n(#{event.category.name.capitalize}) \n#{event.short_duration.capitalize}"
+      #marker.sidebar "i'm the sidebar"
+      marker.json({ :id => event.id, :foo => "bar" })
+    end    
+    
+    
     #@gallery = Event.find(:all, :conditions => ["stop_datetime >= '#{Time.now - 9.months}'"], :order => "updated_at DESC", :limit => 9, :offset => 2)
     
     @gallery =  Event.where(['stop_datetime >= ? AND image1_file_name IS NOT NULL', "#{Time.now}"]).order('updated_at DESC').offset(2).limit(9)
@@ -161,7 +177,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
           @gallery = @gallery +  Event.where(['stop_datetime < ? AND image1_file_name IS NOT NULL', "#{Time.now}"]).order('updated_at DESC').limit(9-@gallery.count)
     end
 
-    @gallery = @gallery.shuffle
+    @gallery.shuffle!
     
     respond_to do |format|
       format.html
@@ -173,6 +189,16 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
 
   def show
     @event = Event.find(params[:id])
+    @markers = @event.to_gmaps4rails do |event, marker|
+      #marker.infowindow render_to_string(:partial => "/events/marker_info_window", :locals => { :object => event})
+      marker.infowindow "<div class=\"info_window\"><h1>#{event.subject}</h1><p>Kategori: #{event.category.name.capitalize}</p><p>#{event.short_duration.capitalize}</p></div>"
+      marker.picture map_marker(event)
+      marker.title   "#{event.subject} \n(#{event.category.name.capitalize}) \n#{event.short_duration.capitalize}"
+      #marker.sidebar "i'm the sidebar"
+      marker.json({ :id => event.id, :foo => "bar" })
+    end    
+    
+    
     Event.increment_counter :counter, @event.id
     @event.update_attribute(:last_googleboted, Time.now) if request.headers["user_agent"].include? "Googlebot"
     respond_to do |format|
@@ -238,6 +264,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
 
   protected
 
+
   def authorized?
     unless current_user
       flash[:alert] = t 'flash.actions.not_authenticated'
@@ -257,5 +284,8 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
         redirect_to :back
     end
   end
+  
+
+  
 
 end

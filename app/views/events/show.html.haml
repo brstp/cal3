@@ -35,7 +35,6 @@
       = @event.category.name.capitalize
     %p #{@event.duration.capitalize} i #{@event.municipality.name}
     
-    
     - unless @event.intro.blank?
       %h2{:itemprop => :description}= @event.intro
       
@@ -68,9 +67,9 @@
               Adress: 
             %span{:itemprop => "streetAddress"}
               = @event.street
-
-        - unless @event.lat.nil? || @event.lng.nil?          
-          #map_view
+        - unless @event.lat.nil? || @event.lng.nil?  
+          = gmaps({"map_options" => {"auto_zoom" => false, "zoom" => 11 },"markers" => {"data" => @markers }})        
+          
           %p
             %span.inline_heading{:itemprop => "geo", :itemscope => true, :itemtype => "http://schema.org/GeoCoordinates"}
               <meta itemprop="latitude" content="#{@event.lat}" />
@@ -130,4 +129,4 @@
     = render 'aside_show'
 = event_meta
 - content_for :javascript do
-  = map_marker @event
+  =# map_marker @event

@@ -2,8 +2,9 @@
 //= require jquery_ujs
 //= require h5bp
 //= require jquery-ui.min
-//= require jquery.ui.datepicker-sv.js
-
+//= require jquery.ui.datepicker-sv
+//= require gmaps4rails/gmaps4rails.base
+//= require gmaps4rails/gmaps4rails.googlemaps
 
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
@@ -25,16 +26,3 @@ $.datepicker.setDefaults({
  $("#event_stop_date").datepicker();
 });
 
-
-function toggle() {
-	var ele = document.getElementById("toggleText");
-	var text = document.getElementById("displayText");
-	if(ele.style.display == "block") {
-    		ele.style.display = "none";
-		text.innerHTML = "Mejla till evenemangets kontaktperson";
-  	}
-	else {
-		ele.style.display = "block";
-		text.innerHTML = "Ta bort mejlformuläret";
-	}
-}

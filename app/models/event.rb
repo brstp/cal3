@@ -1,7 +1,7 @@
 # encoding: UTF-8
 class Event < ActiveRecord::Base
   include ActionView::Helpers::AssetTagHelper
-
+  include ActionView::Helpers::UrlHelper
 
   #TODO: Move default start/stop dates/times to inializers
   #TODO: Check if use of 'self' is ok
@@ -69,7 +69,7 @@ class Event < ActiveRecord::Base
     integer :organizer_id, :references => ::Organizer
   end
 
-
+  acts_as_gmappable
 
   has_attached_file :image1,
       :storage => :s3,
@@ -303,9 +303,16 @@ class Event < ActiveRecord::Base
     str
   end
   
+  def latitude
+    self.lat
+  end
+  
+  def longitude
+    self.lng
+  end
+    
 
-
-
+  
   def location
     output_str = street + ', ' + municipality.name + ', Sverige'
     output_str
@@ -337,6 +344,19 @@ class Event < ActiveRecord::Base
     duration
   end
 
+  def short_duration
+    # TODO if not same day, better wording of end time, depending of length
+    duration = I18n.localize(start_datetime, :format => :short)   
+    unless  (self.start_datetime == self.stop_datetime)
+      duration += " - "
+      if self.start_date != self.stop_date
+        duration += I18n.localize(stop_datetime, :format => :short)
+      else
+        duration += I18n.localize(stop_datetime, :format => :time)
+      end
+    end
+    duration
+  end
 
   def start_date=(date_str)
     @start_date = date_str

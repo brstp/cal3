@@ -30,15 +30,14 @@
     = simple_format @organizer.description 
    
     %h3= "Var är #{@organizer.name} aktiv?"
-    #map_view
-    .two_cols
-      .two_cols1      
-        = image_tag "red-marker.png"
-        %p.minor Kommande evenemang.
-      .two_cols1      
-        = image_tag "red-marker.png"
-        %p.minor Redan genomförda evenemang.
-
+    = gmaps({"map_options" => { :do_clustering => true, randomize: true },"markers" => {"data" => @markers }})   
+    
+    %p
+      = image_tag "grn-pushpin.png", :class => :marker_legend_mid_size
+      Kommande evenemang.
+    %p
+      = image_tag "red-pushpin.png", :class => :marker_legend_small_size
+      Redan genomförda evenemang.
 
     %footer.event_organizer
       %h3#article_footer Kontaktinfo

@@ -11,5 +11,24 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  protected 
+  
+  def map_marker event
+		if event.stop_datetime < Time.now
+      {
+        "picture" => "#{ActionController::Base.helpers.asset_path('red-pushpin.png')}",
+        "width" => 24,
+        "height" => 24,
+        "marker_anchor" => [ 16, 24]
+      }
+    else
+      {
+        "picture" => "#{ActionController::Base.helpers.asset_path('grn-pushpin.png')}",
+        "width" => 32,
+        "height" => 32,
+        "marker_anchor" => [ 10, 32]
+      }
+		end		
+	end
 
 end
