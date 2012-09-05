@@ -161,7 +161,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
 
     @markers = Event.all.to_gmaps4rails do |event, marker|
 
-      marker.infowindow "<div class=\"info_window\"> <h1>#{event.subject}</h1> <p>Kategori: #{event.category.name.capitalize} </p><p>#{event.short_duration.capitalize} </p></div>"
+      marker.infowindow "<div class=\"info_window\"> <h1>#{view_context.link_to(event.subject, event)}</h1> <p>Kategori: #{event.category.name.capitalize} </p><p>#{event.short_duration.capitalize} </p></div>"
       marker.picture map_marker(event)
       marker.title   "#{event.subject} \n(#{event.category.name.capitalize}) \n#{event.short_duration.capitalize}"
       #marker.sidebar "i'm the sidebar"
@@ -190,12 +190,10 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
   def show
     @event = Event.find(params[:id])
     @markers = @event.to_gmaps4rails do |event, marker|
-      #marker.infowindow render_to_string(:partial => "/events/marker_info_window", :locals => { :object => event})
-      marker.infowindow "<div class=\"info_window\"><h1>#{event.subject}</h1><p>Kategori: #{event.category.name.capitalize}</p><p>#{event.short_duration.capitalize}</p></div>"
+      marker.infowindow "<div class=\"info_window\"> <h1>#{view_context.link_to(event.subject, event)}</h1> <p>Kategori: #{event.category.name.capitalize} </p><p>#{event.short_duration.capitalize} </p></div>"
       marker.picture map_marker(event)
       marker.title   "#{event.subject} \n(#{event.category.name.capitalize}) \n#{event.short_duration.capitalize}"
       #marker.sidebar "i'm the sidebar"
-      marker.json({ :id => event.id, :foo => "bar" })
     end    
     
     
@@ -214,6 +212,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
     @event.email = current_user.email
     @event.human_name = ''
     @event.organizer_id = params[:organizer_id]
+    @markers = @event.to_gmaps4rails 
     unless (current_user.first_name.blank?)
       @event.human_name += current_user.first_name + " "
     end
@@ -227,6 +226,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
     @organizers = current_user.organizers
     @event = Event.new(params[:event])
     @event.created_by_user_id = current_user.id
+    @markers = @event.to_gmaps4rails 
     if @event.save
       OrganizerMailer.new_event_confirmation(@event, current_user).deliver
       flash[:notice] = t 'events.flash.notice.created'
@@ -238,11 +238,14 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
 
   def edit
     @event = Event.find(params[:id])
+    @markers = @event.to_gmaps4rails 
   end
 
   def update
     @event = Event.find(params[:id])
-    @event.updated_by_user_id = current_user.id
+    @event.updated_by_user_id = current_user.id    
+    @markers = @event.to_gmaps4rails 
+    
     if @event.update_attributes(params[:event])
       OrganizerMailer.changed_event_confirmation(@event, current_user).deliver
       flash[:notice] = t 'events.flash.notice.updated'

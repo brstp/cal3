@@ -39,7 +39,7 @@ sv-SE:
         stop_time: "Om du inte kan ange något sluttid, skriv samma som starttiden eller lämna fältet tomt. Då anger vi inte någon sluttid i evenemangsannonsen."
         street: "Gärna en gatuadress av typen: \"Kungsgatan 5, 572 30 Oskarshamn\". Google hjälper oss att visa adresser som matchar det du skriver in. Ofta fungerar det med hyfsat kända platser som: \"Munsö kyrka\". När du valt en plats prickar vi in en kartnål på kartan längre ned på sidan. Du kan zooma in kartan och flytta kartnålen."
         re_geocoded_street: "Närmsta kända gatuadress när du flyttar kartnålen. Visas inte i annonsen. Funkar hyfsat bra i tätorter men skrattretande dåligt i glesbygd. Det är Google som hjälper oss med detta."
-        loc_descr: "Om det inte räcker med gatuadress, beskriv platsen där evenemanget hålls. Exempel: \"Utomhusscenen i parken.\""
+        loc_descr: "Beskriv platsen där evenemanget hålls. Exempel: \"Utomhusscenen i parken.\""
         lat: "Du kan använda latitud/longitud för att förklara en plats som inte har något namn, så att vi kan placera kartnålen rätt. Oftast lyckas vi få fram en position med hjälp av adressen som du skrivit in. Latitud/longitud skrivs i decimalform (med decimalpunkt)."
         lng: "Också i decimalformat"
         municipality: "Där evenemanget sker. Markera menyn och skriv första bokstaven i kommunnamnet för att snabbt hitta kommunen."

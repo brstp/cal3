@@ -10,15 +10,18 @@
     - @event.municipality = @event.organizer.default_municipality if (params[:municipality_id]).blank? 
 
     = f.input   :municipality, :required => true, :collection => Municipality.select_municipality, :include_blank => false 
+
     %h3 Vad händer?
     = f.input :intro
     = select_category_tree @event.category_id
     = f.input :description
+
     %h3 När händer det?
     = f.input :start_date
     = f.input :start_time
     = f.input :stop_date
     = f.input :stop_time
+
     %h3 Kontaktuppgifter
     = f.input :email, :as => :email
     = f.input :human_name
@@ -33,12 +36,12 @@
       = f.input :image1
     = f.input :image1_caption
     = f.input :image1_url
+
     %h3 Var händer det?
+    = f.input :loc_descr
     = f.input :street 
     #map_edit
     = f.input :re_geocoded_street, :input_html => { :disabled => true}
-    = f.input :loc_descr
-
     = f.input :lat
     = f.input :lng
     = f.input :init_lat, :as => :hidden
@@ -56,5 +59,3 @@
     = f.actions do
       = f.action :submit, :as => :button
       = f.action :cancel, :as => :link, :label => "Avbryt, gå tillbaka"
-
-= javascript_include_tag "geocode"      
