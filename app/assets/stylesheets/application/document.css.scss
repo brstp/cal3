@@ -1111,10 +1111,31 @@ a.inline_div {
   padding: 0;
   img{
     padding: 0;
-    margin: 0 0.1em 0.3em 0;
+    margin-bottom: 0.3em;
     @include border-radius;
   }
+  @include clearfix;
+
+
+  .gallery_col1{
+    float: left;
+  }
+  
+  .gallery_col2{
+    float: left;
+    margin-left: 0.4em;
+  }
+  
+  .gallery_col3{
+    float: right;
+  }
+
 }
+
+
+
+
+
 
 //12E municipality facts from Wikipedia
 

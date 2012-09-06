@@ -70,6 +70,7 @@ class Event < ActiveRecord::Base
   end
 
   acts_as_gmappable
+  
 
   has_attached_file :image1,
       :storage => :s3,

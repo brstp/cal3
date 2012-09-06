@@ -134,8 +134,8 @@ sv-SE:
     sport_holiday3:
     easter_holiday1:
     easter_holiday2:
-    past: "Alla genomförda"
-    future: "alla framtida"
+    past: "redan genomförda"
+    future: "framtida"
     
   will_paginate:
     first: "&lt;&lt; första"

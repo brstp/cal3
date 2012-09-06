@@ -1,12 +1,11 @@
 %h6 Visar #{@events.count} av ... evenemang
 = gmaps(:map_options => {:detect_location => true, :center_on_user => true, :auto_adjust => false}, "markers" => {"data" => @markers, :options => { :do_clustering => true, randomize: true, :max_random_distance => 15 } })
 
+%h3 Några nya evenemang
 .event_gallery
-  %h5 Några nya evenemang
   - for event in @gallery
-    = link_to (image_tag event.image1.url(:small), :width => "32%", :title => ( l(event.start_datetime, :format => :mini) + ': ' + event.subject + ' (' + event.category.name + ')' + '. ' + event.organizer.name + ', ' + event.municipality.short_name + '.' ), :alt => event.image1_caption, :class => :event_image), event_path(event)
+    = link_to (image_tag event.image1.url(:small), :width => "32%", :title => ( l(event.start_datetime, :format => :mini) + ': ' + event.subject + ' (' + event.category.name + ')' + '. ' + event.organizer.name + ', ' + event.municipality.short_name + '.' ), :alt => event.image1_caption, :class => "#{cycle("gallery_col1", "gallery_col2", "gallery_col3")}"), event_path(event)
 
-<ul id="markers_list">  </ul>
 
 %h3.aside_top Gillar du om Allom?
 

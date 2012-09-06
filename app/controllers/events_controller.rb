@@ -9,16 +9,6 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
   
 
   def index
-      #TODO Add almanac function to look up all absolute and relative days.
-      # summer_holiday:
-      # christmas_holiday:
-      # midsummer:
-      # sport_holiday1:
-      # sport_holiday2:
-      # sport_holiday3:
-      # easter_holiday1:
-      # easter_holiday2:
-      #TODO Config setting for number of hits per page
 
       today = Time.zone.now.beginning_of_day
       this_month = Time.zone.now.beginning_of_month
@@ -115,11 +105,11 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
           end
         end
 
-      unless params[:stop] == "past"
-        with(:stop).between(today..(today + 10.year))
-      else
-        with(:stop).between((today - 100.year)..today)
-      end
+      #unless params[:stop] == "past"
+      #  with(:stop).between(today..(today + 10.year))
+      #else
+      #  with(:stop).between((today - 100.year)..today)
+      #end
 
       unless params[:category_facet_id].blank?
         with( :category_facet_id ).equal_to( params[:category_facet_id].to_i )
@@ -159,7 +149,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
     end
 
 
-    @markers = Event.all.to_gmaps4rails do |event, marker|
+    @markers = event_set.to_gmaps4rails do |event, marker|
 
       marker.infowindow "<div class=\"info_window\"> <h1>#{view_context.link_to(event.subject, event)}</h1> <p>Kategori: #{event.category.name.capitalize} </p><p>#{event.short_duration.capitalize} </p></div>"
       marker.picture map_marker(event)
