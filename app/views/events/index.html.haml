@@ -17,7 +17,13 @@
             - unless params[:q].blank? && params[:stop].blank? && params[:start].blank? && params[:category_facet_id].blank? && params[:organizer_id].blank? && params[:municipality_id].blank?
               = link_to "rensa sökningen", events_path
         = form_tag({:action => 'index'}, :method => 'get' )            
-        = search_field_tag :q, params[:q]    
+        = search_field_tag :q, params[:q]   
+        = hidden_field_tag :municipality_id, params[:municipality_id]
+        = hidden_field_tag :organizer_id, params[:organizer_id]
+        = hidden_field_tag :category_facet_id, params[:category_facet_id]
+        = hidden_field_tag :start, params[:start]
+        = hidden_field_tag :stop, params[:stop]
+        
         = #search_field_tag :search, "punk malmö juni"
         .submit_row 
           = submit_tag "Sök", :id => :event_search
@@ -28,33 +34,31 @@
         .facet_column_first
           %h5 vad/ämne
           %ul
-            - if params[:category_facet_id].blank?
-              - unless @category_facet_rows.blank? 
-                - for row in @category_facet_rows
-                  %li
-                    = link_to "#{row.instance.and_mum.to_s} (#{row.count.to_s})", events_path( :q => params[:q], :start => params[:start], :stop => params[:stop], :category_facet_id => row.instance.id, :organizer_id => params[:organizer_id], :municipality_id => params[:municipality_id]), :title => "Sök evenemang bara i kategorin #{row.instance.to_s}."
-            - else
-              - for row in @category_facet_rows
+            - for row in @category_facet_rows
+              - if row.value.to_i == params[:category_facet_id].to_i
                 %li.selected_facet
-                  %span.cancel_facet= link_to "x", events_path( :q => params[:q], :start => params[:start], :stop => params[:stop], :category_facet_id => nil, :organizer_id => params[:organizer_id], :municipality_id => params[:municipality_id]), :title => "Sök i alla kategorier"
-                  %span= link_to "#{row.instance.and_mum.to_s} (#{row.count.to_s})", events_path( :q => params[:q], :start => params[:start], :stop => params[:stop], :category_facet_id => nil, :organizer_id => params[:organizer_id], :municipality_id => params[:municipality_id]), :title => "Sök i alla kategorier."
- 
-                
+                  %a{:href => "#{events_path( :q => params[:q], :start => params[:start], :stop => params[:stop], :category_facet_id => nil, :organizer_id => params[:organizer_id], :municipality_id => params[:municipality_id])}"}
+                    %span.cancel_facet x
+                    %span= "#{row.instance.and_mum.to_s} (#{row.count.to_s})"
+              - else
+                %li
+                  = link_to "#{row.instance.and_mum.to_s} (#{row.count.to_s})", events_path( :q => params[:q], :start => params[:start], :stop => params[:stop], :category_facet_id => row.instance.id, :organizer_id => params[:organizer_id], :municipality_id => params[:municipality_id]), :title => "Sök evenemang bara i kategorin #{row.instance.to_s}."
+
  
         - # time span              
         .facet_column_second
           %h5 när/datum
           %ul
-            - if params[:stop].blank?
-              - unless @stop_facet_rows.blank? 
-                - for row in @stop_facet_rows
-                  %li
-                    = link_to "#{t('when_facet.' + row.value.to_s)} (#{row.count.to_s})", events_path(:q => params[:q], :start => params[:start], :stop => row.value, :category_facet_id => params[:category_facet_id], :organizer_id => params[:organizer_id], :municipality_id => params[:municipality_id]), :title => "Sök evenemang bara i #{t('when_facet.' + row.value.to_s)}."
-            - else
-              - for row in @stop_facet_rows
+            - for row in @stop_facet_rows
+              - if row.value == params[:stop]
                 %li.selected_facet
-                  %span.cancel_facet= link_to "x", events_path( :q => params[:q], :start => params[:start], :stop => nil, :category_facet_id => params[:category_facet_id], :organizer_id => params[:organizer_id], :municipality_id => params[:municipality_id]), :title => "Ta bort tidsintervallet från sökningen."
-                  %span= link_to "#{t('when_facet.' + row.value.to_s)} (#{row.count.to_s})", events_path( :q => params[:q], :start => params[:start], :stop => nil, :category_facet_id => params[:category_facet_id], :organizer_id => params[:organizer_id], :municipality_id => params[:municipality_id]), :title => "Ta bort tidsintervallet från sökningen."
+                  %a{:href => "#{events_path( :q => params[:q], :start => params[:start], :stop => nil, :category_facet_id => params[:category_facet_id], :organizer_id => params[:organizer_id], :municipality_id => params[:municipality_id])}"}
+                    %span.cancel_facet x
+                    %span= "#{t('when_facet.' + row.value.to_s)} (#{row.count.to_s})"
+              - else
+                %li
+                  = link_to "#{t('when_facet.' + row.value.to_s)} (#{row.count.to_s})", events_path(:q => params[:q], :start => params[:start], :stop => row.value, :category_facet_id => params[:category_facet_id], :organizer_id => params[:organizer_id], :municipality_id => params[:municipality_id]), :title => "Sök evenemang bara i #{t('when_facet.' + row.value.to_s)}."
+
 
         - # location
         .facet_column_third
@@ -87,12 +91,13 @@
                   .month #{l(event.start_datetime, :format => :abbr_month_of_year)}
                 </a>
               %td
-                = link_to raw( 'Kl.&nbsp;' + l(event.start_datetime, :format => :time) + ': ' + event.subject + ' (' + event.category.name + ')' + '. ' + event.organizer.name + ', ' + event.municipality.short_name + '. ' + l(event.updated_at) ), event_path(event), :title => event.intro, :itemprop => :url
-                <meta itemprop="startDate" content="#{l(event.start_datetime, :format => :machine)}">
-                <meta itemprop="description" content="#{event.intro}}">
-                <meta itemprop="name" content="#{event.subject}}">
-                <meta itemprop="performer" content="#{event.organizer.name}}">
-                <meta itemprop="addressLocality" content="#{event.location}}">
+                %span.event_row
+                  = link_to raw( event.subject + ' (' + event.category.name + ')' + '. ' + event.organizer.name + ', ' + event.municipality.short_name + '. ' + 'Kl.&nbsp;' + l(event.start_datetime, :format => :time) + '.' ), event_path(event), :title => event.intro, :itemprop => :url
+                  <meta itemprop="startDate" content="#{l(event.start_datetime, :format => :machine)}">
+                  <meta itemprop="description" content="#{event.intro}}">
+                  <meta itemprop="name" content="#{event.subject}}">
+                  <meta itemprop="performer" content="#{event.organizer.name}}">
+                  <meta itemprop="addressLocality" content="#{event.location}}">
       %p 
         = link_to "Visa alla inplanerade evenemang", events_path  
     - else

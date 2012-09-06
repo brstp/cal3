@@ -101,6 +101,231 @@ module LayoutHelper
   end
   
 
+  
+  def facet_search
+    str = ""
+    unless params[:q].blank? && params[:stop].blank? && params[:category_facet_id].blank? && params[:organizer_id].blank? && params[:municipality_id].blank?
+      str << %(#{link_to t('.reset_search') })
+    else
+      str << %(&nbsp;)
+    end
+    str << %(        
+        <ul>
+            )
+    str << %(<li class = "facet-1">#{t'.when'}</li>)
+    str << facet_when( @stop_facet_rows )
+    str << %(<li class = "facet-1">#{t'.categories'}</li>)
+    str << (facet_category( @category_facet_rows ))
+    str << %(<li class = "facet-1">#{t'.organizers'}</li>)
+    str << facet_organizer( @organizer_facet_rows )
+    str << %(<li class = "facet-1">#{t'.municipalities'}</li>)
+    str << facet_municipality( @municipality_facet_rows )
+    str << %(
+            </ul>
+            )
+      
+    raw str
+  
+  end
+
+  
+  def facet_when facet_rows 
+    str = ""
+      unless facet_rows.blank? 
+      str << %(
+            <li class = "facet-2">
+              <ul>
+              )
+
+      for row in facet_rows 
+      str << %(
+                <li>
+                  #{link_to( t('when_facet.' + row.value.to_s).capitalize + " (" + row.count.to_s +  ")", 
+                              events_path(  :q => params[:q], 
+                                            :stop => row.value,
+                                            :category_facet_id => params[:category_facet_id],
+                                            :organizer_id => params[:organizer_id],
+                                            :municipality_id => params[:municipality_id]
+                                          ) ) }
+                </li>
+              )
+      end
+
+      unless params[:stop] == "past"
+      str << %(
+                <li class = "facet-2">
+                  
+                  #{link_to( t('when_facet.past').capitalize, 
+                              events_path(  :q => params[:q], 
+                                            :stop => :past,
+                                            :category_facet_id => params[:category_facet_id],
+                                            :organizer_id => params[:organizer_id],
+                                            :municipality_id => params[:municipality_id]
+                                          ) ) }
+                  
+                </li>
+              )
+      end
+      
+      unless params[:stop] != "past"
+      str << %(
+                <li class = "facet-2">
+                  <strong>
+                  #{link_to( t('when_facet.future').capitalize, 
+                              events_path(  :q => params[:q], 
+                                            :stop => nil,
+                                            :category_facet_id => params[:category_facet_id],
+                                            :organizer_id => params[:organizer_id],
+                                            :municipality_id => params[:municipality_id]
+                                          ) ) }
+                  </strong>                        
+                </li>
+              )
+      end
+      str << %(
+              </ul>
+            </li>
+              )
+    end
+    raw str
+  end
+  
+  
+  def facet_category facet_rows 
+    str = ""
+      unless facet_rows.blank? 
+      str << %(
+            <li class = "facet-2">
+              <ul>
+              )
+      for row in facet_rows 
+        unless row.instance.blank?
+          str << %(
+                    <li>
+                      #{link_to( row.instance.and_mum.capitalize + " (" + row.count.to_s +  ")", 
+                                  events_path(  :q => params[:q], 
+                                                :stop => params[:stop],
+                                                :category_facet_id => row.instance,
+                                                :organizer_id => params[:organizer_id],
+                                                :municipality_id => params[:municipality_id]
+                                              ) ) }
+                    </li>
+                  )
+        end
+      end
+      unless params[:category_facet_id].blank?
+      str << %(
+                <li class = "facet-2">
+                  <strong>
+                  #{link_to( t('.show_all_facets'), 
+                              events_path(  :q => params[:q], 
+                                            :stop => params[:stop],
+                                            :category_facet_id => nil,
+                                            :organizer_id => params[:organizer_id],
+                                            :municipality_id => params[:municipality_id]
+                                          ) ) }
+                  </strong>                        
+                </li>
+              )
+      end
+      str << %(
+              </ul>
+            </li>
+              )
+    end
+    raw str
+  end
+  
+  def facet_organizer facet_rows 
+    str = ""
+      unless facet_rows.blank? 
+      str << %(
+            <li class = "facet-2">
+              <ul>
+              )
+      for row in facet_rows 
+      str << %(
+                <li>
+                  #{link_to( row.instance.to_s + " (" + row.count.to_s +  ")", 
+                              events_path(  :q => params[:q], 
+                                            :stop => params[:stop],
+                                            :category_facet_id => params[:category_facet_id],
+                                            :organizer_id => row.instance.id,
+                                            :municipality_id => params[:municipality_id]
+                                          ) ) }
+                </li>
+              )
+      end
+      unless params[:organizer_id].blank?
+      str << %(
+                <li class = "facet-2">
+                  <strong>
+                  #{link_to( t('.show_all_facets'), 
+                              events_path(  :q => params[:q], 
+                                            :stop => params[:stop],
+                                            :category_facet_id => params[:category_facet_id],
+                                            :organizer_id => nil,
+                                            :municipality_id => params[:municipality_id]
+                                          ) ) }
+                  </strong>                        
+                </li>
+              )
+      end
+      str << %(
+              </ul>
+            </li>
+              )
+    end
+    raw str
+  end
+  
+  def facet_municipality facet_rows 
+    str = ""
+      unless facet_rows.blank? 
+      str << %(
+            <li class = "facet-2">
+              <ul>
+              )
+      for row in facet_rows 
+      str << %(
+                <li>
+                  #{link_to( row.instance.to_s + " (" + row.count.to_s +  ")", 
+                              events_path(  :q => params[:q], 
+                                            :stop => params[:stop],
+                                            :category_facet_id => params[:category_facet_id],
+                                            :organizer_id => params[:organizer_id],
+                                            :municipality_id => row.instance.id
+                                          ) ) }
+                </li>
+              )
+      end
+      unless params[:municipality_id].blank?
+      str << %(
+                <li class = "facet-2">
+                  <strong>
+                  #{link_to( t('.show_all_facets'), 
+                              events_path(  :q => params[:q], 
+                                            :stop => params[:stop],
+                                            :category_facet_id => params[:category_facet_id],
+                                            :organizer_id => params[:organizer_id],
+                                            :municipality_id => nil
+                                          ) ) }
+                  </strong>                        
+                </li>
+              )
+      end
+      str << %(
+              </ul>
+            </li>
+              )
+    end
+    raw str
+  end
+  
+  
+
+  
+
 
   
   def municipality_facts municipality
@@ -117,6 +342,82 @@ module LayoutHelper
     end
   end
 
+
+
+
+  def map_marker(event)
+   str = %(
+  function initialize() {
+    var myLatLng = new google.maps.LatLng( #{event.lat}, #{event.lng});
+    var myOptions = {
+                zoom: 10,
+                center: myLatLng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+
+    var map = new google.maps.Map(document.getElementById("map_view"), myOptions);
+
+    var contentString = '<div class="map_info_window"><h1>#{event.subject}</h1><p>#{event.intro}</p><p>#{event.duration.capitalize}. Arrangeras av #{event.organizer.name} i ämneskategorin #{event.category.name}.</p></div>';
+ 
+    var infowindow = new google.maps.InfoWindow({
+        content: contentString
+    });
+
+    var marker = new google.maps.Marker({
+        position: myLatLng,
+        map: map,
+        title: '#{event.subject}  #{event.duration.capitalize}',
+        draggable: false
+    });
+    google.maps.event.addListener(marker, 'click', function() {
+      infowindow.open(map,marker);
+    });
+
+    var weatherLayer = new google.maps.weather.WeatherLayer({
+    });
+    weatherLayer.setMap(map);
+
+  }
+  google.maps.event.addDomListener(window, 'load', initialize);
+        )
+    raw str
+  end
+  
+
+  def map_markers(event)
+   str = %(
+  function initialize() {
+    var myLatLng = new google.maps.LatLng( #{event.lat}, #{event.lng});
+    var myOptions = {
+                zoom: 10,
+                center: myLatLng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+
+    var map = new google.maps.Map(document.getElementById("map_view"), myOptions);
+
+    var contentString = '<div class="map_info_window"><h1>#{event.subject}</h1><p>#{event.intro}</p><p>#{event.duration.capitalize}. Arrangeras av #{event.organizer.name} i ämneskategorin #{event.category.name}.</p></div>';
+ 
+    var infowindow = new google.maps.InfoWindow({
+        content: contentString
+    });
+
+    var marker = new google.maps.Marker({
+        position: myLatLng,
+        map: map,
+        title: '#{event.subject}  #{event.duration.capitalize}',
+        draggable: false
+    });
+    google.maps.event.addListener(marker, 'click', function() {
+      infowindow.open(map,marker);
+    });
+
+
+  }
+  google.maps.event.addDomListener(window, 'load', initialize);
+        )
+    raw str
+  end
 
 
 

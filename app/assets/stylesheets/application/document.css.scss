@@ -612,7 +612,7 @@ vertical-align : top; }
 
 .calendar_day {
   padding: 0.3em 0 0.2em 0;
-  font-size: 1em;
+  @include font-size(10);
   color: $grey;
   font-weight : bold; 
   background-color: $dark_calendar;
@@ -1020,6 +1020,7 @@ p.article_meta {
 .minicalendar table {
   margin-bottom: 1.5em;
   width: 100%;
+  //@include font-size(10);
 }
 
 
@@ -1047,7 +1048,10 @@ p.article_meta {
   text-decoration: none;
   display: block;
   padding: 0.5em;
-  @include font-size(12);
+}
+
+.event_row{
+  @include font-size(16);
 }
 
 a.inline_div {
@@ -1067,6 +1071,7 @@ a.inline_div {
  @include font-size(12); 
  color: $grey; 
 }
+
 .sunday{
   color: $allom_red;
 }
