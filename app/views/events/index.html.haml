@@ -29,23 +29,18 @@
           = submit_tag "Sök", :id => :event_search
   
       .three_cols
-      
-        - # subject category
         .facet_column_first
           %h5 vad/ämne
           %ul
             - for row in @category_facet_rows
               - if row.value.to_i == params[:category_facet_id].to_i
                 %li.selected_facet
-                  %a{:href => "#{events_path( :q => params[:q], :start => params[:start], :stop => params[:stop], :category_facet_id => nil, :organizer_id => params[:organizer_id], :municipality_id => params[:municipality_id])}"}
+                  %a{:href => "#{events_path(:q => params[:q], :start => params[:start], :stop => params[:stop], :category_facet_id => nil, :organizer_id => params[:organizer_id], :municipality_id => params[:municipality_id])}"}
                     %span.cancel_facet x
                     %span= "#{row.instance.and_mum.to_s} (#{row.count.to_s})"
               - else
                 %li
                   = link_to "#{row.instance.and_mum.to_s} (#{row.count.to_s})", events_path( :q => params[:q], :start => params[:start], :stop => params[:stop], :category_facet_id => row.instance.id, :organizer_id => params[:organizer_id], :municipality_id => params[:municipality_id]), :title => "Sök evenemang bara i kategorin #{row.instance.to_s}."
-
- 
-        - # time span              
         .facet_column_second
           %h5 när/datum
           %ul
@@ -58,22 +53,19 @@
               - else
                 %li
                   = link_to "#{t('when_facet.' + row.value.to_s)} (#{row.count.to_s})", events_path(:q => params[:q], :start => params[:start], :stop => row.value, :category_facet_id => params[:category_facet_id], :organizer_id => params[:organizer_id], :municipality_id => params[:municipality_id]), :title => "Sök evenemang bara i #{t('when_facet.' + row.value.to_s)}."
-
-
-        - # location
         .facet_column_third
           %h5 var/ort 
           %ul
-            - if params[:municipality_id].blank?
-              - unless @municipality_facet_rows.blank? 
-                - for row in @municipality_facet_rows
-                  %li
-                    = link_to "#{row.instance.to_s} (#{row.count.to_s})", events_path( :q => params[:q], :start => params[:start], :stop => params[:stop], :category_facet_id => params[:category_facet_id], :organizer_id => params[:organizer_id], :municipality_id => row.instance.id), :title => "Sök evenemang bara i #{row.instance.to_s}."
-            - else
-              - for row in @municipality_facet_rows
+            - for row in @municipality_facet_rows
+              - if row.value.to_i == params[:municipality_id].to_i
                 %li.selected_facet
-                  %span.cancel_facet= link_to "x", events_path( :q => params[:q], :start => params[:start], :stop => params[:stop], :category_facet_id => params[:category_facet_id], :organizer_id => params[:organizer_id], :municipality_id => nil), :title => "Sök överallt."
-                  %span= link_to "#{row.instance.to_s} (#{row.count.to_s})", events_path( :q => params[:q], :start => params[:start], :stop => params[:stop], :category_facet_id => params[:category_facet_id], :organizer_id => params[:organizer_id], :municipality_id => nil), :title => "Sök överallt, inte bara i #{row.instance.to_s}"
+                  %a{:href => "#{events_path( :q => params[:q], :start => params[:start], :stop => params[:stop], :category_facet_id => params[:category_facet_id], :organizer_id => params[:organizer_id], :municipality_id => nil)}"}
+                    %span.cancel_facet x
+                    %span= "#{row.instance.to_s} (#{row.count.to_s})"
+              - else
+                %li
+                  = link_to "#{row.instance.to_s} (#{row.count.to_s})", events_path( :q => params[:q], :start => params[:start], :stop => params[:stop], :category_facet_id => params[:category_facet_id], :organizer_id => params[:organizer_id], :municipality_id => row.instance.id), :title => "Sök evenemang bara i #{row.instance.to_s}."
+
 
                
     - unless @events.blank?
