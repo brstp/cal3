@@ -789,7 +789,7 @@ p.article_meta {
     width: 100%; 
     -webkit-box-sizing : border-box;
     -moz-box-sizing : border-box;
-    opacity: 0.5;
+    //opacity: 0.5;
   }
   .heading {
     @include font-size(15);
@@ -837,6 +837,15 @@ p.article_meta {
   li.selected_facet{
     background-color: black;    
   }
+  li.more_facets{
+    //background-color: $lightgrey;
+    text-align: center;
+  }
+
+  li.facet_field{
+    color:white;
+  }
+  
   .cancel_facet{
     float: right;
     margin: -0.5em -0.5em 0 0;

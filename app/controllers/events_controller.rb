@@ -20,9 +20,11 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
 
       result = Event.search do
         keywords params[:q]
-        paginate :page => params[:page], :per_page => 10
-        # paginate :per_page => 30, :page => params[:page]
-        facet :category_facet_id, :organizer_id, :municipality_id
+        paginate :page => params[:page]
+          
+        facet :category_facet_id, :limit => params[:cl].to_i + 7
+        facet :organizer_id
+        facet :municipality_id, :limit => params[:ml].to_i + 6
         facet :stop do
           row "today" do
             with :stop, today..(today + 1.day)
@@ -48,9 +50,9 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
           row "next_month" do
             with :stop, (this_month + 1.month)..(this_month + 2.month)
           end
-          row "future" do
-            with :stop, today..(today + 10.year)
-          end
+          #row "future" do
+          #  with :stop, today..(today + 10.year)
+          #end
           row "past" do
             with :stop, (today - 100.year)..today
           end
@@ -123,7 +125,12 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
         with( :municipality_id ).equal_to( params[:municipality_id].to_i )
       end
 
+
     end
+    
+
+    
+    @hit_numbers = result.total
 
     if result.facet( :stop )
       @stop_facet_rows = result.facet(:stop).rows
@@ -142,7 +149,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
     end
 
     @events = result
-    
+     
     event_set = []
     for event in @events #TODO refactor two loops into one
       event_set << event
