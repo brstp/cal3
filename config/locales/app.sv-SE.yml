@@ -136,6 +136,8 @@ sv-SE:
     easter_holiday2:
     past: "redan genomförda"
     future: "framtida"
+    from_date: "från"
+    to_date: "till"
     
   will_paginate:
     first: "&lt;&lt; första"

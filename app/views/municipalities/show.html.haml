@@ -43,7 +43,7 @@
 
     - unless @municipality.past_events.blank?
       %p
-        = link_to "Visa alla genomförda evenemang i #{@municipality.name}...", events_path(:municipality_id => @municipality.id, :start => :past)
+        = link_to "Visa alla genomförda evenemang i #{@municipality.name}...", events_path(:municipality_id => @municipality.id, :to => l( Time.zone.now.beginning_of_day, :format => :date))
             
   %aside{:role => "complementary"}
     = render 'aside_show'

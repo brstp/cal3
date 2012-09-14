@@ -17,12 +17,20 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
       beginning_of_time = Time.parse('1970-03-27')
       christmas_eve = Time.zone.now.beginning_of_year + 11.month + 23.day
       new_years_eve = Time.zone.now.beginning_of_year + 11.month + 30.day
+      
+      facet_from = Timeliness.parse(params[:from])
+      facet_to = Timeliness.parse(params[:to])
+
+      if facet_from.blank? && facet_to.blank?
+        facet_from = Time.zone.now.beginning_of_day
+      end
+      
 
       result = Event.search do
         keywords params[:q]
         paginate :page => params[:page]
           
-        facet :category_facet_id, :limit => params[:cl].to_i + 7
+        facet :category_facet_id, :limit => params[:cl].to_i + 6
         facet :organizer_id
         facet :municipality_id, :limit => params[:ml].to_i + 6
         facet :stop do
@@ -44,18 +52,6 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
           row "next_weekend" do
             with :stop, (this_week + 12.day )..(this_week + 14.day)
           end
-          row "this_month" do
-            with :stop, (this_month)..(this_month + 1.month)
-          end
-          row "next_month" do
-            with :stop, (this_month + 1.month)..(this_month + 2.month)
-          end
-          #row "future" do
-          #  with :stop, today..(today + 10.year)
-          #end
-          row "past" do
-            with :stop, (today - 100.year)..today
-          end
           row "christmas_eve" do
             with :stop, christmas_eve..(christmas_eve + 1.day)
           end
@@ -68,6 +64,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
           row "walpurgis_night" do
             with :stop, (this_year+ 4.month + 29.day)..(this_year + 4.month + 30.day)
           end
+          
         end
 
         order_by(:start_datetime, :asc)
@@ -92,10 +89,6 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
               with(:stop).between((this_month)..(this_month + 1.month))
             when params[:stop] == "next_month"
               with(:stop).between((this_month + 1.month)..(this_month + 2.month))
-            when params[:stop] == "future"
-              with(:stop).between(today..(today + 10.year))
-            when params[:stop] == "past"
-              with(:stop).between((today - 100.year)..today)
             when params[:stop] == "christmas_eve"
               with(:stop).between(christmas_eve..(christmas_eve + 1.day))
             when params[:stop] == "christmas_day"
@@ -107,47 +100,22 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
           end
         end
 
-      #unless params[:stop] == "past"
-      #  with(:stop).between(today..(today + 10.year))
-      #else
-      #  with(:stop).between((today - 100.year)..today)
-      #end
 
-      unless params[:category_facet_id].blank?
-        with( :category_facet_id ).equal_to( params[:category_facet_id].to_i )
-      end
-
-      unless params[:organizer_id].blank?
-        with( :organizer_id ).equal_to( params[:organizer_id].to_i )
-      end
-
-      unless params[:municipality_id].blank?
-        with( :municipality_id ).equal_to( params[:municipality_id].to_i )
-      end
-
-
+      with(:stop).greater_than(facet_from) unless facet_from.blank?
+      with(:stop).less_than(facet_to + 1.day) unless facet_to.blank?      
+      with(:category_facet_id).equal_to( params[:category_facet_id].to_i ) unless params[:category_facet_id].blank?
+      with(:organizer_id).equal_to( params[:organizer_id].to_i ) unless params[:organizer_id].blank?
+      with(:municipality_id).equal_to( params[:municipality_id].to_i ) unless params[:municipality_id].blank?
     end
     
-
     
+    @from_date = facet_from
+    @to_date = facet_to
     @hit_numbers = result.total
-
-    if result.facet( :stop )
-      @stop_facet_rows = result.facet(:stop).rows
-    end
-
-    if result.facet( :category_facet_id )
-      @category_facet_rows = result.facet(:category_facet_id).rows
-    end
-
-    if result.facet( :organizer_id )
-      @organizer_facet_rows = result.facet(:organizer_id).rows
-    end
-
-    if result.facet( :municipality_id )
-      @municipality_facet_rows = result.facet(:municipality_id).rows
-    end
-
+    @stop_facet_rows = result.facet(:stop).rows if result.facet( :stop )
+    @category_facet_rows = result.facet(:category_facet_id).rows if result.facet( :category_facet_id )
+    @organizer_facet_rows = result.facet(:organizer_id).rows if result.facet( :organizer_id )
+    @municipality_facet_rows = result.facet(:municipality_id).rows if result.facet( :municipality_id )
     @events = result
      
     event_set = []
@@ -157,16 +125,12 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
 
 
     @markers = event_set.to_gmaps4rails do |event, marker|
-
       marker.infowindow "<div class=\"info_window\"> <h1>#{view_context.link_to(event.subject, event)}</h1> <p>Kategori: #{event.category.name.capitalize} </p><p>#{event.short_duration.capitalize} </p></div>"
       marker.picture map_marker(event)
       marker.title   "#{event.subject} \n(#{event.category.name.capitalize}) \n#{event.short_duration.capitalize}"
       #marker.sidebar "i'm the sidebar"
       marker.json({ :id => event.id, :foo => "bar" })
     end    
-    
-    
-    #@gallery = Event.find(:all, :conditions => ["stop_datetime >= '#{Time.now - 9.months}'"], :order => "updated_at DESC", :limit => 9, :offset => 2)
     
     @gallery =  Event.where(['stop_datetime >= ? AND image1_file_name IS NOT NULL', "#{Time.now}"]).order('updated_at DESC').offset(2).limit(9)
 

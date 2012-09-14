@@ -860,19 +860,22 @@ p.article_meta {
   }
 }
 
+.facet_column_organizer{
+  width: 100%;
+}
 
-.facet_column_first{
+.facet_column_category{
   width: 32%;
   float: left;
 }
 
-.facet_column_second{
+.facet_column_time{
   width: 32%;
   float: left;
   margin-left: 0.45em;
 }
 
-.facet_column_third{
+.facet_column_location{
   width: 32%;
   float: right;
 }
