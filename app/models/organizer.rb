@@ -28,7 +28,7 @@ class Organizer < ActiveRecord::Base
   
   before_save :destroy_photo? 
   before_save :destroy_logotype?
-  attr_accessible :name, :description, :website, :photo_url, :photo_caption, :photo_delete, :user_ids, :logotype, :logotype_delete, :photo, :intro, :phone, :email, :last_googleboted, :created_at, :updated_at, :created_by, :updated_by
+  attr_accessible :name, :description, :website, :photo_url, :photo_caption, :photo_delete, :user_ids, :logotype, :logotype_delete, :photo, :intro, :phone, :email, :last_googleboted
   
   validates_presence_of :name, :description, :email
   validates_length_of :name, :in => 5..50
