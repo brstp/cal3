@@ -91,7 +91,8 @@
 
       <div class = "button_container">
         <div class= "button">
-          <%= f.buttons %>
+                <%- # f.buttons %>
+      <%= f.action(:submit) %>
         </div>
         <div class= "reset">
         <% if @event.new_record? %> 

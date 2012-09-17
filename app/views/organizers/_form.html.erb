@@ -39,7 +39,8 @@
 
       <div class = "button_container">
         <div class= "button">
-          <%= f.buttons %>
+                <%- # f.buttons %>
+      <%= f.action(:submit) %>
         </div>
         <div class= "reset">
         <% if @organizer.new_record? %> 

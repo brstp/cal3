@@ -29,7 +29,8 @@
     <%= f.input   :decision_made_by_user_id,
                   :as => :hidden %>    
   <% end %>
-  <%= f.buttons %>
+        <%- # f.buttons %>
+      <%= f.action(:submit) %>
 <% end %>
 
 <%= link_to t('.back_to_organizer') + ' ' + @petition.organizer.name, organizer_path(@petition.organizer) %>
