@@ -6,7 +6,7 @@
   <p><%= f.label :email %><br />
   <%= f.text_field :email %></p>
   
-  <%= f.text_field :invitor, :value => current_user.id, :hidden => true %>
+  <%= f.text_field :invited_by_id, :value => current_user.id, :hidden => true %>
 
   <p><%= f.submit t('.send_an_invitation') %></p>
 <% end %>

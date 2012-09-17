@@ -11,6 +11,13 @@ class MunicipalitiesController < ApplicationController
     @municipality.update_attribute(:last_googleboted, Time.now) if request.headers["user_agent"].include? "Googlebot"
     @events = @municipality.upcoming_events #.paginate :page => params[:page], :per_page => 30
     @organizers = @municipality.events.count(:group => "organizer").sort_by { |k,v| -v}
+    @markers = @municipality.events.to_gmaps4rails do |event, marker|
+      marker.infowindow "<div class=\"info_window\"> <h1>#{event.subject}</h1> <p>Kategori: #{event.category.name.capitalize} </p><p>#{event.short_duration.capitalize} </p></div>"
+      marker.picture map_marker(event)
+      marker.title   "#{event.subject} \n(#{event.category.name.capitalize}) \n#{event.short_duration.capitalize}"
+      #marker.sidebar "i'm the sidebar"
+      marker.json({ :id => event.id, :foo => "bar" })
+    end   
       respond_to do |format|
         format.html # show.html.erb
         format.ihtml

@@ -1,11 +1,11 @@
 sv-SE:
   devise:
     failure:
-      already_authenticated: 'Du var redan inloggad. Gör inget. Fortsätt som vanligt.'
+      already_authenticated: 'Det verkar som om du försökte logga in när du redan är inloggad. Det gör inget. Om du vill logga in på ett annat användarkonto, logga ut först.'
       unauthenticated: 'Välkommen. Logga in för att fortsätta. Har du inget användarkonto? Då registrerar du ett snabbt.'
       unconfirmed: 'Du måste bekräfta ditt konto innan du kan fortsätta.'
-      locked: 'Ditt konto är låst.'
-      invalid: 'Fel mejladress eller lösenord.'
+      locked: 'Ditt konto är låst, kanske på grund av för många felaktiga inloggningar. Kontakta kundtjanst@allom.se.'
+      invalid: 'Fel mejladress eller lösenord för att logga in. Prova igen.'
       invalid_token: 'Den hemliga koden för inloggning är trasig.' 
       timeout: 'Din session är inte längre giltig, vänligen logga in igen för att fortsätta.'
       inactive: 'Ditt konto har inte aktiverats ännu.'

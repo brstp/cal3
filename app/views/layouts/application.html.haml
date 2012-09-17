@@ -12,6 +12,9 @@
         = render "header"
         .top_navigation_container
           = render "navigation"
+        - unless flash.blank?
+          - flash.each do |name, msg| 
+            = content_tag :div, msg, :class => "flash_#{name}" 
         = yield
         .bottom_navigation_container
           %h3#nav_menu Meny:

@@ -1,6 +1,6 @@
 <p>Hej!</p>
 
-<p><%= (User.find @resource.invitor).name %> bjudit in dig till Allom - kalendern med allt som händer innan det är för sent.<br /> 
+<p><%= (User.find @resource.invited_by_id).name %> bjudit in dig till Allom - kalendern med allt som händer innan det är för sent.<br /> 
 Klicka på länken nedan för att skapa ett kostnadsfritt användarkonto.</p>
 
 <p><%= link_to 'Ja, jag vill ha ett konto på Allom.', accept_invitation_url(@resource, :invitation_token => @resource.invitation_token) %></p>

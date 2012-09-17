@@ -1,14 +1,27 @@
-<h1><%= title @user.name %></h1>
+<h1><%= title "Ditt användarkonto på Allom" %></h1>
+<p>
+  <b><%= t('.first_name')%>:</b>
+  <%= @user.first_name %>
+</p>
+<p>
+  <b><%= t('.last_name')%>:</b>
+  <%= @user.last_name %>
+</p>
 
-<% content_for :right_column_top do %>  
-  <%= my_organizers current_user %>
-<% end %>   
+<p>
+  <b><%= t('.email')%>:</b>
+  <%= @user.email %>
+</p>
+
 
 <% if current_user %>
   <% if (@user == current_user) || current_user.is_admin? %>
-    <%= button_to(  "Ändra användarkontot eller byt lösenord", 
-                    edit_user_path(@user), 
-                    :method => :get) %>
+  <p>
+
+    <%= link_to "Ändra användarkontot eller byt lösenord...", 
+                    edit_user_path(@user) %>
+  </p>
+
     <%# button_to(  t('app.destroy'), 
                     @user, 
                     :confirm => t('app.are_you_sure') + ' ' +@user.name + '?', 
@@ -16,23 +29,12 @@
   <% end %>
 <%end%>
 
+<p>
+  <%= link_to "Logga ut", destroy_user_session_path %>
+</p>
 
-<p>
-  <strong><%= t('.first_name')%>:</strong>
-  <%= @user.first_name %>
-</p>
-<p>
-  <strong><%= t('.last_name')%>:</strong>
-  <%= @user.last_name %>
-</p>
-<%= image_tag avatar_url(@user) %>
-<p>
-Bilden (avataren) kommer finns på Gravatar. <%= link_to("Lägg upp en bild av dig själv, eller ändra om du redan har en bild.", "http://sv.gravatar.com/", :rel => :nofollow) %>
-</p>
-<p>
-  <strong><%= t('.email')%>:</strong>
-  <%= @user.email %>
-</p>
+
+  <%= my_organizers current_user %>
 
 
 
@@ -58,9 +60,9 @@ Bilden (avataren) kommer finns på Gravatar. <%= link_to("Lägg upp en bild av d
         <th>Arrangörssida</th>
         <th>Evenemangsannons</th>
         <th>Visningar</th>
-        <th width="13%">Skapad</th>
-        <th width="13%">Startdatum</th>
-        <th>Genomförd</th>
+        <th>Skapad</th>
+        <th>Startdatum</th>
+        <th>Genom-förd</th>
       </tr>
     </thead>
     <tbody>
@@ -88,7 +90,7 @@ Bilden (avataren) kommer finns på Gravatar. <%= link_to("Lägg upp en bild av d
 <hr />
 <h3>För systemadminstratörer:</h3>
 <p>
-  <strong><%= t('.is_system_admin')%>:</strong>
+  <b><%= t('.is_system_admin')%>:</b>
   <%= t ('app.yess') if @user.is_admin %>
 </p>
 

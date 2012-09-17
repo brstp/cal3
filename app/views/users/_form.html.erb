@@ -42,6 +42,11 @@
       <h2>För systemadministratörer</h2>
       <%= f.inputs %>
     <% end %>
-    <%= f.buttons %>
   <% end %>
+  
+      <%= f.actions do %>
+      <%= f.action :submit, :as => :button %>
+      <%= f.action :cancel, :as => :link %>
+    <% end %>
+    
 <% end %>

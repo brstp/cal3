@@ -27,9 +27,6 @@
               (#{municipality.number_of_upcoming_events}/#{municipality.events.count})
             %td
               - unless municipality.next_event.nil?
-                = link_to(l(municipality.next_event.start_datetime, :format => :shorty) + ', ' +municipality.next_event.subject + ' (' + municipality.next_event.municipality.short_name + ')', municipality.next_event, :title => municipality.next_event.try(:intro))
+                = link_to(l(municipality.next_event.start_datetime, :format => :shorty) + ', ' +municipality.next_event.subject + ' (' + municipality.next_event.organizer.name + ')', municipality.next_event, :title => municipality.next_event.try(:intro))
             
-  %aside{:role => "complementary"}
-    = #render 'aside_index'
-
 - set_meta_tags :title => "Evenemang i alla Sveriges kommuner.", :description => "Lägg in dina evenemang på evenemangskalendern Allom. Snabbt och enkelt. Kostnadsfritt konto."

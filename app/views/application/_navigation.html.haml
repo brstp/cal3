@@ -15,8 +15,10 @@
       %a.menu{:href => "/municipalities", :title => "Alla platser, orter eller kommuner där det finns evenemang."}
         Platserna
     %li
-      %a.menu{:href => "", :title => "Om evenemangskalendern Allom"} 
+      %a.menu{:href => "http://info.allom.se/om-allom-evenemangskalendern/", :title => "Om evenemangskalendern Allom"} 
         Om Allom
     %li
-      %a.menu{:href => "#login", :title => "Registrera dig, logga in, byt lösenord, ändra dina inställningar. Det kostar inget att ha ett konto på Allom."} 
-        Logga in / konto        
+      - if user_signed_in?
+        = link_to "Konto / logga ut", current_user, :title => "Gå till sidan för ditt användarkonto. Där kan du byta lösenord eller logga ut.", :class => :menu
+      - else
+        = link_to "Logga in / konto", new_user_session_path, :title => "Skaffa användarkonto, logga in, byt lösenord. Det kostar inte något att ha ett konto på Allom", :class => :menu

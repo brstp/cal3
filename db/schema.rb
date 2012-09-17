@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120619161126) do
+ActiveRecord::Schema.define(:version => 20120917085929) do
 
   create_table "bup_users", :force => true do |t|
     t.string    "email"
@@ -197,34 +197,34 @@ ActiveRecord::Schema.define(:version => 20120619161126) do
   add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
 
   create_table "users", :force => true do |t|
-    t.string    "email"
-    t.string    "encrypted_password",                   :default => ""
-    t.string    "password_salt",                        :default => ""
-    t.string    "reset_password_token"
-    t.string    "remember_token"
-    t.timestamp "remember_created_at"
-    t.integer   "sign_in_count",                        :default => 0
-    t.timestamp "current_sign_in_at"
-    t.timestamp "last_sign_in_at"
-    t.string    "current_sign_in_ip"
-    t.string    "last_sign_in_ip"
-    t.string    "confirmation_token"
-    t.timestamp "confirmed_at"
-    t.timestamp "confirmation_sent_at"
-    t.integer   "failed_attempts",                      :default => 0
-    t.string    "unlock_token"
-    t.timestamp "locked_at"
-    t.string    "authentication_token"
-    t.string    "first_name"
-    t.string    "last_name"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.boolean   "is_admin",                             :default => false
-    t.string    "invitation_token",       :limit => 20
-    t.timestamp "invitation_sent_at"
-    t.integer   "invitor"
-    t.boolean   "name_required"
-    t.datetime  "reset_password_sent_at"
+    t.string   "email"
+    t.string   "encrypted_password",                   :default => ""
+    t.string   "password_salt",                        :default => ""
+    t.string   "reset_password_token"
+    t.string   "remember_token"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",                        :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.integer  "failed_attempts",                      :default => 0
+    t.string   "unlock_token"
+    t.datetime "locked_at"
+    t.string   "authentication_token"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "is_admin",                             :default => false
+    t.string   "invitation_token",       :limit => 20
+    t.datetime "invitation_sent_at"
+    t.integer  "invited_by_id"
+    t.boolean  "name_required"
+    t.datetime "reset_password_sent_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

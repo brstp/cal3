@@ -1,0 +1,45 @@
+%p För att kunna lägga in evenemangsannonser och arrangörssidor här på Allom behöver du ett användarkonto.
+
+= title "Logga in eller skapa ett nytt användarkonto."
+- alternative = 3
+.option_box
+  %h3 Alternativ 1: Du har redan ett användarkonto.
+  = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| 
+    = f.error_messages 
+    %p
+      = f.label :email
+      %br
+      = f.text_field :email, :type => :email
+  
+    %p
+      = f.label :password
+      %br
+      = f.password_field :password
+  
+    - if devise_mapping.rememberable? 
+      %p
+        = f.check_box :remember_me
+        = f.label :remember_me 
+    %p
+      = f.submit "Logga in"
+
+
+.option_box
+  %h3 Alternativ 2: Du har inte något användarkonto på Allom. 
+  %p
+    = link_to "Skapa ett nytt användarkonto", new_user_registration_path
+
+- if devise_mapping.recoverable? && controller_name != 'passwords' 
+  .option_box
+    %h3 Alternativ #{ alternative }: Jag har glömt mitt lösenord.  
+    %p
+      = link_to "Mejla nytt lösenord", new_password_path(resource_name) 
+  - alternative = alternative + 1
+
+- if devise_mapping.confirmable? && controller_name != 'confirmations'
+  .option_box
+    %h3 Alternativ #{ alternative }: Jag har registrerat ett konto men inte fått bekräftelse.
+    = form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f|
+      = devise_error_messages! 
+      %p
+        = link_to "Mejla bekräftelsen igen", new_confirmation_path(resource_name)

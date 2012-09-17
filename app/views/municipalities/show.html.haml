@@ -6,15 +6,16 @@
       %p.category Plats:
       %h1{:itemprop => :name}= @municipality.name
       = admin_municipality
-    #map_view
-    .two_cols
-      .two_cols1      
-        = image_tag "red-marker.png"
-        %p.minor Kommande evenemang.
-      .two_cols1      
-        = image_tag "red-marker.png"
-        %p.minor Redan genomförda evenemang.
-
+      
+    = gmaps({"map_options" => { :do_clustering => true, randomize: true },"markers" => {"data" => @markers }})      
+    %p
+      = image_tag "grn-pushpin.png", :class => :marker_legend_mid_size
+      Kommande evenemang.
+    %p
+      = image_tag "red-pushpin.png", :class => :marker_legend_small_size
+      Redan genomförda evenemang.
+    
+      
     - unless @events.blank?
       %h6 Visar #{@events.count} av #{@municipality.upcoming_events.count} evenemang
       %table.mini_calendar

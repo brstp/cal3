@@ -64,7 +64,7 @@ Devise.setup do |config|
 
   # ==> Configuration for :rememberable
   # The time the user will be remembered without asking for credentials again.
-  config.remember_for = 12.weeks
+  config.remember_for = 48.months
 
 
   # If true, extends the user's remember period when remembered via cookie.
@@ -144,7 +144,6 @@ Devise.setup do |config|
   # end
   
   config.case_insensitive_keys = [ :email ]
-  config.use_salt_as_remember_token = true
   config.reset_password_within = 24.hours
   
 end

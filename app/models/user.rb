@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :id, :organizer_ids, :is_admin, :name_required, :invitor #TODO rename invitor to invitor_id
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :id, :organizer_ids, :is_admin, :name_required, :invited_by_id
 
   validates_presence_of :email
   validates :email, :email => true

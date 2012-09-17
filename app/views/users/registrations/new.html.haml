@@ -1,0 +1,25 @@
+%h1
+  = title "Skapa ett användarkonto på Allom"
+%p För att kunna lägga in evenemangsannonser och arrangörssidor här på Allom behöver du ett användarkonto. Det går supersnabbt.
+= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| 
+  = f.error_messages 
+  %p
+    = f.label :email 
+    %br
+    = f.text_field :email, :type => :email
+  %p
+    = f.label :password
+    %br
+    = f.password_field :password 
+  %p
+    = f.label :password_confirmation 
+    %br
+    = f.password_field :password_confirmation 
+  %p §1 Vi lovar att inte sprida din mejladress.
+  %p §2 Det kommer aldrig att kosta något att ha ett användarkonto.
+  %p §3 Användarkontot är personligt. Du kan bara ha ett användarkonto. Det kan kopplas till flera arrangörer.
+  %p §4 Du lovar inte något annat. Inget finstilt. 
+  %p
+    = f.submit "Skapa nytt användarkonto"
+    
+= render :partial => "users/shared/links" 
