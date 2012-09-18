@@ -26,8 +26,8 @@ gem 'rails', '3.1.3'
 
 #gem 'capistrano'                  #deploy
 
-gem 'devise',           '~> 2.0.0'  #authentication
-gem 'devise_invitable' #, '~> 0.7.0'
+gem 'devise',           '>= 2.0.0'  #authentication
+gem 'devise_invitable' , '~> 1.0.0'
 gem 'formtastic'                    #forms
 gem "validation_reflection"         #validation of mandatory attributes
 gem 'validates_timeliness'          #validate time/datetime

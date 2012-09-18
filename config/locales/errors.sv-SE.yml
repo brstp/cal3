@@ -91,5 +91,5 @@ sv-SE:
       name_but_no_phone: "måste anges om du anger ett namn (eller ta bort namnet)."
       phone_but_no_name: "måste anges om du anger ett telefonnummer."
       not_saved:
-        one: 'Ett fel gjorde att %{model} inte kunde sparas:'
-        other: '%{count} fel gjorde att %{model} inte kunde sparas:'        
+        one: 'Ett fel gjorde att vi inte kunde spara.'
+        other: '%{count} fel gjorde att vi inte kan spara.'        
