@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120917085929) do
+ActiveRecord::Schema.define(:version => 20120917144805) do
 
   create_table "bup_users", :force => true do |t|
     t.string    "email"
@@ -225,6 +225,9 @@ ActiveRecord::Schema.define(:version => 20120917085929) do
     t.integer  "invited_by_id"
     t.boolean  "name_required"
     t.datetime "reset_password_sent_at"
+    t.datetime "invitation_accepted_at"
+    t.integer  "invitation_limit"
+    t.string   "invited_by_type"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

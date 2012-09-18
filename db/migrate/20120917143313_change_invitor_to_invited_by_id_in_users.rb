@@ -7,5 +7,3 @@ class ChangeInvitorToInvitedByIdInUsers < ActiveRecord::Migration
     rename_column :users, :invited_by_id, :invitor
   end
 end
-
-      
