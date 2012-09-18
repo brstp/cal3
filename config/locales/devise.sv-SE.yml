@@ -1,13 +1,13 @@
 sv-SE:
   devise:
     failure:
-      already_authenticated: 'Du var redan inloggad. Gör inget. Fortsätt som vanligt.'
+      already_authenticated: 'Du verkar försöka logga in när du redan är inloggad. Det gör inget. Fortsätt som vanligt.'
       unauthenticated: 'Välkommen. Logga in för att fortsätta. Har du inget användarkonto? Då registrerar du ett snabbt.'
-      unconfirmed: 'Du måste bekräfta ditt konto innan du kan fortsätta.'
+      unconfirmed: 'Du måste bekräfta ditt konto innan du kan fortsätta. Vi har skickat ett mejl till mejladressen du angav med en länk för att bekräfta.'
       locked: 'Ditt konto är låst.'
       invalid: 'Fel mejladress eller lösenord.'
       invalid_token: 'Den hemliga koden för inloggning är trasig.' 
-      timeout: 'Din session är inte längre giltig, vänligen logga in igen för att fortsätta.'
+      timeout: 'Din inloggning har varat länge och tagit slut. Logga in igen för att fortsätta.'
       inactive: 'Ditt konto har inte aktiverats ännu.'
     sessions:
       signed_in: 'Nu är du inloggad.'
@@ -31,33 +31,47 @@ sv-SE:
         signed_in: 'Nu är du inloggad.'              
       
     invitations:
-      send_instructions: 'Tack för hjälpen. Vi har skickat ett inbjudningsmejl till din kompis.'
+      send_instructions: 'Vi har skickat ett inbjudningsmejl till %{email}'
       updated: 'Så där, nu är ditt användarkonto igång som det ska.'
+      invitation_token_invalid: 'Länken med inbjudan funkar inte. Kanske är den redan använd eller något tecken kanske tappats om du kopierade den.'
+      no_invitations_remaining: "Det finns inte kvar några inbjudningar."
       new:
         send_invitation: 'Bjud in en kompis till Allom'
         send_an_invitation: 'Skicka inbjudan'
         have_a_friend: 'Vill du ge din kompis ett konto i Allom?'
         invite_her: 'Ge bort en inbjudan kostnadsfritt!'
+        header: "Skicka inbjudan"
+        submit_button: "Skicka en inbjudan"
       edit:
         set_your_password: 'Nu behöver du välja ett lösenord för användarkontot.'
         welcome: 'Välkommen till Allom!'
         set_my_password: 'Sätt lösenord'
+        header: "Byt lösenord"
+        submit_button: "Byt mitt lösenord"
     passwords:
       new:
         mail_me: 'Mejla mig'
         forgot_your_password: 'Har du glömt ditt lösenord?'
       send_instructions: 'Du kommer få ett mejl med instruktioner om hur du kan återställa ditt lösenord inom någon minut.'
-      updated: 'Ditt lösenord har uppdaterats. Du är nu inloggad.'
+      updated: 'Ditt lösenord är uppdaterat. Du är nu inloggad.'
+      updated_not_active: 'Ditt lösenord är uppdaterat.'
+      send_paranoid_instructions: "Om din mejladress finns i vår databas så kommer vi att skicka dig ett mejl med en länk för att återställa ditt lösenord."
+      no_token: "Oj, nu har något blivit knasigt. Det är inte meningen att du ska landa på den här sidan. Den är bara till för återställning av bortglömda lösenord. Kanske du klistrade in en länk som inte var komplett eller backade tillbaka i webbläsaren? Det är inte föbjudet på något sätt men kan ställa till en del strul."
     confirmations:
       send_instructions: 'Du kommer att få ett mejl med instruktioner om hur du kan bekräfta ditt konto inom någon minut.'
       confirmed: 'Ditt användarkonto är nu igång. Du är inloggad. För att lägga in en evenemangsannons, klicka på "Lägg in en evenemangsannons" i toppmenyn.'
+      send_paranoid_instructions: 'Om din mejladress finns i vår databas kommer vi att skicka dig ett mejl med instruktioner och en länk för att bekräfta användarkontot.'
       new:
         resend_confirmation_instructions: 'Skicka mejl för att bekräfta att det är ditt användarkonto.'
         resend: 'Skicka bekräftelsemejl'
     registrations:
+      signed_up_but_unconfirmed: 'Vi har mejlat dig en länk som du behöver klicka på för att aktivera ditt användarkonto.'
+      signed_up_but_inactive: 'Du har skapat ett användarkonto men du kan inte logga in för ditt konto är inte aktiverat.'
+      signed_up_but_locked: 'Du har skapat ett användarkonto men du kan inte logga in för ditt konto är låst.'
+      update_needs_confirmation: "Du har uppdaterat ditt användarkonto. Bra. Men, för att det ska funka så måste vi få en bekräftelse på din nya mejladress. Kolla din mejllåda efter ett mejl från oss med en länk för att bekräfta att du byter mejladress."
       signed_up: 'Vi skickar nu ett mejl till dig. I det mejlet finns en länk som du klickar på för att bekräfta ditt nya konto. Sedan kan du börja lägga upp evenemangsannonser.'
       updated: 'Ditt konto har uppdaterats.'
-      destroyed: 'Hej då! Ditt konto har avregistrerats. Vi hoppas få se dig snart igen.'
+      destroyed: 'Hej då! Ditt konto har avregistrerats. Vi hoppas att du kommer tillbaka.'
       new:
         sign_up: 'Registrera användarkonto'
       edit:
@@ -67,6 +81,7 @@ sv-SE:
     unlocks:
       send_instructions: 'Du kommer få epost med instruktioner om hur du kan låsa upp ditt konto inom några minuter.'
       unlocked: 'Ditt konto har låsts upp. Du är nu inloggad.'
+      send_paranoid_instructions: 'Om din mejladress finns i vår databas så kommer vi att skicka dig ett mejl med en länk för att låsa upp ditt användarkonto.'
     mailer:
       confirmation_instructions:
         subject: 'Bekräfta ditt användarkonto på Allom'
@@ -75,4 +90,10 @@ sv-SE:
       unlock_instructions:
         subject: 'Lås upp dit användarkonto på Allom'      
       invitation:
-        subject: 'Inbjudan till Allom'   
+        subject: 'Inbjudan till Allom'  
+      invitation_instructions:
+        subject: 'Inbjudan till Allom'        
+        
+    omniauth_callbacks:
+      success: 'Inloggad från ditt %{kind}-konto.'
+      failure: 'Kunde inte logga in dig med ditt %{kind}-konto."%{reason}".'        
