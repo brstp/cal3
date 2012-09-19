@@ -100,6 +100,9 @@ GEM
     jquery-rails (2.1.2)
       railties (>= 3.1.0, < 5.0)
       thor (~> 0.14)
+    jquery-ui-rails (2.0.0)
+      jquery-rails
+      railties (>= 3.1.0)
     json (1.7.5)
     kaminari (0.14.1)
       actionpack (>= 3.0.0)
@@ -238,6 +241,7 @@ DEPENDENCIES
   html5-rails
   icalendar
   jquery-rails
+  jquery-ui-rails
   kaminari
   mail_form
   meta-tags

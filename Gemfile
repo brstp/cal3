@@ -47,7 +47,7 @@ gem 'kaminari'          # pagination
 gem "sunspot_with_kaminari" #, '~> 0.1'
 
 gem 'progress_bar'
-gem 'jquery-rails'
+
 gem 'haml'
 gem 'haml-rails'
 gem 'html5-rails' # there is a bug in flashes, made monkey patch 
@@ -61,6 +61,8 @@ group :assets do
   gem 'sass-rails' #,   '~> 3.2.3'
   gem 'compass', '0.12.alpha.4'
   gem 'compass-h5bp'
+  gem 'jquery-rails'
+  gem 'jquery-ui-rails'
 end
 
 
