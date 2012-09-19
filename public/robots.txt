@@ -14,3 +14,4 @@ Disallow: /organizer_mailers
 Disallow: /mail_messages
 Disallow: /event_mailers
 Disallow: /categories
+Disallow: /almanac_days

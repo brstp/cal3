@@ -3,7 +3,7 @@
     = link_to_unless(( controller.action_name == "edit" || controller.action_name == "update" || controller.action_name == "new"), image_tag( "evenemangskalendern-allom-evenemang.png", :alt => "Evenemangskalendern Alloms logotyp", :title => "Till evenemangskalendern Alloms startsida", :width => "100%"), "/")
 
   .calendar_day.today
-    .weekday #{l(DateTime.now, :format => :abbr_day_of_week)}
-    .day_of_month #{l(DateTime.now, :format => :day_of_month)}
-    .month #{l(DateTime.now, :format => :abbr_month_of_year)}
-    .names Elvira Ärlig
+    .weekday #{l(Time.zone.now, :format => :abbr_day_of_week)}
+    .day_of_month #{l(Time.zone.now, :format => :day_of_month)}
+    .month #{l(Time.zone.now, :format => :abbr_month_of_year)}
+    .names #{AlmanacDay.names(Time.zone.now)}

@@ -2,6 +2,8 @@ Cal3::Application.routes.draw do
 
 
   
+  resources :almanac_days
+
   resources :dummies
 
   get "sitemap/index"

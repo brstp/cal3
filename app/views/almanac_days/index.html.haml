@@ -1,0 +1,23 @@
+%h1 Listing almanac_days
+
+%table
+  %tr
+    %th Day
+    %th Month
+    %th Name
+    %th
+    %th
+    %th
+
+  - @almanac_days.each do |almanac_day|
+    %tr
+      %td= almanac_day.day
+      %td= almanac_day.month
+      %td= almanac_day.name
+      %td= link_to 'Show', almanac_day
+      %td= link_to 'Edit', edit_almanac_day_path(almanac_day)
+      %td= link_to 'Destroy', almanac_day, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Almanac day', new_almanac_day_path

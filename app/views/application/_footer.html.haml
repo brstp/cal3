@@ -1,14 +1,16 @@
 .content_container
   %footer.footer
-    #login
-      =# form_tag
-      =# text_field_tag :user, "din mejladress"
-      =# text_field_tag :passwd, "ditt lösenord"
-      =# submit_tag "Logga in" 
-      %p
-        = link_to "Glömt lösenord?" 
-        = link_to "Registrera kostnadsfritt konto."
-    .abuse
+    %p
+      = link_to "Allom © Kalenderbolaget i Sverige AB.", "http://info.allom.se/om-allom-evenemangskalendern/"
+      - if user_signed_in?
+        Inloggad som #{current_user.email}.
+        - if current_user.is_admin?
+          (systemadministratör)
+        = link_to "Inte du?", destroy_user_session_path
+        = link_to "Ditt användarkonto/byt lösenord.", current_user
+        = link_to "Logga ut.", destroy_user_session_path
+      - else
+        = link_to "Logga in", new_user_session_path
+        = link_to "Glömt lösenord?", new_user_password_path
+        = link_to "Registrera kostnadsfritt konto.", new_user_registration_path
       = link_to "Anmäl/felanmäl sidan.", ""
-    .owner
-      = link_to "Allom © Kalenderbolaget i Sverige AB.", ""

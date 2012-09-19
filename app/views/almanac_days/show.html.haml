@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Day:
+  = @almanac_day.day
+%p
+  %b Month:
+  = @almanac_day.month
+%p
+  %b Name:
+  = @almanac_day.name
+
+= link_to 'Edit', edit_almanac_day_path(@almanac_day)
+\|
+= link_to 'Back', almanac_days_path

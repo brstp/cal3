@@ -1,0 +1,8 @@
+= semantic_form_for @almanac_day do |f|
+  = f.inputs do
+    = f.input :day
+    = f.input :month
+    = f.input :name
+
+  = f.actions do
+    = f.action :submit, :as => :input

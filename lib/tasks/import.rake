@@ -34,6 +34,26 @@ namespace :import do
     end
     file.close
   end
+
+  desc "import name days from file"
+  task :names => :environment do
+    file = File.open(File.expand_path('../../../db/import/namnsdagar.csv', __FILE__))
+    file.each do |line|
+      attrs = line.split(";")
+      # 0 day; 1 month; 2 name
+      a = AlmanacDay.find_or_initialize_by_name(attrs[2])
+      #a.name  = attrs[2]
+      a.day = attrs[0]
+      a.month = attrs[1]
+
+      puts "#{a.day}/#{a.month}: #{a.name}"
+      a.save!
+    end
+    file.close
+  end
+
+
+
 end
 
 

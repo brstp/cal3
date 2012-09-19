@@ -18,6 +18,8 @@ sv-SE:
       day: "%e %b"                              #
       abbr_month_of_year: "%b"
       icalendar: "%Y%m%dT%H%M00"
+      month_of_year: "%m"
+      day_of_month: "%e"
     am: ""
     pm: ""
   date:
