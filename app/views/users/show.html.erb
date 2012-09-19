@@ -4,18 +4,6 @@
   <%= my_organizers current_user %>
 <% end %>   
 
-<% if current_user %>
-  <% if (@user == current_user) || current_user.is_admin? %>
-    <%= button_to(  "Ändra användarkontot eller byt lösenord", 
-                    edit_user_path(@user), 
-                    :method => :get) %>
-    <%# button_to(  t('app.destroy'), 
-                    @user, 
-                    :confirm => t('app.are_you_sure') + ' ' +@user.name + '?', 
-                    :method => :delete )%>
-  <% end %>
-<%end%>
-
 
 <p>
   <strong><%= t('.first_name')%>:</strong>
@@ -34,6 +22,17 @@ Bilden (avataren) kommer finns på Gravatar. <%= link_to("Lägg upp en bild av d
   <%= @user.email %>
 </p>
 
+<% if current_user %>
+  <% if (@user == current_user) || current_user.is_admin? %>
+    <%= button_to(  "Ändra användarkontot eller byt lösenord", 
+                    edit_user_path(@user), 
+                    :method => :get) %>
+    <%# button_to(  t('app.destroy'), 
+                    @user, 
+                    :confirm => t('app.are_you_sure') + ' ' +@user.name + '?', 
+                    :method => :delete )%>
+  <% end %>
+<%end%>
 
 
 <% unless @user.petitions.blank? %>
