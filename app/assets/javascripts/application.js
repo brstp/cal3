@@ -1,5 +1,6 @@
 ﻿//= require jquery
 //= require jquery_ujs
+//= require jquery-ui.min
 //= require_self
 //= require_tree .
 

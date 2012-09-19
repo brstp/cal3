@@ -7,6 +7,7 @@
   <%= f.inputs do %>
     <%= f.input :first_name %>
     <%= f.input :last_name %>
+    
 
     <li class="select required" id="user_email_input">
         <label for="user_email"><%= User.human_attribute_name :email%><abbr title="<%= t 'formtastic.required'%>">*</abbr></label>
