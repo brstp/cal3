@@ -12,8 +12,6 @@
     <li class="select required" id="user_email_input">
         <label for="user_email"><%= User.human_attribute_name :email%><abbr title="<%= t 'formtastic.required'%>">*</abbr></label>
         <%= @user.email %>
-        <p class="inline-hints">
-        <%= t 'formtastic.hints.user.email_no_change_allowed' %>
         </p>
     </li>
         

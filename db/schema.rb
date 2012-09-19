@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120917144805) do
+ActiveRecord::Schema.define(:version => 20120919120701) do
+
+  create_table "almanac_days", :force => true do |t|
+    t.integer  "day"
+    t.integer  "month"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "bup_users", :force => true do |t|
     t.string    "email"
@@ -228,6 +236,7 @@ ActiveRecord::Schema.define(:version => 20120917144805) do
     t.datetime "invitation_accepted_at"
     t.integer  "invitation_limit"
     t.string   "invited_by_type"
+    t.string   "unconfirmed_email"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
