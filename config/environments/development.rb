@@ -51,12 +51,16 @@ ActionMailer::Base.smtp_settings = {
 # Uncomment the two below when Rails 3.2
 
 # Raise exception on mass assignment protection for Active Record models
-#config.active_record.mass_assignment_sanitizer = :strict
+config.active_record.mass_assignment_sanitizer = :strict
  
 # Log the query plan for queries taking more than this (works
 # with SQLite, MySQL, and PostgreSQL)
-#config.active_record.auto_explain_threshold_in_seconds = 0.5
+config.active_record.auto_explain_threshold_in_seconds = 0.5
 
+config.log_tags = [:uuid, :remote_ip]
+
+ ActiveRecord::Base.send(:attr_accessible, :priority)
+ ActiveRecord::Base.send(:attr_accessible, :payload_object)
 
 end
 

@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.3'
+gem 'rails', "3.2.8"
 
 
 
@@ -23,7 +23,7 @@ gem 'rails', '3.1.3'
 gem 'devise',           '>= 2.0.0'  #authentication
 gem 'devise_invitable', '~> 1.0.0'
 gem 'formtastic'                    #forms
-gem "validation_reflection"         #validation of mandatory attributes
+#gem "validation_reflection"         #validation of mandatory attributes
 gem 'validates_timeliness'          #validate time/datetime
 gem "mocha", :group => :test
 gem 'sunspot_rails' #, '1.2.1' #'1.2.rc4'    #api classes for solr
@@ -52,14 +52,17 @@ gem 'haml'
 gem 'haml-rails'
 gem 'html5-rails' # there is a bug in flashes, made monkey patch 
 gem 'gmaps4rails'
+gem "delayed_job"
+gem 'delayed_job_active_record'
+gem "delayed_job_web" # todo: set up passwd protection or disable
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'coffee-rails'
-  gem 'uglifier'
-  gem 'sass-rails' #,   '~> 3.2.3'
-  gem 'compass', '0.12.alpha.4'
+  gem 'coffee-rails' #, "~> 3.2.1"
+  gem 'uglifier' #, '>= 1.0.3'
+  gem 'sass-rails' #, '~> 3.2.3'
+  gem 'compass' #, '0.12.alpha.4'
   gem 'compass-h5bp'
   gem 'jquery-rails'
   gem 'jquery-ui-rails'
@@ -67,11 +70,11 @@ end
 
 
 group :development, :test do
-  gem 'sqlite3-ruby', :require => 'sqlite3'
+  gem 'sqlite3-ruby' #, :require => 'sqlite3'
   gem "nifty-generators"
   gem 'heroku'
   gem 'taps'
-  gem 'sunspot_solr', '1.3.0'
+  gem 'sunspot_solr' #, '1.3.0'
 end
 
 group :production do

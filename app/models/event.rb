@@ -20,7 +20,7 @@ class Event < ActiveRecord::Base
                   :start_date, :start_time, :stop_date, :stop_time, :organizer_id, :phone_number, 
                   :phone_name, :email, :human_name, :category_id, :counter, :start_datetime, 
                   :stop_datetime, :image1, :image2, :image3, :created_by_user_id, :updated_by_user_id,
-                  :image1_caption, :image1_url, :image1_delete, :image2_caption, :image2_url, :image2_delete, :image3_caption, :image3_url, :image3_delete
+                  :image1_caption, :image1_url, :image1_delete, :image2_caption, :image2_url, :image2_delete, :image3_caption, :image3_url, :image3_delete, :init_lat, :init_lng, :init_zoom
 
 
   validates_presence_of :subject, :description, :municipality_id, :start_date, :start_time, :organizer_id, :email, :human_name, :category 
@@ -68,8 +68,15 @@ class Event < ActiveRecord::Base
     integer :municipality_id, :references => ::Municipality
     integer :organizer_id, :references => ::Organizer
   end
+  #handle_asynchronously :solr_index
 
 
+  # debugging
+  def sleepy
+    sleep 10
+    logger.info "****** sleeping ******"
+  end
+  
   has_attached_file :image1,
       :storage => :s3,
       :bucket => 'static.allom.se',
@@ -247,7 +254,16 @@ class Event < ActiveRecord::Base
   def init_lat
     self.lat.blank? ? 62.00 : self.lat
   end
+  
+  def init_lat= dummy
+  end
 
+  def init_lng= dummy
+  end
+
+  def init_zoom= dummy
+  end
+  
   def init_lng
     self.lng.blank? ? 16.00 : self.lng
   end
