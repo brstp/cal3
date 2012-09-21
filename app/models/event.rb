@@ -68,7 +68,7 @@ class Event < ActiveRecord::Base
     integer :municipality_id, :references => ::Municipality
     integer :organizer_id, :references => ::Organizer
   end
-  #handle_asynchronously :solr_index
+  handle_asynchronously :solr_index
 
 
   # debugging

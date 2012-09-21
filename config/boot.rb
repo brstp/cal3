@@ -1,5 +1,5 @@
-#require 'yaml' # Bug fix
-#YAML::ENGINE.yamler= 'syck' # Bug fix
+require 'yaml' # Bug fix
+YAML::ENGINE.yamler= 'syck' # Bug fix
 require 'rubygems'
 
 # Set up gems listed in the Gemfile.

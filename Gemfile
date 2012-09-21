@@ -56,6 +56,7 @@ gem "delayed_job"
 gem 'delayed_job_active_record'
 gem "delayed_job_web" # todo: set up passwd protection or disable
 
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -75,9 +76,10 @@ group :development, :test do
   gem 'heroku'
   gem 'taps'
   gem 'sunspot_solr' #, '1.3.0'
+  
 end
 
 group :production do
 	#gem 'pg' 
-  #gem 'thin'
+  
 end
