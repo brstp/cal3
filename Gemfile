@@ -58,6 +58,9 @@ gem "delayed_job_web" # todo: set up passwd protection or disable
 
 gem "thin"
 
+  gem 'jquery-rails'
+  gem 'jquery-ui-rails'
+  
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -66,8 +69,8 @@ group :assets do
   gem 'sass-rails' #, '~> 3.2.3'
   gem 'compass' #, '0.12.alpha.4'
   gem 'compass-h5bp'
-  gem 'jquery-rails'
-  gem 'jquery-ui-rails'
+  #gem 'jquery-rails'
+  #gem 'jquery-ui-rails'
 end
 
 
