@@ -56,6 +56,7 @@ gem "delayed_job"
 gem 'delayed_job_active_record'
 gem "delayed_job_web" # todo: set up passwd protection or disable
 
+gem "thin"
 
 # Gems used only for assets and not required
 # in production environments by default.
