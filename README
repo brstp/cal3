@@ -1,3 +1,5 @@
+Evenemangskalendern Allom
+
 Kalendern för Rails 3
 
 git push #github
@@ -5,24 +7,18 @@ git push heroku master
 
 
 
-# S3-credentials as config vars
-# http://devcenter.heroku.com/articles/config-vars
-# https://aws-portal.amazon.com/gp/aws/developer/account/index.html
-#
-# heroku config:add LANG=sv_SE.UTF-8
 
 
 #Att göra vid uppstart
 
 
-bundle install
 bundle update
 rake db:migrate
 
-#rails plugin install git://github.com/wtn/csv_records.git
 
-. ../cal3-credentials.sh    # sourca credentials till Amazon S3 i env variables (vill inte ha dem i kodträdet)
-bundle exec rake sunspot:solr:start # or sunspot:solr:run to start in foreground         # Starta sökmotorn på windows. Script under ruby/.../gems/... patchat för rätt "escape-tecken" för Windows
+. ../secrets.sh    # sourca credentials till Amazon S3 i env variables (vill inte ha dem i kodträdet)
+bundle exec rake sunspot:solr:start # or sunspot:solr:run to start in foreground         
+# Starta sökmotorn på windows. 
 rake sunspot:reindex          # Indexera om
 rake import:municipalities    # Importera kommuner med data från csv-fil. Källa: SCB. Manuellt redigerad för korrekta namn för de kommuner som heter "stad" och för korrekta gentiv-s.
 
@@ -39,6 +35,5 @@ rake paperclip:refresh:thumbnails CLASS=Organizer
 
 Use heroku db:pull when you wish to export the contents of your Heroku app’s database. Some uses include backups, local debugging, or to move the app’s deployment location. Kom ihåg reindex av solr!
 
-Buggfix Outoftime på Windows
-http://outoftime.lighthouseapp.com/projects/20339/tickets/84-sunspot-solr-run-doesnt-start-on-windows
+
 
