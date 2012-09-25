@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120918113928) do
+ActiveRecord::Schema.define(:version => 20120919133620) do
 
   create_table "almanac_days", :force => true do |t|
     t.integer  "day"
@@ -20,6 +20,9 @@ ActiveRecord::Schema.define(:version => 20120918113928) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "almanac_days", ["day"], :name => "index_almanac_days_on_day"
+  add_index "almanac_days", ["month"], :name => "index_almanac_days_on_month"
 
   create_table "bup_users", :force => true do |t|
     t.string    "email"
@@ -59,6 +62,22 @@ ActiveRecord::Schema.define(:version => 20120918113928) do
   end
 
   add_index "categories", ["ancestry"], :name => "index_categories_on_ancestry"
+
+  create_table "delayed_jobs", :force => true do |t|
+    t.integer  "priority",   :default => 0
+    t.integer  "attempts",   :default => 0
+    t.text     "handler"
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
   create_table "dummies", :force => true do |t|
     t.datetime "created_at"
@@ -236,6 +255,7 @@ ActiveRecord::Schema.define(:version => 20120918113928) do
     t.datetime "invitation_accepted_at"
     t.integer  "invitation_limit"
     t.string   "invited_by_type"
+    t.string   "unconfirmed_email"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
