@@ -60,5 +60,7 @@ module Cal3
     config.autoload_paths += %W(#{config.root}/lib) #to get will_paginate pagination list
     #ActiveSupport::Multibyte::Unicode.default_normalization_form = :nkfc
 
+    config.assets.initialize_on_precompile = false
+    
   end
 end
