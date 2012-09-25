@@ -26,7 +26,7 @@ Cal3::Application.routes.draw do
 
   resources :municipalities
   
-  match "/delayed_job" => DelayedJobWeb, :anchor => false
+  #match "/delayed_job" => DelayedJobWeb, :anchor => false
 
   
   #resources :events do
