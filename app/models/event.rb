@@ -110,7 +110,10 @@ class Event < ActiveRecord::Base
       :styles => {:medium => "360x240#",
                   :small => "176x117#"}
 
-
+  process_in_background :image1
+  process_in_background :image2 
+  process_in_background :image3
+  
   def image1_url= url_str
     unless url_str.blank?
       unless url_str.split(':')[0] == 'http' || url_str.split(':')[0] == 'https'

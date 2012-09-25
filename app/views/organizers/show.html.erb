@@ -3,7 +3,7 @@
 
 <% content_for :head do %>  
   <%= auto_discovery_link_tag( :rss, organizer_url(:format => 'rss') , {:title => @organizer.s + ' ' + t('.organizers_event') + ' ' + t('app.at') + ' ' +  t('app.site_name')}) %>
-  <link rel = "canonical" href="<%= t('app.site_url') + organizer_path(@event) %>"/> 
+  <link rel = "canonical" href="<%= t('app.site_url') + organizer_path(@organizer) %>"/> 
 <% end %>                     
                    
 <% unless @organizer.logotype.blank? %>

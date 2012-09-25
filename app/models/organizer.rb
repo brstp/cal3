@@ -28,7 +28,7 @@ class Organizer < ActiveRecord::Base
   
   before_save :destroy_photo? 
   before_save :destroy_logotype?
-  attr_accessible :name, :description, :website, :photo_url, :photo_caption, :photo_delete, :user_ids, :logotype, :logotype_delete, :photo, :intro, :phone, :email, :last_googleboted
+  attr_accessible :name, :description, :website, :photo_url, :photo_caption, :photo_delete, :logotype, :logotype_delete, :photo, :intro, :phone, :email
   
   validates_presence_of :name, :description, :email
   validates_length_of :name, :in => 5..50
@@ -61,14 +61,9 @@ class Organizer < ActiveRecord::Base
                     :default_url => "missing-organizer.jpg", 
                     :styles => {  
                       :medium => "360x240#" 
-                                }
-  
-#  searchable :auto_index => true, :auto_remove => true do
-#    text :name
-#    text :intro
-#    text :description
-#  end
- 
+                                                 }
+  process_in_background :logotype
+  process_in_background :photo                                                 
  
   def to_s
     self.name

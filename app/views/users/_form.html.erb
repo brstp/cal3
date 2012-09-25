@@ -35,13 +35,16 @@
 
     
     
-    <% if current_user.is_admin? %>
-      <%= f.input :is_admin %>
-      <hr />
-      <h2>För systemadministratörer</h2>
-      <%= f.inputs %>
-    <% end %>
-          <%- # f.buttons %>
+      <% if current_user.is_admin? %>
+        <%= f.input :is_admin %>
+        <hr />
+        <h2>För systemadministratörer</h2>
+        <% for attribute in @user.attributes.keys %>
+          <p><%= attribute.humanize %> = <%= @user.attributes[attribute].to_s %></p>
+        <% end %>
+        
+      <% end %>
+
       <%= f.action(:submit) %>
   <% end %>
 <% end %>
