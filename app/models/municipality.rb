@@ -11,7 +11,7 @@ class Municipality < ActiveRecord::Base
   default_scope :order => 'name ASC'
   
   extend FriendlyId
-  friendly_id :name, :use => :slugged
+  friendly_id :name, :use => :history
 
   
   def to_s

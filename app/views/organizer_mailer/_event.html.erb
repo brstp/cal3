@@ -1,5 +1,18 @@
 <%= @user.name %> för arrangören <%= link_to @event.organizer.name, organizer_url(@event.organizer)%> i Allom. Du får det här mejlet för kännedom eftersom du är administratör för <%= link_to @event.organizer.name, organizer_url(@event.organizer)%>.
 </p>
+<p>Om vi har mycket att göra kan det ta någon enstaka minut innan bilder i annonsen kan visas och innan vår egen sökmotor hittar evenemangsannonsen. Inom någon dag så går det att hitta evenemangsannonsen i Google och andra sökmotorer också.</p>
+
+<p>Våra bästa tips för att ditt evenemang ska ses av många som möjligt: 
+
+<ol>
+  <li>Gå till <%= event_url(@event)%> och klicka på "Gilla-knappen" för Facebook. Be dina vänner göra det också.</li>
+  <li>Om du har nyhetsbrev för era medlemmar eller kunder. Mejla om evenemanget och klistra in länken till evenemangsannonsen.</li>
+  <li>Har du en hemsida eller blogg? Du kan visa dina evenemang på Allom i ett eget kalendarium. Kostnadsfritt. <a href="http://info.allom.se/eget-kalendarium-pa-din-blogg-eller-hemsida/">Så här lägger du till egen evenamangskalender på din hemsida eller blogg</a>.</li>
+</ol>
+</p>
+
+<p>För att kolla hur många gånger dina arrangörers evenemangsannonser visats:  <a href="http://allom.se">Logga in på Allom</a> och klicka på "Ditt konto" uppe i högerhörnet. Där får du en sammanställning. Om du vill kan du kopiera och klistra in i Excel.</p>
+
 <p>
 Här är en kortversion av evenemangsannonsen:
 </p>
@@ -25,10 +38,6 @@ Det här mejlet skickades automatiskt. Om du undrar något kan du vända dig i f
 </p>
 <p>Sidan för arrangören <%= @event.organizer.name %> finns på: <%= organizer_url(@event.organizer)%> 
 </p>
-<p>Inom någon minut har vår sökmotor snappat upp annonsen.</p>
 <p>
 Hälsningar från Allom
-</p>
-<p>
-Allom - Kalendern med allt som händer innan det är för sent.
 </p>

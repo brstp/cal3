@@ -37,7 +37,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
     @organizer.created_by_user_id = current_user.id
 
     if @organizer.save
-      flash[:notice] = t 'flash.actions.create.notice'
+      flash[:notice] = t 'organizers.flash.notice.created'
 
       @membership = @organizer.memberships.build(:user_id => current_user.id )
       if @membership.save
@@ -59,7 +59,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
     @organizer = Organizer.find(params[:id])
     @organizer.updated_by_user_id = current_user.id
     if @organizer.update_attributes(params[:organizer])
-      flash[:notice] = t 'flash.actions.update.notice'
+      flash[:notice] =  t 'organizers.flash.notice.updated'
       redirect_to @organizer
     else
       render :action => 'edit'
