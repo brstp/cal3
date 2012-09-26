@@ -9,7 +9,7 @@ production:
 development:
   solr:
     hostname: localhost
-    port: 8982
+    port: 8983
     log_level: INFO
     auto_commit_after_request: false
     auto_commit_after_delete_request: true
@@ -17,7 +17,7 @@ development:
 test:
   solr:
     hostname: localhost
-    port: 8981
+    port: 8983
     log_level: WARNING
     auto_commit_after_request: false
     auto_commit_after_delete_request: true
