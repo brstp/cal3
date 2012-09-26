@@ -119,3 +119,7 @@ sv-SE:
       show: "Visa arrangörssidan (strunta i ändringar)"
       list: "Till arrangörslistan (strunta i ändringar)"
       edit: "Ändra arrangörssidan för"
+    flash:
+      notice:
+        created: "Nu är arrangörssidan skapad och kan användas. Om vi har mycket att göra kan det ta någon minut innan sin bild och logotyp är klara att visas. Kom tillbaka om en stund i så fall."
+        updated: "Arrangörssidan är ändrad. Om du bytt ut bild eller logotyp kan det ta någon minut innan de är klara att visas. Kom tillbaka om en stund i så fall."

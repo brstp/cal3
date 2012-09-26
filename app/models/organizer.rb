@@ -24,7 +24,7 @@ class Organizer < ActiveRecord::Base
   default_scope :order => 'name'
 
   extend FriendlyId
-  friendly_id :name, :use => :slugged
+  friendly_id :name, :use => :history
   
   before_save :destroy_photo? 
   before_save :destroy_logotype?

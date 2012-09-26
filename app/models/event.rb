@@ -41,7 +41,7 @@ class Event < ActiveRecord::Base
   validates :email, :email => true
 
   extend FriendlyId
-  friendly_id :subject, :use => :slugged
+  friendly_id :subject, :use => :history
 
   geocoded_by :street, :latitude => :lat, :longitude => :lng
 

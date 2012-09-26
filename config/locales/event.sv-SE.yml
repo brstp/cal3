@@ -13,7 +13,7 @@ sv-SE:
         stop_time: "Slutar klockan"
         street: "Adress"
         re_geocoded_street: "Kartnålens adress"
-        loc_descr: "Plats"
+        loc_descr: "Vägbeskrivning"
         lat: "Latitud"
         lng: "Longitud"
         municipality: "Kommun"
@@ -114,8 +114,8 @@ sv-SE:
       replace_image: 'Ersätt bilden'
     flash:
       notice:
-        created: "Evenemangsannonsen skapad. Inom några minuter kommer den att vara synlig i vår sökmotor."
-        updated: "Evenemangsannonsen ändrad. Inom några minuter kommer ämdringarna att vara synliga i vår sökmotor."
+        created: "Evenemangsannonsen skapad. Inom några minuter kommer den att vara synlig i vår sökmotor. Det kan ta någon minut innan bilden eller bilderna är klar att visas."
+        updated: "Evenemangsannonsen ändrad. Inom några minuter kommer ändringarna att vara synliga i vår sökmotor. Om du ändrat bilder kan det ta någon minut innan de är klara att visas."
       
       
   
