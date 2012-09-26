@@ -14,7 +14,7 @@ class Event < ActiveRecord::Base
   before_save :merge_start_datetime, :merge_stop_datetime
   before_save :destroy_image1?, :destroy_image2?, :destroy_image3?
   #after_validation :consider_fetch
-
+ 
 
   attr_accessible :subject, :intro, :description, :street, :loc_descr, :lat, :lng, :municipality_id, :last_googleboted,
                   :start_date, :start_time, :stop_date, :stop_time, :organizer_id, :phone_number, 

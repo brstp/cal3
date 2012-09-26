@@ -7,14 +7,22 @@ before_filter :authenticate_user!, :except => [:show, :index]
 before_filter :authorized?, :except => [:show, :index, :new, :create]
 before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
 
-
   def index
     @organizers = Organizer.all(:order => 'name ASC')
   end
 
   def show
     @organizer = Organizer.find(params[:id])
-    @events = @organizer.upcoming_events # .paginate :page => params[:page]
+    @events = @organizer.upcoming_events #.paginate :page => params[:page], :per_page => 10
+    
+    @markers = @organizer.events.to_gmaps4rails do |event, marker|
+      marker.infowindow "<div class=\"info_window\"> <h1>#{event.subject}</h1> <p>Kategori: #{event.category.name.capitalize} </p><p>#{event.short_duration.capitalize} </p></div>"
+      marker.picture map_marker(event)
+      marker.title   "#{event.subject} \n(#{event.category.name.capitalize}) \n#{event.short_duration.capitalize}"
+      #marker.sidebar "i'm the sidebar"
+      marker.json({ :id => event.id, :foo => "bar" })
+    end   
+    
     @organizer.update_attribute(:last_googleboted, Time.now) if request.headers["user_agent"].include? "Googlebot"
     @membership = Membership.new
     respond_to do |format|
@@ -30,14 +38,14 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
     @organizer = Organizer.new
     @organizer.email = current_user.email
   end
-
+ 
 
   def create
     @organizer = Organizer.new(params[:organizer])
     @organizer.created_by_user_id = current_user.id
 
     if @organizer.save
-      flash[:notice] = t 'organizers.flash.notice.created'
+      flash[:notice] = t 'organizer.flash.notice.updated'
 
       @membership = @organizer.memberships.build(:user_id => current_user.id )
       if @membership.save
@@ -59,7 +67,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
     @organizer = Organizer.find(params[:id])
     @organizer.updated_by_user_id = current_user.id
     if @organizer.update_attributes(params[:organizer])
-      flash[:notice] =  t 'organizers.flash.notice.updated'
+      flash[:notice] = t 'organizer.flash.notice.updated'
       redirect_to @organizer
     else
       render :action => 'edit'
