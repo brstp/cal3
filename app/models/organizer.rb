@@ -65,12 +65,8 @@ class Organizer < ActiveRecord::Base
                       :medium => "360x240#" 
                                 }
   
-#  searchable :auto_index => true, :auto_remove => true do
-#    text :name
-#    text :intro
-#    text :description
-#  end
- 
+  process_in_background :logotype
+  process_in_background :photo    
  
   def to_s
     self.name

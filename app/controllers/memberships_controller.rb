@@ -42,7 +42,7 @@ class MembershipsController < ApplicationController
 
   def destroy
     @membership = Membership.find(params[:id])
-    OrganizerMailer.cancelled_membership(@membership, current_user).deliver
+    OrganizerMailer.delay.cancelled_membership(@membership, current_user)
     @membership.destroy
     flash[:notice] = t('membership.flash.notice.destroyed')
     if request.env["HTTP_REFERER"].blank?

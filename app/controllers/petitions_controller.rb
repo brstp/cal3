@@ -31,7 +31,7 @@ class PetitionsController < ApplicationController
                               :argumentation => args[:argumentation])
     if @petition.save
       redirect_to @petition, :notice => t('petition.flash.notice.created')
-      OrganizerMailer.new_petition(@petition, current_user).deliver
+      OrganizerMailer.delay.new_petition(@petition, current_user)
     else
       render :action => 'new'
     end
@@ -47,13 +47,13 @@ class PetitionsController < ApplicationController
     if @petition.update_attributes(params[:petition])
       if @petition.approved
         @petition.promote_to_membership
-        OrganizerMailer.approved_petition(@petition, current_user).deliver
+        OrganizerMailer.delay.approved_petition(@petition, current_user)
         # TODO logging
         @petition.destroy
         flash[:notice] = t('petition.flash.notice.approved')
         redirect_to organizer_path(@petition.organizer)
       else
-        OrganizerMailer.rejected_petition(@petition, current_user).deliver
+        OrganizerMailer.delay.rejected_petition(@petition, current_user)
         # TODO logging
         @petition.destroy
         flash[:notice] = t('petition.flash.notice.rejected')

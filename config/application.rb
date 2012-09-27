@@ -1,6 +1,8 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
+require 'yaml'
+YAML::ENGINE.yamler= 'syck'
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
@@ -58,5 +60,7 @@ module Cal3
     config.autoload_paths += %W(#{config.root}/lib) #to get will_paginate pagination list
     #ActiveSupport::Multibyte::Unicode.default_normalization_form = :nkfc
 
+    config.assets.initialize_on_precompile = false
+    
   end
 end

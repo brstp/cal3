@@ -189,7 +189,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
     @event.created_by_user_id = current_user.id
     @markers = @event.to_gmaps4rails 
     if @event.save
-      OrganizerMailer.new_event_confirmation(@event, current_user).deliver
+      OrganizerMailer.delay.new_event_confirmation(@event, current_user)
       flash[:notice] = t 'events.flash.notice.created'
       redirect_to @event
     else
@@ -208,7 +208,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
     @markers = @event.to_gmaps4rails 
     
     if @event.update_attributes(params[:event])
-      OrganizerMailer.changed_event_confirmation(@event, current_user).deliver
+      OrganizerMailer.delay.changed_event_confirmation(@event, current_user)
       flash[:notice] = t 'events.flash.notice.updated'
       redirect_to @event
     else

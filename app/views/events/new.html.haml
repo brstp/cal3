@@ -2,14 +2,14 @@
   %article{ :class => :article, :role => :main}
     %h1= title "Ny evenemangsannons" 
     %p
-      Allom pilotkör för att trimma in. Under tiden kostar det inte något att lägga upp evenemangsannonser. Du som är med och hjälper oss att utvärdera Allom nu kommer att få lägga in evenemangsannonser kostnadsfritt till slutet av 2012.
+      Allom pilotkör för att trimma in. Under tiden kostar det inte något att lägga upp evenemangsannonser. Du som är med och hjälper oss att utvärdera Allom nu kommer att få en rejäl bunt gratisannonser när vi börjar ta betalt.
     - if @event.organizer_id.nil?  
       - unless @organizers.blank? 
         - bullet_no = 0 
         %p
           Varje evenemangsannons hänger ihop med en arrangörssida. Varje arrangör på Allom har var sin arrangörssida. En arrangör kan vara du som privatperson, en förening, ett företag, en myndighet eller egentligen vilken sammanslutning som helst.
         %p
-          Det kostar inte något att ha en arrangörssida.
+          Det kostar inte något att ha en arrangörssida eller användarkonto.
         %h3 Alternativ #{bullet_no +=1}: Arrangören har en sida på Allom och du är administratör.
           
         %p Välj arrangör:
@@ -23,5 +23,9 @@
       %h3 Alternativ #{bullet_no +=1}: Arrangören har inte någon sida på Allom.
       %p  Kontrollera först att arrangören inte redan har en sida, så du undviker dubletter.
       %p= link_to "Jag vill skapa en arrangörssida...", new_organizer_path 
+      
+      %h3 Alternativ #{bullet_no +=1}: Äsch, jag ska inte lägga in någon evenemangsannons
+      %p= link_to "Gå tillbaka", :back
+      
     - else 
       = render 'form'

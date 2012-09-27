@@ -13,7 +13,7 @@ sv-SE:
         stop_time: "Slutar klockan"
         street: "Adress"
         re_geocoded_street: "Kartnålens adress"
-        loc_descr: "Vägbeskrivning"
+        loc_descr: "Plats"
         lat: "Latitud"
         lng: "Longitud"
         municipality: "Kommun"

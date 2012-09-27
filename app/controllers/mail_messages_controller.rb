@@ -47,8 +47,8 @@ before_filter :authorized?, :except => [:new, :create]
 
     respond_to do |format|
       if @mail_message.save
-        EventMailer.copy_event_sender(@mail_message).deliver
-        EventMailer.contact_event(@mail_message).deliver
+        EventMailer.delay.copy_event_sender(@mail_message)
+        EventMailer.delay.contact_event(@mail_message)
         format.html { redirect_to(Event.find(@mail_message.event_id), :notice => I18n.t('flash.actions.create.sent')) }
       else
         format.html { render :action => "new" }

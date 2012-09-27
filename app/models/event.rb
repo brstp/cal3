@@ -68,6 +68,7 @@ class Event < ActiveRecord::Base
     integer :municipality_id, :references => ::Municipality
     integer :organizer_id, :references => ::Organizer
   end
+  handle_asynchronously :solr_index
 
   acts_as_gmappable
   
@@ -106,6 +107,9 @@ class Event < ActiveRecord::Base
       :styles => {:medium => "360x240#",
                   :small => "176x117#"}
 
+  process_in_background :image1
+  process_in_background :image2 
+  process_in_background :image3
 
   def image1_url= url_str
     unless url_str.blank?
