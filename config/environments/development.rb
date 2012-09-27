@@ -31,6 +31,7 @@ Cal3::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true  
+  config.serve_static_assets = false
   
 
   # Care / don't care if the mailer can't send

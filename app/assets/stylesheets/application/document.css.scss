@@ -1447,7 +1447,9 @@ header, article, aside, nav, footer  {
   width: (480px*0.8);
   }
 
-  .municipalities.index_action article{
+   
+  .municipalities.index_action article,
+  .organizers.index_action article{
       width: 100%;
   }
   
