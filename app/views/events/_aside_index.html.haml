@@ -1,12 +1,6 @@
 %p Här är #{@events.count} av #{@hit_numbers} evenemang:
 
-- if @events.count > 1
-  = gmaps(:map_options => {:detect_location => false, :center_on_user => false, :auto_adjust => true}, "markers" => {"data" => @markers, :options => { :do_clustering => true, randomize: true, :max_random_distance => 25 } })
-- else
-  - if @events.count == 1
-    = gmaps({"map_options" => {"auto_zoom" => false, "zoom" => 11 },"markers" => {"data" => @markers }})   
-  - else 
-    = gmaps({"map_options" => {"auto_zoom" => false, "zoom" => 1 },"markers" => {"data" => @markers }})
+= draw_map @markers
 
 %h3 Några nya evenemang
 .event_gallery
