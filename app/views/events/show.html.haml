@@ -8,7 +8,7 @@
           .sign 
             Det här evenemanget har redan varit.
 
-      = render "flashes"
+      - #render "flashes"
       
       - if params[:recruit]
         .user_message
@@ -44,14 +44,16 @@
     = simple_format @event.description 
     
     .event_facts
-      %p 
-        %span.inline_heading
-          Pris: 
-        To do
-      %p 
-        %span.inline_heading
-          Anmälan: 
-        To do 
+      - unless @event.price.blank?
+        %p 
+          %span.inline_heading
+            Pris: 
+          = @event.price
+      - unless @event.register.blank?
+        %p 
+          %span.inline_heading
+            Anmälan: 
+          = @event.register
 
       .div{:itemprop => "address", :itemscope => true, :itemtype => "http://schema.org/Place"}
         - unless @event.loc_descr.blank?
@@ -84,48 +86,81 @@
             - if current_user.authorized? @event.organizer
               = link_to "Lägg in platsen på kartan genom att ange en adress."
     
-    = link_to "Spara i din kalender", event_path(@event, :format => :ics), :title => "Spara evenemanget i Outlook eller annan kalender som ical.", :class => :major
+    = link_to "Spara i din Outlook eller kalender", event_path(@event, :format => :ics), :title => "Spara evenemanget i Outlook eller annan kalender som ical.", :class => :major
 
-
-    .event_type
-      %h3 Evenemanget kategoriserat som
-      %ul
-        - if @event.category.depth > 1
-          %li
+    %h3#article_footer Kontakta
+    %ul.event_organizer
+      %li
+        = link_to "Mejla #{@event.human_name} (kontaktformulär)" 
+      - unless @event.phone_number.blank?
+        %li
+          = link_to "Ring #{@event.phone_name}: #{@event.phone_number}", "tel:#{CGI::escape(@event.phone_number)}"
+    
+    %h3 Fler evenemang i samma kategorier
+    %ul.event_type
+      - if @event.category.depth > 1
+        %li
           = link_to "#{@event.category.parent.name.capitalize} (#{@event.category.parent.upcoming_events.count})", "/?category_facet_id=#{@event.category.parent.id}", :title => "Alla evenemang inom #{@event.category.parent.name} på Allom."
-        %li
-          = link_to "#{@event.category.name.capitalize} (#{@event.category.upcoming_events.count})", "/?category_facet_id=#{@event.category.id}", :title => "Alla evenemang inom #{@event.category.name} på Allom."
-        %li
-          = link_to "#{@event.municipality.name.capitalize} (#{@event.municipality.upcoming_events.count})", "/?municipality_id=#{@event.municipality.id}", :title => "Alla evenemang i #{@event.municipality.name} på Allom."
-        %li
-          = link_to "#{@event.organizer.name.capitalize} (#{@event.organizer.upcoming_events.count})", "/?organizer_id=#{@event.organizer.id}", :title => "Alla #{@event.organizer.s} evenemang på Allom."
+      %li
+        = link_to "#{@event.category.name.capitalize} (#{@event.category.upcoming_events.count})", "/?category_facet_id=#{@event.category.id}", :title => "Alla evenemang inom #{@event.category.name} på Allom."
+      %li
+        = link_to "#{@event.municipality.name} (#{@event.municipality.upcoming_events.count})", @event.municipality, :title => "Alla evenemang i #{@event.municipality.name} på Allom."
+      %li
+        = link_to "#{@event.organizer.name} (#{@event.organizer.upcoming_events.count})", @event.organizer, :title => "Alla #{@event.organizer.s} evenemang på Allom."
 
-    %footer.event_organizer{:role => "complementary"}
-      %h3#article_footer Arrangören #{@event.organizer.name}
-      %p= @event.organizer.intro
-      %ul
-        %li
-          = link_to @event.organizer.s + " egen arrangörssida", organizer_path(@event.organizer)
-        %li
-          = link_to "Mejla #{@event.human_name} (kontaktformulär)" 
-        - unless @event.phone_number.blank?
-          %li
-            = link_to "Ring #{@event.phone_name}: #{@event.phone_number}", "tel:#{CGI::escape(@event.phone_number)}"
-
+    %footer
       %p.article_meta
         = event_footer 
+      %p.article_meta
+        =link_to image_tag("cc-by-sa.png"), "http://creativecommons.org/licenses/by-sa/2.5/deed.sv", :rel => :nofollow, :title => "Licens: Creative Commons CC(BY-SA)", :alt => "Ikon för licensen Creative Commons CC(BY-SA)"
+        Evenemangsannonsens texter & bilder är licensierade av arrangören under Creative Commons Erkännande-DelaLika 2.5 Sverige Licens, CC (BY-SA)
 
       %nav.event_admin
         %h3#article_nav Jobbar du för #{@event.organizer.name}?
-        %ul
+        %ul.event_organizer
           %li
             = link_to "Ändra evenemangsannonsen", edit_event_path
-          %li
-            = link_to "Ansök om att bli administratör", new_petition_path( :organizer_id => @event.organizer.id )
-
+          - if current_user
+            - unless current_user.authorized? @event.organizer
+              %li
+                = link_to "Ansök om att bli administratör", new_petition_path( :organizer_id => @event.organizer.id )
+          - else
+            %li
+              = link_to "Ansök om att bli administratör", new_petition_path( :organizer_id => @event.organizer.id )
+          
             
   %aside{:role => "complementary"}
-    = render 'aside_show'
+    %h3.aside_top 
+      Dela med dig av evenemanget!
+    = share_me
+    %h3 Arrangören
+    - unless @event.organizer.logotype_file_name.blank?
+      = link_to image_tag( @event.organizer.logotype.url(:medium), :width => "100%", :alt => "#{@event.organizer.s} logotyp"), organizer_path(@event.organizer), :title => "Till #{@event.organizer.s} arrangörssida på Allom."
+    -else
+      %span.event_organizer
+        = link_to @event.organizer.name, organizer_path(@event.organizer), :title => "Till arrangörens sida på Allom."
+    
+    %p= link_to @event.organizer.intro, organizer_path(@event.organizer), :class => :ununderline
+    
+    - unless @event.organizer.events.blank?
+      %h3 #{@event.organizer.s} kommande evenemang
+      %table.mini_calendar
+        %caption #{@event.organizer.s} kommande evenemang
+        %tbody
+        -for event in @event.organizer.events
+          %tr
+            %td
+              %a.inline_div{:href => "#{event_path(event)}", :title => "#{event.category.name.capitalize} #{event.subject}"}
+                .calendar_day
+                  .weekday
+                    = l(event.start_datetime, :format => :abbr_day_of_week)
+                  .day_of_month
+                    = l(event.start_datetime, :format => :day_of_month)
+                  .month
+                    = l(event.start_datetime, :format => :abbr_month_of_year)
+            %td
+              = link_to "Kl #{l(event.start_datetime, :format => :time)}: #{event.subject} (#{event.category.name}). #{event.municipality_short}.", event_path(event), :title => "#{event.intro}"
+
+    = page_counter @event.counter    
+
 = event_meta
-- content_for :javascript do
-  =# map_marker @event

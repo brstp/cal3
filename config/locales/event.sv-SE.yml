@@ -7,6 +7,8 @@ sv-SE:
         subject: "Rubrik"
         intro: "Sammanfattning"
         description: "Beskrivning"
+        price: "Pris"
+        register: "Anmälan"
         start_date: "Startdatum"
         start_time: "Börjar klockan"
         stop_date: "Slutdatum"

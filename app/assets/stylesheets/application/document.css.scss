@@ -395,7 +395,9 @@ a.call_to_action {
 
 
 
-
+.ununderline {
+  text-decoration: none;
+}
 
 // 5.FIGURES & IMAGES =============================================================================
 
@@ -755,6 +757,10 @@ p.article_meta {
   @include font-size(10);
   margin-bottom: 1em;
   color: $grey;
+  img {
+    float: left;
+    margin: 0 1em 1em 0;
+  }
 }
 
 // 11C SEARCH ===========================================

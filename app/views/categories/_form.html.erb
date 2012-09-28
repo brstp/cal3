@@ -5,6 +5,6 @@
     <%= f.input :description %>
     <%= f.input :mum, :collection => Category.all %>
     <%# select_category_tree @category.mum %>
-    <%= f.buttons %>
+    <%= f.action(:submit) %>
   <% end %>
 <% end %>

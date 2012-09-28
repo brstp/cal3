@@ -130,7 +130,7 @@ module EventsHelper
       if (current_user.authorized? @event) || current_user.is_admin?
         str << %( #{@event.created_by}.)
         unless @event.last_googleboted.blank?
-          str << %( Senast besökt #{l(@event.last_googleboted)} av Google sökmotorrobot.)
+          str << %( Senast besökt #{l(@event.last_googleboted)} av Googles sökmotorrobot.)
         end
       end
     end
@@ -145,7 +145,6 @@ module EventsHelper
       str << %(. )
     end
      
-    str << %( Annonsens texter & bilder är licensierade av arrangören under Creative Commons Erkännande-DelaLika 2.5 Sverige Licens, CC (BY-SA).)
     str
   end
   
@@ -153,17 +152,17 @@ module EventsHelper
     unless @event.image1.blank?
       logo =  @event.image1.url(:medium)
     else
-      logo = request.protocol + request.host_with_port + image_path("evenemang-allom-evenemangskalendern.png") 
+      logo = "http://allom.se" + image_path("evenemang-allom-evenemangskalendern.png") 
     end  
     
     set_meta_tags( 
       :title => @event.subject,
       :description => "#{@event.intro}. Arrangör: #{@event.organizer.name}.",
-      :canonical => "http://allom.se#{event_path(@event)}",
+      :canonical => "http://allom.se" + event_path(@event),
       :open_graph => {
         :title => @event.subject,
         :type  => :activity,
-        :url   => "http://allom.se#{event_path(@event)}" ,
+        :url   => "http://allom.se" + event_path(@event) ,
         :image => logo,
         :site_name => "Allom - evenemangskalendern",
         }

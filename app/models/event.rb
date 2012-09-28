@@ -16,11 +16,11 @@ class Event < ActiveRecord::Base
   #after_validation :consider_fetch
  
 
-  attr_accessible :subject, :intro, :description, :street, :loc_descr, :lat, :lng, :municipality_id, :last_googleboted,
+  attr_accessible :subject, :intro, :description, :street, :loc_descr, :lat, :lng, :municipality_id, 
                   :start_date, :start_time, :stop_date, :stop_time, :organizer_id, :phone_number, 
-                  :phone_name, :email, :human_name, :category_id, :counter, :start_datetime, 
+                  :phone_name, :email, :human_name, :category_id, :start_datetime, 
                   :stop_datetime, :image1, :image2, :image3, :created_by_user_id, :updated_by_user_id,
-                  :image1_caption, :image1_url, :image1_delete, :image2_caption, :image2_url, :image2_delete, :image3_caption, :image3_url, :image3_delete
+                  :image1_caption, :image1_url, :image1_delete, :image2_caption, :image2_url, :image2_delete, :image3_caption, :image3_url, :image3_delete, :register, :price
 
 
   validates_presence_of :subject, :description, :municipality_id, :start_date, :start_time, :organizer_id, :email, :human_name, :category 
@@ -72,11 +72,12 @@ class Event < ActiveRecord::Base
 
   acts_as_gmappable
   
+  image_store = ENV["RAILS_ENV"].to_s + "/" unless ENV["RAILS_ENV"] == "production"
 
   has_attached_file :image1,
       :storage => :s3,
       :bucket => 'static.allom.se',
-      :path => "app/public/system/:attachment/:id/:style/:filename",
+      :path => "#{image_store}app/public/system/:attachment/:id/:style/:filename",
       :s3_credentials => {
         :access_key_id => ENV['S3_KEY'],
         :secret_access_key => ENV['S3_SECRET']
@@ -165,6 +166,16 @@ class Event < ActiveRecord::Base
     @image3_delete = value
   end
   
+  def gmaps= dummy=0
+  end
+  
+  def gmaps
+    0
+  end
+  
+  def gmaps4rails_address
+    "#{self.street}, Sverige" 
+  end
   
   def updated_by
     unless self.updated_by_user_id.nil?

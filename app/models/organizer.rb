@@ -38,8 +38,10 @@ class Organizer < ActiveRecord::Base
   validates :website, :allow_blank => true, :uri => { :format => /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix }
   validates :photo_url, :allow_blank => true, :uri => { :format => /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix }
   
+  image_store = ENV["RAILS_ENV"].to_s + "/" unless ENV["RAILS_ENV"] == "production"
+    
   has_attached_file :logotype, 
-                    :path => "app/public/system/:attachment/:id/:style/:filename",
+                    :path => "#{image_store}app/public/system/:attachment/:id/:style/:filename",
                     :storage => :s3,
                     :bucket => 'static.allom.se',
                     :s3_credentials => {
@@ -54,7 +56,7 @@ class Organizer < ActiveRecord::Base
 
   
   has_attached_file :photo,      
-                    :path => "app/public/system/:attachment/:id/:style/:filename",
+                    :path => "#{image_store}app/public/system/:attachment/:id/:style/:filename",
                     :storage => :s3,
                     :bucket => 'static.allom.se',
                     :s3_credentials => {
