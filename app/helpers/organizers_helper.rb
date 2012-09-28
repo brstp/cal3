@@ -113,7 +113,7 @@ module OrganizersHelper
       for user in @organizer.users
         str << %(
             <tr>
-              <td>#{image_tag avatar_url(user)}<br /></td>
+              <td>#{image_tag avatar_url(user), :width => 48, :height => 48}<br /></td>
               <td>
               #{
                 if current_user.is_admin

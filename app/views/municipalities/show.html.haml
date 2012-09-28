@@ -6,8 +6,7 @@
       %p.category Plats:
       %h1{:itemprop => :name}= @municipality.name
       = admin_municipality
-      
-    = gmaps({"map_options" => { :do_clustering => true, randomize: true },"markers" => {"data" => @markers }})      
+    = draw_map @markers     
     %p
       = image_tag "grn-pushpin.png", :class => :marker_legend_mid_size
       Kommande evenemang.

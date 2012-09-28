@@ -68,8 +68,7 @@
             %span{:itemprop => "streetAddress"}
               = @event.street
         - unless @event.lat.nil? || @event.lng.nil?  
-          = gmaps({"map_options" => {"auto_zoom" => false, "zoom" => 11 },"markers" => {"data" => @markers }})        
-          
+          = draw_map @markers          
           %p
             %span.inline_heading{:itemprop => "geo", :itemscope => true, :itemtype => "http://schema.org/GeoCoordinates"}
               <meta itemprop="latitude" content="#{@event.lat}" />
