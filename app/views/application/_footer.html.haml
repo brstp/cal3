@@ -6,7 +6,7 @@
         Inloggad som #{current_user.email}.
         - if current_user.is_admin?
           (systemadministratör)
-        = link_to "Inte du?", destroy_user_session_path
+        = link_to "Inte du? Logga ut.", destroy_user_session_path
         = link_to "Ditt användarkonto/byt lösenord.", current_user
         = link_to "Logga ut.", destroy_user_session_path
       - else

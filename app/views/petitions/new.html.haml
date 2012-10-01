@@ -1,0 +1,26 @@
+.content
+  %article{ :class => :article, :role => :main}
+    %h1= title "Ansök om att bli administratör"
+    %p Din ansökan kommer att skickas till den eller de som redan är administratörer för #{@petition.organizer.name}.
+    %p Du får ett mejl när de godkänt eller avslagit din ansökan.
+    
+    = semantic_form_for @petition do |f|
+      = f.error_messages
+      = f.inputs do 
+        = f.input   :organizer, :required => true, :as => :string, :input_html => { :disabled => true} 
+        = f.semantic_fields_for :user do |user| 
+          = user.inputs do
+            = user.input  :email, :input_html => { :disabled => true}
+            %li
+              %p.inline-text
+                = link_to "Inte du? Logga ut.", destroy_user_session_path
+            = user.input  :first_name, :required => true
+            = user.input  :last_name, :required => true
+        = f.input   :argumentation
+        = f.input   :user_id, :as => :hidden
+        = f.input   :organizer_id, :as => :hidden 
+        = f.actions do
+          = f.action :submit, :as => :button
+          = f.action :cancel, :as => :link, :label => "Avbryt, gå tillbaka"
+    
+    =link_to "Till arrangörssidan för #{@petition.organizer.name}.", organizer_path(@petition.organizer)

@@ -607,6 +607,10 @@ nav.navigation ul li a {
   display: none;
 }
 
+
+.create_action .top_navigation_container, .create_action .bottom_navigation_container, .create_action .footer{
+  display: none;
+}
   
 // 10 CONTENT 		============================================
 
@@ -1455,7 +1459,8 @@ header, article, aside, nav, footer  {
 
    
   .municipalities.index_action article,
-  .organizers.index_action article{
+  .organizers.index_action article,
+  .petitions.index_action article{
       width: 100%;
   }
   

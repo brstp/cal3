@@ -142,12 +142,12 @@
     
     %p= link_to @event.organizer.intro, organizer_path(@event.organizer), :class => :ununderline
     
-    - unless @event.organizer.events.blank?
+    - unless @event.organizer.upcoming_events.blank?
       %h3 #{@event.organizer.s} kommande evenemang
       %table.mini_calendar
         %caption #{@event.organizer.s} kommande evenemang
         %tbody
-        -for event in @event.organizer.events
+        -for event in @event.organizer.upcoming_events
           %tr
             %td
               %a.inline_div{:href => "#{event_path(event)}", :title => "#{event.category.name.capitalize} #{event.subject}"}

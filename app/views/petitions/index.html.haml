@@ -1,0 +1,20 @@
+.content
+  %article{ :class => :article, :role => :main}
+    %h1= title "Alla ansökningar om att bli administratör"
+      
+    
+    %table.general
+      %thead
+        %tr
+          %th Datum
+          %th Användare
+          %th Arrangör
+      %tbody
+        - for petition in @petitions
+          %tr{:class => "#{cycle 'even','odd'}"}
+            %td= link_to l(petition.created_at), petition
+            %td= petition.user 
+            %td= petition.organizer
+
+    %p= link_to "Skapa en ny ansökan manuellt", new_petition_path 
+

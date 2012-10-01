@@ -19,7 +19,7 @@ form.formtastic fieldset > ol > li p.inline-hints { color:#666; margin: 0; }
 
 /* INLINE ERRORS
 --------------------------------------------------------------------------------------------------*/
-form.formtastic fieldset > ol > li p.inline-errors { color:#cc0000; margin:0; border: solid 2px red; padding: 0.25em;}
+form.formtastic fieldset > ol > li p.inline-errors { color:#cc0000; margin:0.5em 0 0 0; border: solid 2px red; padding: 0.25em;}
 
 
 /* STRING, NUMERIC, PASSWORD, EMAIL, URL, PHONE & SEARCH OVERRIDES

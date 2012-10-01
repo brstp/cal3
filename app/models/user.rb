@@ -13,6 +13,10 @@ class User < ActiveRecord::Base
   has_many  :petition_organizers,
             :through => :petitions,
             :source => :organizer
+            
+  has_many  :applications, 
+            :through => :organizers,
+            :source => :petitions
 
   # has_many  :applications,
             # :through => :memberships,

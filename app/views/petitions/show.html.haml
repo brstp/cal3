@@ -1,0 +1,46 @@
+.content{:itemscope => true, :itemtype => "http://schema.org/Event"}
+  %article.article{:role => "main"}
+    %h1= title "Ansökan om att bli administratör"
+    
+    %p
+      %strong Användare:
+      %br
+      = @petition.user
+    
+    %p
+      %strong Arrangör:
+      %br
+      = link_to @petition.organizer, organizer_path(@petition.organizer)
+    
+    %p
+      %strong Anledning till ansökan:
+      %br
+      = @petition.argumentation
+      
+    - if @petition.approved == true || @petition.approved == false 
+      %p
+        %strong Beslutet fattat av:
+        %br
+        = @petition.decision_made_by_user
+      %p
+        %strong Beslut:
+        %br
+        = @petition.approved
+      - if @petition.approved == false     
+        %p
+          %strong Anledning till avslag:
+          %br
+          = @petition.rejected_reason 
+    
+    
+    - if current_user
+      - if current_user.organizers.include?(@petition.organizer) && @petition.approved == nil
+        %p
+          = link_to "Godkänn/avslå ansökan", edit_petition_path(@petition)
+    
+      - if (@petition.user == current_user && @petition.approved == nil) || current_user.is_admin?
+        %p
+          = link_to "Dra tillbaka ansökan", @petition, :confirm => "Är du säker på att du vill dra tillbaka  ansökan att bli adminstratör för #{@petition.organizer.name}?", :method => :delete
+    
+    %p
+      = link_to "Till #{@petition.organizer} arrangörssida", organizer_path(@petition.organizer)

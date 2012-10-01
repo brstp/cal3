@@ -38,17 +38,6 @@
 
 
 
-<% unless @user.petitions.blank? %>
-<p>
-  <h3><%= t '.applications' %>:</h3>
-</p>
-<ul>  
-  <% for organizer in @user.petition_organizers %>  
-  <li><%= link_to organizer.name,  organizer %></li>  
-  <% end %>  
-</ul>  
-<%end%>
-
 
 <% unless @user.organizers.blank? %>
   <h3>Arrangörssidor och evenemangsannonser som du är administratör för</h3>  

@@ -16,7 +16,7 @@ module LayoutHelper
   def draw_map markers_json
     no_of_markers = JSON.parse(markers_json).count
     if no_of_markers > 1
-      gmaps(:map_options => {:detect_location => false, :center_on_user => false, :auto_adjust => true}, "markers" => {"data" => markers_json, :options => { :do_clustering => true, randomize: true, :max_random_distance => 25 } })
+      gmaps(:map_options => {:detect_location => true, :center_on_user => true, :auto_adjust => true}, "markers" => {"data" => markers_json, :options => { :do_clustering => true, randomize: true, :max_random_distance => 25 } })
     else
       if no_of_markers == 1
         gmaps(:map_options => {"auto_zoom" => false, "zoom" => 11, :detect_location => false, :center_on_user => false, :auto_adjust => true}, "markers" => {"data" => markers_json, :options => { :do_clustering => false } }) 

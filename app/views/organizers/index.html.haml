@@ -1,14 +1,14 @@
 .content
   %article.article{:role => "main"}
     %header
-      = render "flashes"
-
+ 
     - if params[:recruit]
       %h1 Vilken arrangör jobbar du för?
     - else
-      %h1 Alla arrangörssidor på Allom
-      %p= link_to "Lägg upp en ny arrangörssida", new_organizer_path
-      %p Att lägga upp en arrangörssida går snabbt och kostar inte något.
+      %h1= title "Alla arrangörssidor på Allom"
+
+      
+    = my_organizers current_user
   
     %table.general
       %thead
@@ -23,7 +23,6 @@
                 = link_to organizer.name, organizer_path(organizer, :recruit => true )
               - else 
                 = link_to organizer.name, organizer_path(organizer) 
-              (#{organizer.number_of_upcoming_events}/#{organizer.events.count})
             %td
               - unless organizer.next_event.nil?
                 = link_to(l(organizer.next_event.start_datetime, :format => :shorty) + ', ' +organizer.next_event.subject + ' (' + organizer.next_event.municipality.short_name + ')', organizer.next_event, :title => organizer.next_event.try(:intro))

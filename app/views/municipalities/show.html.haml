@@ -2,7 +2,6 @@
   <meta itemprop="url" content="#{municipality_url}}">
   %article.article{:role => "main"}
     %header
-      = render "flashes"
       %p.category Plats:
       %h1{:itemprop => :name}= @municipality.name
       = admin_municipality

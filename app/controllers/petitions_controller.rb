@@ -38,12 +38,12 @@ class PetitionsController < ApplicationController
   end
 
   def edit
-    @petition = Petition.find(params[:id])
+    @petition = current_user.applications.find(params[:id])
     @petition.decision_made_by_user = current_user
   end
 
   def update
-    @petition = Petition.find(params[:id])
+    @petition = current_user.applications.find(params[:id])
     if @petition.update_attributes(params[:petition])
       if @petition.approved
         @petition.promote_to_membership
@@ -66,7 +66,7 @@ class PetitionsController < ApplicationController
   end
 
   def destroy
-    @petition = Petition.find(params[:id])
+    @petition = current_user.petitions.find(params[:id])
     organizer = @petition.organizer
     @petition.destroy
     redirect_to organizer, :notice => t('petition.flash.notice.destroyed' )

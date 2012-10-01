@@ -1,8 +1,6 @@
 .content
   %article.article{:role => "main"}
     %header
-      = render "flashes"
-      
       %h1 Alla Sveriges kommuner och vad som händer i dem
       %p Kolla in vad som händer i din kommun.
 
@@ -24,7 +22,6 @@
                 = link_to municipality.name, municipality_path(municipality, :recruit => true )
               - else 
                 = link_to municipality.name, municipality_path(municipality) 
-              (#{municipality.number_of_upcoming_events}/#{municipality.events.count})
             %td
               - unless municipality.next_event.nil?
                 = link_to(l(municipality.next_event.start_datetime, :format => :shorty) + ', ' +municipality.next_event.subject + ' (' + municipality.next_event.organizer.name + ')', municipality.next_event, :title => municipality.next_event.try(:intro))
