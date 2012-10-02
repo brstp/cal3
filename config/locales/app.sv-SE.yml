@@ -106,7 +106,7 @@ sv-SE:
         prospectship_removed: "Okej, ansökan att bli administratör är bortplockad."
         
       not_member: "Du har inte behörighet. Du är inte administratör hos den här arrangören (eller någon annan)"
-      not_member_here: "Du har inte behörighet. Du måste vara administratör hos den här arrangören."
+      not_member_here: "Du har inte behörighet. Du måste vara administratör hos den här arrangören. Du kan ansöka om att bli adminstratör."
       not_prospect_here: "Du kan inte ta bort ansökan, den har redan hunnit behandlas."
       not_authenticated: "Något har gått fel. Du behöver logga in."
       not_admin: "Du har inte behörighet. Du måste ha administratörsrättigheter."

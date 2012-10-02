@@ -158,7 +158,7 @@ module EventsHelper
     set_meta_tags( 
       :title => @event.subject,
       :description => "#{@event.intro}. Arrangör: #{@event.organizer.name}.",
-      :canonical => "http://allom.se" + event_path(@event),
+      :canonical => "http://allom.se" + event_path(@event).split(".")[0],
       :open_graph => {
         :title => @event.subject,
         :type  => :activity,

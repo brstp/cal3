@@ -347,10 +347,9 @@ class Event < ActiveRecord::Base
   end
 
   def duration
-    # TODO if not same day, better wording of end time, depending of length
     duration = I18n.localize(start_datetime, :format => :longest)   
     unless  (self.start_datetime == self.stop_datetime)
-      duration += " - "
+      duration += "–"
       if self.start_date != self.stop_date
         duration += I18n.localize(stop_datetime, :format => :longest)
       else
@@ -364,7 +363,7 @@ class Event < ActiveRecord::Base
     # TODO if not same day, better wording of end time, depending of length
     duration = I18n.localize(start_datetime, :format => :short)   
     unless  (self.start_datetime == self.stop_datetime)
-      duration += " - "
+      duration += "–"
       if self.start_date != self.stop_date
         duration += I18n.localize(stop_datetime, :format => :short)
       else

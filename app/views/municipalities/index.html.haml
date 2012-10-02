@@ -26,4 +26,4 @@
               - unless municipality.next_event.nil?
                 = link_to(l(municipality.next_event.start_datetime, :format => :shorty) + ', ' +municipality.next_event.subject + ' (' + municipality.next_event.organizer.name + ')', municipality.next_event, :title => municipality.next_event.try(:intro))
             
-- set_meta_tags :title => "Evenemang i alla Sveriges kommuner.", :description => "Lägg in dina evenemang på evenemangskalendern Allom. Snabbt och enkelt. Kostnadsfritt konto."
+- set_meta_tags :title => "Evenemang i alla Sveriges kommuner.", :description => "Lägg in dina evenemang på evenemangskalendern Allom. Snabbt och enkelt. Kostnadsfritt konto. Alla evenemang i din kalender.", :canonical => "http://allom.se/municipalities/"

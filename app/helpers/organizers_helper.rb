@@ -82,7 +82,7 @@ module OrganizersHelper
           for petition in @organizer.petitions
             str << %(
                       <tr>
-                        <td>#{ image_tag avatar_url(petition.user) }</td>
+                        <td>#{ image_tag avatar_url(petition.user), :height => 48, :width => 48 }</td>
                         <td>#{   
                           if current_user.is_admin
                             link_to petition.user , petition.user 

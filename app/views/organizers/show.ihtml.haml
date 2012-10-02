@@ -1,0 +1,23 @@
+.allom_event_calendar
+  %h3.allom_event_heading= link_to "#{@organizer.s} kalenderium", organizer_path(:only_path => false), :target => "_top"
+  - max_no = (params[:max_events].blank? ? 5 : params[:max_events].to_i)
+  %ul.allom_event_list
+    - for event in @organizer.upcoming_events.first max_no
+      %li.allom_event_item 
+        = link_to event.subject, event, :target => "_top"
+        %br
+        = l(event.start_datetime).to_s
+        %br
+        = event.intro 
+  - if @organizer.upcoming_events.count > max_no
+    %p.allom_more_events
+      =link_to "#{@organizer.s} alla #{@organizer.upcoming_events.count} evenemang.", organizer_path(:only_path => false)
+  
+- content_for :head do      
+  %title #{@organizer.s} kalendarium
+  %link{:rel => :canonical, :href => "http://allom.se#{organizer_path(@organizer)}"}
+  - unless params[:own_css].blank?
+    = stylesheet_link_tag params[:own_css]
+  - else
+    = stylesheet_link_tag( "http://allom.se#{path_to_stylesheet("allom_eget_kalenderium.css")}")
+    
