@@ -1,3 +1,7 @@
+= hidden_field_tag :init_lat, (@event.lat.blank? ? 62.00 : @event.lat)
+= hidden_field_tag :init_lng, (@event.lng.blank? ? 16.00 : @event.lng)
+= hidden_field_tag :init_zoom, ((@event.lat.blank? || @event.lng.blank?) ? "" : "1")
+
 = semantic_form_for @event, :html => {:multipart => true, :novalidate => true} do |f| 
   = f.error_messages
   .mandatory_descr
@@ -45,9 +49,6 @@
     = f.input :re_geocoded_street, :input_html => { :disabled => true}
     = f.input :lat
     = f.input :lng
-    = f.input :init_lat, :as => :hidden
-    = f.input :init_lng, :as => :hidden
-    = f.input :init_zoom, :as => :hidden          
     
     <li class="string" id="event_disclaimer">
     <label for="event_disclaimer">

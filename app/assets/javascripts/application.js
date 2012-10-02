@@ -1,5 +1,6 @@
 ﻿//= require jquery
 //= require jquery_ujs
+//= require jquery-ui.min
 //= require h5bp
 //= require jquery-ui.min
 //= require jquery.ui.datepicker-sv

@@ -55,3 +55,7 @@ sv-SE:
         change_password: "Ändra lösenordet"
     sessions:
       not_you: "Inte du?"
+    registrations:
+      edit:
+        submit: "Ändra"
+        back: "Strunta i att ändra. Gå tillbaka."

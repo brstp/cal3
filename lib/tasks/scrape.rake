@@ -47,5 +47,20 @@ namespace :scrape do
       end
     end
   end
+  
+  desc "Scrape all names days from Wikipedia"
+  task :names => :environment do
+    url = "http://sv.wikipedia.org/w/index.php?title=Lista_%C3%B6ver_namnsdagar_i_Sverige_i_datumordning&printable=yes"
+    doc = Nokogiri::HTML(open(url))
+    doc.xpath('//td').each do |row|
+      puts "*****row:  #{row}"
+      row.xpath('//td[(((count(preceding-sibling::*) + 1) = 1) and parent::*)]').each do |col|
+        puts "*****col:  #{col}"
+        date = col.to_s.gsub(/<span.*<\/span>/, "")
+        puts date
+      end
+    end
+  end
+  
 
 end

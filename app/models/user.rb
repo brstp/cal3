@@ -38,9 +38,11 @@ class User < ActiveRecord::Base
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
-  # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :id, :organizer_ids, :is_admin, :name_required, :invited_by_id
+  include Devise::Async::Model
 
+  # Setup accessible (or protected) attributes for your model
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :id, :organizer_ids, :is_admin, :name_required, :invited_by_id 
+  
   validates_presence_of :email
   validates :email, :email => true
   validates_presence_of :first_name, :last_name, :if => :name_required

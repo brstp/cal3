@@ -168,6 +168,11 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
   end
 
 
+  
+  
+
+
+
   def new
     @organizers = current_user.organizers
     @event = Event.new

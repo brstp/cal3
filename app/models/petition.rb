@@ -32,8 +32,7 @@ class Petition < ActiveRecord::Base
 
   validate :validates_duplicates_membership
 
-  default_scope :order => 'created_at DESC'
-
+  #default_scope :order => 'created_at DESC' #SQLite3::SQLException: ambiguous column name: created_at: SELECT  1 FROM "users" INNER JOIN "petitions" ON "users"."id" = "petitions"."user_id" WHERE "petitions"."organizer_id" = 51 AND "users"."id" = 4 ORDER BY email, created_at DESC LIMIT 1
   accepts_nested_attributes_for   :user
                                   # Formtastic nested forms need this
 

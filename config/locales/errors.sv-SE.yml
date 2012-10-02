@@ -11,6 +11,8 @@
 #           blank: "This is a custom blank message for User login"
 # Will define custom blank validation message for User model and
 # custom blank validation message for login attribute of User model.
+
+
 sv-SE:
   activerecord:
     errors:
@@ -73,6 +75,8 @@ sv-SE:
     events:
       invalid_url: "har fel format eller webbservern i andra änden svarar inte"
     messages:
+      expired: "är för gammal. Begär en ny."
+      not_found: "not found"
       duplicates_membership: "har du redan administratörsrättigheter för"
       invalid_date: "ser inte ut som ett datum"
       invalid_time: "ser inte ut som ett klockslag"
@@ -91,5 +95,5 @@ sv-SE:
       name_but_no_phone: "måste anges om du anger ett namn (eller ta bort namnet)."
       phone_but_no_name: "måste anges om du anger ett telefonnummer."
       not_saved:
-        one: 'Ett fel gjorde att %{model} inte kunde sparas:'
-        other: '%{count} fel gjorde att %{model} inte kunde sparas:'        
+        one: 'Ett fel gör att vi inte kunde spara.'
+        other: '%{count} fel gör att vi inte kan spara.'        

@@ -9,8 +9,8 @@ var marker;
     
 function initialize(){
 //MAP
-  var latlng = new google.maps.LatLng(document.getElementById("event_init_lat").value ,document.getElementById("event_init_lng").value);
-  var initZoom = document.getElementById("event_init_zoom").value;
+  var latlng = new google.maps.LatLng(document.getElementById("init_lat").value ,document.getElementById("init_lng").value);
+  var initZoom = document.getElementById("init_zoom").value;
   var options = {
     zoom: 4,
     center: latlng,
@@ -25,9 +25,9 @@ function initialize(){
     draggable: true
   });
 
-  if (document.getElementById("event_init_zoom").value){
+  if (document.getElementById("init_zoom").value){
     map.setZoom(15);
-    var initLocation = new google.maps.LatLng(document.getElementById("event_init_lat").value ,document.getElementById("event_init_lng").value);
+    var initLocation = new google.maps.LatLng(document.getElementById("init_lat").value ,document.getElementById("init_lng").value);
     marker.setPosition(initLocation);
     map.setCenter(initLocation);
     }

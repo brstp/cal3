@@ -1,17 +1,15 @@
 # encoding: UTF-8
 class Municipality < ActiveRecord::Base
   has_many :events
-  attr_accessible :name, :short_name, :admin_no, :parent_admin_no, :facts, :wikipedia_page, :escutcheon, :last_googleboted
+  attr_accessible :name, :short_name, :admin_no, :parent_admin_no, :facts, :wikipedia_page, :escutcheon, :last_googleboted, :facts_last_updated, :facts_last_updated, :facts_last_updated, :facts_last_updated, :facts_last_updated, :slug  
+  
+  
   validates_presence_of  :name, :short_name, :admin_no, :parent_admin_no
   validates_length_of :name, :in => 5..40
   validates_uniqueness_of :name, :short_name, :admin_no
   
   default_scope :order => 'name ASC'
   
-  #searchable :auto_index => true, :auto_remove => true do
-  #  text :name
-  #end
-
   extend FriendlyId
   friendly_id :name, :use => :history
 

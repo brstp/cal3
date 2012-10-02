@@ -4,12 +4,12 @@
   <%= @user.first_name %>
 </p>
 <p>
-  <b><%= t('.last_name')%>:</b>
+  <strong><%= t('.last_name')%>:</strong>
   <%= @user.last_name %>
 </p>
 
 <p>
-  <b><%= t('.email')%>:</b>
+  <strong><%= t('.email')%>:</strong>
   <%= @user.email %>
 </p>
 
@@ -49,9 +49,9 @@
         <th>Arrangörssida</th>
         <th>Evenemangsannons</th>
         <th>Visningar</th>
-        <th>Skapad</th>
-        <th>Startdatum</th>
-        <th>Genom-förd</th>
+        <th width="13%">Skapad</th>
+        <th width="13%">Startdatum</th>
+        <th>Genomförd</th>
       </tr>
     </thead>
     <tbody>
@@ -79,7 +79,7 @@
 <hr />
 <h3>För systemadminstratörer:</h3>
 <p>
-  <b><%= t('.is_system_admin')%>:</b>
+  <strong><%= t('.is_system_admin')%>:</strong>
   <%= t ('app.yess') if @user.is_admin %>
 </p>
 

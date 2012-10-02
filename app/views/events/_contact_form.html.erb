@@ -52,7 +52,8 @@
       <%= f.input :from_last_name %>     
 
       <%= f.input :from_phone %>     
-    <%= f.buttons %>
+      <%- # f.buttons %>
+      <%= f.action(:submit) %>
     
       <%= t 'mail_messages.form.self_copy'%> 
     

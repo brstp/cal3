@@ -19,7 +19,7 @@ class Event < ActiveRecord::Base
   attr_accessible :subject, :intro, :description, :street, :loc_descr, :lat, :lng, :municipality_id, 
                   :start_date, :start_time, :stop_date, :stop_time, :organizer_id, :phone_number, 
                   :phone_name, :email, :human_name, :category_id, :start_datetime, 
-                  :stop_datetime, :image1, :image2, :image3, :created_by_user_id, :updated_by_user_id,
+                  :stop_datetime, :image1, :image2, :image3, 
                   :image1_caption, :image1_url, :image1_delete, :image2_caption, :image2_url, :image2_delete, :image3_caption, :image3_url, :image3_delete, :register, :price
 
 
@@ -259,22 +259,6 @@ class Event < ActiveRecord::Base
   def consider_fetch
     if self.lat.blank? or self.lng.blank?
       fetch_coordinates unless self.street.blank?
-    end
-  end
-
-  def init_lat
-    self.lat.blank? ? 62.00 : self.lat
-  end
-
-  def init_lng
-    self.lng.blank? ? 16.00 : self.lng
-  end
-
-  def init_zoom
-    if (self.lat.blank? or self.lng.blank?)
-      ""
-    else
-      "1"
     end
   end
 
