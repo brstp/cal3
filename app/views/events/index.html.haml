@@ -162,9 +162,28 @@
       - else
         %p Nej, hur konstigt det än verkar vara så hittar vi inte några evenemang alls. Har du sökt med så hårda villkor att det inte blir några träffar? Eller har vi strulat till något?
     %p #{ link_to "Lägg in ett evenemang...", new_event_path }
-  
+
+    - if params.present? 
+      - rss_url = url_for events_path( :format => :rss, :only_path =>false, :q => params[:q], :c1_id => params[:c1_id], :c2_id => params[:c2_id], :c3_id => params[:c3_id], :municipality_id => params[:municipality_id], :organizer_id => params[:organizer_id], :stop => params[:stop], :start => params[:start], :from => params[:from], :to => params[:to]) 
+      .subscribe_container
+        .subscribe_icon
+          = link_to image_tag("rss-icon-32x32.png", :alt => "Flöde med alla evenemang som matchar den här sökningen", :title => "Prenumerera på RSS-flöde med Alloms evenemang som matchar den här sökningen."), rss_url
+        .subscribe_text
+          =link_to "RSS-flöde med Alloms evenemang som matchar den här sökningen.", rss_url
+      %br
+    .subscribe_container
+      .subscribe_icon
+        = link_to image_tag("rss-icon-32x32.png", :alt => "Flöde med alla evenemang.", :title => "Prenumerera på RSS-flöde med Alloms alla evenemang i din RSS-läsare eller visa evenemangen i din blogg."), :format => :rss, :only_path => false
+      .subscribe_text
+        =link_to "Alla Alloms evenemang som RSS-flöde."  , :format => :rss, :only_path => false
+          
   %aside{:role => "complementary"}
     = render 'aside_index'
 
 - set_meta_tags :title => query_to_string("Allom - evenemangskalender för alla sorters evenemang och aktiviteter."), :description => "Hitta saker att göra. Lägg in dina evenemang på evenemangskalendern Allom. Snabbt och enkelt. Kostnadsfritt konto. " + query_to_string, :canonical => "http://allom.se", :open_graph => {:title => "Allom - evenemangskalendern", :description => "Evenemangskalendern för alla sorters evenemang i Sverige.", :type => "activity", :url => "http://allom.se", :site_name => "Allom - evenemangskalendern", :image => "http://allom.se"+image_path( "evenemangskalendern-allom-evenemang.png")}
+
+- content_for :head do 
+  = auto_discovery_link_tag( :rss, events_url(:format => 'rss') , {:title => t('.rss_title') }) 
+
+
 
