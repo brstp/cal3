@@ -159,11 +159,11 @@ module OrganizersHelper
 
   
   def organizer_meta
-    
-    unless @organizer.logotype.blank?
-      organizer_logo =  @organizer.logotype.url(:medium)
+
+    unless @organizer.logotype_file_name.blank?
+      organizer_logo =  image_path(@organizer.logotype.url(:medium))
     else
-      organizer_logo = request.protocol + request.host_with_port + image_path("evenemang-allom-evenemangskalendern.png") 
+      organizer_logo = "http://allom.se" + image_path("evenemang-allom-evenemangskalendern.png") 
     end  
     
     set_meta_tags( 
@@ -172,6 +172,7 @@ module OrganizersHelper
       :canonical => "http://allom.se#{organizer_path(@organizer)}",
       :open_graph => {
         :title => @organizer.name,
+        :description => "Kolla in  #{@organizer.s} alla evenemang. Du kan också annonsera på Allom. #{@organizer.intro}",
         :type  => :activity,
         :url   => "http://allom.se#{organizer_path(@organizer)}" ,
         :image => organizer_logo,

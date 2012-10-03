@@ -166,5 +166,5 @@
   %aside{:role => "complementary"}
     = render 'aside_index'
 
-- set_meta_tags :title => query_to_string("Allom - evenemangskalender för alla sorters evenemang och aktiviteter."), :description => "Hitta saker att göra. Lägg in dina evenemang på evenemangskalendern Allom. Snabbt och enkelt. Kostnadsfritt konto. " + query_to_string
+- set_meta_tags :title => query_to_string("Allom - evenemangskalender för alla sorters evenemang och aktiviteter."), :description => "Hitta saker att göra. Lägg in dina evenemang på evenemangskalendern Allom. Snabbt och enkelt. Kostnadsfritt konto. " + query_to_string, :canonical => "http://allom.se", :open_graph => {:title => "Allom - evenemangskalendern", :description => "Evenemangskalendern för alla sorters evenemang i Sverige.", :type => "activity", :url => "http://allom.se", :site_name => "Allom - evenemangskalendern", :image => "http://allom.se"+image_path( "evenemangskalendern-allom-evenemang.png")}
 

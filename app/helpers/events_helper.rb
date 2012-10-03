@@ -153,27 +153,28 @@ module EventsHelper
   end
   
   def event_meta
-    unless @event.image1.blank?
-      logo =  @event.image1.url(:medium)
+    unless @event.image1_file_name.blank?
+      icon = image_path(@event.image1.url(:medium))
     else
-      logo = "http://allom.se" + image_path("evenemang-allom-evenemangskalendern.png") 
+      icon = "http://allom.se" + image_path("evenemang-allom-evenemangskalendern.png") 
     end  
     
     set_meta_tags( 
       :title => @event.subject,
-      :description => "#{@event.intro}. Arrangör: #{@event.organizer.name}.",
+      :description => "#{@event.intro.blank? ? @event.description.truncate(100) : @event.intro}. Arrangör: #{@event.organizer.name}.",
       :canonical => "http://allom.se" + event_path(@event).split(".")[0],
       :open_graph => {
         :title => @event.subject,
         :type  => :activity,
+        :description => "#{@event.intro.blank? ? @event.description.truncate(100) : @event.intro}. Arrangör: #{@event.organizer.name}.",
         :url   => "http://allom.se" + event_path(@event) ,
-        :image => logo,
+        :image => icon,
         :site_name => "Allom - evenemangskalendern",
         }
       )
       
     content_for :head do  
-      raw ("<link rel=\"image_src\" href=\"#{logo}\" />")
+      raw ("<link rel=\"image_src\" href=\"#{icon}\"/>")
     end
   end
   
