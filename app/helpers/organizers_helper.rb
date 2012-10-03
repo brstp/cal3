@@ -58,11 +58,7 @@ module OrganizersHelper
                       <p>Du är administratör för #{@organizer.name}.</p>
                     )
         end
-        unless @organizer.petition_users.blank?
-          str << %(
-                    <p>#{link_to "Du har ansökningar att bli administratör att behandla", :anchor => :admin}</p>
-                  )
-        end
+
         str << %(
                     <p>
                       #{link_to "Lägg in ny evenemangsannons", new_event_path(:organizer_id => @organizer.id)}
