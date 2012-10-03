@@ -51,13 +51,9 @@ sv-SE:
         phone_number: "Om någon vill nå dig som arrangerar, vilket telefonnummer tar du emot frågor på? Komplett telefonnummer inklusive riktnummer."
         phone_name: "Vem går telefonnumret till? Exempel: \"Åke Svensson\" eller \"Föreningskansliet\"."
         image1: "Lägg till eller ersätt nuvarande bild som visas i evenemangsannonsen. Bör vara minst 600 pixel bred och 400 pixel hög (med motsvarande propotioner). Bilden skalas och beskärs så att den passar utrymmet. Om du inte har en egen bild så väljer vi en från vårt arkiv."
-        image2: "Lägg till eller ersätt ytterligare en bild. Visas i mitten. Du behöver inte visa någon bild här."
-        image3: "Lägg till eller ersätt ytterligare en tredje bild. Visas underst. Du behöver inte visa någon bild här."
         category: "Vad handlar evenemanget om? Vilket ämne? Försök ange en så specifik kategori som möjligt."
         image1_caption: "Här kan du berätta vad bilden föreställer och/eller skriva vem som är fotograf. Max 60 tecken."
         image1_url: "Du kan länka bilden till fotografens webbsida som tack för lånet, till exempel på Flickr. När du sparar sidan så kollar vi att länken verkligen funkar."
-        image2_caption: "Max 60 tecken."
-        image3_caption: "Max 60 tecken."
         
       municipality:
         name: "Namnet på kommunen (en del kommuner heter \"stad\")"

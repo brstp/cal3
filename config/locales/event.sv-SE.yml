@@ -25,20 +25,12 @@ sv-SE:
         phone_number: "Telefonnummer"
         phone_name: "Namn för telefonnummer"
         category: "Ämneskategori"
-        image1: "Övre bilden"
-        image2: "Mellersta bilden"
-        image3: "Nedre bilden"
+        image1: "Bilden"
         organizer: "Arrangör"
         category: "Ämneskategori"
         image1_caption: "Bildtext"
         image1_url: "Bildlänk"
         image1_delete: "Radera bilden, bildtext och länk"
-        image2_caption: "Bildtext"
-        image2_url: "Bildlänk"
-        image2_delete: "Radera bilden, bildtext och länk"
-        image3_caption: "Bildtext"
-        image3_url: "Bildlänk"
-        image3_delete: "Radera bilden, bildtext och länk"
 
   events:
     new:
