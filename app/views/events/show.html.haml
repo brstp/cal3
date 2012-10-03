@@ -98,11 +98,11 @@
     
     %h3 Fler evenemang i samma kategorier
     %ul.event_type
-      - if @event.category.depth > 1
-        %li
-          = link_to "#{@event.category.parent.name.capitalize} (#{@event.category.parent.upcoming_events.count})", "/?category_facet_id=#{@event.category.parent.id}", :title => "Alla evenemang inom #{@event.category.parent.name} på Allom."
       %li
-        = link_to "#{@event.category.name.capitalize} (#{@event.category.upcoming_events.count})", "/?category_facet_id=#{@event.category.id}", :title => "Alla evenemang inom #{@event.category.name} på Allom."
+        = link_to "#{@event.category1.capitalize} (#{Category.find(@event.c1_id).number_of_upcoming_events})", "/?c1_id=#{@event.c1_id}", :title => "Alla evenemang inom #{@event.category1} på Allom."
+      -unless @event.category2.blank? || @event.c2_id.to_i == 0
+        %li
+          = link_to "#{@event.category2.capitalize} (#{Category.find(@event.c2_id).number_of_upcoming_events})", "/?c2_id=#{@event.c2_id}", :title => "Alla evenemang inom #{@event.category1} på Allom."
       %li
         = link_to "#{@event.municipality.name} (#{@event.municipality.upcoming_events.count})", @event.municipality, :title => "Alla evenemang i #{@event.municipality.name} på Allom."
       %li

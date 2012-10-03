@@ -33,7 +33,9 @@ module EventsHelper
   def query_to_string default_str = t('app.site_name')
     str =""
     unless  ( params[:q].blank? && 
-              params[:category_facet_id].blank? && 
+              params[:c1_id].blank? && 
+              params[:c2_id].blank? && 
+              params[:c3_id].blank? && 
               params[:municipality_id].blank? && 
               params[:organizer_id].blank? )
             
@@ -41,17 +43,19 @@ module EventsHelper
         str = str + Organizer.find(params[:organizer_id].to_i).s + " "
       end
       str = str + " " + params[:q].to_s + " "
-      unless params[:category_facet_id].to_i == 0
-        str = str + Category.find(params[:category_facet_id].to_i).name + " "
-      end
+      
+      str = str + Category.find(params[:c1_id].to_i).name + " " unless params[:c1_id].to_i == 0
+      str = str + Category.find(params[:c2_id].to_i).name + " " unless params[:c2_id].to_i == 0
+      str = str + Category.find(params[:c3_id].to_i).name + " " unless params[:c3_id].to_i == 0
+      
       if str.blank? 
         str = str + " " + t('app.events').titleize + " "
       else
         str = str + " " + t('app.events') + " "
       end
-      unless params[:municipality_id].to_i == 0
-        str = str + " i " + Municipality.find(params[:municipality_id].to_i).short_name
-      end
+  
+      str = str + " i " + Municipality.find(params[:municipality_id].to_i).short_name unless params[:municipality_id].to_i == 0
+      
     else
       str = default_str
     end

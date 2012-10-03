@@ -30,9 +30,12 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
         keywords params[:q]
         paginate :page => params[:page]
           
-        facet :category_facet_id, :limit => params[:cl].to_i + 6
         facet :organizer_id
         facet :municipality_id, :limit => params[:ml].to_i + 6
+        facet :c1_id, :limit => params[:cl].to_i + 6
+        facet :c2_id
+        facet :c3_id
+        
         facet :stop do
           row "today" do
             with :stop, today..(today + 1.day)
@@ -103,7 +106,9 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
 
       with(:stop).greater_than(facet_from) unless facet_from.blank?
       with(:stop).less_than(facet_to + 1.day) unless facet_to.blank?      
-      with(:category_facet_id).equal_to( params[:category_facet_id].to_i ) unless params[:category_facet_id].blank?
+      with(:c1_id).equal_to( params[:c1_id].to_i ) unless params[:c1_id].blank?
+      with(:c2_id).equal_to( params[:c2_id].to_i ) unless params[:c2_id].blank?
+      with(:c3_id).equal_to( params[:c3_id].to_i ) unless params[:c3_id].blank?
       with(:organizer_id).equal_to( params[:organizer_id].to_i ) unless params[:organizer_id].blank?
       with(:municipality_id).equal_to( params[:municipality_id].to_i ) unless params[:municipality_id].blank?
     end
@@ -113,7 +118,9 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
     @to_date = facet_to
     @hit_numbers = result.total
     @stop_facet_rows = result.facet(:stop).rows if result.facet( :stop )
-    @category_facet_rows = result.facet(:category_facet_id).rows if result.facet( :category_facet_id )
+    @c1_facet_rows = result.facet(:c1_id).rows if result.facet( :c1_id )
+    @c2_facet_rows = result.facet(:c2_id).rows if result.facet( :c2_id )
+    @c3_facet_rows = result.facet(:c3_id).rows if result.facet( :c3_id )
     @organizer_facet_rows = result.facet(:organizer_id).rows if result.facet( :organizer_id )
     @municipality_facet_rows = result.facet(:municipality_id).rows if result.facet( :municipality_id )
     @events = result

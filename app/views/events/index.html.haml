@@ -8,19 +8,20 @@
           .search_label
             Sök evenemang, ämne, plats, ...
           .clear_link
-            - unless params[:q].blank? && params[:stop].blank? && params[:start].blank? && params[:category_facet_id].blank? && params[:organizer_id].blank? && params[:municipality_id].blank? && params[:cl].to_i == 0 && params[:ml].to_i == 0 && @to_date.blank? && @from_date.beginning_of_day == Time.zone.now.beginning_of_day
+            - unless params[:q].blank? && params[:stop].blank? && params[:start].blank? && params[:c1_id].blank? && params[:c2_id].blank? && params[:c2_id].blank? && params[:organizer_id].blank? && params[:municipality_id].blank? && params[:cl].to_i == 0 && params[:ml].to_i == 0 && @to_date.blank? && @from_date.beginning_of_day == Time.zone.now.beginning_of_day
               = link_to "rensa sökningen", events_path
         = form_tag({:action => 'index'}, :method => 'get' )            
         = search_field_tag :q, params[:q]   
         = hidden_field_tag :municipality_id, params[:municipality_id]
         = hidden_field_tag :organizer_id, params[:organizer_id]
-        = hidden_field_tag :category_facet_id, params[:category_facet_id]
+        = hidden_field_tag :c1_id, params[:c1_id]
+        = hidden_field_tag :c2_id, params[:c2_id]
+        = hidden_field_tag :c3_id, params[:c3_id]
         = hidden_field_tag :start, params[:start]
         = hidden_field_tag :stop, params[:stop]
         = hidden_field_tag :cl, params[:cl]
         = hidden_field_tag :ml, params[:ml]
         
-        = #search_field_tag :search, "punk malmö juni"
         .submit_row 
           = submit_tag "Sök", :id => :event_search
   
@@ -38,18 +39,29 @@
         .facet_column_category
           %h5 vad/ämne
           %ul
-            - for row in @category_facet_rows
-              - if row.value.to_i == params[:category_facet_id].to_i
+            - for row in @c1_facet_rows
+              - if row.value.to_i == params[:c1_id].to_i
                 %li.selected_facet
-                  %a{:href => url_for(params.merge({:category_facet_id => nil})), :title => "Visa fler ämnen..."}
+                  %a{:href => url_for(params.merge({:c1_id => nil, :c2_id => nil})), :title => "Visa fler ämnen..."}
                     %span.cancel_facet x
-                    %span= "#{row.instance.and_mum.to_s} (#{row.count.to_s})"
+                    %span= "#{row.instance.to_s}"
               - else
                 %li
-                  = link_to "#{row.instance.and_mum.to_s} (#{row.count.to_s})", params.merge({:category_facet_id => row.instance.id}), :title => "Sök evenemang bara i kategorin #{row.instance.to_s}."
-            - if (@category_facet_rows.count > (params[:cl].to_i + 5))
+                  = link_to "#{row.instance.to_s} (#{row.count.to_s})", params.merge({:c1_id => row.instance.id}), :title => "Sök evenemang bara i kategorin #{row.instance.to_s}."
+            - unless @c1_facet_rows.blank? || params[:c1_id].blank?
+              - for row in @c2_facet_rows
+                - if row.value.to_i == params[:c2_id].to_i
+                  %li.selected_facet
+                    %a{:href => url_for(params.merge({:c2_id => nil})), :title => "Visa fler ämnen..."}
+                      %span.cancel_facet x
+                      %span= "#{row.instance.to_s}"
+                - else
+                  %li
+                    = link_to "#{row.instance.to_s} (#{row.count.to_s})", params.merge({:c2_id => row.instance.id}), :title => "Sök evenemang bara i kategorin #{row.instance.to_s}."   
+            - if (@c1_facet_rows.count > (params[:cl].to_i + 5))      
               %li.more_facets              
-                =link_to( "• • •", params.merge({:cl => params[:cl].to_i + 7}), :title => "Visa fler ämneskategorier... ")              
+                =link_to( "• • •", params.merge({:cl => params[:cl].to_i + 7}), :title => "Visa fler ämneskategorier... ")                                                
+            
         .facet_column_time
           %h5 när/datum
           %ul
@@ -58,7 +70,7 @@
                 %li.selected_facet
                   %a{:href => url_for(params.merge({:stop => nil})), :title => "Visa fler tidsperioder..."}
                     %span.cancel_facet x
-                    %span= "#{t('when_facet.' + row.value.to_s)} (#{row.count.to_s})"
+                    %span= "#{t('when_facet.' + row.value.to_s)}"
               - else
                 %li
                   = link_to "#{t('when_facet.' + row.value.to_s)} (#{row.count.to_s})", params.merge({:stop => row.value}), :title => "Sök evenemang bara i #{t('when_facet.' + row.value.to_s)}."
@@ -100,7 +112,7 @@
                 %li.selected_facet
                   %a{:href => url_for(params.merge({:municipality_id => nil})), :title => "Visa fler platser..."}
                     %span.cancel_facet x
-                    %span= "#{row.instance.to_s} (#{row.count.to_s})"
+                    %span= "#{row.instance.to_s}"
               - else
                 %li
                   = link_to "#{row.instance.to_s} (#{row.count.to_s})",params.merge({:municipality_id => row.instance.id}), :title => "Sök evenemang bara i #{row.instance.to_s}."
@@ -139,10 +151,10 @@
       %p
         = paginate @events
       %p
-        - if params[:q].present? || params[:municipality_id].present? || params[:organizer_id].present? || params[:start].present? || params[:stop].present? || params[:category_facet_id].present?
+        - if params[:q].present? || params[:municipality_id].present? || params[:organizer_id].present? || params[:start].present? || params[:stop].present? || params[:c1_id].present? || params[:c2_id].present? || params[:c3_id].present?
           = link_to "Rensa sökningen och visa alla evenemang.", events_path  
     - else
-      - if params[:q].present? || params[:municipality_id].present? || params[:organizer_id].present? || params[:start].present? || params[:stop].present? || params[:category_facet_id].present?
+      - if params[:q].present? || params[:municipality_id].present? || params[:organizer_id].present? || params[:start].present? || params[:stop].present? || params[:c1_id].present? || params[:c2_id].present? || params[:c3_id].present?
         %p 
           Nej, vi hittar inga evenemang som matchar det du söker efter. Sorry. 
         %p
@@ -154,5 +166,5 @@
   %aside{:role => "complementary"}
     = render 'aside_index'
 
-- set_meta_tags :title => "Allom - evenemangskalender för alla sorters evenemang och aktiviteter.", :description => "Hitta saker att göra. Lägg in dina evenemang på evenemangskalendern Allom. Snabbt och enkelt. Kostnadsfritt konto."
+- set_meta_tags :title => query_to_string("Allom - evenemangskalender för alla sorters evenemang och aktiviteter."), :description => "Hitta saker att göra. Lägg in dina evenemang på evenemangskalendern Allom. Snabbt och enkelt. Kostnadsfritt konto. " + query_to_string
 

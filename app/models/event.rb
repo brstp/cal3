@@ -53,7 +53,10 @@ class Event < ActiveRecord::Base
     text :loc_descr
     text :phone_name
     text :human_name
-    text :category
+    #text :category
+    text :category1
+    text :category2
+    text :category3
     text :organizer
     text :municipality
     text :image1_caption
@@ -64,13 +67,40 @@ class Event < ActiveRecord::Base
     time :start, :trie => true, :using => :start_datetime
     time :stop, :trie => true, :using => :stop_datetime
     integer :category_id, :references => ::Category
-    integer :category_facet_id, :multiple => true, :references => ::Category
     integer :municipality_id, :references => ::Municipality
     integer :organizer_id, :references => ::Organizer
+    integer :c1_id, :references => ::Category
+    integer :c2_id, :references => ::Category
+    integer :c3_id, :references => ::Category
   end
   handle_asynchronously :solr_index
 
   acts_as_gmappable
+  
+  
+  def c1_id
+    self.category.path_ids[1]
+  end
+  
+  def c2_id
+    self.category.path_ids[2]
+  end
+
+  def c3_id
+    self.category.path_ids[3]
+  end
+  
+  def category1
+    Category.find(self.category.path_ids[1]).name unless self.category.path_ids[1].blank?
+  end
+
+  def category2
+    Category.find(self.category.path_ids[2]).name unless self.category.path_ids[2].blank?
+  end
+  
+  def category3  
+    Category.find(self.category.path_ids[3]).name unless self.category.path_ids[3].blank?
+  end
   
   image_store = ENV["RAILS_ENV"].to_s + "/" unless ENV["RAILS_ENV"] == "production"
 
@@ -195,16 +225,6 @@ class Event < ActiveRecord::Base
     end
   end
   
-  def category_facet_id
-    category = self.category
-    out_array = []
-    while category.depth > 0
-      out_array << category.id
-      category = category.parent
-    end
-    out_array
-  end
-
   def location
     str = ""
     unless self.loc_descr.blank?
