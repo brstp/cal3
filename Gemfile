@@ -23,7 +23,7 @@ gem 'aws-sdk', '~> 1.3.4'
 
 gem 'friendly_id'#, "~> 4.0.0"       # slugs, to make friendly urls
 
-gem 'mail_form'                     #needed? used? TODO
+#gem 'mail_form'                     #needed? used? TODO
 
 gem 'gmaps4rails'
 gem "geocoder"                      #server side geo coding. Used? TODO
