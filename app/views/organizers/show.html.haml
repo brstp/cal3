@@ -38,15 +38,20 @@
     %footer.event_organizer
       %h3#article_footer Kontaktinfo
       %ul
-        - unless @organizer.email.blank?
-          %li
-            = link_to raw("Mejla <span itemprop=\"email\">#{@organizer.email}\</span>"), "mailto:#{@organizer.email}"
         - unless @organizer.phone.blank?
           %li
             = link_to raw("Ring <span itemprop=\"telephone\">#{@organizer.phone}\</span>"), "tel:#{CGI::escape(@organizer.phone)}" 
         - unless @organizer.website.blank?
           %li
             = link_to_unless @organizer.events.blank?, @organizer.website, @organizer.website, :itemprop => :url
+        - unless @organizer.email.blank?
+          %li
+            -# link_to raw("Mejla <span itemprop=\"email\">#{@organizer.email}\</span>"), "mailto:#{@organizer.email}" # TODO
+            
+            = link_to "Mejla #{@organizer.email} (kontaktformulär)", "javascript:toggle();", :id => :display_text                        
+      #toggle_text{:style => "display:none"}
+        = render "mail_messages/form"
+
             
       %p.article_meta
         = organizer_footer

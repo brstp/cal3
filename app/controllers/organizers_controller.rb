@@ -13,6 +13,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
 
   def show
     @organizer = Organizer.find(params[:id])
+    @mail_message = MailMessage.new
     @events = @organizer.upcoming_events #.paginate :page => params[:page], :per_page => 10
     
     @markers = @organizer.events.to_gmaps4rails do |event, marker|

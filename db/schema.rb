@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120928123208) do
+ActiveRecord::Schema.define(:version => 20121005071030) do
 
   create_table "almanac_days", :force => true do |t|
     t.integer  "day"
@@ -153,6 +153,9 @@ ActiveRecord::Schema.define(:version => 20120928123208) do
     t.string    "referer"
     t.timestamp "created_at"
     t.timestamp "updated_at"
+    t.integer   "organizer_id"
+    t.text      "mail_body"
+    t.string    "current_page"
   end
 
   create_table "memberships", :force => true do |t|

@@ -806,7 +806,7 @@ p.article_meta {
   @include clearfix;
   form input[type="submit"] {
     @include clearfix;
-    font-size: 2em;
+    font-size: 1.5em;
     float: right;
     @include background(linear-gradient(color-stops($light_allom_red, $allom_red, $allom_red )));
     color: white;
@@ -1027,6 +1027,12 @@ p.article_meta {
   }
 }
 
+.envelope{
+  background-color: $lightergrey;
+  margin: 1em 0 2em 0;
+  @include border-radius;
+  padding: 0.01em 1em 0.01em 1em;
+}
 // 12 ASIDE / COMPLEMENTARY ==============================
 
 

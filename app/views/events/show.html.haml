@@ -41,6 +41,9 @@
     //%a.call_to_action{:href => "", :title => ""}
     //  Anmäl dig/köp biljett...
     
+    %p
+      = @event.id
+    
     = simple_format @event.description 
     
     .event_facts
@@ -90,12 +93,13 @@
 
     %h3#article_footer Kontakta
     %ul.event_organizer
-      %li
-        = link_to "Mejla #{@event.human_name} (kontaktformulär)" 
       - unless @event.phone_number.blank?
         %li
           = link_to "Ring #{@event.phone_name}: #{@event.phone_number}", "tel:#{CGI::escape(@event.phone_number)}"
-    
+      %li
+        = link_to "Mejla #{@event.human_name} (kontaktformulär)", "javascript:toggle();", :id => :display_text
+    #toggle_text{:style => "display:none"}
+      = render "mail_messages/form"
     %h3 Fler evenemang i samma kategorier
     %ul.event_type
       %li

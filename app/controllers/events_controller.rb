@@ -157,6 +157,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
 
   def show
     @event = Event.find(params[:id])
+    @mail_message = MailMessage.new
     @markers = @event.to_gmaps4rails do |event, marker|
       marker.infowindow "<div class=\"info_window\"> <h1>#{view_context.link_to(event.subject, event)}</h1> <p>Kategori: #{event.category.name.capitalize} </p><p>#{event.short_duration.capitalize} </p></div>"
       marker.picture map_marker(event)

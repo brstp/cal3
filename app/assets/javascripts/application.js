@@ -12,7 +12,18 @@
 // This file is automatically included by javascript_include_tag :defaults
 
 
-
+function toggle() {
+	var ele = document.getElementById("toggle_text");
+	var text = document.getElementById("display_text");
+	if(ele.style.display == "block") {
+    		ele.style.display = "none";
+		text.innerHTML = "Mejla";
+  	}
+	else {
+		ele.style.display = "block";
+		text.innerHTML = "Ta bort mejlformuläret";
+	}
+}
 
 $(function() {
 $.datepicker.setDefaults({

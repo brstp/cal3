@@ -1,7 +1,6 @@
+# encoding: UTF-8
 class MailMessagesController < ApplicationController
-before_filter :authenticate_user!, :except => [:new, :create]
-before_filter :authorized?, :except => [:new, :create]
-
+  
   # GET /mail_messages
   def index
     @mail_messages = MailMessage.all
@@ -14,60 +13,78 @@ before_filter :authorized?, :except => [:new, :create]
   # GET /mail_messages/1
   def show
     @mail_message = MailMessage.find(params[:id])
+
     respond_to do |format|
       format.html # show.html.erb
+    end
+  end
+
+  def view
+    @mail_message = MailMessage.find(params[:id])
+    respond_to do |format|
+      format.html
     end
   end
 
   # GET /mail_messages/new
   def new
     @mail_message = MailMessage.new
+    #@event = Event.find 342
+    @mail_message.ip = request.remote_ip 
+    @mail_message.referer = request.headers["referer"]
+    @mail_message.user_agent = request.headers["user_agent"]
+    #@mail_message.event_id = @event.id
+    #@mail_message.to_name = @event.human_name
+    #@mail_message.to_email = @event.email
+    @mail_message.current_page = "#{request.protocol}#{request.host_with_port}#{request.fullpath}"
+    if current_user
+      @mail_message.from_email = current_user.try :email
+      @mail_message.from_first_name = current_user.try :first_name
+      @mail_message.from_last_name = current_user.try :last_name
+    end
+
     respond_to do |format|
       format.html # new.html.erb
     end
   end
 
+  # GET /mail_messages/1/edit
+  def edit
+    @mail_message = MailMessage.find(params[:id])
+  end
+
   # POST /mail_messages
   def create
     @mail_message = MailMessage.new(params[:mail_message])
-    @mail_message.to_email = Event.find(@mail_message.event_id).email
-
-    if current_user
-      time_to_save = false
-      if current_user.first_name.blank? and !@mail_message.from_first_name.blank?
-        current_user.first_name = @mail_message.from_first_name
-        time_to_save = true
-      end
-      if current_user.last_name.blank? and !@mail_message.from_last_name.blank?
-        current_user.last_name = @mail_message.from_last_name
-        time_to_save = true
-      end
-      current_user.save if time_to_save
-    end
-
     respond_to do |format|
       if @mail_message.save
-        EventMailer.delay.copy_event_sender(@mail_message)
-        EventMailer.delay.contact_event(@mail_message)
-        format.html { redirect_to(Event.find(@mail_message.event_id), :notice => I18n.t('flash.actions.create.sent')) }
+        format.html { redirect_to view_mail_message_path(@mail_message, 
+                        :to_name => @mail_message.to_name,
+                        :from_name => @mail_message.from_name,
+                        :from_email => @mail_message.from_email,
+                        :from_phone => @mail_message.from_phone
+                        ), 
+                        notice: 'Nu skickar vi iväg ditt mejl.' }
       else
-        format.html { render :action => "new" }
+        format.html { render action: "new" }
       end
     end
   end
-protected
 
-  def authorized?
-    if !current_user
-      flash[:alert] = t 'flash.actions.not_authenticated'
-      redirect_to :back
-    else
-      if !current_user.is_admin
-        flash[:alert] = t 'flash.actions.not_admin'
-        redirect_to :back
-      else
-        # Do stuff...
-      end
+  # PUT /mail_messages/1
+  def update
+    render :nothing => true
+  end
+
+  # DELETE /mail_messages/1
+  def destroy
+    @mail_message = MailMessage.find(params[:id])
+    @mail_message.destroy
+
+    respond_to do |format|
+      format.html { redirect_to mail_messages_url }
     end
   end
+  
+    
 end

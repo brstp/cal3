@@ -20,6 +20,12 @@ Cal3::Application.routes.draw do
 
   resources :mail_messages
 
+  resources :mail_messages do
+    member do
+      get 'view'
+    end
+  end
+
   devise_for :users
 
   resources :users
