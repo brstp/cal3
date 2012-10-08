@@ -158,6 +158,20 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
   def show
     @event = Event.find(params[:id])
     @mail_message = MailMessage.new
+    @mail_message.subject = "Om evenemanget: #{@event.subject} – #{l @event.start_datetime, :format => :shorty}"
+    @mail_message.ip = request.remote_ip 
+    @mail_message.referer = request.headers["referer"]
+    @mail_message.user_agent = request.headers["user_agent"]
+    @mail_message.current_page = params[:current_page]
+    @mail_message.event_id = @event.id
+    @mail_message.to_name = @event.human_name
+    @mail_message.current_page =  "#{request.protocol}#{request.host_with_port}#{request.fullpath}" if @mail_message.current_page.blank?
+    if current_user
+      @mail_message.from_email = current_user.try :email
+      @mail_message.from_first_name = current_user.try :first_name
+      @mail_message.from_last_name = current_user.try :last_name
+    end
+    
     @markers = @event.to_gmaps4rails do |event, marker|
       marker.infowindow "<div class=\"info_window\"> <h1>#{view_context.link_to(event.subject, event)}</h1> <p>Kategori: #{event.category.name.capitalize} </p><p>#{event.short_duration.capitalize} </p></div>"
       marker.picture map_marker(event)

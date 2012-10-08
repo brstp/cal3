@@ -1,5 +1,8 @@
 # encoding: UTF-8
 class MailMessagesController < ApplicationController
+
+  before_filter :authenticate_user!, :except => [:new, :create, :view]
+  before_filter :authorized?, :except => [:new, :create, :view]
   
   # GET /mail_messages
   def index
@@ -19,6 +22,8 @@ class MailMessagesController < ApplicationController
     end
   end
 
+  # GET /mail_messages/1/view
+  # For non logged in users
   def view
     @mail_message = MailMessage.find(params[:id])
     respond_to do |format|
@@ -33,10 +38,11 @@ class MailMessagesController < ApplicationController
     @mail_message.ip = request.remote_ip 
     @mail_message.referer = request.headers["referer"]
     @mail_message.user_agent = request.headers["user_agent"]
-    #@mail_message.event_id = @event.id
-    #@mail_message.to_name = @event.human_name
-    #@mail_message.to_email = @event.email
-    @mail_message.current_page = "#{request.protocol}#{request.host_with_port}#{request.fullpath}"
+    @mail_message.current_page = params[:current_page]
+    @mail_message.subject = "Felanmälan/anmälan av sida på Allom"
+    @mail_message.to_name = "Alloms kundtjänst (kundtjanst@allom.se)"
+    @mail_message.current_page =  "#{request.protocol}#{request.host_with_port}#{request.fullpath}" if @mail_message.current_page.blank?
+    @mail_message.mail_body = "Hej Allom!\n\nJag har en fråga/ett klagomål/vill anmäla/vill felanmäla sidan #{@mail_message.current_page}\n\n"
     if current_user
       @mail_message.from_email = current_user.try :email
       @mail_message.from_first_name = current_user.try :first_name
@@ -56,8 +62,24 @@ class MailMessagesController < ApplicationController
   # POST /mail_messages
   def create
     @mail_message = MailMessage.new(params[:mail_message])
+    if current_user
+      time_to_save = false
+      if current_user.first_name.blank? and !@mail_message.from_first_name.blank?
+        current_user.first_name = @mail_message.from_first_name
+        time_to_save = true
+      end
+      if current_user.last_name.blank? and !@mail_message.from_last_name.blank?
+        current_user.last_name = @mail_message.from_last_name
+        time_to_save = true
+      end
+      current_user.save if time_to_save
+    end
+    @mail_message.to_email = "stefan.pettersson@lumano.se"
     respond_to do |format|
       if @mail_message.save
+        ContactFormMailer.event_contact_person(@mail_message).deliver
+        #EventMailer.copy_event_sender(@mail_message).deliver
+        #EventMailer.delay.contact_event(@mail_message)
         format.html { redirect_to view_mail_message_path(@mail_message, 
                         :to_name => @mail_message.to_name,
                         :from_name => @mail_message.from_name,
@@ -86,5 +108,20 @@ class MailMessagesController < ApplicationController
     end
   end
   
+  protected
+
+  def authorized?
+    if !current_user
+      flash[:alert] = t 'flash.actions.not_authenticated'
+      redirect_to :back
+    else
+      if !current_user.is_admin
+        flash[:alert] = t 'flash.actions.not_admin'
+        redirect_to :back
+      else
+        # Do stuff...
+      end
+    end
+  end  
     
 end

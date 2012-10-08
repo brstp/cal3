@@ -16,5 +16,6 @@ sv-SE:
         from_phone: "Ditt telefonnummer"
         event_id: "Evenemangsannons"
         organizer_id: "Arrangörssida"
+        subject: "Ämne"
   mail_messages:
     form:

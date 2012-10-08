@@ -1,0 +1,14 @@
+.content
+  %article
+    %h1 Mejl
+
+    - for attribute in @mail_message.attributes.keys 
+      %p
+        %b
+          = attribute.humanize 
+        = @mail_message.attributes[attribute].to_s
+
+    %p
+      = link_to 'Alla mejl', mail_messages_path
+    %p        
+      = link_to( "Radera mejlet", @mail_message, :confirm => "Är du säker på att du vill radera mejlet? Det kommer inte att gå att återställa det.", :method => :delete )   

@@ -1,0 +1,25 @@
+.content{:itemscope => true, :itemtype => "http://schema.org/Organization"}
+  %article.article{:role => "main"}
+    %p
+      Ditt meddelande:
+    .envelope
+      %p 
+        Till: 
+        %br
+        #{params[:to_name]}
+      %p
+        Från: 
+        %br
+        #{params[:from_name]} 
+        %br
+        #{params[:from_email]} 
+        %br
+        #{params[:from_phone]}
+        
+      %hr
+      = simple_format @mail_message.mail_body
+      %hr
+      %p.minor
+        Skickat: #{@mail_message.created_at}. 
+      
+    = link_to "Tillbaka", :back

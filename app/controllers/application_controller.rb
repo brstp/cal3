@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   def check_uri
     if request.host.split('.')[0] == 'www'
-      redirect_to request.protocol + request.host.gsub('www.',''), :status => 301
+      redirect_to request.protocol + request.host_with_port.gsub('www.',''), :status => 301
     end
   end
 

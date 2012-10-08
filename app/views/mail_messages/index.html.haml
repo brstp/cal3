@@ -1,0 +1,22 @@
+%h1 Alla skickade mejl
+
+
+%table
+  %tr
+    %th Från
+    %th Till
+    %th Ev
+    %th Arr
+    %th IP
+    %th Skickad
+  
+  - @mail_messages.each do |mail_message|
+    %tr
+      %td= link_to mail_message.from_email, mail_message
+      %td= mail_message.to_email
+      %td= mail_message.event_id 
+      %td= mail_message.organizer_id 
+      %td= mail_message.ip
+      %td= mail_message.created_at
+
+= link_to 'Nytt mejl', new_mail_message_path
