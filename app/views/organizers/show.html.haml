@@ -35,7 +35,7 @@
       = image_tag "red-pushpin.png", :class => :marker_legend_small_size
       Redan genomförda evenemang.
 
-    %footer.event_organizer
+    .event_organizer
       %h3#article_footer Kontaktinfo
       %ul
         - unless @organizer.phone.blank?
@@ -52,9 +52,13 @@
       #toggle_text{:style => "display:none"}
         = render "mail_messages/form"
 
-            
+    %footer
       %p.article_meta
         = organizer_footer
+      %p.article_meta
+        =link_to image_tag("cc-by-sa.png"), "http://creativecommons.org/licenses/by-sa/2.5/deed.sv", :rel => :nofollow, :title => "Licens: Creative Commons CC(BY-SA)", :alt => "Ikon för licensen Creative Commons CC(BY-SA)"
+        Arrangörssidans texter & bilder är licensierade av arrangören under Creative Commons Erkännande-DelaLika 2.5 Sverige Licens, CC (BY-SA)        
+                
       %nav.event_admin
         %h3#article_nav 
           Jobbar du för 

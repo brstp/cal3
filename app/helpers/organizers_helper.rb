@@ -208,8 +208,7 @@ module OrganizersHelper
       end
       str << %(. )
     end
-     
-    str << %( Sidans texter & bilder är licensierade av arrangören under Creative Commons Erkännande-DelaLika 2.5 Sverige Licens, CC (BY-SA).)
+
     str
   end
   
