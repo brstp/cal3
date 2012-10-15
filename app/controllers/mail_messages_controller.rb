@@ -74,7 +74,7 @@ class MailMessagesController < ApplicationController
       end
       current_user.save if time_to_save
     end
-    @mail_message.to_email = "stefan.pettersson@lumano.se"
+    @mail_message.to_email = "stefan.pettersson@lumano.se" #TODO
     respond_to do |format|
       if @mail_message.save
         ContactFormMailer.event_contact_person(@mail_message).deliver
