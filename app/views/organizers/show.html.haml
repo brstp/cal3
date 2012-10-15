@@ -28,10 +28,10 @@
    
     %h3= "Var är #{@organizer.name} aktiv?"
     = draw_map @markers  
-    %p
+    %p.todo
       = image_tag "grn-pushpin.png", :class => :marker_legend_mid_size
       Kommande evenemang.
-    %p
+    %p.todo
       = image_tag "red-pushpin.png", :class => :marker_legend_small_size
       Redan genomförda evenemang.
 

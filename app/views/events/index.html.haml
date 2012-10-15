@@ -120,11 +120,11 @@
               %li.more_facets              
                 =link_to( "• • •", params.merge({:ml => params[:ml].to_i + 7}), :title => "Visa fler platser... ")                   
 
-
-    = paginate @events
+    .todo
+      = paginate @events
                
     - unless @events.blank?
-      %p Här är #{@events.count} av #{@hit_numbers} evenemang:
+      %p.todo Här är #{@events.count} av #{@hit_numbers} evenemang:
 
       %table.mini_calendar
         %tbody
@@ -148,9 +148,10 @@
                   <meta itemprop="name" content="#{event.subject}}">
                   <meta itemprop="performer" content="#{event.organizer.name}}">
                   <meta itemprop="addressLocality" content="#{event.location}}">
-      %p
-        = paginate @events
-      %p
+      .todo
+        %p
+          = paginate @events
+      %p.todo
         - if params[:q].present? || params[:municipality_id].present? || params[:organizer_id].present? || params[:start].present? || params[:stop].present? || params[:c1_id].present? || params[:c2_id].present? || params[:c3_id].present?
           = link_to "Rensa sökningen och visa alla evenemang.", events_path  
     - else
@@ -161,7 +162,7 @@
           = link_to "Rensa sökningen och börja om med att visa alla evenemang? ", events_path
       - else
         %p Nej, hur konstigt det än verkar vara så hittar vi inte några evenemang alls. Har du sökt med så hårda villkor att det inte blir några träffar? Eller har vi strulat till något?
-    %p #{ link_to "Lägg in ett evenemang...", new_event_path }
+    %p.todo #{ link_to "Lägg in ett evenemang...", new_event_path }
 
     - if params.present? 
       - rss_url = url_for events_path( :format => :rss, :only_path =>false, :q => params[:q], :c1_id => params[:c1_id], :c2_id => params[:c2_id], :c3_id => params[:c3_id], :municipality_id => params[:municipality_id], :organizer_id => params[:organizer_id], :stop => params[:stop], :start => params[:start], :from => params[:from], :to => params[:to]) 
@@ -174,7 +175,7 @@
     .subscribe_container
       .subscribe_icon
         = link_to image_tag("rss-icon-32x32.png", :alt => "Flöde med alla evenemang.", :title => "Prenumerera på RSS-flöde med Alloms alla evenemang i din RSS-läsare eller visa evenemangen i din blogg."), :format => :rss, :only_path => false
-      .subscribe_text
+      .subscribe_text.todo
         =link_to "Alla Alloms evenemang som RSS-flöde."  , :format => :rss, :only_path => false
           
   %aside{:role => "complementary"}

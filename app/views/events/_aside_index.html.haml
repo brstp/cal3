@@ -1,14 +1,14 @@
-%p Här är #{@events.count} av #{@hit_numbers} evenemang:
+%p.todo Här är #{@events.count} av #{@hit_numbers} evenemang:
 
 = draw_map @markers
 
-%h3 Några nya evenemang
+%h3.todo Några nya evenemang
 .event_gallery
   - for event in @gallery
     = link_to (image_tag event.image1.url(:small), :width => "32%", :title => ( l(event.start_datetime, :format => :mini) + ': ' + event.subject + ' (' + event.category.name + ')' + '. ' + event.organizer.name + ', ' + event.municipality.short_name + '.' ), :alt => event.image1_caption, :class => "#{cycle("gallery_col1", "gallery_col2", "gallery_col3")}"), event_path(event)
 
 
-%h3.aside_top Gillar du om Allom?
+%h3.aside_top.todo Gillar du om Allom?
 
 .social_box#facebook
   <fb:like-box href="https://www.facebook.com/pages/Allom/137994786272472" width="230" show_faces="true" border_color="#ffffff" stream="false" header="false"></fb:like-box>
@@ -16,12 +16,12 @@
   %a.twitter-share-button{"data-lang" => "sv", "data-size" => "large", "data-via" => "allom_se", :href => "https://twitter.com/share"} Tweeta
 .social_box#plusone
   .g-plusone{"data-annotation" => "inline", "data-href" => "http://allom.se/", "data-size" => "tall", "data-width" => "260"}
-.social_box#email
-  =link_to image_tag("email-button.png", :alt => "Tipsa en vän om det här evenemanget med ett mejl."), "", :title => "Tipsa en vän om det här evenemanget med ett mejl." 
+.social_box.todo#email
+  =link_to image_tag("email-button.png", :alt => "Tipsa en vän om det här evenemanget med ett mejl."), "", :title => "Tipsa en vän om det här evenemanget med ett mejl."
 
-%h3 Kom igång med Allom
+%h3.todo Kom igång med Allom
 %p Om fem minuter är ditt evenemang publicerat.
 %p 
-  =link_to "Vi guidar dig...", new_event_path
+  =link_to "Vi guidar dig...", new_event_path, :class => :todo
 
-= #render 'screen_size'
+= render 'screen_size'
