@@ -164,7 +164,7 @@
         %p Nej, hur konstigt det än verkar vara så hittar vi inte några evenemang alls. Har du sökt med så hårda villkor att det inte blir några träffar? Eller har vi strulat till något?
     %p.todo #{ link_to "Lägg in ett evenemang...", new_event_path }
 
-    - if params.present? 
+    - if params != {"controller"=>"events", "action"=>"index"}
       - rss_url = url_for events_path( :format => :rss, :only_path =>false, :q => params[:q], :c1_id => params[:c1_id], :c2_id => params[:c2_id], :c3_id => params[:c3_id], :municipality_id => params[:municipality_id], :organizer_id => params[:organizer_id], :stop => params[:stop], :start => params[:start], :from => params[:from], :to => params[:to]) 
       .subscribe_container
         .subscribe_icon
