@@ -2,6 +2,7 @@ require "application_responder"
 
 class ApplicationController < ActionController::Base
   before_filter :check_uri
+  before_filter http_basic_authenticate_with(:name => "smygtitt", :password => "tyst" ) if (ENV['ALLOM_LIVE']).blank?
   protect_from_forgery
 
 
