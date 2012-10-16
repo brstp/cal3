@@ -7,13 +7,7 @@
   <%= f.inputs do %>
     <%= f.input :first_name %>
     <%= f.input :last_name %>
-    
-
-    <li class="select required" id="user_email_input">
-        <label for="user_email"><%= User.human_attribute_name :email%><abbr title="<%= t 'formtastic.required'%>">*</abbr></label>
-        <%= @user.email %>
-        </p>
-    </li>
+    <%= f.input :email, :input_html => { :readonly => true }%>
         
     <li class="string optional">
       <label for="user_authorized"><%= t '.is_admin_for' %></label>
@@ -25,29 +19,30 @@
     <% unless @user.petitions.blank? %>
       <li class="string optional">
         <label for="user_applications"><%= t '.applications' %></label>
-      <ul>  
-        <% for organizer in @user.petition_organizers %>  
-        <li><%= link_to organizer.name,  organizer %></li>  
-        <% end %>  
-      </ul>  
+        <ul>  
+          <% for organizer in @user.petition_organizers %>  
+            <li><%= link_to organizer.name,  organizer %></li>  
+          <% end %>  
+        </ul>  
       </li>
     <%end%>
 
     
     
-      <% if current_user.is_admin? %>
-        <%= f.input :is_admin %>
-        <hr />
-        <h2>För systemadministratörer</h2>
-        <% for attribute in @user.attributes.keys %>
-          <p><%= attribute.humanize %> = <%= @user.attributes[attribute].to_s %></p>
-        <% end %>
-        
+    <% if current_user.is_admin? %>
+      <%= f.input :is_admin %>
+      <hr />
+      <h2>För systemadministratörer</h2>
+      <% for attribute in @user.attributes.keys %>
+        <p><%= attribute.humanize %> = <%= @user.attributes[attribute].to_s %></p>
       <% end %>
-  
-      <%= f.actions do %>
+    <% end %>
+
+    <%= f.actions do %>
       <%= f.action :submit, :as => :button %>
       <%= f.action :cancel, :as => :link %>
-    <% end %>
-    
-<% end %>
+    <%end%>
+
+  <%end%> 
+
+<%end%>
