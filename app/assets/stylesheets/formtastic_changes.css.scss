@@ -169,11 +169,13 @@ form.formtastic fieldset > ol > li.radio fieldset ol li {
     
 }
 
-form input[type="submit"] { 
+.edit_action {
+  form input[type="submit"] { 
     @include background(linear-gradient(color-stops($light_allom_red, $allom_red, $allom_red )));
     color: white;
     background-color: red;
     @include border-radius;
     font-size: 1.5em; 
     padding: 0.25em 1em 0.25em 1em;
+    }
   }
