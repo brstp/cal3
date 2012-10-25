@@ -12,6 +12,7 @@
 // Compass libraries and extensions
 //-----------------------------------------
 // @import "compass/**/*";
+@import "compass/css3";
 @import "compass/css3/images";
 @import "compass/css3/border-radius";
 @import "compass/utilities/general/clearfix";
@@ -20,7 +21,7 @@
 @import "compass/typography/lists/inline-list";
 @import "h5bp";
 
-
+$experimental-support-for-svg: true;
 
 //-----------------------------------------
 // Html5 Boilerplate normalize.css

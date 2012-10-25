@@ -59,6 +59,7 @@ $dark_allom_red: darken($allom_red, 15%);
 
 
 $light_admin: #d9e4ef;
+$admin: #c6dbea;
 $dark_admin: #b3d2e5;
 $darker_admin: darken($dark_admin, 15%) ;
 
@@ -355,40 +356,49 @@ a.major, a.menu, a.call_to_action, .event_type a, .event_organizer a {
 }
 
 .event_type a{
-  @include background(linear-gradient(color-stops($light_type,  $dark_type, $dark_type )));
+  @include background-image( linear-gradient($light_type,  $dark_type, $dark_type ));
+  background-color: $light_type;
   &:hover, &:active {
-    @include background(linear-gradient(color-stops($dark_type, $darker_type, $darker_type )));
+    @include background-image( linear-gradient($dark_type, $darker_type, $darker_type ));
+    background-color: $dark_type;  
   }  
 }
 
 .event_organizer a{
   color: black;
-  @include background(linear-gradient(color-stops($light_organizer,  $dark_organizer, $dark_organizer )));
+  background-color: $light_organizer;
+  @include background-image( linear-gradient($light_organizer,  $dark_organizer, $dark_organizer ));
   &:hover, &:active {
-    @include background(linear-gradient(color-stops($dark_organizer, $darker_organizer, $darker_organizer )));
+    @include background-image( linear-gradient($dark_organizer, $darker_organizer, $darker_organizer ));
+    background-color: $dark_organizer;
   }  
 }
 
 .event_admin a{
   color: black;
-  @include background(linear-gradient(color-stops($light_admin,  $dark_admin, $dark_admin )));
+  background-color: $admin;
+  @include background-image( linear-gradient($light_admin,  $dark_admin, $dark_admin ));
   &:hover, &:active {
-    @include background(linear-gradient(color-stops($dark_admin, $darker_admin, $darker_admin )));
+    @include background-image( linear-gradient($dark_admin, $darker_admin, $darker_admin ));
+    background-color: $dark_admin;
   }  
 }
 
 a.major, a.menu {
-  @include background(linear-gradient(color-stops($light_allom_green,  $dark_allom_green, $dark_allom_green )));
+  @include background-image( linear-gradient( $light_allom_green, $dark_allom_green, $dark_allom_green ) ); 
+  background-color: $allom_green;
   &:hover, &:active {
-    @include background(linear-gradient(color-stops($dark_allom_green, $darker_allom_green, $darker_allom_green )));
+    @include background-image( linear-gradient( $dark_allom_green, $darker_allom_green, $darker_allom_green ) );     
+    background-color: $darker_allom_green;
   }  
 }
 
 a.call_to_action {
-  @include background(linear-gradient(color-stops($light_allom_red, $allom_red, $allom_red )));
+  @include background-image( linear-gradient ($light_allom_red, $allom_red, $allom_red ) );
   background-color: $allom_red;
   &:hover, &:active {
-    @include background(linear-gradient(color-stops($allom_red, $dark_allom_red, $dark_allom_red )));
+    @include background-image( linear-gradient ($allom_red, $dark_allom_red, $dark_allom_red ));
+    background-color: $dark_allom_red;
   }  
 }
 
@@ -518,7 +528,7 @@ vertical-align : top; }
 // In formtastic forms
 .button_action button {
   @include font-size(25); 
-  @include background(linear-gradient(color-stops($light_allom_red, $allom_red, $allom_red )));
+  @include background-image( linear-gradient(($light_allom_red, $allom_red, $allom_red )));
   background-color: $allom_red;
   @include border-radius;
   color: white;
@@ -554,7 +564,8 @@ vertical-align : top; }
   text-align: right;
   font-weight : bold;
   @include font-size(15);
-  @include background(linear-gradient(color-stops($light_allom_green,  $allom_green, $dark_allom_green )));
+  @include background-image( linear-gradient(($light_allom_green,  $allom_green, $dark_allom_green )));
+  background-color: $allom_green;
   a {
     display: block;
     margin: 0;
@@ -563,7 +574,8 @@ vertical-align : top; }
     text-decoration: none;
     font-weight: bold;
     &:hover, &:active {
-      @include background(linear-gradient(color-stops($dark_allom_green, $darker_allom_green, $darker_allom_green )));
+      @include background-image( linear-gradient(($dark_allom_green, $darker_allom_green, $darker_allom_green )));
+      background-color: $darker_allom_green;
       }
   }
 }
@@ -578,7 +590,8 @@ nav.navigation ul li a {
   text-align: center;
   font-weight : bold;
   @include font-size(15);
-  @include background(linear-gradient(bottom, $allom_green, $light_allom_green));
+  @include background-image(linear-gradient(bottom, $allom_green, $light_allom_green));
+  background-color: $allom_green;
   @include border-bottom-left-radius;
   @include border-bottom-right-radius;
   a {
@@ -587,7 +600,8 @@ nav.navigation ul li a {
     text-decoration: none;
     font-weight: bold;
     &:hover, &:active {
-      @include background(linear-gradient(bottom, $dark_allom_green, $allom_green));
+      @include background-image(linear-gradient(bottom, $dark_allom_green, $allom_green));
+      background-color: $allom_green;
     }
   }
 }
@@ -633,7 +647,8 @@ nav.navigation ul li a {
   color: $grey;
   font-weight : bold; 
   background-color: $dark_calendar;
-  @include background(linear-gradient(bottom, $dark_calendar, $light_calendar));
+  @include background-image(linear-gradient(bottom, $dark_calendar, $light_calendar));
+  background-color: $dark_calendar;
 
   .weekday, .day_of_month, .month, .year, .names {
     text-align: center;
@@ -797,9 +812,9 @@ p.article_meta {
   }
   
   form input[type="submit"] { 
-    @include background(linear-gradient(color-stops($light_allom_red, $allom_red, $allom_red )));
+    @include background-image( linear-gradient(($light_allom_red, $allom_red, $allom_red )));
     color: white;
-    background-color: red;
+    background-color: $allom_red;
     @include border-radius;
   }
 }
@@ -815,9 +830,9 @@ p.article_meta {
     @include clearfix;
     font-size: 1.5em;
     float: right;
-    @include background(linear-gradient(color-stops($light_allom_red, $allom_red, $allom_red )));
+    @include background-image( linear-gradient(($light_allom_red, $allom_red, $allom_red )));
     color: white;
-    background-color: red;
+    background-color: $allom_red;
     width: 32%;
   }
   input[type="search"] {
@@ -960,7 +975,8 @@ p.article_meta {
 .user_message{
   margin: 1em 0 1em 0;
   padding: 0.25em 0.5em 0.25em 0.5em;
-  @include background(linear-gradient(color-stops($light_admin,  $dark_admin, $dark_admin )));  
+  @include background-image( linear-gradient(($light_admin,  $dark_admin, $dark_admin )));
+  background-color: $light_admin;
   @include border-radius;
 }
 
@@ -1064,7 +1080,8 @@ p.article_meta {
 
 .counter {  
   padding: 0.5em 0 1em 0;
-  @include background(linear-gradient(bottom, $darkgrey, $grey));
+  @include background-image(linear-gradient(bottom, $darkgrey, $grey));
+  background-color: $darkgrey;
   text-align: center;
   color: $lightergrey;
   @include border-radius;
@@ -1077,8 +1094,8 @@ p.article_meta {
 .counter_number {
   padding: 0.1em 0 0.1em 0.2em;
   letter-spacing: 0.5em;
+  @include background-image(linear-gradient(black, $darkgrey, black));
   background-color: black;
-  @include background(linear-gradient(black, $darkgrey, black));
   font-size: 2em;
   font-family: Verdana, Tahoma, Helvetica, Arial;
 }
@@ -1121,7 +1138,8 @@ p.article_meta {
 .mini_calendar a {
   color: black;
   text-decoration: none;
-  display: block;
+  //display: block;
+  @include inline-block;
   padding: 0.5em;
 }
 
@@ -1513,7 +1531,8 @@ header, article, aside, nav, footer  {
   
   nav.navigation {
     margin-top: $baseline;
-    @include background(linear-gradient(color-stops($light_allom_green,  $dark_allom_green, $dark_allom_green )));
+    @include background-image( linear-gradient(($light_allom_green,  $dark_allom_green, $dark_allom_green )));
+    background-color: $allom_green;
     padding: 0;
     //height: 35px;
     ul{
@@ -1526,8 +1545,8 @@ header, article, aside, nav, footer  {
         padding-right: 1px;
         a {
           @include font-size(12);
-          padding-left: 1.2em;
-          padding-right: 1.2em;
+          padding-left: 1.1em;
+          padding-right: 1.1em;
           margin: 0;
           @include border-radius(0);
         }
