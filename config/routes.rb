@@ -24,8 +24,13 @@ Cal3::Application.routes.draw do
     end
   end
 
-  devise_for :users
 
+  devise_for :users
+  resources :users do
+    member do
+      put 'coronate'
+    end
+  end
   resources :users
  
   resources :organizers 

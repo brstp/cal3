@@ -1,6 +1,6 @@
 <h1><%= title "Ditt användarkonto på Allom" %></h1>
 <p>
-  <b><%= t('.first_name')%>:</b>
+  <strong><%= t('.first_name')%>:</strong>
   <%= @user.first_name %>
 </p>
 <p>
@@ -27,16 +27,40 @@
                     :confirm => t('app.are_you_sure') + ' ' +@user.name + '?', 
                     :method => :delete )%>
   <% end %>
+
+  <% if @user.is_admin? %>
+    <p>
+      Är systemadiminstratör.
+    </p>
+  <% end %>
+
+  <% if current_user.is_admin?%>
+    <% if @user.is_admin? %>
+      <p>
+        <%= button_to  "Ta bort systemaadministratörsskapet",  coronate_user_path(@user, :is_admin => 0), :method => :put, :confirm => "Är du säker på att du vill ta bort systemadministratörsskapet från #{@user.name}?" %>
+      </p>
+    <% else %>
+    <p>
+      <%= button_to  "Gör till systemadministratör",  coronate_user_path(@user, :is_admin => 1), :method => :put, :confirm => "Är du säker på att du vill göra #{@user.name} till systemadministratör?" %>    
+      </p>      
+    <% end %>
+  <% end %>    
 <%end%>
 
 <p>
   <%= link_to "Logga ut", destroy_user_session_path %>
 </p>
 
+<% unless @user.petitions.blank? %>
 
-  <%= my_organizers current_user %>
+  <h3><%= t '.applications' %>:</h3>
 
-
+<ul>  
+  <% for organizer in @user.petition_organizers %>  
+  <li><%= link_to organizer.name,  organizer %></li>  
+  <% end %>  
+</ul>  
+<%end%>
 
 
 <% unless @user.organizers.blank? %>

@@ -6,6 +6,7 @@ sv-SE:
       petition:
         user: 'Användare'
         organizer: 'Arrangör'
+        organizers: 'Arrangör'
         argumentation: 'Anledning till ansökan'
         approved: 'Godkänn ansökan'
         rejected_reason: 'Anledning till avslag'

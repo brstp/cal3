@@ -18,20 +18,6 @@ class User < ActiveRecord::Base
             :through => :organizers,
             :source => :petitions
 
-  # has_many  :applications,
-            # :through => :memberships,
-            # :source => :organizer,
-            # :conditions => "memberships.state = 'applied'"
-
-  # has_many  :nominations,
-            # :through => :memberships,
-            # :source => :organizer,
-            # :conditions => "memberships.state = 'nominated'"
-
-  # has_many  :organizer_infos,
-            # :through => :memberships,
-            # :source => :organizer,
-            # :conditions => "memberships.state = 'inform_user'"
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
@@ -40,8 +26,8 @@ class User < ActiveRecord::Base
 
   include Devise::Async::Model
 
-  # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :id, :organizer_ids, :is_admin, :name_required, :invited_by_id 
+ 
+  attr_accessible :first_name, :last_name, :name_required, :email, :password_confirmation, :password
   
   validates_presence_of :email
   validates :email, :email => true

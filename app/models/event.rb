@@ -17,7 +17,7 @@ class Event < ActiveRecord::Base
  
 
   attr_accessible :subject, :intro, :description, :street, :loc_descr, :lat, :lng, :municipality_id, 
-                  :start_date, :start_time, :stop_date, :stop_time, :organizer_id, :phone_number, 
+                  :start_date, :start_time, :stop_date, :stop_time, :phone_number, 
                   :phone_name, :email, :human_name, :category_id, :start_datetime, 
                   :stop_datetime, :image1, 
                   :image1_caption, :image1_url, :image1_delete, :register, :price
