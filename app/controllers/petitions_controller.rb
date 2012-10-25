@@ -11,7 +11,7 @@ class PetitionsController < ApplicationController
   end
 
   def show
-    @petition = Petition.find(params[:id])
+    @petition = Petition.find(params[:id]) #TODO Scope
   end
 
   def new
@@ -25,10 +25,12 @@ class PetitionsController < ApplicationController
     @user = User.find(params[:petition][:user_attributes][:id])
     @user.update_attributes(params[:petition][:user_attributes])
     @user.update_attribute 'name_required', true
-    args = params[:petition]
-    @petition = Petition.new( :organizer_id => args[:organizer_id],
-                              :user_id => args[:user_id],
-                              :argumentation => args[:argumentation])
+    
+    
+    @petition = Petition.new()
+    @petition.organizer_id = params[:petition][:organizer_id]
+    @petition.user_id = current_user.id
+    @petition.argumentation = params[:petition][:argumentation]
     if @petition.save
       redirect_to @petition, :notice => t('petition.flash.notice.created')
       OrganizerMailer.new_petition(@petition, current_user).deliver
@@ -38,14 +40,18 @@ class PetitionsController < ApplicationController
   end
 
   def edit
-    @petition = Petition.find(params[:id])
+    @petition = current_user.petition_reviews.find(params[:id])
     @petition.decision_made_by_user = current_user
   end
 
   def update
-    @petition = Petition.find(params[:id])
-    if @petition.update_attributes(params[:petition])
-      if @petition.approved
+    @petition = current_user.petition_reviews.find(params[:id])
+    update_hash = Hash.new
+    update_hash["decision_made_by_user"] = current_user
+    update_hash["approved"] = params[:petition][:approved]
+    update_hash["rejected_reason"] = params[:petition][:rejected_reason]
+    if @petition.update_attributes update_hash, :without_protection => true 
+      if @petition.approved 
         @petition.promote_to_membership
         OrganizerMailer.approved_petition(@petition, current_user).deliver
         # TODO logging
@@ -66,7 +72,7 @@ class PetitionsController < ApplicationController
   end
 
   def destroy
-    @petition = Petition.find(params[:id])
+    @petition = current_user.petitions.find(params[:id])
     organizer = @petition.organizer
     @petition.destroy
     redirect_to organizer, :notice => t('petition.flash.notice.destroyed' )

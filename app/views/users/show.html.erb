@@ -5,6 +5,7 @@
 <% end %>   
 
 
+
 <p>
   <strong><%= t('.first_name')%>:</strong>
   <%= @user.first_name %>
@@ -13,7 +14,7 @@
   <strong><%= t('.last_name')%>:</strong>
   <%= @user.last_name %>
 </p>
-<%= image_tag avatar_url(@user) %>
+<%= image_tag avatar_url(@user), :height => 48, :width => 48 %>
 <p>
 Bilden (avataren) kommer finns på Gravatar. <%= link_to("Lägg upp en bild av dig själv, eller ändra om du redan har en bild.", "http://sv.gravatar.com/", :rel => :nofollow) %>
 </p>
@@ -32,6 +33,24 @@ Bilden (avataren) kommer finns på Gravatar. <%= link_to("Lägg upp en bild av d
                     :confirm => t('app.are_you_sure') + ' ' +@user.name + '?', 
                     :method => :delete )%>
   <% end %>
+
+  <% if @user.is_admin? %>
+    <p>
+      Är systemadiminstratör.
+    </p>
+  <% end %>
+
+  <% if current_user.is_admin?%>
+    <% if @user.is_admin? %>
+      <p>
+        <%= button_to  "Ta bort systemaadministratörsskapet",  coronate_user_path(@user, :is_admin => 0), :method => :put, :confirm => "Är du säker på att du vill ta bort systemadministratörsskapet från #{@user.name}?" %>
+      </p>
+    <% else %>
+    <p>
+      <%= button_to  "Gör till systemadministratör",  coronate_user_path(@user, :is_admin => 1), :method => :put, :confirm => "Är du säker på att du vill göra #{@user.name} till systemadministratör?" %>    
+      </p>      
+    <% end %>
+  <% end %>    
 <%end%>
 
 

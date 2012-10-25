@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   before_filter :authenticate_user!
   before_filter :authorized_for_this?, :except => [:index, :new, :create, :destroy]
   before_filter :authorized_admin?, :except => [:show, :update, :edit]
+  before_filter :remove_admin_params, :only => [:create, :update]
 
   def index
     @users = User.all
@@ -17,7 +18,7 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def create
+  def create 
     @user = User.new(params[:user])
     if @user.save
       flash[:notice] = "Användarkontot skapat."
@@ -28,12 +29,12 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = User.find(params[:id]) #todo scope
   end
 
   def update
-    @user = User.find(params[:id])
-    if @user.update_attributes(params[:user])
+    @user = User.find(params[:id]) #todo scope
+    if @user.update_attributes(params[:user]) #todo mass assignment!
       flash[:notice] = "Uppdaterat användarkontot."
       redirect_to @user
     else
@@ -48,6 +49,12 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
 
+  def coronate
+    @user = User.find(params[:id])
+    @user.update_column 'is_admin', (params[:is_admin].to_i == 1)
+    flash[:notice] = "Ändrat om användaren är systemadministratör"
+    redirect_to user_path(@user)
+  end
 
 protected
 

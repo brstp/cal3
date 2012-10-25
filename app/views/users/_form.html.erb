@@ -36,13 +36,13 @@
     
     
       <% if current_user.is_admin? %>
-        <%= f.input :is_admin %>
-        <hr />
         <h2>För systemadministratörer</h2>
         <% for attribute in @user.attributes.keys %>
           <p><%= attribute.humanize %> = <%= @user.attributes[attribute].to_s %></p>
         <% end %>
-        
+        <p>
+        Antal ansökningar: <%= @user.petition_reviews.count %>
+        </p>
       <% end %>
 
       <%= f.action(:submit) %>

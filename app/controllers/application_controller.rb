@@ -11,5 +11,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+protected
+
+  def remove_admin_params
+    params[:user].delete(:is_admin) unless current_user.try(:is_admin)
+  end
 
 end

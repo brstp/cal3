@@ -15,10 +15,10 @@
                       :input_html => { :disabled => true}%>
       <li><p class = "inline-text"><%= t 'devise.sessions.not_you' %> <%= link_to I18n.t('devise.sessions.sign_out'), destroy_user_session_path %></p></li>
       <%= user.input  :first_name, 
-                      :required => true,
+                      :required => true
                        %>
       <%= user.input  :last_name, 
-                      :required => true,
+                      :required => true
                        %> 
       <% end %>
     <% end %>
@@ -33,5 +33,5 @@
       <%= f.action(:submit) %>
 <% end %>
 
-<%= link_to t('.back_to_organizer') + ' ' + @petition.organizer.name, organizer_path(@petition.organizer) %>
+<% # link_to t('.back_to_organizer') + ' ' + @petition.organizer.name, organizer_path(@petition.organizer) %>
 
