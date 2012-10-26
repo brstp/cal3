@@ -9,33 +9,35 @@
 
   = f.inputs do   
     = f.input :subject
-    = f.input   :organizer_id, :as => :hidden
+    - #f.input   :organizer_id, :as => :hidden
     = f.input   :organizer, :collection => @organizers, :required => true, :input_html => { :disabled => true}
     - @event.municipality = @event.organizer.default_municipality if (params[:municipality_id]).blank? 
 
     = f.input   :municipality, :required => true, :collection => Municipality.select_municipality, :include_blank => false 
-
-    %h3 Vad händer?
+    
+    %li
+      %b Vad händer?
     = f.input :intro
     = select_category_tree @event.category_id
     = f.input :description
     = f.input :price
     = f.input :register
-    %h3 När händer det?
+    %li 
+      %b När händer det?
     = f.input :start_date
     = f.input :start_time
     = f.input :stop_date
     = f.input :stop_time
 
-    %h3 Kontaktuppgifter
+    %li 
+      %b Kontaktuppgifter
     = f.input :email, :as => :email
     = f.input :human_name
     = f.input :phone_number
     = f.input :phone_name
-    %h3 En fin bild
     - unless @event.image1_file_name.blank?
       %li.string#event_existing_image1
-        %label{:for => :event_existing_image1}
+        %label
           Nuvarande bild
         #{ image_tag @event.image1.url(:medium), :width => "100%"}
       = f.input :image1_delete, :as => :boolean
@@ -44,23 +46,23 @@
       = f.input :image1
     = f.input :image1_caption
     = f.input :image1_url
-
-    %h3 Var händer det?
+ 
+    %li
+      %b Var händer det?
     = f.input :loc_descr
     = f.input :street 
-    #map_edit
+    %li
+      #map_edit
     = f.input :re_geocoded_street, :input_html => { :disabled => true}
     = f.input :lat
     = f.input :lng
     
-    <li class="string" id="event_disclaimer">
-    <label for="event_disclaimer">
-    Innan du sparar... 
-    </label>
-    <p class="inline-hints">
-    När du sparar evenemangsannonsen godkänner du <a href ="http://info.allom.se/legalt/" target = "_blank">Alloms allmänna villkor</a> (nytt fönster). Om du använder andras texter eller bilder i evenemangsannonsen måste du ha deras tillstånd. Du publicerar evenemangsannonsen med licensen <i>CC BY-SA 2.5 Sverige</i>.
-    </p>
-    </li>          
-    = f.actions do
-      = f.action :submit, :as => :button
-      = f.action :cancel, :as => :link, :label => "Avbryt, gå tillbaka"
+    %li.string#event_disclaimer
+      %label
+        Innan du sparar... 
+      %p.inline-hints
+        När du sparar evenemangsannonsen godkänner du <a href ="http://info.allom.se/legalt/" target = "_blank">Alloms allmänna villkor</a> (nytt fönster). Om du använder andras texter eller bilder i evenemangsannonsen måste du ha deras tillstånd. Du publicerar evenemangsannonsen med licensen <i>CC BY-SA 2.5 Sverige</i>.
+
+  = f.actions do
+    = f.action :submit, :as => :button
+    = f.action :cancel, :as => :link, :label => "Avbryt, gå tillbaka"

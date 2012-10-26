@@ -1432,7 +1432,10 @@ visibility : hidden; }
 // 17 TEMPLATE SPECIFICS =============================================================================
 
 // 18 MEDIA QUERIES =============================================================================
-
+article {
+  background-color: $light_allom_green;
+  
+}
 
 @media only screen and (min-width: 480px)  {
 

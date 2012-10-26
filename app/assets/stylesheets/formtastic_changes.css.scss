@@ -83,19 +83,19 @@ form.formtastic fieldset > ol > li p.inline-errors { color:#cc0000; margin:0.5em
 /* STRING, NUMERIC, PASSWORD, EMAIL, URL, PHONE & SEARCH OVERRIDES
 --------------------------------------------------------------------------------------------------*/
 form.formtastic fieldset > ol > li.search input {  
- /* box-sizing: border-box;
+  box-sizing: border-box;
   -webkit-box-sizing : border-box;
-  -moz-box-sizing : border-box; */
-  width:95%; }
+  -moz-box-sizing : border-box; 
+  width:100%; }
 
 
 /* TEXTAREA OVERRIDES
 --------------------------------------------------------------------------------------------------*/
 form.formtastic fieldset > ol > li.text textarea { 
- /* box-sizing: border-box;
+  box-sizing: border-box;
   -webkit-box-sizing : border-box; 
-  -moz-box-sizing : border-box; */
-  width:95%; margin-bottom: 0em; 
+  -moz-box-sizing : border-box; 
+  width:100%; margin-bottom: 0em; 
 }
 
 
@@ -121,10 +121,10 @@ form.formtastic fieldset > ol > li.email input,
 form.formtastic fieldset > ol > li.url input,
 form.formtastic fieldset > ol > li.phone input,
 form.formtastic fieldset > ol > li.search input {
- /* box-sizing: border-box;
+  box-sizing: border-box;
   -webkit-box-sizing : border-box; 
-  -moz-box-sizing : border-box; */
-  width:95%;
+  -moz-box-sizing : border-box; 
+  width:100%;
 }
 
 
