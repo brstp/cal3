@@ -51,12 +51,23 @@ form.formtastic fieldset { overflow:visible; width: 100%; }
 
 /* INPUT LIs
 --------------------------------------------------------------------------------------------------*/
-form.formtastic fieldset > ol > li { padding:0.5em 0; margin-bottom:0.5em; } 
+form.formtastic fieldset > ol > li { 
+  padding:0.5em 0; 
+  margin-bottom:0.5em; 
+  overflow: visible;
+} 
 
 
 /* LABELS
 --------------------------------------------------------------------------------------------------*/
-form.formtastic fieldset > ol > li label { display:block;  padding-top:.2em; font-weight: bold; width: 100%}
+form.formtastic fieldset > ol > li label { 
+  display:block;  
+  padding-top:.2em; 
+  font-weight: bold; 
+  width: 100%;
+  float: none;
+}
+
 
 
 /* INLINE HINTS
@@ -71,16 +82,21 @@ form.formtastic fieldset > ol > li p.inline-errors { color:#cc0000; margin:0.5em
 
 /* STRING, NUMERIC, PASSWORD, EMAIL, URL, PHONE & SEARCH OVERRIDES
 --------------------------------------------------------------------------------------------------*/
-form.formtastic fieldset > ol > li.search input {  -webkit-box-sizing : border-box;
-  -moz-box-sizing : border-box; width:100%; }
-form.formtastic fieldset > ol > li.search input[size] {  -webkit-box-sizing : border-box;
-  -moz-box-sizing : border-box; width:100%; }
+form.formtastic fieldset > ol > li.search input {  
+  box-sizing: border-box;
+  -webkit-box-sizing : border-box;
+  -moz-box-sizing : border-box; 
+  width:95%; }
 
 
 /* TEXTAREA OVERRIDES
 --------------------------------------------------------------------------------------------------*/
-form.formtastic fieldset > ol > li.text textarea { -webkit-box-sizing : border-box; -moz-box-sizing : border-box; width:100%; margin-bottom: 0em; }
-form.formtastic fieldset > ol > li.text textarea[cols] {  -webkit-box-sizing : border-box; -moz-box-sizing : border-box; width:100%; } 
+form.formtastic fieldset > ol > li.text textarea { 
+  box-sizing: border-box;
+  -webkit-box-sizing : border-box; 
+  -moz-box-sizing : border-box; 
+  width:95%; margin-bottom: 0em; 
+}
 
 
 
@@ -105,24 +121,12 @@ form.formtastic fieldset > ol > li.email input,
 form.formtastic fieldset > ol > li.url input,
 form.formtastic fieldset > ol > li.phone input,
 form.formtastic fieldset > ol > li.search input {
-  -webkit-box-sizing : border-box;
+  box-sizing: border-box;
+  -webkit-box-sizing : border-box; 
   -moz-box-sizing : border-box; 
-  width:100%;
-  
+  width:95%;
 }
 
-
-form.formtastic fieldset > ol > li.string input[size], 
-form.formtastic fieldset > ol > li.password input[size], 
-form.formtastic fieldset > ol > li.numeric input[size],
-form.formtastic fieldset > ol > li.email input[size],
-form.formtastic fieldset > ol > li.url input[size],
-form.formtastic fieldset > ol > li.phone input[size],
-form.formtastic fieldset > ol > li.search input[size] {
-  -webkit-box-sizing : border-box;
-  -moz-box-sizing : border-box; 
-  width: auto;
-  max-width: 100%; }
 
 
 form.formtastic fieldset > ol > li fieldset ol {
@@ -171,7 +175,7 @@ form.formtastic fieldset > ol > li.radio fieldset ol li {
 
 .edit_action {
   form input[type="submit"] { 
-    @include background(linear-gradient(color-stops($light_allom_red, $allom_red, $allom_red )));
+    @include background-image(linear-gradient($light_allom_red, $allom_red, $allom_red ));
     color: white;
     background-color: red;
     @include border-radius;

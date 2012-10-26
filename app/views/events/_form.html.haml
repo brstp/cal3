@@ -34,7 +34,10 @@
     = f.input :phone_name
     %h3 En fin bild
     - unless @event.image1_file_name.blank?
-      <li class="string" id="event_existing_image1"><label for="event_existing_image1">Nuvarande bild</label>#{ image_tag @event.image1.url(:medium), :width => "100%"}</li>
+      %li.string#event_existing_image1
+        %label{:for => :event_existing_image1}
+          Nuvarande bild
+        #{ image_tag @event.image1.url(:medium), :width => "100%"}
       = f.input :image1_delete, :as => :boolean
       = f.input :image1, :label => t('.replace_image')
     - else
