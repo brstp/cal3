@@ -10,7 +10,11 @@ xml.rss "version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/" do
     for event in @events
         xml.item do
           xml.title event.start_date + ' ' + event.subject
-          xml.description event.intro + '<br /><strong>' + event.duration + '</strong><br>' + t('app.arranged_by') + ' ' + event.organizer.name + ' ' + t('app.in_municipality') + ' ' + event.municipality.name + '<br />' + simple_format(event.description)
+					unless params[:intro].blank?
+						xml.description event.intro
+					else
+						xml.description event.intro + ' <br /><strong>' + event.duration + ' </strong><br>' + t('app.arranged_by') + ' ' + event.organizer.name + ' ' + t('app.in_municipality') + ' ' + event.municipality.name + ' <br />' + simple_format(event.description)
+					end
           xml.link event_url(event, :format => :html)
           xml.guid event_url(event, :isPermaLink => false)
           #xml.pubDate       event.created_at.to_s(:rfc822)
