@@ -13,6 +13,7 @@ gem 'mail_form'                     #needed? used? TODO
 gem 'timeliness'
 gem "geocoder"                      #server side geo coding
 gem 'meta-tags', :require => 'meta_tags'  #header tags
+gem "cocaine", "0.3.2"
 gem "paperclip", "2.3.16"                    #upload and organizer images
 gem "ancestry"                      #tree structure
 gem 'yaml_db'                       #dump, load db as yaml 
