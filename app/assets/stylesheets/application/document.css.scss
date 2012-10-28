@@ -674,13 +674,13 @@ nav.navigation ul li a {
 }
 // 11B ARTICLE  =============================================================
 
-article {
+.article {
   //margin-bottom: 5em;
 }
 
 
 
-article ul{
+.article ul{
   @include no-bullets;
 }
 
@@ -1432,9 +1432,8 @@ visibility : hidden; }
 // 17 TEMPLATE SPECIFICS =============================================================================
 
 // 18 MEDIA QUERIES =============================================================================
-article {
+.article {
   background-color: $light_allom_green;
-  
 }
 
 @media only screen and (min-width: 480px)  {
@@ -1453,7 +1452,7 @@ article {
 }
 
 
-header, article, aside, nav, footer  {
+header, .article, aside, nav, footer  {
   //width: (480px*0.9);
 }
 
@@ -1487,14 +1486,14 @@ header, article, aside, nav, footer  {
 
 
   
-  article, nav  {
+  .article, nav  {
   width: (480px*0.8);
   }
 
    
-  .municipalities.index_action article,
-  .organizers.index_action article,
-  .petitions.index_action article{
+  .municipalities.index_action .article,
+  .organizers.index_action .article,
+  .petitions.index_action .article{
       width: 100%;
   }
   
@@ -1517,7 +1516,7 @@ header, article, aside, nav, footer  {
   }
 
   
-  article{
+  .article{
     float: left;
   }
   
