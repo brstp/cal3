@@ -616,7 +616,7 @@ nav.navigation ul li a {
 }
 
 
-.update_action .top_navigation_container, .update_action .bottom_navigation_container, .update_action .footer{
+.update_action .top_navigation_container, .update_action .bottom_navigation_container, .update_action .footer {
   display: none;
 }
 
@@ -633,7 +633,7 @@ nav.navigation ul li a {
 // 10 CONTENT 		============================================
 
 .todo{
-  background-color: yellow;
+  background-color: yellow; 
 }
 
 // 11 MAIN 			============================================
@@ -1432,9 +1432,7 @@ visibility : hidden; }
 // 17 TEMPLATE SPECIFICS =============================================================================
 
 // 18 MEDIA QUERIES =============================================================================
-.article {
-  background-color: $light_allom_green;
-}
+
 
 @media only screen and (min-width: 480px)  {
 

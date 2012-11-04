@@ -44,17 +44,46 @@ $dark_navigation: #119833;
 
 /* formtastic_changes.css */
 
+form.formtastic, form.formtastic ul, form.formtastic ol, form.formtastic li, form.formtastic fieldset, form.formtastic legend, form.formtastic input, form.formtastic textarea, form.formtastic select, form.formtastic p 
+{
+ /* box-sizing: border-box;
+  -webkit-box-sizing : border-box; 
+  -moz-box-sizing : border-box; 
+  */
+}
 
 /* FIELDSETS & LISTS
 --------------------------------------------------------------------------------------------------*/
-form.formtastic fieldset { overflow:visible; width: 100%; } 
+form.formtastic fieldset { 
+  overflow:visible;
+  width: 100%; 
+  box-sizing: border-box;
+  -webkit-box-sizing : border-box; 
+  -moz-box-sizing : border-box; 
+} 
+
+form.formtastic fieldset > ol,
+form.formtastic fieldset > ol > li,
+form.formtastic fieldset > ol > li.string input,
+form.formtastic fieldset > ol > li.password input,
+form.formtastic fieldset > ol > li.numeric input,
+form.formtastic fieldset > ol > li.email input,
+form.formtastic fieldset > ol > li.url input,
+form.formtastic fieldset > ol > li.phone input,
+form.formtastic fieldset > ol > li.search input {
+  overflow:visible;
+  width: 100%; 
+  box-sizing: border-box;
+  -webkit-box-sizing : border-box; 
+  -moz-box-sizing : border-box;
+}
 
 /* INPUT LIs
 --------------------------------------------------------------------------------------------------*/
 form.formtastic fieldset > ol > li { 
   padding:0.5em 0; 
   margin-bottom:0.5em; 
-  overflow: visible;
+  /* overflow: visible;*/
 } 
 
 
@@ -83,19 +112,14 @@ form.formtastic fieldset > ol > li p.inline-errors { color:#cc0000; margin:0.5em
 /* STRING, NUMERIC, PASSWORD, EMAIL, URL, PHONE & SEARCH OVERRIDES
 --------------------------------------------------------------------------------------------------*/
 form.formtastic fieldset > ol > li.search input {  
- /* box-sizing: border-box;
-  -webkit-box-sizing : border-box;
-  -moz-box-sizing : border-box; */
-  width:80%; }
+  width:100%; 
+}
 
 
 /* TEXTAREA OVERRIDES
 --------------------------------------------------------------------------------------------------*/
 form.formtastic fieldset > ol > li.text textarea { 
- /* box-sizing: border-box;
-  -webkit-box-sizing : border-box; 
-  -moz-box-sizing : border-box; */
-  width:80%; 
+  width:100%; 
   margin-bottom: 0em; 
 }
 
@@ -115,21 +139,6 @@ form.formtastic fieldset > ol > li fieldset ol.fragments-group {
 
 
 
-form.formtastic fieldset > ol > li.string input,
-form.formtastic fieldset > ol > li.password input,
-form.formtastic fieldset > ol > li.numeric input,
-form.formtastic fieldset > ol > li.email input,
-form.formtastic fieldset > ol > li.url input,
-form.formtastic fieldset > ol > li.phone input,
-form.formtastic fieldset > ol > li.search input {
-  box-sizing: border-box;
-  -webkit-box-sizing : border-box; 
-  -moz-box-sizing : border-box; 
-  /*box-sizing: content-box;
-  -webkit-box-sizing : content-box; 
-  -moz-box-sizing : content-box;   */
-  width:100%;
-}
 
 
 

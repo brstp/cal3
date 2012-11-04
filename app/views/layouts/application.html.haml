@@ -6,8 +6,9 @@
     .outer_container
       .top_loaf
         .content_container
-          %a{:href => "#nav_menu", :title => "till menyn"}
-            &#x25BC;&nbsp;meny
+          - unless(( controller.action_name == "edit" || controller.action_name == "update" || controller.action_name == "new"))
+            %a{:href => "#nav_menu", :title => "till menyn"}
+              &#x25BC;&nbsp;meny
       .content_container
         = render "header"
         .top_navigation_container
