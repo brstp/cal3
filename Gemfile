@@ -17,9 +17,10 @@ gem 'sunspot_rails' #, '1.2.1' #'1.2.rc4'    #api classes for solr
 gem 'kaminari'          # pagination
 gem "sunspot_with_kaminari" #, '~> 0.1'
 
+gem "cocaine", "0.3.2"
 gem "paperclip" #, "2.3.16"                    #upload and organizer images
 #gem 'aws-s3'                        #API towards Amazon Web Services
-gem 'aws-sdk', '~> 1.3.4'
+gem 'aws-sdk' #, '~> 1.3.4'
 
 gem 'friendly_id'#, "~> 4.0.0"       # slugs, to make friendly urls
 
