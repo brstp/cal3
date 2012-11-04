@@ -54,8 +54,8 @@
     %li
       #map_edit
     = f.input :re_geocoded_street, :input_html => { :disabled => true}
-    = f.input :lat
-    = f.input :lng
+    = f.input :lat, :as => :hidden
+    = f.input :lng, :as => :hidden
     
     %li.string#event_disclaimer
       %label
