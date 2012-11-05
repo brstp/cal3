@@ -97,7 +97,6 @@ sv-SE:
         added_membership: "Okej, gjort till administratör."
         couldnt_save_membership: "Något gick fel. Vi kan tyvärr inte göra personen till administratör för arrangören."
         membership_exists_already: "Personen är redan admininstratör för arrangören."
-        organizer_and_membership: "Okej, skapat en sida för arrangören och lagt till dig som administratör."
       destroy:
         notice: "Tagit bort"
         alert: "Kunde inte ta bort"

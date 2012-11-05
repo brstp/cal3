@@ -61,15 +61,14 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
     @organizer = Organizer.new(params[:organizer])
     @organizer.created_by_user_id = current_user.id
 
-    if @organizer.save
-      flash[:notice] = t 'organizer.flash.notice.created'      
+    if @organizer.save    
       @membership = Membership.new
       @membership.organizer = @organizer
       @membership.user = current_user
       if @membership.save
-        flash[:notice] = I18n.t 'flash.actions.create.organizer_and_membership'
+        flash[:notice] = "Okej, skapat en sida för arrangören och lagt till dig som administratör. Om vi har mycket att göra kan det ta någon minut innan sin bild och logotyp är klara att visas."
       else
-        flash[:alert] = I18n.t 'flash.actions.create.couldnt_save_membership'
+        flash[:alert] = "Något gick fel. Vi kan tyvärr inte göra dig till administratör för arrangören. Kolla om du redan är adminstratör."
       end
       redirect_to @organizer
     else
@@ -84,8 +83,9 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
   def update
     @organizer = Organizer.find(params[:id])
     @organizer.updated_by_user_id = current_user.id
+    params[:organizer].delete :users
     if @organizer.update_attributes(params[:organizer])
-      flash[:notice] = t 'organizer.flash.notice.updated'
+      flash[:notice] = "Arrangörssidan är ändrad. Om du bytt ut bild eller logotyp kan det ta någon minut innan de är klara att visas."
       redirect_to @organizer
     else
       render :action => 'edit'
@@ -95,7 +95,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
   def destroy
     @organizer = Organizer.find(params[:id])
     @organizer.destroy
-    flash[:notice] = t 'flash.actions.destroy.notice'
+    flash[:notice] = "Arrangörssidan är nu raderad."
     redirect_to organizers_url
   end
 
