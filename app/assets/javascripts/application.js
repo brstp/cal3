@@ -25,6 +25,16 @@ function toggle() {
 	}
 }
 
+
+$('#hide_optional_link').toggle(function () {
+    $(".optional").addClass("optional-hidden");
+    document.getElementById("hide_optional_link").innerHTML = "Visa alla frivilliga fält.";
+}, function () {
+    $(".optional").removeClass("optional-hidden");
+    document.getElementById("hide_optional_link").innerHTML = "Dölj alla frivilliga fält.";
+});
+
+
 $(function() {
 $.datepicker.setDefaults({
    maxDate: '+2y',
