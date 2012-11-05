@@ -24,7 +24,7 @@ class Event < ActiveRecord::Base
 
 
   validates_presence_of :subject, :description, :municipality_id, :start_date, :start_time, :organizer_id, :email, :human_name, :category 
-  validates_length_of :subject, :in => 7..40
+  validates_length_of :subject, :in => 7..40, :allow_blank => true
   validates_length_of :intro, :in => 0..90
   validates_numericality_of :lat, :allow_nil => true
   validates_numericality_of :lng, :allow_nil => true
@@ -33,7 +33,11 @@ class Event < ActiveRecord::Base
                         
   validates :image1_url, :allow_blank => true, :uri => { :format => /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix }
                         
-  validate  :validates_start_time, :validates_start_date, :validates_stop_time, :validates_stop_date, :validates_start_stop
+  validate :validates_start_time, :allow_blank => true
+  validate :validates_start_date, :allow_blank => true
+  validate :validates_stop_time, :allow_blank => true
+  validate :validates_stop_date, :allow_blank => true
+  validate :validates_start_stop, :allow_blank => true
   validate :validates_phone_details
   validates :phone_number, :phone => true
   validates :email, :email => true
@@ -415,20 +419,28 @@ protected
   end
 
   def validates_start_time
-    errors.add(:start_time, I18n.t('errors.messages.invalid_time')) unless Timeliness.parse(@start_time)
+    unless @start_time.blank?
+      errors.add(:start_time, I18n.t('errors.messages.invalid_time')) unless Timeliness.parse(@start_time)
+    end
   end
 
   def validates_start_date
-    errors.add(:start_date, I18n.t('errors.messages.invalid_date')) unless Timeliness.parse(@start_date)
+    unless @start_date.blank?
+      errors.add(:start_date, I18n.t('errors.messages.invalid_date')) unless Timeliness.parse(@start_date)
+    end
   end
 
 
   def validates_stop_time
-    errors.add(:stop_time, I18n.t('errors.messages.invalid_time')) unless Timeliness.parse(@stop_time)
+    unless true #@stop_time.blank?
+      errors.add(:stop_time, I18n.t('errors.messages.invalid_time')) unless Timeliness.parse(@stop_time)
+    end
   end
 
   def validates_stop_date
+    unless true #@stop_date.blank?
       errors.add(:stop_date, I18n.t('errors.messages.invalid_date')) unless Timeliness.parse(@stop_date)
+    end
   end
 
 

@@ -90,15 +90,18 @@ module EventsHelper
     
   end
   
-  def select_category_tree selected_category = nil
+  def select_category_tree selected_category = nil, error_message = nil
     
-    #<p class="inline-hints">#{t('formtastic.hints.event.category')}</p></li>
+    
     raw %(
     <li class="radio required" id="event_category_input">
+    
     <fieldset>
     <legend class="label">
     <label>#{ Event.human_attribute_name('category') }*</label>
     </legend>
+    <p class="inline-hints">#{t('formtastic.hints.event.category')}</p>
+    #{"<p class='inline-errors'>#{error_message}</p>" unless error_message.blank?}
     <ol class = "category-level-0" >
     #{Category.all.first.climb selected_category}
     </ol>

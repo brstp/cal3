@@ -19,7 +19,7 @@
     %li
       %b Vad händer?
     = f.input :intro
-    = select_category_tree @event.category_id
+    = select_category_tree @event.category_id, @event.errors[:category].join(", ")
     = f.input :description
     = f.input :price
     = f.input :register

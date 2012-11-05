@@ -173,6 +173,16 @@ form.formtastic fieldset > ol > li.radio fieldset ol li {
  color: grey;
 }
 
+#event_category_input fieldset p.inline-hints {
+  padding-top: 2em;
+  margin-bottom: -1.5em;
+}
+
+#event_category_input fieldset p.inline-errors {
+  margin-top: 2em;
+  margin-bottom: -1.5em;
+}
+
 .mandatory_descr {
   margin-bottom: 1em;
 }
