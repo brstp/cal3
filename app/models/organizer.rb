@@ -51,10 +51,8 @@ class Organizer < ActiveRecord::Base
                     :styles => {  
                       :medium => "600x200", 
                       :small => "270x90"}
-                                    
-  # :default_url => "/images/organizers/logotypes/:style/missing.png",                                    
+  process_in_background :logotype
 
-  
   has_attached_file :photo,      
                     :path => "#{image_store}app/public/system/:attachment/:id/:style/:filename",
                     :storage => :s3,
@@ -65,9 +63,7 @@ class Organizer < ActiveRecord::Base
                     :default_url => "missing-organizer.jpg", 
                     :styles => {  
                       :medium => "360x240#" 
-                                }
-  
-  process_in_background :logotype
+                                }  
   process_in_background :photo    
  
   def to_s
