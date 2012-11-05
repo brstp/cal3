@@ -1,6 +1,7 @@
 = hidden_field_tag :init_lat, (@event.lat.blank? ? 62.00 : @event.lat)
 = hidden_field_tag :init_lng, (@event.lng.blank? ? 16.00 : @event.lng)
 = hidden_field_tag :init_zoom, ((@event.lat.blank? || @event.lng.blank?) ? "" : "1")
+= hidden_field_tag :organizer_id, params[:organizer_id]
 
 = semantic_form_for @event, :html => {:multipart => true, :novalidate => true} do |f| 
   = f.error_messages
@@ -9,7 +10,7 @@
 
   = f.inputs do   
     = f.input :subject
-    - #f.input   :organizer_id, :as => :hidden
+    = f.input   :organizer_id, :as => :hidden
     = f.input   :organizer, :collection => @organizers, :required => true, :input_html => { :disabled => true}
     - @event.municipality = @event.organizer.default_municipality if (params[:municipality_id]).blank? 
 

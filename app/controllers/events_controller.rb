@@ -200,7 +200,9 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
     @event = Event.new
     @event.email = current_user.email
     @event.human_name = ''
-    @event.organizer_id = params[:organizer_id] # TODO Scope to only organizers I have permissions to.
+    # TODO Scope to only organizers I have permissions to.
+    @event.organizer_id = params[:organizer_id] unless params[:organizer_id].blank? 
+    
     @markers = @event.to_gmaps4rails 
     unless (current_user.first_name.blank?)
       @event.human_name += current_user.first_name + " "
@@ -213,8 +215,12 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
 
   def create
     @organizers = current_user.organizers
-    @event = Event.new(params[:event]) # TODO Scope to only organizers I have permissions to.
+    event_parameters = params[:event]
+    organizer_id = event_parameters[:organizer_id]
+    event_parameters.delete :organizer_id
+    @event = Event.new(event_parameters)
     @event.created_by_user_id = current_user.id
+    @event.organizer_id = organizer_id # TODO Scope to only organizers I have permissions to.
     @markers = @event.to_gmaps4rails 
     if @event.save
       OrganizerMailer.delay.new_event_confirmation(@event, current_user)
