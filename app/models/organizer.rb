@@ -31,10 +31,10 @@ class Organizer < ActiveRecord::Base
   attr_accessible :name, :description, :website, :photo_url, :photo_caption, :photo_delete, :logotype, :logotype_delete, :photo, :intro, :phone, :email
   
   validates_presence_of :name, :description, :email
-  validates_length_of :name, :in => 5..50
+  validates_length_of :name, :in => 5..50, :allow_blank => true
   validates_length_of :photo_caption, :in => 0..60
   validates :phone, :phone => true
-  validates :email, :email => true  
+  validates :email, :email => true, :allow_blank => true  
   validates :website, :allow_blank => true, :uri => { :format => /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix }
   validates :photo_url, :allow_blank => true, :uri => { :format => /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix }
   
