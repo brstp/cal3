@@ -57,13 +57,15 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
  
 
   def create
+    params[:organizer].delete :users
     @organizer = Organizer.new(params[:organizer])
     @organizer.created_by_user_id = current_user.id
 
     if @organizer.save
-      flash[:notice] = t 'organizer.flash.notice.created'
-
-      @membership = @organizer.memberships.build(:user_id => current_user.id )
+      flash[:notice] = t 'organizer.flash.notice.created'      
+      @membership = Membership.new
+      @membership.organizer = @organizer
+      @membership.user = current_user
       if @membership.save
         flash[:notice] = I18n.t 'flash.actions.create.organizer_and_membership'
       else
