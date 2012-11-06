@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
-  include Devise::Async::Model
+  #include Devise::Async::Model
 
  
   attr_accessible :first_name, :last_name, :name_required, :email, :password_confirmation, :password
