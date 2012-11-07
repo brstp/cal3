@@ -48,7 +48,7 @@
           %li
             -# link_to raw("Mejla <span itemprop=\"email\">#{@organizer.email}\</span>"), "mailto:#{@organizer.email}" # TODO
             
-            = link_to "Mejla #{@organizer.email} (kontaktformulär)", "javascript:toggle();", :id => :display_text                        
+            = link_to "Mejla #{@organizer.contact_name} (kontaktformulär)", "javascript:toggle();", :id => :display_text                        
       #toggle_text{:style => "display:none"}
         = render "mail_messages/form"
 

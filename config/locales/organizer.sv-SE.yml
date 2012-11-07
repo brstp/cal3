@@ -12,6 +12,7 @@ sv-SE:
         photo: "Bild"
         phone: "Telefonnummer"
         email: "Mejladress"
+        human_name: "Namn för mejladressen"
         users: "Administratörer"
         photo_caption: "Bildtext"
         photo_url: "Bildlänk"

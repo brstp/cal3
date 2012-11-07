@@ -21,7 +21,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
     @mail_message.user_agent = request.headers["user_agent"]
     @mail_message.current_page = params[:current_page]
     @mail_message.organizer_id = @organizer.id
-    @mail_message.to_name = @organizer.email_name
+    @mail_message.to_name = @organizer.contact_name
     @mail_message.current_page =  "#{request.protocol}#{request.host_with_port}#{request.fullpath}" if @mail_message.current_page.blank?
     if current_user
       @mail_message.from_email = current_user.try :email

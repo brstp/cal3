@@ -28,7 +28,7 @@ class Organizer < ActiveRecord::Base
   
   before_save :destroy_photo? 
   before_save :destroy_logotype?
-  attr_accessible :name, :description, :website, :photo_url, :photo_caption, :photo_delete, :logotype, :logotype_delete, :photo, :intro, :phone, :email
+  attr_accessible :name, :description, :website, :photo_url, :photo_caption, :photo_delete, :logotype, :logotype_delete, :photo, :intro, :phone, :email, :human_name
   
   validates_presence_of :name, :description, :email
   validates_length_of :name, :in => 5..50, :allow_blank => true
@@ -78,8 +78,12 @@ class Organizer < ActiveRecord::Base
     end
   end
   
-  def email_name
-    self.email
+  def contact_name
+    if self.human_name.blank?
+      self.email
+    else
+      self.human_name
+    end
   end
   
   def photo_url= url_str

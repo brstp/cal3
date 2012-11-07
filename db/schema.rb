@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121008094214) do
+ActiveRecord::Schema.define(:version => 20121107104606) do
 
   create_table "almanac_days", :force => true do |t|
     t.integer  "day"
@@ -211,6 +211,7 @@ ActiveRecord::Schema.define(:version => 20121008094214) do
     t.string   "photo_caption"
     t.string   "photo_url"
     t.datetime "last_googleboted"
+    t.string   "human_name"
   end
 
   add_index "organizers", ["slug"], :name => "index_organizers_on_slug", :unique => true
