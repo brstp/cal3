@@ -74,20 +74,22 @@ class MailMessagesController < ApplicationController
       end
       current_user.save if time_to_save
     end
-    
+    logger.info "******************************************"
+    logger.info @mail_message.from_email
+    logger.info "******************************************"
     if @mail_message.save #Opportunity for refactoring #TODO
       unless @mail_message.event_id.nil?
         @mail_message.to_email = Event.find(@mail_message.event_id).email
-        ContactFormMailer.event_contact_person(@mail_message).deliver
-        ContactFormMailer.copy_self_event_contact(@mail_message).deliver
+        ContactFormMailer.delay.event_contact_person(@mail_message)
+        ContactFormMailer.delay.copy_self_event_contact(@mail_message)
       else
         unless @mail_message.organizer_id.nil?
           @mail_message.to_email = Organizer.find(@mail_message.organizer_id).email
-          ContactFormMailer.organizer_contact_person(@mail_message).deliver
-          ContactFormMailer.copy_self_organizer_contact(@mail_message).deliver
-        else
-          @mail_message.to_email = "kundtjanst@allom.se"
-          ContactFormMailer.report_page_to_support(@mail_message).deliver
+          ContactFormMailer.delay.organizer_contact_person(@mail_message)
+          ContactFormMailer.delay.copy_self_organizer_contact(@mail_message)
+        else 
+          @mail_message.to_email = "kundtjanst2@allom.se"
+          ContactFormMailer.delay.report_page_to_support(@mail_message)
         end
       end
       respond_to do |format|
@@ -97,7 +99,7 @@ class MailMessagesController < ApplicationController
                       :from_email => @mail_message.from_email,
                       :from_phone => @mail_message.from_phone
                       ), 
-                      notice: 'Nu skickar vi iväg ditt mejl.' }
+                      notice: 'Nu skickar vi iväg ditt mejl. Du får en kopia. Om du inte fått den inom några minuter, kolla om den sorterats som spam av misstag i din mejl.' }
       end
     else
       render :action => 'new'

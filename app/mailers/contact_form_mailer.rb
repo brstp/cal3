@@ -1,7 +1,8 @@
 # encoding: UTF-8
 class ContactFormMailer < ActionMailer::Base
-  #default from: "Alloms automatiska mejl <kundtjanst@allom.se>"
-  #default to: "Alloms kundtjänst <kundtjanst@allom.se>"
+  default :from => "Allom <kundtjanst@allom.se>"
+  default :to => "Allom <kundtjanst@allom.se>"
+
   
   def event_contact_person(mail_message)
     @mail_message = mail_message
@@ -12,8 +13,7 @@ class ContactFormMailer < ActionMailer::Base
     
   def copy_self_event_contact(mail_message)
     @mail_message = mail_message
-    mail(   :from => "Alloms automatiska mejl <kundtjanst@allom.se>",
-            :to => "#{mail_message.from_name} <#{mail_message.from_email}>", 
+    mail(   :to => "#{mail_message.from_name} <#{mail_message.from_email}>", 
             :subject => "Kopia: #{mail_message.subject}")
   end  
    
@@ -26,8 +26,7 @@ class ContactFormMailer < ActionMailer::Base
       
   def copy_self_organizer_contact(mail_message)  
     @mail_message = mail_message
-    mail(   :from => "Alloms automatiska mejl <kundtjanst@allom.se>",
-            :to => "#{mail_message.from_name} <#{mail_message.from_email}>", 
+    mail(   :to => "#{mail_message.from_name} <#{mail_message.from_email}>", 
             :subject => "Kopia: #{mail_message.subject}")
   end
   
@@ -36,7 +35,6 @@ class ContactFormMailer < ActionMailer::Base
     logger.info "*********************************"
     logger.info "----- #{@mail_message.from_name} <#{@mail_message.from_email}>"
     mail(   :from => "#{@mail_message.from_name} <#{@mail_message.from_email}>",
-            :to => "Alloms kundtjänst <kundtjanst@allom.se>",
             :cc => "#{@mail_message.from_name} <#{@mail_message.from_email}>",
             :subject => "#{@mail_message.subject}")
   end  
