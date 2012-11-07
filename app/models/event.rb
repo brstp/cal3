@@ -23,7 +23,7 @@ class Event < ActiveRecord::Base
                   :image1_caption, :image1_url, :image1_delete, :register, :price
 
 
-  validates_presence_of :subject, :description, :municipality_id, :start_date, :start_time, :organizer_id, :email, :human_name, :category 
+  validates_presence_of :subject, :description, :municipality_id, :start_date, :start_time, :organizer_id, :email, :category 
   validates_length_of :subject, :in => 7..40, :allow_blank => true
   validates_length_of :intro, :in => 0..90
   validates_numericality_of :lat, :allow_nil => true
@@ -76,7 +76,6 @@ class Event < ActiveRecord::Base
   handle_asynchronously :solr_index
 
   acts_as_gmappable
-  
   
   def c1_id
     self.category.path_ids[1]

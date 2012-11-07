@@ -1,7 +1,7 @@
 sv-SE:
   formtastic:
     create: "Skapa %{model}"
-    cancel: "Strunta i att ändra och gå tillbaka"
+    cancel: "Äsch, jag ångrar mig. Gå tillbaka."
     update: "Spara"
     "yes": 'Ja'
     "no": 'Nej'

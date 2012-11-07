@@ -21,5 +21,8 @@
       %hr
       %p.minor
         Skickat: #{@mail_message.created_at}. 
-      
-    = link_to "Tillbaka", :back
+        
+    - unless @mail_message.current_page.blank?
+      = link_to "Tillbaka", @mail_message.current_page
+    - else
+      = link_to "Tillbaka till Alloms startsida", "http://allom.se"

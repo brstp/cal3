@@ -78,6 +78,10 @@ class Organizer < ActiveRecord::Base
     end
   end
   
+  def email_name
+    self.email
+  end
+  
   def photo_url= url_str
     unless url_str.blank?
       unless url_str.split(':')[0] == 'http' || url_str.split(':')[0] == 'https'

@@ -48,7 +48,7 @@
 <%end%>
 
 <p>
-  <%= link_to "Logga ut", destroy_user_session_path %>
+  <%= link_to "Logga ut", destroy_user_session_path, :method => :delete  %>
 </p>
 
 <% unless @user.petitions.blank? %>

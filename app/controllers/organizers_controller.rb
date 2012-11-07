@@ -13,6 +13,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
 
   def show
     @organizer = Organizer.find(params[:id])
+    
     @mail_message = MailMessage.new
     @mail_message.subject = "#{@organizer.name} på Allom"
     @mail_message.ip = request.remote_ip 
@@ -20,7 +21,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
     @mail_message.user_agent = request.headers["user_agent"]
     @mail_message.current_page = params[:current_page]
     @mail_message.organizer_id = @organizer.id
-    @mail_message.to_name = @organizer.email
+    @mail_message.to_name = @organizer.email_name
     @mail_message.current_page =  "#{request.protocol}#{request.host_with_port}#{request.fullpath}" if @mail_message.current_page.blank?
     if current_user
       @mail_message.from_email = current_user.try :email

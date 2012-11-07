@@ -182,6 +182,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
     
     Event.increment_counter :counter, @event.id
     @event.update_attribute(:last_googleboted, Time.now) if request.headers["user_agent"].include? "Googlebot"
+    @event.human_name = @event.email if @event.human_name.blank?
     respond_to do |format|
       format.html
       format.ihtml
@@ -199,16 +200,20 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
     @organizers = current_user.organizers
     @event = Event.new
     @event.email = current_user.email
-    @event.human_name = ''
+
     # TODO Scope to only organizers I have permissions to.
     @event.organizer_id = params[:organizer_id] unless params[:organizer_id].blank? 
     
     @markers = @event.to_gmaps4rails 
-    unless (current_user.first_name.blank?)
-      @event.human_name += current_user.first_name + " "
-    end
-    unless (current_user.last_name.blank?)
-      @event.human_name += current_user.last_name
+
+    if @event.human_name.blank?
+      @event.human_name = " "
+      unless (current_user.first_name.blank?)
+        @event.human_name = current_user.first_name + " "
+      end
+      unless (current_user.last_name.blank?)
+        @event.human_name += current_user.last_name
+      end
     end
     @event.human_name.strip!
   end
@@ -218,7 +223,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
     event_parameters = params[:event]
     organizer_id = event_parameters[:organizer_id]
     event_parameters.delete :organizer_id
-    @event = Event.new(event_parameters)
+    @event = Event.new(event_parameters) 
     @event.created_by_user_id = current_user.id
     @event.organizer_id = organizer_id # TODO Scope to only organizers I have permissions to.
     @markers = @event.to_gmaps4rails 
@@ -240,7 +245,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
     @event = Event.find(params[:id])        # TODO Scope to only organizers I have permissions to.
     @event.updated_by_user_id = current_user.id    
     @markers = @event.to_gmaps4rails 
-    
+    params[:event].delete :organizer_id
     if @event.update_attributes(params[:event])
       OrganizerMailer.delay.changed_event_confirmation(@event, current_user)
       flash[:notice] = t 'events.flash.notice.updated'

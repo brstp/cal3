@@ -40,7 +40,7 @@ class MailMessagesController < ApplicationController
     @mail_message.user_agent = request.headers["user_agent"]
     @mail_message.current_page = params[:current_page]
     @mail_message.subject = "Felanmälan/anmälan av sida på Allom"
-    @mail_message.to_name = "Alloms kundtjänst (kundtjanst@allom.se)"
+    @mail_message.to_name = "Alloms kundtjänst"
     @mail_message.current_page =  "#{request.protocol}#{request.host_with_port}#{request.fullpath}" if @mail_message.current_page.blank?
     @mail_message.mail_body = "Hej Allom!\n\nJag har en fråga/ett klagomål/vill anmäla/vill felanmäla sidan #{@mail_message.current_page}\n\n"
     if current_user
@@ -74,22 +74,33 @@ class MailMessagesController < ApplicationController
       end
       current_user.save if time_to_save
     end
-    @mail_message.to_email = "stefan.pettersson@lumano.se" #TODO
-    respond_to do |format|
-      if @mail_message.save
+    
+    if @mail_message.save #Opportunity for refactoring #TODO
+      unless @mail_message.event_id.nil?
+        @mail_message.to_email = Event.find(@mail_message.event_id).email
         ContactFormMailer.event_contact_person(@mail_message).deliver
-        #EventMailer.copy_event_sender(@mail_message).deliver
-        #EventMailer.delay.contact_event(@mail_message)
-        format.html { redirect_to view_mail_message_path(@mail_message, 
-                        :to_name => @mail_message.to_name,
-                        :from_name => @mail_message.from_name,
-                        :from_email => @mail_message.from_email,
-                        :from_phone => @mail_message.from_phone
-                        ), 
-                        notice: 'Nu skickar vi iväg ditt mejl.' }
+        ContactFormMailer.copy_self_event_contact(@mail_message).deliver
       else
-        format.html { render action: "new" }
+        unless @mail_message.organizer_id.nil?
+          @mail_message.to_email = Organizer.find(@mail_message.organizer_id).email
+          ContactFormMailer.organizer_contact_person(@mail_message).deliver
+          ContactFormMailer.copy_self_organizer_contact(@mail_message).deliver
+        else
+          @mail_message.to_email = "kundtjanst@allom.se"
+          ContactFormMailer.report_page_to_support(@mail_message).deliver
+        end
       end
+      respond_to do |format|
+        format.html { redirect_to view_mail_message_path(@mail_message, 
+                      :to_name => @mail_message.to_name,
+                      :from_name => @mail_message.from_name,
+                      :from_email => @mail_message.from_email,
+                      :from_phone => @mail_message.from_phone
+                      ), 
+                      notice: 'Nu skickar vi iväg ditt mejl.' }
+      end
+    else
+      format.html { render action: "new" }
     end
   end
 
