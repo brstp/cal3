@@ -26,32 +26,34 @@
       = render "javascripts"
 
       -# Google Maps
-      <script src="http://maps.google.com/maps/api/js?sensor=false&amp;region=SE&amp;language=sv" type="text/javascript"></script>      
-      -# Facebook like
-      <div id="fb-root"></div>
-      <script>(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/sv_SE/all.js#xfbml=1&appId=274577472567555";
-      fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));</script>
-      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+      <script src="http://maps.google.com/maps/api/js?sensor=false&amp;region=SE&amp;language=sv" type="text/javascript"></script>   
       
-      -# google plusone 
-      <script type="text/javascript">
-      window.___gcfg = {lang: 'sv'};
-      (function() {
-      var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-      po.src = 'https://apis.google.com/js/plusone.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-      })();
-      </script>
-      
-      -# Tweet
-      <script type="text/javascript">var switchTo5x=true;</script>
-      <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
-      <script type="text/javascript">stLight.options({publisher: "ur-d871ac62-be92-1c02-f4d5-90c424659c69"}); </script>
+      - unless(( controller.action_name == "edit" || controller.action_name == "update" || controller.action_name == "new"))
+        -# Facebook like
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/sv_SE/all.js#xfbml=1&appId=274577472567555";
+        fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        
+        -# google plusone 
+        <script type="text/javascript">
+        window.___gcfg = {lang: 'sv'};
+        (function() {
+        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+        po.src = 'https://apis.google.com/js/plusone.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+        </script>
+        
+        -# Tweet
+        <script type="text/javascript">var switchTo5x=true;</script>
+        <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+        <script type="text/javascript">stLight.options({publisher: "ur-d871ac62-be92-1c02-f4d5-90c424659c69"}); </script>
       -# Execute view specific javascripts
       :javascript
         $(document).ready(function() {
