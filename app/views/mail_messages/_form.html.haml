@@ -15,7 +15,7 @@
     = f.input :mail_body
     
     - if current_user
-      = f.input :from_email, :input_html => { :readonly => true }, :hint => link_to("Inte du? Logga ut.", destroy_user_session_path)
+      = f.input :from_email, :input_html => { :readonly => true }, :hint => link_to("Inte du? Logga ut.", destroy_user_session_path, :method => :delete)
     - else
       = f.input :from_email 
       

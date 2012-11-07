@@ -6,9 +6,9 @@
         Inloggad som #{current_user.email}.
         - if current_user.is_admin?
           (systemadministratör)
-        = link_to "Inte du? Logga ut.", destroy_user_session_path
+        = link_to "Inte du? Logga ut.", destroy_user_session_path, :method => :delete
         = link_to "Ditt användarkonto/byt lösenord.", current_user
-        = link_to "Logga ut.", destroy_user_session_path
+        = link_to "Logga ut.", destroy_user_session_path, :method => :delete
       - else
         = link_to "Logga in", new_user_session_path
         = link_to "Glömt lösenord?", new_user_password_path

@@ -13,7 +13,7 @@
             = user.input  :email, :input_html => { :disabled => true}
             %li
               %p.inline-text
-                = link_to "Inte du? Logga ut.", destroy_user_session_path
+                = link_to "Inte du? Logga ut.", destroy_user_session_path, :method => :delete
             = user.input  :first_name, :required => true
             = user.input  :last_name, :required => true
         = f.input   :argumentation
