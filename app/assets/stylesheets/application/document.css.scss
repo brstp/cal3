@@ -41,8 +41,8 @@ $grey : lighten($black, 50%);
 $lightgrey : lighten($black, 75%);
 $lightergrey : lighten($black, 90%);
 $white : rgb(255,255,255);
+$read_only_input_colour: $lightergrey;
 
-$read_only_input_colour : $lightergrey;
 
 // colour palettes
 
@@ -50,12 +50,13 @@ $dark_calendar : #d9e9f9;
 $light_calendar : lighten($dark_calendar, 25%);
 
 $allom_green : #13a538;
-$allom_red :     #e72f2a; 
 $light_allom_green : lighten(#13a538, 10%);
 $dark_allom_green: #119833 ;
 $darker_allom_green: darken($dark_allom_green, 15%);
 
+$allom_red :     #e72f2a; 
 $light_allom_red : lighten($allom_red, 15%);
+$lighter_allom_red : lighten($allom_red, 40%);
 $dark_allom_red: darken($allom_red, 15%);
 
 
@@ -99,6 +100,8 @@ $comp_d4 : darken($compcol, 20%);
 
 $baseline : 1em;
 $max_aside_width : (320 * 0.9);
+
+$read_only_input_colour: $lightergrey;
 
 //-----------------------------------------
 // Document styles
@@ -519,6 +522,14 @@ box-sizing : content-box; }
 
 input[readonly="readonly"] {
   background-color: $read_only_input_colour;
+}
+
+input:invalid{
+  background-color: $lighter_allom_red; 
+}
+
+.error input, .error textarea, input:invalid, textarea:invalid {
+  background-color: $lighter_allom_red; 
 }
 
 button::-moz-focus-inner, 
