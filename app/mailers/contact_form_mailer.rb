@@ -34,11 +34,11 @@ class ContactFormMailer < ActionMailer::Base
   def report_page_to_support(mail_message)  
     @mail_message = mail_message
     logger.info "*********************************"
-    logger.info "----- #{mail_message.from_name} <#{mail_message.from_email}>"
-    mail(   :from => "#{mail_message.from_name} <#{mail_message.from_email}>",
+    logger.info "----- #{@mail_message.from_name} <#{@mail_message.from_email}>"
+    mail(   :from => "#{@mail_message.from_name} <#{@mail_message.from_email}>",
             :to => "Alloms kundtjänst <kundtjanst@allom.se>",
-            :cc => "#{mail_message.from_name} <#{mail_message.from_email}>",
-            :subject => "#{mail_message.subject}")
+            :cc => "#{@mail_message.from_name} <#{@mail_message.from_email}>",
+            :subject => "#{@mail_message.subject}")
   end  
     
 end

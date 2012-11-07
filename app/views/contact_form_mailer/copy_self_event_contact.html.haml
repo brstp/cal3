@@ -1,0 +1,7 @@
+!!! 5
+%html_tag{:lang => :sv} 
+  %head
+  %body
+    %p Hej!
+    %p Här kommer din kopia på mejlet som du skickade från kontaktformuläret för evenemanget #{Event.find(@mail_message.event_id).subject} på Allom - evenemangskalendern. 
+    = render 'event_contact'

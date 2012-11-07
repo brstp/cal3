@@ -1,0 +1,28 @@
+%p
+  Till: #{@mail_message.to_name}
+  %br
+  Från: #{@mail_message.from_name} #{@mail_message.from_email}
+  %br
+  - if @mail_message.from_phone.blank?
+    Avsändaren ville inte lämna något telefonnummer.
+  - else
+    Telefon: #{@mail_message.from_phone}
+%hr
+%p 
+  Meddelande:
+= simple_format @mail_message.mail_body
+%hr
+
+%p
+Annonsen för #{Event.find(@mail_message.event_id).subject} finns på #{event_url(Event.find(@mail_message.event_id))}
+%p
+  Avsändaren känner inte till din mejladress förrän du svarar på det här mejlet. Vi på Allom kan inte säkert veta om avsändarens kontaktinformation är korrekt. Om avsändaren missbrukar möjligheten att skicka mejl eller gör något olagligt, skicka vidare hela det här mejlet till kundtjanst@allom.se.
+%hr
+%p
+  Allom - evenemangskalendern med allt som händer, innan det är för sent. Locka deltagare till dina evenemang också. http://allom.se
+%hr
+%p
+  Mejlet (med id: #{@mail_message.id} skickades #{@mail_message.created_at} från en dator med IP-adress: #{@mail_message.ip}. Webbläsarmodell (user agent): #{@mail_message.user_agent}. Evenemangsannonsen har id: #{@mail_message.event_id}
+%hr
+%p
+  Allom - evenemangskalendern med allt som händer, innan det är för sent. Locka deltagare till dina evenemang också. http://allom.se

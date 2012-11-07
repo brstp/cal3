@@ -38,7 +38,7 @@ class MailMessagesController < ApplicationController
     @mail_message.ip = request.remote_ip 
     @mail_message.referer = request.headers["referer"]
     @mail_message.user_agent = request.headers["user_agent"]
-    @mail_message.current_page = params[:current_page]
+    @mail_message.current_page = params[:current_page] if @mail_message.current_page.blank?
     @mail_message.subject = "Felanmälan/anmälan av sida på Allom"
     @mail_message.to_name = "Alloms kundtjänst"
     @mail_message.current_page =  "#{request.protocol}#{request.host_with_port}#{request.fullpath}" if @mail_message.current_page.blank?
@@ -100,7 +100,7 @@ class MailMessagesController < ApplicationController
                       notice: 'Nu skickar vi iväg ditt mejl.' }
       end
     else
-      format.html { render action: "new" }
+      render :action => 'new'
     end
   end
 

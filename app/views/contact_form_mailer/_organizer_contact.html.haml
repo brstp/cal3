@@ -1,0 +1,27 @@
+%p
+  Till: #{@mail_message.to_name}
+  %br
+  Från: #{@mail_message.from_name} #{@mail_message.from_email}
+  %br
+  - if @mail_message.from_phone.blank?
+    Avsändaren ville inte lämna något telefonnummer.
+  - else
+    Telefon: #{@mail_message.from_phone}
+%hr
+%p 
+  Meddelande:
+= simple_format @mail_message.mail_body
+%hr
+%p
+  Du får det här mejlet för att den person som skrivit arrangörssidan angett din mejladress som kontaktinformation.
+%p
+  Arrangörssidan #{Organizer.find(@mail_message.organizer_id).name} finns på #{organizer_url(Organizer.find(@mail_message.organizer_id))}
+%hr
+%p
+  Allom - evenemangskalendern med allt som händer, innan det är för sent. Locka deltagare till dina evenemang också. http://allom.se
+%hr
+%p
+  Mejlet (med id: #{@mail_message.id} skickades #{@mail_message.created_at} från en dator med IP-adress: #{@mail_message.ip}. Webbläsarmodell (user agent): #{@mail_message.user_agent}. Evenemangsannonsen har id: #{@mail_message.event_id}
+%hr
+%p
+  Allom - evenemangskalendern med allt som händer, innan det är för sent. Locka deltagare till dina evenemang också. http://allom.se
