@@ -164,7 +164,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
     @mail_message.user_agent = request.headers["user_agent"]
     @mail_message.current_page = params[:current_page]
     @mail_message.event_id = @event.id
-    unless @mail_message.to_name.blank? 
+    unless @event.human_name.blank? 
       @mail_message.to_name = @event.human_name
     else
       @mail_message.to_name = @event.email
