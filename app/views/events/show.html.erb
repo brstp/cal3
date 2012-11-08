@@ -11,6 +11,7 @@
 <% content_for :head do %>
     <link rel="profile" href="http://microformats.org/profile/hcalendar" />
     <link rel = "canonical" href="<%= t('app.site_url') + event_path(@event) %>"/> 
+    <meta property="og:description" content="<%= truncate(@event.organizer.name + ' (' + @event.municipality.name + '): ' + ( @event.intro.present? ? @event.intro : @event.description), :length => 300, :separator => ' ') %>" />
 <% end %> 
                      
 
