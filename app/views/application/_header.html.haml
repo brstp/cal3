@@ -1,9 +1,16 @@
 %header.banner{:role => "banner"}
-  .logotype_container
-    = link_to_unless(( controller.action_name == "edit" || controller.action_name == "update" || controller.action_name == "new"), image_tag( "evenemangskalendern-allom-evenemang.png", :alt => "Evenemangskalendern Alloms logotyp", :title => "Till evenemangskalendern Alloms startsida", :width => "100%"), "/")
 
-  .calendar_day.today
-    .weekday #{l(Time.zone.now, :format => :abbr_day_of_week)}
-    .day_of_month #{l(Time.zone.now, :format => :day_of_month)}
-    .month #{l(Time.zone.now, :format => :abbr_month_of_year)}
-    .names #{AlmanacDay.names(Time.zone.now)}
+    
+  .outer_header_container 
+    .calendar_container
+      .date_sheet
+        .weekday #{l(Time.zone.now, :format => :abbr_day_of_week)}
+        - #.day_of_month #{l(Time.zone.now, :format => :day_of_month)}
+        .day_of_month 28
+        .month #{l(Time.zone.now, :format => :abbr_month_of_year)}
+        - #.names #{AlmanacDay.names(Time.zone.now)}      
+        .names Vendela Gunborg
+    .inner_header_container
+      .logotype_header_container
+        = link_to_unless(( controller.action_name == "edit" || controller.action_name == "update" || controller.action_name == "new"), image_tag( "evenemangskalendern-allom-evenemang.png", :alt => "Evenemangskalendern Alloms logotyp", :title => "Till evenemangskalendern Alloms startsida", :width => "100%"), "/")
+   

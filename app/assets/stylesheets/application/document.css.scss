@@ -655,6 +655,144 @@ nav.navigation ul li a {
 // 11 MAIN 			============================================
 
 
+// 11A2 calendar top
+.outer_header_container {
+  margin-top: 5%;
+  @include background-image(linear-gradient(bottom, $dark_calendar, $light_calendar));
+  background-color: $dark_calendar;
+  width: 100%;
+}
+
+.inner_header_container{
+  background-color: white;
+  width: 80%;    
+	padding-top: 5%;
+}
+
+.logotype_header_container{
+  width: 62.5%;  
+  padding-bottom: 2.5%;
+}
+
+.calendar_container{
+  float: right;
+  width: 20%;
+	text-align:center;
+	padding-top: 5%;
+	//padding-bottom: 5%;	
+}
+
+.date_sheet{
+  verical-align: middle;
+  text-align: center;
+  color: $grey;
+  margin: auto;
+  width: 90%;
+  padding-bottom: 2%;
+  //background-color: yellow;
+  
+  .weekday, .day_of_month, .month{
+    font-weight: bold;
+  }
+  
+  .weekday, .month, .names{
+    @include font-size(12);
+
+  }
+  .day_of_month {
+    font-family: Georgia, Times New Roman;
+    font-size: 2em;
+    line-height: 0.8em;
+  }
+  .names {
+    @include font-size(10);
+    line-height: 1em;
+    padding-bottom: 5%;
+    padding-top: 5%;
+    font-style: italic;
+  }
+  
+}
+
+@media only screen and (min-width: 400px)  {
+  
+  .date_sheet{
+    .weekday, .month, .names{
+      @include font-size(16);
+  
+    }
+    .day_of_month {
+      font-size: 2.5em;
+    }
+    .names {
+      @include font-size(12);
+    }    
+  }  
+}
+
+@media only screen and (min-width: 480px)  {
+  
+  .date_sheet{
+    .weekday, .month, .names{
+      @include font-size(18);
+  
+    }
+    .day_of_month {
+      font-size: 3em;
+    }
+    .names {
+      @include font-size(14);
+    }    
+  }  
+}
+
+@media only screen and (min-width: 600px)  {
+
+  .outer_header_container {
+    margin-top: 2.5%;
+  }  
+  .date_sheet{
+    //padding-top: 8%;
+    .weekday, .month, .names{
+      @include font-size(22);
+  
+    }
+    .day_of_month {
+      font-size: 4em;
+    }
+    .names {
+      @include font-size(18);
+      //line-height: 1.2em;
+    }    
+  }    
+  
+}
+
+@media only screen and (min-width: 768px)  {
+  
+  .outer_header_container {
+    margin-top: 0px;
+  }
+  
+  .inner_header_container, .calendar_container {
+    padding-top: 2%;  
+  }
+  .date_sheet{
+    padding-top: 8%;
+    .weekday, .month, .names{
+      @include font-size(28);
+  
+    }
+    .day_of_month {
+      font-size: 5em;
+    }
+    .names {
+      @include font-size(20);
+      line-height: 1.2em;
+    }    
+  }  
+}
+
 // 11A calendar sheet 
 
 .calendar_day {
@@ -662,8 +800,7 @@ nav.navigation ul li a {
   @include font-size(10);
   color: $grey;
   font-weight : bold; 
-  background-color: $dark_calendar;
-  @include background-image(linear-gradient(bottom, $dark_calendar, $light_calendar));
+  // @include background-image(linear-gradient(bottom, $dark_calendar, $light_calendar));
   background-color: $dark_calendar;
 
   .weekday, .day_of_month, .month, .year, .names {
