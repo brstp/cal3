@@ -1321,20 +1321,22 @@ html {
 -webkit-text-size-adjust : 100%; 
 -ms-text-size-adjust : 100%; }
 
+
 ::-webkit-selection { 
 background : $lightergrey; 
-color : rgb(250,250,250); 
+color : $darkgrey; 
 text-shadow : none; }
 
 ::-moz-selection { 
-background : $basecol; 
-color : $compcol; 
+background : $lightergrey; 
+color : $darkgrey; 
 text-shadow : none; }
 
 ::selection { 
-background : $basecol; 
-color : $compcol; 
+background : $lightergrey; 
+color : $darkgrey; 
 text-shadow : none; }
+
 
 button, 
 input[type="button"], 
