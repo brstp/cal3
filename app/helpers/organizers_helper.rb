@@ -40,18 +40,6 @@ module OrganizersHelper
                     <h2>Administration av #{@organizer.s} arrangörssida</h2>
                 )
 
-        if current_user.is_admin?
-          str << %(
-                    <p>Du är systemadministratör.</p>
-
-                    #{ 
-                      button_to(  
-                        "Radera arrangörssidan", 
-                        @organizer, 
-                        :confirm => "Är du säker att du vill radera arrangörssidan för #{@organizer.name}? Det kommer inte gå att återskapa den. Alla arrangörens evenemangsannonser kommer också att raderas.", 
-                        :method => :delete ) }
-                  )
-        end
         
         if @organizer.users.include? current_user
            str << %(
@@ -70,6 +58,20 @@ module OrganizersHelper
 
                     
                   )
+
+        if current_user.is_admin?
+          str << %(
+                    <p>Du är systemadministratör.</p>
+
+                    #{ 
+                      button_to(  
+                        "Radera arrangörssidan", 
+                        @organizer, 
+                        :confirm => "Är du säker att du vill radera arrangörssidan för #{@organizer.name}? Det kommer inte gå att återskapa den. Alla arrangörens evenemangsannonser kommer också att raderas.", 
+                        :method => :delete ) }
+                  )
+        end
+        str << %(<hr>)
         unless @organizer.petition_users.blank?
           str << %(
                     <h3>Användare som vill bli administratörer för #{@organizer.name}</h3>
@@ -118,14 +120,13 @@ module OrganizersHelper
                   user
                 end
               }
-              </td>
-              <td>
                 #{
                   unless user == current_user
                     button_to "Ta bort" ,
                     membership_path(Membership.find(:first, :conditions => ["organizer_id = ? and user_id = ?", @organizer.id, user.id])), 
                     :confirm => "Är du säker på att du vill ta bort administratörsskapet för #{user.name} från #{@organizer.name}? ", 
-                    :method => :delete
+                    :method => :delete,
+                    :class => :floating_button
                   end
                   }
               </td>
