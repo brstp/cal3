@@ -827,6 +827,13 @@ p.article_meta {
     border: none;
   }
   
+  ::-webkit-input-placeholder  { 
+    font-size: 1em;
+  }
+  input:-moz-placeholder { 
+    font-size: 1em;       
+  }
+  
   form input[type="submit"] { 
     @include background-image( linear-gradient(($light_allom_red, $allom_red, $allom_red )));
     color: white;
@@ -855,6 +862,7 @@ p.article_meta {
     font-size: 1.5em;  
     width: 100%; 
     margin-bottom: 1em;
+    /* -webkit-appearance: searchfield; */
     -webkit-box-sizing : border-box;
     -moz-box-sizing : border-box;
     //opacity: 0.5;
