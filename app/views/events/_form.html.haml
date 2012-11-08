@@ -11,6 +11,7 @@
 
   = f.inputs do   
     = f.input :subject
+    <input id="date_picker" name="date" type="text" value="2012-11-08" >    
     = f.input   :organizer_id, :as => :hidden
     = f.input   :organizer, :collection => @organizers, :required => true, :input_html => { :disabled => true}
     - @event.municipality = @event.organizer.default_municipality if (params[:municipality_id]).blank? 

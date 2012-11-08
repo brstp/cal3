@@ -15,7 +15,7 @@
               Sök evenemang, ämne, plats, ...
                     
         = form_tag({:action => 'index'}, :method => 'get' )            
-        = search_field_tag :q, params[:q], :placeholder => "bio stallarholmen"   
+        = search_field_tag :q, params[:q], :placeholder => "t.ex: bio stallarholmen"   
         = hidden_field_tag :municipality_id, params[:municipality_id]
         = hidden_field_tag :organizer_id, params[:organizer_id]
         = hidden_field_tag :c1_id, params[:c1_id]
@@ -27,9 +27,7 @@
         = hidden_field_tag :ml, params[:ml]
         
         .submit_row 
-          = submit_tag "Sök", :id => :event_search
-  
-      
+          = submit_tag "Sök", :id => :event_search     
       .three_cols
         - unless params[:organizer_id].blank?
           .facet_organizer
@@ -83,9 +81,9 @@
               %li.facet_field
                 Från och med:<br>
                 - if Timeliness.parse(@to_date).blank?
-                  = text_field_tag :from, l(Time.zone.now, :format => :date), :size => 11
+                  = text_field_tag :from, l(Time.zone.now, :format => :text), :size => 11
                 - else
-                  = text_field_tag :from, "", :size => 11, :type => :date
+                  = text_field_tag :from, "", :size => 11, :type => :text
             - else
               %li.facet_field.selected_facet
                 %a{:href => url_for(params.merge({:from => nil})), :title => "Visa från dagens datum och framåt."}
@@ -93,21 +91,21 @@
                   Från och med:<br>
                   - from_date = Timeliness.parse(@from_date)
                 - unless from_date.blank?
-                  = text_field_tag :from, l(from_date, :format => :date), :size => 11, :type => :date              
+                  = text_field_tag :from, l(from_date, :format => :date), :size => 11, :type => :text              
                 - else
-                  = text_field_tag :from, "", :size => 11, :type => :date              
+                  = text_field_tag :from, "", :size => 11, :type => :text
 
             - if Timeliness.parse(@to_date).blank?
               %li.facet_field
                 Till och med:<br>
-                =text_field_tag :to, "", :size => 11, :type => :date
+                =text_field_tag :to, "", :size => 11, :type => :text
             - else
               %li.facet_field.selected_facet
                 %a{:href => url_for(params.merge({:to => nil})), :title => "Visa evenemang som ligger längre fram i tiden också."}
                   %span.cancel_facet x
                   Till och med:<br>
-                =text_field_tag :to, l(Timeliness.parse(@to_date), :format => :date), :size => 14, :type => :date
-
+                =text_field_tag :to, l(Timeliness.parse(@to_date), :format => :date), :size => 11, :type => :text
+              
         .facet_column_location
           %h5 var/ort 
           %ul

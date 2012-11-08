@@ -1,9 +1,8 @@
-﻿//= require jquery
+//= require jquery
 //= require jquery_ujs
 //= require jquery-ui.min
 //= require h5bp
 //= require jquery.ui.datepicker-sv
-//= require geocode
 //= require gmaps4rails/gmaps4rails.base
 //= require gmaps4rails/gmaps4rails.googlemaps
 
@@ -34,6 +33,7 @@ $('#hide_optional_link').toggle(function () {
 });
 
 
+
 $(function() {
 $.datepicker.setDefaults({
    maxDate: '+2y',
@@ -46,5 +46,7 @@ $.datepicker.setDefaults({
 
  $("#event_start_date").datepicker();
  $("#event_stop_date").datepicker();
+ $("#to").datepicker();
+ $("#from").datepicker();
 });
 
