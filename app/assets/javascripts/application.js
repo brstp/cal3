@@ -2,7 +2,6 @@
 //= require jquery_ujs
 //= require jquery-ui.min
 //= require h5bp
-//= require jquery-ui.min
 //= require jquery.ui.datepicker-sv
 //= require geocode
 //= require gmaps4rails/gmaps4rails.base
