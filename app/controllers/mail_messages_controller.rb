@@ -74,9 +74,7 @@ class MailMessagesController < ApplicationController
       end
       current_user.save if time_to_save
     end
-    logger.info "******************************************"
-    logger.info @mail_message.from_email
-    logger.info "******************************************"
+
     if @mail_message.save #Opportunity for refactoring #TODO
       unless @mail_message.event_id.nil?
         @mail_message.to_email = Event.find(@mail_message.event_id).email
