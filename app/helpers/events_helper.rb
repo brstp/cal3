@@ -1,34 +1,6 @@
 # encoding: UTF-8
 module EventsHelper
 
-  def related_events event, max_no = 9999
-    municipality = event.municipality
-    category = event.category
-
-    str = ""
-    
-    if municipality.upcoming_events.count > 0
-      str <<  %( 
-                  #{mini_calendar municipality.upcoming_events(max_no), events_url, t('.events_nearby') }
-                )
-    end
-       
-    if category.upcoming_events.count > 0
-      str <<  %(
-                #{mini_calendar category.upcoming_events(max_no), events_url, t('.events_in_same_category') }
-              )
-    end
-    
-    unless str.blank?
-      raw   %(
-                <div id="related_events" class="box">
-                  <span class="heading">#{t '.related_events'}:</span>
-                  #{str}
-                </div>
-              )
-    end
- 
-  end
   
   def query_to_string default_str = t('app.site_name')
     str =""
@@ -63,33 +35,7 @@ module EventsHelper
     str
   end
 
-  def organizer_facts organizer, max_no = 9999
-  
-  str =%(
-          <div id="organizer_facts" class="box">
-          <span class="heading">#{t '.organizer_facts'}:</span>
-        )
-  unless organizer.logotype.blank?
-    str << %(
-              #{link_to((image_tag  organizer.logotype.url(:small), :alt => organizer.name + "s logotyp", :title => organizer.intro), organizer, :title => organizer.name )}
-            )
-  end
-    
-  str << %(
-          <h4>#{link_to(organizer.name, organizer)}</h4>
-          <p>
-          #{organizer.intro}
-          </p>
-          )
-          
-    str << %( #{upcoming_and_past_events organizer} 
-    
-          </div>
-            )
-    raw str
-    
-  end
-  
+
   def select_category_tree selected_category = nil, error_message = nil
     
     

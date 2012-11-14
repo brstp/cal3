@@ -6,8 +6,30 @@
 = share_me
 
 %h3 Kommande evenemang
-= aside_calendar @organizer
-        
+
+- unless @organizer.upcoming_events.blank?
+  %h3 #{@organizer.s} kommande evenemang
+  %table.mini_calendar
+    %caption #{@organizer.s} kommande evenemang
+    %tbody
+      -for event in @organizer.upcoming_events
+        %tr
+          %td.sheet
+            %a{:href => '#{event_path event}', :title => '#{event.subject}. #{event.intro}'}
+              .calendar_day
+                .weekday #{l(event.start_datetime, :format => :abbr_day_of_week)}
+                .day_of_month #{l(event.start_datetime, :format => :day_of_month)}
+                .month #{l(event.start_datetime, :format => :abbr_month_of_year)}
+          %td.event
+            = link_to "Kl #{l(event.start_datetime, :format => :time)}: #{event.subject} (#{event.category.name}). #{event.municipality_short}.", event_path(event), :title => "#{event.intro}"
+
+  %p.event_type
+    = link_to "#{@organizer.s} alla kommande evenemang (#{@organizer.number_of_upcoming_events})", events_path(:organizer_id => @organizer.id) 
+
+- unless @organizer.past_events.blank?
+  %p.event_type
+    = link_to "#{@organizer.s} alla tidigare evenemang (#{@organizer.number_of_past_events})", events_path(:organizer_id => @organizer.id, :to => l( Time.zone.now.beginning_of_day, :format => :date)) 
+         
 %h3 Prenumerera
 .subscribe_container
   .subscribe_icon

@@ -148,19 +148,16 @@
       %table.mini_calendar
         %caption #{@event.organizer.s} kommande evenemang
         %tbody
-        -for event in @event.organizer.upcoming_events
-          %tr
-            %td
-              %a.inline_div{:href => "#{event_path(event)}", :title => "#{event.category.name.capitalize} #{event.subject}"}
-                .calendar_day
-                  .weekday
-                    = l(event.start_datetime, :format => :abbr_day_of_week)
-                  .day_of_month
-                    = l(event.start_datetime, :format => :day_of_month)
-                  .month
-                    = l(event.start_datetime, :format => :abbr_month_of_year)
-            %td
-              = link_to "Kl #{l(event.start_datetime, :format => :time)}: #{event.subject} (#{event.category.name}). #{event.municipality_short}.", event_path(event), :title => "#{event.intro}"
+          -for event in @event.organizer.upcoming_events
+            %tr
+              %td.sheet
+                %a{:href => '#{event_path event}', :title => '#{event.subject}. #{event.intro}'}
+                  .calendar_day
+                    .weekday #{l(event.start_datetime, :format => :abbr_day_of_week)}
+                    .day_of_month #{l(event.start_datetime, :format => :day_of_month)}
+                    .month #{l(event.start_datetime, :format => :abbr_month_of_year)}
+              %td.event
+                = link_to "Kl #{l(event.start_datetime, :format => :time)}: #{event.subject} (#{event.category.name}). #{event.municipality_short}.", event_path(event), :title => "#{event.intro}"
 
     = page_counter @event.counter    
 

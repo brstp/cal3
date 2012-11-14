@@ -554,10 +554,6 @@ vertical-align : top; }
 
 .banner {
   position: relative;
-  .calendar_day {
-    position: absolute; bottom: 0; right:0;
-    width: 66px;
-  }
   .menu_link{
     position: absolute; top: 0; right:0;
     width: 66px;
@@ -793,38 +789,10 @@ nav.navigation ul li a {
   }  
 }
 
-// 11A calendar sheet 
 
-.calendar_day {
-  padding: 0.3em 0 0.2em 0;
-  @include font-size(10);
-  color: $grey;
-  font-weight : bold; 
-  // @include background-image(linear-gradient(bottom, $dark_calendar, $light_calendar));
-  background-color: $dark_calendar;
 
-  .weekday, .day_of_month, .month, .year, .names {
-    text-align: center;
-    padding: 0;
-    margin: 0.07em;
-  }  
 
-  .day_of_month {
-    font-size: 2em;
-    font-family: Georgia, Times New Roman;
-    line-height: 0.5;
-    margin: 0.15em 0 0.35em 0;
-    font-weight : 800;
-  }
-  
-  .names {
-    @include font-size(12);
-    font-weight: normal;
-    font-style: italic;
-  }
-  
 
-}
 // 11B ARTICLE  =============================================================
 
 .article {
@@ -1277,13 +1245,78 @@ input.floating_button {
 
 // 12B  calendar with upcoming events
 
-.minicalendar table {
+table.mini_calendar {
   margin-bottom: 1.5em;
   width: 100%;
-  //@include font-size(10);
+  @include font-size(10);
+
+  @media only screen and (min-width: 320px) {
+    @include font-size(12);    
+  }
+
+  td.sheet, .calendar_day, .weekday, .day_of_month, .month {
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+    vertical-align: bottom;
+  }
+    
+  a {
+    text-decoration: none;
+    display: block;
+  }
+  
+  tr:hover {
+  background-color: $lightergrey;
+  }
+
+  tr {
+    border-bottom: solid 1px $lightergrey;
+  }
+  
+  td {
+    vertical-align: bottom;
+  }
+  
+  .calendar_day{
+    width: 100%;
+    @include background-image(linear-gradient(bottom, $dark_calendar, $light_calendar));
+    background-color: $dark_calendar;
+    padding-bottom: 0.5em;
+    padding-top: 0.75em;
+    margin-top: 0.5em;
+  }
+    
+  td.sheet {
+    @media only screen and (min-width: 480px) {
+      @include font-size(14);    
+    }
+    color: $grey;
+    font-weight : bold; 
+    line-height: 1.5em;
+    min-width: 4em;
+    a {
+      color: $grey;
+    }
+    .day_of_month{
+      font-size: 2em;
+      font-family: Georgia, Times New Roman;
+    }  
+  }
+  td.event{
+    padding: 1.5em 0 0.5em 0.5em; 
+    font-size: 1.2em;
+    color: black;
+    a, a:visited {
+      color:black;
+    }
+  }
 }
 
 
+
+
+/*
 .mini_calendar caption {
   text-align: left;
   @include font-size(16);
@@ -1291,62 +1324,30 @@ input.floating_button {
   padding-bottom: 1em;
 }
 
-.mini_calendar tr {
-  border-bottom: solid 1px $lightergrey;
-}
 
-.mini_calendar td {
-  padding: 0; 
-    .calendar_day {
-      padding-left: 0.5em;
-      padding-right: 0.5em;
-  }
-}
+
 
 .mini_calendar a {
-  color: black;
-  text-decoration: none;
   //display: block;
   @include inline-block;
   padding: 0.5em;
 }
 
-.event_row{
-  @include font-size(16);
-}
 
-a.inline_div {
-  padding: 0;
-}
-
-.mini_calendar  a:hover, .mini_calendar a:active {
-  background-color: $lightergrey;
-}
-
-.mini_calendar td {
-  vertical-align: bottom;
-  
-}
-
-.almanac{
- @include font-size(12); 
- color: $grey; 
-}
-
-.sunday{
-  color: $allom_red;
-}
 
 .almanac_container a {
-  color: black;
-  text-decoration: none;
+  
   display: block;
   padding: 0.5em;
 }
 
-.almanac_container  a:hover, .almanac_container a:active {
-  background-color: $lightergrey;
-}
+*/
+
+
+
+
+
+
 
 // 12C SHARE
 .social_box{
@@ -1610,9 +1611,6 @@ visibility : hidden; }
 
 // 9A menu link
 .banner {
-  .calendar_day {
-    width: 99px;
-  }
   .menu_link{
     width: 99px;
     font-size: 1.4em;
@@ -1622,14 +1620,7 @@ visibility : hidden; }
 
 header, .article, aside, nav, footer  {
   //width: (480px*0.9);
-}
-
-// 11A calendar sheet 
-.calendar_day {
-  font-size: 1.4em;
-  }
-  
-  
+}  
   .facet_column_second{
     margin-left: 0.6em
   }  
@@ -1650,26 +1641,21 @@ header, .article, aside, nav, footer  {
     float: right;
 }  
 }
+
 @media only screen and (min-width: 768px)  {
-
-
-  
   .article, nav  {
   width: (480px*0.8);
   }
 
-   
   .municipalities.index_action .article,
   .organizers.index_action .article,
   .petitions.index_action .article{
       width: 100%;
   }
-  
-  
+    
   header {
   width: 100%;
   }
-
 
   .logotype_container {
     width: 216px;
@@ -1692,9 +1678,6 @@ header, .article, aside, nav, footer  {
     float: right;
     width: (320px *0.8);
     overflow: hidden;
-    .calendar_day {
-      font-size: 1em;
-    }
   }
   
 
@@ -1809,6 +1792,29 @@ header, .article, aside, nav, footer  {
 
 
 
+@media only screen and (min-width: 320px)  {
+
+}
+
+@media only screen and (min-width: 480px) {
+
+}
+
+@media only screen and (min-width: 600px) {
+
+}
+
+@media only screen and (min-width: 768px) {
+
+}
+
+@media only screen and (min-width: 992px) {
+
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),only screen and (-o-min-device-pixel-ratio: 3/2),only screen and (min-device-pixel-ratio: 1.5){
+
+}
 
 
 
