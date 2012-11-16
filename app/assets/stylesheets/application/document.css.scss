@@ -553,6 +553,7 @@ vertical-align : top; }
 // 8 BANNER 		========================================================
 
 .banner {
+  width: 100%;
   position: relative;
   .menu_link{
     position: absolute; top: 0; right:0;
@@ -563,7 +564,7 @@ vertical-align : top; }
 }
 
 .logotype_container {
-  width: 50%;
+  width: 40%;
   padding: 1em 0 0.6em 0;
 };
 
@@ -654,8 +655,6 @@ nav.navigation ul li a {
 // 11A2 calendar top
 .outer_header_container {
   margin-top: 5%;
-  @include background-image(linear-gradient(bottom, $dark_calendar, $light_calendar));
-  background-color: $dark_calendar;
   width: 100%;
 }
 
@@ -671,123 +670,51 @@ nav.navigation ul li a {
 }
 
 .calendar_container{
-  float: right;
+  position: absolute; 
+  bottom: 0; 
+  right: 0;
   width: 20%;
-	text-align:center;
-	padding-top: 5%;
-	//padding-bottom: 5%;	
 }
 
 .date_sheet{
-  verical-align: middle;
+  margin: auto 0 0 auto;
+  width: 100%;
+
+  @include background-image(linear-gradient(bottom, $dark_calendar, $light_calendar));
+  background-color: $dark_calendar;
+
   text-align: center;
   color: $grey;
-  margin: auto;
-  width: 90%;
-  padding-bottom: 2%;
-  //background-color: yellow;
+  @include font-size(10);    // 10..28
+  line-height: 1.5em;
+  min-width: 4em;
+  padding-bottom: 1em;
+  padding-top: 0.75em;
   
-  .weekday, .day_of_month, .month{
-    font-weight: bold;
+  .weekday, .day_of_month, .month, .names{
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+    vertical-align: bottom;
   }
   
-  .weekday, .month, .names{
-    @include font-size(12);
-
+  .weekday, .month {
+    font-weight: bold;   
   }
+  
   .day_of_month {
     font-family: Georgia, Times New Roman;
     font-size: 2em;
-    line-height: 0.8em;
+    font-weight: bold;
   }
+  
   .names {
-    @include font-size(10);
-    line-height: 1em;
-    padding-bottom: 5%;
-    padding-top: 5%;
     font-style: italic;
+    font-size: 0.8em;
+    line-height: 1em;
   }
-  
 }
 
-@media only screen and (min-width: 400px)  {
-  
-  .date_sheet{
-    .weekday, .month, .names{
-      @include font-size(16);
-  
-    }
-    .day_of_month {
-      font-size: 2.5em;
-    }
-    .names {
-      @include font-size(12);
-    }    
-  }  
-}
-
-@media only screen and (min-width: 480px)  {
-  
-  .date_sheet{
-    .weekday, .month, .names{
-      @include font-size(18);
-  
-    }
-    .day_of_month {
-      font-size: 3em;
-    }
-    .names {
-      @include font-size(14);
-    }    
-  }  
-}
-
-@media only screen and (min-width: 600px)  {
-
-  .outer_header_container {
-    margin-top: 2.5%;
-  }  
-  .date_sheet{
-    //padding-top: 8%;
-    .weekday, .month, .names{
-      @include font-size(22);
-  
-    }
-    .day_of_month {
-      font-size: 4em;
-    }
-    .names {
-      @include font-size(18);
-      //line-height: 1.2em;
-    }    
-  }    
-  
-}
-
-@media only screen and (min-width: 768px)  {
-  
-  .outer_header_container {
-    margin-top: 0px;
-  }
-  
-  .inner_header_container, .calendar_container {
-    padding-top: 2%;  
-  }
-  .date_sheet{
-    padding-top: 8%;
-    .weekday, .month, .names{
-      @include font-size(28);
-  
-    }
-    .day_of_month {
-      font-size: 5em;
-    }
-    .names {
-      @include font-size(20);
-      line-height: 1.2em;
-    }    
-  }  
-}
 
 
 
@@ -1312,40 +1239,6 @@ table.mini_calendar {
     }
   }
 }
-
-
-
-
-/*
-.mini_calendar caption {
-  text-align: left;
-  @include font-size(16);
-  font-weight: bold;
-  padding-bottom: 1em;
-}
-
-
-
-
-.mini_calendar a {
-  //display: block;
-  @include inline-block;
-  padding: 0.5em;
-}
-
-
-
-.almanac_container a {
-  
-  display: block;
-  padding: 0.5em;
-}
-
-*/
-
-
-
-
 
 
 
