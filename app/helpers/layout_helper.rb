@@ -218,6 +218,47 @@ module LayoutHelper
     str
   end
   
-  
+  def mini_calendar events, max_no = 5
+    
+    str = %(
+      <table class = "mini_calendar">
+        <tbody>
+        )
+    for event in events.first max_no
+      str << %(
+          <tr>
+            <td class = "sheet">
+              <a href = "#{event_path event}" title = "#{event.subject}. #{event.intro}">
+                <div class = "calendar_day">
+                  <div class = "weekday">
+                    #{l(event.start_datetime, :format => :abbr_day_of_week)}
+                  </div>
+                  <div class = "day_of_month">
+                    #{l(event.start_datetime, :format => :day_of_month)}
+                  </div>
+                  <div class = "month">
+                    #{l(event.start_datetime, :format => :abbr_month_of_year)}
+                  </div>
+                </div>
+              </a>
+            </td>
+            <td class = "event">
+              <a href = "#{event_path(event)}" title = "#{event.intro}">
+                Kl #{l(event.start_datetime, :format => :time)}: #{event.subject} (#{event.category.name}). #{event.municipality_short}. #{event.organizer.name}.
+              </a>
+            </td>
+          </tr>
+      )
+    end
+    str << %(
+        </tbody>
+      </table>
+      )
+
+    raw str
+    
+  end # /mini_calendar
+    
+
   
 end # module LayoutHelper

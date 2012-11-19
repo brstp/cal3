@@ -145,20 +145,26 @@
     
     - unless @event.organizer.upcoming_events.blank?
       %h3 #{@event.organizer.s} kommande evenemang
-      %table.mini_calendar
-        %caption #{@event.organizer.s} kommande evenemang
-        %tbody
-          -for event in @event.organizer.upcoming_events
-            %tr
-              %td.sheet
-                %a{:href => '#{event_path event}', :title => '#{event.subject}. #{event.intro}'}
-                  .calendar_day
-                    .weekday #{l(event.start_datetime, :format => :abbr_day_of_week)}
-                    .day_of_month #{l(event.start_datetime, :format => :day_of_month)}
-                    .month #{l(event.start_datetime, :format => :abbr_month_of_year)}
-              %td.event
-                = link_to "Kl #{l(event.start_datetime, :format => :time)}: #{event.subject} (#{event.category.name}). #{event.municipality_short}.", event_path(event), :title => "#{event.intro}"
-
+      = mini_calendar @event.organizer.upcoming_events, 20
+      
     = page_counter @event.counter    
+    
+    - unless @event.municipality.upcoming_events.blank?
+      %h3 Evenemang i #{@event.municipality}
+      = mini_calendar @event.municipality.upcoming_events
+
+    - unless @event.category.depth < 2
+      - unless @event.category.parent.upcoming_events.blank?
+        %h3 Evenemang i #{@event.category.parent.name.titleize}
+        = mini_calendar @event.category.parent.upcoming_events
+
+    - unless @event.category.upcoming_events.blank?
+      %h3 Evenemang i #{@event.category.name.titleize}
+      = mini_calendar @event.category.upcoming_events
+
+    - unless @event.organizer.past_events.blank?
+      %h3 #{@event.organizer.s} tidigare evenemang
+      = mini_calendar @event.organizer.past_events
+    
 
 = event_meta

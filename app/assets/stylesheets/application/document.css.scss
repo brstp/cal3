@@ -1167,6 +1167,12 @@ input.floating_button {
 // 12 ASIDE / COMPLEMENTARY ==============================
 
 
+aside {
+  h3 {
+    border: none;
+    color: $grey;
+  }
+}
 
 .organizer_logotype{
   margin-top: 2.8em;
@@ -1184,6 +1190,9 @@ input.floating_button {
   //float: right;
   @include font-size(15);
 }
+
+
+
 // 12A counter
 
 .counter {  
