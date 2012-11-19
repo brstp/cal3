@@ -37,11 +37,12 @@ module LayoutHelper
             <div class='social_box' id='plusone'>
               <div class='g-plusone' data-annotation='inline' data-href=#{url_for(:only_path => false)} data-size='tall' data-width='260'></div>
             </div>
-            <div class='social_box' id='email'>
-              #{link_to image_tag("email-button.png", :alt => "Tipsa en vän om det här evenemanget med ett mejl.", :title => "Tipsa en vän om det här evenemanget med ett mejl." ), ""} 
-            </div>
     )
     raw str
+    
+      # <div class='social_box' id='email'>
+      #  #{link_to image_tag("email-button.png", :alt => "Tipsa en vän om det här evenemanget med ett mejl.", :title => "Tipsa en vän om det här evenemanget med ett mejl." ), ""} 
+      # </div>
   end
 
   def user_message organizer, user
