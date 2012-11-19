@@ -54,6 +54,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
   def new
     @organizer = Organizer.new
     @organizer.email = current_user.email
+    @organizer.human_name = current_user.human_name unless current_user.human_name.blank?
   end
  
 

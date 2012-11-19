@@ -51,6 +51,18 @@ class User < ActiveRecord::Base
     output_str.strip
   end
 
+  def human_name
+    output_str=""
+    if self.first_name
+      output_str += self.first_name
+    end
+    if self.last_name
+      output_str += " " + self.last_name
+    end
+    output_str.strip
+  end
+
+
   def to_s
     name
   end
