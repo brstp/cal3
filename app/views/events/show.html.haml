@@ -88,7 +88,7 @@
     
     = link_to "Spara i din Outlook eller kalender", event_path(@event, :format => :ics), :title => "Spara evenemanget i Outlook eller annan kalender som ical.", :class => :major
 
-    %h3#article_footer Kontakta
+    %span.heading_label#article_footer Kontakta
     %ul.event_organizer
       - unless @event.phone_number.blank?
         %li
@@ -97,7 +97,7 @@
         = link_to "Mejla #{@event.human_name} (kontaktformulär)", "javascript:toggle();", :id => :display_text
     #toggle_text{:style => "display:none"}
       = render "mail_messages/form"
-    %h3 Fler evenemang i samma kategorier
+    %span.heading_label Fler evenemang i samma kategorier
     %ul.event_type
       %li
         = link_to "#{@event.category1.capitalize} (#{Category.find(@event.c1_id).number_of_upcoming_events})", "/?c1_id=#{@event.c1_id}", :title => "Alla evenemang inom #{@event.category1} på Allom."
@@ -117,7 +117,7 @@
         Evenemangsannonsens texter & bilder är licensierade av arrangören under Creative Commons Erkännande-DelaLika 2.5 Sverige Licens, CC (BY-SA)
 
       %nav.event_admin
-        %h3#article_nav Jobbar du för #{@event.organizer.name}?
+        %span.heading_label#article_nav Jobbar du för #{@event.organizer.name}?
         %ul.event_organizer
           %li
             = link_to "Ändra evenemangsannonsen", edit_event_path
@@ -131,10 +131,10 @@
           
             
   %aside{:role => "complementary"}
-    %h3.aside_top 
+    %span.heading_label.aside_top 
       Dela med dig av evenemanget!
     = share_me
-    %h3 Arrangören
+    %span.heading_label Arrangören
     - unless @event.organizer.logotype_file_name.blank?
       = link_to image_tag( @event.organizer.logotype.url(:medium), :width => "100%", :alt => "#{@event.organizer.s} logotyp"), organizer_path(@event.organizer), :title => "Till #{@event.organizer.s} arrangörssida på Allom."
     -else

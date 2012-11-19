@@ -18,7 +18,7 @@
             = content_tag :div, msg, :class => "flash_#{name}" 
         = yield
         .bottom_navigation_container
-          %h3#nav_menu Meny:
+          %span.heading_label#nav_menu Meny:
           = render "navigation"
       = render "footer"
   

@@ -36,7 +36,7 @@
       Redan genomförda evenemang.
 
     .event_organizer
-      %h3#article_footer Kontaktinfo
+      %span.heading_label#article_footer Kontaktinfo
       %ul
         - unless @organizer.phone.blank?
           %li
@@ -60,7 +60,7 @@
         Arrangörssidans texter & bilder är licensierade av arrangören under Creative Commons Erkännande-DelaLika 2.5 Sverige Licens, CC (BY-SA)        
                 
       %nav.event_admin
-        %h3#article_nav 
+        %span.heading_label#article_nav 
           Jobbar du för 
           = @organizer.name + '?'
         %ul.event_organizer

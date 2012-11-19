@@ -180,10 +180,11 @@ color : $darkgrey; }
 
 h1, 
 h2, 
-h3, 
+h3,
 h4, 
 h5, 
-h6 {
+h6,
+{
 @include sans-serif;
 font-weight : bold; }
 
@@ -203,7 +204,18 @@ margin-bottom : $baseline / 1.5;
 line-height : 1.3; 
 border-top: solid 1px $lightergrey;
 padding-top: $baseline;
+}
 
+
+.heading_label {
+  display: block;
+  @include sans-serif;
+  margin-bottom : $baseline / 1.5;
+  @include font-size(16);
+  line-height : 1.3; 
+  padding-top: $baseline;
+  color: $grey;
+  font-weight: bold;
 }
 
 h4 { 
@@ -646,7 +658,7 @@ nav.navigation ul li a {
 // 10 CONTENT 		============================================
 
 .todo{
-  background-color: yellow; 
+  //background-color: yellow; 
 }
 
 // 11 MAIN 			============================================
@@ -1641,7 +1653,7 @@ header, .article, aside, nav, footer  {
     display: none;
   }
 
-  h3.aside_top{
+  heading_label.aside_top{
     border: none;
     padding-top: 0.3em;
   }
