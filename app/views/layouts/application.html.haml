@@ -1,4 +1,5 @@
 !!! 5
+<!-- #{controller.action_name} ->
 - html_tag :class => "no-js", :lang => "sv" do
   = render "head"
 
@@ -6,7 +7,7 @@
     .outer_container
       .top_loaf
         .content_container
-          - unless(( controller.action_name == "edit" || controller.action_name == "update" || controller.action_name == "new"))
+          - unless(( controller.action_name == "edit" || controller.action_name == "create" || controller.action_name == "update" || controller.action_name == "new"))
             %a{:href => "#nav_menu", :title => "till menyn"}
               &#x25BC;&nbsp;meny
       .content_container
@@ -25,7 +26,7 @@
       -# Javascript at the bottom for fast page loading
       = render "javascripts"
       
-      - unless(( controller.action_name == "edit" || controller.action_name == "update" || controller.action_name == "new"))
+      - unless(( controller.action_name == "edit" || controller.action_name == "create" || controller.action_name == "update" || controller.action_name == "new"))
         -# Facebook like
         <div id="fb-root"></div>
         <script>(function(d, s, id) {
