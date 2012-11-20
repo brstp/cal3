@@ -121,12 +121,9 @@
             - if (@municipality_facet_rows.count > (params[:ml].to_i + 5))      
               %li.more_facets              
                 =link_to( "• • •", params.merge({:ml => params[:ml].to_i + 7}), :title => "Visa fler platser... ")                   
-
-    .todo
-      = paginate @events
-               
     - unless @events.blank?
-      %p.todo Här är #{@events.count} av #{@hit_numbers} evenemang:
+      %p Hoppa mellan sidor med #{@hit_numbers} evenemang:
+      = paginate @events #, :outer_window => 1, :inner_window => 1
 
       %table.mini_calendar
         %tbody
@@ -149,9 +146,9 @@
                 <meta itemprop="name" content="#{event.subject}}">
                 <meta itemprop="performer" content="#{event.organizer.name}}">
                 <meta itemprop="addressLocality" content="#{event.location}}">
-      .todo
-        %p
-          = paginate @events
+      
+      %p
+        = paginate @events
       %p.todo
         - if params[:q].present? || params[:municipality_id].present? || params[:organizer_id].present? || params[:start].present? || params[:stop].present? || params[:c1_id].present? || params[:c2_id].present? || params[:c3_id].present?
           = link_to "Rensa sökningen och visa alla evenemang.", events_path  

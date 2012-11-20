@@ -663,6 +663,59 @@ nav.navigation ul li a {
 
 // 11 MAIN 			============================================
 
+// 11A1 pagination
+
+nav.pagination {
+  width: 100%;
+  @include font-size(11);
+  @media only screen and (min-width: 320px)  {
+    @include font-size(12);
+  }
+
+  @media only screen and (min-width: 360px)  {
+    @include font-size(14);
+  }  
+  
+  @media only screen and (min-width: 400px)  {
+    @include font-size(16);
+  }
+  margin-bottom: 1em;
+  @include clearfix; 
+  .first, .prev, .current, .next, .last, .gap, .page  {
+    @include border-radius;
+    margin: 0.25em;
+    background-color: $grey;
+    color: white;
+    float: left;  
+    a, a:visited {
+      display: block;
+      padding: 0.5em;
+      color: white;
+      text-decoration: none;
+    }
+    a:hover, a:active {
+      background-color: $darkgrey;
+      @include border-radius;
+    };
+  }
+  .gap { 
+    background-color: white;
+    color: $grey;  
+    padding-left: 0;
+    padding-right: 0;
+   }
+  .first { 
+    margin-left: 0;
+   }
+  .last { 
+    margin-right: 0; 
+  }
+  .current { 
+    background-color: black; 
+    padding: 0.5em;
+  }
+  .gap { display: none; }
+}
 
 // 11A2 calendar top
 .outer_header_container {
