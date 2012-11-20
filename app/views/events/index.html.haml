@@ -35,7 +35,7 @@
             %ul
               - for row in @organizer_facet_rows
                 %li.selected_facet
-                  %a{:href => url_for(params.merge({:organizer_id => nil})), :title => "Visa alla arrangörer..."}
+                  %a{:href => url_for(params.merge({:organizer_id => nil, :page => nil})), :title => "Visa alla arrangörer..."}
                     %span.cancel_facet x
                     %span= "#{row.instance.to_s} (#{row.count.to_s})"
         .facet_column_category
@@ -44,22 +44,22 @@
             - for row in @c1_facet_rows
               - if row.value.to_i == params[:c1_id].to_i
                 %li.selected_facet
-                  %a{:href => url_for(params.merge({:c1_id => nil, :c2_id => nil})), :title => "Visa fler ämnen..."}
+                  %a{:href => url_for(params.merge({:c1_id => nil, :c2_id => nil, :page => nil})), :title => "Visa fler ämnen..."}
                     %span.cancel_facet x
                     %span= "#{row.instance.to_s}"
               - else
                 %li
-                  = link_to "#{row.instance.to_s} (#{row.count.to_s})", params.merge({:c1_id => row.instance.id}), :title => "Sök evenemang bara i kategorin #{row.instance.to_s}."
+                  = link_to "#{row.instance.to_s} (#{row.count.to_s})", params.merge({:c1_id => row.instance.id, :page => nil}), :title => "Sök evenemang bara i kategorin #{row.instance.to_s}."
             - unless @c1_facet_rows.blank? || params[:c1_id].blank?
               - for row in @c2_facet_rows
                 - if row.value.to_i == params[:c2_id].to_i
                   %li.selected_facet
-                    %a{:href => url_for(params.merge({:c2_id => nil})), :title => "Visa fler ämnen..."}
+                    %a{:href => url_for(params.merge({:c2_id => nil, :page => nil})), :title => "Visa fler ämnen..."}
                       %span.cancel_facet x
                       %span= "#{row.instance.to_s}"
                 - else
                   %li
-                    = link_to "#{row.instance.to_s} (#{row.count.to_s})", params.merge({:c2_id => row.instance.id}), :title => "Sök evenemang bara i kategorin #{row.instance.to_s}."   
+                    = link_to "#{row.instance.to_s} (#{row.count.to_s})", params.merge({:c2_id => row.instance.id, :page => nil}), :title => "Sök evenemang bara i kategorin #{row.instance.to_s}."   
             - if (@c1_facet_rows.count > (params[:cl].to_i + 5))      
               %li.more_facets              
                 =link_to( "• • •", params.merge({:cl => params[:cl].to_i + 7}), :title => "Visa fler ämneskategorier... ")                                                
@@ -70,12 +70,12 @@
             - for row in @stop_facet_rows
               - if row.value == params[:stop]
                 %li.selected_facet
-                  %a{:href => url_for(params.merge({:stop => nil})), :title => "Visa fler tidsperioder..."}
+                  %a{:href => url_for(params.merge({:stop => nil, :page => nil})), :title => "Visa fler tidsperioder..."}
                     %span.cancel_facet x
                     %span= "#{t('when_facet.' + row.value.to_s)}"
               - else
                 %li
-                  = link_to "#{t('when_facet.' + row.value.to_s)} (#{row.count.to_s})", params.merge({:stop => row.value}), :title => "Sök evenemang bara i #{t('when_facet.' + row.value.to_s)}."
+                  = link_to "#{t('when_facet.' + row.value.to_s)} (#{row.count.to_s})", params.merge({:stop => row.value, :page => nil}), :title => "Sök evenemang bara i #{t('when_facet.' + row.value.to_s)}."
 
             - if Timeliness.parse(@from_date).blank? 
               %li.facet_field
@@ -87,7 +87,7 @@
                     = text_field_tag :from, "", :size => 11, :type => :text
             - else
               %li.facet_field.selected_facet
-                %a{:href => url_for(params.merge({:from => nil})), :title => "Visa från dagens datum och framåt."}
+                %a{:href => url_for(params.merge({:from => nil, :page => nil})), :title => "Visa från dagens datum och framåt."}
                   %span.cancel_facet x
                   Från och med:<br>
                   - from_date = Timeliness.parse(@from_date)
@@ -103,7 +103,7 @@
                   =text_field_tag :to, "", :size => 11, :type => :text
             - else
               %li.facet_field.selected_facet
-                %a{:href => url_for(params.merge({:to => nil})), :title => "Visa evenemang som ligger längre fram i tiden också."}
+                %a{:href => url_for(params.merge({:to => nil}, :page => nil)), :title => "Visa evenemang som ligger längre fram i tiden också."}
                   %span.cancel_facet x
                   Till och med:<br>
                 =text_field_tag :to, l(Timeliness.parse(@to_date), :format => :date), :size => 11, :type => :text
@@ -114,12 +114,12 @@
             - for row in @municipality_facet_rows
               - if row.value.to_i == params[:municipality_id].to_i
                 %li.selected_facet
-                  %a{:href => url_for(params.merge({:municipality_id => nil})), :title => "Visa fler platser..."}
+                  %a{:href => url_for(params.merge({:municipality_id => nil, :page => nil})), :title => "Visa fler platser..."}
                     %span.cancel_facet x
                     %span= "#{row.instance.to_s}"
               - else
                 %li
-                  = link_to "#{row.instance.to_s} (#{row.count.to_s})",params.merge({:municipality_id => row.instance.id}), :title => "Sök evenemang bara i #{row.instance.to_s}."
+                  = link_to "#{row.instance.to_s} (#{row.count.to_s})",params.merge({:municipality_id => row.instance.id, :page => nil}), :title => "Sök evenemang bara i #{row.instance.to_s}."
             - if (@municipality_facet_rows.count > (params[:ml].to_i + 5))      
               %li.more_facets              
                 =link_to( "• • •", params.merge({:ml => params[:ml].to_i + 7}), :title => "Visa fler platser... ")                   
