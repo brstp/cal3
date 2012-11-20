@@ -1034,15 +1034,16 @@ p.article_meta {
     background-color: $grey; 
     @include border-radius;
     
-    
-    
     a {
       text-decoration: none;
       color: white;
       display: block;
       padding: 0.5em;
     }    
-    a:hover { background-color: $darkgrey; }
+    a:hover { 
+      background-color: $darkgrey; 
+      @include border-radius;
+    }
     
     
     .vacant { 
