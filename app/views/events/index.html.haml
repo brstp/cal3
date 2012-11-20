@@ -79,11 +79,12 @@
 
             - if Timeliness.parse(@from_date).blank? 
               %li.facet_field
-                Från och med:<br>
-                - if Timeliness.parse(@to_date).blank?
-                  = text_field_tag :from, l(Time.zone.now, :format => :text), :size => 11
-                - else
-                  = text_field_tag :from, "", :size => 11, :type => :text
+                .vacant
+                  Från och med:<br>
+                  - if Timeliness.parse(@to_date).blank?
+                    = text_field_tag :from, l(Time.zone.now, :format => :text), :size => 11
+                  - else
+                    = text_field_tag :from, "", :size => 11, :type => :text
             - else
               %li.facet_field.selected_facet
                 %a{:href => url_for(params.merge({:from => nil})), :title => "Visa från dagens datum och framåt."}
@@ -97,8 +98,9 @@
 
             - if Timeliness.parse(@to_date).blank?
               %li.facet_field
-                Till och med:<br>
-                =text_field_tag :to, "", :size => 11, :type => :text
+                .vacant
+                  Till och med:<br>
+                  =text_field_tag :to, "", :size => 11, :type => :text
             - else
               %li.facet_field.selected_facet
                 %a{:href => url_for(params.merge({:to => nil})), :title => "Visa evenemang som ligger längre fram i tiden också."}

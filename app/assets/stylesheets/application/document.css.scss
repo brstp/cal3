@@ -1030,18 +1030,37 @@ p.article_meta {
   }
   li {
     margin: 0.5em 0 0.5em 0;
-    padding: 0.5em;
     @include font-size(12);
     background-color: $grey; 
     @include border-radius;
+    
+    
+    
     a {
       text-decoration: none;
       color: white;
       display: block;
-      }    
+      padding: 0.5em;
+    }    
+    a:hover { background-color: $darkgrey; }
+    
+    
+    .vacant { 
+      margin: 0.5em;
+      input { margin-top: 0.25em }
+     }
+
   }
   li.selected_facet{
     background-color: black;    
+    input {
+      margin: 0 0 0.5em 0.5em;
+    }
+    .vacant { 
+      margin: 0;
+     }
+    
+    
   }
   li.more_facets{
     //background-color: $lightgrey;
