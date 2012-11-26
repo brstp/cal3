@@ -9,7 +9,6 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
   
 
   def index
-
       today = Time.zone.now.beginning_of_day
       this_month = Time.zone.now.beginning_of_month
       this_week = Time.zone.now.beginning_of_week
@@ -106,6 +105,10 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
 
       with(:stop).greater_than(facet_from) unless facet_from.blank?
       with(:stop).less_than(facet_to + 1.day) unless facet_to.blank?      
+      unless params[:category_facet_id].blank? # Lazy backward compability
+        with(:c2_id).equal_to( params[:category_facet_id].to_i )
+        params.delete :category_facet_id
+      end
       with(:c1_id).equal_to( params[:c1_id].to_i ) unless params[:c1_id].blank?
       with(:c2_id).equal_to( params[:c2_id].to_i ) unless params[:c2_id].blank?
       with(:c3_id).equal_to( params[:c3_id].to_i ) unless params[:c3_id].blank?
