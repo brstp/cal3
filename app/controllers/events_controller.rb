@@ -155,7 +155,12 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
     
     respond_to do |format|
       format.html
-      format.rss
+      format.rss {
+        unless params[:ver].present?
+          redirect_to params.merge( :ver => 3 )
+          return
+        end
+        }
     end
 
   end
