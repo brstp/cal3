@@ -20,14 +20,14 @@
         %tbody
           - for event in @municipality.upcoming_events
             %tr{:itemscope => true, :itemtype => "http://schema.org/Event"}
-              %td
-                <a class='inline_div' href='#{event_path event}' title='#{event.subject}. #{event.intro}'>
+              %td.sheet
+                <a href='#{event_path event}' title='#{event.subject}. #{event.intro}'>
                 .calendar_day
                   .weekday #{l(event.start_datetime, :format => :abbr_day_of_week)}
                   .day_of_month #{l(event.start_datetime, :format => :day_of_month)}
                   .month #{l(event.start_datetime, :format => :abbr_month_of_year)}
                 </a>
-              %td
+              %td.event
                 = link_to raw(event.subject + ' (' + event.category.name + ') Kl.&nbsp;' + l(event.start_datetime, :format => :time) + '. ' + event.organizer.name ) + '. ', event_path(event), :title => event.intro, :itemprop => :url
                 <meta itemprop="startDate" content="#{l(event.start_datetime, :format => :machine)}">
                 <meta itemprop="description" content="#{event.intro}}">
