@@ -120,7 +120,9 @@ module LayoutHelper
     unless municipality.facts.blank?
       str = %(
           <div id="municipality_facts" class="box">
+            <blockquote cite=\""#{municipality.wikipedia_page}"\" lang="sv_SE" class="wikipedia">
             #{municipality.facts}
+            </blockquote>
             <p class = "wikipedia-source"> 
             Faktatext från #{link_to("Wikipedia", municipality.wikipedia_page, :rel => :nofollow)}. Senast hämtad: #{I18n.localize(municipality.facts_last_updated, :format => :default)}
             Rättigheter enligt #{link_to("CC BY-SA 3.0", "http://creativecommons.org/licenses/by-sa/3.0/deed.sv", :rel => :nofollow)}. Faktabilder från #{link_to "Wikimedia", "http://commons.wikimedia.org/wiki/Main_Page", :rel => :nofollow}. Rättigheter: #{link_to("CC BY-SA 2.5", "http://creativecommons.org/licenses/by-sa/2.5/deed.sv", :rel => :nofollow)}. </p>
