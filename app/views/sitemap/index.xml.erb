@@ -4,26 +4,29 @@
   <url>
     <loc><%= base_url %><%= root_path  %></loc>
     <lastmod><%= l (Time.now - 1.minute), :format => :date %></lastmod>
+    <changefreq>hourly</changefreq>
   </url>
   <url>
     <loc><%= base_url %><%= municipalities_path  %></loc>
     <lastmod><%= l (Time.now - 2.minute), :format => :date %></lastmod>
+    <changefreq>daily</changefreq>
   </url>
   <url>
     <loc><%= base_url %><%= organizers_path  %></loc>
     <lastmod><%= l (Time.now - 1.minute), :format => :date %></lastmod>
+    <changefreq>daily</changefreq>
   </url>
 <% for event in Event.all %>
   <url>
     <loc><%= base_url %><%= event_path event %></loc>
-    <lastmod><%= l event.updated_at, :format => :date %></lastmod>
+    <lastmod><%= event.updated_at.to_time.iso8601 %></lastmod>
   </url>
 <% end %>
 
 <% for organizer in Organizer.all %>
   <url>
     <loc><%= base_url %><%= organizer_path organizer %></loc>
-    <lastmod><%= l organizer.updated_at, :format => :date %></lastmod>
+    <lastmod><%= organizer.updated_at.to_time.iso8601 %></lastmod>
   </url>
 <% end %>
 
@@ -32,7 +35,7 @@
   <% unless municipality.next_event.nil?%>
     <url>
       <loc><%= base_url %><%= municipality_path municipality %></loc>
-      <lastmod><%= l municipality.updated_at, :format => :date %></lastmod>
+      <lastmod><%= municipality.updated_at.to_time.iso8601 %></lastmod>
     </url>
   <% end %>
 <% end %>
