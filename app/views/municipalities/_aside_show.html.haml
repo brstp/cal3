@@ -10,9 +10,9 @@
 %span.heading_label Prenumerera
 .subscribe_container
   .subscribe_icon
-    = link_to image_tag("rss-icon-32x32.png", :alt => "Flöde med alla evenemang.", :title => "Prenumerera på RSS-flöde med alla evenemang i #{@municipality.name} i din RSS-läsare eller visa evenemangen i din blogg."), :format => :rss, :only_path => false
+    = link_to image_tag("rss-icon-32x32.png", :alt => "Flöde med alla evenemang.", :title => "Prenumerera på RSS-flöde med alla evenemang i #{@municipality.name} i din RSS-läsare eller visa evenemangen i din blogg."), events_path(:format => :rss, :only_path => false, :municipality_id => @municipality.id, :mute_municipality => 1, :ver => 3)
   .subscribe_text
-    =link_to "Alla evenemang i #{@municipality.name} som RSS-flöde."  , :format => :rss, :only_path => false
+    =link_to "Alla evenemang i #{@municipality.name} som RSS-flöde.", events_path(:format => :rss, :only_path => false, :municipality_id => @municipality.id, :mute_municipality => 1, :ver => 3)
 
 - unless @municipality.upcoming_events.blank?
   .subscribe_container  

@@ -45,7 +45,11 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
     respond_to do |format|
       format.html # show.html.erb
       format.ihtml
-      format.rss
+      format.rss {
+        redirect_to events_path(:format => :rss, :only_path => false, :organizer_id => @organizer.id, :mute_organizer => 1, :ver => 3), :status => :moved_permanently
+          return
+      }
+
       format.ics
     end
   end

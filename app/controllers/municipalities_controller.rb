@@ -18,10 +18,15 @@ class MunicipalitiesController < ApplicationController
       #marker.sidebar "i'm the sidebar"
       marker.json({ :id => event.id, :foo => "bar" })
     end   
+    #ActionController::Redirecting.
+    
       respond_to do |format|
         format.html # show.html.erb
         format.ihtml
-        format.rss  
+        format.rss  {
+          redirect_to events_path(:format => :rss, :only_path => false, :municipality_id => @municipality.id, :mute_municipality => 1, :ver => 3), :status => :moved_permanently
+          return
+        }
         format.ics
       end
   end
