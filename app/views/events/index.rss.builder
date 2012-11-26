@@ -34,7 +34,7 @@ xml.rss "version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/", "x
           xml.link event_url(event, :format => :html)
           xml.guid event_url(event, :isPermaLink => false)
           xml.tag!("creativeCommons:license", "http://creativecommons.org/licenses/by-sa/2.5/deed.sv")
-          xml.pubDate event.created_at.rfc822
+          #xml.pubDate event.created_at.rfc822
           unless event.lat.nil? || event.lng.nil?
             xml.geo :lat,  "#{event.lat}"
             xml.geo :long, "#{event.lng}"
