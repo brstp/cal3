@@ -35,7 +35,9 @@ rake paperclip:refresh:thumbnails CLASS=Organizer
 
 Use heroku db:pull when you wish to export the contents of your Heroku app’s database. Some uses include backups, local debugging, or to move the app’s deployment location. Kom ihåg reindex av solr!
 
-
+För att populera stage-databasen
+heroku pgbackups:restore DATABASE `heroku pgbackups:url --app allom-prod2` --app allom-stage
+heroku run rake sunspot:solr:reindex --app allom-stage
 
 ENV['ALLOM_LIVE'] skall ha värde för att inte kräva lösenord u: smygtitt
 ENV['ALLOM_DEMO'] gör demoläge (readonly)
