@@ -14,3 +14,5 @@
         = link_to "Glömt lösenord?", new_user_password_path
         = link_to "Registrera kostnadsfritt konto.", new_user_registration_path
       = link_to "Anmäl/felanmäl sidan.", new_mail_message_path( :current_page =>  request.protocol + request.host_with_port + request.fullpath)
+    %p
+      = render 'events/screen_size'
