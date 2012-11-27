@@ -49,4 +49,3 @@ $.datepicker.setDefaults({
  $("#to").datepicker();
  $("#from").datepicker();
 });
-

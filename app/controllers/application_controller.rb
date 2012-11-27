@@ -5,6 +5,7 @@ require "application_responder"
 class ApplicationController < ActionController::Base
   before_filter :check_uri
   before_filter http_basic_authenticate_with(:name => "smygtitt", :password => "tyst" ) if (ENV['ALLOM_LIVE']).blank?
+  before_filter http_basic_authenticate_with(:name => "kolla", :password => "kolla" ) if (ENV['ALLOM_DEMO']).present?
   
   before_filter :demo_mode?, :except => [:show, :index]
 
@@ -43,7 +44,7 @@ class ApplicationController < ActionController::Base
 
 
   def demo_mode?
-    unless (ENV['ALLOM_DEMO']).blank?
+    if (ENV['ALLOM_DEMO']).present?
       flash[:alert] = "Hej! Det här är en smygtitt av nästa version av Allom. Här går det inte att spara, radera eller ändra något. Gå till \"vanliga\" allom.se om du vill lägga in eller ändra något. Allt som ligger där kommer att flyttas med när vi kör igång den nya versionen."
         redirect_to :back
     end

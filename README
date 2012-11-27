@@ -37,3 +37,5 @@ Use heroku db:pull when you wish to export the contents of your Heroku app’s d
 
 
 
+ENV['ALLOM_LIVE'] skall ha värde för att inte kräva lösenord u: smygtitt
+ENV['ALLOM_DEMO'] gör demoläge (readonly)
