@@ -4,6 +4,6 @@ class ChangeNameOfRejectedByIdOnPetition < ActiveRecord::Migration
   end
 
   def self.down
-      rename_column :decision_made_by_user_id, :rejected_by_user_id
+      rename_column :petitions, :decision_made_by_user_id, :rejected_by_user_id
   end
 end
