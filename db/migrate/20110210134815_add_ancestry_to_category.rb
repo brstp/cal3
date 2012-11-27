@@ -5,7 +5,7 @@ class AddAncestryToCategory < ActiveRecord::Migration
   end
 
   def self.down
-    remove_column :categories, :ancestry
     remove_index :categories, :ancestry
+    remove_column :categories, :ancestry
   end
 end
