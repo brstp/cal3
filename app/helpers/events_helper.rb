@@ -107,9 +107,10 @@ module EventsHelper
     else
       icon = "http://allom.se" + image_path("evenemang-allom-evenemangskalendern.png") 
     end  
-    
+    title = @event.subject
+    title = title + " | " + l( @event.start_datetime, :format => :mini) if @event.start_date == @event.stop_date
     set_meta_tags( 
-      :title => @event.subject,
+      :title => title,
       :description => "#{@event.intro.blank? ? @event.description.truncate(100) : @event.intro}. Arrangör: #{@event.organizer.name}.",
       :canonical => "http://allom.se" + event_path(@event).split(".")[0],
       :open_graph => {
