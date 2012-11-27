@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 gem 'rails', "3.2.8"
 gem "thin"
-gem 'heroku'                        #remote control for prod env at Heroku. Needed here too?
+#gem 'heroku'                        #remote control for prod env at Heroku. Needed here too?
 gem 'pg'
 
 
@@ -19,12 +19,10 @@ gem "sunspot_with_kaminari" #, '~> 0.1'
 
 gem "cocaine", "0.3.2"
 gem "paperclip" #, "2.3.16"                    #upload and organizer images
-#gem 'aws-s3'                        #API towards Amazon Web Services
 gem 'aws-sdk' #, '~> 1.3.4'
 
 gem 'friendly_id'#, "~> 4.0.0"       # slugs, to make friendly urls
 
-#gem 'mail_form'                     #needed? used? TODO
 
 gem 'gmaps4rails'
 gem "geocoder"                      #server side geo coding. Used? TODO
@@ -33,14 +31,11 @@ gem 'meta-tags', :require => 'meta_tags'  #header tags. TODO Used?
 
 gem "ancestry"                      #tree structure
 
-#gem 'yaml_db'                       #dump, load db as yaml 
 
 gem 'nokogiri'                      #parse
 gem 'icalendar'                     #create ical events
 
 
-
-#gem 'progress_bar'
 
 gem 'haml'
 gem 'haml-rails'
@@ -83,4 +78,5 @@ end
 
 group :production do
 	#gem 'pg' 
+	gem 'devise',           '>= 2.1.2'
 end
