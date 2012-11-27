@@ -5,7 +5,7 @@ class AddSlugsToMunicipality < ActiveRecord::Migration
   end
 
   def self.down
-    remove_column :municipalities, :slug
     remove_index :municipalities, :slug    
+    remove_column :municipalities, :slug
   end
 end

@@ -5,8 +5,8 @@ class AddSlugsToOrganizer < ActiveRecord::Migration
   end
 
   def self.down
-    rename_column :organizers, :slug, :cached_slug
     remove_index :organizers, :slug
+    rename_column :organizers, :slug, :cached_slug
   end
 end
 

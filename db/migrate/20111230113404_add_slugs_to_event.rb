@@ -5,7 +5,7 @@ class AddSlugsToEvent < ActiveRecord::Migration
   end
 
   def self.down
-    rename_column :events, :slug, :cached_slug
     remove_index :events, :slug
+    rename_column :events, :slug, :cached_slug
   end
 end
