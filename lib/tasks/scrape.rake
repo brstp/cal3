@@ -16,7 +16,7 @@ namespace :scrape do
                 gsub(/\[.*\]/, ""), 
                   :tags => %w(table div tbody th tr td img br ), 
                   :attributes => %w(class id src alt colspan)), 
-                    :urls, :rel => :no_follow).
+                    :urls, :rel => :nofollow).
                 gsub(/<img.*Portal.*/,"").
                 gsub(/<td colspan="2">.*\ stad<\/td>/, "").
                 gsub(/<td colspan="2">.*\ kommun<\/td>/, "<td class = 'municipality_name' colspan = '2'>#{municipality.name}</td>").
