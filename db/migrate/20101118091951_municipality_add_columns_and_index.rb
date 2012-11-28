@@ -10,9 +10,9 @@ class MunicipalityAddColumnsAndIndex < ActiveRecord::Migration
   end
 
   def self.down
-    remove_column :municipalities, :admin_no, :short_name, :parent_admin_no
     remove_index :municipalities, :id
     remove_index :municipalities, :admin_no
     remove_index :municipalities, :parent_admin_no
+    remove_column :municipalities, :admin_no, :short_name, :parent_admin_no
   end
 end
