@@ -15,7 +15,7 @@
       -for event in @organizer.upcoming_events
         %tr
           %td.sheet
-            %a{:href => '#{event_path event}', :title => '#{event.subject}. #{event.intro}'}
+            %a{:href => "#{event_path event}", :title => "#{event.subject}. #{event.intro}"}
               .calendar_day
                 .weekday #{l(event.start_datetime, :format => :abbr_day_of_week)}
                 .day_of_month #{l(event.start_datetime, :format => :day_of_month)}

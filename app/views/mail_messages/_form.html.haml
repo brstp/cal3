@@ -6,7 +6,7 @@
     = f.input :referer, :as => :hidden 
     = f.input :event_id, :as => :hidden
     = f.input :organizer_id, :as => :hidden 
-    = f.input :to_name, :as => :hidden
+    - # f.input :to_name, :as => :hidden, :id =>
     = f.input :current_page, :as => :hidden
 
     = f.input :subject, :required => true, :input_html => { :readonly => true }
@@ -25,10 +25,10 @@
     = f.input :from_phone     
     
     = f.action :submit, :as => :button
-    
-    %p Du får en kopia på mejlet till din mejladress. Om den inte dykt upp inom någon minut, titta om den har sorterats som spam i din mejl.
-    %p.todo § Tänk efter vad du skriver. Var snäll i tonen. Vi anmäler hot och andra olagligheter till polisen.
-    %p.todo 
-      § För att kunna jobba mot spam och missbruk och felsöka problem sparar vi under en begränsad tid 
-      information om mejlet som du skickar. Vi sparar inte själva mejlet.
-    %p Det här sparar vi: Din mejladress, mottagarens mejladress, klockslag, din dators ip-adress, webbläsarmodell (user agent), vilken webbsida du befinner dig på. 
+
+%p Du får en kopia på mejlet till din mejladress. Om den inte dykt upp inom någon minut, titta om den har sorterats som spam i din mejl.
+%p.todo § Tänk efter vad du skriver. Var snäll i tonen. Vi anmäler hot och andra olagligheter till polisen.
+%p.todo 
+  § För att kunna jobba mot spam och missbruk och felsöka problem sparar vi under en begränsad tid 
+  information om mejlet som du skickar. Vi sparar inte själva mejlet.
+%p Det här sparar vi: Din mejladress, mottagarens mejladress, klockslag, din dators ip-adress, webbläsarmodell (user agent), vilken webbsida du befinner dig på. 

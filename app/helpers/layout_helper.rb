@@ -120,7 +120,7 @@ module LayoutHelper
     unless municipality.facts.blank?
       str = %(
           <div id="municipality_facts" class="box">
-            <blockquote cite=\""#{municipality.wikipedia_page}"\" lang="sv_SE" class="wikipedia">
+            <blockquote cite="#{municipality.wikipedia_page}" lang="sv" class="wikipedia">
             #{municipality.facts}
             </blockquote>
             <p class = "wikipedia-source"> 
@@ -231,7 +231,7 @@ module LayoutHelper
       str << %(
           <tr>
             <td class = "sheet">
-              <a href = "#{event_path event}" title = "#{event.subject}. #{event.intro}">
+              <a href = "#{event_path event}" title = "#{h event.subject}. #{h event.intro}">
                 <div class = "calendar_day">
                   <div class = "weekday">
                     #{l(event.start_datetime, :format => :abbr_day_of_week)}
@@ -246,8 +246,8 @@ module LayoutHelper
               </a>
             </td>
             <td class = "event">
-              <a href = "#{event_path(event)}" title = "#{event.intro}">
-                Kl #{l(event.start_datetime, :format => :time)}: #{event.subject} (#{event.category.name}). #{event.municipality_short}. #{event.organizer.name}.
+              <a href = "#{event_path(event)}" title = "#{h event.intro}">
+                Kl #{l(event.start_datetime, :format => :time)}: #{h event.subject} (#{h event.category.name}). #{h event.municipality_short}. #{h event.organizer.name}.
               </a>
             </td>
           </tr>

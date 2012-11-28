@@ -14,18 +14,18 @@
             .search_label
               Sök evenemang, ämne, plats, ...
                     
-        = form_tag({:action => 'index'}, :method => 'get' )            
-        = search_field_tag :q, params[:q], :placeholder => "t.ex: bio stallarholmen"   
-        = hidden_field_tag :municipality_id, params[:municipality_id]
-        = hidden_field_tag :organizer_id, params[:organizer_id]
-        = hidden_field_tag :c1_id, params[:c1_id]
-        = hidden_field_tag :c2_id, params[:c2_id]
-        = hidden_field_tag :c3_id, params[:c3_id]
-        = hidden_field_tag :start, params[:start]
-        = hidden_field_tag :stop, params[:stop]
-        = hidden_field_tag :cl, params[:cl]
-        = hidden_field_tag :ml, params[:ml]
-        
+        = form_tag({:action => 'index'}, :method => 'get' ) do           
+          = search_field_tag :q, params[:q], :placeholder => "t.ex: bio stallarholmen"   
+          = hidden_field_tag :municipality_id, params[:municipality_id]
+          = hidden_field_tag :organizer_id, params[:organizer_id]
+          = hidden_field_tag :c1_id, params[:c1_id]
+          = hidden_field_tag :c2_id, params[:c2_id]
+          = hidden_field_tag :c3_id, params[:c3_id]
+          = hidden_field_tag :start, params[:start]
+          = hidden_field_tag :stop, params[:stop]
+          = hidden_field_tag :cl, params[:cl]
+          = hidden_field_tag :ml, params[:ml]
+      
         .submit_row 
           = submit_tag "Sök", :id => :event_search     
       .three_cols
@@ -150,7 +150,7 @@
                 <meta itemprop="addressLocality" content="#{event.location}}">
       
       %p
-        = paginate @events
+      = paginate @events
       %p.todo
         - if params[:q].present? || params[:municipality_id].present? || params[:organizer_id].present? || params[:start].present? || params[:stop].present? || params[:c1_id].present? || params[:c2_id].present? || params[:c3_id].present?
           = link_to "Rensa sökningen och visa alla evenemang.", events_path  

@@ -35,7 +35,7 @@
                 <meta itemprop="performer" content="#{event.organizer.name}}">
                 <meta itemprop="addressLocality" content="#{event.location}}">
       %p 
-        = link_to "Visa alla inplanerade evenemang i #{@municipality.name}...", events_path,  :municipality_id => @municipality.id
+        = link_to "Visa alla inplanerade evenemang i #{@municipality.name}...", events_path(  :municipality_id => @municipality.id)
     - else
       %p Just nu finns det inte några evenemang inplanerade i #{@municipality.name}. 
     %p #{ link_to "Lägg in ett evenemang som sker i #{@municipality.name}...", new_event_path(:municipality_id => @municipality.id) }

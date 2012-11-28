@@ -33,7 +33,6 @@
       str =%(
             <div id="local_organizers" class="box">
               <span class="heading">Våra aktivaste arrangörer:</span>
-              <p>
                 <ul>
             )
       for organizer in organizers.first(7) 
@@ -44,8 +43,7 @@
       end
             
       str << %(
-                </ul>
-              </p>    
+                </ul>             
             </div>
               )
       raw str
