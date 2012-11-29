@@ -49,7 +49,6 @@ gem "delayed_job_web" # todo: set up passwd protection or disable
 gem 'devise-async'
 #gem 'delayed_paperclip'
 gem 'delayed_paperclip'    , '2.4.5.2', :git => 'git://github.com/tommeier/delayed_paperclip', :branch => 'fix_312'
-
   
 # Gems used only for assets and not required
 # in production environments by default.
