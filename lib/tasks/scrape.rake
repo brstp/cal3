@@ -22,7 +22,7 @@ namespace :scrape do
                 gsub(/<td colspan="2">Kommun<\/td>/, "")
       municipality.facts_last_updated = Time.now
       municipality.save!  
-    end
+        end
   end  
   
   desc "Scrape list of all municipalities fom Wikipedia"
