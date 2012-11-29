@@ -10,22 +10,16 @@ namespace :scrape do
     Municipality.all.each do |municipality|
       puts "Fetching #{municipality.name}"
       doc = Nokogiri::HTML(open(municipality.wikipedia_page))
-      municipality.facts = auto_link(sanitize( doc.at_css(".geography").
+      municipality.facts = sanitize( doc.at_css(".geography").
                 to_s.gsub(/<div.*kommunvapen.*<\/div>/, "").
                 to_s.gsub(/<div.*stadsvapen.*<\/div>/, "").
                 gsub(/\[.*\]/, ""), 
                   :tags => %w(table div tbody th tr td img br ), 
-                  :attributes => %w(class id src alt colspan)), 
-                    :urls, :rel => :nofollow).
+                  :attributes => %w(class id src alt colspan)).
                 gsub(/<img.*Portal.*/,"").
                 gsub(/<td colspan="2">.*\ stad<\/td>/, "").
                 gsub(/<td colspan="2">.*\ kommun<\/td>/, "<td class = 'municipality_name' colspan = '2'>#{municipality.name}</td>").
                 gsub(/<td colspan="2">Kommun<\/td>/, "")
-      unless doc.at_css('.mergedrow img').blank?
-        municipality.escutcheon = doc.at_css('.mergedrow img')[:src]
-      else
-        municipality.escutcheon = image_path "missing-municipality.png"
-      end
       municipality.facts_last_updated = Time.now
       municipality.save!  
     end
@@ -62,5 +56,4 @@ namespace :scrape do
     end
   end
   
-
 end

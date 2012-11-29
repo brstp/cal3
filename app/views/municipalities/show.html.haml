@@ -34,16 +34,16 @@
                 <meta itemprop="name" content="#{event.subject}}">
                 <meta itemprop="performer" content="#{event.organizer.name}}">
                 <meta itemprop="addressLocality" content="#{event.location}}">
-      %p 
+      %p.event_type 
         = link_to "Visa alla inplanerade evenemang i #{@municipality.name}...", events_path(  :municipality_id => @municipality.id)
     - else
       %p Just nu finns det inte några evenemang inplanerade i #{@municipality.name}. 
-    %p #{ link_to "Lägg in ett evenemang som sker i #{@municipality.name}...", new_event_path(:municipality_id => @municipality.id) }
 
     - unless @municipality.past_events.blank?
-      %p
+      %p.event_type 
         = link_to "Visa alla genomförda evenemang i #{@municipality.name}...", events_path(:municipality_id => @municipality.id, :to => l( Time.zone.now.beginning_of_day, :format => :date))
-            
+    %p.event_organizer #{ link_to "Lägg in ett evenemang som sker i #{@municipality.name}...", new_event_path(:municipality_id => @municipality.id) }
+                
   %aside{:role => "complementary"}
     = render 'aside_show'
 
