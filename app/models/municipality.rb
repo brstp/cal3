@@ -1,8 +1,9 @@
 # encoding: UTF-8
 class Municipality < ActiveRecord::Base
   has_many :events
-  attr_accessible :name, :short_name, :admin_no, :parent_admin_no, :facts, :wikipedia_page, :escutcheon, :last_googleboted, :facts_last_updated, :facts_last_updated, :facts_last_updated, :facts_last_updated, :facts_last_updated 
+  attr_accessible :name, :short_name, :admin_no, :parent_admin_no, :facts, :wikipedia_page, :escutcheon, :last_googleboted, :facts_last_updated, :facts_last_updated, :facts_last_updated, :facts_last_updated, :facts_last_updated, :slug
   
+  attr_accessor :url_seed
   
   validates_presence_of  :name, :short_name, :admin_no, :parent_admin_no
   validates_length_of :name, :in => 5..40
@@ -11,7 +12,7 @@ class Municipality < ActiveRecord::Base
   default_scope :order => 'name ASC'
   
   extend FriendlyId
-  friendly_id :name, :use => :history
+  friendly_id :name, :use => [:slugged, :history]
 
   
   def to_s
