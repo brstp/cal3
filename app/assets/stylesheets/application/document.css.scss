@@ -949,7 +949,7 @@ p.article_meta {
   border: solid 1px $lightergrey;
   @include border-radius;
   padding: 0 0.5em 0 0.5em;
-  margin: 1em 0 1em 0;
+  margin-top: 1.5em;
   -webkit-box-sizing : border-box;
   -moz-box-sizing : border-box;
   width: 100%;
@@ -970,14 +970,11 @@ p.article_meta {
     background-color: $allom_red;
     @include border-radius;
   }
-}
 
-.search_box {
-  //border: solid 1px red;
   @include font-size(12);
   float: left;
   width: 100%;
-  margin: 0.5em 0 0.5em 0;
+  margin: 1.5em 0 1em 0;
   @include clearfix;
   form input[type="submit"] {
     @include clearfix;
@@ -1000,6 +997,7 @@ p.article_meta {
   .heading {
     @include font-size(15);
   }
+
 }
 
 
