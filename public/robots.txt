@@ -4,7 +4,11 @@
 # User-Agent: *
 # Disallow: /
 
-Sitemap: http://allom.se/sitemap.xml
+User-Agent: *
+Disallow: /
+
+#Sitemap: http://allom.se/sitemap.xml
+
 
 User-Agent: *
 Disallow: /users
