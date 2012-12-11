@@ -17,6 +17,25 @@ namespace :setup do
     ActiveRecord::Base.connection.execute 'ALTER TABLE organizers ALTER COLUMN name TYPE varchar COLLATE "sv_SE";'
   end
   
+  namespace :paperclip do
+    namespace :organizer => :environment do
+      desc "Recreate different image sizes of the organizer photo."
+      task :photo
+        Organizer.all.each do |organizer|
+          organizer.photo.reprocess!
+        end
+      end
+      
+      desc "Recreate different image sizes of the organizer logotype."
+      task :logotype
+        Organizer.all.each do |organizer|
+          organizer.logotype.reprocess!
+        end
+      end
+
+    end
+  end
+  
       
   
 end
