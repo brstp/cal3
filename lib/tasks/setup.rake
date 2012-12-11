@@ -35,6 +35,17 @@ namespace :setup do
         end
       end
     end
+    
+    namespace :event do
+      desc "Recreate different image sizes of the organizer photo."
+      task :image => :environment do
+        Event.all.each do |event|
+          puts event.subject
+          event.image1.reprocess!
+        end
+      end
+    end
+    
   end
   
       

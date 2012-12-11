@@ -113,7 +113,7 @@ class Event < ActiveRecord::Base
         :secret_access_key => ENV['S3_SECRET']
                          },
       :default_url => "missing-event.jpg",
-      :styles => {:medium => "384x216",
+      :styles => {:medium => "384x384",
                   :small => "82x46#"}
 
   process_in_background :image1

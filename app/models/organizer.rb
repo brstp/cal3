@@ -63,7 +63,7 @@ class Organizer < ActiveRecord::Base
                       :secret_access_key => ENV['S3_SECRET']},
                     :default_url => "missing-organizer.jpg", 
                     :styles => {  
-                      :medium => "360x240#" 
+                      :medium => "384x384" 
                                 }  
   process_in_background :photo    
  
