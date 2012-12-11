@@ -9,8 +9,16 @@ namespace :setup do
     else
       puts "Sorry. Didn't promote any system_admin."
     end
-    
   end
+  
+  task :heroku_collation => :environment do
+    ActiveRecord::Base.establish_connection
+    ActiveRecord::Base.connection.execute 'ALTER TABLE municipalities ALTER COLUMN name TYPE varchar COLLATE "sv_SE";'
+    ActiveRecord::Base.connection.execute 'ALTER TABLE organizers ALTER COLUMN name TYPE varchar COLLATE "sv_SE";'
+  end
+  
+      
+  
 end
 
 
