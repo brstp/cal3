@@ -18,9 +18,9 @@ namespace :setup do
   end
   
   namespace :paperclip do
-    namespace :organizer => :environment do
+    namespace :organizer do
       desc "Recreate different image sizes of the organizer photo."
-      task :photo
+      task :photo => :environment do
         Organizer.all.each do |organizer|
           puts organizer.name
           organizer.photo.reprocess!
@@ -28,13 +28,12 @@ namespace :setup do
       end
       
       desc "Recreate different image sizes of the organizer logotype."
-      task :logotype
+      task :logotype => :environment do
         Organizer.all.each do |organizer|
           puts organizer.name
           organizer.logotype.reprocess!
         end
       end
-
     end
   end
   
