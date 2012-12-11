@@ -1,37 +1,44 @@
 Evenemangskalendern Allom
 
-Kalendern för Rails 3
+# Make sure environment variables are setup
+# ALLOM_LIVE - must have a value to not request password. User is: smygtitt
+# ALLOM_DEMO - enable demo, read only mode
+# S3_SECRET
+# S3_KEY
+# WEBSOLR_URL
 
-git push #github
-git push heroku master
+# Development environment
+# GMAIL_SMTP_USER
+# GMAIL_SMTP_PASSWORD
 
-
-
-
-
-#Att göra vid uppstart
 
 
 bundle update
-rake db:migrate
+rake precompile:assets
+rake import:municipalities  
+rake import:names  
+
+git add
+git commit
+
+git push allom-prod branchname:master
+
+heroku run rake db:migrate --app
+heroku run rake setup:heroku_collation --app 
+heroku run rake sunspot:solr:reindex
+heroku run rake setup:first_admin        # b.r.stefan.pettersson@gmail.com
 
 
-. ../secrets.sh    # sourca credentials till Amazon S3 i env variables (vill inte ha dem i kodträdet)
-bundle exec rake sunspot:solr:start # or sunspot:solr:run to start in foreground         
-# Starta sökmotorn på windows. 
-rake sunspot:reindex          # Indexera om
-rake import:municipalities    # Importera kommuner med data från csv-fil. Källa: SCB. Manuellt redigerad för korrekta namn för de kommuner som heter "stad" och för korrekta gentiv-s.
+heroku run rake scrape:municipalities    
+heroku run rake scrape:update_facts      
 
+
+heroku run rake paperclip:refresh:thumbnails CLASS=Event
+heroku run rake paperclip:refresh:thumbnails CLASS=Organizer
+
+-----------------------
+  
 heroku db:push             # Kanske... ladda exempeldata från lokalt till Heroku (pull åt andra hållet)
-rake scrape:municipalities    # Hämta url:er från Wikipedia till faktasida per kommun
-rake scrape:update_facts      # Hämta faktaruta per kommun
-
-# Lägg in en första användare b.r.stefan.pettersson@gmail.com
-rake setup:first_admin        # b.r.stefan.pettersson@gmail.com
-
-rake paperclip:refresh:thumbnails CLASS=Event
-rake paperclip:refresh:thumbnails CLASS=Organizer
-
 
 Use heroku db:pull when you wish to export the contents of your Heroku app’s database. Some uses include backups, local debugging, or to move the app’s deployment location. Kom ihåg reindex av solr!
 
@@ -39,5 +46,3 @@ För att populera stage-databasen
 heroku pgbackups:restore DATABASE `heroku pgbackups:url --app allom-prod2` --app allom-stage
 heroku run rake sunspot:solr:reindex --app allom-stage
 
-ENV['ALLOM_LIVE'] skall ha värde för att inte kräva lösenord u: smygtitt
-ENV['ALLOM_DEMO'] gör demoläge (readonly)
