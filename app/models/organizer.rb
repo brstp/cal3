@@ -50,8 +50,8 @@ class Organizer < ActiveRecord::Base
                       :secret_access_key => ENV['S3_SECRET'] },
                     :default_url => "missing-organizer-logotype.png", 
                     :styles => {  
-                      :medium => "600x200", 
-                      :small => "270x90"}
+                      :medium => "256x256", 
+                      :small => "90x90"}
   process_in_background :logotype
 
   has_attached_file :photo,      
