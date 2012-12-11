@@ -22,6 +22,7 @@ namespace :setup do
       desc "Recreate different image sizes of the organizer photo."
       task :photo
         Organizer.all.each do |organizer|
+          puts organizer.name
           organizer.photo.reprocess!
         end
       end
@@ -29,6 +30,7 @@ namespace :setup do
       desc "Recreate different image sizes of the organizer logotype."
       task :logotype
         Organizer.all.each do |organizer|
+          puts organizer.name
           organizer.logotype.reprocess!
         end
       end
