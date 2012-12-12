@@ -561,6 +561,12 @@ vertical-align : top; }
   @include border-radius;
   color: white;
   }
+  
+.ui-helper-hidden-accessible {
+  left: 0;
+  position: relative;
+  color: white;
+}
 
 // 8 BANNER 		========================================================
 
