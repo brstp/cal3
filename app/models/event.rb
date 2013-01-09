@@ -20,7 +20,7 @@ class Event < ActiveRecord::Base
                   :start_date, :start_time, :stop_date, :stop_time, :phone_number, 
                   :phone_name, :email, :human_name, :category_id, :start_datetime, 
                   :stop_datetime, :image1, 
-                  :image1_caption, :image1_url, :image1_delete, :register, :price
+                  :image1_caption, :image1_url, :image1_delete, :register, :price, :organizer_id
 
 
   validates_presence_of :subject, :description, :municipality_id, :start_date, :start_time, :organizer_id, :email, :category 

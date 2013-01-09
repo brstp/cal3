@@ -257,7 +257,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
     @event = Event.find(params[:id])        # TODO Scope to only organizers I have permissions to.
     @event.updated_by_user_id = current_user.id    
     @markers = @event.to_gmaps4rails 
-    params[:event].delete :organizer_id
+    params[:event].delete :organizer_id unless current_user.is_admin?
     if @event.update_attributes(params[:event])
       OrganizerMailer.delay.changed_event_confirmation(@event, current_user)
       flash[:notice] = t 'events.flash.notice.updated'
