@@ -12,7 +12,12 @@
   = f.inputs do   
     = f.input :subject
     = f.input   :organizer_id, :as => :hidden
-    = f.input   :organizer, :collection => @organizers, :required => true, :input_html => { :disabled => true}
+    
+    - unless current_user.is_admin?
+      = f.input   :organizer, :collection => @organizers, :required => true, :input_html => { :disabled => true}
+    - else
+      = f.input   :organizer, :required => true
+      
     = @event.municipality = @event.organizer.default_municipality if (params[:municipality_id]).blank? if @event.municipality.blank?
 
     = f.input   :municipality, :required => true, :collection => Municipality.select_municipality, :include_blank => false 
