@@ -151,7 +151,12 @@ module EventsHelper
                       <p>Du är administratör för #{@event.organizer.name}.</p>
                     )
         end
-        str << %(<p>)
+        str << %(
+                      <p>
+                      #{link_to( "Lägg in en ny evenemenangsannons", new_event_path(:organizer_id => @event.organizer.id))}
+                      </p>
+                      <p>
+                )
         str <<  button_to( "Ändra evenemangsannonsen", edit_event_path(@event), :method => :get ) 
         str << %(</p><p>)
         str << button_to( "Ta bort evenemangsannonsen", @event, :confirm => "Är du säker på att du vill radera evenemangsannonsen \"#{@event.subject}\"? Det kommer inte att gå att återställa den. Du får gärna ha kvar annonser för evenemang som redan har varit.", :method => :delete )             
