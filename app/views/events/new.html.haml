@@ -3,9 +3,9 @@
     %h1= title "Ny evenemangsannons" 
     %p
       Allom pilotkör för att trimma in. Under tiden kostar det inte något att lägga upp evenemangsannonser. Du som är med och hjälper oss att utvärdera Allom nu kommer att få en rejäl bunt gratisannonser när vi börjar ta betalt.
+    - bullet_no = 0 
     - if @event.organizer_id.nil?  
       - unless @organizers.blank? 
-        - bullet_no = 0 
         %p
           Varje evenemangsannons hänger ihop med en arrangörssida. Varje arrangör på Allom har var sin arrangörssida. En arrangör kan vara du som privatperson, en förening, ett företag, en myndighet eller egentligen vilken sammanslutning som helst.
         %p
