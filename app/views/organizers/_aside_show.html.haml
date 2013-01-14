@@ -13,7 +13,7 @@
     %caption #{@organizer.s} kommande evenemang
     %tbody
       -for event in @organizer.upcoming_events
-        %tr
+        %tr{:itemscope => true, :itemtype => "http://schema.org/Event"}
           %td.sheet
             %a{:href => "#{event_path event}", :title => "#{event.subject}. #{event.intro}"}
               .calendar_day
@@ -22,6 +22,12 @@
                 .month #{l(event.start_datetime, :format => :abbr_month_of_year)}
           %td.event
             = link_to "Kl #{l(event.start_datetime, :format => :time)}: #{event.subject} (#{event.category.name}). #{event.municipality_short}.", event_path(event), :title => "#{event.intro}"
+            %meta{:itemprop => "name", :content => event.subject}
+            %meta{:itemprop => "description", :content => event.intro}
+            %meta{:itemprop => "url", :content => event_path(event, :only_path => false )}
+            %meta{:itemprop => "startDate", :content => event.start_datetime.iso8601}
+            - unless (event.start_datetime == event.stop_datetime) 
+              %meta{:itemprop => "endDate", :content => event.stop_datetime.iso8601}
 
   %p.event_type
     = link_to "#{@organizer.s} alla kommande evenemang (#{@organizer.number_of_upcoming_events})", events_path(:organizer_id => @organizer.id) 

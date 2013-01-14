@@ -41,7 +41,7 @@
     
     - unless @event.intro.blank?
       %h2{:itemprop => :description}= @event.intro
-      
+    %meta{:itemprop => :url, :content => event_path(@event, :only_path => false) }
     - # %a.call_to_action{:href => "", :title => ""}
     - #   Anmäl dig/köp biljett...
     
