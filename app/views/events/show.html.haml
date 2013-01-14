@@ -27,19 +27,23 @@
                       :alt => @event.image1_caption,
                       :class => "header_image",
                       :width => "100%")
-
+        - unless @event.image1_url.blank?
+          %meta{:itemprop => "image", :content => @event.image1.url(:small) }
         - unless @event.image1_file_name.blank? || @event.image1_caption.blank?
           .image_text
             = link_to_unless @event.image1_url.blank?, @event.image1_caption, @event.image1_url, :rel => :nofollow
     %p.category
       = @event.category.name.capitalize
     %p #{@event.duration.capitalize} i #{@event.municipality.name}
+    %meta{:itemprop => "startDate", :content => @event.start_datetime.iso8601 }
+    - unless (@event.start_datetime == @event.stop_datetime) 
+      %meta{:itemprop => "endDate", :content => @event.stop_datetime.iso8601 }
     
     - unless @event.intro.blank?
       %h2{:itemprop => :description}= @event.intro
-      
-    //%a.call_to_action{:href => "", :title => ""}
-    //  Anmäl dig/köp biljett...
+    %meta{:itemprop => :url, :content => event_path(@event, :only_path => false) }
+    - # %a.call_to_action{:href => "", :title => ""}
+    - #   Anmäl dig/köp biljett...
     
     = simple_format @event.description 
     
@@ -54,8 +58,7 @@
           %span.inline_heading
             Anmälan: 
           = @event.register
-
-      .div{:itemprop => "address", :itemscope => true, :itemtype => "http://schema.org/Place"}
+      %div{:itemprop => "location", :itemscope => true }
         - unless @event.loc_descr.blank?
           %p
             %span.inline_heading
@@ -64,8 +67,8 @@
               = @event.loc_descr
                
         - unless @event.street.blank?  
-          %p
-            %span.inline_heading{:itemprop => "address", :itemscope => true, :itemtype => "http://schema.org/PostalAddress" }
+          %p{:itemprop => "address", :itemscope => true, :itemtype => "http://schema.org/PostalAddress"}
+            %span.inline_heading
               Adress: 
             %span{:itemprop => "streetAddress"}
               = @event.street
