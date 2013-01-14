@@ -30,10 +30,10 @@
               %td.event
                 = link_to raw(event.subject + ' (' + event.category.name + ') Kl.&nbsp;' + l(event.start_datetime, :format => :time) + '. ' + event.organizer.name ) + '. ', event_path(event), :title => event.intro, :itemprop => :url
                 <meta itemprop="startDate" content="#{l(event.start_datetime, :format => :machine)}">
-                <meta itemprop="description" content="#{event.intro}}">
-                <meta itemprop="name" content="#{event.subject}}">
-                <meta itemprop="performer" content="#{event.organizer.name}}">
-                <meta itemprop="addressLocality" content="#{event.location}}">
+                <meta itemprop="description" content="#{event.intro}">
+                <meta itemprop="name" content="#{event.subject}">
+                <meta itemprop="performer" content="#{event.organizer.name}">
+                - # <meta itemprop="addressLocality" content="#{event.location}}">
       %p.event_type 
         = link_to "Visa alla inplanerade evenemang i #{@municipality.name}...", events_path(  :municipality_id => @municipality.id)
     - else
