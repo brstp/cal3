@@ -444,9 +444,7 @@ protected
   end
 
 
-  def validates_start_stop
-    return true # TODO short circuited refactor!
-    
+  def validates_start_stop  
     if errors.empty?
       if Timeliness.parse(@start_date) > Timeliness.parse(@stop_date)
         errors.add(:stop_date, I18n.t('error.messages.on_or_after', :restriction => @start_date))
