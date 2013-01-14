@@ -30,7 +30,7 @@
         .three_cols
           - unless params[:organizer_id].blank?
             .facet_organizer
-              %h5 arrangör
+              %span.heading arrangör
               %ul
                 - for row in @organizer_facet_rows
                   %li.selected_facet
@@ -38,7 +38,7 @@
                       %span.cancel_facet x
                       %span= "#{row.instance.to_s} (#{row.count.to_s})"
           .facet_column_category
-            %h5 vad/ämne
+            %span.heading vad/ämne
             %ul
               - for row in @c1_facet_rows
                 - if row.value.to_i == params[:c1_id].to_i
@@ -64,7 +64,7 @@
                   =link_to( "• • •", params.merge({:cl => params[:cl].to_i + 7}), :title => "Visa fler ämneskategorier... ")                                                
               
           .facet_column_time
-            %h5 när/datum
+            %span.heading när/datum
             %ul
               - for row in @stop_facet_rows
                 - if row.value == params[:stop]
@@ -108,7 +108,7 @@
                   =text_field_tag :to, l(Timeliness.parse(@to_date), :format => :date), :size => 11, :type => :text
                 
           .facet_column_location
-            %h5 var/ort 
+            %span.heading var/ort 
             %ul
               - for row in @municipality_facet_rows
                 - if row.value.to_i == params[:municipality_id].to_i
