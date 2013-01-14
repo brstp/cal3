@@ -1028,9 +1028,13 @@ p.article_meta {
 .three_cols{
   @include clearfix;
   width: 100%;
-  h5 {
+  .heading {
+    display: block;
+    @include font-size(12);
+    font-weight: bold;
     padding: 0;
-    margin: 0;
+    margin: $baseline 0 $baseline 0;
+
   }
   ul{
     margin: 0;
@@ -1249,6 +1253,11 @@ input.floating_button {
 
 
 aside {
+  h1 {
+    font-weight: normal;
+      @include font-size(16);
+  }
+  
   h3 {
     border: none;
     color: $grey;
