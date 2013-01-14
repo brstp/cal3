@@ -1249,6 +1249,11 @@ input.floating_button {
 
 
 aside {
+  h1 {
+    font-weight: normal;
+      @include font-size(16);
+  }
+  
   h3 {
     border: none;
     color: $grey;
