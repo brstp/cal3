@@ -116,7 +116,7 @@ class Event < ActiveRecord::Base
       :styles => {:medium => "384x384",
                   :small => "82x46#"}
 
-  process_in_background :image1
+  #process_in_background :image1
 
   def image1_url= url_str
     unless url_str.blank?
