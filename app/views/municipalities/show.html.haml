@@ -3,7 +3,8 @@
   %article.article{:role => "main"}
     %header
       %p.category Plats:
-      %h1{:itemprop => :name}Evenemangskalender för #{@municipality.name}
+      %h1 Evenemangskalender för #{@municipality.name}
+      <meta itemprop="name" content="#{@municipality.name}">
       = admin_municipality
     = draw_map @markers     
     %p
