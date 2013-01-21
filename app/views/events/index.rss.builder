@@ -18,6 +18,12 @@ xml.rss "version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/", "x
     for event in @events
         xml.item do
           description = ""
+          if params[:image]
+            description << %(
+              #{link_to(image_tag(image_path(event.image1.url(:small)),:class => "allom_image" :alt => "#{event.subject} (#{event.category.name}). #{event.organizer.name}, #{event.municipality.short_name}. #{l(event.start_datetime)}."),  events_path(event, :only_path => false), :title => "#{event.subject} (#{event.category.name}). #{event.organizer.name}, #{event.municipality.short_name}. #{l(event.start_datetime)}.", )}
+            )
+            
+          end
           organized = ""
           xml.title "#{event.start_date} #{event.subject}"
           description << %(#{event.intro} <br /> ) unless params[:mute_intro]
@@ -30,7 +36,7 @@ xml.rss "version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/", "x
             description << %(#{simple_format(event.description)} <br /> ) unless params[:mute_long]
             description << %(Sökord: #{params[:q]} <br />) unless ( params[:q].blank? || params[:mute_query] )
           end
-          xml.description description unless params[:mute_description]
+          xml.description {xml.cdata!(description)} unless params[:mute_description]
           xml.link event_url(event, :format => :html)
           xml.guid event_url(event, :isPermaLink => false)
           xml.tag!("creativeCommons:license", "http://creativecommons.org/licenses/by-sa/2.5/deed.sv")
