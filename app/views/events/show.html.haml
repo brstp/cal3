@@ -24,18 +24,18 @@
       .header_image_container
         - if @event.image1_file_size.to_i > 0 || @event.organizer.photo_file_size.to_i == 0
           = image_tag(  @event.image1.url(:medium), 
-                        :title => @event.image1_caption, 
-                        :alt => @event.image1_caption,
+                        :title => (@event.image1_caption ? @event.image1_caption : "#{@event.subject} – #{@event.intro}" ), 
+                        :alt => (@event.image1_caption ? @event.image1_caption : "#{@event.subject} – #{@event.intro}" ),
                         :class => "header_image",
                         :width => "100%")            
-          - unless @event.image1_file_size.to_i > 0 || @event.image1_caption.blank?
+          - unless @event.image1_caption.blank?
             %meta{:itemprop => "image", :content => @event.image1.url(:small) }
             .image_text
               = link_to_unless @event.image1_url.blank?, @event.image1_caption, @event.image1_url, :rel => :nofollow
         - else 
           = image_tag( @event.organizer.photo.url(:medium), 
-              :title => @event.organizer.photo_caption, 
-              :alt => @event.organizer.photo_caption,
+              :title => (@event.organizer.photo_caption.blank? ? "#{@event.subject} – #{@event.intro}" : @event.organizer.photo_caption), 
+              :alt => (@event.organizer.photo_caption.blank? ? "#{@event.subject} – #{@event.intro}" : @event.organizer.photo_caption),
               :class => "header_image",
               :width => "100%")
           - unless @event.organizer.photo_file_size.to_i > 0 || @event.organizer.photo_caption.blank?
