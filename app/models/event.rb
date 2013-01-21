@@ -32,6 +32,9 @@ class Event < ActiveRecord::Base
 
                         
   validates :image1_url, :allow_blank => true, :uri => { :format => /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix }
+  
+  validates_attachment_content_type :image1, :content_type => /image/
+  validates_attachment_size :image1, :in => 0..10.megabytes
                         
   validate :validates_start_time, :allow_blank => true
   validate :validates_start_date, :allow_blank => true
@@ -114,7 +117,7 @@ class Event < ActiveRecord::Base
                          },
       :default_url => "missing-event.jpg",
       :styles => {:medium => "384x384",
-                  :small => "82x46#"}
+                  :small => "82x55#"}
 
   #process_in_background :image1
 

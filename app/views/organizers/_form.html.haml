@@ -14,7 +14,7 @@
         = f.input :human_name
         
         %hr 
-        - unless @organizer.logotype_file_name.blank?
+        - unless @organizer.logotype_file_size.to_i == 0
           <li class="string" id="organizer_existing_logotype">
           <label for="organizer_existing_logotype">
           = t '.existing_logotype'
@@ -28,7 +28,7 @@
 
         %hr                
         
-        -  unless @organizer.photo_file_name.blank? 
+        -  unless @organizer.photo_file_size.to_i == 0
           <li class="string" id="organizer_existing_photo">
           <label for="organizer_existing_photo">
           = t '.existing_photo' 
@@ -37,6 +37,8 @@
           </li>
           = f.input :photo_delete, :as => :boolean
           = f.input :photo, :label => t('.replace_image')
+          = f.input :photo_caption
+          = f.input :photo_url
         - else 
           = f.input :photo
           = f.input :photo_caption

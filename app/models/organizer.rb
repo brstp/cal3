@@ -38,6 +38,10 @@ class Organizer < ActiveRecord::Base
   validates :email, :email => true, :allow_blank => true  
   validates :website, :allow_blank => true, :uri => { :format => /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix }
   validates :photo_url, :allow_blank => true, :uri => { :format => /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix }
+  validates_attachment_content_type :logotype, :content_type => /image/
+  validates_attachment_size :logotype, :in => 0..10.megabytes
+  validates_attachment_content_type :photo, :content_type => /image/
+  validates_attachment_size :photo, :in => 0..10.megabytes
   
   image_store = ENV["RAILS_ENV"].to_s + "/" unless ENV["RAILS_ENV"] == "production"
     
@@ -52,7 +56,7 @@ class Organizer < ActiveRecord::Base
                     :styles => {  
                       :medium => "256x256", 
                       :small => "90x90"}
-  process_in_background :logotype
+  #process_in_background :logotype
 
   has_attached_file :photo,      
                     :path => "#{image_store}app/public/system/:attachment/:id/:style/:filename",
@@ -65,7 +69,7 @@ class Organizer < ActiveRecord::Base
                     :styles => {  
                       :medium => "384x384" 
                                 }  
-  process_in_background :photo    
+  #process_in_background :photo    
  
   
   def to_s
