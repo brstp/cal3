@@ -18,7 +18,7 @@ xml.rss "version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/", "x
     for event in @events
         xml.item do
           description = ""
-          if params[:image]
+          if params[:image] && event.image1_file_size
             description << %(
               #{link_to(image_tag(image_path(event.image1.url(:small)),:class => "allom_image" :alt => "#{event.subject} (#{event.category.name}). #{event.organizer.name}, #{event.municipality.short_name}. #{l(event.start_datetime)}."),  events_path(event, :only_path => false), :title => "#{event.subject} (#{event.category.name}). #{event.organizer.name}, #{event.municipality.short_name}. #{l(event.start_datetime)}.", )}
             )

@@ -18,7 +18,10 @@ sv-SE:
         photo_url: "Bildlänk"
         photo_delete: "Radera bilden, bildtext och länk"
         logotype_delete: "Radera logotypen"
-
+        photo_file_size: "Bildens storlek"
+        photo_content_type: "Bildens filformat"
+        logotype_file_size: "Bildens storlek"
+        logotype_content_type: "Bildens filformat"
   organizers:
     index:
       title: "Alla arrangörssidor och deras evenemang"

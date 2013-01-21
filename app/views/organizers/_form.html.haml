@@ -37,6 +37,8 @@
           </li>
           = f.input :photo_delete, :as => :boolean
           = f.input :photo, :label => t('.replace_image')
+          = f.input :photo_caption
+          = f.input :photo_url
         - else 
           = f.input :photo
           = f.input :photo_caption
