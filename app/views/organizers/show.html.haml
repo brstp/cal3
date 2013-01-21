@@ -15,8 +15,8 @@
 
       .header_image_container
         = image_tag(  @organizer.photo.url(:medium), 
-                      :title => @organizer.photo_caption, 
-                      :alt => @organizer.photo_caption,
+                      :title => (@organizer.photo_caption.blank? ? @organizer.name : @organizer.photo_caption), 
+                      :alt => (@organizer.photo_caption.blank? ? @organizer.name : @organizer.photo_caption),
                       :class => "header_image",
                       :width => "100%")
 
