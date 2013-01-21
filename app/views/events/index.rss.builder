@@ -15,9 +15,17 @@ xml.rss "version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/", "x
     xml.description "Allom - kalendern med allt som händer innan det är för sent. Du kan själv annonsera dina evenemang på Allom."
     xml.link "http://allom.se"
     xml.language 'sv-SE'
+    img_style = ""
     for event in @events
         xml.item do
           description = ""
+          if params[:img] && (event.image1_file_size.to_i > 0)
+            description << %(
+              #{link_to(image_tag(image_path(event.image1.url(:small)), :class => "allom_image", :style => "#{img_style}", :alt => "#{event.subject} (#{event.category.name}). #{event.organizer.name}, #{event.municipality.short_name}. #{l(event.start_datetime)}."),  event_url(event), :title => "#{event.subject} (#{event.category.name}). #{event.organizer.name}, #{event.municipality.short_name}. #{l(event.start_datetime)}.", )}
+            )
+            description << %( <br /> )
+            
+          end
           organized = ""
           xml.title "#{event.start_date} #{event.subject}"
           description << %(#{event.intro} <br /> ) unless params[:mute_intro]
@@ -30,7 +38,7 @@ xml.rss "version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/", "x
             description << %(#{simple_format(event.description)} <br /> ) unless params[:mute_long]
             description << %(Sökord: #{params[:q]} <br />) unless ( params[:q].blank? || params[:mute_query] )
           end
-          xml.description description unless params[:mute_description]
+          xml.description {xml.cdata!(description)} unless params[:mute_description]
           xml.link event_url(event, :format => :html)
           xml.guid event_url(event, :isPermaLink => false)
           xml.tag!("creativeCommons:license", "http://creativecommons.org/licenses/by-sa/2.5/deed.sv")

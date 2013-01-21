@@ -15,12 +15,12 @@
 
       .header_image_container
         = image_tag(  @organizer.photo.url(:medium), 
-                      :title => @organizer.photo_caption, 
-                      :alt => @organizer.photo_caption,
+                      :title => (@organizer.photo_caption.blank? ? @organizer.name : @organizer.photo_caption), 
+                      :alt => (@organizer.photo_caption.blank? ? @organizer.name : @organizer.photo_caption),
                       :class => "header_image",
                       :width => "100%")
 
-        - unless @organizer.photo_file_name.blank? || @organizer.photo_caption.blank?
+        - unless @organizer.photo_file_size.to_i == 0 || @organizer.photo_caption.blank?
           .image_text
             = link_to_unless @organizer.photo_url.blank?, @organizer.photo_caption, @organizer.photo_url, :rel => :nofollow
     %h3{:itemprop => :description}= @organizer.intro

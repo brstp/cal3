@@ -142,10 +142,10 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
       marker.json({ :id => event.id, :foo => "bar" })
     end    
     
-    @gallery =  Event.where(['stop_datetime >= ? AND image1_file_name IS NOT NULL', "#{Time.now}"]).order('updated_at DESC').offset(2).limit(9)
+    @gallery =  Event.where(['stop_datetime >= ? AND image1_file_size > 0', "#{Time.now}"]).order('updated_at DESC').offset(2).limit(9)
 
     if @gallery.count < 9
-          @gallery = @gallery +  Event.where(['stop_datetime < ? AND image1_file_name IS NOT NULL', "#{Time.now}"]).order('updated_at DESC').limit(9-@gallery.count)
+          @gallery = @gallery +  Event.where(['stop_datetime < ? AND image1_file_size > 0', "#{Time.now}"]).order('updated_at DESC').limit(9-@gallery.count)
     end
 
     @gallery.shuffle!

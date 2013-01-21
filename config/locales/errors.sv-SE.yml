@@ -24,6 +24,18 @@ sv-SE:
         body: "Det var problem med följande fält:"
       
       # The values :model, :attribute and :value are always available for interpolation
+      models:
+        event:
+          attributes:
+            image1_file_size:
+              in_between: "får inte vara större än 10 megabyte."
+              
+        organizer
+          attributes:
+            logotype_size:
+              in_between: "får inte vara större än 10 megabyte."
+            photo_size
+              in_between: "får inte vara större än 10 megabyte."
       # The value :count is available when applicable. Can be used for pluralization.
       messages:
         inclusion: "finns inte i listan"

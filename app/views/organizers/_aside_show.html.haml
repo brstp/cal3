@@ -1,4 +1,4 @@
-- unless @organizer.logotype_file_name.blank?
+- unless @organizer.logotype_file_size == 0
   = image_tag @organizer.logotype.url(:medium), :width => "100%", :class => "organizer_logotype", :alt => "#{@organizer.s} logotyp", :title => "#{@organizer.s} logotyp", :itemprop => :image
 %span.heading_label.aside_top 
   Tipsa om 

@@ -161,7 +161,7 @@ module OrganizersHelper
   
   def organizer_meta
 
-    unless @organizer.logotype_file_name.blank?
+    unless @organizer.logotype_file_size.to_i == 0
       organizer_logo =  image_path(@organizer.logotype.url(:medium))
     else
       organizer_logo = "http://allom.se" + image_path("evenemang-allom-evenemangskalendern.png") 
