@@ -69,8 +69,8 @@ users/avatars/thumb/missing.png: users/avatars/thumb/missing-338c50b64444a5f611f
 users/avatars/thumb/missing/index.png: users/avatars/thumb/missing-338c50b64444a5f611f79367f6c4e4ad.png
 warning_sign.png: warning_sign-1df1de2569a552533698e58d9376f9cc.png
 warning_sign/index.png: warning_sign-1df1de2569a552533698e58d9376f9cc.png
-application.js: application-cde6089b57361cf99176449f99528a13.js
-application/index.js: application-cde6089b57361cf99176449f99528a13.js
+application.js: application-2fe4babdf1790d4a42c5bc50d4719e9d.js
+application/index.js: application-2fe4babdf1790d4a42c5bc50d4719e9d.js
 application.css: application-a3f11f7c3c3c0505fa693c07e8abac3b.css
 application/index.css: application-a3f11f7c3c3c0505fa693c07e8abac3b.css
 rss.gif: rss-5faa68b6a0836d2cf4cbcc4ee20dc0cc.gif
@@ -103,3 +103,5 @@ jquery-ui/ui-icons_888888_256x240.png: jquery-ui/ui-icons_888888_256x240-8040cfc
 jquery-ui/ui-icons_888888_256x240/index.png: jquery-ui/ui-icons_888888_256x240-8040cfcc88792375b7788feb59189eef.png
 jquery-ui/ui-icons_cd0a0a_256x240.png: jquery-ui/ui-icons_cd0a0a_256x240-d4a62216bf6f0cd0071149890763a5ff.png
 jquery-ui/ui-icons_cd0a0a_256x240/index.png: jquery-ui/ui-icons_cd0a0a_256x240-d4a62216bf6f0cd0071149890763a5ff.png
+jquery.min.map: jquery.min-959a5819c76e1508f5a8655c289c0de8.map
+jquery/index.min.map: jquery.min-959a5819c76e1508f5a8655c289c0de8.map
