@@ -37,7 +37,7 @@ sv-SE:
         organizer: "Kan inte ändras. Om du ändå vill ändra så får du radera evenemanget och skapa ett nytt."
         price: "Vad kostar det att delta?"
         register: "Berätta om besökarna ska anmäla sig, i så fall hur. Före något visst datum?"
-        start_date: "Exempel: 2009-02-21"
+        start_date: "Exempel: 2013-05-17"
         start_time: "Exempel: 14.30"
         stop_date: "Du kan lämna fältet tomt om evenemanget inte pågår över flera dygn."
         stop_time: "Om du inte kan ange något sluttid, skriv samma som starttiden eller lämna fältet tomt. Då anger vi inte någon sluttid i evenemangsannonsen."
