@@ -11,47 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121107104606) do
+ActiveRecord::Schema.define(:version => 20130124103500) do
 
   create_table "almanac_days", :force => true do |t|
-    t.integer  "day"
-    t.integer  "month"
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer   "day"
+    t.integer   "month"
+    t.string    "name"
+    t.timestamp "created_at", :null => false
+    t.timestamp "updated_at", :null => false
   end
 
   add_index "almanac_days", ["day"], :name => "index_almanac_days_on_day"
   add_index "almanac_days", ["month"], :name => "index_almanac_days_on_month"
-
-  create_table "bup_users", :force => true do |t|
-    t.string    "email"
-    t.string    "encrypted_password",   :limit => 128, :default => ""
-    t.string    "password_salt",                       :default => ""
-    t.string    "reset_password_token"
-    t.string    "remember_token"
-    t.timestamp "remember_created_at"
-    t.integer   "sign_in_count",                       :default => 0
-    t.timestamp "current_sign_in_at"
-    t.timestamp "last_sign_in_at"
-    t.string    "current_sign_in_ip"
-    t.string    "last_sign_in_ip"
-    t.string    "confirmation_token"
-    t.timestamp "confirmed_at"
-    t.timestamp "confirmation_sent_at"
-    t.integer   "failed_attempts",                     :default => 0
-    t.string    "unlock_token"
-    t.timestamp "locked_at"
-    t.string    "authentication_token"
-    t.string    "first_name"
-    t.string    "last_name"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.boolean   "is_admin",                            :default => false
-    t.string    "invitation_token",     :limit => 20
-    t.timestamp "invitation_sent_at"
-    t.text      "invitor"
-  end
 
   create_table "categories", :force => true do |t|
     t.string    "name"
@@ -64,17 +35,17 @@ ActiveRecord::Schema.define(:version => 20121107104606) do
   add_index "categories", ["ancestry"], :name => "index_categories_on_ancestry"
 
   create_table "delayed_jobs", :force => true do |t|
-    t.integer  "priority",   :default => 0
-    t.integer  "attempts",   :default => 0
-    t.text     "handler"
-    t.text     "last_error"
-    t.datetime "run_at"
-    t.datetime "locked_at"
-    t.datetime "failed_at"
-    t.string   "locked_by"
-    t.string   "queue"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer   "priority",   :default => 0
+    t.integer   "attempts",   :default => 0
+    t.text      "handler"
+    t.text      "last_error"
+    t.timestamp "run_at"
+    t.timestamp "locked_at"
+    t.timestamp "failed_at"
+    t.string    "locked_by"
+    t.string    "queue"
+    t.timestamp "created_at",                :null => false
+    t.timestamp "updated_at",                :null => false
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
@@ -85,59 +56,59 @@ ActiveRecord::Schema.define(:version => 20121107104606) do
   end
 
   create_table "events", :force => true do |t|
-    t.string    "subject"
-    t.string    "intro"
-    t.text      "description"
-    t.timestamp "start_datetime"
-    t.timestamp "stop_datetime"
-    t.string    "street"
-    t.string    "loc_descr"
-    t.float     "lat"
-    t.float     "lng"
-    t.integer   "municipality_id"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.integer   "organizer_id"
-    t.string    "phone_number"
-    t.string    "phone_name"
-    t.string    "email"
-    t.string    "human_name"
-    t.integer   "event_id"
-    t.integer   "category_id"
-    t.integer   "counter",             :default => 0
-    t.string    "image1_file_name"
-    t.string    "image1_content_type"
-    t.integer   "image1_file_size"
-    t.timestamp "image1_updated_at"
-    t.string    "image2_file_name"
-    t.string    "image2_content_type"
-    t.integer   "image2_file_size"
-    t.timestamp "image2_updated_at"
-    t.string    "image3_file_name"
-    t.string    "image3_content_type"
-    t.integer   "image3_file_size"
-    t.timestamp "image3_updated_at"
-    t.integer   "created_by_user_id"
-    t.integer   "updated_by_user_id"
-    t.string    "slug"
-    t.string    "image1_caption"
-    t.string    "image1_url"
-    t.string    "image2_caption"
-    t.string    "image2_url"
-    t.string    "image3_caption"
-    t.string    "image3_url"
-    t.timestamp "last_googleboted"
-    t.string    "price"
-    t.string    "register"
+    t.string   "subject"
+    t.string   "intro"
+    t.text     "description"
+    t.datetime "start_datetime"
+    t.datetime "stop_datetime"
+    t.string   "street"
+    t.string   "loc_descr"
+    t.float    "lat"
+    t.float    "lng"
+    t.integer  "municipality_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "organizer_id"
+    t.string   "phone_number"
+    t.string   "phone_name"
+    t.string   "email"
+    t.string   "human_name"
+    t.integer  "event_id"
+    t.integer  "category_id"
+    t.integer  "counter",             :default => 0
+    t.string   "image1_file_name"
+    t.string   "image1_content_type"
+    t.integer  "image1_file_size"
+    t.datetime "image1_updated_at"
+    t.integer  "created_by_user_id"
+    t.integer  "updated_by_user_id"
+    t.string   "slug"
+    t.string   "image1_caption"
+    t.string   "image1_url"
+    t.datetime "last_googleboted"
+    t.string   "price"
+    t.string   "register"
+    t.string   "image2_file_name"
+    t.string   "image2_content_type"
+    t.integer  "image2_file_size"
+    t.datetime "image2_updated_at"
+    t.string   "image2_caption"
+    t.string   "image2_url"
+    t.string   "image3_caption"
+    t.string   "image3_url"
+    t.string   "image3_file_name"
+    t.string   "image3_content_type"
+    t.integer  "image3_file_size"
+    t.datetime "image3_updated_at"
   end
 
   add_index "events", ["slug"], :name => "index_events_on_slug", :unique => true
 
   create_table "friendly_id_slugs", :force => true do |t|
-    t.string   "slug",                         :null => false
-    t.integer  "sluggable_id",                 :null => false
-    t.string   "sluggable_type", :limit => 40
-    t.datetime "created_at"
+    t.string    "slug",                         :null => false
+    t.integer   "sluggable_id",                 :null => false
+    t.string    "sluggable_type", :limit => 40
+    t.timestamp "created_at"
   end
 
   add_index "friendly_id_slugs", ["slug", "sluggable_type"], :name => "index_friendly_id_slugs_on_slug_and_sluggable_type", :unique => true
@@ -242,38 +213,38 @@ ActiveRecord::Schema.define(:version => 20121107104606) do
   add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
 
   create_table "users", :force => true do |t|
-    t.string   "email"
-    t.string   "encrypted_password",                   :default => ""
-    t.string   "password_salt",                        :default => ""
-    t.string   "reset_password_token"
-    t.string   "remember_token"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                        :default => 0
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.string   "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
-    t.integer  "failed_attempts",                      :default => 0
-    t.string   "unlock_token"
-    t.datetime "locked_at"
-    t.string   "authentication_token"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "is_admin",                             :default => false
-    t.string   "invitation_token",       :limit => 20
-    t.datetime "invitation_sent_at"
-    t.integer  "invited_by_id"
-    t.boolean  "name_required"
-    t.datetime "reset_password_sent_at"
-    t.datetime "invitation_accepted_at"
-    t.integer  "invitation_limit"
-    t.string   "invited_by_type"
-    t.string   "unconfirmed_email"
+    t.string    "email"
+    t.string    "encrypted_password",                   :default => ""
+    t.string    "password_salt",                        :default => ""
+    t.string    "reset_password_token"
+    t.string    "remember_token"
+    t.timestamp "remember_created_at"
+    t.integer   "sign_in_count",                        :default => 0
+    t.timestamp "current_sign_in_at"
+    t.timestamp "last_sign_in_at"
+    t.string    "current_sign_in_ip"
+    t.string    "last_sign_in_ip"
+    t.string    "confirmation_token"
+    t.timestamp "confirmed_at"
+    t.timestamp "confirmation_sent_at"
+    t.integer   "failed_attempts",                      :default => 0
+    t.string    "unlock_token"
+    t.timestamp "locked_at"
+    t.string    "authentication_token"
+    t.string    "first_name"
+    t.string    "last_name"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.boolean   "is_admin",                             :default => false
+    t.string    "invitation_token",       :limit => 20
+    t.timestamp "invitation_sent_at"
+    t.integer   "invited_by_id"
+    t.boolean   "name_required"
+    t.timestamp "reset_password_sent_at"
+    t.timestamp "invitation_accepted_at"
+    t.integer   "invitation_limit"
+    t.string    "invited_by_type"
+    t.string    "unconfirmed_email"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
