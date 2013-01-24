@@ -11,7 +11,7 @@ class Event < ActiveRecord::Base
   belongs_to :organizer
   belongs_to :category
 
-  before_validation :merge_start, :merge_stop
+  after_validation :merge_date_times
   before_save :destroy_image1?
   #after_validation :consider_fetch
  
@@ -39,12 +39,7 @@ class Event < ActiveRecord::Base
   
   validates_attachment_content_type :image1, :content_type => /image/
   validates_attachment_size :image1, :in => 0..10.megabytes
-                        
-  #validate :validates_start_time, :allow_blank => true
-  #validate :validates_start_date, :allow_blank => true
-  #validate :validates_stop_time, :allow_blank => true
-  #validate :validates_stop_date, :allow_blank => true
-  #validate :validates_start_stop, :allow_blank => true
+  validate :validates_start_stop, :allow_blank => true
   validate :validates_phone_details
   validates :phone_number, :phone => true
   validates :email, :email => true
@@ -326,78 +321,62 @@ class Event < ActiveRecord::Base
   
   def start_date
     return I18n.localize(@start_date, :format => :date) if @start_date.present?
-    return I18n.localize(@start_datetime, :format => :date) if @start_datetime.present?
-    return ""
+    return I18n.localize(self.start_datetime, :format => :date) if self.start_datetime.present?
   end
   
   def start_time
     return I18n.localize(@start_time, :format => :time) if @start_time.present?
-    return I18n.localize(@start_datetime, :format => :time) if @start_datetime.present?
-    return ""
+    return I18n.localize(self.start_datetime, :format => :time) if self.start_datetime.present?
   end 
   
+  
   def start_date=(new_date)
-    @start_date = self.string_to_datetime(new_date, I18n.t('date.formats.default'))
+    @start_date = Timeliness.parse(new_date)
   end
   
+  
   def start_time=(new_time)
-    @start_time = self.string_to_datetime(new_time, I18n.t('time.formats.time'))
+      @start_time = Timeliness.parse(new_time)  
   end
+
 
   def stop_date
     return I18n.localize(@stop_date, :format => :date) if @stop_date.present?
-    return I18n.localize(@stop_datetime, :format => :date) if @stop_datetime.present?
-    return I18n.localize(@start_datetime, :format => :date) if @start_datetime.present?
+    return I18n.localize(self.stop_datetime, :format => :date) if self.stop_datetime.present?
+    return I18n.localize(self.start_datetime, :format => :date) if self.start_datetime.present?
     return ""
   end
   
   def stop_time
     return I18n.localize(@stop_time, :format => :time) if @stop_time.present?
-    return I18n.localize(@stop_datetime, :format => :time) if @stop_datetime.present?
-    return I18n.localize(@start_datetime, :format => :time) if @start_datetime.present?
+    return I18n.localize(self.stop_datetime, :format => :time) if self.stop_datetime.present?
+    return I18n.localize(self.start_datetime, :format => :time) if self.start_datetime.present?
     return ""
   end 
   
   
   def stop_date=(new_date)
-    @stop_date = self.string_to_datetime(new_date, I18n.t('date.formats.default'))
+    @stop_date = Timeliness.parse(new_date)
   end
   
   
   def stop_time=(new_time)
-    @stop_time = self.string_to_datetime(new_time, I18n.t('time.formats.time'))
+    @stop_time = Timeliness.parse(new_time)
   end
 
 
 protected
 
-  def string_to_datetime(value, format)
-    return value unless value.is_a?(String)
   
-    begin
-      DateTime.strptime(value, format)
-    rescue ArgumentError
-      nil
-    end
-  end
-
-  def merge_start
+  def merge_date_times
     if @start_date.present? && @start_time.present?
-      self.start_datetime = DateTime.new(@start_date.year, @start_date.month, @start_date.day, @start_time.hour, @start_time.min)
+      self.start_datetime = DateTime.new(@start_date.year, @start_date.month, @start_date.day, @start_time.hour, @start_time.min, 0, Time.zone.formatted_offset )
+      @stop_date = @start_date if @stop_date.blank? 
+      @stop_time = @start_time if @stop_time.blank?
+      self.stop_datetime = DateTime.new(@stop_date.year, @stop_date.month, @stop_date.day, @stop_time.hour, @stop_time.min, 0, Time.zone.formatted_offset )
     end
-  end
+  end  
 
-  def merge_stop
-    if @stop_date.present? && @stop_time.present?
-      self.stop_datetime = DateTime.new(@stop_date.year, @stop_date.month, @stop_date.day, @stop_time.hour, @stop_time.min)
-    else
-      if @start_date.present? && stop_time.present?
-        self.stop_datetime = DateTime.new(@start_date.year, @start_date.month, @start_date.day, @stop_time.hour, @stop_time.min)
-      else
-        self.stop_datetime = DateTime.new(@start_date.year, @start_date.month, @start_date.day, @start_time.hour, @start_time.min)
-      end
-    end
-  end
 
   def destroy_image1?
     if (@image1_delete == "1" )
@@ -408,12 +387,12 @@ protected
   end
   
   def validates_start_stop  
-    if errors.empty?
+    if errors.empty? && @start_date.present? && @start_time.present? && @stop_date.present? && @stop_time.present?
       if @start_date > @stop_date
-        errors.add(:stop_date, I18n.t('error.messages.on_or_after', :restriction => @start_date))
+        errors.add(:stop_date, I18n.t('error.messages.on_or_after', :restriction => I18n.localize(@start_date, :format => :date)))
       else
         if (@start_date == @stop_date) && (@start_time > @stop_time)
-          errors.add(:stop_time, I18n.t('error.messages.on_or_after', :restriction => @start_time))
+          errors.add(:stop_time, I18n.t('error.messages.on_or_after', :restriction => I18n.l(@start_time, :format => :time)))
         end
       end
     end
