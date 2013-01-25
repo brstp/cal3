@@ -6,11 +6,13 @@ namespace :tidy do
       puts "#{event.id} -- #{event.subject}"
       if event.image2.exists?
         puts "removing image2"
-        event.image2.detroy
+        event.image2.destroy
+        event.save
       end
       if event.image3.exists?
         puts "removing image3"
-        event.image3.destroy
+        event.image3.clear
+        event.save
       end
       puts "----------------------"
     end
