@@ -24,7 +24,7 @@ namespace :devdata do
       puts event.stop_datetime
       event.save!( :validate => true )
       puts "----------------------"
-      sleep 2
+      #sleep 2
     end
   end
 
