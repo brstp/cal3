@@ -22,8 +22,6 @@ class Event < ActiveRecord::Base
                   :phone_number, :phone_name, :email, :human_name, 
                   :category_id, 
                   :image1, :image1_caption, :image1_url, :image1_delete, 
-                  :image2, :image2_caption, :image2_url,
-                  :image3, :image3_caption, :image3_url,
                   :register, :price, :organizer_id, 
                   :start_date, :start_time, :start_datetime,
                   :stop_date, :stop_time, :stop_datetime
@@ -119,31 +117,6 @@ class Event < ActiveRecord::Base
       :default_url => "missing-event.jpg",
       :styles => {:medium => "384x384",
                   :small => "82x55#"}
-
-  has_attached_file :image2,
-      :storage => :s3,
-      :bucket => 'static.allom.se',
-      :path => "#{image_store}app/public/system/:attachment/:id/:style/:filename",
-      :s3_credentials => {
-        :access_key_id => ENV['S3_KEY'],
-        :secret_access_key => ENV['S3_SECRET']
-                         },
-      :default_url => "missing-event.jpg",
-      :styles => {:medium => "384x384",
-                  :small => "82x55#"}
-                  
-  has_attached_file :image3,
-      :storage => :s3,
-      :bucket => 'static.allom.se',
-      :path => "#{image_store}app/public/system/:attachment/:id/:style/:filename",
-      :s3_credentials => {
-        :access_key_id => ENV['S3_KEY'],
-        :secret_access_key => ENV['S3_SECRET']
-                         },
-      :default_url => "missing-event.jpg",
-      :styles => {:medium => "384x384",
-                  :small => "82x55#"}                  
-
 
   #process_in_background :image1
 
