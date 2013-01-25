@@ -30,7 +30,7 @@ sv-SE:
         category: "Ämneskategori"
         image1_caption: "Bildtext"
         image1_url: "Bildlänk"
-        image1_delete: "Radera bilden, bildtext och länk"
+        image1_delete: "Radera bilden, bildtext och länk. Använd standardbild."
         image1_file_size: "Bildens storlek"
         image1_content_type: "Bildens filformat"
 

@@ -15,4 +15,17 @@ namespace :devdata do
       puts "----------------------"
     end
   end
+  
+  desc "revalidate all events"
+  task :revalidate => :environment do
+    for event in Event.all
+      puts event.id
+      puts event.start_datetime
+      puts event.stop_datetime
+      event.save!( :validate => true )
+      puts "----------------------"
+      sleep 2
+    end
+  end
+
 end
