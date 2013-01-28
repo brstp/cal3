@@ -370,10 +370,10 @@ protected
   
   def merge_date_times
     if @start_date.present? && @start_time.present?
-      self.start_datetime = DateTime.new(@start_date.year, @start_date.month, @start_date.day, @start_time.hour, @start_time.min, 0, Time.zone.formatted_offset )
+      self.start_datetime = Time.new(@start_date.year, @start_date.month, @start_date.day, @start_time.hour, @start_time.min)
       @stop_date = @start_date if @stop_date.blank? 
       @stop_time = @start_time if @stop_time.blank?
-      self.stop_datetime = DateTime.new(@stop_date.year, @stop_date.month, @stop_date.day, @stop_time.hour, @stop_time.min, 0, Time.zone.formatted_offset )
+      self.stop_datetime = Time.new(@stop_date.year, @stop_date.month, @stop_date.day, @stop_time.hour, @stop_time.min)
     end
   end  
 
