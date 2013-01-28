@@ -111,12 +111,12 @@ module EventsHelper
     title = title + " | " + l( @event.start_datetime, :format => :mini) if @event.start_date == @event.stop_date
     set_meta_tags( 
       :title => title,
-      :description => "#{@event.intro.blank? ? @event.description.truncate(100) : @event.intro}. Arrangör: #{@event.organizer.name}.",
+      :description => "#{@event.intro.blank? ? @event.description.truncate(100) : @event.intro} Arrangör: #{@event.organizer.name}.",
       :canonical => "http://allom.se" + event_path(@event).split(".")[0],
       :open_graph => {
         :title => @event.subject,
         :type  => :activity,
-        :description => "#{@event.intro.blank? ? @event.description.truncate(100) : @event.intro}. Arrangör: #{@event.organizer.name}.",
+        :description => "#{I18n.l(@event.start_datetime, :format => :date)} – #{@event.intro.blank? ? @event.description.truncate(100) : @event.intro}. Arrangör: #{@event.organizer.name}.",
         :url   => "http://allom.se" + event_path(@event) ,
         :image => icon,
         :site_name => "Allom - evenemangskalendern",
