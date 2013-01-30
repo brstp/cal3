@@ -12,6 +12,8 @@
       
       %p.category Arrangör:
       %h1{:itemprop => :name}= @organizer.name
+      .user_message
+        =link_to "Rekommendera #{@organizer.s} evenemang på din arrangörssida ...", new_syndication_path(:syndicated_organizer_id => @organizer.id)
 
       .header_image_container
         = image_tag(  @organizer.photo.url(:medium), 
@@ -26,11 +28,11 @@
     %h3{:itemprop => :description}= @organizer.intro
     = simple_format @organizer.description 
    
-    - unless @organizer.syndicated_events.blank?
-      %h6 Visar #{@organizer.syndicated_events.count} evenemang
+    - unless @syndicated_events.blank?
+      %h6 Visar #{@syndicated_events.count} rekommenderade evenemang
       %table.mini_calendar
         %tbody
-          - for event in @organizer.syndicated_events.limit 30
+          - for event in @syndicated_events
             %tr{:itemscope => true, :itemtype => "http://schema.org/Event"}
               %td.sheet
                 <a href='#{event_path event}' title='#{event.subject}. #{event.intro}'>

@@ -31,7 +31,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
     
     
     @events = @organizer.upcoming_events #.paginate :page => params[:page], :per_page => 10
-    
+    @syndicated_events = @organizer.syndicated_events
     @markers = @organizer.events.to_gmaps4rails do |event, marker|
       marker.infowindow "<div class=\"info_window\"> <h1>#{event.subject}</h1> <p>Kategori: #{event.category.name.capitalize} </p><p>#{event.short_duration.capitalize} </p></div>"
       marker.picture map_marker(event)

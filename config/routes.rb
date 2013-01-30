@@ -2,7 +2,7 @@ Cal3::Application.routes.draw do
 
 
   
-  resources :syndications
+  resources :syndications, :except => [:edit, :show]
 
 
   resources :almanac_days

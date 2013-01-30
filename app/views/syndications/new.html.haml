@@ -1,5 +1,12 @@
-%h1 New syndication
+%h1= title "Visa en annan arrangörs evenemang på min arrangörssida"
 
-= render 'form'
+= semantic_form_for @syndication do |f|
+  = f.error_messages
+  = f.inputs do
+    = f.input :organizer, :required => true, :collection => @organizers, :include_blank => false
+    = f.input :syndicated_organizer, :required => true, :collection => Organizer.all, :include_blank => false
 
-= link_to 'Back', syndications_path
+  = f.actions do
+    = f.action :submit, :as => :input, :label => "Spara"
+
+= link_to 'Ångra, gå tillbaka', :back

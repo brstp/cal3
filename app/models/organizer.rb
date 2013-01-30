@@ -36,7 +36,8 @@ class Organizer < ActiveRecord::Base
             
   has_many  :syndicated_events,
             :through => :syndicated_organizers,
-            :source => :upcoming_events
+            :source => :upcoming_events,
+            :order => 'created_at ASC'
             
   default_scope :order => 'name'
 

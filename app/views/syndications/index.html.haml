@@ -5,10 +5,10 @@
   - unless @syndications.blank?
     - @syndications.each do |syndication|
       %tr
-        %td= syndication.organizer.name
+        %td= link_to syndication.organizer.name, syndication.organizer
         %td visar evenemang från
-        %td= Organizer.find(syndication.syndicated_organizer_id).name
-        %td= link_to 'Ta bort', syndication, method: :delete, data: { confirm: "Vill du sluta att visa #{Organizer.find(syndication.syndicated_organizer_id).s} evenemang?" }
+        %td= link_to syndication.syndicated_organizer.name, syndication.syndicated_organizer
+        %td= link_to raw('Ta&nbsp;bort'), syndication, method: :delete, data: { confirm: "Vill du sluta att visa #{syndication.syndicated_organizer.s} evenemang på #{syndication.organizer.s} arrangörssida?" }
 
 %br
 

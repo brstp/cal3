@@ -1,0 +1,9 @@
+sv-SE:
+  activerecord:
+    models:
+      syndication: 'Andra arrangörers evenemang'
+    attributes:
+      syndication:
+        organizer: "Din arrangör som ska visa evenemang"
+        syndicated_organizer: "... från arrangören"
+        syndicated_organizer_id: "Arrangören du vill visa evenemang från"
