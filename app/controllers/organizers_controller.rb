@@ -31,10 +31,10 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
     
     
     @events = @organizer.upcoming_events #.paginate :page => params[:page], :per_page => 10
-    @syndicated_events = @organizer.syndicated_events.order &:start_date
+    @syndicated_events = @organizer.syndicated_events.order(&:start_date).limit 30
     @markers = (@syndicated_events.present? ? @syndicated_events : @organizer.events).to_gmaps4rails do |event, marker|
       marker.infowindow "<div class=\"info_window\"> <h1>#{event.subject}</h1> <p>Kategori: #{event.category.name.capitalize} </p><p>#{event.short_duration.capitalize} </p></div>"
-      marker.picture map_marker(event)
+      marker.picture map_marker(event, @organizer)
       marker.title   "#{event.subject} \n(#{event.category.name.capitalize}) \n#{event.short_duration.capitalize}"
       #marker.sidebar "i'm the sidebar"
       marker.json({ :id => event.id, :foo => "bar" })

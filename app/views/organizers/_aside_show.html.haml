@@ -5,8 +5,6 @@
   = @organizer.name + "!"
 = share_me
 
-%span.heading_label Kommande evenemang
-
 - unless @organizer.upcoming_events.blank?
   %h3 #{@organizer.s} kommande evenemang
   %table.mini_calendar
