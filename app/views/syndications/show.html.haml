@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Organizer:
+  = @syndication.organizer.name
+%p
+  %b Syndicated organizer:
+  = Organizer.find(@syndication.syndicated_organizer_id).name
+
+= link_to 'Edit', edit_syndication_path(@syndication)
+\|
+= link_to 'Back', syndications_path

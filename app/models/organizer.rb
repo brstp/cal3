@@ -6,6 +6,10 @@ class Organizer < ActiveRecord::Base
 
   has_many  :events,
             :dependent => :destroy
+            
+  has_many  :upcoming_events,
+            :class_name => 'Event',
+            :conditions => "events.stop_datetime > '#{Time.now}'"
   
   has_many  :memberships, 
             :dependent => :destroy
@@ -28,7 +32,7 @@ class Organizer < ActiveRecord::Base
             
   has_many  :syndicated_events,
             :through => :syndicated_organizers,
-            :source => :events
+            :source => :upcoming_events
             
   default_scope :order => 'name'
 
@@ -186,9 +190,9 @@ class Organizer < ActiveRecord::Base
     c.to_ical
   end
   
-  def upcoming_events max_no = 99999
-    self.events.find(:all, :conditions => ["stop_datetime >= '#{Time.now}'"], :order => "start_datetime ASC", :limit => max_no)   
-  end
+  #def upcoming_events max_no = 99999
+  #  self.events.find(:all, :conditions => ["stop_datetime >= '#{Time.now}'"], :order => "start_datetime ASC", :limit => max_no)   
+  #end
   
   def past_events max_no = 99999
     self.events.find(:all, :conditions => ["stop_datetime <= '#{Time.now}'"], :order => "start_datetime DESC", :limit => max_no)   
