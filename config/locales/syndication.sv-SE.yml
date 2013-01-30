@@ -4,6 +4,7 @@ sv-SE:
       syndication: 'Andra arrangörers evenemang'
     attributes:
       syndication:
-        organizer: "Din arrangör som ska visa evenemang"
+        organizer: "Din arrangör som ska rekommendera evenemang"
         syndicated_organizer: "... från arrangören"
         syndicated_organizer_id: "Arrangören du vill visa evenemang från"
+        organizer_id: "Arrangör som rekommendera"

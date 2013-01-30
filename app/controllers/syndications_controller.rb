@@ -5,9 +5,11 @@ class SyndicationsController < ApplicationController
   
   # GET /syndications
   def index
-    #@syndications = Syndication.all
-    @syndications = current_user.syndications
-
+    if current_user.is_admin?
+      @syndications = Syndication.all
+    else
+      @syndications = current_user.syndications
+    end
     respond_to do |format|
       format.html # index.html.erb
     end
@@ -18,7 +20,6 @@ class SyndicationsController < ApplicationController
     @syndication = Syndication.new
     @syndication.syndicated_organizer_id = params[:syndicated_organizer_id]
     @organizers = current_user.organizers
-
     respond_to do |format|
       format.html # new.html.erb
     end
@@ -26,6 +27,9 @@ class SyndicationsController < ApplicationController
 
   # POST /syndications
   def create
+    organizer = Organizer.find(params[:syndication][:organizer_id])
+    params[:syndication].delete(:organizer_id) unless (current_user.try(:is_admin?) || current_user.authorized?(organizer)) 
+    
     @syndication = Syndication.new(params[:syndication])
 
     respond_to do |format|
@@ -40,7 +44,11 @@ class SyndicationsController < ApplicationController
 
   # DELETE /syndications/1
   def destroy
-    @syndication = Syndication.find(params[:id])
+    if current_user.is_admin?
+      @syndication = Syndication.find(params[:id])
+    else
+      @syndication = current_user.syndications.find(params[:id])
+    end
     @syndication.destroy
 
     respond_to do |format|

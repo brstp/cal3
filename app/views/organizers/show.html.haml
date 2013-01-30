@@ -36,7 +36,7 @@
       %table.mini_calendar
         %tbody
           - for event in @syndicated_events
-            %tr{:itemscope => true, :itemtype => "http://schema.org/Event"}
+            %tr
               %td.sheet
                 <a href='#{event_path event}' title='#{event.subject}. #{event.intro}'>
                 .calendar_day
@@ -46,14 +46,9 @@
                 </a>
               %td.event
                 - if event.start_datetime.beginning_of_year == Time.zone.now.beginning_of_year
-                  = link_to "#{event.subject} (#{event.category.name}). #{event.organizer.name}, #{event.municipality.short_name}. Kl #{l(event.start_datetime, :format => :time)}.", event_path(event), :title => event.intro, :itemprop => :url
+                  = link_to "#{event.subject} (#{event.category.name}). #{event.organizer.name}, #{event.municipality.short_name}. Kl #{l(event.start_datetime, :format => :time)}.", event_path(event), :title => event.intro
                 - else
-                  = link_to "#{event.subject} (#{event.category.name}). #{event.organizer.name}, #{event.municipality.short_name}.  #{l(event.start_datetime)}.", event_path(event, :only_path => false), :title => event.intro, :itemprop => :url                  
-                <meta itemprop="startDate" content="#{l(event.start_datetime, :format => :machine)}">
-                <meta itemprop="description" content="#{event.intro}">
-                <meta itemprop="name" content="#{event.subject}">
-                <meta itemprop="performer" content="#{event.organizer.name}">
-                - #<meta itemprop="addressLocality" content="#{event.location}">     
+                  = link_to "#{event.subject} (#{event.category.name}). #{event.organizer.name}, #{event.municipality.short_name}.  #{l(event.start_datetime)}.", event_path(event, :only_path => false), :title => event.intro                    
       %span.heading_label Var finns de rekommenderade evenemangen?
       = draw_map @markers  
       %p.todo

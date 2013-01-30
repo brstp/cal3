@@ -57,7 +57,7 @@ class ApplicationController < ActionController::Base
 	end
 
   def remove_admin_params
-    params[:user].delete(:is_admin) unless current_user.try(:is_admin)
+    params[:user].delete(:is_admin) unless current_user.try(:is_admin?)
   end
 
 
