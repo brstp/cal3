@@ -1,7 +1,7 @@
 %h1 Visa andra arrangörers evenemang
-%p På en arrangörssida kan du utöver egna evenrmang visa andra arrangörers evenemang. Till exempel kan en riksorganisation visa evenemang från sina lokala organisationer.
+%p På en arrangörssida kan du utöver egna evenemang visa andra arrangörers evenemang. Till exempel kan en riksorganisation visa evenemang från sina lokala organisationer.
 
-%table
+%table.general
   - unless @syndications.blank?
     - @syndications.each do |syndication|
       %tr

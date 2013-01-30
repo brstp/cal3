@@ -29,7 +29,7 @@
     = simple_format @organizer.description 
    
     - unless @syndicated_events.blank?
-      %h6 Visar #{@syndicated_events.count} rekommenderade evenemang
+      %span.heading_label #{@organizer.name} rekommenderar #{@syndicated_events.count} evenemang:
       %table.mini_calendar
         %tbody
           - for event in @syndicated_events
@@ -50,16 +50,24 @@
                 <meta itemprop="description" content="#{event.intro}">
                 <meta itemprop="name" content="#{event.subject}">
                 <meta itemprop="performer" content="#{event.organizer.name}">
-                - #<meta itemprop="addressLocality" content="#{event.location}">       
-      
-    %h3= "Var är #{@organizer.name} aktiv?"
-    = draw_map @markers  
-    %p.todo
-      = image_tag "grn-pushpin.png", :class => :marker_legend_mid_size
-      Kommande evenemang.
-    %p.todo
-      = image_tag "red-pushpin.png", :class => :marker_legend_small_size
-      Redan genomförda evenemang.
+                - #<meta itemprop="addressLocality" content="#{event.location}">     
+      %span.heading_label Var finns de rekommenderade evenemangen?
+      = draw_map @markers  
+      %p.todo
+        = image_tag "grn-pushpin.png", :class => :marker_legend_mid_size
+        Egna evenemang.
+      %p.todo
+        = image_tag "red-pushpin.png", :class => :marker_legend_small_size
+        Rekommenderade evenemang.                  
+    - else  
+      %h3= "Var är #{@organizer.name} aktiv?"
+      = draw_map @markers  
+      %p.todo
+        = image_tag "grn-pushpin.png", :class => :marker_legend_mid_size
+        Kommande evenemang.
+      %p.todo
+        = image_tag "red-pushpin.png", :class => :marker_legend_small_size
+        Redan genomförda evenemang.
 
     .event_organizer
       %span.heading_label#article_footer Kontaktinfo
