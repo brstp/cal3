@@ -17,6 +17,9 @@ class User < ActiveRecord::Base
   has_many  :applications, 
             :through => :organizers,
             :source => :petitions
+  
+  has_many  :syndications,
+            :through => :organizers
 
 
   # Include default devise modules. Others available are:

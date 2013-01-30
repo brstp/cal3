@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130124103500) do
+ActiveRecord::Schema.define(:version => 20130130064117) do
 
   create_table "almanac_days", :force => true do |t|
     t.integer   "day"
@@ -88,18 +88,6 @@ ActiveRecord::Schema.define(:version => 20130124103500) do
     t.datetime "last_googleboted"
     t.string   "price"
     t.string   "register"
-    t.string   "image2_file_name"
-    t.string   "image2_content_type"
-    t.integer  "image2_file_size"
-    t.datetime "image2_updated_at"
-    t.string   "image2_caption"
-    t.string   "image2_url"
-    t.string   "image3_caption"
-    t.string   "image3_url"
-    t.string   "image3_file_name"
-    t.string   "image3_content_type"
-    t.integer  "image3_file_size"
-    t.datetime "image3_updated_at"
   end
 
   add_index "events", ["slug"], :name => "index_events_on_slug", :unique => true
@@ -160,29 +148,29 @@ ActiveRecord::Schema.define(:version => 20130124103500) do
   add_index "municipalities", ["slug"], :name => "index_municipalities_on_slug", :unique => true
 
   create_table "organizers", :force => true do |t|
-    t.string   "name"
-    t.text     "description"
-    t.string   "website"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "logotype_file_name"
-    t.string   "logotype_content_type"
-    t.integer  "logotype_file_size"
-    t.datetime "logotype_updated_at"
-    t.string   "photo_file_name"
-    t.string   "photo_content_type"
-    t.integer  "photo_file_size"
-    t.datetime "photo_updated_at"
-    t.string   "intro"
-    t.string   "email"
-    t.string   "phone"
-    t.integer  "created_by_user_id"
-    t.integer  "updated_by_user_id"
-    t.string   "slug"
-    t.string   "photo_caption"
-    t.string   "photo_url"
-    t.datetime "last_googleboted"
-    t.string   "human_name"
+    t.string    "name"
+    t.text      "description"
+    t.string    "website"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.string    "logotype_file_name"
+    t.string    "logotype_content_type"
+    t.integer   "logotype_file_size"
+    t.timestamp "logotype_updated_at"
+    t.string    "photo_file_name"
+    t.string    "photo_content_type"
+    t.integer   "photo_file_size"
+    t.timestamp "photo_updated_at"
+    t.string    "intro"
+    t.string    "email"
+    t.string    "phone"
+    t.integer   "created_by_user_id"
+    t.integer   "updated_by_user_id"
+    t.string    "slug"
+    t.string    "photo_caption"
+    t.string    "photo_url"
+    t.timestamp "last_googleboted"
+    t.string    "human_name"
   end
 
   add_index "organizers", ["slug"], :name => "index_organizers_on_slug", :unique => true
@@ -211,6 +199,13 @@ ActiveRecord::Schema.define(:version => 20130124103500) do
 
   add_index "slugs", ["name", "sluggable_type", "sequence", "scope"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
   add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
+
+  create_table "syndications", :force => true do |t|
+    t.integer  "organizer_id"
+    t.integer  "syndicated_organizer_id"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string    "email"

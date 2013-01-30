@@ -20,7 +20,16 @@ class Organizer < ActiveRecord::Base
             :through => :petitions, 
             :source => :user  
   
-  
+  has_many  :syndications,
+            :dependent => :destroy
+            
+  has_many  :syndicated_organizers,
+            :through => :syndications
+            
+  has_many  :syndicated_events,
+            :through => :syndicated_organizers,
+            :source => :events
+            
   default_scope :order => 'name'
 
   extend FriendlyId
