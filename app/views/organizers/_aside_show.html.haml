@@ -6,10 +6,9 @@
 = share_me
 
 - if current_user
-  - unless current_user.authorized? @organizer
-    - if current_user.organizers.present?
-      .social_box.syndicate
-        = link_to "Rekommendera #{@organizer.name} på din arrangörssida på Allom.", new_syndication_path(:syndicated_organizer_id => @organizer.id)
+  - if current_user.organizers.present?
+    .social_box.syndicate
+      = link_to "Rekommendera #{@organizer.name} på din arrangörssida på Allom.", new_syndication_path(:syndicated_organizer_id => @organizer.id)
 
 
 - unless @organizer.upcoming_events.blank?

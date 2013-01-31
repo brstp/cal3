@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130130064117) do
+ActiveRecord::Schema.define(:version => 20130131060107) do
 
   create_table "almanac_days", :force => true do |t|
     t.integer   "day"
@@ -206,6 +206,10 @@ ActiveRecord::Schema.define(:version => 20130130064117) do
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
   end
+
+  add_index "syndications", ["organizer_id", "syndicated_organizer_id"], :name => "index_syndications_on_organizer_id_and_syndicated_organizer_id", :unique => true
+  add_index "syndications", ["organizer_id"], :name => "index_syndications_on_organizer_id"
+  add_index "syndications", ["syndicated_organizer_id"], :name => "index_syndications_on_syndicated_organizer_id"
 
   create_table "users", :force => true do |t|
     t.string    "email"

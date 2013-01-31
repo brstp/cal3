@@ -27,7 +27,7 @@ class SyndicationsController < ApplicationController
 
   # POST /syndications
   def create
-    organizer = Organizer.find(params[:syndication][:organizer_id])
+    organizer = Organizer.find(params[:syndication][:organizer_id]) unless organizer.blank?
     params[:syndication].delete(:organizer_id) unless (current_user.try(:is_admin?) || current_user.authorized?(organizer)) 
     
     @syndication = Syndication.new(params[:syndication])
