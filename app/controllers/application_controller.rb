@@ -20,26 +20,44 @@ class ApplicationController < ActionController::Base
 
   protected 
   
-  def map_marker event
-		if event.stop_datetime < Time.now
-      {
-        "picture" => "#{ActionController::Base.helpers.asset_path('red-pushpin.png')}",
-        "width" => 24,
-        "height" => 24,
-        "marker_anchor" => [ 16, 24]
-      }
-    else
-      {
-        "picture" => "#{ActionController::Base.helpers.asset_path('grn-pushpin.png')}",
-        "width" => 32,
-        "height" => 32,
-        "marker_anchor" => [ 10, 32]
-      }
-		end		
+  def map_marker event, organizer=nil
+    if organizer.present?
+      if organizer == event.organizer
+        {
+          "picture" => "#{ActionController::Base.helpers.asset_path('grn-pushpin.png')}",
+          "width" => 32,
+          "height" => 32,
+          "marker_anchor" => [ 10, 32]
+        }
+      else        
+        {
+          "picture" => "#{ActionController::Base.helpers.asset_path('grn-small-pushpin.png')}",
+          "width" => 24,
+          "height" => 24,
+          "marker_anchor" => [ 16, 24]
+        }  
+      end
+    else  
+  		if event.stop_datetime < Time.now
+        {
+          "picture" => "#{ActionController::Base.helpers.asset_path('red-pushpin.png')}",
+          "width" => 24,
+          "height" => 24,
+          "marker_anchor" => [ 16, 24]
+        }
+      else
+        {
+          "picture" => "#{ActionController::Base.helpers.asset_path('grn-pushpin.png')}",
+          "width" => 32,
+          "height" => 32,
+          "marker_anchor" => [ 10, 32]
+        }
+  		end
+  	end		
 	end
 
   def remove_admin_params
-    params[:user].delete(:is_admin) unless current_user.try(:is_admin)
+    params[:user].delete(:is_admin) unless current_user.try(:is_admin?)
   end
 
 

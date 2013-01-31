@@ -6,6 +6,14 @@ class Organizer < ActiveRecord::Base
 
   has_many  :events,
             :dependent => :destroy
+            
+  has_many  :upcoming_events,
+            :class_name => 'Event',
+            :conditions => "events.stop_datetime > '#{Time.now}'"
+
+  has_many  :past_events,
+            :class_name => 'Event',
+            :conditions => "events.stop_datetime < '#{Time.now}'"
   
   has_many  :memberships, 
             :dependent => :destroy
@@ -20,7 +28,17 @@ class Organizer < ActiveRecord::Base
             :through => :petitions, 
             :source => :user  
   
-  
+  has_many  :syndications,
+            :dependent => :destroy
+            
+  has_many  :syndicated_organizers,
+            :through => :syndications
+            
+  has_many  :syndicated_events,
+            :through => :syndicated_organizers,
+            :source => :upcoming_events,
+            :order => 'created_at ASC'
+            
   default_scope :order => 'name'
 
   extend FriendlyId
@@ -177,14 +195,7 @@ class Organizer < ActiveRecord::Base
     c.to_ical
   end
   
-  def upcoming_events max_no = 99999
-    self.events.find(:all, :conditions => ["stop_datetime >= '#{Time.now}'"], :order => "start_datetime ASC", :limit => max_no)   
-  end
-  
-  def past_events max_no = 99999
-    self.events.find(:all, :conditions => ["stop_datetime <= '#{Time.now}'"], :order => "start_datetime DESC", :limit => max_no)   
-  end
-  
+
   #def may_recruit? user
     # **** TODO ****
     # return true if user.blank?

@@ -2,6 +2,9 @@ Cal3::Application.routes.draw do
 
 
   
+  resources :syndications, :except => [:edit, :show]
+
+
   resources :almanac_days
 
   get "sitemap/index"

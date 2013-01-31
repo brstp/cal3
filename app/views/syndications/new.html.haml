@@ -1,0 +1,12 @@
+%h1= title "Rekommendera en annan arrangörs evenemang på min arrangörssida"
+
+= semantic_form_for @syndication do |f|
+  = f.error_messages
+  = f.inputs do
+    = f.input :organizer, :required => true, :collection => @organizers
+    = f.input :syndicated_organizer, :required => true, :collection => Organizer.all
+
+  = f.actions do
+    = f.action :submit, :as => :button, :label => "Spara"
+
+= link_to 'Ångra, gå tillbaka', :back

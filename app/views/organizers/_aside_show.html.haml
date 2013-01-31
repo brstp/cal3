@@ -5,7 +5,11 @@
   = @organizer.name + "!"
 = share_me
 
-%span.heading_label Kommande evenemang
+- if current_user
+  - if current_user.organizers.present?
+    .social_box.syndicate
+      = link_to "Rekommendera #{@organizer.name} på din arrangörssida på Allom.", new_syndication_path(:syndicated_organizer_id => @organizer.id)
+
 
 - unless @organizer.upcoming_events.blank?
   %h3 #{@organizer.s} kommande evenemang

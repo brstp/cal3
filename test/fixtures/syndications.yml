@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  organizer_id: 1
+  syndicated_organizer_id: 1
+
+two:
+  organizer_id: 1
+  syndicated_organizer_id: 1
