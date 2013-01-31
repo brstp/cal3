@@ -7,12 +7,6 @@
             = "Jobbar du för #{@organizer.name}?"
           %p
             = link_to "Ansök om att bli administratör för den här sidan.", new_petition_path( :organizer_id => @organizer.id )
-      - if current_user
-        - unless current_user.authorized? @organizer
-          - if current_user.organizers.present?
-            .user_message
-              %p Du är administratör för en annan arrangör.
-              %p= link_to "Rekommendera #{@organizer.name} på din arrangörssida.", new_syndication_path(:syndicated_organizer_id => @organizer.id)
           
       = admin_organizer
       

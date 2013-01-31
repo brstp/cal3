@@ -1,15 +1,16 @@
 %h1 Rekommendera andra arrangörers evenemang
-%p På en arrangörssida kan du utöver egna evenemang rekommendera andra arrangörers evenemang. Till exempel kan en riksorganisation rekommendera evenemang från sina lokala organisationer.
+%p På en arrangörssida kan du utöver att visa egna evenemang rekommendera andra arrangörers evenemang. Till exempel kan en riksorganisation rekommendera evenemang från sina lokala organisationer.
+%p Om du på din arrangörssida rekommenderar andra arrangörer så kan du också rekommendera er själva. Då visas era egna evenemang tillsammans med övriga rekommenderade evenemang.
 
 %table.general
   - unless @syndications.blank?
     - @syndications.each do |syndication|
       %tr
         %td= link_to syndication.organizer.name, syndication.organizer
-        %td visar evenemang från
+        %td rekommenderar evenemang från
         %td= link_to syndication.syndicated_organizer.name, syndication.syndicated_organizer
         %td= link_to raw('Ta&nbsp;bort'), syndication, method: :delete, data: { confirm: "Vill du sluta att visa #{syndication.syndicated_organizer.s} evenemang på #{syndication.organizer.s} arrangörssida?" }
 
 %br
 
-= link_to 'Lägg till en arrangör att rekommendera evenemang från', new_syndication_path
+= link_to 'Lägg till en arrangör att rekommendera evenemang från.', new_syndication_path
