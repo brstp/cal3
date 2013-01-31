@@ -7,12 +7,11 @@
             = "Jobbar du för #{@organizer.name}?"
           %p
             = link_to "Ansök om att bli administratör för den här sidan.", new_petition_path( :organizer_id => @organizer.id )
-      
+          
       = admin_organizer
       
       %p.category Arrangör:
       %h1{:itemprop => :name}= @organizer.name
-
       .header_image_container
         = image_tag(  @organizer.photo.url(:medium), 
                       :title => (@organizer.photo_caption.blank? ? @organizer.name : @organizer.photo_caption), 
@@ -26,14 +25,41 @@
     %h3{:itemprop => :description}= @organizer.intro
     = simple_format @organizer.description 
    
-    %h3= "Var är #{@organizer.name} aktiv?"
-    = draw_map @markers  
-    %p.todo
-      = image_tag "grn-pushpin.png", :class => :marker_legend_mid_size
-      Kommande evenemang.
-    %p.todo
-      = image_tag "red-pushpin.png", :class => :marker_legend_small_size
-      Redan genomförda evenemang.
+    - unless @syndicated_events.blank?
+      %span.heading_label #{@organizer.name} rekommenderar #{@syndicated_events.count} evenemang:
+      %table.mini_calendar
+        %tbody
+          - for event in @syndicated_events
+            %tr
+              %td.sheet
+                <a href='#{event_path event}' title='#{event.subject}. #{event.intro}'>
+                .calendar_day
+                  .weekday #{l(event.start_datetime, :format => :abbr_day_of_week)}
+                  .day_of_month #{l(event.start_datetime, :format => :day_of_month)}
+                  .month #{l(event.start_datetime, :format => :abbr_month_of_year)}
+                </a>
+              %td.event
+                - if event.start_datetime.beginning_of_year == Time.zone.now.beginning_of_year
+                  = link_to "#{event.subject} (#{event.category.name}). #{event.organizer.name}, #{event.municipality.short_name}. Kl #{l(event.start_datetime, :format => :time)}.", event_path(event), :title => event.intro
+                - else
+                  = link_to "#{event.subject} (#{event.category.name}). #{event.organizer.name}, #{event.municipality.short_name}.  #{l(event.start_datetime)}.", event_path(event, :only_path => false), :title => event.intro                    
+      %span.heading_label Var finns de rekommenderade evenemangen?
+      = draw_map @markers  
+      %p.todo
+        = image_tag "grn-pushpin.png", :class => :marker_legend_mid_size
+        Egna evenemang.
+      %p.todo
+        = image_tag "grn-small-pushpin.png", :class => :marker_legend_small_size
+        Rekommenderade evenemang.                  
+    - else  
+      %h3= "Var är #{@organizer.name} aktiv?"
+      = draw_map @markers  
+      %p.todo
+        = image_tag "grn-pushpin.png", :class => :marker_legend_mid_size
+        Kommande evenemang.
+      %p.todo
+        = image_tag "red-pushpin.png", :class => :marker_legend_small_size
+        Redan genomförda evenemang.
 
     .event_organizer
       %span.heading_label#article_footer Kontaktinfo
@@ -70,6 +96,7 @@
             = link_to "Ansök om att bli administratör", new_petition_path( :organizer_id => @organizer.id )
           //%li
           //  = link_to "Marknadsför arrangören"
+
             
   %aside{:role => "complementary"}
     = render 'aside_show'

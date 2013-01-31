@@ -150,6 +150,13 @@ module OrganizersHelper
                     </p>                  
                   )
         end
+        if current_user.authorized? @organizer
+          str << %(
+                  <hr>
+                  <p>#{link_to "Hantera vilka arrangörer som #{@organizer.name} rekommenderar.", syndications_path(:organizer_id => @organizer.id)}</p>
+                  )
+        end
+              
         str << %(
                   </div>
                 )

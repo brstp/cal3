@@ -39,6 +39,8 @@ favicon.png: favicon-fc0462c082e636c0c9309e7e5a1e1851.png
 favicon/index.png: favicon-fc0462c082e636c0c9309e7e5a1e1851.png
 grn-pushpin.png: grn-pushpin-bfef534a072f1ffd3062da04ca6ba32e.png
 grn-pushpin/index.png: grn-pushpin-bfef534a072f1ffd3062da04ca6ba32e.png
+grn-small-pushpin.png: grn-small-pushpin-409dcab22eda2b8ca9990d262e1e9bdd.png
+grn-small-pushpin/index.png: grn-small-pushpin-409dcab22eda2b8ca9990d262e1e9bdd.png
 ical-icon-32x32.png: ical-icon-32x32-230108f8996f0ba33b567f37d5b0816e.png
 ical-icon-32x32/index.png: ical-icon-32x32-230108f8996f0ba33b567f37d5b0816e.png
 missing-event.jpg: missing-event-a95d52f3b77861d83ae40cf96dd1e831.jpg
@@ -71,8 +73,8 @@ warning_sign.png: warning_sign-1df1de2569a552533698e58d9376f9cc.png
 warning_sign/index.png: warning_sign-1df1de2569a552533698e58d9376f9cc.png
 application.js: application-2fe4babdf1790d4a42c5bc50d4719e9d.js
 application/index.js: application-2fe4babdf1790d4a42c5bc50d4719e9d.js
-application.css: application-a3f11f7c3c3c0505fa693c07e8abac3b.css
-application/index.css: application-a3f11f7c3c3c0505fa693c07e8abac3b.css
+application.css: application-4d8c496eb826e424298ccb0879b26dd0.css
+application/index.css: application-4d8c496eb826e424298ccb0879b26dd0.css
 rss.gif: rss-5faa68b6a0836d2cf4cbcc4ee20dc0cc.gif
 rss/index.gif: rss-5faa68b6a0836d2cf4cbcc4ee20dc0cc.gif
 rss_small.gif: rss_small-9924c89c34cc5ead903850d98af481c9.gif

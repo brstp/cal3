@@ -364,7 +364,9 @@ class Event < ActiveRecord::Base
     @stop_time = Timeliness.parse(new_time)
   end
 
-
+  def future?
+    false
+  end
 protected
 
   
