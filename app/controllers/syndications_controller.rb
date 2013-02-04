@@ -19,7 +19,8 @@ class SyndicationsController < ApplicationController
   def new
     @syndication = Syndication.new
     @syndication.syndicated_organizer_id = params[:syndicated_organizer_id]
-    @organizers = current_user.organizers
+    @organizers = current_user.organizers.order(&:name)
+    @syndicated_organizers = Organizer.all(:order => "name")
     respond_to do |format|
       format.html # new.html.erb
     end
