@@ -37,6 +37,7 @@ sv-SE:
         organizer: "Kan inte ändras. Om du ändå vill ändra så får du radera evenemanget och skapa ett nytt."
         price: "Vad kostar det att delta?"
         register: "Berätta om besökarna ska anmäla sig, i så fall hur. Före något visst datum?"
+        application_url: "Länka till anmälningsformulär eller biljettförsäljning utanför Allom."
         start_date: "Exempel: 2013-05-17"
         start_time: "Exempel: 14.30"
         stop_date: "Du kan lämna fältet tomt om evenemanget inte pågår över flera dygn."

@@ -9,6 +9,7 @@ sv-SE:
         description: "Beskrivning"
         price: "Pris"
         register: "Anmälan"
+        application_url: "Länk till deltagaranmälan/biljettförsäljning"
         start_date: "Startdatum"
         start_time: "Börjar klockan"
         stop_date: "Slutdatum"
