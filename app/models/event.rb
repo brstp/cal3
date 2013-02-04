@@ -22,7 +22,7 @@ class Event < ActiveRecord::Base
                   :phone_number, :phone_name, :email, :human_name, 
                   :category_id, 
                   :image1, :image1_caption, :image1_url, :image1_delete, 
-                  :register, :price, :organizer_id, 
+                  :register, :price, :application_url, :organizer_id, 
                   :start_date, :start_time, :start_datetime,
                   :stop_date, :stop_time, :stop_datetime
 
@@ -33,10 +33,8 @@ class Event < ActiveRecord::Base
   validates_numericality_of :lat, :allow_nil => true
   validates_numericality_of :lng, :allow_nil => true
   validates_length_of :image1_caption, :in => 0..60
-
-                        
   validates :image1_url, :allow_blank => true, :uri => { :format => /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix }
-  
+  validates :application_url, :allow_blank => true, :uri => { :format => /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix }
   validates_attachment_content_type :image1, :content_type => /image/
   validates_attachment_size :image1, :in => 0..10.megabytes
   validate :validates_start_stop, :allow_blank => true

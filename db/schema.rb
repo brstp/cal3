@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130131060107) do
+ActiveRecord::Schema.define(:version => 20130204163931) do
 
   create_table "almanac_days", :force => true do |t|
     t.integer   "day"
@@ -56,38 +56,39 @@ ActiveRecord::Schema.define(:version => 20130131060107) do
   end
 
   create_table "events", :force => true do |t|
-    t.string   "subject"
-    t.string   "intro"
-    t.text     "description"
-    t.datetime "start_datetime"
-    t.datetime "stop_datetime"
-    t.string   "street"
-    t.string   "loc_descr"
-    t.float    "lat"
-    t.float    "lng"
-    t.integer  "municipality_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "organizer_id"
-    t.string   "phone_number"
-    t.string   "phone_name"
-    t.string   "email"
-    t.string   "human_name"
-    t.integer  "event_id"
-    t.integer  "category_id"
-    t.integer  "counter",             :default => 0
-    t.string   "image1_file_name"
-    t.string   "image1_content_type"
-    t.integer  "image1_file_size"
-    t.datetime "image1_updated_at"
-    t.integer  "created_by_user_id"
-    t.integer  "updated_by_user_id"
-    t.string   "slug"
-    t.string   "image1_caption"
-    t.string   "image1_url"
-    t.datetime "last_googleboted"
-    t.string   "price"
-    t.string   "register"
+    t.string    "subject"
+    t.string    "intro"
+    t.text      "description"
+    t.timestamp "start_datetime"
+    t.timestamp "stop_datetime"
+    t.string    "street"
+    t.string    "loc_descr"
+    t.float     "lat"
+    t.float     "lng"
+    t.integer   "municipality_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.integer   "organizer_id"
+    t.string    "phone_number"
+    t.string    "phone_name"
+    t.string    "email"
+    t.string    "human_name"
+    t.integer   "event_id"
+    t.integer   "category_id"
+    t.integer   "counter",             :default => 0
+    t.string    "image1_file_name"
+    t.string    "image1_content_type"
+    t.integer   "image1_file_size"
+    t.timestamp "image1_updated_at"
+    t.integer   "created_by_user_id"
+    t.integer   "updated_by_user_id"
+    t.string    "slug"
+    t.string    "image1_caption"
+    t.string    "image1_url"
+    t.timestamp "last_googleboted"
+    t.string    "price"
+    t.string    "register"
+    t.string    "application_url"
   end
 
   add_index "events", ["slug"], :name => "index_events_on_slug", :unique => true
@@ -201,10 +202,10 @@ ActiveRecord::Schema.define(:version => 20130131060107) do
   add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
 
   create_table "syndications", :force => true do |t|
-    t.integer  "organizer_id"
-    t.integer  "syndicated_organizer_id"
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
+    t.integer   "organizer_id"
+    t.integer   "syndicated_organizer_id"
+    t.timestamp "created_at",              :null => false
+    t.timestamp "updated_at",              :null => false
   end
 
   add_index "syndications", ["organizer_id", "syndicated_organizer_id"], :name => "index_syndications_on_organizer_id_and_syndicated_organizer_id", :unique => true

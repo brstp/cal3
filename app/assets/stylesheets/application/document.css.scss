@@ -410,6 +410,7 @@ a.major, a.menu {
 }
 
 a.call_to_action {
+  font-size: 1.5em;
   @include background-image( linear-gradient ($light_allom_red, $allom_red, $allom_red ) );
   background-color: $allom_red;
   &:hover, &:active {
@@ -613,6 +614,10 @@ vertical-align : top; }
 
 nav.navigation ul li a {
     text-transform: uppercase;
+  }
+
+nav.navigation ul {
+  @include no-bullets;
   }
 
 .menu_link {

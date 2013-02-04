@@ -53,9 +53,9 @@
     - unless @event.intro.blank?
       %h2{:itemprop => :description}= @event.intro
     %meta{:itemprop => :url, :content => event_path(@event, :only_path => false) }
-    - # %a.call_to_action{:href => "", :title => ""}
-    - #   Anmäl dig/köp biljett...
-    
+    - unless @event.application_url.blank?
+      = link_to "Anmäl dig/köp biljett ...", @event.application_url, :title => "Anmäl dig till aktiviteten #{@event.subject} i arrangörens system/hemsida.", :rel => :nofollow, :class => :call_to_action
+          
     = simple_format @event.description 
     
     .event_facts
