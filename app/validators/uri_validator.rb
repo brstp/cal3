@@ -11,6 +11,7 @@ class UriValidator < ActiveModel::EachValidator
     configuration.update(options)
     
     if value =~ configuration[:format]
+      return true # TODO TODO TODO Temporary fix
       begin # check header response
         case Net::HTTP.get_response(URI.parse(value))
           when Net::HTTPSuccess then true
