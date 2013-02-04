@@ -5,7 +5,8 @@ class User < ActiveRecord::Base
             :dependent => :destroy
 
   has_many  :organizers,
-            :through => :memberships
+            :through => :memberships, 
+            :order => "name"
 
   has_many  :petitions,
             :dependent => :destroy

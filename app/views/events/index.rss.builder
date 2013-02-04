@@ -37,7 +37,7 @@ xml.rss "version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/", "x
             description << %(Sökord: #{params[:q]} <br />) unless ( params[:q].blank? || params[:mute_query] )
           end
           xml.description {xml.cdata!(description)} unless params[:mute_description]
-          xml.link event_url(event, :format => :html)
+          xml.link event_url(event)
           xml.guid event_url(event, :isPermaLink => false)
           xml.tag!("creativeCommons:license", "http://creativecommons.org/licenses/by-sa/2.5/deed.sv")
           #xml.pubDate       event.created_at.to_s(:rfc822)

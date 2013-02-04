@@ -51,8 +51,8 @@ ActiveRecord::Schema.define(:version => 20130131060107) do
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
   create_table "dummies", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.timestamp "created_at", :null => false
+    t.timestamp "updated_at", :null => false
   end
 
   create_table "events", :force => true do |t|

@@ -990,7 +990,7 @@ p.article_meta {
   form input[type="submit"] {
     @include clearfix;
     font-size: 1.5em;
-    float: right;
+    /* float: right; */
     @include background-image( linear-gradient(($light_allom_red, $allom_red, $allom_red )));
     color: white;
     background-color: $allom_red;

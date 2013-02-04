@@ -4,7 +4,7 @@
   = f.error_messages
   = f.inputs do
     = f.input :organizer, :required => true, :collection => @organizers
-    = f.input :syndicated_organizer, :required => true, :collection => Organizer.all
+    = f.input :syndicated_organizer, :required => true, :collection => @syndicated_organizers
 
   = f.actions do
     = f.action :submit, :as => :button, :label => "Spara"

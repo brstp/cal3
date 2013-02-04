@@ -29,9 +29,9 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
       @mail_message.from_last_name = current_user.try :last_name
     end
     
-    
+    @syndicated_events = @organizer.syndicated_events.find(:all, :order => "start_datetime").first 30
     @events = @organizer.upcoming_events #.paginate :page => params[:page], :per_page => 10
-    @syndicated_events = @organizer.syndicated_events.order(&:start_date).limit 30
+    #@syndicated_events = nil
     @markers = (@syndicated_events.present? ? @syndicated_events : @organizer.events).to_gmaps4rails do |event, marker|
       marker.infowindow "<div class=\"info_window\"> <h1>#{event.subject}</h1> <p>Kategori: #{event.category.name.capitalize} </p><p>#{event.short_duration.capitalize} </p></div>"
       marker.picture map_marker(event, @organizer)
