@@ -616,6 +616,10 @@ nav.navigation ul li a {
     text-transform: uppercase;
   }
 
+nav.navigation ul {
+  @include no-bullets;
+  }
+
 .menu_link {
   width: 4em;
   padding-bottom: 0.3em;
