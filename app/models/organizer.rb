@@ -39,8 +39,6 @@ class Organizer < ActiveRecord::Base
             :source => :upcoming_events
             
             
-  #default_scope :order => 'name'
-
   extend FriendlyId
   friendly_id :name, :use => [:slugged, :history]
 
@@ -223,15 +221,7 @@ class Organizer < ActiveRecord::Base
   def next_event
     self.events.find(:all, :conditions => ["start_datetime >= '#{Time.now}'"], :order => "start_datetime ASC" ).first
   end
-  
-  def syn_events
-
-    return nil
     
-  # SELECT "events".* FROM "events" INNER JOIN "organizers" ON "events"."organizer_id" = "organizers"."id" INNER JOIN "syndications" ON "organizers"."id" ="syndications"."syndicated_organizer_id" WHERE "syndications"."organizer_id" = 28 AND (events.stop_datetime > '2013-02-04 14:16:16 +0100') ORDER BY start_datetime ASC LIMIT 30 
-    
-  end
-  
   protected
   
   def destroy_photo?
