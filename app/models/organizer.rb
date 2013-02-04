@@ -33,14 +33,12 @@ class Organizer < ActiveRecord::Base
             
   has_many  :syndicated_organizers,
             :through => :syndications
-            
+
   has_many  :syndicated_events,
             :through => :syndicated_organizers,
-            :source => :upcoming_events,
-            :order => 'created_at ASC'
+            :source => :upcoming_events
             
-  default_scope :order => 'name'
-
+            
   extend FriendlyId
   friendly_id :name, :use => [:slugged, :history]
 
@@ -223,7 +221,7 @@ class Organizer < ActiveRecord::Base
   def next_event
     self.events.find(:all, :conditions => ["start_datetime >= '#{Time.now}'"], :order => "start_datetime ASC" ).first
   end
-  
+    
   protected
   
   def destroy_photo?
