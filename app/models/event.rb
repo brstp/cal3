@@ -10,6 +10,9 @@ class Event < ActiveRecord::Base
   belongs_to :municipality
   belongs_to :organizer
   belongs_to :category
+  has_many   :syndicated_by_organizers,
+             :through => :organizer
+             
 
   after_validation :merge_date_times
   before_save :destroy_image1?
@@ -70,6 +73,7 @@ class Event < ActiveRecord::Base
     integer :category_id, :references => ::Category
     integer :municipality_id, :references => ::Municipality
     integer :organizer_id, :references => ::Organizer
+    integer :syndicated_by_organizer_id, :multiple => true
     integer :c1_id, :references => ::Category
     integer :c2_id, :references => ::Category
     integer :c3_id, :references => ::Category
@@ -88,6 +92,10 @@ class Event < ActiveRecord::Base
 
   def c3_id
     self.category.path_ids[3]
+  end
+  
+  def syndicated_by_organizer_id
+    return nil
   end
   
   def category1
