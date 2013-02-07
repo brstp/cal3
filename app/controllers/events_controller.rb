@@ -34,6 +34,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
         facet :c1_id, :limit => params[:cl].to_i + 6
         facet :c2_id
         facet :c3_id
+        facet :syndicated_by_organizer_ids
         
         facet :stop do
           row "today" do
@@ -114,6 +115,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
       with(:c3_id).equal_to( params[:c3_id].to_i ) unless params[:c3_id].blank?
       with(:organizer_id).equal_to( params[:organizer_id].to_i ) unless params[:organizer_id].blank?
       with(:municipality_id).equal_to( params[:municipality_id].to_i ) unless params[:municipality_id].blank?
+      with(:syndicated_by_organizer_ids).equal_to(params[:sbo_id].to_i) unless params[:sbo_id].blank?
     end
     
     
@@ -126,6 +128,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
     @c3_facet_rows = result.facet(:c3_id).rows if result.facet( :c3_id )
     @organizer_facet_rows = result.facet(:organizer_id).rows if result.facet( :organizer_id )
     @municipality_facet_rows = result.facet(:municipality_id).rows if result.facet( :municipality_id )
+    @syndicated_by_organizer_rows = result.facet(:syndicated_by_organizer_ids) if result.facet(:syndicated_by_organizer_ids)
     @events = result
      
     event_set = []
