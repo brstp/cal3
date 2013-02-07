@@ -34,10 +34,15 @@
               %span.heading arrangör
               %ul
                 - for row in @organizer_facet_rows
-                  %li.selected_facet
-                    %a{:href => url_for(params.merge({:organizer_id => nil, :page => nil})), :title => "Visa alla arrangörer..."}
-                      %span.cancel_facet x
-                      %span= "#{row.instance.to_s.capitalize} (#{row.count.to_s})"
+                  -if row.value.to_i == params[:organizer_id].to_i
+                    %li.selected_facet
+                      %a{:href => url_for(params.merge({:organizer_id => nil, :page => nil})), :title => "Visa alla arrangörer..."}
+                        %span.cancel_facet x
+                        %span= "#{row.instance.to_s} (#{row.count.to_s})"
+                  - else
+                    %li.facet_field
+                      = link_to "#{row.instance.to_s} (#{row.count.to_s})",params.merge({:organizer_id => row.instance.id, :page => nil}), :title => "Evenemang som arrangeras av #{row.instance.to_s}."
+                   
           - unless params[:sbo_id].blank?
             .facet_organizer
               %span.heading arrangör som rekommenderar
@@ -47,10 +52,10 @@
                     %li.selected_facet
                       %a{:href => url_for(params.merge({:sbo_id => nil, :page => nil})), :title => "Visa fler arrangörer som rekommenderar ..."}
                         %span.cancel_facet x
-                        %span= "#{row.instance.to_s.capitalize} (#{row.count.to_s})"
+                        %span= "#{row.instance.to_s} (#{row.count.to_s})"
                   - else
                     %li.facet_field
-                      = link_to "#{row.instance.to_s.capitalize} (#{row.count.to_s})",params.merge({:sbo_id => row.instance.id, :page => nil}), :title => "Sök evenemang som rekommenderas av #{row.instance.to_s}."
+                      = link_to "#{row.instance.to_s} (#{row.count.to_s})",params.merge({:sbo_id => row.instance.id, :page => nil}), :title => "Sök evenemang som rekommenderas av #{row.instance.to_s}."
                         
                           
                     
