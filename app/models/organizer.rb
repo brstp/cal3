@@ -33,6 +33,16 @@ class Organizer < ActiveRecord::Base
             
   has_many  :syndicated_organizers,
             :through => :syndications
+            
+  has_many  :syndications_of_me, 
+            :foreign_key => :syndicated_organizer_id,
+            :class_name => 'Syndication',
+            :dependent => :destroy
+            
+            
+  has_many  :syndicated_by_organizers,
+            :through => :syndications_of_me,
+            :source => :organizer
 
   has_many  :syndicated_events,
             :through => :syndicated_organizers,

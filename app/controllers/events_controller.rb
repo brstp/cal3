@@ -26,14 +26,9 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
       
 
       result = Event.search do
+        order_by(:start_datetime, :asc)
         keywords params[:q]
         paginate :page => params[:page]
-          
-        facet :organizer_id
-        facet :municipality_id, :limit => params[:ml].to_i + 6
-        facet :c1_id, :limit => params[:cl].to_i + 6
-        facet :c2_id
-        facet :c3_id
         
         facet :stop do
           row "today" do
@@ -66,10 +61,16 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
           row "walpurgis_night" do
             with :stop, (this_year+ 4.month + 29.day)..(this_year + 4.month + 30.day)
           end
-          
         end
 
-        order_by(:start_datetime, :asc)
+        facet :c1_id, :limit => params[:cl].to_i + 6
+        facet :c2_id
+        facet :c3_id
+
+        facet :organizer_id
+        facet :municipality_id, :limit => params[:ml].to_i + 6
+        facet :syndicated_by_organizer_ids
+
         # TODO Sök nära mig. # s.near([40,5, -72.3], :distance => 5, :sort => true)
 
 
@@ -114,19 +115,28 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
       with(:c3_id).equal_to( params[:c3_id].to_i ) unless params[:c3_id].blank?
       with(:organizer_id).equal_to( params[:organizer_id].to_i ) unless params[:organizer_id].blank?
       with(:municipality_id).equal_to( params[:municipality_id].to_i ) unless params[:municipality_id].blank?
+      with(:syndicated_by_organizer_ids).equal_to(params[:sbo_id].to_i) unless params[:sbo_id].blank?
     end
     
     
     @from_date = facet_from
     @to_date = facet_to
-    @hit_numbers = result.total
+
     @stop_facet_rows = result.facet(:stop).rows if result.facet( :stop )
     @c1_facet_rows = result.facet(:c1_id).rows if result.facet( :c1_id )
     @c2_facet_rows = result.facet(:c2_id).rows if result.facet( :c2_id )
     @c3_facet_rows = result.facet(:c3_id).rows if result.facet( :c3_id )
     @organizer_facet_rows = result.facet(:organizer_id).rows if result.facet( :organizer_id )
     @municipality_facet_rows = result.facet(:municipality_id).rows if result.facet( :municipality_id )
+    @syndicated_by_organizer_facet_rows = result.facet(:syndicated_by_organizer_ids).rows if result.facet(:syndicated_by_organizer_ids)
+    
+    logger.info "********--------"
+    logger.info @organizer_facet_rows
+    logger.info @syndicated_by_organizer_rows
+
     @events = result
+    @hit_numbers = result.total
+
      
     event_set = []
     for event in @events #TODO refactor two loops into one
