@@ -128,7 +128,11 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
     @c3_facet_rows = result.facet(:c3_id).rows if result.facet( :c3_id )
     @organizer_facet_rows = result.facet(:organizer_id).rows if result.facet( :organizer_id )
     @municipality_facet_rows = result.facet(:municipality_id).rows if result.facet( :municipality_id )
-    @syndicated_by_organizer_rows = result.facet(:syndicated_by_organizer_ids) if result.facet(:syndicated_by_organizer_ids)
+    @syndicated_by_organizer_facet_rows = result.facet(:syndicated_by_organizer_ids).rows if result.facet(:syndicated_by_organizer_ids)
+    
+    logger.info "********--------"
+    logger.info @organizer_facet_rows
+    logger.info @syndicated_by_organizer_rows
 
     @events = result
     @hit_numbers = result.total

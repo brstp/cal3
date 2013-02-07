@@ -5,7 +5,7 @@
     .search_container
       .search_box
         .search_heading
-          - unless params[:q].blank? && params[:stop].blank? && params[:start].blank? && params[:c1_id].blank? && params[:c2_id].blank? && params[:c2_id].blank? && params[:organizer_id].blank? && params[:municipality_id].blank? && params[:cl].to_i == 0 && params[:ml].to_i == 0 && @to_date.blank? && @from_date.beginning_of_day == Time.zone.now.beginning_of_day
+          - unless params[:q].blank? && params[:stop].blank? && params[:start].blank? && params[:c1_id].blank? && params[:c2_id].blank? && params[:c2_id].blank? && params[:organizer_id].blank? && params[:municipality_id].blank? && params[:cl].to_i == 0 && params[:ml].to_i == 0 && @to_date.blank? && (@from_date.beginning_of_day == Time.zone.now.beginning_of_day) && params[:sbo_id].blank?
             .search_label
               Sök evenemang, ...
             .clear_link
@@ -25,6 +25,7 @@
         = hidden_field_tag :stop, params[:stop]
         = hidden_field_tag :cl, params[:cl]
         = hidden_field_tag :ml, params[:ml]    
+        = hidden_field_tag :sbo_id, params[:sbo_id]
         .submit_row 
           = submit_tag "Sök", :id => :event_search     
         .three_cols
@@ -37,6 +38,22 @@
                     %a{:href => url_for(params.merge({:organizer_id => nil, :page => nil})), :title => "Visa alla arrangörer..."}
                       %span.cancel_facet x
                       %span= "#{row.instance.to_s.capitalize} (#{row.count.to_s})"
+          - unless params[:sbo_id].blank?
+            .facet_organizer
+              %span.heading arrangör som rekommenderar
+              %ul
+                - for row in @syndicated_by_organizer_facet_rows
+                  -if row.value.to_i == params[:sbo_id].to_i
+                    %li.selected_facet
+                      %a{:href => url_for(params.merge({:sbo_id => nil, :page => nil})), :title => "Visa fler arrangörer som rekommenderar ..."}
+                        %span.cancel_facet x
+                        %span= "#{row.instance.to_s.capitalize} (#{row.count.to_s})"
+                  - else
+                    %li.facet_field
+                      = link_to "#{row.instance.to_s.capitalize} (#{row.count.to_s})",params.merge({:sbo_id => row.instance.id, :page => nil}), :title => "Sök evenemang som rekommenderas av #{row.instance.to_s}."
+                        
+                          
+                    
           .facet_column_category
             %span.heading vad/ämne
             %ul
@@ -151,10 +168,10 @@
       %p
       = paginate @events
       %p.todo
-        - if params[:q].present? || params[:municipality_id].present? || params[:organizer_id].present? || params[:start].present? || params[:stop].present? || params[:c1_id].present? || params[:c2_id].present? || params[:c3_id].present?
+        - if params[:q].present? || params[:municipality_id].present? || params[:organizer_id].present? || params[:start].present? || params[:stop].present? || params[:c1_id].present? || params[:c2_id].present? || params[:c3_id].present? || params[:sbo_id].present?
           = link_to "Rensa sökningen och visa alla evenemang.", events_path  
     - else
-      - if params[:q].present? || params[:municipality_id].present? || params[:organizer_id].present? || params[:start].present? || params[:stop].present? || params[:c1_id].present? || params[:c2_id].present? || params[:c3_id].present?
+      - if params[:q].present? || params[:municipality_id].present? || params[:organizer_id].present? || params[:start].present? || params[:stop].present? || params[:c1_id].present? || params[:c2_id].present? || params[:c3_id].present? || params[:sbo_id].present?
         %p 
           Nej, vi hittar inga evenemang som matchar det du söker efter. Sorry. 
         %p
@@ -164,7 +181,7 @@
     %p.todo #{ link_to "Lägg in ett evenemang...", new_event_path }
 
     - if params != {"controller"=>"events", "action"=>"index"}
-      - rss_url = url_for events_path( :format => :rss, :only_path =>false, :q => params[:q], :c1_id => params[:c1_id], :c2_id => params[:c2_id], :c3_id => params[:c3_id], :municipality_id => params[:municipality_id], :organizer_id => params[:organizer_id], :stop => params[:stop], :start => params[:start], :from => params[:from], :to => params[:to], :ver => 3) 
+      - rss_url = url_for events_path( :format => :rss, :only_path =>false, :q => params[:q], :c1_id => params[:c1_id], :c2_id => params[:c2_id], :c3_id => params[:c3_id], :municipality_id => params[:municipality_id], :organizer_id => params[:organizer_id], :stop => params[:stop], :start => params[:start], :from => params[:from], :to => params[:to], :sbo_id => params[:sbo_id], :ver => 3) 
       .subscribe_container
         .subscribe_icon
           = link_to image_tag("rss-icon-32x32.png", :alt => "Flöde med alla evenemang som matchar den här sökningen", :title => "Prenumerera på RSS-flöde med Alloms evenemang som matchar den här sökningen."), rss_url

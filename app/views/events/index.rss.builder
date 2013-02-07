@@ -2,11 +2,15 @@ xml.instruct! :xml, :version => "1.0"
 xml.rss "version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/", "xmlns:creativeCommons" => "http://backend.userland.com/creativeCommonsRssModule", "xmlns:atom" => "http://www.w3.org/2005/Atom", "xmlns:geo" => "http://www.w3.org/2003/01/geo/wgs84_pos#" do
   xml.channel do
     title = "Evenemang från Allom."
-    if params[:organizer_id].present?
-      title = "#{Organizer.find(params[:organizer_id]).s} #{title} i Allom."
+    if params[:sbo_id].present?
+      title = "Evenemang som #{Organizer.find(params[:sbo_id])} rekommenderar i Allom."
     else
-      if params[:municipality_id].present?
-        title = "Evenemang i #{Municipality.find(params[:municipality_id]).name} i Allom."
+      if params[:organizer_id].present?
+        title = "#{Organizer.find(params[:organizer_id]).s} evenemang i Allom."
+      else
+        if params[:municipality_id].present?
+          title = "Evenemang i #{Municipality.find(params[:municipality_id]).name} i Allom."
+        end
       end
     end
     
@@ -34,7 +38,6 @@ xml.rss "version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/", "x
             organized << %(i kategorin #{event.category.name} ) unless params[:mute_category]
             description << %(Arrangerat #{organized}. <br />) unless organized.blank?
             description << %(#{simple_format(event.description)} <br /> ) unless params[:mute_long]
-            description << %(Sökord: #{params[:q]} <br />) unless ( params[:q].blank? || params[:mute_query] )
           end
           xml.description {xml.cdata!(description)} unless params[:mute_description]
           xml.link event_url(event)

@@ -73,7 +73,7 @@ class Event < ActiveRecord::Base
     integer :category_id, :references => ::Category
     integer :municipality_id, :references => ::Municipality
     integer :organizer_id, :references => ::Organizer
-    integer :syndicated_by_organizer_ids, :multiple => true
+    integer :syndicated_by_organizer_ids, :references => ::Organizer, :multiple => true
     integer :c1_id, :references => ::Category
     integer :c2_id, :references => ::Category
     integer :c3_id, :references => ::Category
