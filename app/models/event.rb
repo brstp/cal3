@@ -73,7 +73,7 @@ class Event < ActiveRecord::Base
     integer :category_id, :references => ::Category
     integer :municipality_id, :references => ::Municipality
     integer :organizer_id, :references => ::Organizer
-    integer :syndicated_by_organizer_id, :multiple => true
+    integer :syndicated_by_organizer_ids, :multiple => true
     integer :c1_id, :references => ::Category
     integer :c2_id, :references => ::Category
     integer :c3_id, :references => ::Category
@@ -94,8 +94,8 @@ class Event < ActiveRecord::Base
     self.category.path_ids[3]
   end
   
-  def syndicated_by_organizer_id
-    return nil
+  def syndicated_by_organizer_ids
+    return self.syndicated_by_organizers.collect(&:id)
   end
   
   def category1
