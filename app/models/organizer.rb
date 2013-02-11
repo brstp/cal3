@@ -69,29 +69,18 @@ class Organizer < ActiveRecord::Base
   validates_attachment_content_type :photo, :content_type => /image/
   validates_attachment_size :photo, :in => 0..10.megabytes
   
-  image_store = ENV["RAILS_ENV"].to_s + "/" unless ENV["RAILS_ENV"] == "production"
-    
+
   has_attached_file :logotype, 
-                    :path => "#{image_store}app/public/system/:attachment/:id/:style/:filename",
-                    :storage => :s3,
-                    :bucket => 'static.allom.se',
-                    :s3_credentials => {
-                      :access_key_id => ENV['S3_KEY'],
-                      :secret_access_key => ENV['S3_SECRET'] },
                     :default_url => "missing-organizer-logotype.png", 
+                    :path => "app/public/system/:attachment/:id/:style/:filename",
                     :styles => {  
                       :medium => "256x256", 
                       :small => "90x90"}
   #process_in_background :logotype
 
   has_attached_file :photo,      
-                    :path => "#{image_store}app/public/system/:attachment/:id/:style/:filename",
-                    :storage => :s3,
-                    :bucket => 'static.allom.se',
-                    :s3_credentials => {
-                      :access_key_id => ENV['S3_KEY'],
-                      :secret_access_key => ENV['S3_SECRET']},
                     :default_url => "missing-organizer.jpg", 
+                    :path => "app/public/system/:attachment/:id/:style/:filename",
                     :styles => {  
                       :medium => "384x384" 
                                 }  

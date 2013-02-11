@@ -18,9 +18,9 @@ gem 'kaminari'          # pagination
 gem "sunspot_with_kaminari" #, '~> 0.1'
 
 gem "cocaine", "0.3.2"
-gem "paperclip" #, "2.3.16"                    #upload and organizer images
-gem 'aws-sdk' #, '~> 1.3.4'
-
+gem "paperclip", "~> 3.0" #, "2.3.16"                    #upload and organizer images
+#gem 'aws-sdk', '~> 1.3.4'
+gem "fog"
 gem 'friendly_id'#, "~> 4.0.0"       # slugs, to make friendly urls
 
 
@@ -49,7 +49,7 @@ gem "delayed_job_web" # todo: set up passwd protection or disable
 gem 'devise-async'
 #gem 'delayed_paperclip'
 #gem 'delayed_paperclip'    , '2.4.5.2', :git => 'git://github.com/tommeier/delayed_paperclip', :branch => 'fix_312'
-gem 'delayed_paperclip', :git => 'git://github.com/tommeier/delayed_paperclip.git', :ref => '98a8b9e0c24d24c94e2c9c39a704c1b07c5c4d6b'  
+#gem 'delayed_paperclip', :git => 'git://github.com/tommeier/delayed_paperclip.git', :ref => '98a8b9e0c24d24c94e2c9c39a704c1b07c5c4d6b'  
 #gem 'delayed_paperclip', :git => 'git://github.com/jrgifford/delayed_paperclip.git'
 
 # Gems used only for assets and not required

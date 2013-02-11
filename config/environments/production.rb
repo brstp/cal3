@@ -65,5 +65,17 @@ Cal3::Application.configure do
   :password       => ENV['SENDGRID_PASSWORD'],
   :domain         => 'heroku.com'
 }
-ActionMailer::Base.delivery_method = :smtp    
+
+  ActionMailer::Base.delivery_method = :smtp    
+    config.paperclip_defaults = {
+      :storage => :fog,
+      :fog_public => true,
+      :fog_credentials => {
+        :aws_access_key_id => ENV['S3_KEY'],
+        :aws_secret_access_key => ENV['S3_SECRET'],
+        :provider => 'AWS',
+      },
+      :fog_directory => "static.allom.se",
+      :fog_host => 'https://s3.amazonaws.com/static.allom.se'
+  }
 end

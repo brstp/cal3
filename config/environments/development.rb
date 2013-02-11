@@ -48,7 +48,33 @@ ActionMailer::Base.smtp_settings = {
   :password => ENV['GMAIL_SMTP_PASSWORD']
 }
 
-# Uncomment the two below when Rails 3.2
+
+#  config.paperclip_defaults = {
+#    :storage => :fog,
+#    :fog_public => true,
+#    :fog_credentials => {
+#      :aws_access_key_id => ENV['S3_KEY'],
+#      :aws_secret_access_key => ENV['S3_SECRET'],
+#      :provider => 'AWS',
+#    },
+#    :fog_directory => "dev.allom.se",
+#  }
+  
+
+  config.paperclip_defaults = {
+    :storage => :fog,
+    :fog_public => true,
+    :fog_credentials => {
+      :aws_access_key_id => ENV['S3_KEY'],
+      :aws_secret_access_key => ENV['S3_SECRET'],
+      :provider => 'AWS',
+    },
+    :fog_directory => "dev.allom.se",
+    :fog_host => 'https://s3.amazonaws.com/dev.allom.se'
+  }
+  
+
+
 
 # Raise exception on mass assignment protection for Active Record models
 config.active_record.mass_assignment_sanitizer = :strict
