@@ -68,9 +68,10 @@ ActionMailer::Base.smtp_settings = {
       :aws_access_key_id => ENV['S3_KEY'],
       :aws_secret_access_key => ENV['S3_SECRET'],
       :provider => 'AWS',
+      :region => 'eu-west-1'
     },
-    :fog_directory => "dev.allom.se",
-    :fog_host => 'https://s3.amazonaws.com/dev.allom.se'
+    :fog_directory => "development.allom.se",
+    :fog_host => 'http://development.allom.se.s3.amazonaws.com'
   }
   
 
