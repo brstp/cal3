@@ -110,10 +110,8 @@ class Event < ActiveRecord::Base
     Category.find(self.category.path_ids[3]).name unless self.category.path_ids[3].blank?
   end
   
-  image_store = ENV["RAILS_ENV"].to_s + "/" unless ENV["RAILS_ENV"] == "production"
-
   has_attached_file :image1,
-      :path => "app/public/system/:attachment/:id/:style/:filename",
+      :path => "events/:attachment/:id/:style/:filename",
       :default_url => "missing-event.jpg",
       :styles => {:medium => "384x384",
                   :small => "82x55#"}

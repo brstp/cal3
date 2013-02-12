@@ -60,6 +60,7 @@ ActionMailer::Base.smtp_settings = {
 #    :fog_directory => "dev.allom.se",
 #  }
   
+  image_store = "development.allom.se"
 
   config.paperclip_defaults = {
     :storage => :fog,
@@ -70,8 +71,8 @@ ActionMailer::Base.smtp_settings = {
       :provider => 'AWS',
       :region => 'eu-west-1'
     },
-    :fog_directory => "development.allom.se",
-    :fog_host => 'http://development.allom.se.s3.amazonaws.com'
+    :fog_directory => "#{image_store}",
+    :fog_host => "http://#{image_store}.s3.amazonaws.com"
   }
   
 

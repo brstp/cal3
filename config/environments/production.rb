@@ -66,6 +66,7 @@ Cal3::Application.configure do
   :domain         => 'heroku.com'
 }
 
+  image_store = ENV["RAILS_ENV"] == "production" ? "static.allom.se" : "stage.allom.se"
   ActionMailer::Base.delivery_method = :smtp    
     config.paperclip_defaults = {
       :storage => :fog,
@@ -73,9 +74,12 @@ Cal3::Application.configure do
       :fog_credentials => {
         :aws_access_key_id => ENV['S3_KEY'],
         :aws_secret_access_key => ENV['S3_SECRET'],
-        :provider => 'AWS',
+        #      :region => 'eu-west-1',
+        :provider => 'AWS'
       },
-      :fog_directory => "static.allom.se",
-      :fog_host => 'https://s3.amazonaws.com/static.allom.se'
+      :fog_directory => "#{image_store}",
+      :fog_host => "https://s3.amazonaws.com/#{image_store}"
   }
 end
+
+  image_store = ENV["RAILS_ENV"].to_s + "/" unless ENV["RAILS_ENV"] == "production"
