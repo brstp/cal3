@@ -57,27 +57,46 @@ Cal3::Application.configure do
 
   # Generate digests for assets URLs
   config.assets.digest = true
-  ActionMailer::Base.smtp_settings = {
-  :address        => 'smtp.sendgrid.net',
-  :port           => '587',
-  :authentication => :plain,
-  :user_name      => ENV['SENDGRID_USERNAME'],
-  :password       => ENV['SENDGRID_PASSWORD'],
-  :domain         => 'heroku.com'
-}
 
-  image_store = (ENV['ALLOM_LIVE']).blank? ?  "stage.allom.se" : "static.allom.se"
-  ActionMailer::Base.delivery_method = :smtp    
-    config.paperclip_defaults = {
-      :storage => :fog,
-      :fog_public => true,
-      :fog_credentials => {
-        :aws_access_key_id => ENV['S3_KEY'],
-        :aws_secret_access_key => ENV['S3_SECRET'],
-        :region => (ENV['ALLOM_LIVE']).blank? ?  'eu-west-1', : '',
-        :provider => 'AWS'
-      },
-      :fog_directory => (ENV['ALLOM_LIVE']).blank? ?  'stage.allom.se' : 'static.allom.se',
-      :fog_host => (ENV['ALLOM_LIVE']).blank? ?  "http://stage.allom.se.s3-external-3.amazonaws.com" :  "https://s3.amazonaws.com/static.allom.se"
+  ActionMailer::Base.smtp_settings = {
+    :address        => 'smtp.sendgrid.net',
+    :port           => '587',
+    :authentication => :plain,
+    :user_name      => ENV['SENDGRID_USERNAME'],
+    :password       => ENV['SENDGRID_PASSWORD'],
+    :domain         => 'heroku.com'
   }
+
+  ActionMailer::Base.delivery_method = :smtp    
+  
+  
+  
+
+  if (ENV['ALLOM_LIVE']).blank?
+    config.paperclip_defaults = {
+        :storage => :fog,
+        :fog_public => true,
+        :fog_directory => 'stage.allom.se',
+        :fog_host => 'http://stage.allom.se.s3-external-3.amazonaws.com',
+        :fog_credentials => {
+          :aws_access_key_id => ENV['S3_KEY'],
+          :aws_secret_access_key => ENV['S3_SECRET'],
+          :provider => 'AWS',
+          :region => 'eu-west-1'
+        }
+      }
+  else
+    config.paperclip_defaults = {
+        :storage => :fog,
+        :fog_public => true,
+        :fog_directory => 'static.allom.se',
+        :fog_host => 'http://static.allom.se.s3.amazonaws.com'
+        :fog_credentials => {
+          :aws_access_key_id => ENV['S3_KEY'],
+          :aws_secret_access_key => ENV['S3_SECRET'],
+          :provider => 'AWS',
+        }
+      }
+  end
+
 end
