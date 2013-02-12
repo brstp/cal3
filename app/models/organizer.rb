@@ -72,7 +72,7 @@ class Organizer < ActiveRecord::Base
 
   has_attached_file :logotype, 
                     :default_url => "missing-organizer-logotype.png", 
-                    :path => "/organizers/:attachment/:id/:style/:filename",
+                    :path => "organizers/:attachment/:id/:style/:filename",
                     :styles => {  
                       :medium => "256x256", 
                       :small => "90x90"}
