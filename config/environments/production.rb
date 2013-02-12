@@ -74,7 +74,7 @@ Cal3::Application.configure do
       :fog_credentials => {
         :aws_access_key_id => ENV['S3_KEY'],
         :aws_secret_access_key => ENV['S3_SECRET'],
-        #      :region => 'eu-west-1',
+        :region => (ENV['ALLOM_LIVE']).blank? ?  'eu-west-1', : '',
         :provider => 'AWS'
       },
       :fog_directory => (ENV['ALLOM_LIVE']).blank? ?  'stage.allom.se' : 'static.allom.se',
