@@ -110,16 +110,8 @@ class Event < ActiveRecord::Base
     Category.find(self.category.path_ids[3]).name unless self.category.path_ids[3].blank?
   end
   
-  image_store = ENV["RAILS_ENV"].to_s + "/" unless ENV["RAILS_ENV"] == "production"
-
   has_attached_file :image1,
-      :storage => :s3,
-      :bucket => 'static.allom.se',
-      :path => "#{image_store}app/public/system/:attachment/:id/:style/:filename",
-      :s3_credentials => {
-        :access_key_id => ENV['S3_KEY'],
-        :secret_access_key => ENV['S3_SECRET']
-                         },
+      :path => "events/:attachment/:id/:style/:filename",
       :default_url => "missing-event.jpg",
       :styles => {:medium => "384x384",
                   :small => "82x55#"}
