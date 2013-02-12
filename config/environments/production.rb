@@ -72,7 +72,7 @@ Cal3::Application.configure do
   
   
 
-#  if (ENV['ALLOM_LIVE']).blank?
+  if (ENV['ALLOM_LIVE']).blank?
     config.paperclip_defaults = {
         :storage => :fog,
         :fog_public => true,
@@ -85,6 +85,8 @@ Cal3::Application.configure do
           :region => 'eu-west-1'
         }
       }
+  end
+      
 #  else
 #    config.paperclip_defaults = {
 #        :storage => :fog,
