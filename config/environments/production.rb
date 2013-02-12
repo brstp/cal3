@@ -72,29 +72,31 @@ Cal3::Application.configure do
   
   
 
-#  if (ENV['ALLOM_LIVE']).blank?
- #   config.paperclip_defaults = {
-  #      :storage => :fog,
-  #      :fog_public => true,
-  #      :fog_directory => 'stage.allom.se',
-  ###        :aws_access_key_id => ENV['S3_KEY'],
-  #        :aws_secret_access_key => ENV['S3_SECRET'],
-  #        :provider => 'AWS',
-  #        :region => 'eu-west-1'
-  #      }
-  #    }
-#  else
-#    config.paperclip_defaults = {
-#        :storage => :fog,
-#        :fog_public => true,
-#        :fog_directory => 'static.allom.se',
-#        :fog_host => 'http://static.allom.se.s3.amazonaws.com'
-#        :fog_credentials => {
-#          :aws_access_key_id => ENV['S3_KEY'],
-#          :aws_secret_access_key => ENV['S3_SECRET'],
-#          :provider => 'AWS',
-#        }
-#      }
-#  end
+  if (ENV['ALLOM_LIVE']).blank?
+    config.paperclip_defaults = {
+        :storage => :fog,
+        :fog_public => true,
+        :fog_directory => 'stage.allom.se',
+        :fog_host => 'http://stage.allom.se.s3-external-3.amazonaws.com',
+        :fog_credentials => {
+          :aws_access_key_id => ENV['S3_KEY'],
+          :aws_secret_access_key => ENV['S3_SECRET'],
+          :provider => 'AWS',
+          :region => 'eu-west-1'
+        }
+      }
+  else
+    config.paperclip_defaults = {
+        :storage => :fog,
+        :fog_public => true,
+        :fog_directory => 'static.allom.se',
+        :fog_host => 'http://static.allom.se.s3.amazonaws.com'
+        :fog_credentials => {
+          :aws_access_key_id => ENV['S3_KEY'],
+          :aws_secret_access_key => ENV['S3_SECRET'],
+          :provider => 'AWS',
+        }
+      }
+  end
 
 end
