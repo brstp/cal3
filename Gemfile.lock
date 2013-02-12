@@ -1,49 +1,37 @@
-GIT
-  remote: git://github.com/tommeier/delayed_paperclip
-  revision: c23a537c0c5d7488059b07a036ebfa4f5e52d43e
-  branch: fix_312
-  specs:
-    delayed_paperclip (2.4.5.2)
-      paperclip (>= 2.4.5)
-
 GEM
   remote: http://rubygems.org/
   specs:
-    actionmailer (3.2.11)
-      actionpack (= 3.2.11)
+    actionmailer (3.2.12)
+      actionpack (= 3.2.12)
       mail (~> 2.4.4)
-    actionpack (3.2.11)
-      activemodel (= 3.2.11)
-      activesupport (= 3.2.11)
+    actionpack (3.2.12)
+      activemodel (= 3.2.12)
+      activesupport (= 3.2.12)
       builder (~> 3.0.0)
       erubis (~> 2.7.0)
       journey (~> 1.0.4)
-      rack (~> 1.4.0)
+      rack (~> 1.4.5)
       rack-cache (~> 1.2)
       rack-test (~> 0.6.1)
       sprockets (~> 2.2.1)
-    activemodel (3.2.11)
-      activesupport (= 3.2.11)
+    activemodel (3.2.12)
+      activesupport (= 3.2.12)
       builder (~> 3.0.0)
-    activerecord (3.2.11)
-      activemodel (= 3.2.11)
-      activesupport (= 3.2.11)
+    activerecord (3.2.12)
+      activemodel (= 3.2.12)
+      activesupport (= 3.2.12)
       arel (~> 3.0.2)
       tzinfo (~> 0.3.29)
-    activeresource (3.2.11)
-      activemodel (= 3.2.11)
-      activesupport (= 3.2.11)
-    activesupport (3.2.11)
+    activeresource (3.2.12)
+      activemodel (= 3.2.12)
+      activesupport (= 3.2.12)
+    activesupport (3.2.12)
       i18n (~> 0.6)
       multi_json (~> 1.0)
     addressable (2.3.2)
     ancestry (1.3.0)
       activerecord (>= 2.3.14)
     arel (3.0.2)
-    aws-sdk (1.8.1.1)
-      json (~> 1.4)
-      nokogiri (>= 1.4.4)
-      uuidtools (~> 2.1)
     bcrypt-ruby (3.0.1-x86-mingw32)
     builder (3.0.4)
     chunky_png (1.2.7)
@@ -66,7 +54,7 @@ GEM
     daemons (1.1.9)
     delayed_job (3.0.5)
       activesupport (~> 3.0)
-    delayed_job_active_record (0.3.3)
+    delayed_job_active_record (0.4.0)
       activerecord (>= 2.1.0, < 4)
       delayed_job (~> 3.0)
     delayed_job_web (1.1.2)
@@ -91,6 +79,17 @@ GEM
     excon (0.16.10)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    fog (1.9.0)
+      builder
+      excon (~> 0.14)
+      formatador (~> 0.2.0)
+      mime-types
+      multi_json (~> 1.0)
+      net-scp (~> 1.0.4)
+      net-ssh (>= 2.1.3)
+      nokogiri (~> 1.5.0)
+      ruby-hmac
+    formatador (0.2.4)
     formtastic (2.2.1)
       actionpack (>= 3.0)
     friendly_id (4.0.9)
@@ -103,7 +102,7 @@ GEM
       activesupport (>= 3.1, < 4.1)
       haml (~> 3.1)
       railties (>= 3.1, < 4.1)
-    heroku (2.34.0)
+    heroku (2.35.0)
       heroku-api (~> 0.3.7)
       launchy (>= 0.3.2)
       netrc (~> 0.7.7)
@@ -119,17 +118,17 @@ GEM
     i18n (0.6.1)
     icalendar (1.2.1)
     journey (1.0.4)
-    jquery-rails (2.2.0)
+    jquery-rails (2.2.1)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
-    jquery-ui-rails (3.0.1)
+    jquery-ui-rails (4.0.1)
       jquery-rails
       railties (>= 3.1.0)
-    json (1.7.6)
+    json (1.7.7)
     kaminari (0.14.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
-    launchy (2.1.2)
+    launchy (2.2.0)
       addressable (~> 2.3)
     mail (2.4.4)
       i18n (>= 0.4.0)
@@ -138,10 +137,13 @@ GEM
     meta-tags (1.2.6)
       actionpack
     metaclass (0.0.1)
-    mime-types (1.20.1)
+    mime-types (1.21)
     mocha (0.13.2)
       metaclass (~> 0.0.1)
-    multi_json (1.5.0)
+    multi_json (1.5.1)
+    net-scp (1.0.6)
+      net-ssh (>= 2.6.5)
+    net-ssh (2.6.5)
     netrc (0.7.7)
     nokogiri (1.5.6-x86-mingw32)
     orm_adapter (0.4.0)
@@ -154,7 +156,7 @@ GEM
     pg (0.14.1-x86-mingw32)
     polyglot (0.3.3)
     pr_geohash (1.0.0)
-    rack (1.4.4)
+    rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
     rack-protection (1.3.2)
@@ -163,28 +165,29 @@ GEM
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
-    rails (3.2.11)
-      actionmailer (= 3.2.11)
-      actionpack (= 3.2.11)
-      activerecord (= 3.2.11)
-      activeresource (= 3.2.11)
-      activesupport (= 3.2.11)
+    rails (3.2.12)
+      actionmailer (= 3.2.12)
+      actionpack (= 3.2.12)
+      activerecord (= 3.2.12)
+      activeresource (= 3.2.12)
+      activesupport (= 3.2.12)
       bundler (~> 1.0)
-      railties (= 3.2.11)
-    railties (3.2.11)
-      actionpack (= 3.2.11)
-      activesupport (= 3.2.11)
+      railties (= 3.2.12)
+    railties (3.2.12)
+      actionpack (= 3.2.12)
+      activesupport (= 3.2.12)
       rack-ssl (~> 1.3.2)
       rake (>= 0.8.7)
       rdoc (~> 3.4)
       thor (>= 0.14.6, < 2.0)
     rake (10.0.3)
-    rdoc (3.12)
+    rdoc (3.12.1)
       json (~> 1.4)
     rest-client (1.6.7)
       mime-types (>= 1.16)
     rsolr (1.0.8)
       builder (>= 2.1.2)
+    ruby-hmac (0.4.0)
     rubyzip (0.9.9)
     sass (3.2.5)
     sass-rails (3.2.6)
@@ -228,7 +231,6 @@ GEM
     uglifier (1.3.0)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
-    uuidtools (2.1.3)
     validates_timeliness (3.0.14)
       timeliness (~> 0.3.6)
     warden (1.2.1)
@@ -239,7 +241,6 @@ PLATFORMS
 
 DEPENDENCIES
   ancestry
-  aws-sdk
   cocaine (= 0.3.2)
   coffee-rails
   compass-h5bp
@@ -247,10 +248,10 @@ DEPENDENCIES
   delayed_job
   delayed_job_active_record
   delayed_job_web
-  delayed_paperclip (= 2.4.5.2)!
   devise (>= 2.1.2)
   devise-async
   devise_invitable (~> 1.0.0)
+  fog
   formtastic
   friendly_id
   geocoder
@@ -266,9 +267,9 @@ DEPENDENCIES
   meta-tags
   mocha
   nokogiri
-  paperclip
+  paperclip (~> 3.0)
   pg
-  rails (= 3.2.11)
+  rails (= 3.2.12)
   sass-rails
   sqlite3-ruby
   sunspot_rails

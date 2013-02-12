@@ -1275,6 +1275,8 @@ aside {
 }
 
 .subscribe_container{  
+  @include clearfix;
+  margin-bottom: 1em;
 }
 
 .subscribe_icon{
