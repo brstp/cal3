@@ -66,7 +66,7 @@ Cal3::Application.configure do
   :domain         => 'heroku.com'
 }
 
-  image_store = ENV["RAILS_ENV"] == "production" ? "static.allom.se" : "stage.allom.se"
+  image_store = (ENV['ALLOM_LIVE']).blank? ?  "stage.allom.se" : "static.allom.se"
   ActionMailer::Base.delivery_method = :smtp    
     config.paperclip_defaults = {
       :storage => :fog,
