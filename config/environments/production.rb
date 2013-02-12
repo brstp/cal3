@@ -77,9 +77,7 @@ Cal3::Application.configure do
         #      :region => 'eu-west-1',
         :provider => 'AWS'
       },
-      :fog_directory => "#{image_store}",
-      :fog_host => "https://s3.amazonaws.com/#{image_store}"
+      :fog_directory => (ENV['ALLOM_LIVE']).blank? ?  'stage.allom.se' : 'static.allom.se',
+      :fog_host => (ENV['ALLOM_LIVE']).blank? ?  "http://stage.allom.se.s3-external-3.amazonaws.com" :  "https://s3.amazonaws.com/static.allom.se"
   }
 end
-
-  image_store = ENV["RAILS_ENV"].to_s + "/" unless ENV["RAILS_ENV"] == "production"
