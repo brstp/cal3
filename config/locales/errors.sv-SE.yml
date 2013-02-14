@@ -12,7 +12,6 @@
 # Will define custom blank validation message for User model and
 # custom blank validation message for login attribute of User model.
 
-
 sv-SE:
   activerecord:
     errors:
@@ -30,12 +29,16 @@ sv-SE:
             image1_file_size:
               in_between: "får inte vara större än 10 megabyte."
               
-        organizer
+        organizer:
           attributes:
+            photo_content_type:
+              content_type_error: "är inte en bild"
+            logotype_content_type:
+              content_type_error: "är inte en bild"  
             logotype_size:
-              in_between: "får inte vara större än 10 megabyte."
+              in_between: "får inte vara större än 10 megabyte"
             photo_size
-              in_between: "får inte vara större än 10 megabyte."
+              in_between: "får inte vara större än 10 megabyte"
       # The value :count is available when applicable. Can be used for pluralization.
       messages:
         inclusion: "finns inte i listan"

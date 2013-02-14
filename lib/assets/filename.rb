@@ -16,11 +16,11 @@ module Assets
     private
 
     def file_name
-      File.basename(@name, File.extname(@name)).parameterize
+      File.basename(@name, File.extname(@name)).parameterize unless @name.blank?
     end
 
     def ext_name
-      File.extname(@name).downcase 
+      File.extname(@name).downcase unless @name.blank?
     end
   end
 
