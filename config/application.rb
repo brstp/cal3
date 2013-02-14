@@ -61,6 +61,6 @@ module Cal3
     #ActiveSupport::Multibyte::Unicode.default_normalization_form = :nkfc
 
     config.assets.initialize_on_precompile = false
-        
+            
   end
 end

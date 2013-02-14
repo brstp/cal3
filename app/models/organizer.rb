@@ -3,6 +3,7 @@ class Organizer < ActiveRecord::Base
   include ActionView::Helpers::UrlHelper
   #include ActionView::Helpers::AssetTagHelper
   #include ActionView::Helpers::RawOutputHelper
+  include Assets::Normalizer
 
   has_many  :events,
             :dependent => :destroy
