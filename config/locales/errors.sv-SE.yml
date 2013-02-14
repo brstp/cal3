@@ -109,3 +109,8 @@ sv-SE:
       not_saved:
         one: 'Ett fel gör att vi inte kunde spara.'
         other: '%{count} fel gör att vi inte kan spara.'        
+  paperclip:
+    errors:
+      not_identified_by_imagemagick_error: "verkar inte vara en bild"
+      not_identified_by_image_magick_error: "verkar inte vara en bild"
+      NotIdentifiedByImageMagickError: "verkar inte vara en bild"

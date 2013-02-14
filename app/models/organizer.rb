@@ -65,9 +65,9 @@ class Organizer < ActiveRecord::Base
   validates :email, :email => true, :allow_blank => true  
   validates :website, :allow_blank => true, :uri => { :format => /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix }
   validates :photo_url, :allow_blank => true, :uri => { :format => /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix }
-  validates_attachment_content_type :logotype, :content_type => /image/
+  validates_attachment_content_type :logotype, :content_type => /image/, :message => :content_type_error
   validates_attachment_size :logotype, :in => 0..10.megabytes
-  validates_attachment_content_type :photo, :content_type => /image/
+  validates_attachment_content_type :photo, :content_type => /image/, :message => :content_type_error
   validates_attachment_size :photo, :in => 0..10.megabytes
   
 
