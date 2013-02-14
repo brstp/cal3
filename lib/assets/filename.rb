@@ -1,14 +1,5 @@
 module Assets
-  # This class does normalization of any string passed into `normalize`.
-  # With help of `ActiveSupport#parameterize` all special characters that
-  # don't conform URL standard will be replaced by dashes.
-  # String passed will be also downcases.
-  #
-  # === Example
-  #
-  # Filename.normalize("Qwe%%ty 1.jPg")
-  # => "qwe-ty-1.jpg"
-  #
+
   class Filename
     def self.normalize(name)
       self.new(name).normalize
@@ -25,13 +16,11 @@ module Assets
     private
 
     def file_name
-      #File.basename("grodan-boll.jpg", File.extname("grodan-boll.jpg")).parameterize
       File.basename(@name, File.extname(@name)).parameterize
     end
 
     def ext_name
-      # "jpg"
-      File.extname(@name).downcase
+      File.extname(@name).downcase 
     end
   end
 

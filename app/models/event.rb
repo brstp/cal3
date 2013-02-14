@@ -2,6 +2,7 @@
 class Event < ActiveRecord::Base
   include ActionView::Helpers::AssetTagHelper
   include ActionView::Helpers::UrlHelper
+  include Assets::Normalizer
 
   #TODO: Move default start/stop dates/times to inializers
   #TODO: Check if use of 'self' is ok
@@ -112,7 +113,7 @@ class Event < ActiveRecord::Base
   
   has_attached_file :image1,
       :path => "events/:attachment/:id/:style/:filename",
-      :default_url => "missing-event.jpg",
+      :default_url => "missing.jpg",
       :styles => {:medium => "384x384",
                   :small => "82x55#"}
 

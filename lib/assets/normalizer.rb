@@ -8,10 +8,12 @@ module Assets
 
     def normalize_filename
       each_attachment do |name, attachment|
-        attachment.instance_write(
-          :file_name,
-          Assets::Filename.normalize(attachment.instance_read(:file_name))
-        )
+        unless attachment == "missing.jpg" || attachment == "missing.png"
+          attachment.instance_write(
+            :file_name,
+            Assets::Filename.normalize(attachment.instance_read(:file_name))
+          )
+        end
       end
     end
   end
