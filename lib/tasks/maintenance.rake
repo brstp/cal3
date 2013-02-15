@@ -1,6 +1,33 @@
+# encoding: UTF-8
 namespace :maintenance do
   
   namespace :paperclip do
+    
+    task :spec_filename => :environment do
+      puts "======================="
+      u_str = "C:/Users/STEFAN~1/AppData/Local/Temp/lumano.gif"
+      puts "======================="
+      aa_str = "C:/Users/STEFAN~1/AppData/Local/Temp/låmano.gif"
+      puts "======================="
+      system("identify --version")
+      puts "======================="
+      system("identify #{u_str}")
+      puts "======================="
+      system("identify #{aa_str}")
+      puts "======================="
+      system("ls -l #{u_str}")
+      puts "======================="
+      system("ls -l #{aa_str}")
+      puts "======================="
+      system("ls -l C:/Users/STEFAN~1/AppData/Local/Temp/l*.gif")
+      puts "======================="
+      puts aa_str.class.name
+      puts "======================="
+      puts aa_str.encoding.name
+      puts "======================="
+      puts u_str.encoding.name
+      puts "======================="
+    end #/spec_filename
     
     namespace :organizer do
       
