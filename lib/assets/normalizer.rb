@@ -13,6 +13,8 @@ module Assets
             :file_name,
             Assets::Filename.normalize(attachment.instance_read(:file_name))
           )
+        else
+          attachment.instance_write(:file_name, nil)
         end
       end
     end

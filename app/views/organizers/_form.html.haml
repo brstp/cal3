@@ -20,6 +20,10 @@
           = t '.existing_logotype'
           </label>
           = image_tag @organizer.logotype.url :medium, :width => "100%"
+          %p.minor
+            = @organizer.logotype_file_name
+          %p.minor
+            = @organizer.logotype_content_type.split('/')[0]
           </li>
           = f.input :logotype_delete, :as => :boolean
           = f.input :logotype, :label => t('.replace_logotype')
@@ -34,6 +38,10 @@
           = t '.existing_photo' 
           </label>
           = image_tag @organizer.photo.url( :medium), :width => "100%"
+          %p.minor
+            = @organizer.photo_file_name
+          %p.minor
+            = @organizer.photo_content_type.split('/')[0]
           </li>
           = f.input :photo_delete, :as => :boolean
           = f.input :photo, :label => t('.replace_image')
