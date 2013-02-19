@@ -17,8 +17,10 @@ gem 'sunspot_rails' #, '1.2.1' #'1.2.rc4'    #api classes for solr
 gem 'kaminari'          # pagination
 gem "sunspot_with_kaminari" #, '~> 0.1'
 
-gem "cocaine", "0.3.2"
-gem "paperclip", "~> 3.0" #, "2.3.16"                    #upload and organizer images
+
+#gem "paperclip", "~> 3.0"          #upload and organizer images
+gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git", :ref => "e421bc1b0d5806f53be8a664c5f3c70c2e285e7e" # while problems with calling identify
+
 #gem 'aws-sdk', '~> 1.3.4'
 gem "fog"
 gem 'friendly_id'#, "~> 4.0.0"       # slugs, to make friendly urls

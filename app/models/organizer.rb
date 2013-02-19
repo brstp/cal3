@@ -3,6 +3,7 @@ class Organizer < ActiveRecord::Base
   include ActionView::Helpers::UrlHelper
   #include ActionView::Helpers::AssetTagHelper
   #include ActionView::Helpers::RawOutputHelper
+  include Assets::Normalizer
 
   has_many  :events,
             :dependent => :destroy
@@ -64,14 +65,14 @@ class Organizer < ActiveRecord::Base
   validates :email, :email => true, :allow_blank => true  
   validates :website, :allow_blank => true, :uri => { :format => /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix }
   validates :photo_url, :allow_blank => true, :uri => { :format => /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix }
-  validates_attachment_content_type :logotype, :content_type => /image/
+  validates_attachment_content_type :logotype, :content_type => /image/, :message => :content_type_error
   validates_attachment_size :logotype, :in => 0..10.megabytes
-  validates_attachment_content_type :photo, :content_type => /image/
+  validates_attachment_content_type :photo, :content_type => /image/, :message => :content_type_error
   validates_attachment_size :photo, :in => 0..10.megabytes
   
 
   has_attached_file :logotype, 
-                    :default_url => "missing-organizer-logotype.png", 
+                    :default_url => "missing.png", 
                     :path => "organizers/:attachment/:id/:style/:filename",
                     :styles => {  
                       :medium => "256x256", 
@@ -79,7 +80,7 @@ class Organizer < ActiveRecord::Base
   #process_in_background :logotype
 
   has_attached_file :photo,      
-                    :default_url => "missing-organizer.jpg", 
+                    :default_url => "missing.jpg", 
                     :path => "organizers/:attachment/:id/:style/:filename",
                     :styles => {  
                       :medium => "384x384" 
