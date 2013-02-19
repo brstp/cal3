@@ -26,7 +26,6 @@ namespace :maintenance do
         desc "Sanitize organizer photo file names. Report in csv."
         task :sanitize => :environment do
           Organizer.all.each do |organizer|
-            puts "-------------- Organizer id: #{organizer.id}"
             progress = "\"#{Time.now.to_i}\""
             progress << ";\"#{organizer.id}\""
             if organizer.photo.exists?
@@ -113,7 +112,6 @@ namespace :maintenance do
         desc "Sanitize organizer logotype file names. Report in csv."
         task :sanitize => :environment do
           Organizer.all.each do |organizer|
-            puts "-------------- Organizer id: #{organizer.id}"            
             progress = "\"#{Time.now.to_i}\""
             progress << ";\"#{organizer.id}\""
             if organizer.logotype.exists?
@@ -200,7 +198,6 @@ namespace :maintenance do
         desc "Sanitize organizer photo file names. Report in csv."
         task :sanitize => :environment do
           Event.all.each do |event|
-            puts "-------------- Event id: #{event.id}"
             progress = "\"#{Time.now.to_i}\""
             progress << ";\"#{event.id}\""
             if event.image1.exists?
