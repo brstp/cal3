@@ -19,7 +19,7 @@
                       :class => "header_image",
                       :width => "100%")
 
-        - unless @organizer.photo_file_size.to_i == 0 || @organizer.photo_caption.blank?
+        - if @organizer.photo.exists? && @organizer.photo_caption.present?
           .image_text
             = link_to_unless @organizer.photo_url.blank?, @organizer.photo_caption, @organizer.photo_url, :rel => :nofollow
     %h3{:itemprop => :description}= @organizer.intro

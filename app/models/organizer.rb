@@ -3,7 +3,7 @@ class Organizer < ActiveRecord::Base
   include ActionView::Helpers::UrlHelper
   #include ActionView::Helpers::AssetTagHelper
   #include ActionView::Helpers::RawOutputHelper
-  include Assets::Normalizer
+  #include Assets::Normalizer
 
   has_many  :events,
             :dependent => :destroy
@@ -56,6 +56,8 @@ class Organizer < ActiveRecord::Base
   
   before_save :destroy_photo? 
   before_save :destroy_logotype?
+  before_save :normalize_file_names
+  
   attr_accessible :name, :description, :website, :photo_url, :photo_caption, :photo_delete, :logotype, :logotype_delete, :photo, :intro, :phone, :email, :human_name
   
   validates_presence_of :name, :description, :email
@@ -87,6 +89,18 @@ class Organizer < ActiveRecord::Base
                                 }  
   #process_in_background :photo    
  
+  def normalize_file_names
+    if !self.photo_file_name.nil?
+      extension = File.extname(self.photo_file_name).gsub(/^\.+/, '')
+      filename = File.basename(self.photo_file_name, ".#{extension}").parameterize
+      self.photo.instance_write(:file_name, "#{filename}.#{extension}")
+    end
+    if !self.logotype_file_name.nil?
+      extension = File.extname(self.logotype_file_name).gsub(/^\.+/, '')
+      filename = File.basename(self.logotype_file_name, ".#{extension}").parameterize
+      self.logotype.instance_write(:file_name, "#{filename}.#{extension}")
+    end  
+  end
   
   def to_s
     self.name
