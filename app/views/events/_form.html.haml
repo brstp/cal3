@@ -43,7 +43,7 @@
     = f.input :human_name
     = f.input :phone_number
     = f.input :phone_name
-    - unless @event.image1_file_size.to_i == 0
+    - if @event.image1.exists?
       %li.string.optional#event_existing_image1
         %label
           Nuvarande bild

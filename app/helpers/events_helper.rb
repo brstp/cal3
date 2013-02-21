@@ -102,7 +102,7 @@ module EventsHelper
   end
   
   def event_meta
-    unless @event.image1_file_size.to_i == 0 
+    if @event.image1.exists?
       icon = image_path(@event.image1.url(:medium))
     else
       icon = "http://allom.se" + image_path("evenemang-allom-evenemangskalendern.png") 

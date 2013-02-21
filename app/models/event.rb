@@ -2,7 +2,6 @@
 class Event < ActiveRecord::Base
   include ActionView::Helpers::AssetTagHelper
   include ActionView::Helpers::UrlHelper
-  include Assets::Normalizer
 
   #TODO: Move default start/stop dates/times to inializers
   #TODO: Check if use of 'self' is ok
@@ -17,6 +16,7 @@ class Event < ActiveRecord::Base
 
   after_validation :merge_date_times
   before_save :destroy_image1?
+  before_save :normalize_file_names
   #after_validation :consider_fetch
  
   attr_accessor :start_date, :start_time, :stop_date, :stop_time
@@ -126,6 +126,14 @@ class Event < ActiveRecord::Base
       end
     end  
     write_attribute :image1_url, url_str
+  end
+  
+  def normalize_file_names
+    if !self.image1_file_name.nil?
+      extension = File.extname(self.image1_file_name).gsub(/^\.+/, '')
+      filename = File.basename(self.image1_file_name, ".#{extension}").parameterize
+      self.image1.instance_write(:file_name, "#{filename}.#{extension}")
+    end  
   end
 
   def image1_delete
