@@ -3,6 +3,7 @@ class Organizer < ActiveRecord::Base
   include ActionView::Helpers::UrlHelper
   #include ActionView::Helpers::AssetTagHelper
   #include ActionView::Helpers::RawOutputHelper
+  #include Assets::Normalizer
 
   has_many  :events,
             :dependent => :destroy
@@ -55,6 +56,8 @@ class Organizer < ActiveRecord::Base
   
   before_save :destroy_photo? 
   before_save :destroy_logotype?
+  before_save :normalize_file_names
+  
   attr_accessible :name, :description, :website, :photo_url, :photo_caption, :photo_delete, :logotype, :logotype_delete, :photo, :intro, :phone, :email, :human_name
   
   validates_presence_of :name, :description, :email
@@ -64,14 +67,14 @@ class Organizer < ActiveRecord::Base
   validates :email, :email => true, :allow_blank => true  
   validates :website, :allow_blank => true, :uri => { :format => /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix }
   validates :photo_url, :allow_blank => true, :uri => { :format => /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix }
-  validates_attachment_content_type :logotype, :content_type => /image/
+  validates_attachment_content_type :logotype, :content_type => /image/, :message => :content_type_error
   validates_attachment_size :logotype, :in => 0..10.megabytes
-  validates_attachment_content_type :photo, :content_type => /image/
+  validates_attachment_content_type :photo, :content_type => /image/, :message => :content_type_error
   validates_attachment_size :photo, :in => 0..10.megabytes
   
 
   has_attached_file :logotype, 
-                    :default_url => "missing-organizer-logotype.png", 
+                    :default_url => "missing.png", 
                     :path => "organizers/:attachment/:id/:style/:filename",
                     :styles => {  
                       :medium => "256x256", 
@@ -79,13 +82,25 @@ class Organizer < ActiveRecord::Base
   #process_in_background :logotype
 
   has_attached_file :photo,      
-                    :default_url => "missing-organizer.jpg", 
+                    :default_url => "missing.jpg", 
                     :path => "organizers/:attachment/:id/:style/:filename",
                     :styles => {  
                       :medium => "384x384" 
                                 }  
   #process_in_background :photo    
  
+  def normalize_file_names
+    if !self.photo_file_name.nil?
+      extension = File.extname(self.photo_file_name).gsub(/^\.+/, '')
+      filename = File.basename(self.photo_file_name, ".#{extension}").parameterize
+      self.photo.instance_write(:file_name, "#{filename}.#{extension}")
+    end
+    if !self.logotype_file_name.nil?
+      extension = File.extname(self.logotype_file_name).gsub(/^\.+/, '')
+      filename = File.basename(self.logotype_file_name, ".#{extension}").parameterize
+      self.logotype.instance_write(:file_name, "#{filename}.#{extension}")
+    end  
+  end
   
   def to_s
     self.name

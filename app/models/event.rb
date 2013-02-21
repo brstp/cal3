@@ -16,6 +16,7 @@ class Event < ActiveRecord::Base
 
   after_validation :merge_date_times
   before_save :destroy_image1?
+  before_save :normalize_file_names
   #after_validation :consider_fetch
  
   attr_accessor :start_date, :start_time, :stop_date, :stop_time
@@ -112,7 +113,7 @@ class Event < ActiveRecord::Base
   
   has_attached_file :image1,
       :path => "events/:attachment/:id/:style/:filename",
-      :default_url => "missing-event.jpg",
+      :default_url => "missing.jpg",
       :styles => {:medium => "384x384",
                   :small => "82x55#"}
 
@@ -125,6 +126,14 @@ class Event < ActiveRecord::Base
       end
     end  
     write_attribute :image1_url, url_str
+  end
+  
+  def normalize_file_names
+    if !self.image1_file_name.nil?
+      extension = File.extname(self.image1_file_name).gsub(/^\.+/, '')
+      filename = File.basename(self.image1_file_name, ".#{extension}").parameterize
+      self.image1.instance_write(:file_name, "#{filename}.#{extension}")
+    end  
   end
 
   def image1_delete

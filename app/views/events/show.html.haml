@@ -22,7 +22,7 @@
       %h1{:itemprop => :name}= @event.subject
 
       .header_image_container
-        - if @event.image1_file_size.to_i > 0 || @event.organizer.photo_file_size.to_i == 0
+        - if @event.image1.exists? || @event.organizer.photo.blank?
           = image_tag(  @event.image1.url(:medium), 
                         :title => (@event.image1_caption ? @event.image1_caption : "#{@event.subject} – #{@event.intro}" ), 
                         :alt => (@event.image1_caption ? @event.image1_caption : "#{@event.subject} – #{@event.intro}" ),

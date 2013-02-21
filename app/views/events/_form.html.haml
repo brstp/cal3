@@ -43,11 +43,15 @@
     = f.input :human_name
     = f.input :phone_number
     = f.input :phone_name
-    - unless @event.image1_file_size.to_i == 0
+    - if @event.image1.exists?
       %li.string.optional#event_existing_image1
         %label
           Nuvarande bild
         #{ image_tag @event.image1.url(:medium), :width => "100%"}
+        %p.minor
+          = @event.image1_file_name
+        %p.minor
+          = @event.image1_content_type.split('/')[0]
       = f.input :image1_delete, :as => :boolean
       = f.input :image1, :label => t('.replace_image')
     - else
