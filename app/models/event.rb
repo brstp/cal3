@@ -2,7 +2,6 @@
 class Event < ActiveRecord::Base
   include ActionView::Helpers::AssetTagHelper
   include ActionView::Helpers::UrlHelper
-  include Assets::Normalizer
 
   #TODO: Move default start/stop dates/times to inializers
   #TODO: Check if use of 'self' is ok
