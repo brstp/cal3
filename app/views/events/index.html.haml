@@ -102,8 +102,8 @@
                 %li.facet_field
                   .vacant
                     Från och med:<br>
-                    - if Timeliness.parse(@to_date).blank?
-                      = text_field_tag :from, l(Time.zone.now, :format => :text), :size => 11
+                    - if Timeliness.parse(@to_date).blank? && params[:stop] != "past" && params[:stop] != "future"
+                      = text_field_tag :from, l(Time.zone.now, :format => :date), :size => 11
                     - else
                       = text_field_tag :from, "", :size => 11, :type => :text
               - else

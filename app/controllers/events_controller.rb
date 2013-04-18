@@ -20,7 +20,7 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
       facet_from = Timeliness.parse(params[:from])
       facet_to = Timeliness.parse(params[:to])
 
-      if facet_from.blank? && facet_to.blank?
+      if facet_from.blank? && facet_to.blank? && params[:stop] != "past" && params[:stop] != "future"
         facet_from = Time.zone.now.beginning_of_day
       end
       
@@ -92,6 +92,10 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
               with(:stop).between((this_month)..(this_month + 1.month))
             when params[:stop] == "next_month"
               with(:stop).between((this_month + 1.month)..(this_month + 2.month))
+            when params[:stop] == "future"
+              with(:stop).between(today..(today + 10.year))
+            when params[:stop] == "past"
+              with(:stop).between((today - 100.year)..today)
             when params[:stop] == "christmas_eve"
               with(:stop).between(christmas_eve..(christmas_eve + 1.day))
             when params[:stop] == "christmas_day"
@@ -106,13 +110,10 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
 
       with(:stop).greater_than(facet_from) unless facet_from.blank?
       with(:stop).less_than(facet_to + 1.day) unless facet_to.blank?      
-      unless params[:category_facet_id].blank? # Lazy backward compability
-        with(:c2_id).equal_to( params[:category_facet_id].to_i )
-        params.delete :category_facet_id
-      end
       with(:c1_id).equal_to( params[:c1_id].to_i ) unless params[:c1_id].blank?
       with(:c2_id).equal_to( params[:c2_id].to_i ) unless params[:c2_id].blank?
       with(:c3_id).equal_to( params[:c3_id].to_i ) unless params[:c3_id].blank?
+      with( :category_facet_id ).equal_to( params[:category_facet_id].to_i ) unless params[:category_facet_id].blank? # for compability reasons with rss version < 3
       with(:organizer_id).equal_to( params[:organizer_id].to_i ) unless params[:organizer_id].blank?
       with(:municipality_id).equal_to( params[:municipality_id].to_i ) unless params[:municipality_id].blank?
       with(:syndicated_by_organizer_ids).equal_to(params[:sbo_id].to_i) unless params[:sbo_id].blank?
@@ -129,10 +130,6 @@ before_filter :authorized_for_this?, :except => [:show, :index, :new, :create]
     @organizer_facet_rows = result.facet(:organizer_id).rows if result.facet( :organizer_id )
     @municipality_facet_rows = result.facet(:municipality_id).rows if result.facet( :municipality_id )
     @syndicated_by_organizer_facet_rows = result.facet(:syndicated_by_organizer_ids).rows if result.facet(:syndicated_by_organizer_ids)
-    
-    logger.info "********--------"
-    logger.info @organizer_facet_rows
-    logger.info @syndicated_by_organizer_rows
 
     @events = result
     @hit_numbers = result.total

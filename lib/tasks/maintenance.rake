@@ -2,9 +2,17 @@
 #require "net/http"
 namespace :maintenance do
   
+
+        desc "Strip whitespaces"
+        task :strip => :environment do
+          Organizer.all.each do |m|
+            puts m.name
+            m.update_column(:name, m.name.strip)
+          end
+        end # /strip
+        
   namespace :paperclip do
         
-
     namespace :organizer do
       
       namespace :photo do      
