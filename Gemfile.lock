@@ -49,6 +49,7 @@ GEM
     chunky_png (1.2.8)
     climate_control (0.0.3)
       activesupport (>= 3.0)
+    closure-compiler (1.1.8)
     cocaine (0.5.1)
       climate_control (>= 0.0.3, < 1.0)
     coffee-rails (3.2.2)
@@ -250,6 +251,7 @@ PLATFORMS
 
 DEPENDENCIES
   ancestry
+  closure-compiler
   coffee-rails
   compass-h5bp
   compass-rails
