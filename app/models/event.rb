@@ -72,6 +72,7 @@ class Event < ActiveRecord::Base
     time :start, :trie => true, :using => :start_datetime
     time :stop, :trie => true, :using => :stop_datetime
     integer :category_id, :references => ::Category
+    integer :category_facet_id, :multiple => true, :references => ::Category # for backward compability with rss feed version < 3
     integer :municipality_id, :references => ::Municipality
     integer :organizer_id, :references => ::Organizer
     integer :syndicated_by_organizer_ids, :references => ::Organizer, :multiple => true
@@ -172,6 +173,16 @@ class Event < ActiveRecord::Base
       end  
     end
   end
+  
+  def category_facet_id
+    category = self.category
+    out_array = []
+    while category.depth > 0
+      out_array << category.id
+      category = category.parent
+    end
+    out_array
+  end  
   
   def location
     str = ""
