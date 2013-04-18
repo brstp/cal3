@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 
-gem 'rails', "3.2.12"
+gem 'rails', "3.2.13"
+gem 'closure-compiler'
 gem "thin"
 #gem 'heroku'                        #remote control for prod env at Heroku. Needed here too?
 gem 'pg'
