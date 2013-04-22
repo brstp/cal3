@@ -110,7 +110,7 @@ GEM
       actionpack (>= 3.0)
     friendly_id (4.0.9)
     fssm (0.2.10)
-    geocoder (1.1.6)
+    geocoder (1.1.7)
     gmaps4rails (1.5.6)
     haml (3.1.8)
     haml-rails (0.4)
@@ -153,7 +153,7 @@ GEM
     meta-tags (1.4.1)
       actionpack
     metaclass (0.0.1)
-    mime-types (1.22)
+    mime-types (1.23)
     mocha (0.13.3)
       metaclass (~> 0.0.1)
     multi_json (1.7.2)
