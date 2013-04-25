@@ -1403,6 +1403,7 @@ table.mini_calendar {
   padding: 8px 1em 8px 1em;
   margin: 1em 0 1em 0;
   //width: $max_aside_width;
+  overflow: visible;
 }
 
 .syndicate {
@@ -1425,8 +1426,10 @@ table.mini_calendar {
   padding-bottom: 7px;
 }
 
-
-// 12D event image gallery
+#facebook-home{
+  padding-left: 5px;
+  padding-right: 5px;
+}
 
 .event_gallery {
   padding: 0;
