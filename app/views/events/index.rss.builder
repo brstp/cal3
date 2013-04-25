@@ -55,41 +55,96 @@ xml.rss "version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/", "x
           end
       end
     else
+      
       xml.item do
-        xml.title "Evenemangskalendern Allom"
-        description = "<p>Just nu finns det inte några evenemang som matchar de som ska visas här men många andra. Leta efter liknande: </p>"
-        unless params[:organizer_id].blank?
-          organizer = Organizer.find(params[:organizer_id])
-          description << "<p>Arrangören #{link_to organizer.s, organizer_url(organizer)} evenemangskalender.</p>" unless organizer.nil?
-        end
-        unless params[:municipality_id].blank?
-          municipality = Municipality.find(params[:municipality_id])
-          description << "<p>Evenemang i #{link_to municipality.name, municipality_url(municipality)}.</p>" unless municipality.nil?
-        end
-        unless params[:category_facet_id].blank?
-          category = Category.find(params[:category_facet_id])
-          description << "<p>Evenemang inom: #{link_to(category.name, events_url(:category_facet_id => category.id))}.</p>" unless category.nil?
-        end
-        unless params[:c1_id].blank?
-          category = Category.find(params[:c1_id])
-          description << "<p>Evenemang inom: #{link_to(category.name, events_url(:c1_id => category.id))}.</p>" unless category.nil?
-        end
-        unless params[:c2_id].blank?
-          category = Category.find(params[:c2_id])
-          description << "<p>Evenemang inom: #{link_to(category.name, events_url(:c2_id => category.id))}.</p>" unless category.nil?
-        end
-        unless params[:c3_id].blank?
-          category = Category.find(params[:c3_id])
-          description << "<p>Evenemang inom: #{link_to(category.name, events_url(:c3_id => category.id))}.</p>" unless category.nil?
-        end        
-        unless params[:sbo_id].blank?
-          organizer = Organizer.find(params[:sbo_id])
-          description << "<p>Evenemang som rekommenderas av #{link_to organizer.s, organizer_url(organizer)}.</p>" unless organizer.nil?
-        end        
-        xml.description {xml.cdata!(description)} 
+        xml.title "Inga evenemang på Allom matchar exakt nu."
         xml.link events_url
         xml.guid events_url
       end
+            
+      unless params[:organizer_id].blank?
+        organizer = Organizer.find(params[:organizer_id])
+        unless organizer.nil?
+          xml.item do
+            xml.title "Arrangören #{organizer.s} evenemangskalender."
+            xml.link organizer_url(organizer)
+            xml.guid organizer_url(organizer)
+          end
+        end
+      end
+
+      unless params[:municipality_id].blank?
+        municipality = Municipality.find(params[:municipality_id])
+        unless municipality.nil?
+          xml.item do
+            xml.title "Evenemang och aktiviteter i #{municipality.name}."
+            xml.link municipality_url(municipality)
+            xml.guid municipality_url(municipality)
+          end
+        end
+      end
+
+      unless params[:category_facet_id].blank?
+        category = Category.find(params[:category_facet_id])
+        unless category.nil?
+          xml.item do
+            xml.title "Evenemang inom #{category.name}."
+            xml.link events_url(:category_facet_id => category.id)
+            xml.guid events_url(:category_facet_id => category.id)
+          end
+        end
+      end
+            
+      unless params[:c1_id].blank?
+        category = Category.find(params[:c1_id])
+        unless category.nil?
+          xml.item do
+            xml.title "Evenemang inom #{category.name}."
+            xml.link events_url(:c1_id => category.id)
+            xml.guid events_url(:c1_id => category.id)
+          end
+        end
+      end      
+
+      unless params[:c2_id].blank?
+        category = Category.find(params[:c2_id])
+        unless category.nil?
+          xml.item do
+            xml.title "Evenemang inom #{category.name}."
+            xml.link events_url(:c2_id => category.id)
+            xml.guid events_url(:c2_id => category.id)
+          end
+        end
+      end      
+
+      unless params[:c3_id].blank?
+        category = Category.find(params[:c3_id])
+        unless category.nil?
+          xml.item do
+            xml.title "Evenemang inom #{category.name}."
+            xml.link events_url(:c3_id => category.id)
+            xml.guid events_url(:c3_id => category.id)
+          end
+        end
+      end      
+
+      unless params[:sbo_id].blank?
+        organizer = Organizer.find(params[:sbo_id])
+        unless organizer.nil?
+          xml.item do
+            xml.title "Evenemang som rekommenderas av #{organizer.name}."
+            xml.link organizer_url(organizer)
+            xml.guid organizer_url(organizer)
+          end
+        end
+      end
+      
+      xml.item do
+        xml.title "Egen kalender för evenemang på din hemsida/blogg."
+        xml.link "http://info.allom.se/egen-evenemangskalender/"
+        xml.guid "http://info.allom.se/egen-evenemangskalender/"
+      end
+      
     end
   end
 end

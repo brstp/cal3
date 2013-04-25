@@ -1,6 +1,17 @@
 .content{:itemscope => true, :itemtype => "http://schema.org/Event"}
   %article.article{:role => "main"}
     %header
+      %p#breadcrumbs{:itemprop => "breadcrumb"}
+        %span #{link_to(@event.category1.capitalize, events_url(:c1_id => @event.c1_id))} 
+        > 
+        - if @event.category2
+          %span #{link_to(@event.category2.capitalize, events_url(:c1_id => @event.c1_id, :c2_id => @event.c2_id))} 
+          > 
+        %span #{link_to(@event.organizer.name, organizer_url(@event.organizer))} 
+        > 
+        %span #{link_to(@event.municipality.short_name, municipality_path(@event.municipality))} 
+        > 
+        %span #{link_to(@event.subject, event_url(@event))}
       
       - if @event.stop_datetime < Time.now
         .ceased
