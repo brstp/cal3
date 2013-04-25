@@ -923,6 +923,20 @@ nav.pagination {
   }
 }
 
+p#breadcrumbs {
+  color: $grey;
+  @include font-size(10);
+  margin-top: $baseline * 2;
+  a {
+    color: $grey;
+    text-decoration: none;
+  };
+  a:hover, a:active {
+    color: $black;
+    text-decoration: underline;
+  };
+}
+
 p.category {
   color: $grey;
   margin-bottom: -1em;
@@ -941,7 +955,6 @@ p.category {
 p.minor {
   @include font-size(10);
   margin-bottom: 1em;
-  
 }
 
 p.article_meta {

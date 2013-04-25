@@ -1,8 +1,7 @@
 !!! 5
 - html_tag :class => "no-js", :lang => "sv" do
   = render "head"
-
-  %body{ :class => "#{ controller.controller_name } #{controller.action_name}_action" }
+  %body{ :class => "#{ controller.controller_name } #{controller.action_name}_action", :itemscope => true, :itemtype => "http://schema.org/WebPage"}
     .outer_container
       .top_loaf
         .content_container
