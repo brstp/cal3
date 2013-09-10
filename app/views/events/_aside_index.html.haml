@@ -7,7 +7,8 @@
 %span.heading_label.todo Några nya evenemang
 .event_gallery
   - for event in @gallery
-    = link_to (image_tag event.image1.url(:small), :width => "32%", :title => ( l(event.start_datetime, :format => :mini) + ': ' + event.subject + ' (' + event.category.name + ')' + '. ' + event.organizer.name + ', ' + event.municipality.short_name + '.' ), :alt => event.image1_caption, :class => "#{cycle("gallery_col1", "gallery_col2", "gallery_col3")}"), event_path(event)
+    - if event.image1.exists?
+      = link_to (image_tag event.image1.url(:small), :width => "32%", :title => ( l(event.start_datetime, :format => :mini) + ': ' + event.subject + ' (' + event.category.name + ')' + '. ' + event.organizer.name + ', ' + event.municipality.short_name + '.' ), :alt => event.image1_caption, :class => "#{cycle("gallery_col1", "gallery_col2", "gallery_col3")}"), event_path(event)
 
 
 %span.heading_label.todo Gillar du om Allom?

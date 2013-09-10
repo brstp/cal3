@@ -101,11 +101,16 @@ module EventsHelper
     str
   end
   
+  
   def event_meta
     if @event.image1.exists?
       icon = image_path(@event.image1.url(:medium))
     else
-      icon = "http://allom.se" + image_path("evenemang-allom-evenemangskalendern.png") 
+      if @event.organizer.photo.exists?
+        icon = image_path(@event.organizer.photo.url(:medium))
+      else
+        icon = "http://allom.se" + image_path("evenemang-allom-evenemangskalendern.png") 
+      end
     end  
     title = @event.subject
     title = title + " | " + l( @event.start_datetime, :format => :mini) if @event.start_date == @event.stop_date
