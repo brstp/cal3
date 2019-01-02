@@ -26,7 +26,7 @@ git push allom-prod branchname:master
 heroku run rake db:migrate --app
 heroku run rake setup:heroku_collation --app 
 heroku run rake sunspot:solr:reindex
-heroku run rake setup:first_admin        # b.r.stefan.pettersson@gmail.com
+heroku run rake setup:first_admin        # b.r.s
 
 
 heroku run rake scrape:municipalities    
